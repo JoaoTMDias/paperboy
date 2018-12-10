@@ -1,0 +1,28 @@
+// UTILS
+@import './utils/index';
+
+// GLOBAL
+@import './global/index';
+
+// COMPONENTS
+@import './components/index';
+
+// THEME
+// UI
+@import './theme/index';
+
+#app {
+  width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  flex: 1;
+
+  // iphone X and upper
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
