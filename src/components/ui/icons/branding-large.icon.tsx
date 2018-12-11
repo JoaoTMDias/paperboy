@@ -44,8 +44,8 @@ const onEnter = keyframes`
 `;
 
 const Wrapper = styled.figure`
-  width: 93vw;
-  max-width: ${rem("352px")};
+  width: auto;
+  max-height: ${rem("298px")};
   height: auto;
   position: absolute;
   left: 0;

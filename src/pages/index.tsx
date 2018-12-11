@@ -29,10 +29,12 @@ class IndexPage extends React.Component<IIndexPageProps, any> {
           <Layout authenticated={authenticated}>
             <IconBrandingLarge />
             <Container
+              isFixed={true}
               fullheight={true}
               title="Current Page is the Welcome Screen."
               style={{
-                paddingTop: "18rem",
+                marginTop: "16rem",
+                marginBottom: "3rem",
               }}
             >
               <UISubtitle text="Welcome" />
@@ -51,15 +53,10 @@ class IndexPage extends React.Component<IIndexPageProps, any> {
         break;
 
       default:
-        <p>Loading...</p>;
-        break;
+        return <p>Loading...</p>;
     }
   }
 }
-
-IndexPage.defaultProps = {
-  authenticated: null,
-};
 
 const mapState2Props = state => ({
   authenticated: state.preferences.authenticated,

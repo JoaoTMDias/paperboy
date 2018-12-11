@@ -56,7 +56,7 @@ const onEnter = keyframes`
 
 const Heading1 = styled.h2`
   width: 100%;
-  font-size: ${rem("40px")};
+  font-size: ${rem("36px")};
   line-height: 1.15;
   font-family: var(--heading-font-family);
   color: var(--color-gray9);

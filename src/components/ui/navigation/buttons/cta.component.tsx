@@ -9,6 +9,7 @@ interface IUICallToActionProps {
   isTop?: boolean;
   float?: boolean;
   theme?: any;
+  blurred?: boolean;
 }
 
 /**
@@ -36,6 +37,14 @@ const Wrapper = styled.nav`
       bottom: ${(props: IUICallToActionProps) => (props.isTop ? "auto" : 0)};
     `}
 
+  background-color: rgba(255,255,255,1);
+
+  ${(props: IUICallToActionProps) => props.blurred
+    && css`
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    `}
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -53,6 +62,7 @@ const Wrapper = styled.nav`
 UICallToAction.defaultProps = {
   isTop: false,
   float: false,
+  blurred: false,
 };
 
 export default UICallToAction;
