@@ -5,6 +5,7 @@
   "author": "João Dias <contacto@joaodias.me>",
   "dependencies": {
     "@babel/preset-typescript": "^7.1.0",
+    "@types/react-redux": "^6.0.11",
     "axios": "^0.18.0",
     "date-fns": "^1.29.0",
     "gatsby": "^2.0.64",

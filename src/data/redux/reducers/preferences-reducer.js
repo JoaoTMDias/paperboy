@@ -12,7 +12,7 @@ const initialState = {
     quantity: 0,
     items: [],
   },
-  hasSession: false,
+  authenticated: false,
 };
 
 /**
@@ -47,7 +47,7 @@ function preferences(state = initialState, action) {
           quantity: 0,
           items: [],
         },
-        hasSession: false,
+        authenticated: false,
       };
     default:
       return state;

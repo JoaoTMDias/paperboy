@@ -62,7 +62,8 @@ const theme = {
 };
 
 // Layout Component
-const Layout = ({ children, data }) => {
+const Layout = (props) => {
+  // Check if is fullscreen (added to homescreen)
   if (typeof window !== 'undefined' && typeof document !== 'undefined') {
     const isInWebAppiOS = window.navigator.standalone == true;
     const isInWebAppChrome = window.matchMedia('(display-mode: standalone)').matches;
@@ -72,6 +73,28 @@ const Layout = ({ children, data }) => {
       body.setAttribute('data-fullscreen', 'true');
     }
   }
+
+  const { children, authenticated } = props;
+
+  const renderNavigationElements = () => {
+    if (authenticated) {
+      return (
+        <React.Fragment>
+          <TopNavigation key="page-header" />
+          <MainNavigation key="main-navigation" />
+          <main aria-label="Main Page Content Wrapper. Press Tab to navigate" key="page-content">
+            {children}
+          </main>
+          <BottomNavigation key="bottom-navigation" />
+        </React.Fragment>
+      );
+    }
+    return (
+      <main aria-label="Main Page Content Wrapper. Press Tab to navigate" key="page-content">
+        {children}
+      </main>
+    );
+  };
 
   return (
     <StaticQuery
@@ -85,90 +108,84 @@ const Layout = ({ children, data }) => {
         }
       `}
       render={data => (
-        <React.Fragment>
-          <ThemeProvider theme={theme}>
-            <Fragment>
-              <Helmet
-                htmlAttributes={{
-                  lang: 'en',
-                  prefix: 'http://ogp.me/ns#',
-                  'i18n-values': 'dir:textdirection',
-                  itemscope: undefined,
-                  itemtype: 'http://schema.org/WebPage',
-                  dir: 'ltr',
-                }}
-                title="Paperboy - Welcome"
-                meta={[
-                  { charset: 'utf-8' },
-                  { name: 'description', content: 'Paperboy' },
-                  {
-                    name: 'viewport',
-                    content:
-                      'width=device-width,minimum-scale=1.0,initial-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover',
-                  },
-                  { name: 'HandheldFriendly', content: 'true' },
-                  { name: 'MobileOptimized', content: '375' },
-                  { name: 'mobile-web-app-capable', content: 'yes' },
-                  { name: 'msapplication-TileColor', content: '#e81b1f' },
-                  { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
-                ]}
-                link={[
-                  {
-                    rel: 'apple-touch-icon',
-                    type: 'image/png',
-                    sizes: '180x180',
-                    href: `${appleTouchIcon}`,
-                  },
-                  {
-                    rel: 'shortcut icon',
-                    type: 'image/png',
-                    href: `${favicon}`,
-                  },
-                  {
-                    rel: 'icon',
-                    type: 'image/png',
-                    sizes: '16x16',
-                    href: `${favicon16}`,
-                  },
-                  {
-                    rel: 'icon',
-                    type: 'image/png',
-                    sizes: '32x32',
-                    href: `${favicon32}`,
-                  },
-                  {
-                    rel: 'icon',
-                    type: 'image/png',
-                    sizes: '194x194',
-                    href: `${favicon194}`,
-                  },
-                  {
-                    rel: 'mask-icon',
-                    href: `${maskIcon}`,
-                    color: '#e81b1f',
-                  },
-                ]}
-              />
-
-              <TopNavigation key="page-header" />
-              <MainNavigation key="main-navigation" />
-              <main
-                aria-label="Main Page Content Wrapper. Press Tab to navigate"
-                key="page-content"
-              >
-                {children}
-              </main>
-              <BottomNavigation key="bottom-navigation" />
-            </Fragment>
-          </ThemeProvider>
-        </React.Fragment>
+        <ThemeProvider theme={theme}>
+          <Fragment>
+            <Helmet
+              htmlAttributes={{
+                lang: 'en',
+                prefix: 'http://ogp.me/ns#',
+                'i18n-values': 'dir:textdirection',
+                itemscope: undefined,
+                itemtype: 'http://schema.org/WebPage',
+                dir: 'ltr',
+              }}
+              title="Paperboy - Welcome"
+              meta={[
+                { charset: 'utf-8' },
+                { name: 'description', content: 'Paperboy' },
+                {
+                  name: 'viewport',
+                  content:
+                    'width=device-width,minimum-scale=1.0,initial-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover',
+                },
+                { name: 'HandheldFriendly', content: 'true' },
+                { name: 'MobileOptimized', content: '375' },
+                { name: 'mobile-web-app-capable', content: 'yes' },
+                { name: 'msapplication-TileColor', content: '#e81b1f' },
+                { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
+              ]}
+              link={[
+                {
+                  rel: 'apple-touch-icon',
+                  type: 'image/png',
+                  sizes: '180x180',
+                  href: `${appleTouchIcon}`,
+                },
+                {
+                  rel: 'shortcut icon',
+                  type: 'image/png',
+                  href: `${favicon}`,
+                },
+                {
+                  rel: 'icon',
+                  type: 'image/png',
+                  sizes: '16x16',
+                  href: `${favicon16}`,
+                },
+                {
+                  rel: 'icon',
+                  type: 'image/png',
+                  sizes: '32x32',
+                  href: `${favicon32}`,
+                },
+                {
+                  rel: 'icon',
+                  type: 'image/png',
+                  sizes: '194x194',
+                  href: `${favicon194}`,
+                },
+                {
+                  rel: 'mask-icon',
+                  href: `${maskIcon}`,
+                  color: '#e81b1f',
+                },
+              ]}
+            />
+            {renderNavigationElements()}
+          </Fragment>
+        </ThemeProvider>
       )}
     />
   );
 };
 
+Layout.defaultProps = {
+  authenticated: true,
+};
+
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  authenticated: PropTypes.bool,
 };
 
 export default Layout;
