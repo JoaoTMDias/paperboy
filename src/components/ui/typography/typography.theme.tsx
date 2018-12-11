@@ -75,7 +75,7 @@ const Subtitle = styled.h3`
   line-height: 20px;
   font-size: ${rem("16px")};
   line-height: 1.25;
-  color: var(--color-primary);
+  color: hsla(5, 61%, 50%, 1);
   font-family: var(--heading-font-family);
   margin-bottom: ${rem("8px")};
 
@@ -92,7 +92,7 @@ const Lead = styled.p`
   line-height: 20px;
   font-size: ${rem("20px")};
   line-height: var(--global-lineheight);
-  color: var(--color-gray7);
+  color: var(--color-gray8);
   font-family: var(--body-font-family);
 
   animation-name: ${onEnter};
