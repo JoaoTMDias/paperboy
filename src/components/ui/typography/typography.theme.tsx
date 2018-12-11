@@ -17,7 +17,7 @@ interface IHeadingsProps {
  */
 const UIDisplay: React.FunctionComponent<IHeadingsProps> = (props) => {
   const { text } = props;
-  return <Heading1 id="page-display-heading--1">{text}</Heading1>;
+  return <Heading1 id="page-display-heading">{text}</Heading1>;
 };
 
 /**
@@ -28,7 +28,7 @@ const UIDisplay: React.FunctionComponent<IHeadingsProps> = (props) => {
  */
 const UISubtitle: React.FunctionComponent<IHeadingsProps> = (props) => {
   const { text } = props;
-  return <Subtitle id="page-display-heading--1">{text}</Subtitle>;
+  return <Subtitle id="page-subtitle-heading">{text}</Subtitle>;
 };
 
 /**
@@ -39,7 +39,7 @@ const UISubtitle: React.FunctionComponent<IHeadingsProps> = (props) => {
  */
 const UILead: React.FunctionComponent<IHeadingsProps> = (props) => {
   const { text } = props;
-  return <Lead id="page-display-heading--1">{text}</Lead>;
+  return <Lead id="page-lead">{text}</Lead>;
 };
 
 const onEnter = keyframes`
