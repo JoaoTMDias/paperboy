@@ -16,7 +16,7 @@ interface IA11yPageTitleProps {
 const A11yPageTitle: React.FunctionComponent<IA11yPageTitleProps> = (props) => {
   const { title } = props;
   return (
-    <Title id="page-title" role="status" aria-live="polite" aria-atomic="true">
+    <Title id="page-title" role="alert" aria-live="polite" aria-atomic="true" tabIndex={0}>
       {`Page Title: ${title}`}
     </Title>
   );

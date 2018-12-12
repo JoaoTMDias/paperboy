@@ -1,7 +1,8 @@
 // Libraries
-import { rem } from "polished";
+import { Link } from "gatsby";
+import { darken, rem } from "polished";
 import * as React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 // Component Props
 interface IUIButtonProps {
@@ -22,26 +23,29 @@ const UIButton: React.FunctionComponent<IUIButtonProps> = (props) => {
     type, text, label, onClick,
   } = props;
   return (
-    <Wrapper type={type} onClick={onClick} aria-label={label}>
+    <Btn type={type} onClick={onClick} aria-label={label}>
       {text}
-    </Wrapper>
+    </Btn>
+  );
+};
+
+interface IUIAnchorProps {
+  to: string;
+  text: string;
+  label: string;
+}
+
+const UIAnchor: React.FunctionComponent<IUIAnchorProps> = (props) => {
+  const { to, text, label } = props;
+  return (
+    <Anchor to={to} aria-label={label}>
+      {text}
+    </Anchor>
   );
 };
 
 // Styling
-const onEnter = keyframes`
-    from {
-        transform: translate3d(0, var(--bottom-navigation-bar-height), 0);
-        opacity: 0;
-    }
-
-    to {
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-    }
-`;
-
-const Wrapper = styled.button`
+const Btn = styled.button`
   width: 100%;
   height: var(--bottom-navigation-bar-height, ${rem("48px")});
   background-color: var(--color-primary);
@@ -51,13 +55,48 @@ const Wrapper = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: var(--global-radius);
+  border-radius: var(--button-radius);
+  transform: scale(1);
+  transition: all 200ms var(--default-timing-function);
 
-  animation-name: ${onEnter};
-  animation-duration: 300ms;
-  animation-timing-function: var(--default-timing-function);
-  animation-fill-mode: both;
-  animation-delay: 1000ms;
+  &:focus,
+  &:hover,
+  &:active {
+    background-color: ${darken(0.5, "#e74c3c")};
+    color: currentColor;
+    outline: 1px solid var(--color-gray3);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 `;
 
-export { UIButton };
+const Anchor = styled(Link)`
+  width: 100%;
+  height: var(--bottom-navigation-bar-height, ${rem("48px")});
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--button-radius);
+  transform: scale(1);
+  transition: all 200ms var(--default-timing-function);
+
+  &:focus,
+  &:hover,
+  &:active {
+    background-color: ${darken(0.1, "#e74c3c")};
+    color: currentColor;
+    outline: 1px solid var(--color-gray3);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+`;
+
+export { UIButton, UIAnchor };

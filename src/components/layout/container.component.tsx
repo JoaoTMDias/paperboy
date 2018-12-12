@@ -1,6 +1,6 @@
 // Libraries
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { A11yPageTitle } from "../index";
 
 // Component Props
@@ -39,13 +39,17 @@ const Wrapper = styled.div`
     }
     return "0";
   }};
-  overflow: ${(props: IContainerProps) => (props.isFixed ? "hidden" : "auto")};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   flex: 1;
   z-index: 0;
   position: relative;
+
+  ${(props: IContainerProps) => props.isFixed
+    && css`
+      overflow: hidden;
+    `}
 `;
 
 Container.defaultProps = {

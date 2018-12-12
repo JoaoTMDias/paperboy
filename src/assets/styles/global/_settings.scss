@@ -7,7 +7,8 @@ $ratio: $golden-ratio;
 // 1. Global
 // ---------
 $top-navigation-bar-height: rem-calc(48);
-$bottom-navigation-bar-height: rem-calc(48);
+$bottom-navigation-bar-height: $top-navigation-bar-height;
+$button-radius: $bottom-navigation-bar-height;
 // 2. Breakpoints
 // --------------
 $breakpoint-medium: rem-calc(640);
@@ -16,7 +17,7 @@ $breakpoint-xlarge: rem-calc(1200);
 $breakpoint-xxlarge: rem-calc(1440);
 
 // Colors
-$color-primary: #e74c3c;
+$color-primary: hsla(6, 78%, 57%, 1);
 $color-select: #007aff;
 $color-white: #ffffff;
 $color-gray0: #f9f9f9;

@@ -60,7 +60,7 @@ const Heading1 = styled.h2`
   line-height: 1.15;
   font-family: var(--heading-font-family);
   color: var(--color-gray9);
-  margin-bottom: ${rem("24px")};
+  margin-bottom: ${rem("16px")};
 
   animation-name: ${onEnter};
   animation-duration: 300ms;
