@@ -69,6 +69,7 @@ const Wrapper = styled.nav`
   a {
     &:only-child {
       width: calc(100% - 1rem);
+      max-width: ${rem("640px")};
       margin: 0 auto;
     }
 

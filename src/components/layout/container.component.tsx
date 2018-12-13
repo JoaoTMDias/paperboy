@@ -7,6 +7,7 @@ import { A11yPageTitle } from "../index";
 interface IContainerProps {
   isFixed?: boolean;
   fullheight?: boolean;
+  offsetTop?: string;
   theme?: any;
   title: string;
   style: string | object;
@@ -19,7 +20,15 @@ interface IContainerProps {
  * @extends {React.FunctionComponent}
  */
 const Container: React.FunctionComponent<IContainerProps> = (props) => {
-  const { ...ContainerProps } = props;
+  const { offsetTop, ...ContainerProps } = props;
+
+  if (offsetTop) {
+    const pageBody: HTMLElement | null = document.documentElement;
+
+    if (pageBody) {
+      pageBody.style.setProperty("--top-navigation-bar-height", `${offsetTop}`);
+    }
+  }
   return (
     <div id="main-content" aria-labelledby="page-title">
       <A11yPageTitle title={props.title} />

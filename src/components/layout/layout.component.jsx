@@ -6,7 +6,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import { ThemeProvider } from 'styled-components';
 
 // Components
-import TopNavigation from '../ui/navigation/header/index';
+import UINavigationBar from '../ui/navigation/header/top-navigation.component';
 import MainNavigation from '../ui/navigation/main/main-navigation';
 import BottomNavigation from '../ui/navigation/bottom-navigation/bottom-navigation.component';
 
@@ -92,7 +92,7 @@ const Layout = (props) => {
     if (authenticated) {
       return (
         <React.Fragment>
-          <TopNavigation key="page-header" />
+          <UINavigationBar key="page-header" />
           <MainNavigation key="main-navigation" />
           <main aria-label="Main Page Content Wrapper. Press Tab to navigate" key="page-content">
             {children}

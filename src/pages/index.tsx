@@ -27,14 +27,17 @@ class IndexPage extends React.Component<IIndexPageProps, any> {
       case false:
         return (
           <Layout authenticated={authenticated}>
-            <IconBrandingLarge />
+            <IconBrandingLarge visible={true} />
             <Container
               isFixed={false}
               fullheight={true}
               title="Current Page is the Welcome Screen."
               style={{
                 marginTop: "16rem",
+                marginRight: "auto",
                 marginBottom: "3.5rem",
+                marginLeft: "auto",
+                maxWidth: "40rem",
               }}
             >
               <UISubtitle text="Welcome" />

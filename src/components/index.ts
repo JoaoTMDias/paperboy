@@ -9,7 +9,8 @@ import A11yPageTitle from "./ui/a11y/a11ypagetitle.component";
 import BottomNavigation from "./ui/navigation/bottom-navigation/bottom-navigation.component";
 import { UIAnchor, UIButton } from "./ui/navigation/buttons/buttons.theme";
 import UICallToAction from "./ui/navigation/buttons/cta.component";
-import TopNavigation from "./ui/navigation/header/index";
+import UINavigationBarBarWithTitle from "./ui/navigation/header/navigation-with-title.component";
+import UINavigationBar from "./ui/navigation/header/top-navigation.component";
 import MainNavigation from "./ui/navigation/main/main-navigation";
 
 // TYPOGRAPHY
@@ -41,7 +42,8 @@ export {
   IconBrandingLarge,
   Layout,
   Container,
-  TopNavigation,
+  UINavigationBar,
+  UINavigationBarBarWithTitle,
   BottomNavigation,
   MainNavigation,
 };

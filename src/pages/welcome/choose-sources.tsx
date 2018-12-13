@@ -3,12 +3,13 @@ import * as React from "react";
 import { connect } from "react-redux";
 import {
   Container,
-  IconBrandingLarge,
   Layout,
   UIAnchor,
   UICallToAction,
   UIDisplay,
   UILead,
+  UINavigationBar,
+  UINavigationBarBarWithTitle,
   UISubtitle,
 } from "../../components/index";
 
@@ -27,10 +28,17 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, any> {
       case false:
         return (
           <Layout authenticated={authenticated}>
+            <UINavigationBar>
+              <UINavigationBarBarWithTitle
+                title="What do you fancy reading?"
+                subtitle="Choose at least 3 different sources."
+              />
+            </UINavigationBar>
+
             <Container
-              isFixed={false}
-              fullheight={true}
+              isFixed={true}
               title="Current Page is: Choose News Sources."
+              offsetTop="6rem"
             >
               <UISubtitle text="Welcome" />
               <UIDisplay text="Your news, your control." />
