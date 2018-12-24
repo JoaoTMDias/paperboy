@@ -10,7 +10,7 @@ interface IContainerProps {
   offsetTop?: string;
   theme?: any;
   title: string;
-  style: string | object;
+  style?: string | object;
 }
 
 /**
@@ -30,10 +30,10 @@ const Container: React.FunctionComponent<IContainerProps> = (props) => {
     }
   }
   return (
-    <div id="main-content" aria-labelledby="page-title">
+    <main id="main-content" aria-labelledby="page-title">
       <A11yPageTitle title={props.title} />
       <Wrapper {...ContainerProps}>{props.children}</Wrapper>
-    </div>
+    </main>
   );
 };
 

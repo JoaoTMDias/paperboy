@@ -2,8 +2,8 @@
 import {
   GET_LATEST_NEWS,
   GET_ALL_AVAILABLE_NEWS_SOURCES,
-  RESET_APP_STATE
-} from "../../constants";
+  RESET_APP_STATE,
+} from '../../constants';
 
 // News initial state
 const initialState = {
@@ -17,8 +17,8 @@ const initialState = {
     health: {},
     science: {},
     sports: {},
-    technology: {}
-  }
+    technology: {},
+  },
 };
 
 /**
@@ -41,14 +41,14 @@ function news(state = initialState, action) {
           health: action.sources.health,
           science: action.sources.science,
           sports: action.sources.sports,
-          technology: action.sources.technology
-        }
+          technology: action.sources.technology,
+        },
       });
 
     case GET_LATEST_NEWS:
       return Object.assign({}, state, {
         type: action.type,
-        latest: action.latest
+        latest: action.latest,
       });
     case RESET_APP_STATE:
       return {
@@ -62,8 +62,8 @@ function news(state = initialState, action) {
           health: {},
           science: {},
           sports: {},
-          technology: {}
-        }
+          technology: {},
+        },
       };
     default:
       return state;

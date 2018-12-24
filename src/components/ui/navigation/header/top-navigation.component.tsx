@@ -7,6 +7,7 @@ import styled from "styled-components";
 interface IUINavigationBarProps {
   children: any;
   theme?: any;
+  shadow?: "default" | "hairline" | "none";
 }
 
 /**
@@ -35,6 +36,19 @@ const Wrapper = styled.header`
   padding-left: ${rem("16px")};
   padding-right: ${rem("16px")};
   background-color: var(--color-white);
+  box-shadow: ${(props: IUINavigationBarProps) => {
+    if (props.shadow) {
+      if (props.shadow === "default") {
+        return "0 0 4px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.12)";
+      }
+      if (props.shadow === "hairline") {
+        return "0 1px 0 var(--color-gray4)";
+      }
+      if (props.shadow === "none") {
+        return "none";
+      }
+    }
+  }};
   z-index: 3;
 `;
 

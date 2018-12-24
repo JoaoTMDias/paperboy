@@ -50,7 +50,7 @@ const Container = styled.div`
         font-size: ${rem("20px")};
         color: var(--color-gray9);
         letter-spacing: 0;
-        margin-bottom: ${rem("2px")};
+        margin-bottom: 0;
       }
 
       &__subtitle {

@@ -1,6 +1,7 @@
 // LAYOUT
 import Container from "./layout/container.component";
 import Layout from "./layout/layout.component";
+import UISection from "./layout/section.component";
 
 // A11Y
 import A11yPageTitle from "./ui/a11y/a11ypagetitle.component";
@@ -12,6 +13,9 @@ import UICallToAction from "./ui/navigation/buttons/cta.component";
 import UINavigationBarBarWithTitle from "./ui/navigation/header/navigation-with-title.component";
 import UINavigationBar from "./ui/navigation/header/top-navigation.component";
 import MainNavigation from "./ui/navigation/main/main-navigation";
+
+// UI
+import SourcesList from "./ui/sources/source-list.component";
 
 // TYPOGRAPHY
 import { UIDisplay, UILead, UISubtitle } from "./ui/typography/typography.theme";
@@ -27,6 +31,7 @@ import {
 } from "./ui/icons/icons";
 
 export {
+  UISection,
   A11yPageTitle,
   UIDisplay,
   UISubtitle,
@@ -46,4 +51,5 @@ export {
   UINavigationBarBarWithTitle,
   BottomNavigation,
   MainNavigation,
+  SourcesList,
 };
