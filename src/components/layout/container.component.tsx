@@ -22,7 +22,7 @@ interface IContainerProps {
 const Container: React.FunctionComponent<IContainerProps> = (props) => {
   const { offsetTop, ...ContainerProps } = props;
 
-  if (offsetTop) {
+  if (offsetTop && typeof document !== "undefined") {
     const pageBody: HTMLElement | null = document.documentElement;
 
     if (pageBody) {
