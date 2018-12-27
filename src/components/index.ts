@@ -15,8 +15,8 @@ import UINavigationBar from "./ui/navigation/header/top-navigation.component";
 import MainNavigation from "./ui/navigation/main/main-navigation";
 
 // UI
+import SourceItem from "./ui/sources/source-item.component";
 import SourcesList from "./ui/sources/source-list.component";
-
 // TYPOGRAPHY
 import { UIDisplay, UILead, UISubtitle } from "./ui/typography/typography.theme";
 
@@ -52,4 +52,5 @@ export {
   BottomNavigation,
   MainNavigation,
   SourcesList,
+  SourceItem,
 };

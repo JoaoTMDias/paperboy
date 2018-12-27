@@ -41,7 +41,6 @@ const Wrapper = styled.nav`
   position: fixed;
   left: 0;
   right: 0;
-  top: ${(props: IUICallToActionProps) => (props.isTop ? 0 : "auto")};
   bottom: ${(props: IUICallToActionProps) => (props.isTop ? "auto" : 0)};
   background-color: rgba(255, 255, 255, 1);
 
@@ -64,6 +63,7 @@ const Wrapper = styled.nav`
   animation-timing-function: var(--default-timing-function);
   animation-fill-mode: both;
   animation-delay: 1500ms;
+  z-index: 10;
 
   button,
   a {

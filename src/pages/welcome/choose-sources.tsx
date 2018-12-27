@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import {
   Container,
   Layout,
+  SourceItem,
   SourcesList,
   UIAnchor,
   UICallToAction,
@@ -40,26 +41,10 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = (pro
             layout="horizontal"
             label="The Top 20 Editor's Suggestions for news sources."
           >
-            <li>
-              <label>
-                <input type="checkbox" name="lastname" />
-                <div className="source__status">
-                  <img className="source__status__icon" width="24" height="24" alt="Alt text" />
-                </div>
-                <figure className="source__cover">
-                  <img
-                    className="source__cover__image"
-                    src="#"
-                    width="105"
-                    height="105"
-                    alt="Alt Text"
-                  />
-                </figure>
-                <span id="source-label-cnn" className="source__label">
-                  CNN
-                </span>
-              </label>
-            </li>
+            <SourceItem id="cnn" label="CNN" />
+            <SourceItem id="cnn" label="CNN" />
+            <SourceItem id="cnn" label="CNN" />
+            <SourceItem id="cnn" label="CNN" />
           </SourcesList>
         </UISection>
 

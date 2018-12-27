@@ -74,8 +74,8 @@ const Btn = styled.button`
 
 const Anchor = styled(Link)`
   width: 100%;
-  height: var(--bottom-navigation-bar-height, ${rem("48px")});
   background-color: var(--color-primary);
+  padding: ${rem("11.5px")} 0;
   color: var(--color-white);
   text-align: center;
   display: flex;

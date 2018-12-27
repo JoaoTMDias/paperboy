@@ -1,7 +1,6 @@
 // Libraries
-import { rem } from "polished";
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 // Component Props
 interface ISourcesListProps {
@@ -31,9 +30,26 @@ SourcesList.defaultProps = {
 
 // Styling
 const SourcesListWrapper = styled.ul`
-  width: 100%;
-  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
   margin: 0;
-`;
+  padding: 0;
 
+  scroll-snap-type: x proximity;
+
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .source__item {
+    flex: 1;
+    margin-right: 1rem;
+  }
+`;
 export default SourcesList;

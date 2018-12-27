@@ -39,6 +39,8 @@ UISection.defaultProps = {
 // Styling
 const SectionWrapper = styled.section`
   width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
   display: flex;
   flex-direction: ${(props: IUISectionProps) => {
     if (props.layout === "horizontal") {

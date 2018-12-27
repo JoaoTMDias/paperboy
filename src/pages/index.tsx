@@ -41,14 +41,14 @@ const IndexPage: React.FunctionComponent<IIndexPageProps> = (props) => {
         <UISubtitle text="Welcome" />
         <UIDisplay text="Your news, your control." />
         <UILead text="The most important news of the hour, right from your favorite sources." />
-        <UICallToAction float={true}>
-          <UIAnchor
-            to="/welcome/choose-sources"
-            text="Choose your favorite sources"
-            label="Click to navigate to the next screen, where you can pick your favorite sources from a wide array of options."
-          />
-        </UICallToAction>
       </Container>
+      <UICallToAction float={true}>
+        <UIAnchor
+          to="/welcome/choose-sources"
+          text="Choose your favorite sources"
+          label="Click to navigate to the next screen, where you can pick your favorite sources from a wide array of options."
+        />
+      </UICallToAction>
     </Layout>
   );
 };
