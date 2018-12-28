@@ -1,10 +1,18 @@
 // LAYOUT
 import Container from "./layout/container.component";
 import Layout from "./layout/layout.component";
-import UISection from "./layout/section.component";
+
+export {
+  Container,
+  Layout,
+};
 
 // A11Y
 import A11yPageTitle from "./ui/a11y/a11ypagetitle.component";
+
+export {
+  A11yPageTitle,
+};
 
 // NAVIGATION
 import BottomNavigation from "./ui/navigation/bottom-navigation/bottom-navigation.component";
@@ -14,11 +22,32 @@ import UINavigationBarBarWithTitle from "./ui/navigation/header/navigation-with-
 import UINavigationBar from "./ui/navigation/header/top-navigation.component";
 import MainNavigation from "./ui/navigation/main/main-navigation";
 
+export {
+  BottomNavigation,
+  UIAnchor,
+  UIButton,
+  UICallToAction,
+  UINavigationBarBarWithTitle,
+  UINavigationBar,
+  MainNavigation,
+};
+
 // UI
+import UISection from "./layout/section.component";
+import UISearchForm from "./ui/forms/search-form.component";
 import SourceItem from "./ui/sources/source-item.component";
 import SourcesList from "./ui/sources/source-list.component";
-// TYPOGRAPHY
 import { UIDisplay, UILead, UISubtitle } from "./ui/typography/typography.theme";
+
+export {
+  SourceItem,
+  SourcesList,
+  UIDisplay,
+  UILead,
+  UISubtitle,
+  UISection,
+  UISearchForm,
+};
 
 // ICONOGRAPHY
 import {
@@ -31,26 +60,10 @@ import {
 } from "./ui/icons/icons";
 
 export {
-  UISection,
-  A11yPageTitle,
-  UIDisplay,
-  UISubtitle,
-  UILead,
-  UIButton,
-  UIAnchor,
-  UICallToAction,
   IconNews,
   IconSaved,
   IconSearch,
   IconCategories,
   IconSettings,
   IconBrandingLarge,
-  Layout,
-  Container,
-  UINavigationBar,
-  UINavigationBarBarWithTitle,
-  BottomNavigation,
-  MainNavigation,
-  SourcesList,
-  SourceItem,
 };

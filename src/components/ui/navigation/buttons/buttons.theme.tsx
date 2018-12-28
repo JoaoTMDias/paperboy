@@ -23,7 +23,7 @@ const UIButton: React.FunctionComponent<IUIButtonProps> = (props) => {
     type, text, label, onClick,
   } = props;
   return (
-    <Btn type={type} onClick={onClick} aria-label={label}>
+    <Btn type={type} onClick={onClick} aria-label={label} tabIndex={0}>
       {text}
     </Btn>
   );
@@ -38,7 +38,7 @@ interface IUIAnchorProps {
 const UIAnchor: React.FunctionComponent<IUIAnchorProps> = (props) => {
   const { to, text, label } = props;
   return (
-    <Anchor to={to} aria-label={label}>
+    <Anchor to={to} aria-label={label} tabIndex={0}>
       {text}
     </Anchor>
   );
@@ -74,8 +74,8 @@ const Btn = styled.button`
 
 const Anchor = styled(Link)`
   width: 100%;
+  height: var(--bottom-navigation-bar-height, ${rem("48px")});
   background-color: var(--color-primary);
-  padding: ${rem("11.5px")} 0;
   color: var(--color-white);
   text-align: center;
   display: flex;
@@ -85,6 +85,7 @@ const Anchor = styled(Link)`
   border-radius: var(--button-radius);
   transform: scale(1);
   transition: all 200ms var(--default-timing-function);
+  pointer-events: all;
 
   &:focus,
   &:hover,

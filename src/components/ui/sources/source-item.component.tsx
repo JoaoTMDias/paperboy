@@ -8,6 +8,7 @@ interface ISourceItemProps {
   theme?: any;
   id: string;
   label: string;
+  cover: string;
 }
 
 interface ISourceItemState {
@@ -39,7 +40,7 @@ class SourceItem extends React.PureComponent<ISourceItemProps, ISourceItemState>
   }
 
   public render() {
-    const { id, label } = this.props;
+    const { id, label, cover } = this.props;
 
     const status: string = this.state.isChecked ? "is-checked" : "";
 
@@ -71,7 +72,7 @@ class SourceItem extends React.PureComponent<ISourceItemProps, ISourceItemState>
           <Logo className="source__cover">
             <img
               className="source__cover__image"
-              src="https://cdn.cnn.com/cnn/.e1mo/img/4.0/logos/logo_cnn_badge_2up.png"
+              src={cover}
               width="105"
               height="105"
               alt="Alt Text"
@@ -83,7 +84,7 @@ class SourceItem extends React.PureComponent<ISourceItemProps, ISourceItemState>
             </h4>
             <img
               className="source__label__image"
-              src="https://cdn.cnn.com/cnn/.e1mo/img/4.0/logos/logo_cnn_badge_2up.png"
+              src={cover}
               width="105"
               height="105"
               alt="Alt Text"
@@ -102,6 +103,15 @@ const Wrapper = styled.li`
   width: 100%;
   scroll-snap-align: center;
   display: flex;
+
+  * {
+    &:active,
+    &:focus {
+      outline-style: double;
+      outline-offset: 2px;
+      outline-color: currentColor;
+    }
+  }
 
   &.is-checked {
     transform: scale(1);

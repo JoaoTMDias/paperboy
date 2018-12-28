@@ -25,23 +25,6 @@ const IndexPage: React.FunctionComponent<IIndexPageProps> = (props) => {
   }
   return (
     <Layout authenticated={authenticated}>
-      <IconBrandingLarge visible={true} />
-      <Container
-        isFixed={false}
-        fullheight={true}
-        title="Current Page is the Welcome Screen."
-        style={{
-          marginTop: "16rem",
-          marginRight: "auto",
-          marginBottom: "3.5rem",
-          marginLeft: "auto",
-          maxWidth: "40rem",
-        }}
-      >
-        <UISubtitle text="Welcome" />
-        <UIDisplay text="Your news, your control." />
-        <UILead text="The most important news of the hour, right from your favorite sources." />
-      </Container>
       <UICallToAction float={true}>
         <UIAnchor
           to="/welcome/choose-sources"
@@ -49,6 +32,12 @@ const IndexPage: React.FunctionComponent<IIndexPageProps> = (props) => {
           label="Click to navigate to the next screen, where you can pick your favorite sources from a wide array of options."
         />
       </UICallToAction>
+      <Container fullheight={true} title="Current Page is the Welcome Screen.">
+        <IconBrandingLarge visible={true} />
+        <UISubtitle text="Welcome" />
+        <UIDisplay text="Your news, your control." />
+        <UILead text="The most important news of the hour, right from your favorite sources." />
+      </Container>
     </Layout>
   );
 };

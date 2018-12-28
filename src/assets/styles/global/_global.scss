@@ -103,17 +103,20 @@ body {
   line-height: $global-lineheight;
   color: $color-white;
   background-color: $body-background;
-  min-height: 100vh;
+  min-height: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 ::-webkit-scrollbar {
   display: none;
 }
 
-#app {
-  width: 100vw;
-  height: 100vh;
-  overflow-x: hidden;
+#___gatsby {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 // Suppress the focus outline on elements that cannot be accessed via keyboard.
@@ -588,28 +591,6 @@ template {
 // Needed for proper display in IE 10-.
 [hidden] {
   display: none !important;
-}
-
-#main-content {
-  margin-top: $global-margin * 2;
-  scroll-behavior: smooth;
-  margin-right: auto;
-  margin-left: auto;
-  max-width: calc(100% - #{rem-calc(32)});
-
-  @media all and (min-width: rem-calc(1200)) {
-    max-width: calc(100% - #{rem-calc(64)});
-  }
-
-  @media all and (min-width: rem-calc(1400)) {
-    max-width: rem-calc(1400);
-  }
-
-  *:focus {
-    outline-color: var(--color-gray7, $color-gray7);
-    outline-width: 1px;
-    outline-style: dashed;
-  }
 }
 
 .main {

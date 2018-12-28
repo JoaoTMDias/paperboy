@@ -51,8 +51,8 @@ const onEnter = keyframes`
 const Wrapper = styled.figure`
   width: auto;
   max-height: ${rem("298px")};
-  height: auto;
-  position: absolute;
+  height: 30vh;
+  position: relative;
   left: 0;
   top: 0;
   transform: translate3d(0, -100%, 0);
@@ -62,6 +62,7 @@ const Wrapper = styled.figure`
   animation-fill-mode: both;
   overflow: hidden;
   display: ${(props: IIconBrandingLargeProps) => (props.visible ? "flex" : "none")};
+  margin: 0;
 
   @media ${(props: IIconBrandingLargeProps) => props.theme.breakpointMedium} {
     display: flex;
@@ -69,7 +70,7 @@ const Wrapper = styled.figure`
 `;
 
 const Icon = styled.svg`
-  width: 100%;
+  width: auto;
   height: 100%;
 `;
 

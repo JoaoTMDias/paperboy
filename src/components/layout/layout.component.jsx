@@ -94,18 +94,12 @@ const Layout = (props) => {
         <React.Fragment>
           <UINavigationBar key="page-header" />
           <MainNavigation key="main-navigation" />
-          <div aria-label="Main Page Content Wrapper. Press Tab to navigate" key="page-content">
-            {children}
-          </div>
+          {children}
           <BottomNavigation key="bottom-navigation" />
         </React.Fragment>
       );
     }
-    return (
-      <div aria-label="Main Page Content Wrapper. Press Tab to navigate" key="page-content">
-        {children}
-      </div>
-    );
+    return <React.Fragment>{children}</React.Fragment>;
   };
 
   return (

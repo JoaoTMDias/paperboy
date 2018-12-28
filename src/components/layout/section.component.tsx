@@ -7,8 +7,9 @@ import styled from "styled-components";
 interface IUISectionProps {
   theme?: any;
   layout?: "vertical" | "horizontal";
-  title: string;
+  title?: string;
   id: string;
+  role?: string;
   children?: React.ReactNode;
 }
 
@@ -20,11 +21,25 @@ interface IUISectionProps {
  */
 const UISection: React.FunctionComponent<IUISectionProps> = (props) => {
   const {
-    id, title, children, layout,
+    id, title, children, role, layout,
   } = props;
+
+  const renderTitle = () => {
+    if (title) {
+      return <SectionTitle id={`${id}-section-title`}>{title}</SectionTitle>;
+    }
+
+    return null;
+  };
   return (
-    <SectionWrapper id={id} aria-labelledby={`${id}-section-title`} title={title} layout={layout}>
-      <SectionTitle id={`${id}-section-title`}>{title}</SectionTitle>
+    <SectionWrapper
+      id={id}
+      aria-labelledby={`${id}-section-title`}
+      title={title}
+      layout={layout}
+      role={`${role}`}
+    >
+      {renderTitle()}
       {children}
     </SectionWrapper>
   );
@@ -32,14 +47,15 @@ const UISection: React.FunctionComponent<IUISectionProps> = (props) => {
 
 UISection.defaultProps = {
   layout: "vertical",
-  title: "Section Title",
   id: `${Math.random()}`,
 };
 
 // Styling
 const SectionWrapper = styled.section`
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
   overflow-x: hidden;
   display: flex;
   flex-direction: ${(props: IUISectionProps) => {
@@ -50,6 +66,8 @@ const SectionWrapper = styled.section`
   }};
   justify-content: flex-start;
   align-items: flex-start;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: ${rem("48px")};
 
   &:only-child {

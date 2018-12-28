@@ -39,13 +39,9 @@ const SourcesListWrapper = styled.ul`
   overflow-y: hidden;
   margin: 0;
   padding: 0;
-
+  width: 100%;
   scroll-snap-type: x proximity;
-
   -webkit-overflow-scrolling: touch;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 
   .source__item {
     flex: 1;

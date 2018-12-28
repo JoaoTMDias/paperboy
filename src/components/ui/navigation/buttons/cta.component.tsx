@@ -37,17 +37,17 @@ const onEnter = keyframes`
 
 const Wrapper = styled.nav`
   width: 100%;
+  height: auto;
   padding: ${rem("10px")} 0;
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: ${(props: IUICallToActionProps) => (props.isTop ? "auto" : 0)};
+  left: 0px;
+  right: 0px;
+  bottom: ${(props: IUICallToActionProps) => (props.isTop ? "auto" : "0px")};
   background-color: rgba(255, 255, 255, 1);
 
   ${(props: IUICallToActionProps) => props.blurred
     && css`
       background-color: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
     `}
 
   display: flex;
@@ -62,8 +62,8 @@ const Wrapper = styled.nav`
   animation-duration: 300ms;
   animation-timing-function: var(--default-timing-function);
   animation-fill-mode: both;
-  animation-delay: 1500ms;
-  z-index: 10;
+  animation-delay: 1000ms;
+  z-index: 9999;
 
   button,
   a {
