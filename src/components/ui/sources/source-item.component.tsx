@@ -1,18 +1,19 @@
 // Libraries
-import { rem } from "polished";
-import * as React from "react";
-import styled from "styled-components";
+import { rem } from 'polished';
+import * as React from 'react';
+import styled from 'styled-components';
+import { LazyLoadingImage } from '../../index';
 
 // Component Props
 interface ISourceItemProps {
-  theme?: any;
-  id: string;
-  label: string;
-  cover: string;
+  theme?: any
+  id: string
+  label: string
+  cover: string
 }
 
 interface ISourceItemState {
-  isChecked: boolean;
+  isChecked: boolean
 }
 
 /**
@@ -42,7 +43,7 @@ class SourceItem extends React.PureComponent<ISourceItemProps, ISourceItemState>
   public render() {
     const { id, label, cover } = this.props;
 
-    const status: string = this.state.isChecked ? "is-checked" : "";
+    const status: string = this.state.isChecked ? 'is-checked' : '';
 
     return (
       <Wrapper className={`source__item ${status}`}>
@@ -70,25 +71,12 @@ class SourceItem extends React.PureComponent<ISourceItemProps, ISourceItemState>
             />
           </Icon>
           <Logo className="source__cover">
-            <img
-              className="source__cover__image"
-              src={cover}
-              width="105"
-              height="105"
-              alt="Alt Text"
-            />
+            <LazyLoadingImage cover={cover} width="105" height="105" alt={`${label} logo`} />
           </Logo>
           <Name className="source__label">
             <h4 id="source-label-cnn" className="source__label__title">
-              CNN
+              {label}
             </h4>
-            <img
-              className="source__label__image"
-              src={cover}
-              width="105"
-              height="105"
-              alt="Alt Text"
-            />
           </Name>
         </label>
       </Wrapper>
@@ -131,10 +119,6 @@ const Wrapper = styled.li`
       .source__label__title {
         color: var(--color-white);
       }
-
-      .source__label__image {
-        opacity: 0;
-      }
     }
   }
 
@@ -174,6 +158,14 @@ const Logo = styled.figure`
   position: relative;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+
+  img {
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: auto;
+    background-color: var(--color-gray3);
+  }
 `;
 
 const Input = styled.input`
@@ -194,6 +186,7 @@ const Name = styled.div`
   overflow: hidden;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  background-color: var(--color-gray3);
 
   .source__label {
     &__title {
@@ -205,20 +198,6 @@ const Name = styled.div`
       letter-spacing: 0;
       margin: 0;
       padding: ${rem("12px")} ${rem("4px")};
-    }
-
-    &__image {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      filter: blur(6px);
-      z-index: -1;
-      transform: scale(2);
-      opacity: 0.25;
     }
   }
 `;

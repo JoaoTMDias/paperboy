@@ -38,6 +38,7 @@ import UISearchForm from "./ui/forms/search-form.component";
 import SourceItem from "./ui/sources/source-item.component";
 import SourcesList from "./ui/sources/source-list.component";
 import { UIDisplay, UILead, UISubtitle } from "./ui/typography/typography.theme";
+import LazyLoadingImage from './ui/images/image.lazyload.component';
 
 export {
   SourceItem,
@@ -47,6 +48,7 @@ export {
   UISubtitle,
   UISection,
   UISearchForm,
+  LazyLoadingImage,
 };
 
 // ICONOGRAPHY

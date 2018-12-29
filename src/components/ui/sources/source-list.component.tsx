@@ -38,7 +38,7 @@ const SourcesListWrapper = styled.ul`
   overflow-x: scroll;
   overflow-y: hidden;
   margin: 0;
-  padding: 0;
+  padding: 4px;
   width: 100%;
   scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;

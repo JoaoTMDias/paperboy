@@ -33,12 +33,7 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = (pro
         />
       </UINavigationBar>
 
-      <Container
-        fullwidth={true}
-        isFixed={true}
-        title="Current Page is: Choose News Sources."
-        offsetTop="1rem"
-      >
+      <Container fullwidth={true} isFixed={true} title="Current Page is: Choose News Sources." offsetTop="1rem">
         <UISearchForm
           legend="Filter News Sources"
           placeholder="Type to search and filter..."
@@ -73,7 +68,7 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = (pro
         </UISection>
       </Container>
       <UICallToAction>
-        <UIAnchor to="/news" text="Let's Go" label="Click to set these as your news sources." />
+        <UIAnchor to="/news" text="Let's Go" label="Click to set these as your news sources." disabled={true} />
       </UICallToAction>
     </Layout>
   );

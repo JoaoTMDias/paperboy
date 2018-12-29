@@ -2,7 +2,7 @@
 import { Link } from "gatsby";
 import { darken, rem } from "polished";
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 // Component Props
 interface IUIButtonProps {
@@ -10,6 +10,7 @@ interface IUIButtonProps {
   text: string;
   label: string;
   onClick?: any;
+  disabled?: boolean;
 }
 
 /**
@@ -20,11 +21,14 @@ interface IUIButtonProps {
  */
 const UIButton: React.FunctionComponent<IUIButtonProps> = (props) => {
   const {
-    type, text, label, onClick,
+    type, text, label, onClick, disabled,
   } = props;
+
+  const linkText = disabled ? "Select at least 3 sources " : text;
+
   return (
-    <Btn type={type} onClick={onClick} aria-label={label} tabIndex={0}>
-      {text}
+    <Btn type={type} onClick={onClick} aria-label={label} tabIndex={0} disabled={disabled}>
+      {linkText}
     </Btn>
   );
 };
@@ -33,13 +37,18 @@ interface IUIAnchorProps {
   to: string;
   text: string;
   label: string;
+  disabled: boolean;
 }
 
 const UIAnchor: React.FunctionComponent<IUIAnchorProps> = (props) => {
-  const { to, text, label } = props;
+  const {
+    to, text, label, disabled,
+  } = props;
+
+  const linkText = disabled ? "Select at least 3 sources " : text;
   return (
-    <Anchor to={to} aria-label={label} tabIndex={0}>
-      {text}
+    <Anchor to={to} aria-label={label} tabIndex={0} disabled={disabled}>
+      {linkText}
     </Anchor>
   );
 };
@@ -98,6 +107,24 @@ const Anchor = styled(Link)`
   &:active {
     transform: scale(0.98);
   }
+
+  ${(props: IUIAnchorProps) => props.disabled
+    && css`
+      background-color: var(--color-gray3);
+      color: var(--color-gray8);
+      cursor: no-drop;
+      user-select: none;
+      pointer-events: none;
+      box-shadow: none !important;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: var(--color-gray5);
+        color: var(--color-gray8);
+        outline: none;
+      }
+    `};
 `;
 
 export { UIButton, UIAnchor };
