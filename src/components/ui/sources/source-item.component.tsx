@@ -1,19 +1,19 @@
 // Libraries
-import { rem } from 'polished';
-import * as React from 'react';
-import styled from 'styled-components';
-import { LazyLoadingImage } from '../../index';
+import { rem } from "polished";
+import * as React from "react";
+import styled from "styled-components";
+import { LazyLoadingImage } from "../../index";
 
 // Component Props
 interface ISourceItemProps {
-  theme?: any
-  id: string
-  label: string
-  cover: string
+  theme?: any;
+  id: string;
+  label: string;
+  cover: string;
 }
 
 interface ISourceItemState {
-  isChecked: boolean
+  isChecked: boolean;
 }
 
 /**
@@ -43,7 +43,7 @@ class SourceItem extends React.PureComponent<ISourceItemProps, ISourceItemState>
   public render() {
     const { id, label, cover } = this.props;
 
-    const status: string = this.state.isChecked ? 'is-checked' : '';
+    const status: string = this.state.isChecked ? "is-checked" : "";
 
     return (
       <Wrapper className={`source__item ${status}`}>
@@ -95,9 +95,7 @@ const Wrapper = styled.li`
   * {
     &:active,
     &:focus {
-      outline-style: double;
-      outline-offset: 2px;
-      outline-color: currentColor;
+      outline: none;
     }
   }
 
@@ -113,11 +111,16 @@ const Wrapper = styled.li`
       }
     }
 
+    label {
+      box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.08), 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    }
+
     .source__label {
-      background-color: var(--color-select);
+      background-image: linear-gradient(45deg, var(--color-select), var(--color-select-gradient));
 
       .source__label__title {
         color: var(--color-white);
+        text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
       }
     }
   }
@@ -128,12 +131,12 @@ const Wrapper = styled.li`
     height: 100%;
     margin: 0;
     padding: 0;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12), 0 0 1px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.02), 0 0 3px 1px rgba(0, 0, 0, 0.04);
     border-radius: 8px;
-    transform: scale(0.98)
+    transform: scale(0.98);
 
     &:active {
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.24), 0 0 2px 0 rgba(0, 0, 0, 0.32);
+      box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.04), 0 0 4px 0 rgba(0, 0, 0, 0.08);
       transform: scale(0.96);
     }
   }
@@ -186,7 +189,8 @@ const Name = styled.div`
   overflow: hidden;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background-color: var(--color-gray3);
+  background-color: var(--color-white);
+  height: ${rem("44px")};
 
   .source__label {
     &__title {
@@ -194,10 +198,12 @@ const Name = styled.div`
       text-align: center;
       font-family: var(--body-font-family);
       font-size: ${rem("12px")};
+      line-height: 1.333;
       color: var(--color-gray8);
       letter-spacing: 0;
       margin: 0;
-      padding: ${rem("12px")} ${rem("4px")};
+      padding: ${rem("4px")} ${rem("8px")};
+      text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.2);
     }
   }
 `;

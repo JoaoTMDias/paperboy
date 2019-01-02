@@ -2,6 +2,7 @@
   (
     --color-primary: $color-primary,
     --color-select: $color-select,
+    --color-select-gradient: lighten($color-select, 30%),
     --color-white: $color-white,
     --color-gray0: $color-gray0,
     --color-gray1: $color-gray1,

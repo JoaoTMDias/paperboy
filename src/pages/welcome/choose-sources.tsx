@@ -14,68 +14,153 @@ import {
   UISection,
 } from "../../components/index";
 
+// Redux
+import { NewsSourcesCategories } from "../../data/interfaces/index.interface";
+import { getAllAvailableNewsSources } from "../../data/redux/actions/index.actions";
+
+// Data
+import Top20EditorSuggestions from "../../data/dummy/news-sources-suggestions.js";
+
 interface IChooseSourcesPageProps {
   authenticated: boolean;
+  getAllAvailableNewsSources: () => Promise<void>;
+  sources: NewsSourcesCategories | null;
 }
 
-const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = (props) => {
-  const { authenticated } = props;
+interface IChooseSourcesPageState {
+  searchBarIsVisible: boolean;
+  hasData: boolean;
+}
 
-  if (authenticated) {
-    return <Redirect to="/news" noThrow={true} />;
+class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChooseSourcesPageState> {
+  constructor(props: IChooseSourcesPageProps) {
+    super(props);
+
+    this.showSearchBar = this.showSearchBar.bind(this);
+
+    this.state = {
+      searchBarIsVisible: false,
+      hasData: false,
+    };
   }
-  return (
-    <Layout authenticated={authenticated}>
-      <UINavigationBar shadow="hairline">
-        <UINavigationBarBarWithTitle
-          title="What do you fancy reading?"
-          subtitle="Choose at least 3 different sources."
-        />
-      </UINavigationBar>
 
-      <Container fullwidth={true} isFixed={true} title="Current Page is: Choose News Sources." offsetTop="1rem">
-        <UISearchForm
-          legend="Filter News Sources"
-          placeholder="Type to search and filter..."
-          label="Submit filter query"
-        />
-        <UISection id="sources-editors-suggestions" title="Editor's Suggestions">
-          <SourcesList
-            layout="horizontal"
-            label="The Top 20 Editor's Suggestions for news sources."
+  /**
+   * @description When the Page mounts, adds an event listener for the search bar
+   * scroll event, and also fetches a list of all the available news sources to choose
+   * from
+   * @date 2018-12-29
+   * @memberof ChooseSourcesPage
+   */
+  componentDidMount() {
+    window.addEventListener("scroll", this.showSearchBar);
+    this.props.getAllAvailableNewsSources();
+  }
+
+  /**
+   * @description Checks if there is data retrieved from the store.
+   * @date 2018-12-29
+   * @param {*} prevProps
+   * @param {*} prevState
+   * @memberof ChooseSourcesPage
+   */
+  componentDidUpdate(prevProps: any, prevState: any) {
+    if (prevProps.sources !== this.props.sources) {
+      this.setState({
+        hasData: true,
+      });
+    }
+  }
+
+  /**
+   * @description When leaving the page, removes the scroll event listener.
+   * @date 2018-12-29
+   * @memberof ChooseSourcesPage
+   */
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.showSearchBar);
+  }
+
+  showSearchBar(event: Event) {}
+
+  renderNewsSources() {
+    const { hasData } = this.state;
+
+    if (hasData) {
+      return (
+        <React.Fragment>
+          <UINavigationBar shadow="hairline">
+            <UINavigationBarBarWithTitle
+              title="What do you fancy reading?"
+              subtitle="Choose at least 3 different sources."
+            />
+          </UINavigationBar>
+
+          <Container
+            fullwidth={true}
+            isFixed={true}
+            title="Current Page is: Choose News Sources."
+            offsetTop="1rem"
           >
-            <SourceItem
-              id="cnn"
-              label="CNN"
-              cover="https://cdn.cnn.com/cnn/.e1mo/img/4.0/logos/logo_cnn_badge_2up.png"
+            <UISearchForm
+              legend="Filter News Sources"
+              placeholder="Type to search and filter..."
+              label="Submit filter query"
             />
-            <SourceItem
-              id="theverge"
-              label="The Verge"
-              cover="https://cdn.vox-cdn.com/uploads/chorus_asset/file/7395359/ios-icon.0.png"
+            <UISection id="sources-editors-suggestions" title="Editor's Suggestions">
+              <SourcesList
+                layout="horizontal"
+                label="The Top 20 Editor's Suggestions for news sources."
+                data={Top20EditorSuggestions}
+              />
+            </UISection>
+            <UISection id="sources-editors-suggestions" title="General" grouped={true}>
+              <SourcesList layout="grid" label="Generalistic News Sources" />
+            </UISection>
+          </Container>
+          <UICallToAction>
+            <UIAnchor
+              to="/news"
+              text="Let's Go"
+              label="Click to set these as your news sources."
+              disabled={true}
             />
-            <SourceItem
-              id="bbc"
-              label="BBC"
-              cover="https://static.bbci.co.uk/wwhp/1.132.0/responsive/img/apple-touch/apple-touch-180.jpg"
-            />
-            <SourceItem
-              id="abc-news"
-              label="ABC News"
-              cover="https://s.abcnews.com/assets/images/apple-touch-icons/touch-icon-iphone-retina.png"
-            />
-          </SourcesList>
-        </UISection>
-      </Container>
-      <UICallToAction>
-        <UIAnchor to="/news" text="Let's Go" label="Click to set these as your news sources." disabled={true} />
-      </UICallToAction>
-    </Layout>
-  );
+          </UICallToAction>
+        </React.Fragment>
+      );
+    }
+    return <p>Loading...</p>;
+  }
+
+  public render() {
+    const { authenticated } = this.props;
+
+    if (authenticated) {
+      return <Redirect to="/news" noThrow={true} />;
+    }
+    return <Layout authenticated={authenticated}>{this.renderNewsSources()}</Layout>;
+  }
+}
+
+ChooseSourcesPage.defaultProps = {
+  sources: null,
 };
 
-const mapState2Props = (state: any) => ({
+const mapStateToProps = (state: any) => ({
   authenticated: state.preferences.authenticated,
+  sources: state.news.sources,
 });
 
-export default connect(mapState2Props)(ChooseSourcesPage);
+const mapDispatchToProps = (dispatch: any) => {
+  const actions = {
+    getAllAvailableNewsSources: () => {
+      dispatch(getAllAvailableNewsSources());
+    },
+  };
+
+  return actions;
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ChooseSourcesPage);

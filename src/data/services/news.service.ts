@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // Constants
-import { NEWS_API_KEY } from "../../constants";
+import { NEWS_API_KEY } from "../constants/news-constants";
 
 export default {
   /**
@@ -11,9 +11,10 @@ export default {
    * @param {any} source
    * @returns
    */
-  getAllLatestNews(source) {
-    console.log(`sources are: `, source)
-    return axios.get(`https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${NEWS_API_KEY}`);
+  getAllLatestNews(source: any) {
+    return axios.get(
+      `https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${NEWS_API_KEY}`,
+    );
   },
 
   /**
@@ -32,6 +33,8 @@ export default {
    * @returns
    */
   searchForTerm(term) {
-    return axios.get(`https://newsapi.org/v2/everything?q=${term}&sortBy=relevancy&pageSize=25&apiKey=${NEWS_API_KEY}`);
-  }
+    return axios.get(
+      `https://newsapi.org/v2/everything?q=${term}&sortBy=relevancy&pageSize=25&apiKey=${NEWS_API_KEY}`,
+    );
+  },
 };

@@ -10,14 +10,14 @@ const initialState = {
   type: null,
   latest: {},
   sources: {
-    available: {},
-    general: {},
-    business: {},
-    entertainment: {},
-    health: {},
-    science: {},
-    sports: {},
-    technology: {},
+    available: [],
+    general: [],
+    business: [],
+    entertainment: [],
+    health: [],
+    science: [],
+    sports: [],
+    technology: [],
   },
 };
 

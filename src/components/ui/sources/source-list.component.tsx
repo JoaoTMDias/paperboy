@@ -1,11 +1,12 @@
 // Libraries
 import * as React from "react";
 import styled, { css } from "styled-components";
+import { SourceItem } from "../..";
 
 // Component Props
 interface ISourcesListProps {
   theme?: any;
-  layout?: "grid" | "horizontal";
+  layout?: "grid" | "horizontal" | "vertical";
   label: string;
   data?: any;
 }
@@ -16,14 +17,37 @@ interface ISourcesListProps {
  * @date  24/December/2018 at 01:43
  * @extends {React.SFC}
  */
-const SourcesList: React.FunctionComponent<ISourcesListProps> = props => (
-  <SourcesListWrapper role="group" aria-label={props.label}>
-    {props.children}
-  </SourcesListWrapper>
-);
+const SourcesList: React.FunctionComponent<ISourcesListProps> = (props) => {
+  const renderData = (data: any, layout: string | undefined) => {
+    if (data) {
+      let item = [];
+
+      if (layout === "horizontal") {
+        item = data.map((source: any) => (
+          <SourceItem
+            id={source.id}
+            label={source.name}
+            cover={`https://paperboy-icon-service.herokuapp.com/icon?url=${
+              source.url
+            }&size=70..120..200`}
+          />
+        ));
+      }
+
+      return item;
+    }
+    return null;
+  };
+
+  return (
+    <SourcesListWrapper role="group" aria-label={props.label}>
+      {renderData(props.data, props.layout)}
+    </SourcesListWrapper>
+  );
+};
 
 SourcesList.defaultProps = {
-  layout: "grid",
+  layout: "vertical",
   label: "label",
   data: {},
 };
