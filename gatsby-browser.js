@@ -12,3 +12,13 @@ export const onClientEntry = async () => {
     await import(`intersection-observer`);
   }
 }
+
+export const onServiceWorkerUpdateFound = () => {
+  const answer = window.confirm(
+    `Paperboy has been updated.` + `Reload to display the latest version?`
+  );
+
+  if(answer === true){
+    window.location.reload();
+  }
+}
