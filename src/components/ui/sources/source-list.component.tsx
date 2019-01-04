@@ -25,6 +25,7 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = (props) => {
       if (layout === "horizontal") {
         item = data.map((source: any) => (
           <SourceItem
+            key={source.id}
             id={source.id}
             label={source.name}
             cover={`https://paperboy-icon-service.herokuapp.com/icon?url=${
