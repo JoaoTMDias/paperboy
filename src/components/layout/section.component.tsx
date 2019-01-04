@@ -86,7 +86,7 @@ const Wrapper = styled.div`
 const SectionWrapper = styled.section`
   width: 100%;
   max-width: 100%;
-  padding: 0 ${(props: IUISectionProps) => (props.grouped ? "0" : "1rem")};
+  padding: 0 ${(props: IUISectionProps) => (props.grouped === true ? "0" : "1rem")};
 
   overflow-x: hidden;
   display: flex;

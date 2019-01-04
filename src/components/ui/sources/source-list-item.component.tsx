@@ -5,14 +5,14 @@ import styled from "styled-components";
 import { LazyLoadingImage } from "../../index";
 
 // Component Props
-interface ISourceItemProps {
+interface ISourceListItemProps {
   theme?: any;
   id: string;
   label: string;
   cover: string;
 }
 
-interface ISourceItemState {
+interface ISourceListItemState {
   isChecked: boolean;
 }
 
@@ -22,8 +22,8 @@ interface ISourceItemState {
  * @date  27/December/2018 at 00:57
  * @extends {React.SFC}
  */
-class SourceItem extends React.PureComponent<ISourceItemProps, ISourceItemState> {
-  constructor(props: ISourceItemProps) {
+class SourceListItem extends React.PureComponent<ISourceListItemProps, ISourceListItemState> {
+  constructor(props: ISourceListItemProps) {
     super(props);
 
     this.state = {
@@ -56,6 +56,14 @@ class SourceItem extends React.PureComponent<ISourceItemProps, ISourceItemState>
             name="source-input"
             tabIndex={-1}
           />
+          <Logo className="source__cover">
+            <LazyLoadingImage cover={cover} width="105" height="105" alt={`${label} logo`} />
+          </Logo>
+          <Name className="source__label">
+            <h4 id="source-label-cnn" className="source__label__title">
+              {label}
+            </h4>
+          </Name>
           <Icon
             role="image"
             className="source__status"
@@ -70,14 +78,6 @@ class SourceItem extends React.PureComponent<ISourceItemProps, ISourceItemState>
               fill="var(--color-gray2)"
             />
           </Icon>
-          <Logo className="source__cover">
-            <LazyLoadingImage cover={cover} width="105" height="105" alt={`${label} logo`} />
-          </Logo>
-          <Name className="source__label">
-            <h4 id="source-label-cnn" className="source__label__title">
-              {label}
-            </h4>
-          </Name>
         </label>
       </Wrapper>
     );
@@ -86,11 +86,10 @@ class SourceItem extends React.PureComponent<ISourceItemProps, ISourceItemState>
 
 // Styling
 const Wrapper = styled.li`
-  min-width: ${rem("105px")};
-  min-height: ${rem("148px")};
+  max-height: ${rem("64px")};
   width: 100%;
-  scroll-snap-align: center;
   display: flex;
+  margin: 0;
 
   * {
     &:active,
@@ -101,13 +100,15 @@ const Wrapper = styled.li`
 
   &.is-checked {
     transform: scale(1);
+    background-image: linear-gradient(45deg, var(--color-select), var(--color-select-gradient));
+
     .source__status {
       .icon__circle {
-        fill: var(--color-select);
+        fill: var(--color-white);
       }
 
       .icon__check {
-        fill: var(--color-white);
+        fill: var(--color-select);
       }
     }
 
@@ -116,8 +117,7 @@ const Wrapper = styled.li`
     }
 
     .source__label {
-      background-image: linear-gradient(45deg, var(--color-select), var(--color-select-gradient));
-
+      background-color: transparent;
       .source__label__title {
         color: var(--color-white);
         text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
@@ -130,10 +130,14 @@ const Wrapper = styled.li`
     width: 100%;
     height: 100%;
     margin: 0;
-    padding: 0;
-    box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.02), 0 0 3px 1px rgba(0, 0, 0, 0.04);
-    border-radius: 8px;
+    padding: ${rem("8px")} 0;
+    box-shadow: 0 2px 0 0px rgba(0, 0, 0, 0.05);
+    border-radius: 0;
     transform: scale(0.98);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 
     &:active {
       box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.04), 0 0 4px 0 rgba(0, 0, 0, 0.08);
@@ -144,7 +148,7 @@ const Wrapper = styled.li`
 
 const Icon = styled.svg`
   position: absolute;
-  top: ${rem("8px")};
+  top: ${rem("20px")};
   right: ${rem("8px")};
   width: ${rem("24px")};
   height: ${rem("24px")};
@@ -157,10 +161,12 @@ const Icon = styled.svg`
 
 const Logo = styled.figure`
   margin: 0;
+  width: 100%;
+  max-width: ${rem("48px")};
+  height: auto;
   overflow: hidden;
   position: relative;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-radius: 8px;
 
   img {
     object-fit: cover;
@@ -182,20 +188,20 @@ const Input = styled.input`
 
 const Name = styled.div`
   display: flex;
+  width: calc(100% - ${rem("72px")});
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   position: relative;
   overflow: hidden;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
   background-color: var(--color-white);
-  height: ${rem("44px")};
+  height: ${rem("48px")};
+  line-height: ${rem("48px")};
 
   .source__label {
     &__title {
       width: 100%;
-      text-align: center;
+      text-align: left;
       font-family: var(--body-font-family);
       font-size: ${rem("12px")};
       line-height: 1.333;
@@ -208,4 +214,4 @@ const Name = styled.div`
   }
 `;
 
-export default SourceItem;
+export default SourceListItem;

@@ -1,7 +1,7 @@
 // Libraries
 import * as React from "react";
 import styled, { css } from "styled-components";
-import { SourceItem } from "../..";
+import { SourceCard, SourceListItem } from "../..";
 
 // Component Props
 interface ISourcesListProps {
@@ -24,7 +24,20 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = (props) => {
 
       if (layout === "horizontal") {
         item = data.map((source: any) => (
-          <SourceItem
+          <SourceCard
+            key={source.id}
+            id={source.id}
+            label={source.name}
+            cover={`https://paperboy-icon-service.herokuapp.com/icon?url=${
+              source.url
+            }&size=70..120..200`}
+          />
+        ));
+      }
+
+      if (layout === "vertical") {
+        item = data.map((source: any) => (
+          <SourceListItem
             key={source.id}
             id={source.id}
             label={source.name}
@@ -41,7 +54,7 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = (props) => {
   };
 
   return (
-    <SourcesListWrapper role="group" aria-label={props.label}>
+    <SourcesListWrapper role="group" aria-label={props.label} layout={props.layout}>
       {renderData(props.data, props.layout)}
     </SourcesListWrapper>
   );
@@ -56,7 +69,7 @@ SourcesList.defaultProps = {
 // Styling
 const SourcesListWrapper = styled.ul`
   display: flex;
-  flex-direction: row;
+  flex-direction: ${(props: ISourcesListProps) => (props.layout === "horizontal" ? "row" : "column")};
   justify-content: flex-start;
   align-items: center;
   flex-wrap: nowrap;
@@ -70,7 +83,7 @@ const SourcesListWrapper = styled.ul`
 
   .source__item {
     flex: 1;
-    margin-right: 1rem;
+    margin-right: ${(props: ISourcesListProps) => (props.layout === "horizontal" ? "1rem" : "0")};
   }
 `;
 export default SourcesList;

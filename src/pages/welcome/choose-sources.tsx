@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {
   Container,
   Layout,
-  SourceItem,
+  SourceCard,
   SourcesList,
   UIAnchor,
   UICallToAction,
@@ -114,7 +114,11 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
               />
             </UISection>
             <UISection id="sources-editors-suggestions" title="General" grouped={true}>
-              <SourcesList layout="grid" label="Generalistic News Sources" />
+              <SourcesList
+                layout="vertical"
+                label="Generalistic News Sources"
+                data={Top20EditorSuggestions}
+              />
             </UISection>
           </Container>
           <UICallToAction>
