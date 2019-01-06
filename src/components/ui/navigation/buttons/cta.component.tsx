@@ -63,7 +63,7 @@ const Wrapper = styled.nav`
   animation-timing-function: var(--default-timing-function);
   animation-fill-mode: both;
   animation-delay: 1000ms;
-  z-index: 9999;
+  z-index: 100;
 
   button,
   a {

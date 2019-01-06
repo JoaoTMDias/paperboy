@@ -6,6 +6,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import { ThemeProvider } from 'styled-components';
 
 // Components
+import { Audit, UIDialogAddToHomescreen } from '../index';
 import UINavigationBar from '../ui/navigation/header/top-navigation.component';
 import MainNavigation from '../ui/navigation/main/main-navigation';
 import BottomNavigation from '../ui/navigation/bottom-navigation/bottom-navigation.component';
@@ -75,17 +76,6 @@ const theme = {
 
 // Layout Component
 const Layout = (props) => {
-  // Check if is fullscreen (added to homescreen)
-  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-    const isInWebAppiOS = window.navigator.standalone == true;
-    const isInWebAppChrome = window.matchMedia('(display-mode: standalone)').matches;
-    const body = document.body || document.documentElement;
-
-    if (isInWebAppiOS || isInWebAppChrome) {
-      body.setAttribute('data-fullscreen', 'true');
-    }
-  }
-
   const { children, authenticated } = props;
 
   const renderNavigationElements = () => {
@@ -115,130 +105,133 @@ const Layout = (props) => {
       `}
       render={data => (
         <ThemeProvider theme={theme}>
-          <Fragment>
-            <Helmet
-              htmlAttributes={{
-                lang: 'en',
-                prefix: 'http://ogp.me/ns#',
-                'i18n-values': 'dir:textdirection',
-                itemscope: undefined,
-                itemtype: 'http://schema.org/WebPage',
-                dir: 'ltr',
-              }}
-              title="Paperboy - Welcome"
-              meta={[
-                { charset: 'utf-8' },
-                { name: 'description', content: 'Paperboy' },
-                {
-                  name: 'viewport',
-                  content:
-                    'width=device-width,minimum-scale=1.0,initial-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover',
-                },
-                { name: 'HandheldFriendly', content: 'true' },
-                { name: 'MobileOptimized', content: '375' },
-                { name: 'mobile-web-app-capable', content: 'yes' },
-                { name: 'msapplication-TileColor', content: '#E74D3C' },
-                { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
-              ]}
-              link={[
-                {
-                  rel: 'apple-touch-icon',
-                  type: 'image/png',
-                  sizes: '180x180',
-                  href: `${appleTouchIcon}`,
-                },
-                {
-                  rel: 'apple-touch-startup-image',
-                  media:
-                    '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)',
-                  href: `${appleiPhone5}`,
-                },
-                {
-                  rel: 'apple-touch-startup-image',
-                  media:
-                    '(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)',
-                  href: `${appleiPhone6}`,
-                },
-                {
-                  rel: 'apple-touch-startup-image',
-                  media:
-                    '(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)',
-                  href: `${appleiPhonePlus}`,
-                },
-                {
-                  rel: 'apple-touch-startup-image',
-                  media:
-                    '(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)',
-                  href: `${appleiPhoneX}`,
-                },
-                {
-                  rel: 'apple-touch-startup-image',
-                  media:
-                    '(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)',
-                  href: `${appleiPhoneXR}`,
-                },
-                {
-                  rel: 'apple-touch-startup-image',
-                  media:
-                    '(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)',
-                  href: `${appleiPhoneXSMax}`,
-                },
-                {
-                  rel: 'apple-touch-startup-image',
-                  media:
-                    '(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)',
-                  href: `${appleiPad}`,
-                },
-                {
-                  rel: 'apple-touch-startup-image',
-                  media:
-                    '(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)',
-                  href: `${appleIpadPro1}`,
-                },
-                {
-                  rel: 'apple-touch-startup-image',
-                  media:
-                    '(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)',
-                  href: `${appleIpadPro2}`,
-                },
-                {
-                  rel: 'apple-touch-startup-image',
-                  media:
-                    '(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)',
-                  href: `${appleIpadPro3}`,
-                },
-                {
-                  rel: 'shortcut icon',
-                  type: 'image/png',
-                  href: `${favicon}`,
-                },
-                {
-                  rel: 'icon',
-                  type: 'image/png',
-                  sizes: '16x16',
-                  href: `${favicon16}`,
-                },
-                {
-                  rel: 'icon',
-                  type: 'image/png',
-                  sizes: '32x32',
-                  href: `${favicon32}`,
-                },
-                {
-                  rel: 'icon',
-                  type: 'image/png',
-                  sizes: '194x194',
-                  href: `${favicon194}`,
-                },
-                {
-                  rel: 'mask-icon',
-                  href: `${maskIcon}`,
-                  color: '#e81b1f',
-                },
-              ]}
-            />
-            {renderNavigationElements()}
-          </Fragment>
+          <Audit>
+            <Fragment>
+              <UIDialogAddToHomescreen />
+              <Helmet
+                htmlAttributes={{
+                  lang: 'en',
+                  prefix: 'http://ogp.me/ns#',
+                  'i18n-values': 'dir:textdirection',
+                  itemscope: undefined,
+                  itemtype: 'http://schema.org/WebPage',
+                  dir: 'ltr',
+                }}
+                title="Paperboy - Welcome"
+                meta={[
+                  { charset: 'utf-8' },
+                  { name: 'description', content: 'Paperboy' },
+                  {
+                    name: 'viewport',
+                    content:
+                      'width=device-width,minimum-scale=1.0,initial-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover',
+                  },
+                  { name: 'HandheldFriendly', content: 'true' },
+                  { name: 'MobileOptimized', content: '375' },
+                  { name: 'mobile-web-app-capable', content: 'yes' },
+                  { name: 'msapplication-TileColor', content: '#E74D3C' },
+                  { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
+                ]}
+                link={[
+                  {
+                    rel: 'apple-touch-icon',
+                    type: 'image/png',
+                    sizes: '180x180',
+                    href: `${appleTouchIcon}`,
+                  },
+                  {
+                    rel: 'apple-touch-startup-image',
+                    media:
+                      '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)',
+                    href: `${appleiPhone5}`,
+                  },
+                  {
+                    rel: 'apple-touch-startup-image',
+                    media:
+                      '(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)',
+                    href: `${appleiPhone6}`,
+                  },
+                  {
+                    rel: 'apple-touch-startup-image',
+                    media:
+                      '(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)',
+                    href: `${appleiPhonePlus}`,
+                  },
+                  {
+                    rel: 'apple-touch-startup-image',
+                    media:
+                      '(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)',
+                    href: `${appleiPhoneX}`,
+                  },
+                  {
+                    rel: 'apple-touch-startup-image',
+                    media:
+                      '(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)',
+                    href: `${appleiPhoneXR}`,
+                  },
+                  {
+                    rel: 'apple-touch-startup-image',
+                    media:
+                      '(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)',
+                    href: `${appleiPhoneXSMax}`,
+                  },
+                  {
+                    rel: 'apple-touch-startup-image',
+                    media:
+                      '(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)',
+                    href: `${appleiPad}`,
+                  },
+                  {
+                    rel: 'apple-touch-startup-image',
+                    media:
+                      '(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)',
+                    href: `${appleIpadPro1}`,
+                  },
+                  {
+                    rel: 'apple-touch-startup-image',
+                    media:
+                      '(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)',
+                    href: `${appleIpadPro2}`,
+                  },
+                  {
+                    rel: 'apple-touch-startup-image',
+                    media:
+                      '(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)',
+                    href: `${appleIpadPro3}`,
+                  },
+                  {
+                    rel: 'shortcut icon',
+                    type: 'image/png',
+                    href: `${favicon}`,
+                  },
+                  {
+                    rel: 'icon',
+                    type: 'image/png',
+                    sizes: '16x16',
+                    href: `${favicon16}`,
+                  },
+                  {
+                    rel: 'icon',
+                    type: 'image/png',
+                    sizes: '32x32',
+                    href: `${favicon32}`,
+                  },
+                  {
+                    rel: 'icon',
+                    type: 'image/png',
+                    sizes: '194x194',
+                    href: `${favicon194}`,
+                  },
+                  {
+                    rel: 'mask-icon',
+                    href: `${maskIcon}`,
+                    color: '#e81b1f',
+                  },
+                ]}
+              />
+              {renderNavigationElements()}
+            </Fragment>
+          </Audit>
         </ThemeProvider>
       )}
     />
