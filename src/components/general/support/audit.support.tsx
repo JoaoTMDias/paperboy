@@ -1,6 +1,6 @@
-import * as React from "react";
-import { isAndroid, isBrowser, isIOS } from "react-device-detect";
-import { connect } from "react-redux";
+import * as React from 'react';
+import { isAndroid, isBrowser, isIOS } from 'react-device-detect';
+import { connect } from 'react-redux';
 
 // Redux
 import {
@@ -8,19 +8,19 @@ import {
   setOnlineStatus,
   setPlatform,
   setStandaloneStatus,
-} from "../../../data/redux/actions/index.actions";
+} from '../../../data/redux/actions/index.actions';
 
 export interface IAuditProps {
-  theme?: any;
-  isOnline: boolean;
-  isStandalone: boolean;
-  platform: string;
-  dispatch: any;
+  theme?: any
+  isOnline: boolean
+  isStandalone: boolean
+  platform: string
+  dispatch: any
 }
 
 export interface IAuditState {
-  isOnline: boolean | null;
-  isStandalone: boolean;
+  isOnline: boolean | null
+  isStandalone: boolean
 }
 
 class Audit extends React.Component<IAuditProps, any> {
@@ -47,8 +47,8 @@ class Audit extends React.Component<IAuditProps, any> {
    * @memberof Audit
    */
   handleNetworkAudit() {
-    window.addEventListener("online", event => this.setOnlineStatus(true));
-    window.addEventListener("offline", event => this.setOnlineStatus(false));
+    window.addEventListener('online', event => this.setOnlineStatus(true));
+    window.addEventListener('offline', event => this.setOnlineStatus(false));
     this.setOnlineStatus(navigator.onLine);
   }
 
@@ -69,16 +69,16 @@ class Audit extends React.Component<IAuditProps, any> {
    * @memberof Audit
    */
   setOSPlatform() {
-    const android: string = "android";
-    const iOS: string = "ios";
-    let platform: string = "unknown";
+    const android: string = 'android';
+    const iOS: string = 'ios';
+    let platform: string = 'unknown';
 
     if (isIOS) {
       platform = iOS;
     } else if (isAndroid) {
       platform = android;
     } else if (isBrowser) {
-      platform = "desktop";
+      platform = 'desktop';
     }
 
     this.props.dispatch(setPlatform(platform));
@@ -91,13 +91,15 @@ class Audit extends React.Component<IAuditProps, any> {
    */
   setFeatureSupport() {
     const supportsGeolocation: boolean = !!(navigator && navigator.geolocation);
-    const supportsBatteryInformation: boolean = "getBattery" in window.navigator;
+    const supportsBatteryInformation: boolean = 'getBattery' in window.navigator;
     let supportsNetworkInformation;
 
-    if ("effectiveType" in window.navigator.connection || "type" in window.navigator.connection) {
+    if (window.navigator.connection) {
+      if ('effectiveType' in window.navigator.connection || 'type' in window.navigator.connection) {
         supportsNetworkInformation = true;
+      }
     }
-    const supportsWebNotifications: boolean = "Notification" in window;
+    const supportsWebNotifications: boolean = 'Notification' in window;
 
     const features = {
       geoLocation: supportsGeolocation,
@@ -115,9 +117,9 @@ class Audit extends React.Component<IAuditProps, any> {
    * @memberof Audit
    */
   setStandaloneStatus() {
-    if (typeof window !== "undefined" && typeof document !== "undefined") {
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       const isInWebAppiOS = window.navigator.standalone === true;
-      const isInWebAppChrome = window.matchMedia("(display-mode: standalone)").matches;
+      const isInWebAppChrome = window.matchMedia('(display-mode: standalone)').matches;
       const status: boolean = !!(isInWebAppiOS || isInWebAppChrome);
 
       this.props.dispatch(setStandaloneStatus(status));
@@ -152,8 +154,8 @@ class Audit extends React.Component<IAuditProps, any> {
   }
 
   componentWillUnmount() {
-    window.removeEventListener("online", () => this.setOnlineStatus(true));
-    window.removeEventListener("offline", () => this.setOnlineStatus(false));
+    window.removeEventListener('online', () => this.setOnlineStatus(true));
+    window.removeEventListener('offline', () => this.setOnlineStatus(false));
   }
 }
 
