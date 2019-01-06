@@ -19,7 +19,7 @@ interface IUIDialogAddToHomescreenState {
  * @class UIDialogAddToHomescreen
  * @extends {React.Component<IUIDialogAddToHomescreenProps, any>}
  */
-class UIDialogAddToHomescreen extends React.Component<IUIDialogAddToHomescreenProps, any> {
+class UIDialogAddToHomescreen extends React.Component<IUIDialogAddToHomescreenProps, IUIDialogAddToHomescreenState> {
   constructor(props: IUIDialogAddToHomescreenProps) {
     super(props);
 
