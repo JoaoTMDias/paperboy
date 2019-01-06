@@ -7,6 +7,7 @@ import { IconBrandingSmall, IconShare } from "../../index";
 
 interface IUIDialogAddToHomescreenProps {
   theme?: any;
+  isStandalone: boolean;
 }
 
 interface IUIDialogAddToHomescreenState {
@@ -19,7 +20,10 @@ interface IUIDialogAddToHomescreenState {
  * @class UIDialogAddToHomescreen
  * @extends {React.Component<IUIDialogAddToHomescreenProps, any>}
  */
-class UIDialogAddToHomescreen extends React.Component<IUIDialogAddToHomescreenProps, IUIDialogAddToHomescreenState> {
+class UIDialogAddToHomescreen extends React.Component<
+  IUIDialogAddToHomescreenProps,
+  IUIDialogAddToHomescreenState
+  > {
   constructor(props: IUIDialogAddToHomescreenProps) {
     super(props);
 
@@ -60,8 +64,10 @@ class UIDialogAddToHomescreen extends React.Component<IUIDialogAddToHomescreenPr
 
   public render() {
     const { isModalOpen } = this.state;
-    return (
-      isModalOpen && (
+    const { isStandalone } = this.props;
+
+    if (isModalOpen && isStandalone === false) {
+      return (
         <Wrapper onClick={this.handleCloseModal} tabIndex={0}>
           <Dialog
             role="dialog"
@@ -92,13 +98,13 @@ and then 'Add to homescreen'
             </div>
           </Dialog>
         </Wrapper>
-      )
-    );
+      );
+    }
+    return null;
   }
 }
 
-const mapState2Props = state => ({});
-
+// Styling
 const fadeInDialog = keyframes`
   from {
     opacity: 0;
@@ -214,9 +220,8 @@ const Dialog = styled.div`
     &__description {
       font-size: ${rem("16px")};
       margin-top: 0;
-      margin-bottom: ${rem('24px')};
+      margin-bottom: ${rem("24px")};
       color: var(--color-gray7);
-
     }
 
     &__tip {
@@ -224,7 +229,7 @@ const Dialog = styled.div`
       margin-top: 0;
       margin-bottom: 0;
       color: var(--color-gray8);
-      padding: ${rem('8px')};
+      padding: ${rem("8px")};
       width: 100%;
       background-color: var(--color-gray0);
 
@@ -237,4 +242,8 @@ const Dialog = styled.div`
   }
 `;
 
-export default connect(mapState2Props)(UIDialogAddToHomescreen);
+const mapStateToProps = state => ({
+  isStandalone: state.general.isStandalone,
+});
+
+export default connect(mapStateToProps)(UIDialogAddToHomescreen);

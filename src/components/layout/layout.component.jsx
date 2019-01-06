@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import { ThemeProvider } from 'styled-components';
+import { isIOS } from 'react-device-detect';
 
 // Components
 import { Audit, UIDialogAddToHomescreen } from '../index';
@@ -92,6 +93,12 @@ const Layout = (props) => {
     return <React.Fragment>{children}</React.Fragment>;
   };
 
+  const renderAddToHomescren = () => {
+    if (isIOS) {
+      return <UIDialogAddToHomescreen />;
+    }
+  };
+
   return (
     <StaticQuery
       query={graphql`
@@ -107,7 +114,7 @@ const Layout = (props) => {
         <ThemeProvider theme={theme}>
           <Audit>
             <Fragment>
-              <UIDialogAddToHomescreen />
+              {renderAddToHomescren()}
               <Helmet
                 htmlAttributes={{
                   lang: 'en',
