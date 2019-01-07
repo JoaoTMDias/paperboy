@@ -12,7 +12,7 @@ export default {
    */
   getUserCountryCodeByCoordinates(latitude: number, longitude: number) {
     return axios.get(
-      `http://api.geonames.org/countryCodeJSON?formatted=true&lat=${latitude}&lng=${longitude}&username=${username}&style=full`,
+      `https://secure.geonames.org/countryCodeJSON?formatted=true&lat=${latitude}&lng=${longitude}&username=${username}&style=full`,
     );
   },
 };

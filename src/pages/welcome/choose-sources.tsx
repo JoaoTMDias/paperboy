@@ -133,7 +133,7 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
       navigator.geolocation.getCurrentPosition(resolve, reject);
     });
 
-    const requestForAccess = confirm("Press OK to find news sources from your region")
+    const requestForAccess = confirm("Press OK to find news sources from your region  ")
 
     if (requestForAccess){
       getPosition()
