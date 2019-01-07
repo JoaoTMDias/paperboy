@@ -27,12 +27,21 @@ export default {
   },
 
   /**
+   * Returns the a list of all the available news sources from a specific language
+   *
+   * @returns
+   */
+  getAvailableSourcesFromLanguage(language: string) {
+    return axios.get(`https://newsapi.org/v2/sources?language=${language}&apiKey=${NEWS_API_KEY}`);
+  },
+
+  /**
    * Search for a specific term in the list of all news
    *
    * @param {any} term
    * @returns
    */
-  searchForTerm(term) {
+  searchForTerm(term: string) {
     return axios.get(
       `https://newsapi.org/v2/everything?q=${term}&sortBy=relevancy&pageSize=25&apiKey=${NEWS_API_KEY}`,
     );

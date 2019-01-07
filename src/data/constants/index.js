@@ -4,6 +4,7 @@ import {
   SET_STANDALONE_STATUS,
   SET_FEATURE_SUPPORT,
   SET_PLATFORM,
+  SET_USER_COUNTRY,
 } from './general-constants';
 import { NEWS_API_KEY, GET_LATEST_NEWS, GET_ALL_AVAILABLE_NEWS_SOURCES } from './news-constants';
 import { GET_CHOSEN_NEWS_SOURCES, SET_CHOSEN_NEWS_SOURCES } from './preferences-constants';
@@ -19,4 +20,5 @@ export {
   GET_LATEST_NEWS,
   GET_CHOSEN_NEWS_SOURCES,
   SET_CHOSEN_NEWS_SOURCES,
+  SET_USER_COUNTRY,
 };

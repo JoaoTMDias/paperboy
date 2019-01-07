@@ -4,6 +4,7 @@ import {
   SET_STANDALONE_STATUS,
   SET_FEATURE_SUPPORT,
   SET_PLATFORM,
+  SET_USER_COUNTRY,
 } from '../../constants/index';
 
 // Preferences initial state
@@ -17,6 +18,10 @@ const initialState = {
     batteryStatus: false,
     networkInformation: false,
     notifications: false,
+  },
+  userLanguage: {
+    hasLocation: false,
+    data: {},
   },
 };
 
@@ -55,6 +60,15 @@ function general(state = initialState, action) {
           batteryStatus: action.batteryStatus,
           networkInformation: action.networkInformation,
           notifications: action.notifications,
+        }),
+      };
+
+    case SET_USER_COUNTRY:
+      return {
+        ...state,
+        userLanguage: Object.assign({}, state.userLanguage, {
+          hasLocation: action.payload.hasLocation,
+          data: action.payload.data,
         }),
       };
 

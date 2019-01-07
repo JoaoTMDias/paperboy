@@ -3,7 +3,10 @@ import {
   SET_PLATFORM,
   SET_STANDALONE_STATUS,
   SET_FEATURE_SUPPORT,
+  SET_USER_COUNTRY,
 } from '../../constants/index';
+
+import GeneralService from '../../services/general.service';
 
 /**
  * @description Defines the network status of the device: online or offline
@@ -39,6 +42,13 @@ const setStandaloneStatus = (isStandalone) => {
   return false;
 };
 
+/**
+ * @description Defines the support for a number of specific HTML5 features on the
+ * users device.
+ * @date 2019-01-05
+ * @param {*} features
+ * @returns
+ */
 const setFeatureSupport = (features) => {
   if (typeof features === 'object') {
     return {
@@ -66,6 +76,45 @@ const setPlatform = (platform) => {
   }
 };
 
+/**
+ * @description Uses the Geonames webservice to find the users country code and language
+ * depending on his latitude and longitude coordinates.
+ * If found, updates the Redux store with the returned data.
+ * @date 2019-01-07
+ * @param {*} latitude
+ * @param {*} longitude
+ */
+const getUserCountryCodeByCoordinates = (latitude, longitude) => {
+  const updateStore = (data) => {
+    if (typeof data === 'object') {
+      return {
+        type: SET_USER_COUNTRY,
+        payload: {
+          hasLocation: true,
+          data,
+        },
+      };
+    }
+  };
+
+  if (typeof latitude === 'number' && typeof longitude === 'number') {
+    return (dispatch) => {
+      GeneralService.getUserCountryCodeByCoordinates(latitude, longitude)
+        .then((result) => {
+          if (result.data) {
+            const country = result.data;
+            dispatch(updateStore(country));
+          }
+        })
+        .catch((error) => {});
+    };
+  }
+};
+
 export {
-  setOnlineStatus, setStandaloneStatus, setFeatureSupport, setPlatform,
+  setOnlineStatus,
+  setStandaloneStatus,
+  setFeatureSupport,
+  setPlatform,
+  getUserCountryCodeByCoordinates,
 };

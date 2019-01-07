@@ -46,6 +46,20 @@ const getAllAvailableNewsSources = () => {
   };
 };
 
+const getAvailableNewSourcesFromLanguage = (language: string) => (dispatch: any) => {
+  const AvailableNewsSources = (data: any) => {
+    console.log("data: ", data);
+  };
+
+  NewsService.getAvailableSourcesFromLanguage(language)
+    .then((result) => {
+      if (result.data) {
+        dispatch(AvailableNewsSources(result.data));
+      }
+    })
+    .catch((error) => {});
+};
+
 /**
  * @description Fetch a list of all the latest news from a specific news outlet.
  * @date 2018-12-29
@@ -71,4 +85,8 @@ const getAllLatestNewsFromSource = (source: any) => {
   };
 };
 
-export { getAllAvailableNewsSources, getAllLatestNewsFromSource };
+export {
+  getAllAvailableNewsSources,
+  getAvailableNewSourcesFromLanguage,
+  getAllLatestNewsFromSource,
+};

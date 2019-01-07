@@ -34,21 +34,25 @@ class UIDialogAddToHomescreen extends React.Component<
     };
   }
 
+  public timer: any = null;
+
   /**
    * @description When the component mounts, sets a 15sec timeout and then shows.
    * @date 2019-01-06
    * @memberof UIDialogAddToHomescreen
    */
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        isModalOpen: true,
-      });
-    }, 15000);
+    this.timer = setTimeout(() => this.handleOpenModal(), 600000);
   }
 
   componentWillUnmount() {
-    clearTimeout();
+    clearTimeout(this.timer);
+  }
+
+  handleOpenModal() {
+    this.setState({
+      isModalOpen: true,
+    });
   }
 
   /**
