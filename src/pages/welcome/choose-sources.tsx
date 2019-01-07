@@ -1,6 +1,6 @@
-import { Redirect } from '@reach/router';
-import * as React from 'react';
-import { connect } from 'react-redux';
+import { Redirect } from "@reach/router";
+import * as React from "react";
+import { connect } from "react-redux";
 import {
   Container,
   Layout,
@@ -11,36 +11,36 @@ import {
   UINavigationBarBarWithTitle,
   UISearchForm,
   UISection,
-} from '../../components/index';
+} from "../../components/index";
 
 // Redux
-import { NewsSourcesCategories } from '../../data/interfaces/index.interface';
+import { NewsSourcesCategories } from "../../data/interfaces/index.interface";
 import {
   getAllAvailableNewsSources,
   getAvailableNewSourcesFromLanguage,
   getUserCountryCodeByCoordinates,
-} from '../../data/redux/actions/index.actions';
+} from "../../data/redux/actions/index.actions";
 
 // Data
-import Top20EditorSuggestions from '../../data/dummy/news-sources-suggestions.js';
+import Top20EditorSuggestions from "../../data/dummy/news-sources-suggestions.js";
 
 interface LanguageSupport {
-  hasLocation: boolean
-  data: any
+  hasLocation: boolean;
+  data: any;
 }
 
 interface IChooseSourcesPageProps {
-  authenticated: boolean
-  getAllAvailableNewsSources: () => Promise<void>
-  dispatch: any
-  sources: NewsSourcesCategories | null
-  geoLocation: boolean
-  userLanguage: LanguageSupport | null
+  authenticated: boolean;
+  getAllAvailableNewsSources: () => Promise<void>;
+  dispatch: any;
+  sources: NewsSourcesCategories | null;
+  geoLocation: boolean;
+  userLanguage: LanguageSupport | null;
 }
 
 interface IChooseSourcesPageState {
-  searchBarIsVisible: boolean
-  hasData: boolean
+  searchBarIsVisible: boolean;
+  hasData: boolean;
 }
 
 /**
@@ -64,7 +64,7 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
   static defaultProps = {
     sources: null,
     authenticated: false,
-  }
+  };
 
   /**
    * @description When the Page mounts, adds an event listener for the search bar
@@ -74,7 +74,7 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
    * @memberof ChooseSourcesPage
    */
   componentDidMount() {
-    document.addEventListener('scroll', this.showSearchBar);
+    document.addEventListener("scroll", this.showSearchBar);
     this.props.dispatch(getAllAvailableNewsSources());
   }
 
@@ -110,7 +110,7 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
    * @memberof ChooseSourcesPage
    */
   componentWillUnmount() {
-    document.removeEventListener('scroll', this.showSearchBar);
+    document.removeEventListener("scroll", this.showSearchBar);
   }
 
   showSearchBar(event: Event) {}
@@ -133,9 +133,9 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
       navigator.geolocation.getCurrentPosition(resolve, reject);
     });
 
-    const requestForAccess = confirm("Press OK to find news sources from your region  ")
+    const requestForAccess = confirm("Press OK to find news sources from your region  ");
 
-    if (requestForAccess){
+    if (requestForAccess) {
       getPosition()
         .then((position: any) => {
           if (position.coords) {
@@ -149,7 +149,6 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
           console.error(err.message);
         });
     } else {
-      return;
     }
   }
 
@@ -168,14 +167,14 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
         <UINavigationBar shadow="hairline">
           <UINavigationBarBarWithTitle
             title="What do you fancy reading?"
-            subtitle="Choose at least 3 different sources."
+            subtitle="Breaking news from over 30,000 sources"
           />
         </UINavigationBar>
         {hasData && (
           <React.Fragment>
             <Container
-              fullwidth
-              isFixed
+              fullwidth={true}
+              isFixed={true}
               title="Current Page is: Choose News Sources."
               offsetTop="1rem"
             >
@@ -191,7 +190,7 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
                   data={Top20EditorSuggestions}
                 />
               </UISection>
-              <UISection id="sources-editors-suggestions" title="General" grouped>
+              <UISection id="sources-editors-suggestions" title="General" grouped={true}>
                 <SourcesList
                   layout="vertical"
                   label="Generalistic News Sources"
@@ -204,7 +203,7 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
                 to="/news"
                 text="Let's Go"
                 label="Click to set these as your news sources."
-                disabled
+                disabled={true}
               />
             </UICallToAction>
           </React.Fragment>
@@ -217,7 +216,7 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
     const { authenticated } = this.props;
 
     if (authenticated) {
-      return <Redirect to="/news" noThrow />;
+      return <Redirect to="/news" noThrow={true} />;
     }
     return <Layout authenticated={authenticated}>{this.renderNewsSources()}</Layout>;
   }
