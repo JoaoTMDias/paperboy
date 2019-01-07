@@ -1,9 +1,11 @@
-import { Redirect } from "@reach/router";
-import * as React from "react";
-import { connect } from "react-redux";
+import { Redirect } from '@reach/router'
+import * as React from 'react'
+import { connect } from 'react-redux'
 import {
+  Confirm,
   Container,
   Layout,
+  Modal,
   SourcesList,
   UIAnchor,
   UICallToAction,
@@ -11,18 +13,18 @@ import {
   UINavigationBarBarWithTitle,
   UISearchForm,
   UISection,
-} from "../../components/index";
+} from '../../components/index'
 
 // Redux
-import { NewsSourcesCategories } from "../../data/interfaces/index.interface";
+import { NewsSourcesCategories } from '../../data/interfaces/index.interface'
 import {
   getAllAvailableNewsSources,
   getAvailableNewSourcesFromLanguage,
   getUserCountryCodeByCoordinates,
-} from "../../data/redux/actions/index.actions";
+} from '../../data/redux/actions/index.actions'
 
 // Data
-import Top20EditorSuggestions from "../../data/dummy/news-sources-suggestions.js";
+import Top20EditorSuggestions from '../../data/dummy/news-sources-suggestions.js'
 
 interface LanguageSupport {
   hasLocation: boolean;
@@ -41,6 +43,7 @@ interface IChooseSourcesPageProps {
 interface IChooseSourcesPageState {
   searchBarIsVisible: boolean;
   hasData: boolean;
+  askForLocation: boolean;
 }
 
 /**
@@ -49,7 +52,10 @@ interface IChooseSourcesPageState {
  * @class ChooseSourcesPage
  * @extends {React.Component<IChooseSourcesPageProps, IChooseSourcesPageState>}
  */
-class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChooseSourcesPageState> {
+class ChooseSourcesPage extends React.Component<
+  IChooseSourcesPageProps,
+  IChooseSourcesPageState
+> {
   constructor(props: IChooseSourcesPageProps) {
     super(props);
 
@@ -58,6 +64,7 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
     this.state = {
       searchBarIsVisible: false,
       hasData: false,
+      askForLocation: false,
     };
   }
 
@@ -100,7 +107,9 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
 
     // If the user's device supports geoLocation features
     if (prevProps.geoLocation !== this.props.geoLocation) {
-      this.getUserCountry();
+      this.setState({
+        askForLocation: true,
+      });
     }
   }
 
@@ -129,26 +138,26 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
      * use the GPS or other location features on the device.
      * @date 2019-01-07
      */
-    const getPosition = () => new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject);
-    });
+    const getPosition = () =>
+      new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
 
-    const requestForAccess = confirm("Press OK to find news sources from your region  ");
-
-    if (requestForAccess) {
+    if (this.state.askForLocation) {
       getPosition()
         .then((position: any) => {
           if (position.coords) {
             const latitude: number = position.coords.latitude;
             const longitude: number = position.coords.longitude;
 
-            this.props.dispatch(getUserCountryCodeByCoordinates(latitude, longitude));
+            this.props.dispatch(
+              getUserCountryCodeByCoordinates(latitude, longitude)
+            );
           }
         })
-        .catch((err) => {
+        .catch(err => {
           console.error(err.message);
         });
-    } else {
     }
   }
 
@@ -170,6 +179,14 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
             subtitle="Breaking news from over 30,000 sources"
           />
         </UINavigationBar>
+        <Modal>
+          <Confirm
+            title="News in your language"
+            description="We need to use your device location to find any news sources related to your country/language. Shall we?"
+            onCancel={() => console.log("canceled")}
+            onConfirm={() => this.getUserCountry()}
+          />
+        </Modal>
         {hasData && (
           <React.Fragment>
             <Container
@@ -183,14 +200,21 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
                 placeholder="Type to search and filter..."
                 label="Submit filter query"
               />
-              <UISection id="sources-editors-suggestions" title="Editor's Suggestions">
+              <UISection
+                id="sources-editors-suggestions"
+                title="Editor's Suggestions"
+              >
                 <SourcesList
                   layout="horizontal"
                   label="The Top 20 Editor's Suggestions for news sources."
                   data={Top20EditorSuggestions}
                 />
               </UISection>
-              <UISection id="sources-editors-suggestions" title="General" grouped={true}>
+              <UISection
+                id="sources-editors-suggestions"
+                title="General"
+                grouped={true}
+              >
                 <SourcesList
                   layout="vertical"
                   label="Generalistic News Sources"
@@ -218,7 +242,9 @@ class ChooseSourcesPage extends React.Component<IChooseSourcesPageProps, IChoose
     if (authenticated) {
       return <Redirect to="/news" noThrow={true} />;
     }
-    return <Layout authenticated={authenticated}>{this.renderNewsSources()}</Layout>;
+    return (
+      <Layout authenticated={authenticated}>{this.renderNewsSources()}</Layout>
+    );
   }
 }
 

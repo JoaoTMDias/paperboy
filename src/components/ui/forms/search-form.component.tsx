@@ -1,16 +1,16 @@
 // Libraries
-import { rem } from "polished";
-import * as React from "react";
-import styled from "styled-components";
+import { rem } from 'polished'
+import * as React from 'react'
+import styled from 'styled-components'
 
-import { UISection } from "../../index";
+import { UISection } from '../../index'
 
 // Component Props
 interface IUISearchFormProps {
-  theme?: any;
-  legend: string;
-  placeholder: string;
-  label: string;
+  theme?: any
+  legend: string
+  placeholder: string
+  label: string
 }
 
 /**
@@ -20,7 +20,7 @@ interface IUISearchFormProps {
  * @extends {React.SFC}
  */
 const UISearchForm: React.FunctionComponent<IUISearchFormProps> = props => (
-  <Section id="sources-search" role="search">
+  <UISection id="sources-search" role="search">
     <Form action="#" method="get">
       <fieldset>
         <legend className="screen-readers">{props.legend}</legend>
@@ -35,7 +35,12 @@ const UISearchForm: React.FunctionComponent<IUISearchFormProps> = props => (
         </TextInput>
       </fieldset>
       <Button type="submit" title={props.label}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" role="image">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          role="image"
+        >
           <path
             fill="var(--color-gray1)"
             fillRule="evenodd"
@@ -44,21 +49,17 @@ const UISearchForm: React.FunctionComponent<IUISearchFormProps> = props => (
         </svg>
       </Button>
     </Form>
-  </Section>
-);
+  </UISection>
+)
 
 // Styling
-const Section = styled(UISection)`
-  margin-bottom: 2rem;
-`;
-
-const Form = styled("form")`
+const Form = styled('form')`
   width: 100%;
   height: 3rem;
 
   background-color: var(--color-white, #ffffff);
   border-radius: var(--global-radius);
-  padding: ${rem("8px")};
+  padding: ${rem('8px')};
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -80,7 +81,7 @@ const Form = styled("form")`
     padding-inline-end: 0;
     padding-block-end: 0;
   }
-`;
+`
 
 const TextInput = styled.label`
   display: flex;
@@ -97,7 +98,7 @@ const TextInput = styled.label`
     border: none;
     -webkit-appearance: none;
   }
-`;
+`
 
 const Button = styled.button`
   position: relative;
@@ -117,10 +118,10 @@ const Button = styled.button`
   }
 
   svg {
-    width: ${rem("18px")};
-    height: ${rem("18px")};
+    width: ${rem('18px')};
+    height: ${rem('18px')};
     display: flex;
   }
-`;
+`
 
-export default UISearchForm;
+export default UISearchForm

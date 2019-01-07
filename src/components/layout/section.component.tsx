@@ -20,10 +20,8 @@ interface IUISectionProps {
  * @date  24/December/2018 at 01:23
  * @extends {React.SFC}
  */
-const UISection: React.FunctionComponent<IUISectionProps> = (props) => {
-  const {
-    id, title, children, role, layout, grouped,
-  } = props;
+const UISection: React.FunctionComponent<IUISectionProps> = props => {
+  const { id, title, children, role, layout, grouped } = props;
 
   const renderTitle = () => {
     if (title) {
@@ -86,7 +84,8 @@ const Wrapper = styled.div`
 const SectionWrapper = styled.section`
   width: 100%;
   max-width: 100%;
-  padding: 0 ${(props: IUISectionProps) => (props.grouped === true ? "0" : "1rem")};
+  padding: 0
+    ${(props: IUISectionProps) => (props.grouped === true ? "0" : "1rem")};
 
   overflow-x: hidden;
   display: flex;
@@ -100,7 +99,15 @@ const SectionWrapper = styled.section`
   align-items: flex-start;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: ${rem("48px")};
+  margin-bottom: ${(props: IUISectionProps) => {
+    switch (props.role) {
+      case "search":
+        return "2rem";
+
+      default:
+        return `${rem("48px")}`;
+    }
+  }};
 
   &:only-child {
     margin-bottom: 0;
@@ -116,8 +123,9 @@ const SectionTitle = styled.h3`
   margin-bottom: var(--global-padding);
   padding: 0;
 
-  ${(props: IUISectionProps) => props.grouped
-    && css`
+  ${(props: IUISectionProps) =>
+    props.grouped &&
+    css`
       padding-left: 1rem;
       padding-right: 1rem;
     `};

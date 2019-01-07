@@ -1,4 +1,5 @@
 // GENERAL
+import Portal from "./general/portal/portal.component";
 import Audit from "./general/support/audit.support";
 
 // LAYOUT
@@ -17,10 +18,13 @@ import UINavigationBar from "./ui/navigation/header/top-navigation.component";
 import MainNavigation from "./ui/navigation/main/main-navigation";
 
 // UI
+import Modal from "./general/modal/modal.component";
 import UISection from "./layout/section.component";
+import Confirm from "./ui/dialog/confirm.component";
+import UIDialog from "./ui/dialog/dialog.component";
 import UISearchForm from "./ui/forms/search-form.component";
 import LazyLoadingImage from "./ui/images/image.lazyload.component";
-import UIDialogAddToHomescreen from "./ui/pwa/add-to-homescreen.component";
+import AddToHomeScreen from "./ui/pwa/add-to-homescreen.component";
 import SourceCard from "./ui/sources/source-card.component";
 import SourceListItem from "./ui/sources/source-list-item.component";
 import SourcesList from "./ui/sources/source-list.component";
@@ -35,13 +39,16 @@ import {
   IconSaved,
   IconSearch,
   IconSettings,
-  IconShare
+  IconShare,
 } from "./ui/icons/icons";
 
 export {
   Audit,
+  Portal,
   Container,
   Layout,
+  Modal,
+  Confirm,
   A11yPageTitle,
   BottomNavigation,
   UIAnchor,
@@ -58,7 +65,8 @@ export {
   UISubtitle,
   UISection,
   UISearchForm,
-  UIDialogAddToHomescreen,
+  AddToHomeScreen,
+  UIDialog,
   LazyLoadingImage,
   IconNews,
   IconSaved,
@@ -67,5 +75,5 @@ export {
   IconSettings,
   IconBrandingLarge,
   IconBrandingSmall,
-  IconShare
+  IconShare,
 };
