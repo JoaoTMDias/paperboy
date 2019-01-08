@@ -28,6 +28,7 @@ import AddToHomeScreen from "./ui/pwa/add-to-homescreen.component";
 import SourceCard from "./ui/sources/source-card.component";
 import SourceListItem from "./ui/sources/source-list-item.component";
 import SourcesList from "./ui/sources/source-list.component";
+import UIContentSpinner from "./ui/spinners/content-spinner.component";
 import { UIDisplay, UILead, UISubtitle } from "./ui/typography/typography.theme";
 
 // ICONOGRAPHY
@@ -67,6 +68,7 @@ export {
   UISearchForm,
   AddToHomeScreen,
   UIDialog,
+  UIContentSpinner,
   LazyLoadingImage,
   IconNews,
   IconSaved,

@@ -17,7 +17,7 @@ interface IIndexPageProps {
   children?: any;
 }
 
-const IndexPage: React.FunctionComponent<IIndexPageProps> = (props) => {
+const IndexPage: React.FunctionComponent<IIndexPageProps> = props => {
   const { authenticated } = props;
 
   if (authenticated) {
@@ -34,9 +34,9 @@ const IndexPage: React.FunctionComponent<IIndexPageProps> = (props) => {
       </UICallToAction>
       <Container fullheight={true} title="Current Page is the Welcome Screen.">
         <IconBrandingLarge visible={true} />
-        <UISubtitle text="Welcome" />
-        <UIDisplay text="Your news, your control." />
-        <UILead text="The most important news of the hour, right from your favorite sources." />
+        <UISubtitle text="This is Paperboy" />
+        <UIDisplay text="Fight back the fake news" />
+        <UILead text="See the most important news of the hour, right from your favorite sources." />
       </Container>
     </Layout>
   );

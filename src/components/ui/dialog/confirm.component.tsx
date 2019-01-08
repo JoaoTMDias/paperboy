@@ -57,7 +57,7 @@ const Content = styled.div`
 const Row = styled.div`
   width: 100%;
   flex: 0 0 auto;
-  padding: ${rem("8px")};
+  padding: ${rem("8px")} ${rem("16px")};
   display: flex;
   align-items: center;
   justify-content: flex-end;

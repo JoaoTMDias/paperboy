@@ -1,8 +1,17 @@
 // Constants
-import { GET_ALL_AVAILABLE_NEWS_SOURCES, GET_LATEST_NEWS } from "../../constants/index";
+import {
+  GET_ALL_AVAILABLE_NEWS_SOURCES,
+  GET_LATEST_NEWS,
+  GET_ALL_AVAILABLE_NEWS_SOURCES_LANGUAGE,
+} from '../../constants/index'
 
 // Services
-import NewsService from "../../services/news.service";
+import NewsService from '../../services/news.service'
+
+interface IAvaiableRegionalNewsSources {
+  status: string
+  sources: object[]
+}
 
 /**
  * @description Retrieves a list of all the available news sources
@@ -12,13 +21,27 @@ import NewsService from "../../services/news.service";
  */
 const getAllAvailableNewsSources = () => {
   function AvailableNewsSources(data: any) {
-    const general = data.sources.filter((source: any) => source.category === "general");
-    const business = data.sources.filter((source: any) => source.category === "business");
-    const entertainment = data.sources.filter((source: any) => source.category === "entertainment");
-    const health = data.sources.filter((source: any) => source.category === "health");
-    const science = data.sources.filter((source: any) => source.category === "science");
-    const sports = data.sources.filter((source: any) => source.category === "sports");
-    const technology = data.sources.filter((source: any) => source.category === "technology");
+    const general = data.sources.filter(
+      (source: any) => source.category === 'general'
+    )
+    const business = data.sources.filter(
+      (source: any) => source.category === 'business'
+    )
+    const entertainment = data.sources.filter(
+      (source: any) => source.category === 'entertainment'
+    );
+    const health = data.sources.filter(
+      (source: any) => source.category === "health"
+    )
+    const science = data.sources.filter(
+      (source: any) => source.category === "science"
+    );
+    const sports = data.sources.filter(
+      (source: any) => source.category === "sports"
+    );
+    const technology = data.sources.filter(
+      (source: any) => source.category === "technology"
+    );
 
     return {
       type: GET_ALL_AVAILABLE_NEWS_SOURCES,
@@ -37,27 +60,38 @@ const getAllAvailableNewsSources = () => {
 
   return (dispatch: any) => {
     NewsService.getAllAvailableSources()
-      .then((result) => {
+      .then(result => {
         if (result.data) {
-          dispatch(AvailableNewsSources(result.data));
+          dispatch(AvailableNewsSources(result.data))
         }
       })
-      .catch((error) => {});
+      .catch(error => {});
   };
 };
 
-const getAvailableNewSourcesFromLanguage = (language: string) => (dispatch: any) => {
-  const AvailableNewsSources = (data: any) => {
-    console.log("data: ", data);
+const getAvailableNewSourcesFromLanguage = (language: string) => (
+  dispatch: any
+) => {
+  const AvailableNewsSources = (data: IAvaiableRegionalNewsSources) => {
+    if (data.status === "ok" && data.sources.length > 0) {
+      return {
+        type: GET_ALL_AVAILABLE_NEWS_SOURCES_LANGUAGE,
+        language: data.sources,
+      };
+    }
+
+    return;
   };
 
   NewsService.getAvailableSourcesFromLanguage(language)
-    .then((result) => {
+    .then(result => {
       if (result.data) {
-        dispatch(AvailableNewsSources(result.data));
+        if (result.data && result.data.sources) {
+          dispatch(AvailableNewsSources(result.data));
+        }
       }
     })
-    .catch((error) => {});
+    .catch(error => {});
 };
 
 /**
@@ -76,12 +110,12 @@ const getAllLatestNewsFromSource = (source: any) => {
 
   return (dispatch: any) => {
     NewsService.getAllLatestNews(source)
-      .then((result) => {
+      .then(result => {
         if (result.data) {
           dispatch(LatestNewsList(result.data));
         }
       })
-      .catch((error) => {});
+      .catch(error => {});
   };
 };
 

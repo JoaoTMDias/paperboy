@@ -66,7 +66,7 @@ html {
 }
 
 *:focus {
-  outline-color: var(--color-white, $color-white);
+  outline-color: var(--color-gray1, $color-gray1);
   outline-width: 1px;
   outline-style: dashed;
 }
@@ -92,10 +92,6 @@ section {
   display: block;
 }
 
-// Body
-//
-// 1. Remove the margin in all browsers.
-// 2. As a best practice, apply a default `background-color`.
 body {
   margin: 0; // 1
   font-family: $body-font-family;
@@ -307,7 +303,7 @@ pre {
 //
 figure {
   // Apply a consistent margin strategy (matches our type styles).
-  margin: 0 0 rem-calc(16);
+  margin: 0;
 }
 
 //
@@ -315,7 +311,10 @@ figure {
 //
 img {
   vertical-align: middle;
-  border-style: none; // Remove the border on images inside links in IE 10-.
+  border-style: none;
+  object-fit: cover;
+  object-position: center center;
+  // Remove the border on images inside links in IE 10-.
 }
 
 svg:not(:root) {
@@ -659,10 +658,10 @@ template {
 
 .screen-readers {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 0.0625em;
+  height: 0.0625em;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625em;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;

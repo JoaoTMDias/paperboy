@@ -19,15 +19,19 @@ interface IUIButtonProps {
  * @date  11/December/2018 at 00:03
  * @extends {React.SFC}
  */
-const UIButton: React.FunctionComponent<IUIButtonProps> = (props) => {
-  const {
-    type, text, label, onClick, disabled,
-  } = props;
+const UIButton: React.FunctionComponent<IUIButtonProps> = props => {
+  const { type, text, label, onClick, disabled } = props;
 
   const linkText = disabled ? "Select at least 3 sources " : text;
 
   return (
-    <Btn type={type} onClick={onClick} aria-label={label} tabIndex={0} disabled={disabled}>
+    <Btn
+      type={type}
+      onClick={onClick}
+      aria-label={label}
+      tabIndex={0}
+      disabled={disabled}
+    >
       {linkText}
     </Btn>
   );
@@ -37,13 +41,11 @@ interface IUIAnchorProps {
   to: string;
   text: string;
   label: string;
-  disabled: boolean;
+  disabled?: boolean;
 }
 
-const UIAnchor: React.FunctionComponent<IUIAnchorProps> = (props) => {
-  const {
-    to, text, label, disabled,
-  } = props;
+const UIAnchor: React.FunctionComponent<IUIAnchorProps> = props => {
+  const { to, text, label, disabled } = props;
 
   const linkText = disabled ? "Select at least 3 sources " : text;
   return (
@@ -108,8 +110,9 @@ const Anchor = styled(Link)`
     transform: scale(0.98);
   }
 
-  ${(props: IUIAnchorProps) => props.disabled
-    && css`
+  ${(props: IUIAnchorProps) =>
+    props.disabled &&
+    css`
       background-color: var(--color-gray3);
       color: var(--color-gray8);
       cursor: no-drop;
