@@ -1,6 +1,6 @@
 // Libraries
 import * as React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { SourceCard, SourceListItem } from "../..";
 
 // Component Props
@@ -17,7 +17,7 @@ interface ISourcesListProps {
  * @date  24/December/2018 at 01:43
  * @extends {React.SFC}
  */
-const SourcesList: React.FunctionComponent<ISourcesListProps> = (props) => {
+const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
   const renderData = (data: any, layout: string | undefined) => {
     if (data) {
       let item = [];
@@ -54,7 +54,11 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = (props) => {
   };
 
   return (
-    <SourcesListWrapper role="group" aria-label={props.label} layout={props.layout}>
+    <SourcesListWrapper
+      role="group"
+      aria-label={props.label}
+      layout={props.layout}
+    >
       {renderData(props.data, props.layout)}
     </SourcesListWrapper>
   );
@@ -69,7 +73,8 @@ SourcesList.defaultProps = {
 // Styling
 const SourcesListWrapper = styled.ul`
   display: flex;
-  flex-direction: ${(props: ISourcesListProps) => (props.layout === "horizontal" ? "row" : "column")};
+  flex-direction: ${(props: ISourcesListProps) =>
+    props.layout === "horizontal" ? "row" : "column"};
   justify-content: flex-start;
   align-items: center;
   flex-wrap: nowrap;
@@ -83,7 +88,8 @@ const SourcesListWrapper = styled.ul`
 
   .source__item {
     flex: 1;
-    margin-right: ${(props: ISourcesListProps) => (props.layout === "horizontal" ? "1rem" : "0")};
+    margin-right: ${(props: ISourcesListProps) =>
+      props.layout === "horizontal" ? "1rem" : "0"};
   }
 `;
 export default SourcesList;

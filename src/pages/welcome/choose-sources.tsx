@@ -27,14 +27,16 @@ import {
 // Data
 import Top20EditorSuggestions from '../../data/dummy/news-sources-suggestions.js'
 
+type ListOfCategories = Object[]
+
 interface LanguageSupport {
   hasLocation: boolean
   data: any
 }
 
 interface IChooseSourcesPageProps {
-  authenticated: boolean
-  getAllAvailableNewsSources: () => Promise<void>
+  authenticated: boolean;
+  getAllAvailableNewsSources: () => Promise<void>;
   dispatch: any;
   sources: NewsSourcesCategories | null;
   geoLocation: boolean;
@@ -162,6 +164,12 @@ class ChooseSourcesPage extends React.Component<
     }
   }
 
+  /**
+   * @description Fetches a list of available news sources from a specific country code.
+   * @date 2019-01-08
+   * @param {*} content
+   * @memberof ChooseSourcesPage
+   */
   getUserSourcesByLanguage(content: any) {
     if (content.hasLocation && content.data.countryCode) {
       const language: string = `${content.data.countryCode}`.toLowerCase();
@@ -169,97 +177,68 @@ class ChooseSourcesPage extends React.Component<
     }
   }
 
-  renderNewsSources() {
-    const { hasData } = this.state;
-    const { sources } = this.props;
+  /**
+   * @description If there are any results of available sources from a language,
+   * renders them on the screen. This only happens after the user has accepted the
+   * location service usage.
+   * @date 2019-01-08
+   * @param {*} data
+   * @returns
+   * @memberof ChooseSourcesPage
+   */
+  renderSourcesFromLanguage(data: any) {
+    return (
+      <UISection id="sources-language" title="In your Language">
+        <SourcesList
+          layout="horizontal"
+          label="Language Specific News Sources"
+          data={data}
+        />
+      </UISection>
+    );
+  }
 
-    const hasLanguage: boolean =
-      sources && sources.language.length > 0 ? true : false;
-    console.log("sources:", sources);
-    let categories;
+  /**
+   * @description Displays a list of different categories of news sources.
+   * While there is no data, a spinner is shown.
+   * @date 2019-01-08
+   * @param {ListOfCategories} data
+   * @returns
+   * @memberof ChooseSourcesPage
+   */
+  renderListOfCategories(data: ListOfCategories) {
+    console.log("data:", data);
 
-    if (sources && hasLanguage) {
-      const { language, ...filteredSources } = sources;
-      console.log("filteredSources: ", filteredSources);
-
-      categories = Object.keys(filteredSources).map((category, index) => {
-        console.log("key: ", category);
-
-        return (
-          <UISection
-            key={`sources-${category}-${index}`}
-            id={`sources-${category}`}
-            title={`${category}`}
-            grouped={true}
-          >
-            <SourcesList
-              layout="vertical"
-              label="Language Specific News Sources"
-              data={category}
-            />
-          </UISection>
-        );
-      });
-    }
-
-    if (hasData) {
+    const render = Object.entries(data).map((category, index) => {
+      const title = category[0];
       return (
-        <React.Fragment>
-          <Container
-            fullwidth={true}
-            isFixed={true}
-            title="Current Page is: Choose News Sources."
-            offsetTop="1rem"
-          >
-            <UISearchForm
-              legend="Filter News Sources"
-              placeholder="Type to search and filter..."
-              label="Submit filter query"
-            />
-            <UISection
-              id="sources-editors-suggestions"
-              title="Editor's Suggestions"
-            >
-              <SourcesList
-                layout="horizontal"
-                label="The Top 20 Editor's Suggestions for news sources."
-                data={Top20EditorSuggestions}
-              />
-            </UISection>
-            {hasLanguage && (
-              <UISection id="sources-language" title="In Your Language">
-                <SourcesList
-                  layout="horizontal"
-                  label="Language Specific News Sources"
-                  data={sources.language}
-                />
-              </UISection>
-            )}
-            <UISection id="sources-general" title="General" grouped={true}>
-              <SourcesList
-                layout="vertical"
-                label="Language Specific News Sources"
-                data={Top20EditorSuggestions}
-              />
-            </UISection>
-          </Container>
-          <UICallToAction>
-            <UIAnchor
-              to="/news"
-              text="Let's Go"
-              label="Click to set these as your news sources."
-              disabled={true}
-            />
-          </UICallToAction>
-        </React.Fragment>
+        <UISection
+          key={`sources-${title}-${index}`}
+          id={`sources-${title}`}
+          title={`${title}`}
+          grouped={true}
+        >
+          <SourcesList
+            layout="vertical"
+            label="Language Specific News Sources"
+            data={category[1]}
+          />
+        </UISection>
       );
-    } else {
-      return <UIContentSpinner isFullPage={true} />;
-    }
+    });
+
+    return render;
   }
 
   public render() {
-    const { authenticated } = this.props;
+    const { authenticated, sources } = this.props;
+    const { hasData } = this.state;
+
+    const {
+      available: [],
+      language: [],
+      ...filter // tslint:disable-line
+    } = sources;
 
     if (authenticated) {
       return <Redirect to="/news" noThrow={true} />;
@@ -280,7 +259,44 @@ class ChooseSourcesPage extends React.Component<
             onConfirm={() => this.getUserCountry()}
           />
         </Modal>
-        {this.renderNewsSources()}
+        <Container
+          fullwidth={true}
+          isFixed={true}
+          title="Current Page is: Choose News Sources."
+          offsetTop="1rem"
+        >
+          <UISearchForm
+            legend="Filter News Sources"
+            placeholder="Type to search and filter..."
+            label="Submit filter query"
+          />
+          <UISection
+            id="sources-editors-suggestions"
+            title="Editor's Suggestions"
+          >
+            <SourcesList
+              layout="horizontal"
+              label="The Top 20 Editor's Suggestions for news sources."
+              data={Top20EditorSuggestions}
+            />
+          </UISection>
+          {sources && sources.language.length > 0
+            ? this.renderSourcesFromLanguage(sources.language)
+            : null}
+          {hasData ? (
+            this.renderListOfCategories({ ...filter })
+          ) : (
+            <UIContentSpinner isFullPage={true} />
+          )}
+        </Container>
+        <UICallToAction>
+          <UIAnchor
+            to="/news"
+            text="Let's Go"
+            label="Click to set these as your news sources."
+            disabled={true}
+          />
+        </UICallToAction>
       </Layout>
     );
   }

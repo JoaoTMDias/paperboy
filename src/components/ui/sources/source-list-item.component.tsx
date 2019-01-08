@@ -22,7 +22,10 @@ interface ISourceListItemState {
  * @date  27/December/2018 at 00:57
  * @extends {React.SFC}
  */
-class SourceListItem extends React.PureComponent<ISourceListItemProps, ISourceListItemState> {
+class SourceListItem extends React.PureComponent<
+  ISourceListItemProps,
+  ISourceListItemState
+> {
   constructor(props: ISourceListItemProps) {
     super(props);
 
@@ -47,7 +50,11 @@ class SourceListItem extends React.PureComponent<ISourceListItemProps, ISourceLi
 
     return (
       <Wrapper className={`source__item ${status}`}>
-        <label htmlFor={`source-${id}-input`} tabIndex={0} onClick={this.handleOnClick}>
+        <label
+          htmlFor={`source-${id}-input`}
+          tabIndex={0}
+          onClick={this.handleOnClick}
+        >
           <Input
             id={`source-${id}-input`}
             className="source__input"
@@ -57,7 +64,12 @@ class SourceListItem extends React.PureComponent<ISourceListItemProps, ISourceLi
             tabIndex={-1}
           />
           <Logo className="source__cover">
-            <LazyLoadingImage cover={cover} width="105" height="105" alt={`${label} logo`} />
+            <LazyLoadingImage
+              cover={cover}
+              width="105"
+              height="105"
+              alt={`${label} logo`}
+            />
           </Logo>
           <Name className="source__label">
             <h4 id="source-label-cnn" className="source__label__title">
@@ -71,7 +83,13 @@ class SourceListItem extends React.PureComponent<ISourceListItemProps, ISourceLi
             viewBox="0 0 24 24"
           >
             <title>check</title>
-            <circle className="icon__circle" cx="12" cy="12" r="12" fill="var(--color-gray2)" />
+            <circle
+              className="icon__circle"
+              cx="12"
+              cy="12"
+              r="12"
+              fill="var(--color-gray2)"
+            />
             <path
               className="icon__check"
               d="M8.75,17.4l-4.3-4.31A1.2,1.2,0,0,1,6.14,11.4l3.47,3.46L17.86,6.6a1.2,1.2,0,0,1,1.69,1.69l-9.1,9.11A1.2,1.2,0,0,1,8.75,17.4Z"
@@ -100,7 +118,11 @@ const Wrapper = styled.li`
 
   &.is-checked {
     transform: scale(1);
-    background-image: linear-gradient(45deg, var(--color-select), var(--color-select-gradient));
+    background-image: linear-gradient(
+      45deg,
+      var(--color-select),
+      var(--color-select-gradient)
+    );
 
     .source__status {
       .icon__circle {
@@ -113,7 +135,8 @@ const Wrapper = styled.li`
     }
 
     label {
-      box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.08), 0 0 6px 0 rgba(0, 0, 0, 0.16);
+      box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.08),
+        0 0 6px 0 rgba(0, 0, 0, 0.16);
     }
 
     .source__label {
@@ -130,7 +153,11 @@ const Wrapper = styled.li`
     width: 100%;
     height: 100%;
     margin: 0;
-    padding: ${rem("8px")} 0;
+    padding-top: ${rem("8px")};
+    padding-right: 0;
+    padding-bottom: ${rem("8px")};
+    padding-left: ${rem("8px")};
+
     box-shadow: 0 2px 0 0px rgba(0, 0, 0, 0.05);
     border-radius: 0;
     transform: scale(0.98);
@@ -140,7 +167,8 @@ const Wrapper = styled.li`
     align-items: center;
 
     &:active {
-      box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.04), 0 0 4px 0 rgba(0, 0, 0, 0.08);
+      box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.04),
+        0 0 4px 0 rgba(0, 0, 0, 0.08);
       transform: scale(0.96);
     }
   }
@@ -210,6 +238,7 @@ const Name = styled.div`
       margin: 0;
       padding: ${rem("4px")} ${rem("8px")};
       text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.2);
+      text-transform: capitalize;
     }
   }
 `;

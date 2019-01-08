@@ -46,7 +46,7 @@ const UISection: React.FunctionComponent<IUISectionProps> = props => {
         grouped={grouped}
       >
         {renderTitle()}
-        <Wrapper>{children}</Wrapper>
+        <Wrapper grouped={grouped}>{children}</Wrapper>
       </SectionWrapper>
     );
   }
@@ -79,6 +79,13 @@ const Wrapper = styled.div`
   justify-content: center;
   padding-left: 1rem;
   padding-right: 1rem;
+
+  ${(props: IUISectionProps) =>
+    props.grouped &&
+    css`
+      padding-left: 0;
+      padding-right: 0;
+    `};
 `;
 
 const SectionWrapper = styled.section`
@@ -117,6 +124,7 @@ const SectionWrapper = styled.section`
 const SectionTitle = styled.h3`
   font-family: var(--body-font-family);
   font-size: ${rem("14px")};
+  text-transform: capitalize;
   color: var(--color-gray8);
   letter-spacing: ${rem("0.17px")};
   line-height: ${rem("14px")};
