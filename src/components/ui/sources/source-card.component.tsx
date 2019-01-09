@@ -20,65 +20,71 @@ interface ISourceCardProps {
  * @date  27/December/2018 at 00:57
  * @extends {React.SFC}
  */
-const SourceCard: React.FunctionComponent<ISourceCardProps> = props => {
-  const { id, label, cover, handleChange, checked } = props;
+class SourceCard extends React.Component<ISourceCardProps> {
+  static defaultProps = {
+    checked: false,
+  };
 
-  const status: string = props.checked ? "is-checked" : "";
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.checked !== this.props.checked;
+  }
 
-  return (
-    <Wrapper className={`source__item ${status}`}>
-      <label htmlFor={`source-${id}-input`} tabIndex={0}>
-        <Input
-          id={`source-${id}-input`}
-          className="source__input"
-          type="checkbox"
-          value={`${id}`}
-          name="source-input"
-          checked={checked}
-          onChange={handleChange}
-          tabIndex={-1}
-        />
-        <Icon
-          role="image"
-          className="source__status"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <title>check</title>
-          <circle
-            className="icon__circle"
-            cx="12"
-            cy="12"
-            r="12"
-            fill="var(--color-gray2)"
-          />
-          <path
-            className="icon__check"
-            d="M8.75,17.4l-4.3-4.31A1.2,1.2,0,0,1,6.14,11.4l3.47,3.46L17.86,6.6a1.2,1.2,0,0,1,1.69,1.69l-9.1,9.11A1.2,1.2,0,0,1,8.75,17.4Z"
-            fill="var(--color-gray2)"
-          />
-        </Icon>
-        <Logo className="source__cover">
-          <LazyLoadingImage
-            cover={cover}
-            width="105"
-            height="105"
-            alt={`${label} logo`}
-          />
-        </Logo>
-        <Name className="source__label">
-          <h4 id="source-label-cnn" className="source__label__title">
-            {label}
-          </h4>
-        </Name>
-      </label>
-    </Wrapper>
-  );
-};
+  public render() {
+    const { id, label, cover, handleChange, checked } = this.props;
 
-SourceCard.defaultProps = {
-  checked: false,
-};
+    const status: string = checked ? "is-checked" : "";
+
+    return (
+      <Wrapper className={`source__item ${status}`}>
+        <label htmlFor={`source-${id}-input`} tabIndex={0}>
+          <Input
+            id={`source-${id}-input`}
+            className="source__input"
+            type="checkbox"
+            value={`${id}`}
+            name="source-input"
+            checked={checked}
+            onChange={handleChange}
+            tabIndex={-1}
+          />
+          <Icon
+            role="image"
+            className="source__status"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <title>check</title>
+            <circle
+              className="icon__circle"
+              cx="12"
+              cy="12"
+              r="12"
+              fill="var(--color-gray2)"
+            />
+            <path
+              className="icon__check"
+              d="M8.75,17.4l-4.3-4.31A1.2,1.2,0,0,1,6.14,11.4l3.47,3.46L17.86,6.6a1.2,1.2,0,0,1,1.69,1.69l-9.1,9.11A1.2,1.2,0,0,1,8.75,17.4Z"
+              fill="var(--color-gray2)"
+            />
+          </Icon>
+          <Logo className="source__cover">
+            <LazyLoadingImage
+              cover={cover}
+              width="105"
+              height="105"
+              alt={`${label} logo`}
+            />
+          </Logo>
+          <Name className="source__label">
+            <h4 id="source-label-cnn" className="source__label__title">
+              {label}
+            </h4>
+          </Name>
+        </label>
+      </Wrapper>
+    );
+  }
+}
 
 // Styling
 const Wrapper = styled.li`

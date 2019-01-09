@@ -1,12 +1,12 @@
 // Libraries
-import { rem } from 'polished';
-import * as React from 'react'
-import styled from "styled-components"
-import { LazyLoadingImage } from "../../index"
+import { rem } from "polished";
+import * as React from "react";
+import styled from "styled-components";
+import { LazyLoadingImage } from "../../index";
 
 // Component Props
 interface ISourceListItemProps {
-  theme?: any
+  theme?: any;
   id: string;
   label: string;
   cover: string;
@@ -20,61 +20,67 @@ interface ISourceListItemProps {
  * @date  27/December/2018 at 00:57
  * @extends {React.SFC}
  */
-const SourceListItem: React.FunctionComponent<ISourceListItemProps> = props => {
-  const { id, label, cover, handleChange, checked } = props;
+class SourceListItem extends React.Component<ISourceListItemProps, any> {
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.checked !== this.props.checked;
+  }
 
-  const status: string = props.checked ? "is-checked" : "";
+  public render() {
+    const { id, label, cover, handleChange, checked } = this.props;
 
-  return (
-    <Wrapper className={`source__item ${status}`}>
-      <label htmlFor={`source-${id}-input`} tabIndex={0}>
-        <Input
-          id={`source-${id}-input`}
-          className="source__input"
-          type="checkbox"
-          value={`${id}`}
-          name={`source-${id}-input`}
-          checked={checked}
-          onChange={handleChange}
-          tabIndex={-1}
-        />
-        <Logo className="source__cover">
-          <LazyLoadingImage
-            cover={cover}
-            width="105"
-            height="105"
-            alt={`${label} logo`}
+    const status: string = checked ? "is-checked" : "";
+
+    return (
+      <Wrapper className={`source__item ${status}`}>
+        <label htmlFor={`source-${id}-input`} tabIndex={0}>
+          <Input
+            id={`source-${id}-input`}
+            className="source__input"
+            type="checkbox"
+            value={`${id}`}
+            name={`source-${id}-input`}
+            checked={checked}
+            onChange={handleChange}
+            tabIndex={-1}
           />
-        </Logo>
-        <Name className="source__label">
-          <h4 id="source-label-cnn" className="source__label__title">
-            {label}
-          </h4>
-        </Name>
-        <Icon
-          role="image"
-          className="source__status"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-        >
-          <title>check</title>
-          <circle
-            className="icon__circle"
-            cx="12"
-            cy="12"
-            r="12"
-            fill="var(--color-gray2)"
-          />
-          <path
-            className="icon__check"
-            d="M8.75,17.4l-4.3-4.31A1.2,1.2,0,0,1,6.14,11.4l3.47,3.46L17.86,6.6a1.2,1.2,0,0,1,1.69,1.69l-9.1,9.11A1.2,1.2,0,0,1,8.75,17.4Z"
-            fill="var(--color-gray2)"
-          />
-        </Icon>
-      </label>
-    </Wrapper>
-  );
-};
+          <Logo className="source__cover">
+            <LazyLoadingImage
+              cover={cover}
+              width="105"
+              height="105"
+              alt={`${label} logo`}
+            />
+          </Logo>
+          <Name className="source__label">
+            <h4 id="source-label-cnn" className="source__label__title">
+              {label}
+            </h4>
+          </Name>
+          <Icon
+            role="image"
+            className="source__status"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <title>check</title>
+            <circle
+              className="icon__circle"
+              cx="12"
+              cy="12"
+              r="12"
+              fill="var(--color-gray2)"
+            />
+            <path
+              className="icon__check"
+              d="M8.75,17.4l-4.3-4.31A1.2,1.2,0,0,1,6.14,11.4l3.47,3.46L17.86,6.6a1.2,1.2,0,0,1,1.69,1.69l-9.1,9.11A1.2,1.2,0,0,1,8.75,17.4Z"
+              fill="var(--color-gray2)"
+            />
+          </Icon>
+        </label>
+      </Wrapper>
+    );
+  }
+}
 
 // Styling
 const Wrapper = styled.li`

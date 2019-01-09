@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 // Component Props
 interface IUINavigationBarProps {
-  children: any;
   theme?: any;
   shadow?: "default" | "hairline" | "none";
 }
@@ -16,9 +15,15 @@ interface IUINavigationBarProps {
  * @date  12/December/2018 at 15:42
  * @extends {React.SFC}
  */
-const UINavigationBar: React.FunctionComponent<IUINavigationBarProps> = props => (
-  <Wrapper>{props.children}</Wrapper>
-);
+class UINavigationBar extends React.Component<IUINavigationBarProps> {
+  shouldComponentUpdate(nextProps: IUINavigationBarProps, nextState) {
+    return nextProps.shadow !== this.props.shadow;
+  }
+
+  public render() {
+    return <Wrapper>{this.props.children}</Wrapper>;
+  }
+}
 
 // Styling
 const Wrapper = styled.header`

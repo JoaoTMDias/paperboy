@@ -1,6 +1,6 @@
 // Libraries
-import { Link } from "gatsby";
-import { darken, rem } from "polished";
+import { Link } from "gatsby"
+import { darken, rem } from "polished"
 import * as React from "react";
 import styled, { css } from "styled-components";
 
@@ -19,23 +19,28 @@ interface IUIButtonProps {
  * @date  11/December/2018 at 00:03
  * @extends {React.SFC}
  */
-const UIButton: React.FunctionComponent<IUIButtonProps> = props => {
-  const { type, text, label, onClick, disabled } = props;
+class UIButton extends React.Component<IUIButtonProps> {
+  shouldComponentUpdate(nextProps: IUIButtonProps, nextState) {
+    return nextProps.disabled !== this.props.disabled;
+  }
 
-  const linkText = disabled ? "Select at least 3 sources " : text;
+  public render() {
+    const { type, text, label, disabled } = this.props;
 
-  return (
-    <Btn
-      type={type}
-      onClick={onClick}
-      aria-label={label}
-      tabIndex={0}
-      disabled={disabled}
-    >
-      {linkText}
-    </Btn>
-  );
-};
+    const linkText = disabled ? "Select at least 3 sources " : text;
+    return (
+      <Btn
+        type={type}
+        onClick={onClick}
+        aria-label={label}
+        tabIndex={0}
+        disabled={disabled}
+      >
+        {linkText}
+      </Btn>
+    );
+  }
+}
 
 interface IUIAnchorProps {
   to: string;
@@ -44,16 +49,22 @@ interface IUIAnchorProps {
   disabled?: boolean;
 }
 
-const UIAnchor: React.FunctionComponent<IUIAnchorProps> = props => {
-  const { to, text, label, disabled } = props;
+class UIAnchor extends React.Component<IUIAnchorProps> {
+  shouldComponentUpdate(nextProps: IUIAnchorProps, nextState) {
+    return nextProps.disabled !== this.props.disabled;
+  }
 
-  const linkText = disabled ? "Select at least 3 sources " : text;
-  return (
-    <Anchor to={to} aria-label={label} tabIndex={0} disabled={disabled}>
-      {linkText}
-    </Anchor>
-  );
-};
+  public render() {
+    const { to, text, label, disabled } = this.props;
+
+    const linkText = disabled ? "Select at least 3 sources " : text;
+    return (
+      <Anchor to={to} aria-label={label} tabIndex={0} disabled={disabled}>
+        {linkText}
+      </Anchor>
+    );
+  }
+}
 
 // Styling
 const Btn = styled.button`

@@ -16,18 +16,37 @@ interface IUINavigationBarBarWithTitleProps {
  * @date  12/December/2018 at 16:40
  * @extends {React.SFC}
  */
-const UINavigationBarBarWithTitle: React.FunctionComponent<
-IUINavigationBarBarWithTitleProps
-> = (props) => {
-  const { title, subtitle } = props;
+class UINavigationBarBarWithTitle extends React.Component<
+  IUINavigationBarBarWithTitleProps
+> {
+  shouldComponentUpdate(
+    nextProps: IUINavigationBarBarWithTitleProps,
+    nextState,
+  ): boolean {
+    if (
+      nextProps.title !== this.props.title ||
+      nextProps.subtitle !== this.props.subtitle
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
-  return (
-    <Container>
-      <h2 className="top-navigation-with-title__title">{title}</h2>
-      <p className="top-navigation-with-title__subtitle">{subtitle}</p>
-    </Container>
-  );
-};
+  /**
+   * render
+   */
+  public render() {
+    const { title, subtitle } = this.props;
+
+    return (
+      <Container>
+        <h2 className="top-navigation-with-title__title">{title}</h2>
+        <p className="top-navigation-with-title__subtitle">{subtitle}</p>
+      </Container>
+    );
+  }
+}
 
 // Styling
 const Container = styled.div`

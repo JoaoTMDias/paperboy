@@ -1,6 +1,7 @@
 // Libraries
 import { rem } from "polished";
 import * as React from "react";
+import { render } from "react-dom";
 import styled, { css } from "styled-components";
 
 // Component Props
@@ -20,10 +21,16 @@ interface IUISectionProps {
  * @date  24/December/2018 at 01:23
  * @extends {React.SFC}
  */
-const UISection: React.FunctionComponent<IUISectionProps> = props => {
-  const { id, title, children, role, layout, grouped } = props;
+class UISection extends React.PureComponent<IUISectionProps> {
+  static defaultProps = {
+    layout: "vertical",
+    id: `${Math.random()}`,
+    grouped: false,
+  };
 
-  const renderTitle = () => {
+  renderTitle() {
+    const { id, title, grouped } = this.props;
+
     if (title) {
       return (
         <SectionTitle id={`${id}-section-title`} grouped={grouped}>
@@ -33,9 +40,28 @@ const UISection: React.FunctionComponent<IUISectionProps> = props => {
     }
 
     return null;
-  };
+  }
 
-  if (grouped) {
+  public render() {
+    const { id, title, children, role, layout, grouped } = this.props;
+
+    if (grouped) {
+      return (
+        <SectionWrapper
+          id={id}
+          aria-labelledby={`${id}-section-title`}
+          title={title}
+          layout={layout}
+          role={`${role}`}
+          grouped={grouped}
+        >
+          {this.renderTitle()}
+          <Wrapper id={`wrapper-${id}`} grouped={grouped}>
+            {children}
+          </Wrapper>
+        </SectionWrapper>
+      );
+    }
     return (
       <SectionWrapper
         id={id}
@@ -43,32 +69,13 @@ const UISection: React.FunctionComponent<IUISectionProps> = props => {
         title={title}
         layout={layout}
         role={`${role}`}
-        grouped={grouped}
       >
-        {renderTitle()}
-        <Wrapper grouped={grouped}>{children}</Wrapper>
+        {this.renderTitle()}
+        {children}
       </SectionWrapper>
     );
   }
-  return (
-    <SectionWrapper
-      id={id}
-      aria-labelledby={`${id}-section-title`}
-      title={title}
-      layout={layout}
-      role={`${role}`}
-    >
-      {renderTitle()}
-      {children}
-    </SectionWrapper>
-  );
-};
-
-UISection.defaultProps = {
-  layout: "vertical",
-  id: `${Math.random()}`,
-  grouped: false,
-};
+}
 
 // Styling
 const Wrapper = styled.div`

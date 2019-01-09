@@ -198,7 +198,6 @@ class ChooseSourcesPage extends React.Component<
    * @memberof ChooseSourcesPage
    */
   renderListOfSourcesFromLanguage(data: any) {
-    debugger;
     return (
       <UISection id="sources-language" title="In your Language">
         <SourcesList
@@ -221,7 +220,7 @@ class ChooseSourcesPage extends React.Component<
    * @memberof ChooseSourcesPage
    */
   renderListOfCategories(data: ListOfCategories) {
-    const render = Object.entries(data).map((category, index) => {
+    const list = Object.entries(data).map((category, index) => {
       const title = category[0]
       return (
         <UISection
@@ -237,12 +236,11 @@ class ChooseSourcesPage extends React.Component<
             selectedOptions={this.state.chosen.list}
             handleChange={this.handleClickOnItem}
           />
-          />
         </UISection>
       )
     });
 
-    return render;
+    return list;
   }
 
   /**
