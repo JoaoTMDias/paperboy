@@ -8,7 +8,9 @@ interface ISourcesListProps {
   theme?: any;
   layout?: "grid" | "horizontal" | "vertical";
   label: string;
-  data?: any;
+  data: any | null;
+  handleChange: any;
+  selectedOptions: Array<"string">;
 }
 
 /**
@@ -18,12 +20,14 @@ interface ISourcesListProps {
  * @extends {React.SFC}
  */
 const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
-  const renderData = (data: any, layout: string | undefined) => {
-    if (data) {
-      let item = [];
+  const { data, layout } = props;
 
-      if (layout === "horizontal") {
-        item = data.map((source: any) => (
+  const renderData = () => {
+    let item;
+
+    if (layout === "horizontal") {
+      item = data.map((source: any, index: number) => {
+        return (
           <SourceCard
             key={source.id}
             id={source.id}
@@ -31,26 +35,31 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
             cover={`https://paperboy-icon-service.herokuapp.com/icon?url=${
               source.url
             }&size=70..120..200`}
+            handleChange={(event: React.SyntheticEvent) =>
+              props.handleChange(event, index)
+            }
+            checked={props.selectedOptions.indexOf(source.id) > -1}
           />
-        ));
-      }
-
-      if (layout === "vertical") {
-        item = data.map((source: any) => (
-          <SourceListItem
-            key={source.id}
-            id={source.id}
-            label={source.name}
-            cover={`https://paperboy-icon-service.herokuapp.com/icon?url=${
-              source.url
-            }&size=70..120..200`}
-          />
-        ));
-      }
-
-      return item;
+        );
+      });
+    } else if (layout === "vertical") {
+      item = data.map((source: any, index: number) => (
+        <SourceListItem
+          key={source.id}
+          id={source.id}
+          label={source.name}
+          cover={`https://paperboy-icon-service.herokuapp.com/icon?url=${
+            source.url
+          }&size=70..120..200`}
+          handleChange={(event: React.SyntheticEvent) =>
+            props.handleChange(event, index)
+          }
+          checked={props.selectedOptions.indexOf(source.id) > -1}
+        />
+      ));
     }
-    return null;
+
+    return item;
   };
 
   return (
@@ -59,7 +68,7 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
       aria-label={props.label}
       layout={props.layout}
     >
-      {renderData(props.data, props.layout)}
+      {props.data ? renderData() : null}
     </SourcesListWrapper>
   );
 };
@@ -67,7 +76,6 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
 SourcesList.defaultProps = {
   layout: "vertical",
   label: "label",
-  data: {},
 };
 
 // Styling

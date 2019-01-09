@@ -34,19 +34,25 @@ interface LanguageSupport {
   data: any
 }
 
+interface ChosenSources {
+  errors: object
+  list: any
+}
+
 interface IChooseSourcesPageProps {
-  authenticated: boolean;
-  getAllAvailableNewsSources: () => Promise<void>;
-  dispatch: any;
-  sources: NewsSourcesCategories | null;
-  geoLocation: boolean;
-  userLanguage: LanguageSupport | null;
+  authenticated: boolean
+  getAllAvailableNewsSources: () => Promise<void>
+  dispatch: any
+  sources: NewsSourcesCategories | null
+  geoLocation: boolean
+  userLanguage: LanguageSupport | null
 }
 
 interface IChooseSourcesPageState {
-  searchBarIsVisible: boolean;
-  hasData: boolean;
-  askForLocation: boolean;
+  searchBarIsVisible: boolean
+  hasData: boolean
+  askForLocation: boolean
+  chosen: ChosenSources
 }
 
 /**
@@ -60,15 +66,20 @@ class ChooseSourcesPage extends React.Component<
   IChooseSourcesPageState
 > {
   constructor(props: IChooseSourcesPageProps) {
-    super(props);
+    super(props)
 
-    this.showSearchBar = this.showSearchBar.bind(this);
+    this.showSearchBar = this.showSearchBar.bind(this)
+    this.handleClickOnItem = this.handleClickOnItem.bind(this)
 
     this.state = {
       searchBarIsVisible: false,
       hasData: false,
       askForLocation: false,
-    };
+      chosen: {
+        errors: {},
+        list: [],
+      },
+    }
   }
 
   static defaultProps = {
@@ -143,23 +154,23 @@ class ChooseSourcesPage extends React.Component<
      */
     const getPosition = () =>
       new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
+        navigator.geolocation.getCurrentPosition(resolve, reject)
       });
 
     if (this.state.askForLocation) {
       getPosition()
         .then((position: any) => {
           if (position.coords) {
-            const latitude: number = position.coords.latitude;
-            const longitude: number = position.coords.longitude;
+            const latitude: number = position.coords.latitude
+            const longitude: number = position.coords.longitude
 
             this.props.dispatch(
               getUserCountryCodeByCoordinates(latitude, longitude)
-            );
+            )
           }
         })
         .catch(err => {
-          console.error(err.message);
+          console.error(err.message)
         });
     }
   }
@@ -186,13 +197,16 @@ class ChooseSourcesPage extends React.Component<
    * @returns
    * @memberof ChooseSourcesPage
    */
-  renderSourcesFromLanguage(data: any) {
+  renderListOfSourcesFromLanguage(data: any) {
+    debugger;
     return (
       <UISection id="sources-language" title="In your Language">
         <SourcesList
           layout="horizontal"
           label="Language Specific News Sources"
           data={data}
+          selectedOptions={this.state.chosen.list}
+          handleChange={this.handleClickOnItem}
         />
       </UISection>
     );
@@ -207,10 +221,8 @@ class ChooseSourcesPage extends React.Component<
    * @memberof ChooseSourcesPage
    */
   renderListOfCategories(data: ListOfCategories) {
-    console.log("data:", data);
-
     const render = Object.entries(data).map((category, index) => {
-      const title = category[0];
+      const title = category[0]
       return (
         <UISection
           key={`sources-${title}-${index}`}
@@ -222,17 +234,47 @@ class ChooseSourcesPage extends React.Component<
             layout="vertical"
             label="Language Specific News Sources"
             data={category[1]}
+            selectedOptions={this.state.chosen.list}
+            handleChange={this.handleClickOnItem}
+          />
           />
         </UISection>
-      );
+      )
     });
 
     return render;
   }
 
+  /**
+   * @description
+   * @date 2019-01-09
+   * @param {React.SyntheticEvent} event
+   * @param {string} key
+   * @param {number} position
+   * @memberof ChooseSourcesPage
+   */
+  handleClickOnItem(event: React.SyntheticEvent, position: number) {
+    const inputTarget = event.target as HTMLInputElement;
+    const clickedItem = inputTarget.value;
+    let chosenItems: Array<"string">;
+
+    if (this.state.chosen.list.indexOf(clickedItem) > -1) {
+      chosenItems = this.state.chosen.list.filter(
+        (word: string) => word !== clickedItem
+      );
+    } else {
+      chosenItems = [...this.state.chosen.list, clickedItem];
+    }
+
+    this.setState(prevState => ({
+      chosen: { ...prevState.chosen, list: chosenItems },
+    }));
+  }
+
   public render() {
     const { authenticated, sources } = this.props;
-    const { hasData } = this.state;
+    const { hasData, chosen } = this.state;
+    const disableButton = chosen.list.length < 3 ? true : false;
 
     const {
       available: [],
@@ -278,10 +320,12 @@ class ChooseSourcesPage extends React.Component<
               layout="horizontal"
               label="The Top 20 Editor's Suggestions for news sources."
               data={Top20EditorSuggestions}
+              selectedOptions={this.state.chosen.list}
+              handleChange={this.handleClickOnItem}
             />
           </UISection>
           {sources && sources.language.length > 0
-            ? this.renderSourcesFromLanguage(sources.language)
+            ? this.renderListOfSourcesFromLanguage(sources.language)
             : null}
           {hasData ? (
             this.renderListOfCategories({ ...filter })
@@ -294,7 +338,7 @@ class ChooseSourcesPage extends React.Component<
             to="/news"
             text="Let's Go"
             label="Click to set these as your news sources."
-            disabled={true}
+            disabled={disableButton}
           />
         </UICallToAction>
       </Layout>
