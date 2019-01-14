@@ -7,7 +7,7 @@ import {
   Layout,
   Modal,
   SourcesList,
-  UIAnchor,
+  UIButton,
   UICallToAction,
   UIContentSpinner,
   UINavigationBar,
@@ -22,6 +22,7 @@ import {
   getAllAvailableNewsSources,
   getAvailableNewSourcesFromLanguage,
   getUserCountryCodeByCoordinates,
+  SetChosenNewsSources,
 } from '../../data/redux/actions/index.actions'
 
 // Data
@@ -35,13 +36,11 @@ interface LanguageSupport {
 }
 
 interface ChosenSources {
-  errors: object
-  list: any
+  list: string[]
 }
 
 interface IChooseSourcesPageProps {
   authenticated: boolean
-  getAllAvailableNewsSources: () => Promise<void>
   dispatch: any
   sources: NewsSourcesCategories | null
   geoLocation: boolean
@@ -61,7 +60,7 @@ interface IChooseSourcesPageState {
  * @class ChooseSourcesPage
  * @extends {React.Component<IChooseSourcesPageProps, IChooseSourcesPageState>}
  */
-class ChooseSourcesPage extends React.Component<
+class ChooseSourcesPage extends React.PureComponent<
   IChooseSourcesPageProps,
   IChooseSourcesPageState
 > {
@@ -84,7 +83,7 @@ class ChooseSourcesPage extends React.Component<
   static defaultProps = {
     sources: null,
     authenticated: false,
-  };
+  }
 
   /**
    * @description When the Page mounts, adds an event listener for the search bar
@@ -94,8 +93,8 @@ class ChooseSourcesPage extends React.Component<
    * @memberof ChooseSourcesPage
    */
   componentDidMount() {
-    document.addEventListener("scroll", this.showSearchBar)
-    this.props.dispatch(getAllAvailableNewsSources())
+    document.addEventListener('scroll', this.showSearchBar)
+    this.props.dispatch(getAllAvailableNewsSources());
   }
 
   /**
@@ -110,19 +109,19 @@ class ChooseSourcesPage extends React.Component<
     if (prevProps.sources !== this.props.sources) {
       this.setState({
         hasData: true,
-      })
+      });
     }
 
     // If there is a userLanguage found
     if (prevProps.userLanguage !== this.props.userLanguage) {
-      this.getUserSourcesByLanguage(this.props.userLanguage)
+      this.getUserSourcesByLanguage(this.props.userLanguage);
     }
 
     // If the user's device supports geoLocation features
     if (prevProps.geoLocation !== this.props.geoLocation) {
       this.setState({
         askForLocation: true,
-      })
+      });
     }
   }
 
@@ -132,7 +131,7 @@ class ChooseSourcesPage extends React.Component<
    * @memberof ChooseSourcesPage
    */
   componentWillUnmount() {
-    document.removeEventListener("scroll", this.showSearchBar)
+    document.removeEventListener("scroll", this.showSearchBar);
   }
 
   showSearchBar(event: Event) {}
@@ -154,7 +153,7 @@ class ChooseSourcesPage extends React.Component<
     const getPosition = () =>
       new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
-      })
+      });
 
     if (this.state.askForLocation) {
       getPosition()
@@ -170,7 +169,7 @@ class ChooseSourcesPage extends React.Component<
         })
         .catch(err => {
           console.error(err.message)
-        })
+        });
     }
   }
 
@@ -182,8 +181,8 @@ class ChooseSourcesPage extends React.Component<
    */
   getUserSourcesByLanguage(content: any) {
     if (content.hasLocation && content.data.countryCode) {
-      const language: string = `${content.data.countryCode}`.toLowerCase()
-      this.props.dispatch(getAvailableNewSourcesFromLanguage(language))
+      const language: string = `${content.data.countryCode}`.toLowerCase();
+      this.props.dispatch(getAvailableNewSourcesFromLanguage(language));
     }
   }
 
@@ -207,7 +206,7 @@ class ChooseSourcesPage extends React.Component<
           handleChange={this.handleClickOnItem}
         />
       </UISection>
-    )
+    );
   }
 
   /**
@@ -237,9 +236,9 @@ class ChooseSourcesPage extends React.Component<
           />
         </UISection>
       )
-    })
+    });
 
-    return list
+    return list;
   }
 
   /**
@@ -251,36 +250,45 @@ class ChooseSourcesPage extends React.Component<
    * @memberof ChooseSourcesPage
    */
   handleClickOnItem(event: React.SyntheticEvent, position: number) {
-    const inputTarget = event.target as HTMLInputElement
-    const clickedItem = inputTarget.value
-    let chosenItems: Array<"string">
+    const inputTarget = event.target as HTMLInputElement;
+    const clickedItem = inputTarget.value;
+    let chosenItems: string[];
 
     if (this.state.chosen.list.indexOf(clickedItem) > -1) {
       chosenItems = this.state.chosen.list.filter(
         (word: string) => word !== clickedItem
-      )
+      );
     } else {
-      chosenItems = [...this.state.chosen.list, clickedItem]
+      chosenItems = [...this.state.chosen.list, clickedItem];
     }
 
     this.setState(prevState => ({
       chosen: { ...prevState.chosen, list: chosenItems },
-    }))
+    }));
+  }
+
+  handleSubmit(event: MouseEvent) {
+    event.preventDefault();
+    const { list } = this.state.chosen;
+
+    if (list.length >= 3) {
+      this.props.dispatch(SetChosenNewsSources(list));
+    }
   }
 
   public render() {
-    const { authenticated, sources } = this.props
-    const { hasData, chosen } = this.state
-    const disableButton = chosen.list.length < 3 ? true : false
+    const { authenticated, sources } = this.props;
+    const { hasData, chosen } = this.state;
+    const disableButton = chosen.list.length < 3 ? true : false;
 
     const {
       available: [],
       language: [],
       ...filter // tslint:disable-line
-    } = sources
+    } = sources;
 
     if (authenticated) {
-      return <Redirect to="/news" noThrow={true} />
+      return <Redirect to="/news" noThrow={true} />;
     }
     return (
       <Layout authenticated={authenticated}>
@@ -331,10 +339,11 @@ class ChooseSourcesPage extends React.Component<
           )}
         </Container>
         <UICallToAction>
-          <UIAnchor
-            to="/news"
+          <UIButton
+            type="submit"
             text="Let's Go"
             label="Click to set these as your news sources."
+            onClick={event => this.handleSubmit(event)}
             disabled={disableButton}
           />
         </UICallToAction>

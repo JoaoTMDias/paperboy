@@ -1,16 +1,16 @@
 // Libraries
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react'
+import styled from 'styled-components';
 import { SourceCard, SourceListItem } from "../..";
 
 // Component Props
 interface ISourcesListProps {
-  theme?: any;
-  layout?: "grid" | "horizontal" | "vertical";
+  theme?: any
+  layout?: "grid" | "horizontal" | "vertical"
   label: string;
   data: any | null;
   handleChange: any;
-  selectedOptions: Array<"string">;
+  selectedOptions: string[];
 }
 
 /**
@@ -40,7 +40,7 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
             }
             checked={props.selectedOptions.indexOf(source.id) > -1}
           />
-        );
+        )
       });
     } else if (layout === "vertical") {
       item = data.map((source: any, index: number) => (

@@ -1,12 +1,12 @@
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react'
+import styled from 'styled-components'
 
-import { Portal, UIDialog } from "../../index";
+import { Portal, UIDialog } from '../../index';
 
 interface IModalProps {
-  theme?: any;
-  backgroundOpacity?: number;
-  align?: "top" | "middle" | "bottom";
+  theme?: any
+  backgroundOpacity?: number
+  align?: "top" | "middle" | "bottom"
   delay?: number | null;
 }
 
@@ -92,7 +92,7 @@ class Modal extends React.Component<IModalProps, IModalState> {
 }
 
 const ModalWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;

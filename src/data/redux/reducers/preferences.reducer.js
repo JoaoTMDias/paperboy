@@ -2,6 +2,7 @@
 import {
   GET_CHOSEN_NEWS_SOURCES,
   SET_CHOSEN_NEWS_SOURCES,
+  SET_USER_AUTHENTICATION,
   RESET_APP_STATE,
 } from '../../constants/index';
 
@@ -40,6 +41,12 @@ function preferences(state = initialState, action) {
           items: action.sources.items,
         },
       });
+
+    case SET_USER_AUTHENTICATION:
+      return {
+        type: action.type,
+        authenticated: action.authenticated,
+      }
     case RESET_APP_STATE:
       return {
         type: null,

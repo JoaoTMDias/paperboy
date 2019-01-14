@@ -11,7 +11,7 @@ export default {
    * @param {any} source
    * @returns
    */
-  getAllLatestNews(source: any) {
+  getAllLatestNews(source: any[]) {
     return axios.get(
       `https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${NEWS_API_KEY}`,
     );
@@ -32,7 +32,9 @@ export default {
    * @returns
    */
   getAvailableSourcesFromLanguage(language: string) {
-    return axios.get(`https://newsapi.org/v2/sources?language=${language}&apiKey=${NEWS_API_KEY}`);
+    return axios.get(
+      `https://newsapi.org/v2/sources?language=${language}&apiKey=${NEWS_API_KEY}`,
+    );
   },
 
   /**

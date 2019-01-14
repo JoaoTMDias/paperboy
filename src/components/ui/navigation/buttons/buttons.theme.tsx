@@ -1,6 +1,6 @@
 // Libraries
-import { Link } from "gatsby"
-import { darken, rem } from "polished"
+import { Link } from "gatsby";
+import { darken, rem } from "polished";
 import * as React from "react";
 import styled, { css } from "styled-components";
 
@@ -25,11 +25,11 @@ class UIButton extends React.Component<IUIButtonProps> {
   }
 
   public render() {
-    const { type, text, label, disabled } = this.props;
+    const { type, text, label, disabled, onClick } = this.props;
 
     const linkText = disabled ? "Select at least 3 sources " : text;
     return (
-      <Btn
+      <Button
         type={type}
         onClick={onClick}
         aria-label={label}
@@ -37,7 +37,7 @@ class UIButton extends React.Component<IUIButtonProps> {
         disabled={disabled}
       >
         {linkText}
-      </Btn>
+      </Button>
     );
   }
 }
@@ -67,7 +67,7 @@ class UIAnchor extends React.Component<IUIAnchorProps> {
 }
 
 // Styling
-const Btn = styled.button`
+const Button = styled.button`
   width: 100%;
   height: var(--bottom-navigation-bar-height, ${rem("48px")});
   background-color: var(--color-primary);
@@ -92,6 +92,25 @@ const Btn = styled.button`
   &:active {
     transform: scale(0.98);
   }
+
+  ${(props: IUIButtonProps) =>
+    props.disabled &&
+    css`
+      background-color: var(--color-gray3);
+      color: var(--color-gray8);
+      cursor: no-drop;
+      user-select: none;
+      pointer-events: none;
+      box-shadow: none !important;
+
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: var(--color-gray5);
+        color: var(--color-gray8);
+        outline: none;
+      }
+    `};
 `;
 
 const Anchor = styled(Link)`

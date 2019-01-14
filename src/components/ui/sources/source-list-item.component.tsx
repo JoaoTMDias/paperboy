@@ -21,9 +21,13 @@ interface ISourceListItemProps {
  * @extends {React.SFC}
  */
 class SourceListItem extends React.Component<ISourceListItemProps, any> {
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps: ISourceListItemProps, nextState) {
     return nextProps.checked !== this.props.checked;
   }
+
+  static defaultProps = {
+    checked: false,
+  };
 
   public render() {
     const { id, label, cover, handleChange, checked } = this.props;
@@ -202,7 +206,7 @@ const Name = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
-  background-color: var(--color-white);
+  background-color: transparent;
   height: ${rem("48px")};
   line-height: ${rem("48px")};
 
@@ -222,9 +226,5 @@ const Name = styled.div`
     }
   }
 `;
-
-SourceListItem.defaultProps = {
-  checked: false,
-};
 
 export default SourceListItem;

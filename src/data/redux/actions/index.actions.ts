@@ -11,6 +11,8 @@ import {
   getAvailableNewSourcesFromLanguage,
 } from "./news.action";
 
+import { SetChosenNewsSources } from "./preferences.action";
+
 export {
   setOnlineStatus,
   setStandaloneStatus,
@@ -20,4 +22,5 @@ export {
   getAllAvailableNewsSources,
   getAvailableNewSourcesFromLanguage,
   getAllLatestNewsFromSource,
+  SetChosenNewsSources,
 };

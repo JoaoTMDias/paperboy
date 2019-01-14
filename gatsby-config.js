@@ -18,17 +18,17 @@ const manifestOptions = {
       type: 'image/png',
     },
   ],
-};
+}
 
 const analyticsOptions = {
   trackingId: 'UA-54851814-1',
   head: true,
   anonymize: true,
-};
+}
 
 const offlineOptions = {
   cacheId: 'paperboy-cache',
-};
+}
 
 const sitemapOptions = {
   output: '/sitemap.xml',
@@ -48,7 +48,7 @@ const sitemapOptions = {
               }
           }
       }`,
-};
+}
 
 module.exports = {
   siteMetadata: {
@@ -90,5 +90,7 @@ module.exports = {
     // Styling
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sass',
+    // Absolute Imports,
+    'gatsby-plugin-resolve-src',
   ],
-};
+}
