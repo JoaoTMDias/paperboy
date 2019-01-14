@@ -90,7 +90,5 @@ module.exports = {
     // Styling
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sass',
-    // Absolute Imports,
-    'gatsby-plugin-resolve-src',
   ],
 }
