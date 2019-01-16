@@ -54,7 +54,7 @@ const Wrapper = styled.footer`
   right: 0;
   color: var(--color-white);
   background-color: var(--color-gray9);
-  padding: 0 var(--global-padding);
+  padding: 0;
 `;
 
 const Navigation = styled.nav`

@@ -1,17 +1,28 @@
 // Libraries
-import * as React from 'react'
-import styled from 'styled-components';
-import { SourceCard, SourceListItem } from "../..";
+import * as React from 'react';
+import styled from 'styled-components'
+import { SourceCard, SourceListItem } from "../../index"
 
 // Component Props
 interface ISourcesListProps {
   theme?: any
-  layout?: "grid" | "horizontal" | "vertical"
+  layout?: "horizontal" | "vertical"
   label: string;
   data: any | null;
   handleChange: any;
   selectedOptions: string[];
 }
+
+// Assets
+import IconBBCNews from "../../../assets/images/sources/icon-bbc-news.svg";
+import IconCNN from "../../../assets/images/sources/icon-cnn.svg";
+import IconFoxNews from "../../../assets/images/sources/icon-fox-news.svg";
+import IconGoogleNews from "../../../assets/images/sources/icon-google-news.svg";
+import IconGuardian from "../../../assets/images/sources/icon-guardian.svg";
+import IconNewYorkTimes from "../../../assets/images/sources/icon-new-york-times.svg";
+import IconTimesOfIndia from "../../../assets/images/sources/icon-times-of-india.svg";
+import IconUSAToday from "../../../assets/images/sources/icon-usa-today.svg";
+import IconWallStreetJournal from "../../../assets/images/sources/icon-wall-street-journal.svg";
 
 /**
  * @description Sources: List of Sources
@@ -27,36 +38,85 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
 
     if (layout === "horizontal") {
       item = data.map((source: any, index: number) => {
+        let cover;
+
+        if (source.id === "bbc-news") {
+          cover = IconBBCNews;
+        } else if (source.id === "cnn") {
+          cover = IconCNN;
+        } else if (source.id === "fox-news") {
+          cover = IconFoxNews;
+        } else if (source.id === "google-news") {
+          cover = IconGoogleNews;
+        } else if (source.id === "the-times-of-india") {
+          cover = IconTimesOfIndia;
+        } else if (source.id === "the-new-york-times") {
+          cover = IconNewYorkTimes;
+        } else if (source.id === "the-guardian-uk") {
+          cover = IconGuardian;
+        } else if (source.id === "usa-today") {
+          cover = IconUSAToday;
+        } else if (source.id === "the-wall-street-journal") {
+          cover = IconWallStreetJournal;
+        } else {
+          cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${
+            source.url
+          }&size=70..120..200`;
+        }
+
         return (
           <SourceCard
             key={source.id}
             id={source.id}
             label={source.name}
-            cover={`https://paperboy-icon-service.herokuapp.com/icon?url=${
-              source.url
-            }&size=70..120..200`}
+            cover={cover as string}
             handleChange={(event: React.SyntheticEvent) =>
               props.handleChange(event, index)
             }
             checked={props.selectedOptions.indexOf(source.id) > -1}
           />
-        )
+        );
       });
     } else if (layout === "vertical") {
-      item = data.map((source: any, index: number) => (
-        <SourceListItem
-          key={source.id}
-          id={source.id}
-          label={source.name}
-          cover={`https://paperboy-icon-service.herokuapp.com/icon?url=${
+      item = data.map((source: any, index: number) => {
+        let cover;
+
+        if (source.id === "bbc-news") {
+          cover = IconBBCNews;
+        } else if (source.id === "cnn") {
+          cover = IconCNN;
+        } else if (source.id === "fox-news") {
+          cover = IconFoxNews;
+        } else if (source.id === "google-news") {
+          cover = IconGoogleNews;
+        } else if (source.id === "the-times-of-india") {
+          cover = IconTimesOfIndia;
+        } else if (source.id === "the-new-york-times") {
+          cover = IconNewYorkTimes;
+        } else if (source.id === "the-guardian-uk") {
+          cover = IconGuardian;
+        } else if (source.id === "usa-today") {
+          cover = IconUSAToday;
+        } else if (source.id === "the-wall-street-journal") {
+          cover = IconWallStreetJournal;
+        } else {
+          cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${
             source.url
-          }&size=70..120..200`}
-          handleChange={(event: React.SyntheticEvent) =>
-            props.handleChange(event, index)
-          }
-          checked={props.selectedOptions.indexOf(source.id) > -1}
-        />
-      ));
+          }&size=70..120..200`;
+        }
+        return (
+          <SourceListItem
+            key={source.id}
+            id={source.id}
+            label={source.name}
+            cover={cover}
+            handleChange={(event: React.SyntheticEvent) =>
+              props.handleChange(event, index)
+            }
+            checked={props.selectedOptions.indexOf(source.id) > -1}
+          />
+        );
+      });
     }
 
     return item;

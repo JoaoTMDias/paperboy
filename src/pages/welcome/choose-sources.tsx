@@ -1,6 +1,7 @@
 import { Redirect } from '@reach/router'
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { navigate } from 'gatsby'
 import {
   Confirm,
   Container,
@@ -45,6 +46,7 @@ interface IChooseSourcesPageProps {
   sources: NewsSourcesCategories | null
   geoLocation: boolean
   userLanguage: LanguageSupport | null
+  chosenSources: any
 }
 
 interface IChooseSourcesPageState {
@@ -83,7 +85,8 @@ class ChooseSourcesPage extends React.PureComponent<
   static defaultProps = {
     sources: null,
     authenticated: false,
-  }
+    chosenSources: null,
+  };
 
   /**
    * @description When the Page mounts, adds an event listener for the search bar
@@ -93,7 +96,7 @@ class ChooseSourcesPage extends React.PureComponent<
    * @memberof ChooseSourcesPage
    */
   componentDidMount() {
-    document.addEventListener('scroll', this.showSearchBar)
+    document.addEventListener("scroll", this.showSearchBar);
     this.props.dispatch(getAllAvailableNewsSources());
   }
 
@@ -122,6 +125,10 @@ class ChooseSourcesPage extends React.PureComponent<
       this.setState({
         askForLocation: true,
       });
+    }
+
+    if (prevProps.chosenSources !== this.props.chosenSources) {
+      navigate(`welcome/preloader`);
     }
   }
 
@@ -355,6 +362,7 @@ class ChooseSourcesPage extends React.PureComponent<
 const mapStateToProps = (state: any) => ({
   authenticated: state.preferences.authenticated,
   sources: state.news.sources,
+  chosenSources: state.preferences.sources.items,
   geoLocation: state.general.supports.geoLocation,
   userLanguage: state.general.userLanguage,
 });

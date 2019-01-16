@@ -1,24 +1,43 @@
 /**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
+ * @description Wrap Redux Root Element
+ * @date 2019-01-15
  */
-
 import wrapWithProvider from './wrap-with-provider'
 export const wrapRootElement = wrapWithProvider
 
+/**
+ * @description When the bundle is downloaded, imports
+ * a IntersectionObserver polyfill.
+ * @date 2019-01-15
+ */
 export const onClientEntry = async () => {
   if (typeof IntersectionObserver === `undefined`) {
-    await import(`intersection-observer`);
+    await import(`intersection-observer`)
   }
 }
 
-export const onServiceWorkerUpdateFound = () => {
-  const answer = window.confirm(
-    `Paperboy has been updated.` + `Reload to display the latest version?`
-  );
+/**
+ * @description Promise-based window dialog that returns a resolve or a rejection.
+ * @date 2019-01-15
+ * @param {*} msg
+ */
+const confirmDialog = msg => {
+  return new Promise(function(resolve, reject) {
+    let confirmed = window.confirm(msg)
 
-  if(answer === true){
-    window.location.reload();
-  }
+    return confirmed ? resolve(true) : reject(false)
+  })
+}
+
+/**
+ * @description When the service worker detects changes,
+ * prompts the user to reload the window and use the latest version.
+ * @date 2019-01-15
+ */
+export const onServiceWorkerUpdateFound = () => {
+  confirmDialog(
+    `Paperboy has been updated.` + `Reload to display the latest version?`
+  )
+    .then(() => window.location.reload())
+    .catch(err => console.info(`Service Worker will keep the current version`))
 }
