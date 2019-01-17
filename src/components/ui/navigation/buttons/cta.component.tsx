@@ -1,12 +1,12 @@
 // Libraries
-import { rem } from "polished";
-import * as React from "react";
-import styled, { css, keyframes } from "styled-components";
+import { rem } from 'polished'
+import * as React from 'react';
+import styled, { css, keyframes } from "styled-components"
 
 // Component Props
 interface IUICallToActionProps {
-  isTop?: boolean;
-  float?: boolean;
+  isTop?: boolean
+  float?: boolean
   theme?: any;
   blurred?: boolean;
 }
@@ -17,9 +17,13 @@ interface IUICallToActionProps {
  * @date  21/November/2018 at 13:38
  * @extends {React.FunctionComponent}
  */
-const UICallToAction: React.FunctionComponent<IUICallToActionProps> = (props) => {
-  const { children, ...ctaProps } = props;
-  return <Wrapper {...ctaProps}>{children}</Wrapper>;
+const UICallToAction: React.FunctionComponent<IUICallToActionProps> = props => {
+  const { children, ...ctaProps } = props
+  return (
+    <Wrapper {...ctaProps} tabIndex={0}>
+      {children}
+    </Wrapper>
+  )
 };
 
 // Styling
@@ -45,8 +49,9 @@ const Wrapper = styled.nav`
   bottom: ${(props: IUICallToActionProps) => (props.isTop ? "auto" : "0px")};
   background-color: rgba(255, 255, 255, 1);
 
-  ${(props: IUICallToActionProps) => props.blurred
-    && css`
+  ${(props: IUICallToActionProps) =>
+    props.blurred &&
+    css`
       background-color: rgba(255, 255, 255, 0.95);
     `}
 
@@ -54,9 +59,10 @@ const Wrapper = styled.nav`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  box-shadow: ${(props: IUICallToActionProps) => (props.isTop
-    ? "0px 4px 20px 0px rgba(255,255,255,0.5)"
-    : "0px -4px 20px 0px rgba(255,255,255,1)")};
+  box-shadow: ${(props: IUICallToActionProps) =>
+    props.isTop
+      ? "0px 4px 20px 0px rgba(255,255,255,0.5)"
+      : "0px -4px 20px 0px rgba(255,255,255,1)"};
 
   animation-name: ${onEnter};
   animation-duration: 300ms;
@@ -73,9 +79,10 @@ const Wrapper = styled.nav`
       margin: 0 auto;
     }
 
-    box-shadow: ${(props: IUICallToActionProps) => (props.float
-    ? "0px 4px 16px 4px hsla(6, 78%, 57%, 0.24)"
-    : "0px 2px 0px 2px hsla(6,78%,57%,0.24)")};
+    box-shadow: ${(props: IUICallToActionProps) =>
+      props.float
+        ? "0px 4px 16px 4px hsla(6, 78%, 57%, 0.24)"
+        : "0px 2px 0px 2px hsla(6,78%,57%,0.24)"};
   }
 `;
 

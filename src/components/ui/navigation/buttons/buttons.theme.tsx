@@ -102,6 +102,7 @@ const Button = styled.button`
       user-select: none;
       pointer-events: none;
       box-shadow: none !important;
+      border: none;
 
       &:focus,
       &:hover,
@@ -149,6 +150,7 @@ const Anchor = styled(Link)`
       user-select: none;
       pointer-events: none;
       box-shadow: none !important;
+      border: none;
 
       &:focus,
       &:hover,
