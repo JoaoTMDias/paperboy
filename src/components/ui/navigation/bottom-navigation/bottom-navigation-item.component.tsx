@@ -16,22 +16,38 @@ interface IBottomTabItemProps {
  * @date  08/December/2018 at 15:41
  * @extends {React.SFC}
  */
-const BottomTabItem: React.FunctionComponent<IBottomTabItemProps> = (props) => {
-  const { to, label, children } = props;
-  return (
-    <Wrapper>
-      <TabLink
-        to={to}
-        activeClassName="is-active"
-        aria-label={`Click/Tap to go to the page: ${label}`}
-        tabIndex={0}
-      >
-        <Icon>{children}</Icon>
-        <Label className="label">{label}</Label>
-      </TabLink>
-    </Wrapper>
-  );
-};
+class BottomTabItem extends React.Component<IBottomTabItemProps> {
+  static defaultProps = {
+    to: "/",
+    label: "Label",
+  };
+
+  shouldComponentUpdate(nextProps: IBottomTabItemProps, nextState: any) {
+    const { to, label } = this.props;
+
+    if (nextProps.to !== to || nextProps.label !== label) {
+      return true;
+    }
+    return false;
+  }
+
+  public render() {
+    const { to, label, children } = this.props;
+    return (
+      <Wrapper>
+        <TabLink
+          to={to}
+          activeClassName="is-active"
+          aria-label={`Click/Tap to go to the page: ${label}`}
+          tabIndex={0}
+        >
+          <Icon>{children}</Icon>
+          <Label className="label">{label}</Label>
+        </TabLink>
+      </Wrapper>
+    );
+  }
+}
 
 // Styling
 const Wrapper = styled.li`
@@ -92,10 +108,4 @@ const Label = styled.span`
   text-align: center;
   color: var(--color-gray3);
 `;
-
-BottomTabItem.defaultProps = {
-  to: "/",
-  label: "Label",
-};
-
 export default BottomTabItem;

@@ -20,7 +20,7 @@ interface IContainerProps {
  * @date  20/November/2018 at 16:55
  * @extends {React.FunctionComponent}
  */
-const Container: React.FunctionComponent<IContainerProps> = (props) => {
+const Container: React.FunctionComponent<IContainerProps> = props => {
   const { offsetTop, children, ...allProps } = props;
 
   if (offsetTop && typeof document !== "undefined") {
@@ -54,8 +54,9 @@ const MainContent = styled.main`
     width: 87.5rem;
   }
 
-  ${(props: IContainerProps) => !props.fullwidth
-    && css`
+  ${(props: IContainerProps) =>
+    !props.fullwidth &&
+    css`
       width: calc(100% - 2rem);
     `};
 
@@ -87,8 +88,9 @@ const Wrapper = styled.div`
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 
-  ${(props: IContainerProps) => props.isFixed
-    && css`
+  ${(props: IContainerProps) =>
+    props.isFixed &&
+    css`
       overflow: hidden;
     `};
 `;
@@ -100,4 +102,4 @@ Container.defaultProps = {
   title: "page title",
 };
 
-export default Container;
+export default React.memo(Container);

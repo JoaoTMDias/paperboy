@@ -5,7 +5,11 @@ import styled from "styled-components";
 import BottomTabItem from "./bottom-navigation-item.component";
 
 import {
-  IconCategories, IconNews, IconSaved, IconSearch, IconSettings,
+  IconCategories,
+  IconNews,
+  IconSaved,
+  IconSearch,
+  IconSettings,
 } from "../../../index";
 
 // Component Props
@@ -19,23 +23,25 @@ interface IBottomNavigationProps {
  * @date  08/December/2018 at 15:20
  * @extends {React.SFC}
  */
-const BottomNavigation: React.FunctionComponent<IBottomNavigationProps> = props => (
+const BottomNavigation: React.FunctionComponent<
+  IBottomNavigationProps
+> = props => (
   <Wrapper>
     <Navigation>
       <List>
-        <BottomTabItem to="/" label="News">
+        <BottomTabItem to="/news/" label="News">
           <IconNews />
         </BottomTabItem>
-        <BottomTabItem to="/saved" label="Saved">
+        <BottomTabItem to="/saved/" label="Saved">
           <IconSaved />
         </BottomTabItem>
-        <BottomTabItem to="/search" label="Search">
+        <BottomTabItem to="/search/" label="Search">
           <IconSearch />
         </BottomTabItem>
-        <BottomTabItem to="/categories" label="Categories">
+        <BottomTabItem to="/categories/" label="Categories">
           <IconCategories />
         </BottomTabItem>
-        <BottomTabItem to="/settings" label="Settings">
+        <BottomTabItem to="/settings/" label="Settings">
           <IconSettings />
         </BottomTabItem>
       </List>
@@ -77,4 +83,4 @@ const List = styled.ul`
   align-items: center;
 `;
 
-export default BottomNavigation;
+export default React.memo(BottomNavigation);

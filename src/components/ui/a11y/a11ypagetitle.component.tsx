@@ -13,10 +13,16 @@ interface IA11yPageTitleProps {
  * @date  29/November/2018 at 23:42
  * @extends {React.FunctionComponent}
  */
-const A11yPageTitle: React.FunctionComponent<IA11yPageTitleProps> = (props) => {
+const A11yPageTitle: React.FunctionComponent<IA11yPageTitleProps> = props => {
   const { title } = props;
   return (
-    <Title id="page-title" role="alert" aria-live="polite" aria-atomic="true" tabIndex={0}>
+    <Title
+      id="page-title"
+      role="alert"
+      aria-live="polite"
+      aria-atomic="true"
+      tabIndex={0}
+    >
       {`Page Title: ${title}`}
     </Title>
   );
@@ -35,4 +41,4 @@ A11yPageTitle.defaultProps = {
   title: "Page Title",
 };
 
-export default A11yPageTitle;
+export default React.memo(A11yPageTitle);

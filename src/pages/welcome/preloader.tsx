@@ -4,12 +4,16 @@ import { connect } from "react-redux";
 import { Container, Layout, UIContentSpinner } from "../../components/index";
 
 // Redux
-import { getAllLatestNewsFromSource } from "../../data/redux/actions/index.actions";
+import {
+  getAllLatestNewsFromSource,
+  setUserAuthentication,
+} from "../../data/redux/actions/index.actions";
 
 interface IPreloaderPageProps {
   authenticated: boolean;
   dispatch: any;
   chosenSources: any;
+  articles: {};
 }
 
 interface IPreloaderPageState {
@@ -72,9 +76,14 @@ class PreloaderPage extends React.PureComponent<
   componentDidUpdate(prevProps: any, prevState: any) {
     // If there are news sources to display as a list
     if (prevProps.articles !== this.props.articles) {
-      this.setState({
-        hasData: true,
-      });
+      this.setState(
+        {
+          hasData: true,
+        },
+        () => {
+          this.props.dispatch(setUserAuthentication(true));
+        },
+      );
     }
   }
 
@@ -84,14 +93,11 @@ class PreloaderPage extends React.PureComponent<
 
   public render() {
     const { authenticated } = this.props;
-    const { hasData } = this.state;
 
     if (authenticated) {
       return <Redirect to="/news" noThrow={true} />;
     }
-    if (hasData) {
-      return <Redirect to="/news" noThrow={true} />;
-    }
+
     return (
       <Layout authenticated={authenticated}>
         <Container

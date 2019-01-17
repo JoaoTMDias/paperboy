@@ -274,6 +274,12 @@ class ChooseSourcesPage extends React.PureComponent<
     }));
   }
 
+  /**
+   * @description Updates the store with the new chosen sources.
+   * @date 2019-01-16
+   * @param {MouseEvent} event
+   * @memberof ChooseSourcesPage
+   */
   handleSubmit(event: MouseEvent) {
     event.preventDefault();
     const { list } = this.state.chosen;
@@ -307,8 +313,8 @@ class ChooseSourcesPage extends React.PureComponent<
         </UINavigationBar>
         <Modal delay={1000}>
           <Confirm
-            title="Add some in your language"
-            description="We can use your devices' location to find any news sources related to your country/language. Can we?"
+            title="Use location services?"
+            description="Can I use your devices' location to find any news sources related to your country/language?"
             onCancel={() => console.log("canceled")}
             onConfirm={() => this.getUserCountry()}
           />

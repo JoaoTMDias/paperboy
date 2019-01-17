@@ -45,6 +45,7 @@ function preferences(state = initialState, action) {
     case SET_USER_AUTHENTICATION:
       return {
         type: action.type,
+        ...state,
         authenticated: action.authenticated,
       }
     case RESET_APP_STATE:

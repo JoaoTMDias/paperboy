@@ -11,7 +11,10 @@ import {
   getAvailableNewSourcesFromLanguage,
 } from "./news.action";
 
-import { SetChosenNewsSources } from "./preferences.action";
+import {
+  SetChosenNewsSources,
+  setUserAuthentication,
+} from "./preferences.action";
 
 export {
   setOnlineStatus,
@@ -23,4 +26,5 @@ export {
   getAvailableNewSourcesFromLanguage,
   getAllLatestNewsFromSource,
   SetChosenNewsSources,
+  setUserAuthentication,
 };
