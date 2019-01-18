@@ -1,3 +1,4 @@
+import { ILatestNews, ILatestNewsArticle } from "./news.interface";
 import NewsSourcesCategories from "./sources.interface";
 
-export { NewsSourcesCategories };
+export { ILatestNews, ILatestNewsArticle, NewsSourcesCategories };

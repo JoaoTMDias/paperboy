@@ -9,7 +9,11 @@ import {
 // News initial state
 const initialState = {
   type: null,
-  latest: {},
+  latest: {
+    status: null,
+    totalResults: 0,
+    articles: [],
+  },
   sources: {
     available: [],
     language: [],

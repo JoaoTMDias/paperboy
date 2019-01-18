@@ -78,15 +78,17 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: var(--button-radius);
+  border: none;
+  -webkit-appearance: none;
   transform: scale(1);
   transition: all 200ms var(--default-timing-function);
 
   &:focus,
   &:hover,
   &:active {
-    background-color: ${darken(0.5, "#e74c3c")};
+    background-color: ${darken(0.1, "#e74c3c")};
     color: currentColor;
-    outline: 1px solid var(--color-gray3);
+    outline: 1px dashed var(--color-gray2);
   }
 
   &:active {
@@ -125,6 +127,7 @@ const Anchor = styled(Link)`
   justify-content: center;
   align-items: center;
   border-radius: var(--button-radius);
+  border: none;
   transform: scale(1);
   transition: all 200ms var(--default-timing-function);
   pointer-events: all;
@@ -134,7 +137,7 @@ const Anchor = styled(Link)`
   &:active {
     background-color: ${darken(0.1, "#e74c3c")};
     color: currentColor;
-    outline: 1px solid var(--color-gray3);
+    outline: 1px dashed var(--color-gray2);
   }
 
   &:active {

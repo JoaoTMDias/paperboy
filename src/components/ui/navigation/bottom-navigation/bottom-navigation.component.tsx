@@ -59,7 +59,7 @@ const Wrapper = styled.footer`
   left: 0;
   right: 0;
   color: var(--color-white);
-  background-color: var(--color-gray9);
+  background-color: var(--color-black);
   padding: 0;
 `;
 
