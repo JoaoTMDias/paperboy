@@ -10,7 +10,7 @@ import {
   IconSaved,
   IconSearch,
   IconSettings,
-} from "../../../index";
+} from "../../index";
 
 // Component Props
 interface IBottomNavigationProps {

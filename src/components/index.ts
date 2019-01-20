@@ -7,30 +7,34 @@ import Container from "./layout/container.component";
 import Layout from "./layout/layout.component";
 
 // A11Y
-import A11yPageTitle from "./ui/a11y/a11ypagetitle.component";
+import A11yPageTitle from "./a11y/a11ypagetitle.component";
 
 // NAVIGATION
-import BottomNavigation from "./ui/navigation/bottom-navigation/bottom-navigation.component";
-import { UIAnchor, UIButton } from "./ui/navigation/buttons/buttons.theme";
-import UICallToAction from "./ui/navigation/buttons/cta.component";
-import UINavigationBarBarWithTitle from "./ui/navigation/header/navigation-with-title.component";
-import UINavigationBar from "./ui/navigation/header/top-navigation.component";
-import MainNavigation from "./ui/navigation/main/main-navigation";
+import BottomNavigation from "./navigation/bottom-navigation/bottom-navigation.component";
+import { UIAnchor, UIButton } from "./navigation/buttons/buttons.theme";
+import UICallToAction from "./navigation/buttons/cta.component";
+import UINavigationBarBarWithTitle from "./navigation/header/navigation-with-title.component";
+import UINavigationBar from "./navigation/header/top-navigation.component";
+import MainNavigation from "./navigation/main/main-navigation";
 
 // UI
+import ThumbnailLarge from "./data-display/thumbnails/thumbnails-large.component";
+import UISearchForm from "./data-entry/forms/search-form.component";
+import SourceCard from "./data-entry/sources/source-card.component";
+import SourceListItem from "./data-entry/sources/source-list-item.component";
+import SourcesList from "./data-entry/sources/source-list.component";
+import Confirm from "./feedback/dialog/confirm.component";
+import UIDialog from "./feedback/dialog/dialog.component";
+import LazyLoadingImage from "./general/images/image.lazyload.component";
 import Modal from "./general/modal/modal.component";
+import AddToHomeScreen from "./general/pwa/add-to-homescreen.component";
+import UIContentSpinner from "./general/spinners/content-spinner.component";
+import {
+  UIDisplay,
+  UILead,
+  UISubtitle,
+} from "./general/typography/typography.theme";
 import UISection from "./layout/section.component";
-import Confirm from "./ui/dialog/confirm.component";
-import UIDialog from "./ui/dialog/dialog.component";
-import UISearchForm from "./ui/forms/search-form.component";
-import LazyLoadingImage from "./ui/images/image.lazyload.component";
-import AddToHomeScreen from "./ui/pwa/add-to-homescreen.component";
-import SourceCard from "./ui/sources/source-card.component";
-import SourceListItem from "./ui/sources/source-list-item.component";
-import SourcesList from "./ui/sources/source-list.component";
-import UIContentSpinner from "./ui/spinners/content-spinner.component";
-import ThumbnailLarge from "./ui/thumbnails/thumbnails-large.component";
-import { UIDisplay, UILead, UISubtitle } from "./ui/typography/typography.theme";
 
 // ICONOGRAPHY
 import {
@@ -42,7 +46,7 @@ import {
   IconSearch,
   IconSettings,
   IconShare,
-} from "./ui/icons/icons";
+} from "./general/icons/icons";
 
 export {
   Audit,
