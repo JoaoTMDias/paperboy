@@ -10,6 +10,16 @@
       background-color: var(--color-gray0, $color-gray0);
     }
   }
+
+  &-bar {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &-container {
+    position: relative;
+  }
 }
 
 .rc-tabs-bar,
@@ -18,7 +28,6 @@
   line-height: 1.5;
   box-sizing: border-box;
   overflow: hidden;
-  position: relative;
   white-space: nowrap;
   outline: none;
   zoom: 1;

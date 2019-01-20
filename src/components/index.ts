@@ -18,6 +18,7 @@ import UINavigationBar from "./navigation/header/top-navigation.component";
 import MainNavigation from "./navigation/main/main-navigation";
 
 // UI
+import { LatestNewsTab, NewsTabs } from "./data-display/news/index.news";
 import ThumbnailLarge from "./data-display/thumbnails/thumbnails-large.component";
 import UISearchForm from "./data-entry/forms/search-form.component";
 import SourceCard from "./data-entry/sources/source-card.component";
@@ -74,6 +75,8 @@ export {
   AddToHomeScreen,
   UIDialog,
   UIContentSpinner,
+  LatestNewsTab,
+  NewsTabs,
   ThumbnailLarge,
   LazyLoadingImage,
   IconNews,
