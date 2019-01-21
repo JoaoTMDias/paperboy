@@ -4,9 +4,9 @@ import {
   RESET_APP_STATE,
   SET_CHOSEN_NEWS_SOURCES,
   SET_USER_AUTHENTICATION,
-} from "../../constants/index";
+} from '../../constants/index.constants'
 
-import { PreferecesReducer } from "../../interfaces/index.interface";
+import { PreferecesReducer } from '../../interfaces/index.interface'
 
 // Preferences initial state
 const initialState = {
@@ -16,7 +16,7 @@ const initialState = {
     items: [],
   },
   authenticated: false,
-};
+}
 
 /**
  * User Preferences Reducer
@@ -28,26 +28,30 @@ const initialState = {
 function preferences(state: PreferecesReducer = initialState, action: any) {
   switch (action.type) {
     case GET_CHOSEN_NEWS_SOURCES:
-      return {...state, 
+      return {
+        ...state,
         type: action.type,
         sources: {
           items: action.available,
-        }};
+        },
+      }
 
     case SET_CHOSEN_NEWS_SOURCES:
-      return {...state, 
+      return {
+        ...state,
         type: action.type,
         sources: {
           quantity: action.sources.quantity,
           items: action.sources.items,
-        }};
+        },
+      }
 
     case SET_USER_AUTHENTICATION:
       return {
         type: action.type,
         ...state,
         authenticated: action.authenticated,
-      };
+      }
     case RESET_APP_STATE:
       return {
         type: null,
@@ -56,10 +60,10 @@ function preferences(state: PreferecesReducer = initialState, action: any) {
           items: [],
         },
         authenticated: false,
-      };
+      }
     default:
-      return state;
+      return state
   }
 }
 
-export default preferences;
+export default preferences

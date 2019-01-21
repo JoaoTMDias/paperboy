@@ -11,8 +11,8 @@ import {
   UIButton,
   UICallToAction,
   UIContentSpinner,
-  UINavigationBar,
-  UINavigationBarBarWithTitle,
+  UITopNavigationBar,
+  UITopNavigationBarWithTitle,
   UISearchForm,
   UISection,
 } from '../../components/index'
@@ -25,6 +25,11 @@ import {
   getUserCountryCodeByCoordinates,
   SetChosenNewsSources,
 } from '../../data/redux/actions/index.actions'
+
+import {
+  NEWS_PAGE,
+  ONBOARDING_PRELOADER,
+} from '../../data/constants/index.constants'
 
 // Data
 import Top20EditorSuggestions from '../../data/dummy/news-sources-suggestions.js'
@@ -86,7 +91,7 @@ class ChooseSourcesPage extends React.PureComponent<
     sources: null,
     authenticated: false,
     chosenSources: null,
-  };
+  }
 
   /**
    * @description When the Page mounts, adds an event listener for the search bar
@@ -96,8 +101,8 @@ class ChooseSourcesPage extends React.PureComponent<
    * @memberof ChooseSourcesPage
    */
   componentDidMount() {
-    document.addEventListener("scroll", this.showSearchBar);
-    this.props.dispatch(getAllAvailableNewsSources());
+    document.addEventListener('scroll', this.showSearchBar)
+    this.props.dispatch(getAllAvailableNewsSources())
   }
 
   /**
@@ -112,23 +117,23 @@ class ChooseSourcesPage extends React.PureComponent<
     if (prevProps.sources !== this.props.sources) {
       this.setState({
         hasData: true,
-      });
+      })
     }
 
     // If there is a userLanguage found
     if (prevProps.userLanguage !== this.props.userLanguage) {
-      this.getUserSourcesByLanguage(this.props.userLanguage);
+      this.getUserSourcesByLanguage(this.props.userLanguage)
     }
 
     // If the user's device supports geoLocation features
     if (prevProps.geoLocation !== this.props.geoLocation) {
       this.setState({
         askForLocation: true,
-      });
+      })
     }
 
     if (prevProps.chosenSources !== this.props.chosenSources) {
-      navigate(`welcome/preloader`);
+      navigate(ONBOARDING_PRELOADER)
     }
   }
 
@@ -138,7 +143,7 @@ class ChooseSourcesPage extends React.PureComponent<
    * @memberof ChooseSourcesPage
    */
   componentWillUnmount() {
-    document.removeEventListener("scroll", this.showSearchBar);
+    document.removeEventListener('scroll', this.showSearchBar)
   }
 
   showSearchBar(event: Event) {}
@@ -160,7 +165,7 @@ class ChooseSourcesPage extends React.PureComponent<
     const getPosition = () =>
       new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
-      });
+      })
 
     if (this.state.askForLocation) {
       getPosition()
@@ -176,7 +181,7 @@ class ChooseSourcesPage extends React.PureComponent<
         })
         .catch(err => {
           console.error(err.message)
-        });
+        })
     }
   }
 
@@ -188,8 +193,8 @@ class ChooseSourcesPage extends React.PureComponent<
    */
   getUserSourcesByLanguage(content: any) {
     if (content.hasLocation && content.data.countryCode) {
-      const language: string = `${content.data.countryCode}`.toLowerCase();
-      this.props.dispatch(getAvailableNewSourcesFromLanguage(language));
+      const language: string = `${content.data.countryCode}`.toLowerCase()
+      this.props.dispatch(getAvailableNewSourcesFromLanguage(language))
     }
   }
 
@@ -213,7 +218,7 @@ class ChooseSourcesPage extends React.PureComponent<
           handleChange={this.handleClickOnItem}
         />
       </UISection>
-    );
+    )
   }
 
   /**
@@ -243,9 +248,9 @@ class ChooseSourcesPage extends React.PureComponent<
           />
         </UISection>
       )
-    });
+    })
 
-    return list;
+    return list
   }
 
   /**
@@ -257,21 +262,21 @@ class ChooseSourcesPage extends React.PureComponent<
    * @memberof ChooseSourcesPage
    */
   handleClickOnItem(event: React.SyntheticEvent, position: number) {
-    const inputTarget = event.target as HTMLInputElement;
-    const clickedItem = inputTarget.value;
-    let chosenItems: string[];
+    const inputTarget = event.target as HTMLInputElement
+    const clickedItem = inputTarget.value
+    let chosenItems: string[]
 
     if (this.state.chosen.list.indexOf(clickedItem) > -1) {
       chosenItems = this.state.chosen.list.filter(
         (word: string) => word !== clickedItem
-      );
+      )
     } else {
-      chosenItems = [...this.state.chosen.list, clickedItem];
+      chosenItems = [...this.state.chosen.list, clickedItem]
     }
 
     this.setState(prevState => ({
       chosen: { ...prevState.chosen, list: chosenItems },
-    }));
+    }))
   }
 
   /**
@@ -281,41 +286,41 @@ class ChooseSourcesPage extends React.PureComponent<
    * @memberof ChooseSourcesPage
    */
   handleSubmit(event: MouseEvent) {
-    event.preventDefault();
-    const { list } = this.state.chosen;
+    event.preventDefault()
+    const { list } = this.state.chosen
 
     if (list.length >= 3) {
-      this.props.dispatch(SetChosenNewsSources(list));
+      this.props.dispatch(SetChosenNewsSources(list))
     }
   }
 
   public render() {
-    const { authenticated, sources } = this.props;
-    const { hasData, chosen } = this.state;
-    const disableButton = chosen.list.length < 3 ? true : false;
+    const { authenticated, sources } = this.props
+    const { hasData, chosen } = this.state
+    const disableButton = chosen.list.length < 3 ? true : false
 
     const {
       available: [],
       language: [],
       ...filter // tslint:disable-line
-    } = sources;
+    } = sources
 
     if (authenticated) {
-      return <Redirect to="/news" noThrow={true} />;
+      return <Redirect to={NEWS_PAGE} noThrow={true} />
     }
     return (
       <Layout authenticated={authenticated}>
-        <UINavigationBar shadow="hairline">
-          <UINavigationBarBarWithTitle
+        <UITopNavigationBar shadow="hairline">
+          <UITopNavigationBarWithTitle
             title="What do you fancy reading?"
             subtitle="Breaking news from over 30,000 sources"
           />
-        </UINavigationBar>
+        </UITopNavigationBar>
         <Modal delay={1000}>
           <Confirm
             title="Use location services?"
             description="Can I use your devices' location to find any news sources related to your country/language?"
-            onCancel={() => console.log("canceled")}
+            onCancel={() => console.log('canceled')}
             onConfirm={() => this.getUserCountry()}
           />
         </Modal>
@@ -361,7 +366,7 @@ class ChooseSourcesPage extends React.PureComponent<
           />
         </UICallToAction>
       </Layout>
-    );
+    )
   }
 }
 
@@ -371,6 +376,6 @@ const mapStateToProps = (state: any) => ({
   chosenSources: state.preferences.sources.items,
   geoLocation: state.general.supports.geoLocation,
   userLanguage: state.general.userLanguage,
-});
+})
 
-export default connect(mapStateToProps)(ChooseSourcesPage);
+export default connect(mapStateToProps)(ChooseSourcesPage)

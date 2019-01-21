@@ -12,6 +12,11 @@ import {
   UISubtitle,
 } from "../components/index";
 
+import {
+  NEWS_PAGE,
+  ONBOARDING_CHOOSE_SOURCES_PAGE,
+} from "../data/constants/index.constants";
+
 interface IIndexPageProps {
   authenticated: boolean;
   children?: any;
@@ -21,13 +26,13 @@ const IndexPage: React.FunctionComponent<IIndexPageProps> = props => {
   const { authenticated } = props;
 
   if (authenticated) {
-    return <Redirect to="/news" noThrow={true} />;
+    return <Redirect to={NEWS_PAGE} noThrow={true} />;
   }
   return (
     <Layout authenticated={authenticated}>
       <UICallToAction float={true}>
         <UIAnchor
-          to="/welcome/choose-sources"
+          to={ONBOARDING_CHOOSE_SOURCES_PAGE}
           text="Choose your favorite sources"
           label="Click to navigate to the next screen, where you can pick your favorite sources from a wide array of options."
         />

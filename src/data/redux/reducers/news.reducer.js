@@ -4,7 +4,7 @@ import {
   GET_ALL_AVAILABLE_NEWS_SOURCES,
   GET_ALL_AVAILABLE_NEWS_SOURCES_LANGUAGE,
   RESET_APP_STATE,
-} from '../../constants'
+} from '../../constants/index.constants'
 
 // News initial state
 const initialState = {

@@ -4,7 +4,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 // Component Props
-interface IUINavigationBarProps {
+interface IUITopNavigationBarProps {
   theme?: any;
   shadow?: "default" | "hairline" | "none";
 }
@@ -15,8 +15,8 @@ interface IUINavigationBarProps {
  * @date  12/December/2018 at 15:42
  * @extends {React.SFC}
  */
-class UINavigationBar extends React.Component<IUINavigationBarProps> {
-  shouldComponentUpdate(nextProps: IUINavigationBarProps, nextState) {
+class UITopNavigationBar extends React.Component<IUITopNavigationBarProps> {
+  shouldComponentUpdate(nextProps: IUITopNavigationBarProps, nextState) {
     return nextProps.shadow !== this.props.shadow;
   }
 
@@ -41,7 +41,7 @@ const Wrapper = styled.header`
   padding-left: ${rem("16px")};
   padding-right: ${rem("16px")};
   background-color: var(--color-white);
-  box-shadow: ${(props: IUINavigationBarProps) => {
+  box-shadow: ${(props: IUITopNavigationBarProps) => {
     if (props.shadow) {
       if (props.shadow === "default") {
         return "0 0 4px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.12)";
@@ -57,4 +57,4 @@ const Wrapper = styled.header`
   z-index: 3;
 `;
 
-export default UINavigationBar;
+export default UITopNavigationBar;

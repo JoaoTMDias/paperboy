@@ -4,7 +4,7 @@ import {
   SET_STANDALONE_STATUS,
   SET_FEATURE_SUPPORT,
   SET_USER_COUNTRY,
-} from '../../constants/index';
+} from '../../constants/index.constants';
 
 import GeneralService from '../../services/general.service';
 

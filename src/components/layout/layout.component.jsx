@@ -8,7 +8,7 @@ import { isIOS } from 'react-device-detect'
 
 // Components
 import { Audit, AddToHomeScreen, Modal } from '../index'
-import UINavigationBar from '../navigation/header/top-navigation.component'
+import UITopNavigationBar from '../navigation/header/top-navigation.component'
 import MainNavigation from '../navigation/main/main-navigation'
 import BottomNavigation from '../navigation/bottom-navigation/bottom-navigation.component'
 
@@ -77,16 +77,16 @@ const theme = {
 
 // Layout Component
 const Layout = props => {
-  const { children, authenticated, header } = props
+  const { children, authenticated, header, bottomNavigation } = props
 
   const renderNavigationElements = () => {
     if (authenticated) {
       return (
         <React.Fragment>
-          {header && <UINavigationBar key="page-header" />}
+          {header && <UITopNavigationBar key="page-header" />}
           <MainNavigation key="main-navigation" />
           {children}
-          <BottomNavigation key="bottom-navigation" />
+          {bottomNavigation && <BottomNavigation key="bottom-navigation" />}
         </React.Fragment>
       )
     }
@@ -258,12 +258,14 @@ const Layout = props => {
 Layout.defaultProps = {
   authenticated: true,
   header: true,
+  bottomNavigation: true,
 }
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   authenticated: PropTypes.bool,
   header: PropTypes.bool,
+  bottomNavigation: PropTypes.bool,
 }
 
 export default Layout

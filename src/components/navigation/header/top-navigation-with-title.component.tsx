@@ -1,13 +1,13 @@
 // Libraries
-import { rem } from "polished";
-import * as React from "react";
-import styled from "styled-components";
+import { rem } from 'polished'
+import * as React from 'react'
+import styled from 'styled-components'
 
 // Component Props
-interface IUINavigationBarBarWithTitleProps {
-  title: string;
-  subtitle: string;
-  theme?: any;
+interface IUITopNavigationBarWithTitleProps {
+  title: string
+  subtitle: string
+  theme?: any
 }
 
 /**
@@ -16,20 +16,20 @@ interface IUINavigationBarBarWithTitleProps {
  * @date  12/December/2018 at 16:40
  * @extends {React.SFC}
  */
-class UINavigationBarBarWithTitle extends React.Component<
-  IUINavigationBarBarWithTitleProps
+class UITopNavigationBarWithTitle extends React.Component<
+  IUITopNavigationBarWithTitleProps
 > {
   shouldComponentUpdate(
-    nextProps: IUINavigationBarBarWithTitleProps,
-    nextState,
+    nextProps: IUITopNavigationBarWithTitleProps,
+    nextState
   ): boolean {
     if (
       nextProps.title !== this.props.title ||
       nextProps.subtitle !== this.props.subtitle
     ) {
-      return true;
+      return true
     } else {
-      return false;
+      return false
     }
   }
 
@@ -37,14 +37,14 @@ class UINavigationBarBarWithTitle extends React.Component<
    * render
    */
   public render() {
-    const { title, subtitle } = this.props;
+    const { title, subtitle } = this.props
 
     return (
       <Container>
         <h2 className="top-navigation-with-title__title">{title}</h2>
         <p className="top-navigation-with-title__subtitle">{subtitle}</p>
       </Container>
-    );
+    )
   }
 }
 
@@ -56,9 +56,9 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin-top: ${rem("20px")};
-  margin-right: ${rem("16px")};
-  margin-bottom: ${rem("20px")};
+  margin-top: ${rem('20px')};
+  margin-right: ${rem('16px')};
+  margin-bottom: ${rem('20px')};
   margin-left: 0;
   background-color: var(--color-white);
 
@@ -66,7 +66,7 @@ const Container = styled.div`
     &-with-title {
       &__title {
         font-family: var(--heading-font-family);
-        font-size: ${rem("20px")};
+        font-size: ${rem('20px')};
         color: var(--color-gray9);
         letter-spacing: 0;
         margin-bottom: 0;
@@ -74,13 +74,13 @@ const Container = styled.div`
 
       &__subtitle {
         font-family: var(--body-font-family);
-        font-size: ${rem("14px")};
+        font-size: ${rem('14px')};
         color: var(--color-gray7);
         letter-spacing: 0;
         margin: 0;
       }
     }
   }
-`;
+`
 
-export default UINavigationBarBarWithTitle;
+export default UITopNavigationBarWithTitle

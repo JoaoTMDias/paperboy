@@ -1,13 +1,8 @@
-import * as React from "react"
+import * as React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-import {
-  Container,
-  Layout,
-  ThumbnailLarge,
-  UIContentSpinner,
-} from "../../index";
+import { ThumbnailLarge, UIContentSpinner } from "../../index";
 
 import {
   ILatestNews,
@@ -101,18 +96,13 @@ class LatestNewsTab extends React.Component<ILatestNewsTabProps, any> {
     const { latest } = this.props;
 
     if (latest && latest.totalResults > 0) {
+      console.log("articles: ", latest.articles);
       const list = latest.articles.map(
         (article: ILatestNewsArticle, index: number) => {
           return (
             <List key={`latest-news__article__${index}`}>
               <Item id={`latest-news__article__${index}`}>
-                <ThumbnailLarge
-                  title={article.title}
-                  cover={article.urlToImage}
-                  url={article.url}
-                  source={article.source.name}
-                  published={article.publishedAt}
-                />
+                <ThumbnailLarge id={index} options={article} />
               </Item>
             </List>
           );

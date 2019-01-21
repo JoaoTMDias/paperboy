@@ -53,7 +53,7 @@ class NewsTabs extends React.Component<ISavedPageProps, any> {
             <LatestNewsTab sources={sources} />
           </Panel>
           <Panel tab={`General`} key="2" id="test2">
-            <div>tab 1</div>
+            <LatestNewsTab sources={sources} />
           </Panel>
           <Panel tab={`tab 1`} key="3" id="test3">
             <div>tab 1</div>

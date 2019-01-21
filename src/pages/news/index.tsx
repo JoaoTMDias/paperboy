@@ -13,6 +13,11 @@ import { ILatestNews } from "../../data/interfaces/index.interface";
 
 import { ChosenNewsSources } from "../../data/interfaces/index.interface";
 
+import {
+  NEWS_PAGE,
+  ONBOARDING_PAGE,
+} from "../../data/constants/index.constants";
+
 interface INewsPageProps {
   authenticated: boolean;
   sources: ChosenNewsSources;
@@ -73,7 +78,7 @@ class NewsPage extends React.Component<INewsPageProps, any> {
     const { authenticated } = this.props;
 
     if (!authenticated) {
-      return <Redirect from="/news" to="/" noThrow={true} />;
+      return <Redirect from={NEWS_PAGE} to={ONBOARDING_PAGE} noThrow={true} />;
     } else {
       return (
         <Layout authenticated={true} header={false}>

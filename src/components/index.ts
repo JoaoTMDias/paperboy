@@ -13,8 +13,10 @@ import A11yPageTitle from "./a11y/a11ypagetitle.component";
 import BottomNavigation from "./navigation/bottom-navigation/bottom-navigation.component";
 import { UIAnchor, UIButton } from "./navigation/buttons/buttons.theme";
 import UICallToAction from "./navigation/buttons/cta.component";
-import UINavigationBarBarWithTitle from "./navigation/header/navigation-with-title.component";
-import UINavigationBar from "./navigation/header/top-navigation.component";
+import UITopNavigationBarWithClose from "./navigation/header/top-navigation-with-close.component";
+import UITopNavigationBarWithTitle from "./navigation/header/top-navigation-with-title.component";
+
+import UITopNavigationBar from "./navigation/header/top-navigation.component";
 import MainNavigation from "./navigation/main/main-navigation";
 
 // UI
@@ -61,8 +63,9 @@ export {
   UIAnchor,
   UIButton,
   UICallToAction,
-  UINavigationBarBarWithTitle,
-  UINavigationBar,
+  UITopNavigationBarWithTitle,
+  UITopNavigationBarWithClose,
+  UITopNavigationBar,
   MainNavigation,
   SourceCard,
   SourcesList,

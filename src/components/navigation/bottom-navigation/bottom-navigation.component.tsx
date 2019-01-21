@@ -12,6 +12,14 @@ import {
   IconSettings,
 } from "../../index";
 
+import {
+  CATEGORIES_PAGE,
+  NEWS_PAGE,
+  SAVED_PAGE,
+  SEARCH_PAGE,
+  SETTINGS_PAGE,
+} from "../../../data/constants/index.constants";
+
 // Component Props
 interface IBottomNavigationProps {
   theme?: any;
@@ -29,19 +37,19 @@ const BottomNavigation: React.FunctionComponent<
   <Wrapper>
     <Navigation>
       <List>
-        <BottomTabItem to="/news/" label="News">
+        <BottomTabItem to={NEWS_PAGE} label="News">
           <IconNews />
         </BottomTabItem>
-        <BottomTabItem to="/saved/" label="Saved">
+        <BottomTabItem to={SAVED_PAGE} label="Saved">
           <IconSaved />
         </BottomTabItem>
-        <BottomTabItem to="/search/" label="Search">
+        <BottomTabItem to={SEARCH_PAGE} label="Search">
           <IconSearch />
         </BottomTabItem>
-        <BottomTabItem to="/categories/" label="Categories">
+        <BottomTabItem to={CATEGORIES_PAGE} label="Categories">
           <IconCategories />
         </BottomTabItem>
-        <BottomTabItem to="/settings/" label="Settings">
+        <BottomTabItem to={SETTINGS_PAGE} label="Settings">
           <IconSettings />
         </BottomTabItem>
       </List>

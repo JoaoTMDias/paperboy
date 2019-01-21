@@ -5,7 +5,7 @@ import {
   SET_FEATURE_SUPPORT,
   SET_PLATFORM,
   SET_USER_COUNTRY,
-} from '../../constants/index';
+} from '../../constants/index.constants';
 
 // Preferences initial state
 const initialState = {

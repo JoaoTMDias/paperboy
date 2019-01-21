@@ -21,6 +21,8 @@ interface IPreloaderPageState {
   delay: number;
 }
 
+import { NEWS_PAGE } from "../../data/constants/index.constants";
+
 /**
  * @description The Preloader Page
  * @date 2019-01-06
@@ -95,7 +97,7 @@ class PreloaderPage extends React.PureComponent<
     const { authenticated } = this.props;
 
     if (authenticated) {
-      return <Redirect to="/news" noThrow={true} />;
+      return <Redirect to={NEWS_PAGE} noThrow={true} />;
     }
 
     return (

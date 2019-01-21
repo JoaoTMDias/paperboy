@@ -5,14 +5,16 @@ import { rem } from "polished";
 import * as React from "react";
 import styled from "styled-components";
 
+import {
+  ILatestNews,
+  ILatestNewsArticle,
+} from "../../../data/interfaces/index.interface";
+
 // Component Props
 interface IThumbnailLargeProps {
   theme?: any;
-  title: string;
-  cover: string;
-  url: string;
-  published: string;
-  source: string;
+  id: number;
+  options: ILatestNewsArticle;
 }
 
 /**
@@ -22,33 +24,89 @@ interface IThumbnailLargeProps {
  * @extends {React.SFC}
  */
 const ThumbnailLarge: React.FunctionComponent<IThumbnailLargeProps> = props => {
-  const { title, cover, url, source, published } = props;
+  const { id } = props;
+  const { title, urlToImage, url, source, publishedAt } = props.options;
 
-  const time: string = `${distanceInWordsToNow(published)} ago`;
-  return (
-    <Anchor to={url} aria-labelledby="thumbnail__title--1" tabIndex={0}>
-      <Article>
-        <Image
-          style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 75%), url(${cover})`,
-          }}
-        />
-        <Copy>
-          <h2 id="thumbnail__title--1" className="thumbnail__title">
-            {title}
-          </h2>
-          <div className="thumbnail__metadata">
-            <h3 className="thumbnail__metadata__source">{source}</h3>
-            <time className="thumbnail__metadata__time">{time}</time>
-          </div>
-        </Copy>
-      </Article>
-    </Anchor>
-  );
+  const time: string = `${distanceInWordsToNow(publishedAt)} ago`;
+
+  switch (source.name) {
+    case "CNN":
+    case "BBC News":
+      return (
+        <Anchor
+          to="/news/detail/"
+          aria-labelledby={`thumbnail__title--${id}`}
+          tabIndex={0}
+          state={props.options}
+        >
+          <Article>
+            <Image
+              style={{
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 75%), url(${urlToImage})`,
+              }}
+            />
+            <Copy>
+              <h2 id={`thumbnail__title--${id}`} className="thumbnail__title">
+                {title}
+              </h2>
+              <div className="thumbnail__metadata">
+                <h3 className="thumbnail__metadata__source">{source.name}</h3>
+                <time className="thumbnail__metadata__time">{time}</time>
+              </div>
+            </Copy>
+          </Article>
+        </Anchor>
+      );
+
+    default:
+      return (
+        <ExternalAnchor
+          href={url}
+          target="_blank"
+          aria-labelledby={`thumbnail__title--${id}`}
+          tabIndex={0}
+        >
+          <Article>
+            <Image
+              style={{
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 75%), url(${urlToImage})`,
+              }}
+            />
+            <Copy>
+              <h2 id={`thumbnail__title--${id}`} className="thumbnail__title">
+                {title}
+              </h2>
+              <div className="thumbnail__metadata">
+                <h3 className="thumbnail__metadata__source">{source.name}</h3>
+                <time className="thumbnail__metadata__time">{time}</time>
+              </div>
+            </Copy>
+          </Article>
+        </ExternalAnchor>
+      );
+  }
 };
 
 // Styling
 const Anchor = styled(Link)`
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-gray1);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+
+  &:hover,
+  &:focus {
+    transform: scale(1);
+  }
+`;
+
+const ExternalAnchor = styled.a`
   width: 100%;
   height: 40vh;
   display: flex;
