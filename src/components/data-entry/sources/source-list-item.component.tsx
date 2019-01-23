@@ -1,17 +1,17 @@
 // Libraries
-import { rem } from "polished";
-import * as React from "react";
-import styled from "styled-components";
-import { LazyLoadingImage } from "../../index";
+import { rem } from 'polished'
+import * as React from 'react'
+import styled from 'styled-components'
+import { LazyLoadingImage } from '../../index'
 
 // Component Props
 interface ISourceListItemProps {
-  theme?: any;
-  id: string;
-  label: string;
-  cover: string;
-  handleChange: any;
-  checked: boolean;
+  theme?: any
+  id: string
+  label: string
+  cover: string
+  handleChange: any
+  checked: boolean
 }
 
 /**
@@ -22,17 +22,17 @@ interface ISourceListItemProps {
  */
 class SourceListItem extends React.Component<ISourceListItemProps, any> {
   shouldComponentUpdate(nextProps: ISourceListItemProps, nextState) {
-    return nextProps.checked !== this.props.checked;
+    return nextProps.checked !== this.props.checked
   }
 
   static defaultProps = {
     checked: false,
-  };
+  }
 
   public render() {
-    const { id, label, cover, handleChange, checked } = this.props;
+    const { id, label, cover, handleChange, checked } = this.props
 
-    const status: string = checked ? "is-checked" : "";
+    const status: string = checked ? 'is-checked' : ''
 
     return (
       <Wrapper className={`source__item ${status}`}>
@@ -49,7 +49,7 @@ class SourceListItem extends React.Component<ISourceListItemProps, any> {
           />
           <Logo className="source__cover">
             <LazyLoadingImage
-              cover={cover}
+              src={cover}
               width="105"
               height="105"
               alt={`${label} logo`}
@@ -82,13 +82,13 @@ class SourceListItem extends React.Component<ISourceListItemProps, any> {
           </Icon>
         </label>
       </Wrapper>
-    );
+    )
   }
 }
 
 // Styling
 const Wrapper = styled.li`
-  max-height: ${rem("64px")};
+  max-height: ${rem('64px')};
   width: 100%;
   display: flex;
   margin: 0;
@@ -137,10 +137,10 @@ const Wrapper = styled.li`
     width: 100%;
     height: 100%;
     margin: 0;
-    padding-top: ${rem("8px")};
+    padding-top: ${rem('8px')};
     padding-right: 0;
-    padding-bottom: ${rem("8px")};
-    padding-left: ${rem("8px")};
+    padding-bottom: ${rem('8px')};
+    padding-left: ${rem('8px')};
 
     box-shadow: 0 2px 0 0px rgba(0, 0, 0, 0.05);
     border-radius: 0;
@@ -156,25 +156,25 @@ const Wrapper = styled.li`
       transform: scale(0.96);
     }
   }
-`;
+`
 
 const Icon = styled.svg`
   position: absolute;
-  top: ${rem("20px")};
-  right: ${rem("8px")};
-  width: ${rem("24px")};
-  height: ${rem("24px")};
+  top: ${rem('20px')};
+  right: ${rem('8px')};
+  width: ${rem('24px')};
+  height: ${rem('24px')};
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   z-index: 1;
-`;
+`
 
 const Logo = styled.figure`
   margin: 0;
   width: 100%;
-  max-width: ${rem("48px")};
+  max-width: ${rem('48px')};
   height: auto;
   overflow: hidden;
   position: relative;
@@ -187,7 +187,7 @@ const Logo = styled.figure`
     height: auto;
     background-color: var(--color-gray3);
   }
-`;
+`
 
 const Input = styled.input`
   position: absolute;
@@ -196,35 +196,35 @@ const Input = styled.input`
   margin: 0;
   padding: 0;
   right: 0;
-`;
+`
 
 const Name = styled.div`
   display: flex;
-  width: calc(100% - ${rem("72px")});
+  width: calc(100% - ${rem('72px')});
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   position: relative;
   overflow: hidden;
   background-color: transparent;
-  height: ${rem("48px")};
-  line-height: ${rem("48px")};
+  height: ${rem('48px')};
+  line-height: ${rem('48px')};
 
   .source__label {
     &__title {
       width: 100%;
       text-align: left;
       font-family: var(--body-font-family);
-      font-size: ${rem("12px")};
+      font-size: ${rem('12px')};
       line-height: 1.333;
       color: var(--color-gray8);
       letter-spacing: 0;
       margin: 0;
-      padding: ${rem("4px")} ${rem("8px")};
+      padding: ${rem('4px')} ${rem('8px')};
       text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.2);
       text-transform: capitalize;
     }
   }
-`;
+`
 
-export default SourceListItem;
+export default SourceListItem

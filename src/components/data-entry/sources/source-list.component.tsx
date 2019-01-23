@@ -1,14 +1,14 @@
 // Libraries
-import * as React from 'react';
+import * as React from 'react'
 import styled from 'styled-components'
-import { SourceCard, SourceListItem } from "../../index"
+import { SourceCard, SourceListItem } from '../../index'
 
 // Component Props
 interface ISourcesListProps {
   theme?: any
-  layout?: "horizontal" | "vertical"
+  layout?: 'horizontal' | 'vertical'
   label: string;
-  data: any | null;
+  data: any | null
   handleChange: any;
   selectedOptions: string[];
 }
@@ -69,7 +69,7 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
             key={source.id}
             id={source.id}
             label={source.name}
-            cover={cover as string}
+            src={cover as string}
             handleChange={(event: React.SyntheticEvent) =>
               props.handleChange(event, index)
             }
@@ -109,7 +109,7 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
             key={source.id}
             id={source.id}
             label={source.name}
-            cover={cover}
+            src={cover}
             handleChange={(event: React.SyntheticEvent) =>
               props.handleChange(event, index)
             }

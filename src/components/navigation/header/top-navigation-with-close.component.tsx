@@ -1,22 +1,22 @@
 // Libraries
-import { Link } from "gatsby";
-import { rem } from "polished";
-import * as React from "react";
-import styled from "styled-components";
+import { Link } from 'gatsby'
+import { rem } from 'polished'
+import * as React from 'react'
+import styled from 'styled-components'
 
 // Components
-import { LazyLoadingImage } from "../../index";
+import { LazyLoadingImage } from '../../index'
 
 // Constants
-import { NEWS_PAGE } from "../../../data/constants/index.constants";
+import { NEWS_PAGE } from '../../../data/constants/index.constants'
 
-import CNN_LOGO from "../../../assets/images/sources/icon-cnn.svg";
+import CNN_LOGO from '../../../assets/images/sources/icon-cnn.svg'
 
 // Component Props
 interface IUITopNavigationBarWithCloseProps {
-  title: string;
-  source: string;
-  theme?: any;
+  title: string
+  source: string
+  theme?: any
 }
 
 /**
@@ -30,14 +30,14 @@ class UITopNavigationBarWithClose extends React.Component<
 > {
   shouldComponentUpdate(
     nextProps: IUITopNavigationBarWithCloseProps,
-    nextState,
+    nextState
   ): boolean {
-    const { title, source } = this.props;
+    const { title, source } = this.props
 
     if (nextProps.title !== title || nextProps.source !== source) {
-      return true;
+      return true
     } else {
-      return false;
+      return false
     }
   }
 
@@ -45,7 +45,7 @@ class UITopNavigationBarWithClose extends React.Component<
    * render
    */
   public render() {
-    const { title, source } = this.props;
+    const { title, source } = this.props
 
     return (
       <Container>
@@ -61,7 +61,7 @@ class UITopNavigationBarWithClose extends React.Component<
           <LazyLoadingImage
             width="24"
             height="24"
-            cover={CNN_LOGO}
+            src={CNN_LOGO}
             alt="CNN Logo"
           />
         </div>
@@ -73,7 +73,7 @@ class UITopNavigationBarWithClose extends React.Component<
           Share
         </Close>
       </Container>
-    );
+    )
   }
 }
 
@@ -88,13 +88,13 @@ const Container = styled.div`
 
   background-color: transparent;
   margin: 0;
-  padding: 0 ${rem("8px")};
+  padding: 0 ${rem('8px')};
   position: fixed;
   z-index: 1;
 
   .title {
     font-family: var(--heading-font-family);
-    font-size: ${rem("14px")};
+    font-size: ${rem('14px')};
     color: var(--color-gray9);
     letter-spacing: 0;
     margin-bottom: 0;
@@ -105,7 +105,7 @@ const Container = styled.div`
   }
 
   img {
-    border-radius: ${rem("24px")};
+    border-radius: ${rem('24px')};
   }
 
   .close,
@@ -124,11 +124,11 @@ const Container = styled.div`
       opacity: 1;
     }
   }
-`;
+`
 
 const Close = styled(Link)`
-  width: ${rem("44px")};
-  height: ${rem("44px")};
-`;
+  width: ${rem('44px')};
+  height: ${rem('44px')};
+`
 
-export default UITopNavigationBarWithClose;
+export default UITopNavigationBarWithClose

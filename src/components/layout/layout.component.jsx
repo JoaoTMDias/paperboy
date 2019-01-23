@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import { isIOS } from 'react-device-detect'
 
 // Components
@@ -11,6 +11,7 @@ import { Audit, AddToHomeScreen, Modal } from '../index'
 import UITopNavigationBar from '../navigation/header/top-navigation.component'
 import MainNavigation from '../navigation/main/main-navigation'
 import BottomNavigation from '../navigation/bottom-navigation/bottom-navigation.component'
+import { media } from '../../helpers/index.helpers'
 
 // Styling
 import './layout.scss'
@@ -118,7 +119,7 @@ const Layout = props => {
         <ThemeProvider theme={theme}>
           <Fragment>
             <Audit>
-              <Fragment>
+              <AppLayout id="app-layout">
                 {renderAddToHomescren()}
                 <Helmet
                   htmlAttributes={{
@@ -245,7 +246,7 @@ const Layout = props => {
                   ]}
                 />
                 {renderNavigationElements()}
-              </Fragment>
+              </AppLayout>
             </Audit>
             <div id="portal" />
           </Fragment>
@@ -254,6 +255,17 @@ const Layout = props => {
     />
   )
 }
+
+const AppLayout = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  ${media.large`
+    display: grid;
+    grid-template-columns: minmax(12.5rem, auto) 1fr;
+  `};
+`
 
 Layout.defaultProps = {
   authenticated: true,
