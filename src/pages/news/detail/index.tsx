@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import { rem } from "polished";
 import React from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 // Components
 import {
@@ -50,7 +50,24 @@ class ArticleDetailPage extends React.Component<IArticleDetailPage, any> {
   }
 }
 
-const Article = styled.article``;
+const OpeningAnimation = keyframes`
+  from {
+    clip-path: circle(0% at center 5%);
+  }
+
+  to {
+    clip-path: circle(120% at center 5%);
+  }
+`;
+
+const Article = styled.article`
+  clip-path: circle(0% at center 5%);
+
+  animation-name: ${OpeningAnimation};
+  animation-fill-mode: forwards;
+  animation-duration: 750ms;
+  animation-timing-function: var(--default-timing-function);
+`;
 
 const Hero = styled.div`
   width: 100%;
@@ -62,7 +79,8 @@ const Hero = styled.div`
   flex-direction: column;
   justify-content: flex-end;
 
-  img {
+  img,
+  svg {
     position: absolute;
     top: 0;
     right: 0;
