@@ -1,5 +1,5 @@
 import Tabs, { TabPane } from "rc-tabs";
-import SwipeableInkTabBar from "rc-tabs/lib/SwipeableInkTabBar";
+import SwipeableInkTabBar from "rc-tabs/lib/SwipeableInkTabBar"
 import TabContent from "rc-tabs/lib/SwipeableTabContent";
 import * as React from "react";
 import styled from "styled-components";
@@ -79,11 +79,6 @@ class NewsTabs extends React.Component<ISavedPageProps, any> {
 }
 
 // Styling
-const Content = styled(TabContent)`
-  display: flex;
-  flex-direction: column;
-`;
-
 const Panel = styled(TabPane)`
   height: 100%;
   min-height: calc(100vh - 6rem);

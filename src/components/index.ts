@@ -15,9 +15,10 @@ import { UIAnchor, UIButton } from "./navigation/buttons/buttons.theme";
 import UICallToAction from "./navigation/buttons/cta.component";
 import UITopNavigationBarWithClose from "./navigation/header/top-navigation-with-close.component";
 import UITopNavigationBarWithTitle from "./navigation/header/top-navigation-with-title.component";
+import TabItem from "./navigation/navigation-item.component";
 
 import UITopNavigationBar from "./navigation/header/top-navigation.component";
-import MainNavigation from "./navigation/main/main-navigation";
+import MainNavigation from "./navigation/main/main-navigation.component";
 
 // UI
 import { LatestNewsTab, NewsTabs } from "./data-display/news/index.news";
@@ -59,6 +60,7 @@ export {
   Modal,
   Confirm,
   A11yPageTitle,
+  TabItem,
   BottomNavigation,
   UIAnchor,
   UIButton,

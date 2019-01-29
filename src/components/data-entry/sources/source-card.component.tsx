@@ -1,17 +1,17 @@
 // Libraries
 import { rem } from 'polished'
 import * as React from 'react'
-import styled from 'styled-components'
-import { LazyLoadingImage } from '../../index'
+import styled from 'styled-components';
+import { LazyLoadingImage } from "../../index"
 
 // Component Props
 interface ISourceCardProps {
   theme?: any
   id: string
   label: string
-  cover: string
+  src: string
   handleChange: any
-  checked: boolean
+  checked: boolean;
 }
 
 /**
@@ -23,16 +23,18 @@ interface ISourceCardProps {
 class SourceCard extends React.Component<ISourceCardProps> {
   static defaultProps = {
     checked: false,
-  }
+  };
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.checked !== this.props.checked
+  shouldComponentUpdate(nextProps: ISourceCardProps, nextState) {
+    return nextProps.checked !== this.props.checked;
   }
 
   public render() {
-    const { id, label, cover, handleChange, checked } = this.props
+    const { id, label, src, handleChange, checked } = this.props;
 
-    const status: string = checked ? 'is-checked' : ''
+    const status: string = checked ? "is-checked" : "";
+
+    console.log("cover: ", src);
 
     return (
       <Wrapper className={`source__item ${status}`}>
@@ -69,7 +71,7 @@ class SourceCard extends React.Component<ISourceCardProps> {
           </Icon>
           <Logo className="source__cover">
             <LazyLoadingImage
-              src={cover}
+              src={src}
               width="105"
               height="105"
               alt={`${label} logo`}
@@ -82,14 +84,14 @@ class SourceCard extends React.Component<ISourceCardProps> {
           </Name>
         </label>
       </Wrapper>
-    )
+    );
   }
 }
 
 // Styling
 const Wrapper = styled.li`
-  min-width: ${rem('105px')};
-  min-height: ${rem('148px')};
+  min-width: ${rem("105px")};
+  min-height: ${rem("148px")};
   width: 100%;
   scroll-snap-align: center;
   display: flex;
@@ -148,20 +150,20 @@ const Wrapper = styled.li`
       transform: scale(0.96);
     }
   }
-`
+`;
 
 const Icon = styled.svg`
   position: absolute;
-  top: ${rem('8px')};
-  right: ${rem('8px')};
-  width: ${rem('24px')};
-  height: ${rem('24px')};
+  top: ${rem("8px")};
+  right: ${rem("8px")};
+  width: ${rem("24px")};
+  height: ${rem("24px")};
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   z-index: 1;
-`
+`;
 
 const Logo = styled.figure`
   margin: 0;
@@ -177,7 +179,7 @@ const Logo = styled.figure`
     height: auto;
     background-color: var(--color-gray3);
   }
-`
+`;
 
 const Input = styled.input`
   position: absolute;
@@ -186,7 +188,7 @@ const Input = styled.input`
   margin: 0;
   padding: 0;
   right: 0;
-`
+`;
 
 const Name = styled.div`
   display: flex;
@@ -198,23 +200,23 @@ const Name = styled.div`
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   background-color: var(--color-white);
-  height: ${rem('44px')};
+  height: ${rem("44px")};
 
   .source__label {
     &__title {
       width: 100%;
       text-align: center;
       font-family: var(--body-font-family);
-      font-size: ${rem('12px')};
+      font-size: ${rem("12px")};
       line-height: 1.333;
       color: var(--color-gray8);
       letter-spacing: 0;
       margin: 0;
-      padding: ${rem('4px')} ${rem('8px')};
+      padding: ${rem("4px")} ${rem("8px")};
       text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.2);
       text-transform: capitalize;
     }
   }
-`
+`;
 
-export default SourceCard
+export default SourceCard;

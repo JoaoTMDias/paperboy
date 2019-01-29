@@ -1,13 +1,14 @@
 // Libraries
 import { Link } from "gatsby";
-import { rem } from "polished";
+import { rem } from "polished"
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 // Component Props
-interface IBottomTabItemProps {
+interface ITabItemProps {
   to: string;
   label: string;
+  layout?: "vertical" | "horizontal";
 }
 
 /**
@@ -16,13 +17,14 @@ interface IBottomTabItemProps {
  * @date  08/December/2018 at 15:41
  * @extends {React.SFC}
  */
-class BottomTabItem extends React.Component<IBottomTabItemProps> {
+class TabItem extends React.Component<ITabItemProps> {
   static defaultProps = {
     to: "/",
     label: "Label",
+    layout: "horizontal",
   };
 
-  shouldComponentUpdate(nextProps: IBottomTabItemProps, nextState: any) {
+  shouldComponentUpdate(nextProps: ITabItemProps, nextState: any) {
     const { to, label } = this.props;
 
     if (nextProps.to !== to || nextProps.label !== label) {
@@ -32,14 +34,15 @@ class BottomTabItem extends React.Component<IBottomTabItemProps> {
   }
 
   public render() {
-    const { to, label, children } = this.props;
+    const { to, label, layout, children } = this.props;
     return (
-      <Wrapper>
+      <Wrapper layout={layout}>
         <TabLink
           to={to}
           activeClassName="is-active"
           aria-label={`Click/Tap to go to the page: ${label}`}
           tabIndex={0}
+          layout={layout}
         >
           <Icon>{children}</Icon>
           <Label className="label">{label}</Label>
@@ -60,6 +63,12 @@ const Wrapper = styled.li`
   padding: ${rem("4px")} 0;
   flex: 1;
 
+  ${(props: ITabItemProps) =>
+    props.layout === "vertical" &&
+    css`
+      padding: 0;
+    `};
+
   &:first-child {
     margin-left: 0;
   }
@@ -74,6 +83,22 @@ const TabLink = styled(Link)`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+
+  ${(props: ITabItemProps) =>
+    props.layout === "vertical" &&
+    css`
+      flex-direction: row;
+      width: 100%;
+      padding: ${rem("8px")} var(--global-margin);
+
+      &.is-active {
+        background-color: var(--color-gray9);
+      }
+
+      .label {
+        margin-left: calc(var(--global-margin) * 0.5);
+      }
+    `};
 
   &.is-active {
     .tab__icon  {
@@ -108,4 +133,4 @@ const Label = styled.span`
   text-align: center;
   color: var(--color-gray3);
 `;
-export default BottomTabItem;
+export default TabItem;

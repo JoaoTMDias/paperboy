@@ -91,7 +91,7 @@ class ChooseSourcesPage extends React.PureComponent<
     sources: null,
     authenticated: false,
     chosenSources: null,
-  }
+  };
 
   /**
    * @description When the Page mounts, adds an event listener for the search bar
@@ -101,7 +101,7 @@ class ChooseSourcesPage extends React.PureComponent<
    * @memberof ChooseSourcesPage
    */
   componentDidMount() {
-    document.addEventListener('scroll', this.showSearchBar)
+    document.addEventListener("scroll", this.showSearchBar)
     this.props.dispatch(getAllAvailableNewsSources())
   }
 
@@ -143,7 +143,7 @@ class ChooseSourcesPage extends React.PureComponent<
    * @memberof ChooseSourcesPage
    */
   componentWillUnmount() {
-    document.removeEventListener('scroll', this.showSearchBar)
+    document.removeEventListener("scroll", this.showSearchBar)
   }
 
   showSearchBar(event: Event) {}
@@ -320,7 +320,7 @@ class ChooseSourcesPage extends React.PureComponent<
           <Confirm
             title="Use location services?"
             description="Can I use your devices' location to find any news sources related to your country/language?"
-            onCancel={() => console.log('canceled')}
+            onCancel={() => console.log("canceled")}
             onConfirm={() => this.getUserCountry()}
           />
         </Modal>
@@ -366,7 +366,7 @@ class ChooseSourcesPage extends React.PureComponent<
           />
         </UICallToAction>
       </Layout>
-    )
+    );
   }
 }
 
@@ -376,6 +376,6 @@ const mapStateToProps = (state: any) => ({
   chosenSources: state.preferences.sources.items,
   geoLocation: state.general.supports.geoLocation,
   userLanguage: state.general.userLanguage,
-})
+});
 
-export default connect(mapStateToProps)(ChooseSourcesPage)
+export default connect(mapStateToProps)(ChooseSourcesPage);

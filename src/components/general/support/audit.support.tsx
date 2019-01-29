@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { isAndroid, isBrowser, isIOS } from 'react-device-detect'
-import { connect } from 'react-redux'
+import * as React from 'react';
+import { isAndroid, isBrowser, isIOS } from 'react-device-detect';
+import { connect } from 'react-redux';
 
 // Redux
 import {
@@ -8,12 +8,14 @@ import {
   setOnlineStatus,
   setPlatform,
   setStandaloneStatus,
-} from '../../../data/redux/actions/index.actions'
+} from '../../../data/redux/actions/index.actions';
+import { FeatureSupport } from '../../../data/interfaces/general.interface';
 
 export interface IAuditProps {
-  theme?: any
-  isOnline: boolean
-  isStandalone: boolean
+  theme?: any;
+  isOnline: boolean;
+  isStandalone: boolean;
+  hasAudited: boolean;
   platform: string;
   dispatch: any;
 }
@@ -33,9 +35,49 @@ class Audit extends React.Component<IAuditProps, any> {
     };
   }
 
+  static defaultProps = {
+    hasAudited: null,
+  };
+
   componentDidMount() {
-    this.handleNetworkAudit();
-    this.handleDeviceAudit();
+    if (this.props.hasAudited === false) {
+      this.handleNetworkAudit();
+      this.handleDeviceAudit();
+    }
+  }
+
+  /**
+   * @description
+   * @date 2019-01-29
+   * @param {IAuditProps} nextProps
+   * @param {IAuditState} nexState
+   * @returns {boolean}
+   * @memberof Audit
+   */
+  shouldComponentUpdate(
+    nextProps: IAuditProps,
+    nexState: IAuditState,
+  ): boolean {
+    const { hasAudited } = this.props;
+    if (nextProps.hasAudited !== hasAudited) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * @description
+   * @date 2019-01-29
+   * @param {IAuditProps} nextProps
+   * @param {IAuditState} nexState
+   * @memberof Audit
+   */
+  componentDidUpdate(nextProps: IAuditProps, nexState: IAuditState): void {
+    if (nextProps.hasAudited === false || this.props.hasAudited === false) {
+      this.handleNetworkAudit();
+      this.handleDeviceAudit();
+    }
   }
 
   /**
@@ -47,8 +89,8 @@ class Audit extends React.Component<IAuditProps, any> {
    * @memberof Audit
    */
   handleNetworkAudit() {
-    window.addEventListener("online", event => this.setOnlineStatus(true));
-    window.addEventListener("offline", event => this.setOnlineStatus(false));
+    window.addEventListener('online', event => this.setOnlineStatus(true));
+    window.addEventListener('offline', event => this.setOnlineStatus(false));
     this.setOnlineStatus(navigator.onLine);
   }
 
@@ -69,16 +111,16 @@ class Audit extends React.Component<IAuditProps, any> {
    * @memberof Audit
    */
   setOSPlatform() {
-    const android: string = "android";
-    const iOS: string = "ios";
-    let platform: string = "unknown";
+    const android: string = 'android';
+    const iOS: string = 'ios';
+    let platform: string = 'unknown';
 
     if (isIOS) {
       platform = iOS;
     } else if (isAndroid) {
       platform = android;
     } else if (isBrowser) {
-      platform = "desktop";
+      platform = 'desktop';
     }
 
     this.props.dispatch(setPlatform(platform));
@@ -91,24 +133,29 @@ class Audit extends React.Component<IAuditProps, any> {
    */
   setFeatureSupport() {
     const supportsGeolocation: boolean = !!(navigator && navigator.geolocation);
-    const supportsBatteryInformation: boolean = "getBattery" in window.navigator;
-    let supportsNetworkInformation;
+    const supportsBatteryInformation: boolean =
+      'getBattery' in window.navigator;
+    let supportsNetworkInformation: boolean = false;
 
     if (window.navigator.connection) {
       if (
-        "effectiveType" in window.navigator.connection ||
-        "type" in window.navigator.connection
+        'effectiveType' in window.navigator.connection ||
+        'type' in window.navigator.connection
       ) {
         supportsNetworkInformation = true;
       }
     }
-    const supportsWebNotifications: boolean = "Notification" in window;
 
-    const features = {
-      geoLocation: supportsGeolocation,
-      batteryStatus: supportsBatteryInformation,
-      networkInformation: supportsNetworkInformation,
-      notifications: supportsWebNotifications,
+    const supportsWebNotifications: boolean = 'Notification' in window;
+
+    const features: FeatureSupport = {
+      hasAudited: true,
+      supports: {
+        geoLocation: supportsGeolocation,
+        batteryStatus: supportsBatteryInformation,
+        networkInformation: supportsNetworkInformation,
+        notifications: supportsWebNotifications,
+      },
     };
 
     this.props.dispatch(setFeatureSupport(features));
@@ -120,9 +167,9 @@ class Audit extends React.Component<IAuditProps, any> {
    * @memberof Audit
    */
   setStandaloneStatus() {
-    if (typeof window !== "undefined" && typeof document !== "undefined") {
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       const isInWebAppiOS = window.navigator.standalone === true;
-      const isInWebAppChrome = window.matchMedia("(display-mode: standalone)")
+      const isInWebAppChrome = window.matchMedia('(display-mode: standalone)')
         .matches;
       const status: boolean = !!(isInWebAppiOS || isInWebAppChrome);
 
@@ -138,10 +185,10 @@ class Audit extends React.Component<IAuditProps, any> {
     if (status) {
       this.props.dispatch(setOnlineStatus(status));
     }
-  }
+  };
 
   public render() {
-    const { children, isOnline, isStandalone, platform } = this.props;
+    const { isOnline, isStandalone, platform } = this.props;
 
     return (
       <div
@@ -149,19 +196,18 @@ class Audit extends React.Component<IAuditProps, any> {
         data-online={`${isOnline}`}
         data-standalone={`${isStandalone}`}
         data-platform={`${platform}`}
-      >
-        {children}
-      </div>
+      />
     );
   }
 
   componentWillUnmount() {
-    window.removeEventListener("online", () => this.setOnlineStatus(true));
-    window.removeEventListener("offline", () => this.setOnlineStatus(false));
+    window.removeEventListener('online', () => this.setOnlineStatus(true));
+    window.removeEventListener('offline', () => this.setOnlineStatus(false));
   }
 }
 
 const mapStateToProps = (state: any) => ({
+  hasAudited: state.general.hasAudited,
   isOnline: state.general.isOnline,
   isStandalone: state.general.isStandalone,
   platform: state.general.platform,

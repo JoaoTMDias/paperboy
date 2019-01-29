@@ -21,5 +21,17 @@
     url('/fonts/paperboy/headings/regular/paperboy-headings-regular.ttf')
       format('truetype');
   font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'paperboy-content-regular';
+  src: url('/fonts/paperboy/content/regular/paperboy-content-regular.woff2')
+      format('woff2'),
+    url('/fonts/paperboy/content/regular/paperboy-content-regular.woff')
+      format('woff'),
+    url('/fonts/paperboy/content/regular/paperboy-content-regular.ttf')
+      format('truetype');
+  font-style: normal;
   font-weight: 400;
 }

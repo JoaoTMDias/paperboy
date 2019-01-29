@@ -6,8 +6,8 @@ $ratio: $golden-ratio;
 
 // 1. Global
 // ---------
-$top-navigation-bar-height: rem-calc(48);
-$bottom-navigation-bar-height: $top-navigation-bar-height;
+$top-navigation-bar-height: rem-calc(44);
+$bottom-navigation-bar-height: rem-calc(48);
 $button-radius: $bottom-navigation-bar-height;
 // 2. Breakpoints
 // --------------
@@ -46,6 +46,7 @@ $heading-font-family: 'paperboy-font-bold', -apple-system, BlinkMacSystemFont,
 $body-font-family: 'paperboy-font-regular', -apple-system, BlinkMacSystemFont,
   'Open Sans', 'Roboto', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
   'Helvetica Neue', sans-serif;
+$content-font-family: 'paperboy-content-regular', Times, Georgia, serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;

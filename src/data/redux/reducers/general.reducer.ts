@@ -6,11 +6,17 @@ import {
   SET_PLATFORM,
   SET_USER_COUNTRY,
 } from '../../constants/index.constants';
+import {
+  IGeneral,
+  FeatureSupport,
+  UserLanguage,
+} from '../../interfaces/general.interface';
 
 // Preferences initial state
 const initialState = {
   version: '0.0.1',
   platform: 'unknown',
+  hasAudited: false,
   isOnline: true,
   isStandalone: false,
   supports: {
@@ -21,9 +27,21 @@ const initialState = {
   },
   userLanguage: {
     hasLocation: false,
-    data: {},
+    data: {
+      languages: null,
+      distance: null,
+      countryCode: null,
+      countryName: null,
+    },
   },
 };
+
+interface GeneralActions {
+  type: string;
+  status: boolean;
+  platform: string;
+  payload: any;
+}
 
 /**
  * General App Reducer
@@ -32,7 +50,7 @@ const initialState = {
  * @param {any} action
  * @returns
  */
-function general(state = initialState, action) {
+function general(state: IGeneral = initialState, action: GeneralActions) {
   switch (action.type) {
     case SET_ONLINE_STATUS:
       return {
@@ -53,14 +71,14 @@ function general(state = initialState, action) {
       };
 
     case SET_FEATURE_SUPPORT:
+      const { hasAudited, ...rest } = action.payload;
+
+      console.log('rest: ', ...rest);
+
       return {
         ...state,
-        supports: Object.assign({}, state.supports, {
-          geoLocation: action.geoLocation,
-          batteryStatus: action.batteryStatus,
-          networkInformation: action.networkInformation,
-          notifications: action.notifications,
-        }),
+        hasAudited: action.payload.hasAudited,
+        ...rest,
       };
 
     case SET_USER_COUNTRY:

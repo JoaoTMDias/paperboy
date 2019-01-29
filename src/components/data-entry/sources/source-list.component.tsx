@@ -9,20 +9,20 @@ interface ISourcesListProps {
   layout?: 'horizontal' | 'vertical'
   label: string;
   data: any | null
-  handleChange: any;
-  selectedOptions: string[];
+  handleChange: any
+  selectedOptions: string[]
 }
 
 // Assets
-import IconBBCNews from "../../../assets/images/sources/icon-bbc-news.svg";
-import IconCNN from "../../../assets/images/sources/icon-cnn.svg";
-import IconFoxNews from "../../../assets/images/sources/icon-fox-news.svg";
-import IconGoogleNews from "../../../assets/images/sources/icon-google-news.svg";
-import IconGuardian from "../../../assets/images/sources/icon-guardian.svg";
-import IconNewYorkTimes from "../../../assets/images/sources/icon-new-york-times.svg";
-import IconTimesOfIndia from "../../../assets/images/sources/icon-times-of-india.svg";
-import IconUSAToday from "../../../assets/images/sources/icon-usa-today.svg";
-import IconWallStreetJournal from "../../../assets/images/sources/icon-wall-street-journal.svg";
+import IconBBCNews from "../../../assets/images/sources/icon-bbc-news.svg"
+import IconCNN from "../../../assets/images/sources/icon-cnn.svg"
+import IconFoxNews from "../../../assets/images/sources/icon-fox-news.svg"
+import IconGoogleNews from "../../../assets/images/sources/icon-google-news.svg"
+import IconGuardian from "../../../assets/images/sources/icon-guardian.svg"
+import IconNewYorkTimes from "../../../assets/images/sources/icon-new-york-times.svg"
+import IconTimesOfIndia from "../../../assets/images/sources/icon-times-of-india.svg"
+import IconUSAToday from "../../../assets/images/sources/icon-usa-today.svg"
+import IconWallStreetJournal from "../../../assets/images/sources/icon-wall-street-journal.svg"
 
 /**
  * @description Sources: List of Sources
@@ -31,37 +31,37 @@ import IconWallStreetJournal from "../../../assets/images/sources/icon-wall-stre
  * @extends {React.SFC}
  */
 const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
-  const { data, layout } = props;
+  const { data, layout } = props
 
   const renderData = () => {
-    let item;
+    let item
 
     if (layout === "horizontal") {
       item = data.map((source: any, index: number) => {
-        let cover;
+        let cover
 
         if (source.id === "bbc-news") {
-          cover = IconBBCNews;
+          cover = IconBBCNews
         } else if (source.id === "cnn") {
-          cover = IconCNN;
+          cover = IconCNN
         } else if (source.id === "fox-news") {
-          cover = IconFoxNews;
+          cover = IconFoxNews
         } else if (source.id === "google-news") {
-          cover = IconGoogleNews;
+          cover = IconGoogleNews
         } else if (source.id === "the-times-of-india") {
-          cover = IconTimesOfIndia;
+          cover = IconTimesOfIndia
         } else if (source.id === "the-new-york-times") {
-          cover = IconNewYorkTimes;
+          cover = IconNewYorkTimes
         } else if (source.id === "the-guardian-uk") {
-          cover = IconGuardian;
+          cover = IconGuardian
         } else if (source.id === "usa-today") {
-          cover = IconUSAToday;
+          cover = IconUSAToday
         } else if (source.id === "the-wall-street-journal") {
-          cover = IconWallStreetJournal;
+          cover = IconWallStreetJournal
         } else {
           cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${
             source.url
-          }&size=70..120..200`;
+          }&size=70..120..200`
         }
 
         return (
@@ -69,41 +69,43 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
             key={source.id}
             id={source.id}
             label={source.name}
-            src={cover as string}
+            src={cover}
             handleChange={(event: React.SyntheticEvent) =>
               props.handleChange(event, index)
             }
             checked={props.selectedOptions.indexOf(source.id) > -1}
           />
-        );
-      });
+        )
+      })
     } else if (layout === "vertical") {
       item = data.map((source: any, index: number) => {
-        let cover;
+        let cover
 
         if (source.id === "bbc-news") {
-          cover = IconBBCNews;
+          cover = IconBBCNews
         } else if (source.id === "cnn") {
-          cover = IconCNN;
+          cover = IconCNN
         } else if (source.id === "fox-news") {
-          cover = IconFoxNews;
+          cover = IconFoxNews
         } else if (source.id === "google-news") {
-          cover = IconGoogleNews;
+          cover = IconGoogleNews
         } else if (source.id === "the-times-of-india") {
-          cover = IconTimesOfIndia;
+          cover = IconTimesOfIndia
         } else if (source.id === "the-new-york-times") {
-          cover = IconNewYorkTimes;
+          cover = IconNewYorkTimes
         } else if (source.id === "the-guardian-uk") {
-          cover = IconGuardian;
+          cover = IconGuardian
         } else if (source.id === "usa-today") {
-          cover = IconUSAToday;
+          cover = IconUSAToday
         } else if (source.id === "the-wall-street-journal") {
-          cover = IconWallStreetJournal;
+          cover = IconWallStreetJournal
         } else {
+          console.log("source: ", source.url)
           cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${
             source.url
-          }&size=70..120..200`;
+          }&size=70..120..200`
         }
+
         return (
           <SourceListItem
             key={source.id}
@@ -115,12 +117,12 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
             }
             checked={props.selectedOptions.indexOf(source.id) > -1}
           />
-        );
-      });
+        )
+      })
     }
 
-    return item;
-  };
+    return item
+  }
 
   return (
     <SourcesListWrapper
@@ -130,13 +132,13 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
     >
       {props.data ? renderData() : null}
     </SourcesListWrapper>
-  );
-};
+  )
+}
 
 SourcesList.defaultProps = {
   layout: "vertical",
   label: "label",
-};
+}
 
 // Styling
 const SourcesListWrapper = styled.ul`

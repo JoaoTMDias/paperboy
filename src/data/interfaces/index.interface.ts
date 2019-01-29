@@ -1,11 +1,3 @@
-import { ILatestNews, ILatestNewsArticle } from "./news.interface";
-import { ChosenNewsSources, PreferecesReducer } from "./preferences.interface";
-import NewsSourcesCategories from "./sources.interface";
-
-export {
-  ILatestNews,
-  ILatestNewsArticle,
-  NewsSourcesCategories,
-  PreferecesReducer,
-  ChosenNewsSources,
-};
+export * from "./news.interface";
+export * from "./preferences.interface";
+export * from "./sources.interface";

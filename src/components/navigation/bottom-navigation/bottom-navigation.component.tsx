@@ -2,14 +2,13 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import BottomTabItem from "./bottom-navigation-item.component";
-
 import {
   IconCategories,
   IconNews,
   IconSaved,
   IconSearch,
   IconSettings,
+  TabItem,
 } from "../../index";
 
 import {
@@ -37,21 +36,21 @@ const BottomNavigation: React.FunctionComponent<
   <Wrapper>
     <Navigation>
       <List>
-        <BottomTabItem to={NEWS_PAGE} label="News">
+        <TabItem to={NEWS_PAGE} label="News">
           <IconNews />
-        </BottomTabItem>
-        <BottomTabItem to={SAVED_PAGE} label="Saved">
+        </TabItem>
+        <TabItem to={SAVED_PAGE} label="Saved">
           <IconSaved />
-        </BottomTabItem>
-        <BottomTabItem to={SEARCH_PAGE} label="Search">
+        </TabItem>
+        <TabItem to={SEARCH_PAGE} label="Search">
           <IconSearch />
-        </BottomTabItem>
-        <BottomTabItem to={CATEGORIES_PAGE} label="Categories">
+        </TabItem>
+        <TabItem to={CATEGORIES_PAGE} label="Categories">
           <IconCategories />
-        </BottomTabItem>
-        <BottomTabItem to={SETTINGS_PAGE} label="Settings">
+        </TabItem>
+        <TabItem to={SETTINGS_PAGE} label="Settings">
           <IconSettings />
-        </BottomTabItem>
+        </TabItem>
       </List>
     </Navigation>
   </Wrapper>

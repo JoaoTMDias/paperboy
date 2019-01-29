@@ -87,6 +87,7 @@ class NewsPage extends React.Component<INewsPageProps, any> {
             fullheight={true}
             isFixed={false}
             title="Current Page is: News"
+            offsetTop="2.75rem"
           >
             {this.renderNewsTabs()}
           </Container>

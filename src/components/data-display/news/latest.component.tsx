@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from "react"
 import { connect } from "react-redux";
 import styled from "styled-components";
 
@@ -100,16 +100,14 @@ class LatestNewsTab extends React.Component<ILatestNewsTabProps, any> {
       const list = latest.articles.map(
         (article: ILatestNewsArticle, index: number) => {
           return (
-            <List key={`latest-news__article__${index}`}>
-              <Item id={`latest-news__article__${index}`}>
-                <ThumbnailLarge id={index} options={article} />
-              </Item>
-            </List>
+            <Item key={index} id={`latest-news__article__${index}`}>
+              <ThumbnailLarge id={index} options={article} />
+            </Item>
           );
         },
       );
 
-      return list;
+      return <List>{list}</List>;
     } else {
       return <UIContentSpinner isFullPage={true} />;
     }
@@ -123,6 +121,7 @@ const List = styled.ol`
   list-style-type: none;
   margin: 0;
   padding: 0;
+  transform: translateY(var(--top-navigation-bar-height));
 
   display: flex;
   flex-direction: column;
