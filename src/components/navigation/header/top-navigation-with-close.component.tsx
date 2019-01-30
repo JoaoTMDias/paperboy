@@ -33,8 +33,23 @@ interface IUITopNavigationBarWithCloseProps {
   theme?: any;
 }
 
+interface HeroTitle {
+  element: HTMLDivElement | null;
+  height: number;
+}
+
+interface Hero {
+  element: HTMLDivElement | null;
+  title: HeroTitle;
+  height: number;
+  trigger: number;
+}
+
 interface IUITopNavigationBarWithCloseState {
   root: HTMLElement | null;
+  speed?: number;
+  hero: Hero;
+  navbar: HTMLDivElement | null;
 }
 
 /**
@@ -54,6 +69,17 @@ class UITopNavigationBarWithClose extends React.Component<
 
     this.state = {
       root: null,
+      speed: 0.2,
+      hero: {
+        element: null,
+        title: {
+          element: null,
+          height: 107,
+        },
+        height: 384,
+        trigger: 277,
+      },
+      navbar: null,
     };
   }
 
@@ -61,9 +87,34 @@ class UITopNavigationBarWithClose extends React.Component<
 
   componentDidMount() {
     if (document !== undefined) {
+      const hero: HTMLDivElement | null = document.querySelector(
+        '.above-the-fold',
+      );
+      const heroHeight: number = 384;
+      const heroTitleWrapper: HTMLDivElement | null = document.querySelector(
+        '.hero__title',
+      );
+      const herotitleWrapperHeight: number | null = heroTitleWrapper
+        ? heroTitleWrapper.offsetHeight
+        : 107;
+
+      const pastScrollHeightTrigger = heroHeight - herotitleWrapperHeight;
+      const navbar: HTMLDivElement | null = this.navBar.current;
+      console.log('navbar: ', navbar);
+
       this.setState(
         {
           root: document.documentElement,
+          hero: {
+            element: hero,
+            title: {
+              element: heroTitleWrapper,
+              height: herotitleWrapperHeight,
+            },
+            trigger: pastScrollHeightTrigger,
+            height: heroHeight,
+          },
+          navbar: navbar,
         },
         () => {
           document.addEventListener('scroll', debounce(this.handleScroll, 16));
@@ -93,18 +144,17 @@ class UITopNavigationBarWithClose extends React.Component<
    * @memberof Header
    */
   handleScroll() {
-    const nav = document.querySelector('.above-the-fold');
-    const navbar: HTMLDivElement | null = this.navBar.current;
-    const root = this.state.root ? this.state.root : null;
-    if (nav && navbar && root) {
+    const { root, hero, navbar } = this.state;
+
+    if (hero && navbar && root) {
       const ScrollPosition = getScrollPosition();
-      if (ScrollPosition.y >= 64) {
+      if (ScrollPosition.y >= hero.trigger) {
         root.style.setProperty(
           '--top-navigation-bar--detail-foreground',
           'var(--color-gray9)',
         );
         navbar.classList.add('is-scrolling');
-      } else if (ScrollPosition.y < 64) {
+      } else if (ScrollPosition.y < hero.trigger) {
         root.style.setProperty(
           '--top-navigation-bar--detail-foreground',
           'var(--color-white)',
@@ -132,13 +182,13 @@ class UITopNavigationBarWithClose extends React.Component<
           <IconClose />
         </Close>
         <div className="center">
-          <h2 className="title">{title}</h2>
           <LazyLoadingImage
             width="24"
             height="24"
             src={CNN_LOGO}
             alt="CNN Logo"
           />
+          <h2 className="title">{title}</h2>
         </div>
         <Close
           className="share"
@@ -173,7 +223,7 @@ const Container = styled.div`
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
 
@@ -195,7 +245,7 @@ const Container = styled.div`
 
   img {
     border-radius: ${rem('24px')};
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(30vw, 0, 0);
   }
 
   .close,
@@ -212,11 +262,14 @@ const Container = styled.div`
 
     .title {
       opacity: 1;
-      width: calc(100% - ${rem('24px')});
+      position: relative;
+      width: 100%;
+      flex: auto;
     }
 
     img {
-      transform: translate3d(-30vw, 0, 0);
+      flex: 1;
+      transform: translate3d(0, 0, 0);
     }
   }
 `;

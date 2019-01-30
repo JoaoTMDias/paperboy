@@ -15,12 +15,14 @@ import {
 import { NEWS_PAGE } from '../../../data/constants/index.constants';
 import { ILatestNewsArticle } from '../../../data/interfaces/news.interface';
 
-interface IArticleDetailPage {
+interface IArticleDetailPageProps {
   authenticated: boolean;
   location: H.Location;
 }
 
-class ArticleDetailPage extends React.Component<IArticleDetailPage, any> {
+class ArticleDetailPage extends React.Component<IArticleDetailPageProps, any> {
+  private hero = React.createRef<HTMLDivElement>();
+
   componentDidMount() {
     console.log('props: ', this.props.location.state);
   }
@@ -39,8 +41,8 @@ class ArticleDetailPage extends React.Component<IArticleDetailPage, any> {
             offsetTop="0"
           >
             <Article>
-              <Hero className="above-the-fold">
-                <HeroCopy>
+              <Hero ref={this.hero} id="hero" className="above-the-fold">
+                <HeroCopy className="hero__title">
                   <h2 id={`hero-cover-title--id`} className="title">
                     {data.title}
                   </h2>
@@ -103,9 +105,10 @@ const Hero = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  z-index: 1;
 
   img,
-  svg {
+  svg.image__placeholder {
     position: absolute;
     top: 0;
     right: 0;
@@ -121,15 +124,18 @@ const Hero = styled.div`
 
   &:after {
     display: block;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0),
       rgba(0, 0, 0, 0.9)
     );
-    margin-top: -75%;
     height: 75%;
     width: 100%;
+    overflow: hidden;
     content: '';
   }
 `;
@@ -196,6 +202,7 @@ const HeroCopy = styled.div`
 const ArticleContent = styled.div`
   padding: calc(var(--global-padding) * 1.5) var(--global-padding);
   color: var(--color-gray9);
+  z-index: 2;
 
   .lead {
     font-family: var(--body-font-family);
