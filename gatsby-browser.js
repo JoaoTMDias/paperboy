@@ -2,8 +2,8 @@
  * @description Wrap Redux Root Element
  * @date 2019-01-15
  */
-import wrapWithProvider from './wrap-with-provider'
-export const wrapRootElement = wrapWithProvider
+import wrapWithProvider from './wrap-with-provider';
+export const wrapRootElement = wrapWithProvider;
 
 /**
  * @description When the bundle is downloaded, imports
@@ -12,9 +12,9 @@ export const wrapRootElement = wrapWithProvider
  */
 export const onClientEntry = async () => {
   if (typeof IntersectionObserver === `undefined`) {
-    await import(`intersection-observer`)
+    await import(`intersection-observer`);
   }
-}
+};
 
 /**
  * @description Promise-based window dialog that returns a resolve or a rejection.
@@ -23,21 +23,26 @@ export const onClientEntry = async () => {
  */
 const confirmDialog = msg => {
   return new Promise(function(resolve, reject) {
-    let confirmed = window.confirm(msg)
+    let confirmed = window.confirm(msg);
 
-    return confirmed ? resolve(true) : reject(false)
-  })
-}
+    return confirmed ? resolve(true) : reject(false);
+  });
+};
+
+
+export const onServiceWorkerUpdateFound = () => {
+  console.log('A new update has been found.')
+};
 
 /**
  * @description When the service worker detects changes,
  * prompts the user to reload the window and use the latest version.
  * @date 2019-01-15
  */
-export const onServiceWorkerUpdateFound = () => {
+export const onServiceWorkerUpdateReady = () => {
   confirmDialog(
-    `Paperboy has been updated.` + `Reload to display the latest version?`
+    `Paperboy has been updated.` + `Reload to display the latest version?`,
   )
     .then(() => window.location.reload())
-    .catch(err => console.info(`Service Worker will keep the current version`))
-}
+    .catch(err => console.info(`Service Worker will keep the current version`));
+};

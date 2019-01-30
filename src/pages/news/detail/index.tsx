@@ -31,7 +31,7 @@ class ArticleDetailPage extends React.Component<IArticleDetailPage, any> {
       const data: ILatestNewsArticle = state;
       return (
         <Layout header={false} bottomNavigation={false}>
-          <UITopNavigationBarWithClose title="Teste" source="source" />
+          <UITopNavigationBarWithClose title={data.title} source="source" />
           <Container
             fullwidth={true}
             fullheight={true}
@@ -39,7 +39,7 @@ class ArticleDetailPage extends React.Component<IArticleDetailPage, any> {
             offsetTop="0"
           >
             <Article>
-              <Hero>
+              <Hero className="above-the-fold">
                 <HeroCopy>
                   <h2 id={`hero-cover-title--id`} className="title">
                     {data.title}

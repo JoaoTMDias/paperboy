@@ -1,12 +1,12 @@
-import { rem } from 'polished'
-import * as React from 'react'
-import { connect } from 'react-redux'
-import styled from 'styled-components'
+import { rem } from 'polished';
+import * as React from 'react';
+import { connect } from 'react-redux';
+import styled from 'styled-components';
 
-import { IconBrandingSmall, IconShare } from '../../index'
+import { IconBrandingSmall, IconSafariShare } from '../../index';
 
 interface IAddToHomeScreenProps {
-  theme?: any
+  theme?: any;
 }
 
 /**
@@ -17,7 +17,7 @@ interface IAddToHomeScreenProps {
  */
 class AddToHomeScreen extends React.PureComponent<IAddToHomeScreenProps, any> {
   constructor(props: IAddToHomeScreenProps) {
-    super(props)
+    super(props);
   }
 
   public render() {
@@ -36,11 +36,11 @@ class AddToHomeScreen extends React.PureComponent<IAddToHomeScreenProps, any> {
             you're on the go.
           </p>
           <p id="dialog__tip" className="dialog__content__tip">
-            Tap <IconShare /> and then 'Add to homescreen'{' '}
+            Tap <IconSafariShare /> and then 'Add to homescreen'{' '}
           </p>
         </Content>
       </React.Fragment>
-    )
+    );
   }
 }
 
@@ -55,15 +55,15 @@ const IconStrip = styled.figure`
   svg {
     border-radius: 4px;
   }
-`
+`;
 
 const Content = styled.div`
   width: 100%;
   margin: 0 auto;
-`
+`;
 
 const mapStateToProps = (state: any) => ({
   isStandalone: state.general.isStandalone,
-})
+});
 
-export default connect(mapStateToProps)(AddToHomeScreen)
+export default connect(mapStateToProps)(AddToHomeScreen);
