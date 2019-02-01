@@ -183,6 +183,7 @@ class UITopNavigationBarWithClose extends React.Component<
         </Close>
         <div className="center">
           <LazyLoadingImage
+            id="brand-logo"
             width="24"
             height="24"
             src={CNN_LOGO}
@@ -243,7 +244,10 @@ const Container = styled.div`
     }
   }
 
-  img {
+  img,
+  #brand-logo {
+    width: ${rem('24px')};
+    height: ${rem('24px')};
     border-radius: ${rem('24px')};
     transform: translate3d(30vw, 0, 0);
   }

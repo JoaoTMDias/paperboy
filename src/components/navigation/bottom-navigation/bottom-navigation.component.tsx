@@ -1,6 +1,6 @@
 // Libraries
-import * as React from "react";
-import styled from "styled-components";
+import * as React from 'react';
+import styled from 'styled-components';
 
 import {
   IconCategories,
@@ -9,7 +9,7 @@ import {
   IconSearch,
   IconSettings,
   TabItem,
-} from "../../index";
+} from '../../index';
 
 import {
   CATEGORIES_PAGE,
@@ -17,7 +17,7 @@ import {
   SAVED_PAGE,
   SEARCH_PAGE,
   SETTINGS_PAGE,
-} from "../../../data/constants/index.constants";
+} from '../../../data/constants/index.constants';
 
 // Component Props
 interface IBottomNavigationProps {
@@ -61,13 +61,17 @@ const Wrapper = styled.footer`
   width: 100%;
   max-width: 100vw;
   height: var(--bottom-navigation-bar-height);
-  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   color: var(--color-white);
   background-color: var(--color-black);
   padding: 0;
+  position: fixed;
+
+  @supports (position: sticky) or (position: -webkit-sticky) {
+    position: sticky;
+  }
 `;
 
 const Navigation = styled.nav`

@@ -6,6 +6,7 @@ import styled, { css, keyframes } from 'styled-components';
 // Component Props
 interface ILazyLoadingImageProps {
   theme?: any;
+  id?: string;
   width?: string;
   height?: string;
   src: string;
@@ -22,8 +23,8 @@ interface ILazyLoadingImageProps {
  */
 class LazyLoadingImage extends React.Component<ILazyLoadingImageProps> {
   static defaultProps = {
-    width: '105',
-    height: '105',
+    width: '24',
+    height: '24',
     placeholderColor: '#d2d2d4',
     animated: false,
   };
@@ -55,15 +56,27 @@ class LazyLoadingImage extends React.Component<ILazyLoadingImageProps> {
    * render
    */
   public render() {
-    const { width, height, src, alt, placeholderColor, animated } = this.props;
+    const {
+      id,
+      width,
+      height,
+      src,
+      alt,
+      placeholderColor,
+      animated,
+    } = this.props;
 
     return (
       <LazyImage
+        id={id}
         src={src}
         alt={alt}
+        width={width}
+        height={height}
         debounceDurationMs={250}
         placeholder={({ imageProps, ref }) => (
           <Placeholder
+            id={id}
             ref={ref}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -83,8 +96,10 @@ class LazyLoadingImage extends React.Component<ILazyLoadingImageProps> {
           </Placeholder>
         )}
         actual={() => {
+          debugger;
           return (
             <Image
+              id={id}
               className="image"
               src={src}
               width={width}
