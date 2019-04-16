@@ -1,17 +1,17 @@
 // Libraries
-import { rem } from "polished";
-import * as React from "react";
-import styled, { css, keyframes } from "styled-components";
+import { rem } from 'polished';
+import * as React from 'react';
+import styled, { css, keyframes } from 'styled-components';
 
 // Component Props
 interface IUISpinnerProps {
-  theme?: any;
-  color?: string;
-  duration?: number;
-  size?: number;
-  center?: boolean;
-  isTemporary?: boolean;
-  isFullPage?: boolean;
+	theme?: any;
+	color?: string;
+	duration?: number;
+	size?: number;
+	center?: boolean;
+	isTemporary?: boolean;
+	isFullPage?: boolean;
 }
 
 /**
@@ -21,34 +21,34 @@ interface IUISpinnerProps {
  * @extends {React.SFC}
  */
 const UIContentSpinner: React.FunctionComponent<IUISpinnerProps> = props => {
-  const { size, ...spinnerProps } = props;
-  return (
-    <Wrapper tabIndex={-1} {...spinnerProps}>
-      <svg
-        className="spinner__container"
-        viewBox="0 0 50 50"
-        width={`${size}`}
-        height={`${size}`}
-      >
-        <circle
-          className="spinner__icon"
-          cx="25"
-          cy="25"
-          r="20"
-          fill="none"
-          strokeWidth="5"
-        />
-      </svg>
-    </Wrapper>
-  );
+	const { size, ...spinnerProps } = props;
+	return (
+		<Wrapper tabIndex={-1} {...spinnerProps}>
+			<svg
+				className="spinner__container"
+				viewBox="0 0 50 50"
+				width={`${size}`}
+				height={`${size}`}
+			>
+				<circle
+					className="spinner__icon"
+					cx="25"
+					cy="25"
+					r="20"
+					fill="none"
+					strokeWidth="5"
+				/>
+			</svg>
+		</Wrapper>
+	);
 };
 
 UIContentSpinner.defaultProps = {
-  color: "var(--color-primary)",
-  duration: 3000,
-  center: true,
-  size: 32,
-  isTemporary: false,
+	color: 'var(--color-primary)',
+	duration: 3000,
+	center: true,
+	size: 32,
+	isTemporary: false,
 };
 
 ///////////
@@ -89,55 +89,55 @@ const spinnerRotate = keyframes`
 
 // Markup
 const Wrapper = styled.div`
-  width: 100%;
-  height: ${(props: IUISpinnerProps) => {
-    if (props.isFullPage) {
-      return "100vh";
-    } else if (props.center) {
-      return "100%";
-    } else {
-      return `${rem(`${props.size}px`)}`;
-    }
-  }};
-  margin: 0 auto;
-  position: relative;
-  display: table;
-  display: flex;
-  flex-direction: row;
-  justify-content: ${(props: IUISpinnerProps) =>
-    props.center ? `center` : `inherit`};
-  align-items: ${(props: IUISpinnerProps) =>
-    props.center ? `center` : `inherit`};
-  background-color: transparent;
-  opacity: 1;
-  user-select: none;
-  pointer-events: none;
+	width: 100%;
+	height: ${(props: IUISpinnerProps) => {
+		if (props.isFullPage) {
+			return '100vh';
+		} else if (props.center) {
+			return '100%';
+		} else {
+			return `${rem(`${props.size}px`)}`;
+		}
+	}};
+	margin: 0 auto;
+	position: relative;
+	display: table;
+	display: flex;
+	flex-direction: row;
+	justify-content: ${(props: IUISpinnerProps) =>
+		props.center ? `center` : `inherit`};
+	align-items: ${(props: IUISpinnerProps) =>
+		props.center ? `center` : `inherit`};
+	background-color: transparent;
+	opacity: 1;
+	user-select: none;
+	pointer-events: none;
 
-  ${(props: IUISpinnerProps) =>
-    props.isTemporary &&
-    css`
-      animation-name: ${hideTimeout};
-      animation-duration: 500ms;
-      animation-delay: ${(props: IUISpinnerProps) =>
-        props.duration ? `${props.duration}ms` : `3000ms`};
-      animation-timing-function: ${(props: IUISpinnerProps) =>
-        props.theme.easeInBack};
-      animation-fill-mode: forwards;
-    `};
+	${(props: IUISpinnerProps) =>
+		props.isTemporary &&
+		css`
+			animation-name: ${hideTimeout};
+			animation-duration: 500ms;
+			animation-delay: ${(props: IUISpinnerProps) =>
+				props.duration ? `${props.duration}ms` : `3000ms`};
+			animation-timing-function: ${(props: IUISpinnerProps) =>
+				props.theme.easeInBack};
+			animation-fill-mode: forwards;
+		`};
 
-  .spinner {
-    &__content {
-      display: table-cell;
-      vertical-align: middle;
-      display: flex;
-      z-index: 2;
-      position: absolute;
-      top: 50%;
-      left: 50%;
+	.spinner {
+		&__content {
+			display: table-cell;
+			vertical-align: middle;
+			display: flex;
+			z-index: 2;
+			position: absolute;
+			top: 50%;
+			left: 50%;
 
-      ${(props: IUISpinnerProps) =>
-        props.size &&
-        css`
+			${(props: IUISpinnerProps) =>
+				props.size &&
+				css`
 					margin-top: ${rem(`${-1 * (props.size * 0.5)}px`)};
 					margin-right: 0;
 					margin-bottom: 0;
@@ -147,32 +147,33 @@ const Wrapper = styled.div`
 					height: ${(props: IUISpinnerProps) => rem(`${props.size}px`)};
 				`};
 
-      animation-name: ${spinnerRotate};
-      animation-duration: ${(props: IUISpinnerProps) => `${props.duration}ms`};
-      animation-timing-function: linear;
-      animation-delay: 0s;
-      animation-iteration-count: infinite;
-      animation-direction: normal;
-      animation-fill-mode: none;
-      animation-play-state: running;
-    }
+			animation-name: ${spinnerRotate};
+			animation-duration: ${(props: IUISpinnerProps) =>
+				`${props.duration}ms`};
+			animation-timing-function: linear;
+			animation-delay: 0s;
+			animation-iteration-count: infinite;
+			animation-direction: normal;
+			animation-fill-mode: none;
+			animation-play-state: running;
+		}
 
-    &__icon {
-      stroke: ${(props: IUISpinnerProps) => `${props.color}`};
-      stroke-linecap: round;
+		&__icon {
+			stroke: ${(props: IUISpinnerProps) => `${props.color}`};
+			stroke-linecap: round;
 
-      animation-name: ${dashAnimation};
-      animation-duration: ${(props: IUISpinnerProps) =>
-        props.duration ? `${props.duration * 0.5}ms` : "3000ms"};
-      animation-timing-function: ${(props: IUISpinnerProps) =>
-        props.theme.easeInOutQuint};
-      animation-iteration-count: infinite;
-      animation-delay: 0;
-      animation-direction: normal;
-      animation-fill-mode: none;
-      animation-play-state: running;
-    }
-  }
+			animation-name: ${dashAnimation};
+			animation-duration: ${(props: IUISpinnerProps) =>
+				props.duration ? `${props.duration * 0.5}ms` : '3000ms'};
+			animation-timing-function: ${(props: IUISpinnerProps) =>
+				props.theme.easeInOutQuint};
+			animation-iteration-count: infinite;
+			animation-delay: 0;
+			animation-direction: normal;
+			animation-fill-mode: none;
+			animation-play-state: running;
+		}
+	}
 `;
 
 export default UIContentSpinner;

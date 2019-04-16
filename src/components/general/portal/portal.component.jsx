@@ -1,6 +1,6 @@
 // Libraries
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 /**
  * @description Portal description
@@ -9,34 +9,34 @@ import ReactDOM from 'react-dom'
  * @extends {React.SFC}
  */
 class Portal extends Component {
-  constructor(props) {
-    super(props)
-    this.el = document.createElement('div')
-    this.state = {
-      root: null,
-    }
-  }
+	constructor(props) {
+		super(props);
+		this.el = document.createElement('div');
+		this.state = {
+			root: null,
+		};
+	}
 
-  componentDidMount() {
-    const portalRoot = document.getElementById('portal')
-    this.setState(
-      {
-        root: portalRoot,
-      },
-      () => {
-        this.state.root.appendChild(this.el)
-      }
-    )
-  }
+	componentDidMount() {
+		const portalRoot = document.getElementById('portal');
+		this.setState(
+			{
+				root: portalRoot,
+			},
+			() => {
+				this.state.root.appendChild(this.el);
+			},
+		);
+	}
 
-  componentWillUnmount() {
-    this.state.root.removeChild(this.el)
-  }
+	componentWillUnmount() {
+		this.state.root.removeChild(this.el);
+	}
 
-  render() {
-    const { children } = this.props
-    return ReactDOM.createPortal(children, this.el)
-  }
+	render() {
+		const { children } = this.props;
+		return ReactDOM.createPortal(children, this.el);
+	}
 }
 
-export default Portal
+export default Portal;

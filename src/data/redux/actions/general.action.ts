@@ -1,16 +1,16 @@
 import {
-  SET_ONLINE_STATUS,
-  SET_PLATFORM,
-  SET_STANDALONE_STATUS,
-  SET_FEATURE_SUPPORT,
-  SET_USER_COUNTRY,
+	SET_ONLINE_STATUS,
+	SET_PLATFORM,
+	SET_STANDALONE_STATUS,
+	SET_FEATURE_SUPPORT,
+	SET_USER_COUNTRY,
 } from '../../constants/index.constants';
 
 import GeneralService from '../../services/general.service';
 import {
-  Supports,
-  FeatureSupport,
-  LocationData,
+	Supports,
+	FeatureSupport,
+	LocationData,
 } from '../../interfaces/general.interface';
 
 /**
@@ -20,10 +20,10 @@ import {
  * @returns
  */
 const setOnlineStatus = (status: boolean) => {
-  return {
-    type: SET_ONLINE_STATUS,
-    status,
-  };
+	return {
+		type: SET_ONLINE_STATUS,
+		status,
+	};
 };
 
 /**
@@ -33,10 +33,10 @@ const setOnlineStatus = (status: boolean) => {
  * @returns
  */
 const setStandaloneStatus = (isStandalone: boolean) => {
-  return {
-    type: SET_STANDALONE_STATUS,
-    status: isStandalone,
-  };
+	return {
+		type: SET_STANDALONE_STATUS,
+		status: isStandalone,
+	};
 };
 
 /**
@@ -48,18 +48,18 @@ const setStandaloneStatus = (isStandalone: boolean) => {
  */
 
 const setFeatureSupport = (features: FeatureSupport) => {
-  return {
-    type: SET_FEATURE_SUPPORT,
-    payload: {
-      hasAudited: features.hasAudited,
-      supports: {
-        geoLocation: features.supports.geoLocation,
-        batteryStatus: features.supports.batteryStatus,
-        networkInformation: features.supports.networkInformation,
-        notifications: features.supports.notifications,
-      },
-    },
-  };
+	return {
+		type: SET_FEATURE_SUPPORT,
+		payload: {
+			hasAudited: features.hasAudited,
+			supports: {
+				geoLocation: features.supports.geoLocation,
+				batteryStatus: features.supports.batteryStatus,
+				networkInformation: features.supports.networkInformation,
+				notifications: features.supports.notifications,
+			},
+		},
+	};
 };
 
 /**
@@ -69,12 +69,12 @@ const setFeatureSupport = (features: FeatureSupport) => {
  * @returns
  */
 const setPlatform = platform => {
-  if (typeof platform === 'string') {
-    return {
-      type: SET_PLATFORM,
-      platform,
-    };
-  }
+	if (typeof platform === 'string') {
+		return {
+			type: SET_PLATFORM,
+			platform,
+		};
+	}
 };
 
 /**
@@ -86,35 +86,35 @@ const setPlatform = platform => {
  * @param {*} longitude
  */
 const getUserCountryCodeByCoordinates = (
-  latitude: number,
-  longitude: number,
+	latitude: number,
+	longitude: number,
 ) => {
-  const updateStore = (data: LocationData) => {
-    return {
-      type: SET_USER_COUNTRY,
-      payload: {
-        hasLocation: true,
-        data,
-      },
-    };
-  };
+	const updateStore = (data: LocationData) => {
+		return {
+			type: SET_USER_COUNTRY,
+			payload: {
+				hasLocation: true,
+				data,
+			},
+		};
+	};
 
-  return (dispatch: any) => {
-    GeneralService.getUserCountryCodeByCoordinates(latitude, longitude)
-      .then(result => {
-        if (result.data) {
-          const country = result.data;
-          dispatch(updateStore(country));
-        }
-      })
-      .catch(error => {});
-  };
+	return (dispatch: any) => {
+		GeneralService.getUserCountryCodeByCoordinates(latitude, longitude)
+			.then(result => {
+				if (result.data) {
+					const country = result.data;
+					dispatch(updateStore(country));
+				}
+			})
+			.catch(error => {});
+	};
 };
 
 export {
-  setOnlineStatus,
-  setStandaloneStatus,
-  setFeatureSupport,
-  setPlatform,
-  getUserCountryCodeByCoordinates,
+	setOnlineStatus,
+	setStandaloneStatus,
+	setFeatureSupport,
+	setPlatform,
+	getUserCountryCodeByCoordinates,
 };

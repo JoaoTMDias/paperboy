@@ -1,10 +1,10 @@
 export interface PreferencesReducer {
-	  type: null;
-  	sources: ChosenNewsSources;
-    authenticated: boolean;
+	type: null;
+	sources: ChosenNewsSources;
+	authenticated: boolean;
 }
 
 export interface ChosenNewsSources {
-	  quantity: number;
-  	items: string[];
+	quantity: number;
+	items: string[];
 }

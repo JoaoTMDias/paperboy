@@ -9,7 +9,7 @@ const CategoriesPage = () => (
 			isFixed={false}
 			title="Current Page is: Latest News"
 		>
-            <p>Categories</p>
+			<p>Categories</p>
 		</Container>
 	</Layout>
 );

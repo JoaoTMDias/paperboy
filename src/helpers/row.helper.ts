@@ -5,10 +5,10 @@ export const flexRow = ({
 	justifyContent = 'center',
 	alignItems = 'center',
 } = {}) => css`
-    display: flex;
-    flex-direction: ${direction};
-    justify-content: ${justifyContent};
-    align-items: ${alignItems};
+	display: flex;
+	flex-direction: ${direction};
+	justify-content: ${justifyContent};
+	align-items: ${alignItems};
 `;
 
 export default flexRow;

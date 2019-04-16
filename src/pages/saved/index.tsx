@@ -1,15 +1,15 @@
-import { Link } from "gatsby";
-import React from "react";
+import { Link } from 'gatsby';
+import React from 'react';
 
-import { Layout } from "../../components/index";
+import { Layout } from '../../components/index';
 
 const SavedPage = () => (
-  <Layout>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
+	<Layout>
+		<h1>Hi people</h1>
+		<p>Welcome to your new Gatsby site.</p>
+		<p>Now go build something great.</p>
+		<Link to="/page-2/">Go to page 2</Link>
+	</Layout>
 );
 
 export default SavedPage;

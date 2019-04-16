@@ -1,13 +1,13 @@
 interface ILoggerOptions {
 	type:
-	    | 'log'
-    	| 'error'
-	    | 'warning'
-    	| 'info'
-	    | 'time'
-    	| 'timeLog'
-	    | 'timeEnd'
-    	| undefined;
+		| 'log'
+		| 'error'
+		| 'warning'
+		| 'info'
+		| 'time'
+		| 'timeLog'
+		| 'timeEnd'
+		| undefined;
 	message?: string | object | undefined;
 	showOnProduction?: boolean;
 }
