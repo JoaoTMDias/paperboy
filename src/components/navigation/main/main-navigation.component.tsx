@@ -62,7 +62,7 @@ const Wrapper = styled.div`
 
   display: none;
 
-  ${media.large`
+  ${above.large`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

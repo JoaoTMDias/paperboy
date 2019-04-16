@@ -1,28 +1,53 @@
-import { Redirect } from "@reach/router";
-import * as React from "react";
-import { connect } from "react-redux";
+import { Redirect } from '@reach/router';
+import * as React from 'react';
+import { connect } from 'react-redux';
 
 import {
-  Container,
-  Layout,
-  NewsTabs,
-  UIContentSpinner,
-} from "../../components/index";
+    Container,
+    Layout,
+    NewsTabs,
+    UIContentSpinner,
+} from '../../components/index';
 
-import { ILatestNews } from "../../data/interfaces/index.interface";
+import { LatestNewsTab } from '../../components/data-display/news/index.news';
 
-import { ChosenNewsSources } from "../../data/interfaces/index.interface";
+import { ILatestNews } from '../../data/interfaces/index.interface';
+
+import { ChosenNewsSources } from '../../data/interfaces/index.interface';
 
 import {
-  NEWS_PAGE,
-  ONBOARDING_PAGE,
-} from "../../data/constants/index.constants";
+    NEWS_PAGE,
+    ONBOARDING_PAGE,
+} from '../../data/constants/index.constants';
+
+const Tabs = [
+    {
+        id: 'latest',
+        label: 'Latest',
+    },
+    {
+        id: 'general',
+        label: 'General',
+    },
+    {
+        id: 'sports',
+        label: 'Sports',
+    },
+    {
+        id: 'financial',
+        label: 'Financial',
+    },
+    {
+        id: 'tech',
+        label: 'Tech',
+    },
+];
 
 interface INewsPageProps {
-  authenticated: boolean;
-  sources: ChosenNewsSources;
-  latest: ILatestNews;
-  dispatch: any;
+    authenticated: boolean;
+    sources: ChosenNewsSources;
+    latest: ILatestNews;
+    dispatch: any;
 }
 
 /**
@@ -32,74 +57,90 @@ interface INewsPageProps {
  * @extends {React.Component<INewsPageProps, any>}
  */
 class NewsPage extends React.Component<INewsPageProps, any> {
-  constructor(props: INewsPageProps) {
-    super(props);
-  }
-
-  /**
-   * @description Page only re-renders if the user props change, such as:
-   * - User is no longer unauthenticated/authenticated
-   * - User has new sources to pick from and fetch data
-   * @date 2019-01-19
-   * @param {INewsPageProps} nextProps
-   * @param {*} nextState
-   * @returns {boolean}
-   * @memberof NewsPage
-   */
-  shouldComponentUpdate(nextProps: INewsPageProps, nextState: any): boolean {
-    const { authenticated, sources } = this.props;
-    if (
-      nextProps.authenticated !== authenticated ||
-      nextProps.sources !== sources
-    ) {
-      return true;
+    constructor(props: INewsPageProps) {
+        super(props);
     }
 
-    return false;
-  }
+    /**
+     * @description Page only re-renders if the user props change, such as:
+     * - User is no longer unauthenticated/authenticated
+     * - User has new sources to pick from and fetch data
+     * @date 2019-01-19
+     * @param {INewsPageProps} nextProps
+     * @param {*} nextState
+     * @returns {boolean}
+     * @memberof NewsPage
+     */
+    shouldComponentUpdate(nextProps: INewsPageProps, nextState: any): boolean {
+        const { authenticated, sources } = this.props;
+        if (
+            nextProps.authenticated !== authenticated ||
+            nextProps.sources !== sources
+        ) {
+            return true;
+        }
 
-  /**
-   * @description
-   * @date 2019-01-18
-   * @returns
-   * @memberof NewsPage
-   */
-  renderNewsTabs() {
-    const { sources } = this.props;
-
-    if (sources && sources.quantity > 0) {
-      return <NewsTabs sources={sources} />;
-    } else {
-      return <UIContentSpinner isFullPage={true} />;
+        return false;
     }
-  }
 
-  render() {
-    const { authenticated } = this.props;
+    /**
+     * @description
+     * @date 2019-01-18
+     * @returns
+     * @memberof NewsPage
+     */
+    renderNewsTabs() {
+        const { sources } = this.props;
 
-    if (!authenticated) {
-      return <Redirect from={NEWS_PAGE} to={ONBOARDING_PAGE} noThrow={true} />;
-    } else {
-      return (
-        <Layout authenticated={true} header={false}>
-          <Container
-            fullwidth={true}
-            fullheight={true}
-            isFixed={false}
-            title="Current Page is: News"
-            offsetTop="2.75rem"
-          >
-            {this.renderNewsTabs()}
-          </Container>
-        </Layout>
-      );
+        if (sources && sources.quantity > 0) {
+            return (
+                <NewsTabs
+                    id="news-tabs"
+                    tabsHeader={Tabs}
+                    style={{
+                        backgroundColor: 'white',
+                    }}
+                >
+                    <LatestNewsTab sources={sources} />
+                </NewsTabs>
+            );
+        } else {
+            return <UIContentSpinner isFullPage={true} />;
+        }
     }
-  }
+
+    render() {
+        const { authenticated } = this.props;
+
+        if (!authenticated) {
+            return (
+                <Redirect
+                    from={NEWS_PAGE}
+                    to={ONBOARDING_PAGE}
+                    noThrow={true}
+                />
+            );
+        } else {
+            return (
+                <Layout authenticated={true} header={false}>
+                    <Container
+                        fullwidth={true}
+                        fullheight={true}
+                        isFixed={false}
+                        title="Current Page is: News"
+                        offsetTop="2.75rem"
+                    >
+                        {this.renderNewsTabs()}
+                    </Container>
+                </Layout>
+            );
+        }
+    }
 }
 
 const mapStateToProps = (state: any) => ({
-  authenticated: state.preferences.authenticated,
-  sources: state.preferences.sources,
+    authenticated: state.preferences.authenticated,
+    sources: state.preferences.sources,
 });
 
 export default connect(mapStateToProps)(NewsPage);

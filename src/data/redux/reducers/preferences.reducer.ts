@@ -6,7 +6,7 @@ import {
   SET_USER_AUTHENTICATION,
 } from '../../constants/index.constants'
 
-import { PreferecesReducer } from '../../interfaces/index.interface'
+import { PreferencesReducer } from '../../interfaces/index.interface'
 
 // Preferences initial state
 const initialState = {
@@ -25,7 +25,7 @@ const initialState = {
  * @param {any} action
  * @returns
  */
-function preferences(state: PreferecesReducer = initialState, action: any) {
+function preferences(state: PreferencesReducer = initialState, action: any) {
   switch (action.type) {
     case GET_CHOSEN_NEWS_SOURCES:
       return {

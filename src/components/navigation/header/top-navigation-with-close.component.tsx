@@ -17,12 +17,22 @@ const getScrollPosition = (el = window) => ({
   y: el.pageYOffset !== undefined ? el.pageYOffset : document.body.scrollTop,
 });
 
-const debounce = (func: any, wait: number) => {
-  let timeout: any;
-  return (...args: any[]) => {
-    clearTimeout(timeout);
-    //@ts-ignore
-    timeout = setTimeout(() => func.apply(this, args), wait);
+const debounce = (func: any) => {
+  // This holds the requestAnimationFrame reference, so we can cancel it if we wish
+  let frame: any;
+
+  // The debounce function returns a new function that can receive a variable number of arguments
+  return (...params: any) => {
+    // If the frame variable has been defined, clear it now, and queue for next frame
+    if (frame) {
+      cancelAnimationFrame(frame);
+    }
+
+    // Queue our function call for the next frame
+    frame = requestAnimationFrame(() => {
+      // Call our function and pass any params we received
+      func(...params);
+    });
   };
 };
 
@@ -117,14 +127,16 @@ class UITopNavigationBarWithClose extends React.Component<
           navbar: navbar,
         },
         () => {
-          document.addEventListener('scroll', debounce(this.handleScroll, 16));
+          document.addEventListener('scroll', debounce(this.handleScroll), {
+            passive: true,
+          });
         },
       );
     }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('scroll', debounce(this.handleScroll, 16));
+    document.removeEventListener('scroll', debounce(this.handleScroll));
   }
 
   shouldComponentUpdate(nextProps: IUITopNavigationBarWithCloseProps): boolean {
@@ -268,7 +280,14 @@ const Container = styled.div`
       opacity: 1;
       position: relative;
       width: 100%;
+      text-align: center;
       flex: auto;
+    }
+
+    #brand-logo {
+      opacity: 0;
+      transform: scale(0);
+      width: 0;
     }
 
     img {

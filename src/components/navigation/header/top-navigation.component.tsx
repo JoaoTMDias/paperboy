@@ -1,12 +1,12 @@
 // Libraries
-import { rem } from "polished";
-import * as React from "react";
-import styled from "styled-components";
+import { rem } from 'polished';
+import * as React from 'react';
+import styled from 'styled-components';
 
 // Component Props
 interface IUITopNavigationBarProps {
   theme?: any;
-  shadow?: "default" | "hairline" | "none";
+  shadow?: 'default' | 'hairline' | 'none';
 }
 
 /**
@@ -16,7 +16,7 @@ interface IUITopNavigationBarProps {
  * @extends {React.SFC}
  */
 class UITopNavigationBar extends React.Component<IUITopNavigationBarProps> {
-  shouldComponentUpdate(nextProps: IUITopNavigationBarProps, nextState) {
+  shouldComponentUpdate(nextProps: IUITopNavigationBarProps) {
     return nextProps.shadow !== this.props.shadow;
   }
 
@@ -37,20 +37,20 @@ const Wrapper = styled.header`
   justify-content: center;
   align-items: center;
   height: auto;
-  min-height: ${rem("48px")};
-  padding-left: ${rem("16px")};
-  padding-right: ${rem("16px")};
+  min-height: ${rem('48px')};
+  padding-left: ${rem('16px')};
+  padding-right: ${rem('16px')};
   background-color: var(--color-white);
   box-shadow: ${(props: IUITopNavigationBarProps) => {
     if (props.shadow) {
-      if (props.shadow === "default") {
-        return "0 0 4px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.12)";
+      if (props.shadow === 'default') {
+        return '0 0 4px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.12)';
       }
-      if (props.shadow === "hairline") {
-        return "0 1px 0 var(--color-gray4)";
+      if (props.shadow === 'hairline') {
+        return '0 1px 0 var(--color-gray4)';
       }
-      if (props.shadow === "none") {
-        return "none";
+      if (props.shadow === 'none') {
+        return 'none';
       }
     }
   }};

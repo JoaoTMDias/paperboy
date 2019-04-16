@@ -1,12 +1,12 @@
 import { createStore, applyMiddleware } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import thunk from 'redux-thunk'
 import rootReducer from '../reducers/index.reducer'
 
 const persistConfig = {
-  key: 'primary',
+  key: 'paperboy',
   storage,
 }
 

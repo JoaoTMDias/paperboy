@@ -11,7 +11,7 @@ import { Audit, AddToHomeScreen, Modal } from '../index';
 import UITopNavigationBar from '../navigation/header/top-navigation.component';
 import MainNavigation from '../navigation/main/main-navigation.component';
 import BottomNavigation from '../navigation/bottom-navigation/bottom-navigation.component';
-import { media } from '../../helpers/index.helpers';
+import { above } from '../../helpers/index.helpers';
 
 // Styling
 import './layout.scss';
@@ -268,7 +268,7 @@ const AppLayout = styled.div`
   flex-direction: column;
   position: relative;
 
-  ${media.large`
+  ${above.large`
     display: grid;
     grid-template-columns: minmax(12.5rem, auto) 1fr;
   `};
