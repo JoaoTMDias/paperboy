@@ -100,6 +100,8 @@ class NewsPage extends React.Component<INewsPageProps, any> {
 					}}
 				>
 					<LatestNewsTab sources={sources} />
+					<LatestNewsTab sources={sources} />
+					<LatestNewsTab sources={sources} />
 				</NewsTabs>
 			);
 		}

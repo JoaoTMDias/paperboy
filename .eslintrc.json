@@ -51,6 +51,7 @@
 				"aspects": ["invalidHref"]
 			}
 		],
+		"require-jsdoc": 2,
 		"lines-around-comment": [
 			"error",
 			{
@@ -68,11 +69,16 @@
 		],
 		"quotes": ["warn", "single"],
 		"@typescript-eslint/interface-name-prefix": [2, "always"],
+		"@typescript-eslint/class-name-casing": [
+			2,
+			"always"
+		],
 		"@typescript-eslint/explicit-member-accessibility": 0,
 		"indent": "off",
 		"@typescript-eslint/indent": ["error", "tab"],
 		"@typescript-eslint/no-explicit-any": 0,
-		"@typescript-eslint/explicit-function-return-type": 0
+		"@typescript-eslint/explicit-function-return-type": 0,
+		"@typescript-eslint/restrict-plus-operands": [2, "always"]
 	},
 	"settings": {
 		"import/parsers": {

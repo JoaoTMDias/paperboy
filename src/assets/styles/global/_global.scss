@@ -45,6 +45,18 @@
     --breakpoint-large: 'all and (min-width: #{$breakpoint-large})',
     --breakpoint-xlarge: 'all and (min-width: #{$breakpoint-xlarge})',
     --breakpoint-xxlarge: 'all and (min-width: #{$breakpoint-xxlarge})',
+    --viewport-height-unit: $viewport-unit,
+    --viewport-height: calc(var(--viewport-height-unit, 1vh) * 100),
+    --tabs-background: $tabs-background,
+    --tabs-container-height: $tabs-container-height,
+    --tabs-header-border-bottom: $tabs-header-bottom,
+    --tabs-header-position: $tabs-header-position,
+    --tabs-header-position-scrolling: $tabs-header-position-scrolling,
+    --tabs-header-indicator: $tabs-header-indicator,
+    --tabs-header-font-size: $tabs-header-font-size,
+    --tabs-header-font-family: $tabs-header-font-family,
+    --tabs-header-color: $tabs-header-color,
+    --tabs-header-color-selected: $tabs-header-color-selected,
   )
 );
 
@@ -78,6 +90,15 @@ html {
 ::selection {
   color: $color-white;
   background: $color-primary;
+}
+
+// Hides the scrollbar
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
 }
 
 // Shim for "new" HTML5 structural elements to display correctly (IE10, older browsers)

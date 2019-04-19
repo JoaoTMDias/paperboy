@@ -26,6 +26,10 @@ export interface IAuditState {
 }
 
 class Audit extends React.Component<IAuditProps, any> {
+	static defaultProps = {
+		hasAudited: null,
+	};
+
 	constructor(props: IAuditProps) {
 		super(props);
 
@@ -34,10 +38,6 @@ class Audit extends React.Component<IAuditProps, any> {
 			isStandalone: false,
 		};
 	}
-
-	static defaultProps = {
-		hasAudited: null,
-	};
 
 	componentDidMount() {
 		if (this.props.hasAudited === false) {
@@ -81,22 +81,6 @@ class Audit extends React.Component<IAuditProps, any> {
 	}
 
 	/**
-	 * @description Performs a network audit for these conditions
-	 * Is the device online or offline?
-	 *
-	 *
-	 * @date 2019-01-05
-	 * @memberof Audit
-	 */
-	handleNetworkAudit() {
-		window.addEventListener('online', event => this.setOnlineStatus(true));
-		window.addEventListener('offline', event =>
-			this.setOnlineStatus(false),
-		);
-		this.setOnlineStatus(navigator.onLine);
-	}
-
-	/**
 	 * @description
 	 * @date 2019-01-05
 	 * @memberof Audit
@@ -113,9 +97,9 @@ class Audit extends React.Component<IAuditProps, any> {
 	 * @memberof Audit
 	 */
 	setOSPlatform() {
-		const android: string = 'android';
-		const iOS: string = 'ios';
-		let platform: string = 'unknown';
+		const android = 'android';
+		const iOS = 'ios';
+		let platform = 'unknown';
 
 		if (isIOS) {
 			platform = iOS;
@@ -139,7 +123,7 @@ class Audit extends React.Component<IAuditProps, any> {
 		);
 		const supportsBatteryInformation: boolean =
 			'getBattery' in window.navigator;
-		let supportsNetworkInformation: boolean = false;
+		let supportsNetworkInformation = false;
 
 		if (window.navigator.connection) {
 			if (
@@ -182,6 +166,13 @@ class Audit extends React.Component<IAuditProps, any> {
 		}
 	}
 
+	componentWillUnmount() {
+		window.removeEventListener('online', () => this.setOnlineStatus(true));
+		window.removeEventListener('offline', () =>
+			this.setOnlineStatus(false),
+		);
+	}
+
 	/**
 	 * @description
 	 * @memberof Audit
@@ -191,6 +182,22 @@ class Audit extends React.Component<IAuditProps, any> {
 			this.props.dispatch(setOnlineStatus(status));
 		}
 	};
+
+	/**
+	 * @description Performs a network audit for these conditions
+	 * Is the device online or offline?
+	 *
+	 *
+	 * @date 2019-01-05
+	 * @memberof Audit
+	 */
+	handleNetworkAudit() {
+		window.addEventListener('online', event => this.setOnlineStatus(true));
+		window.addEventListener('offline', event =>
+			this.setOnlineStatus(false),
+		);
+		this.setOnlineStatus(navigator.onLine);
+	}
 
 	public render() {
 		const { isOnline, isStandalone, platform } = this.props;
@@ -202,13 +209,6 @@ class Audit extends React.Component<IAuditProps, any> {
 				data-standalone={`${isStandalone}`}
 				data-platform={`${platform}`}
 			/>
-		);
-	}
-
-	componentWillUnmount() {
-		window.removeEventListener('online', () => this.setOnlineStatus(true));
-		window.removeEventListener('offline', () =>
-			this.setOnlineStatus(false),
 		);
 	}
 }

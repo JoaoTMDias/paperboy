@@ -124,7 +124,6 @@ const List = styled.ol`
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	transform: translateY(var(--top-navigation-bar-height));
 
 	display: flex;
 	flex-direction: column;

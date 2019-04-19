@@ -35,6 +35,7 @@ class TabItem extends React.Component<ITabItemProps> {
 
 	public render() {
 		const { to, label, layout, children } = this.props;
+		const { ...navItemProps } = this.props;
 		return (
 			<Wrapper layout={layout}>
 				<TabLink
@@ -114,6 +115,7 @@ const TabLink = styled(Link)`
 
 		.label {
 			color: var(--color-white);
+			opacity: 1;
 		}
 	}
 `;
@@ -129,8 +131,9 @@ const Icon = styled.figure`
 `;
 
 const Label = styled.span`
-	font-size: ${rem('10px')};
+	font-size: ${rem('9px')};
 	text-align: center;
 	color: var(--color-gray3);
+	opacity: 0.25;
 `;
 export default TabItem;

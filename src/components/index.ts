@@ -1,6 +1,7 @@
 // GENERAL
 import Portal from './general/portal/portal.component';
 import Audit from './general/support/audit.support';
+import ViewportHeight from './general/support/viewport-height.support';
 
 // LAYOUT
 import Container from './layout/container.component';
@@ -45,6 +46,7 @@ export * from './general/icons/icons';
 
 export {
 	Audit,
+	ViewportHeight,
 	Portal,
 	Container,
 	Layout,

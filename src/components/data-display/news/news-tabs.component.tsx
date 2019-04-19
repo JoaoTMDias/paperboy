@@ -74,6 +74,7 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 	}
 
 	componentDidMount() {
+		console.log('tabs: ', this.props.tabsHeader);
 		this.setupEventListeners();
 		const hasHashOnUrl = getHash();
 
@@ -208,21 +209,19 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 	 * @memberof NewsTabs
 	 */
 	changeTabIndex(index: number) {
-		const { tabsHeader } = this.props;
-
 		if (index !== null && index !== undefined) {
 			this.setState(
 				{
 					currentTabIndex: index,
 				},
-				() => {
-					if (index >= 0) {
-						const tabHashName = `${tabsHeader[index].id}`;
-						if (tabHashName) {
-							navigate(`${tabHashName}`);
-						}
-					}
-				},
+				// () => {
+				// 	if (index >= 0) {
+				// 		const tabHashName = `${tabsHeader[index].id}`;
+				// 		if (tabHashName) {
+				// 			navigate(`#${tabHashName}`);
+				// 		}
+				// 	}
+				// },
 			);
 
 			return true;
