@@ -7,6 +7,7 @@ import { ThumbnailLarge, UIContentSpinner } from '../../index';
 import {
 	ILatestNews,
 	ILatestNewsArticle,
+	IGlobalStoreState,
 } from '../../../data/interfaces/index.interface';
 
 import { ChosenNewsSources } from '../../../data/interfaces/index.interface';
@@ -99,7 +100,6 @@ class LatestNewsTab extends React.Component<ILatestNewsTabProps, any> {
 		const { latest } = this.props;
 
 		if (latest && latest.totalResults > 0) {
-			console.log('articles: ', latest.articles);
 			const list = latest.articles.map(
 				(article: ILatestNewsArticle, index: number) => {
 					return (
@@ -141,7 +141,7 @@ const Item = styled.li`
 	align-items: center;
 `;
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IGlobalStoreState) => ({
 	latest: state.news.latest,
 });
 

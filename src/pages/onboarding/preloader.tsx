@@ -22,6 +22,7 @@ interface IPreloaderPageState {
 }
 
 import { NEWS_PAGE } from '../../data/constants/index.constants';
+import { IGlobalStoreState } from '../../data/interfaces/index.interface';
 
 /**
  * @description The Preloader Page
@@ -118,7 +119,7 @@ class PreloaderPage extends React.PureComponent<
 	}
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IGlobalStoreState) => ({
 	authenticated: state.preferences.authenticated,
 	chosenSources: state.preferences.sources.items,
 	articles: state.news.latest,

@@ -241,7 +241,7 @@ const ArticleContent = styled.div`
 	}
 `;
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IGlobalStoreState) => ({
 	authenticated: state.preferences.authenticated,
 });
 

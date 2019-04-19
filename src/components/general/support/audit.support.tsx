@@ -10,6 +10,7 @@ import {
 	setStandaloneStatus,
 } from '../../../data/redux/actions/index.actions';
 import { FeatureSupport } from '../../../data/interfaces/general.interface';
+import { IGlobalStoreState } from '../../../data/interfaces/index.interface';
 
 export interface IAuditProps {
 	theme?: any;
@@ -213,7 +214,7 @@ class Audit extends React.Component<IAuditProps, any> {
 	}
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IGlobalStoreState) => ({
 	hasAudited: state.general.hasAudited,
 	isOnline: state.general.isOnline,
 	isStandalone: state.general.isStandalone,

@@ -18,7 +18,10 @@ import {
 } from '../../components/index';
 
 // Redux
-import { NewsSourcesCategories } from '../../data/interfaces/index.interface';
+import {
+	NewsSourcesCategories,
+	IGlobalStoreState,
+} from '../../data/interfaces/index.interface';
 import {
 	getAllAvailableNewsSources,
 	getAvailableNewSourcesFromLanguage,
@@ -375,7 +378,7 @@ class ChooseSourcesPage extends React.PureComponent<
 	}
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IGlobalStoreState) => ({
 	authenticated: state.preferences.authenticated,
 	sources: state.news.sources,
 	chosenSources: state.preferences.sources.items,

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import { IconBrandingSmall, IconSafariShare } from '../../index';
+import { IGlobalStoreState } from '../../../data/interfaces/index.interface';
 
 interface IAddToHomeScreenProps {
 	theme?: any;
@@ -65,7 +66,7 @@ const Content = styled.div`
 	margin: 0 auto;
 `;
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IGlobalStoreState) => ({
 	isStandalone: state.general.isStandalone,
 });
 

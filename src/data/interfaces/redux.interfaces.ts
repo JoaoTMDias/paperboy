@@ -1,5 +1,5 @@
 import { IGeneral } from './general.interface';
-import { ILatestNews } from './news.interface';
+import { INewsReducer } from './news.interface';
 import { PreferencesReducer } from './preferences.interface';
 
 export interface IReduxActions {
@@ -10,5 +10,5 @@ export interface IReduxActions {
 export interface IGlobalStoreState {
 	general: IGeneral;
 	preferences: PreferencesReducer;
-	news: ILatestNews;
+	news: INewsReducer;
 }
