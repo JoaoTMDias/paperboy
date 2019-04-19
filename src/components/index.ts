@@ -1,6 +1,7 @@
 // GENERAL
 import Portal from './general/portal/portal.component';
 import Audit from './general/support/audit.support';
+import ViewportHeight from './general/support/viewport-height.support';
 
 // LAYOUT
 import Container from './layout/container.component';
@@ -34,9 +35,9 @@ import Modal from './general/modal/modal.component';
 import AddToHomeScreen from './general/pwa/add-to-homescreen.component';
 import UIContentSpinner from './general/spinners/content-spinner.component';
 import {
-  UIDisplay,
-  UILead,
-  UISubtitle,
+	UIDisplay,
+	UILead,
+	UISubtitle,
 } from './general/typography/typography.theme';
 import UISection from './layout/section.component';
 
@@ -44,35 +45,36 @@ import UISection from './layout/section.component';
 export * from './general/icons/icons';
 
 export {
-  Audit,
-  Portal,
-  Container,
-  Layout,
-  Modal,
-  Confirm,
-  A11yPageTitle,
-  TabItem,
-  BottomNavigation,
-  UIAnchor,
-  UIButton,
-  UICallToAction,
-  UITopNavigationBarWithTitle,
-  UITopNavigationBarWithClose,
-  UITopNavigationBar,
-  MainNavigation,
-  SourceCard,
-  SourcesList,
-  SourceListItem,
-  UIDisplay,
-  UILead,
-  UISubtitle,
-  UISection,
-  UISearchForm,
-  AddToHomeScreen,
-  UIDialog,
-  UIContentSpinner,
-  LatestNewsTab,
-  NewsTabs,
-  ThumbnailLarge,
-  LazyLoadingImage,
+	Audit,
+	ViewportHeight,
+	Portal,
+	Container,
+	Layout,
+	Modal,
+	Confirm,
+	A11yPageTitle,
+	TabItem,
+	BottomNavigation,
+	UIAnchor,
+	UIButton,
+	UICallToAction,
+	UITopNavigationBarWithTitle,
+	UITopNavigationBarWithClose,
+	UITopNavigationBar,
+	MainNavigation,
+	SourceCard,
+	SourcesList,
+	SourceListItem,
+	UIDisplay,
+	UILead,
+	UISubtitle,
+	UISection,
+	UISearchForm,
+	AddToHomeScreen,
+	UIDialog,
+	UIContentSpinner,
+	LatestNewsTab,
+	NewsTabs,
+	ThumbnailLarge,
+	LazyLoadingImage,
 };

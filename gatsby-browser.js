@@ -11,9 +11,9 @@ export const wrapRootElement = wrapWithProvider;
  * @date 2019-01-15
  */
 export const onClientEntry = async () => {
-  if (typeof IntersectionObserver === `undefined`) {
-    await import(`intersection-observer`);
-  }
+	if (typeof IntersectionObserver === `undefined`) {
+		await import(`intersection-observer`);
+	}
 };
 
 /**
@@ -22,16 +22,15 @@ export const onClientEntry = async () => {
  * @param {*} msg
  */
 const confirmDialog = msg => {
-  return new Promise(function(resolve, reject) {
-    let confirmed = window.confirm(msg);
+	return new Promise(function(resolve, reject) {
+		let confirmed = window.confirm(msg);
 
-    return confirmed ? resolve(true) : reject(false);
-  });
+		return confirmed ? resolve(true) : reject(false);
+	});
 };
 
-
 export const onServiceWorkerUpdateFound = () => {
-  console.log('A new update has been found.')
+	console.log('A new update has been found.');
 };
 
 /**
@@ -40,9 +39,11 @@ export const onServiceWorkerUpdateFound = () => {
  * @date 2019-01-15
  */
 export const onServiceWorkerUpdateReady = () => {
-  confirmDialog(
-    `Paperboy has been updated.` + `Reload to display the latest version?`,
-  )
-    .then(() => window.location.reload())
-    .catch(err => console.info(`Service Worker will keep the current version`));
+	confirmDialog(
+		`Paperboy has been updated.` + `Reload to display the latest version?`,
+	)
+		.then(() => window.location.reload())
+		.catch(err =>
+			console.info(`Service Worker will keep the current version`),
+		);
 };

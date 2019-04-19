@@ -10,14 +10,14 @@ import IconClose from './close.icon';
 import IconShare from './share.icon';
 
 export {
-  IconNews,
-  IconSaved,
-  IconSearch,
-  IconCategories,
-  IconSettings,
-  IconSafariShare,
-  IconBrandingLarge,
-  IconBrandingSmall,
-  IconClose,
-  IconShare
+	IconNews,
+	IconSaved,
+	IconSearch,
+	IconCategories,
+	IconSettings,
+	IconSafariShare,
+	IconBrandingLarge,
+	IconBrandingSmall,
+	IconClose,
+	IconShare,
 };

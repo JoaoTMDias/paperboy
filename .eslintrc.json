@@ -1,64 +1,102 @@
 {
-  "extends": ["airbnb", "prettier", "prettier/react"],
-  "plugins": ["react", "prettier"],
-  "env": {
-    "es6": true,
-    "jest": true,
-    "browser": true
-  },
-  "rules": {
-    "comma-dangle": [1, "always-multiline"],
-    "react/jsx-wrap-multilines": 0,
-    "react/jsx-closing-bracket-location": 0,
-    "react/jsx-curly-spacing": 0,
-    "react/jsx-equals-spacing": 0,
-    "react/jsx-first-prop-new-line": 0,
-    "react/jsx-indent": 0,
-    "react/jsx-indent-props": 0,
-    "react/jsx-max-props-per-line": 0,
-    "react/jsx-tag-spacing": 0,
-    "react/jsx-closing-tag-location": 0,
-    "react/jsx-filename-extension": [
-      "error",
-      {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    ],
-    "react/prop-types": "on",
-    "react/require-default-props": "off",
-    "jsx-a11y/href-no-hash": "off",
-    "class-methods-use-this": "off",
-    "import/no-extraneous-dependencies": "off",
-    "jsx-a11y/anchor-is-valid": [
-      "warn",
-      {
-        "aspects": ["invalidHref"]
-      }
-    ],
-    "lines-around-comment": [
-      "error",
-      {
-        "beforeBlockComment": true,
-        "afterBlockComment": false,
-        "beforeLineComment": true,
-        "afterLineComment": false,
-        "allowBlockStart": true,
-        "allowBlockEnd": true,
-        "allowObjectStart": true,
-        "allowObjectEnd": true,
-        "allowArrayStart": true,
-        "allowArrayEnd": true
-      }
-    ],
-    "quotes": ["warn", "backtick"]
-  },
-  "globals": {
-    "window": true,
-    "document": true,
-    "localStorage": true,
-    "FormData": true,
-    "FileReader": true,
-    "Blob": true,
-    "navigator": true
-  }
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"jsx": true,
+		"useJSXTextNode": true
+	},
+	"extends": [
+		"plugin:@typescript-eslint/recommended",
+		"react-app",
+		"airbnb",
+		"plugin:prettier/recommended"
+	],
+	"plugins": [
+		"@typescript-eslint",
+		"react",
+		"prettier",
+		"import"
+	],
+	"env": {
+		"es6": true,
+		"jest": true,
+		"browser": true
+	},
+	"rules": {
+		"import/no-unresolved": "error",
+		"comma-dangle": [1, "always-multiline"],
+		"react/jsx-wrap-multilines": 0,
+		"react/jsx-closing-bracket-location": 0,
+		"react/jsx-curly-spacing": 0,
+		"react/jsx-equals-spacing": 0,
+		"react/jsx-first-prop-new-line": 0,
+		"react/jsx-indent": 0,
+		"react/jsx-indent-props": 0,
+		"react/jsx-max-props-per-line": 0,
+		"react/jsx-tag-spacing": 0,
+		"react/jsx-closing-tag-location": 0,
+		"react/jsx-filename-extension": [
+			"error",
+			{
+				"extensions": [".js", ".jsx", ".ts", ".tsx"]
+			}
+		],
+		"react/prop-types": 2,
+		"react/require-default-props": "off",
+		"jsx-a11y/href-no-hash": "off",
+		"class-methods-use-this": "off",
+		"import/no-extraneous-dependencies": "off",
+		"jsx-a11y/anchor-is-valid": [
+			"warn",
+			{
+				"aspects": ["invalidHref"]
+			}
+		],
+		"require-jsdoc": 2,
+		"lines-around-comment": [
+			"error",
+			{
+				"beforeBlockComment": true,
+				"afterBlockComment": false,
+				"beforeLineComment": true,
+				"afterLineComment": false,
+				"allowBlockStart": true,
+				"allowBlockEnd": true,
+				"allowObjectStart": true,
+				"allowObjectEnd": true,
+				"allowArrayStart": true,
+				"allowArrayEnd": true
+			}
+		],
+		"quotes": ["warn", "single"],
+		"@typescript-eslint/interface-name-prefix": [2, "always"],
+		"@typescript-eslint/class-name-casing": [
+			2,
+			"always"
+		],
+		"@typescript-eslint/explicit-member-accessibility": 0,
+		"indent": "off",
+		"@typescript-eslint/indent": ["error", "tab"],
+		"@typescript-eslint/no-explicit-any": 0,
+		"@typescript-eslint/explicit-function-return-type": 0,
+		"@typescript-eslint/restrict-plus-operands": [2, "always"]
+	},
+	"settings": {
+		"import/parsers": {
+			"@typescript-eslint/parser": [".ts", ".tsx"]
+		},
+		"import/resolver": {
+			"typescript": {
+				"directory": "./"
+			}
+		}
+	},
+	"globals": {
+		"window": true,
+		"document": true,
+		"localStorage": true,
+		"FormData": true,
+		"FileReader": true,
+		"Blob": true,
+		"navigator": true
+	}
 }

@@ -3,6 +3,7 @@
 //
 $golden-ratio: 1.61803398875;
 $ratio: $golden-ratio;
+$viewport-unit: 1vh;
 
 // 1. Global
 // ---------
@@ -30,23 +31,44 @@ $color-gray6: #af9b98;
 $color-gray7: #9b8380;
 $color-gray8: #7a6765;
 $color-gray9: #473c3b;
-$color-black: hsl(0, 9%, 11%);
+$color-black: hsl(0, 9%, 4%);
 $cta: $color-select;
 
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: $ratio;
 $global-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2),
-  0 -1px 0 0 hsla(0, 0%, 0%, 0.02);
+0 -1px 0 0 hsla(0, 0%, 0%, 0.02);
 $body-background: $color-gray0;
 $body-font-color: $color-black;
-$heading-font-family: 'paperboy-font-bold', -apple-system, BlinkMacSystemFont,
-  'Open Sans', 'Roboto', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-  'Helvetica Neue', sans-serif;
-$body-font-family: 'paperboy-font-regular', -apple-system, BlinkMacSystemFont,
-  'Open Sans', 'Roboto', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-  'Helvetica Neue', sans-serif;
-$content-font-family: 'paperboy-content-regular', Times, Georgia, serif;
+$heading-font-family: 'paperboy-font-bold',
+-apple-system,
+BlinkMacSystemFont,
+'Open Sans',
+'Roboto',
+'Segoe UI',
+Roboto,
+Oxygen,
+Ubuntu,
+Cantarell,
+'Helvetica Neue',
+sans-serif;
+$body-font-family: 'paperboy-font-regular',
+-apple-system,
+BlinkMacSystemFont,
+'Open Sans',
+'Roboto',
+'Segoe UI',
+Roboto,
+Oxygen,
+Ubuntu,
+Cantarell,
+'Helvetica Neue',
+sans-serif;
+$content-font-family: 'paperboy-content-regular',
+Times,
+Georgia,
+serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -89,3 +111,16 @@ $ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 $ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
 $default-timing-function: $ease-in-out-circ;
+
+// Page Tabs
+// ------------------
+$tabs-background: $color-white;
+$tabs-container-height: calc(var(--viewport-height) - 5.75rem);
+$tabs-header-bottom: 1px solid #b2b2b2;
+$tabs-header-position: sticky;
+$tabs-header-position-scrolling: fixed;
+$tabs-header-indicator: $color-primary;
+$tabs-header-font-size: 1rem;
+$tabs-header-font-family: $body-font-family;
+$tabs-header-color: $color-gray7;
+$tabs-header-color-selected: $color-primary;

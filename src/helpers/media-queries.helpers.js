@@ -1,4 +1,4 @@
-import { css } from 'styled-components'
+import { css } from 'styled-components';
 
 /**
  * For the specified media query, returns a tag function that can be used to
@@ -8,17 +8,39 @@ import { css } from 'styled-components'
  *   query features.
  */
 
+const DEFAULT_FONT_SIZE = 16;
+
+const breakpoints = {
+	medium: 640,
+	large: 1024,
+	xlarge: 1200,
+	xxlarge: 1440,
+};
+
 const mediaQuery = (...query) => (...rules) => css`
-    @media ${css(...query)} {
-        ${css(...rules)}
-    }
+	@media ${css(...query)} {
+		${css(...rules)}
+	}
 `;
 
-const media =  {
-    medium: mediaQuery`(min-width: ${640 / 16}rem)`,
-    large: mediaQuery`(min-width: ${1024 / 16}rem)`,
-    xlarge: mediaQuery`(min-width: ${1200 / 16}rem)`,
-    xxlarge: mediaQuery`(min-width: ${1440 / 16}rem)`,
-  };
+const above = {
+	medium: mediaQuery`(min-width: ${breakpoints.medium /
+		DEFAULT_FONT_SIZE}rem)`,
+	large: mediaQuery`(min-width: ${breakpoints.large / DEFAULT_FONT_SIZE}rem)`,
+	xlarge: mediaQuery`(min-width: ${breakpoints.medium /
+		DEFAULT_FONT_SIZE}rem)`,
+	xxlarge: mediaQuery`(min-width: ${breakpoints.xxlarge /
+		DEFAULT_FONT_SIZE}rem)`,
+};
 
-export { mediaQuery, media }
+const below = {
+	medium: mediaQuery`(max-width: ${breakpoints.medium /
+		DEFAULT_FONT_SIZE}rem)`,
+	large: mediaQuery`(max-width: ${breakpoints.large / DEFAULT_FONT_SIZE}rem)`,
+	xlarge: mediaQuery`(max-width: ${breakpoints.medium /
+		DEFAULT_FONT_SIZE}rem)`,
+	xxlarge: mediaQuery`(max-width: ${breakpoints.xxlarge /
+		DEFAULT_FONT_SIZE}rem)`,
+};
+
+export { mediaQuery, above, below };
