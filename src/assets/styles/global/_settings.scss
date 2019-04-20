@@ -8,8 +8,7 @@ $viewport-unit: 1vh;
 // 1. Global
 // ---------
 $top-navigation-bar-height: rem-calc(44);
-$bottom-navigation-bar-height: rem-calc(48);
-$button-radius: $bottom-navigation-bar-height;
+
 // 2. Breakpoints
 // --------------
 $breakpoint-medium: rem-calc(640);
@@ -120,7 +119,14 @@ $tabs-header-bottom: 1px solid #b2b2b2;
 $tabs-header-position: sticky;
 $tabs-header-position-scrolling: fixed;
 $tabs-header-indicator: $color-primary;
-$tabs-header-font-size: 1rem;
+$tabs-header-font-size: 0.875rem;
 $tabs-header-font-family: $body-font-family;
 $tabs-header-color: $color-gray7;
 $tabs-header-color-selected: $color-primary;
+
+// Bottom Navigation
+// ------------------
+$bottom-navigation-background-color: $color-black;
+$bottom-navigation-text-color: $color-white;
+$bottom-navigation-bar-height: rem-calc(48);
+$button-radius: $bottom-navigation-bar-height;

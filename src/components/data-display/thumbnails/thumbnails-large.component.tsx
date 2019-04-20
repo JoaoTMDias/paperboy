@@ -188,11 +188,12 @@ const Copy = styled.div`
 		&__title {
 			width: 100%;
 			font-family: var(--body-font-family);
-			font-size: ${rem('20px')};
+			font-weight: 300;
+			font-size: ${rem('18px')};
 			color: var(--color-white);
 			letter-spacing: 0;
 			text-align: left;
-			line-height: ${rem('28px')};
+			line-height: 1.4444;
 			margin-bottom: var(--global-margin);
 
 			overflow: hidden;
@@ -219,6 +220,7 @@ const Copy = styled.div`
 			&__time {
 				color: var(--color-white);
 				font-size: ${rem('11px')};
+				letter-spacing: ${rem('0.25px')};
 			}
 
 			&__source {
