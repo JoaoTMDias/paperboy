@@ -204,11 +204,12 @@ class Audit extends React.Component<IAuditProps, any> {
 		const { isOnline, isStandalone, platform } = this.props;
 
 		return (
-			<div
+			<aside
 				id="device-audit"
 				data-online={`${isOnline}`}
 				data-standalone={`${isStandalone}`}
 				data-platform={`${platform}`}
+				tabIndex={-1}
 			/>
 		);
 	}

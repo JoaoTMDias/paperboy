@@ -24,6 +24,7 @@ import MainNavigation from './navigation/main/main-navigation.component';
 // UI
 import { LatestNewsTab, NewsTabs } from './data-display/news/index.news';
 import ThumbnailLarge from './data-display/thumbnails/thumbnails-large.component';
+import ThumbnailImage from './data-display/thumbnails/thumbnails-image.component';
 import UISearchForm from './data-entry/forms/search-form.component';
 import SourceCard from './data-entry/sources/source-card.component';
 import SourceListItem from './data-entry/sources/source-list-item.component';
@@ -76,5 +77,6 @@ export {
 	LatestNewsTab,
 	NewsTabs,
 	ThumbnailLarge,
+	ThumbnailImage,
 	LazyLoadingImage,
 };

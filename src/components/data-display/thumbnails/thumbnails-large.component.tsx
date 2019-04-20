@@ -5,10 +5,9 @@ import { rem } from 'polished';
 import * as React from 'react';
 import styled from 'styled-components';
 
-import {
-	ILatestNews,
-	ILatestNewsArticle,
-} from '../../../data/interfaces/index.interface';
+import { ILatestNewsArticle } from '../../../data/interfaces/index.interface';
+
+import { ThumbnailImage } from '../../index';
 
 // Component Props
 interface IThumbnailLargeProps {
@@ -40,10 +39,13 @@ const ThumbnailLarge: React.FunctionComponent<IThumbnailLargeProps> = props => {
 					state={props.options}
 				>
 					<Article>
-						<Image
-							style={{
-								backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 75%), url(${urlToImage})`,
-							}}
+						<div className="thumbnail-image__gradient" />
+						<ThumbnailImage
+							src={urlToImage}
+							width="100%"
+							height="100%"
+							alt={title}
+							placeholderColor={`var(--color-gray6)`}
 						/>
 						<Copy>
 							<h2
@@ -74,10 +76,13 @@ const ThumbnailLarge: React.FunctionComponent<IThumbnailLargeProps> = props => {
 					tabIndex={0}
 				>
 					<Article>
-						<Image
-							style={{
-								backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 75%), url(${urlToImage})`,
-							}}
+						<div className="thumbnail-image__gradient" />
+						<ThumbnailImage
+							src={urlToImage}
+							width="100%"
+							height="100%"
+							alt={title}
+							placeholderColor={`var(--color-gray6)`}
 						/>
 						<Copy>
 							<h2
@@ -151,22 +156,25 @@ const Article = styled.article`
 	margin: 0;
 	position: relative;
 	overflow: hidden;
-`;
 
-const Image = styled.figure`
-	background-repeat: none;
-	background-size: cover;
-	background-attachment: scroll;
-	background-color: var(--color-gray1);
+	.thumbnail-image {
+		&__gradient {
+			position: absolute;
+			background-image: linear-gradient(
+				rgba(0, 0, 0, 0.05) 0%,
+				rgba(0, 0, 0, 0.5) 75%
+			);
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
 
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
+			width: 100%;
+			height: 100%;
 
-	margin: 0;
-	padding: 0;
+			z-index: 1;
+		}
+	}
 `;
 
 const Copy = styled.div`
