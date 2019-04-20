@@ -84,6 +84,8 @@ const TabLink = styled(Link)`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
+	width: 100%;
+	height: 100%;
 
 	${(props: ITabItemProps) =>
 		props.layout === 'vertical' &&
@@ -128,9 +130,9 @@ const TabLink = styled(Link)`
 `;
 
 const Icon = styled.figure`
-	width: ${rem('24px')};
-	height: ${rem('24px')};
-	padding: ${rem('4px')};
+	width: ${rem('26px')};
+	height: ${rem('26px')};
+	padding: ${rem('2px')};
 	display: flex;
 	flex-direction: row;
 	justify-content: center;

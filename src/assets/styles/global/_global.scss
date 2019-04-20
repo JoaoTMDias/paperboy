@@ -82,7 +82,7 @@ html {
 *:focus {
 	outline-color: var(--color-gray1, $color-gray1);
 	outline-width: 1px;
-	outline-style: dashed;
+	outline-style: solid;
 }
 
 ::-moz-selection,
