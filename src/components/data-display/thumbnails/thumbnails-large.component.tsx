@@ -162,7 +162,7 @@ const Article = styled.article`
 			position: absolute;
 			background-image: linear-gradient(
 				rgba(0, 0, 0, 0.05) 0%,
-				rgba(0, 0, 0, 0.5) 75%
+				rgba(0, 0, 0, 0.8) 65%
 			);
 			top: 0;
 			left: 0;
