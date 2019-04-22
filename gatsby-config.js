@@ -6,7 +6,7 @@ const manifestOptions = {
 	description: 'A News app',
 	orientation: "portrait",
 	start_url: '/',
-	background_color: '#ffffff',
+	background_color: '#e81b1f',
 	theme_color: '#e81b1f',
 	display: 'standalone',
 	related_applications: [],
