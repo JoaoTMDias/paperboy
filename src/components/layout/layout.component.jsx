@@ -22,19 +22,19 @@ import favicon16 from '../../../static/favicon-16x16.png';
 import favicon32 from '../../../static/favicon-32x32.png';
 import favicon194 from '../../../static/favicon-194x194.png';
 import maskIcon from '../../../static/safari-pinned-tab.svg';
-import appleTouchIcon from '../../../static/apple-touch-icon.png';
+import appleTouchIcon from '../../../static/ios/ios-appicon-180-180.png';
 
 // Launch Splash Screens
-import appleiPhone5 from '../../../static/splash-screens/apple-iphone5_splash.png';
-import appleiPhone6 from '../../../static/splash-screens/apple-iphone6_splash.png';
-import appleiPhonePlus from '../../../static/splash-screens/apple-iphoneplus_splash.png';
-import appleiPhoneX from '../../../static/splash-screens/apple-iphonex_splash.png';
-import appleiPhoneXR from '../../../static/splash-screens/apple-iphone-xr_splash.png';
-import appleiPhoneXSMax from '../../../static/splash-screens/apple-iphone-xsmax_splash.png';
-import appleiPad from '../../../static/splash-screens/apple-ipad_splash.png';
-import appleIpadPro1 from '../../../static/splash-screens/apple-ipad-pro1_splash.png';
-import appleIpadPro3 from '../../../static/splash-screens/apple-ipad-pro3_splash.png';
-import appleIpadPro2 from '../../../static/splash-screens/apple-ipad-pro2_splash.png';
+import appleiPhone5 from '../../../static/ios/ios-launchimage-640-1136.png';
+import appleiPhone6 from '../../../static/ios/ios-launchimage-750-1334.png';
+import appleiPhonePlus from '../../../static/ios/ios-launchimage-1242-2208.png';
+import appleiPhoneX from '../../../static/ios/ios-launchimage-1242-2208.png';
+import appleiPhoneXR from '../../../static/ios/ios-launchimage-1242-2208.png';
+import appleiPhoneXSMax from '../../../static/ios/ios-launchimage-1242-2208.png';
+import appleiPad from '../../../static/ios/ios-launchimage-1536-2048.png';
+import appleIpadPro1 from '../../../static/ios/ios-launchimage-1242-2208.png';
+import appleIpadPro3 from '../../../static/ios/ios-launchimage-1242-2208.png';
+import appleIpadPro2 from '../../../static/ios/ios-launchimage-1242-2208.png';
 
 const theme = {
 	colorPrimary: 'var(--color-primary)',
