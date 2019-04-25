@@ -528,7 +528,10 @@ const manifestOptions = {
 			sizes: "16x16",
 			type: "image/png"
 		}
-	]
+	],
+	icon_options: {
+		purpose: `maskable`,
+	},
 };
 
 const analyticsOptions = {

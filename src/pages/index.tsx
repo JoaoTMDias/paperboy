@@ -43,7 +43,7 @@ const IndexPage: React.FunctionComponent<IIndexPageProps> = props => {
 			>
 				<IconBrandingLarge visible={true} />
 				<UISubtitle text="This is Paperboy" />
-				<UIDisplay text="Fight back the fake news" />
+				<UIDisplay text="Information is Power" />
 				<UILead text="See the most important news of the hour, right from your favorite sources." />
 			</Container>
 		</Layout>

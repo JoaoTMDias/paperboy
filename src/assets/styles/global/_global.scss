@@ -59,6 +59,40 @@
 --tabs-header-color-selected: $tabs-header-color-selected,
 ));
 
+:root[data-theme="dark"] {
+	--color-primary: #{$color-select};
+	--color-select: #{$color-primary};
+	--color-select-gradient: #{lighten($color-select, 5%)};
+	--color-white: #{$color-white};
+	--color-gray0: #f8f9fa;
+	--color-gray1: #ebedf0;
+	--color-gray2: #dde0e5;
+	--color-gray3: #ced3d9;
+	--color-gray4: #bec4cc;
+	--color-gray5: #acb3be;
+	--color-gray6: #97a0ae;
+	--color-gray7: #7f8999;
+	--color-gray8: #646c78;
+	--color-gray9: #3a3f46;
+	--color-black: #1c1e22;
+	--body-background: #{$body-background};
+	--body-font-color: #{$body-font-color};
+	--top-navigation-bar-height: #{$top-navigation-bar-height};
+	--bottom-navigation-background-color: #{$bottom-navigation-background-color};
+	--bottom-navigation-text-color: #{$bottom-navigation-text-color};
+	--top-navigation-bar-detail-background: transparent;
+	--top-navigation-bar--detail-foreground: #{$color-white};
+	--color-anchor: #{$color-white};
+	--color-anchor-hover: #f9f9f9;
+	--anchor-text-decoration: #{$anchor-text-decoration};
+	--anchor-text-decoration-hover: #{$anchor-text-decoration-hover};
+	--tabs-background: var(--color-black);
+	--tabs-header-indicator: var(--color-primary);
+	--tabs-header-border-bottom: var(--color-black);
+	--tabs-header-color: var(--color-gray7);
+	--tabs-header-color-selected: var(--color-primary);
+}
+
 html {
 	box-sizing: border-box; // 1
 	font-family: $body-font-family;
@@ -70,6 +104,14 @@ html {
 	-ms-overflow-style: scrollbar; // 5
 	-webkit-tap-highlight-color: hsla(0, 0%, 0%, 0); // 6
 	-webkit-font-smoothing: antialiased;
+
+	&.theme-transition,
+	&.theme-transition *,
+	&.theme-transition *:before,
+	&.theme-transition *:after {
+		transition: all 750ms !important;
+		transition-delay: 0 !important;
+	}
 }
 
 *,

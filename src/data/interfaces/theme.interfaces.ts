@@ -45,3 +45,13 @@ export interface Breakpoints {
 	xlarge: number;
 	xxlarge: number;
 }
+
+export enum EAppThemeType {
+	LIGHT = 'LIGHT',
+	DARK = 'DARK',
+	AMBIENT = 'AMBIENT',
+}
+
+export interface IAppTheme {
+	theme?: EAppThemeType;
+}

@@ -62,12 +62,6 @@ const MainContent = styled.main`
 		css`
 			width: calc(100% - 2rem);
 		`};
-
-	*:focus {
-		outline-color: var(--color-gray7, $color-gray7);
-		outline-width: 1px;
-		outline-style: dashed;
-	}
 `;
 
 const Wrapper = styled.div`

@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { ILatestNewsArticle } from '../../../data/interfaces/index.interface';
 
 import { ThumbnailImage } from '../../index';
+import { NEWS_DETAIL_PAGE } from '../../../data/constants/router.constants';
 
 // Component Props
 interface IThumbnailLargeProps {
@@ -33,7 +34,7 @@ const ThumbnailLarge: React.FunctionComponent<IThumbnailLargeProps> = props => {
 		case 'BBC News':
 			return (
 				<Anchor
-					to="/news/detail/"
+					to={NEWS_DETAIL_PAGE}
 					aria-labelledby={`thumbnail__title--${id}`}
 					tabIndex={0}
 					state={props.options}

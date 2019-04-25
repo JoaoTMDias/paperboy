@@ -77,6 +77,12 @@ const Wrapper = styled.li`
 	&:last-child {
 		margin-right: 0;
 	}
+
+	&:hover,
+	&:focus,
+	&:active {
+		outline-color: var(--color-gray8);
+	}
 `;
 
 const TabLink = styled(Link)`
@@ -86,6 +92,12 @@ const TabLink = styled(Link)`
 	align-items: center;
 	width: 100%;
 	height: 100%;
+
+	&:hover,
+	&:focus,
+	&:active {
+		outline-color: var(--color-black);
+	}
 
 	${(props: ITabItemProps) =>
 		props.layout === 'vertical' &&

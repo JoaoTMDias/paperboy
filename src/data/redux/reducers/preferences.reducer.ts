@@ -4,13 +4,16 @@ import {
 	RESET_APP_STATE,
 	SET_CHOSEN_NEWS_SOURCES,
 	SET_USER_AUTHENTICATION,
+	SET_APP_THEME,
 } from '../../constants/index.constants';
 
 import { PreferencesReducer } from '../../interfaces/index.interface';
+import { EAppThemeType } from '../../interfaces/theme.interfaces';
 
 // Preferences initial state
-const initialState = {
+const initialState: PreferencesReducer = {
 	type: null,
+	theme: EAppThemeType.LIGHT,
 	sources: {
 		quantity: 0,
 		items: [],
@@ -52,6 +55,13 @@ function preferences(state: PreferencesReducer = initialState, action: any) {
 				...state,
 				authenticated: action.authenticated,
 			};
+
+		case SET_APP_THEME:
+			return {
+				...state,
+				theme: action.payload.data,
+			};
+
 		case RESET_APP_STATE:
 			return {
 				type: null,
@@ -61,6 +71,7 @@ function preferences(state: PreferencesReducer = initialState, action: any) {
 				},
 				authenticated: false,
 			};
+
 		default:
 			return state;
 	}
