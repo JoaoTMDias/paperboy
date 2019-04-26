@@ -2,7 +2,7 @@ import { EAppThemeType } from './theme.interfaces';
 
 export interface PreferencesReducer {
 	type: null;
-	theme?: EAppThemeType;
+	theme?: EAppThemeType | undefined;
 	sources: ChosenNewsSources;
 	authenticated: boolean;
 }

@@ -7,7 +7,13 @@ import styled, { ThemeProvider } from 'styled-components';
 import { isIOS } from 'react-device-detect';
 
 // Components
-import { Audit, ViewportHeight, AddToHomeScreen, Modal } from '../index';
+import {
+	Audit,
+	ViewportHeight,
+	AddToHomeScreen,
+	Modal,
+	ChangeAppTheme,
+} from '../index';
 import UITopNavigationBar from '../navigation/header/top-navigation.component';
 import MainNavigation from '../navigation/main/main-navigation.component';
 import BottomNavigation from '../navigation/bottom-navigation/bottom-navigation.component';
@@ -127,6 +133,7 @@ const Layout = props => {
 					<Fragment>
 						<Audit />
 						<ViewportHeight />
+						<ChangeAppTheme />
 						<AppLayout id="app-layout">
 							{renderAddToHomescren()}
 							<Helmet
@@ -281,6 +288,7 @@ const AppLayout = styled.div`
 	display: flex;
 	flex-direction: column;
 	position: relative;
+	background-color: var(--body-background);
 
 	${above.large`
     display: grid;

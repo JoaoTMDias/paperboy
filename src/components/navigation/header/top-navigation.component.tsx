@@ -40,7 +40,7 @@ const Wrapper = styled.header`
 	min-height: ${rem('48px')};
 	padding-left: ${rem('16px')};
 	padding-right: ${rem('16px')};
-	background-color: var(--color-white);
+	background-color: var(--body-background);
 	box-shadow: ${(props: IUITopNavigationBarProps) => {
 		if (props.shadow) {
 			if (props.shadow === 'default') {

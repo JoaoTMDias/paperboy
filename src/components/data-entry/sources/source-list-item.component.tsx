@@ -75,12 +75,10 @@ class SourceListItem extends React.Component<ISourceListItemProps, any> {
 							cx="12"
 							cy="12"
 							r="12"
-							fill="var(--color-gray2)"
 						/>
 						<path
 							className="icon__check"
 							d="M8.75,17.4l-4.3-4.31A1.2,1.2,0,0,1,6.14,11.4l3.47,3.46L17.86,6.6a1.2,1.2,0,0,1,1.69,1.69l-9.1,9.11A1.2,1.2,0,0,1,8.75,17.4Z"
-							fill="var(--color-gray2)"
 						/>
 					</Icon>
 				</label>
@@ -172,6 +170,22 @@ const Icon = styled.svg`
 	justify-content: center;
 	align-items: center;
 	z-index: 1;
+
+	.icon__circle {
+		fill: var(--color-gray2);
+
+		html[data-theme="DARK"] & {
+			fill: var(--color-black);
+		}
+	}
+
+	.icon__check {
+		fill: var(--color-gray2);
+
+		html[data-theme="DARK"] & {
+			fill: var(--color-gray9);
+		}
+	}
 `;
 
 const Logo = styled.figure`
@@ -215,16 +229,24 @@ const Name = styled.div`
 
 	.source__label {
 		&__title {
+			--text-shadow-color: rgba(255, 255, 255, 0.2);
+			--title-color: var(--color-gray8);
+
+			html[data-theme="DARK"] & {
+				--text-shadow-color: rgba(0, 0, 0, 0.2);
+				--title-color: var(--color-gray2);
+			}
+
 			width: 100%;
 			text-align: left;
 			font-family: var(--body-font-family);
 			font-size: ${rem('12px')};
 			line-height: 1.333;
-			color: var(--color-gray8);
+			color: var(--title-color);
 			letter-spacing: 0;
 			margin: 0;
 			padding: ${rem('4px')} ${rem('8px')};
-			text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.2);
+			text-shadow: 0px 1px 1px var(--text-shadow-color);
 			text-transform: capitalize;
 		}
 	}

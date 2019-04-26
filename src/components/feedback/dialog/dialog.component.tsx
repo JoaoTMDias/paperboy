@@ -49,7 +49,7 @@ const Dialog = styled.div`
 	margin: 0 auto;
 	padding: ${rem('16px')} 0 0 0;
 
-	background-color: ${(props: IUIDialogProps) => props.theme.colorWhite};
+	background-color: var(--body-background);
 
 	position: fixed;
 	left: 0;

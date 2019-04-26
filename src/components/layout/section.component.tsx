@@ -129,10 +129,19 @@ const SectionWrapper = styled.section`
 `;
 
 const SectionTitle = styled.h3`
+	--section-title-color: var(--color-gray8);
+
+	html[data-theme="DARK"] & {
+		color: var(--color-gray4);
+	};
+
 	font-family: var(--body-font-family);
 	font-size: ${rem('14px')};
 	text-transform: capitalize;
-	color: var(--color-gray8);
+	color: var(--section-title-color);
+
+
+
 	letter-spacing: ${rem('0.17px')};
 	line-height: ${rem('14px')};
 	margin-bottom: var(--global-padding);

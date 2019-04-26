@@ -47,12 +47,12 @@ const Wrapper = styled.nav`
 	left: 0px;
 	right: 0px;
 	bottom: ${(props: IUICallToActionProps) => (props.isTop ? 'auto' : '0px')};
-	background-color: rgba(255, 255, 255, 1);
+	background-color: var(--body-background, rgba(255, 255, 255, 1));
 
 	${(props: IUICallToActionProps) =>
 		props.blurred &&
 		css`
-			background-color: rgba(255, 255, 255, 0.95);
+			background-color: var(--body-background, rgba(255, 255, 255, 0.95));
 		`}
 
 	display: flex;
@@ -63,6 +63,13 @@ const Wrapper = styled.nav`
 		props.isTop
 			? '0px 4px 20px 0px rgba(255,255,255,0.5)'
 			: '0px -4px 20px 0px rgba(255,255,255,1)'};
+
+	html[data-theme="DARK"] && {
+			box-shadow: ${(props: IUICallToActionProps) =>
+		props.isTop
+			? '0px 4px 20px 0px rgba(0,0,0,0.5)'
+			: '0px -4px 20px 0px rgba(0,0,0,1)'};
+	}
 
 	animation-name: ${onEnter};
 	animation-duration: 300ms;
@@ -80,9 +87,9 @@ const Wrapper = styled.nav`
 		}
 
 		box-shadow: ${(props: IUICallToActionProps) =>
-			props.float
-				? '0px 4px 16px 4px hsla(6, 78%, 57%, 0.24)'
-				: '0px 2px 0px 2px hsla(6,78%,57%,0.24)'};
+		props.float
+			? '0px 4px 16px 4px hsla(var(--cta-shadow-color-hue), 78%, 57%, 0.24)'
+		: '0px 2px 0px 2px hsla(var(--cta-shadow-color-hue),78%,57%,0.24)'};
 	}
 `;
 

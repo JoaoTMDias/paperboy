@@ -48,11 +48,13 @@ const Confirm: React.FunctionComponent<IConfirmProps> = props => {
 const Content = styled.div`
 	width: 100%;
 	margin: 0 auto;
+	background-color: var(--body-background);
 
 	.dialog__content {
 		&__title,
 		&__description {
 			text-align: left !important;
+			color: var(--body-font-color);
 		}
 	}
 `;
@@ -64,13 +66,14 @@ const Row = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
+	background-color: var(--body-background);
 `;
 
 const Button = styled.button`
 	-webkit-appearance: none;
 	padding: ${rem('8px')} ${rem('16px')};
-	background-color: var(--color-white);
-	color: var(--color-gray7);
+	background-color: var(--body-background);
+	color: var(--body-font-color);
 	box-shadow: none;
 	border: none;
 	border-radius: var(--global-radius);

@@ -59,7 +59,7 @@ const Heading1 = styled.h2`
 	font-size: ${rem('36px')};
 	line-height: 1.15;
 	font-family: var(--heading-font-family);
-	color: var(--color-gray9);
+	color: var(--heading-1-color);
 	margin-bottom: ${rem('16px')};
 
 	animation-name: ${onEnter};
@@ -75,7 +75,7 @@ const Subtitle = styled.h3`
 	line-height: 20px;
 	font-size: ${rem('16px')};
 	line-height: 1.25;
-	color: hsla(5, 61%, 50%, 1);
+	color: var(--subtitle-color);
 	font-family: var(--heading-font-family);
 	margin-bottom: ${rem('8px')};
 
@@ -92,7 +92,7 @@ const Lead = styled.p`
 	line-height: 20px;
 	font-size: ${rem('20px')};
 	line-height: var(--global-lineheight);
-	color: var(--color-gray8);
+	color: var(--lead-color);
 	font-family: var(--body-font-family);
 
 	animation-name: ${onEnter};

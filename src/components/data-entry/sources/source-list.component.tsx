@@ -155,6 +155,7 @@ const SourcesListWrapper = styled.ul`
 	width: 100%;
 	scroll-snap-type: x proximity;
 	-webkit-overflow-scrolling: touch;
+	background-color: var(--body-background);
 
 	.source__item {
 		flex: 1;

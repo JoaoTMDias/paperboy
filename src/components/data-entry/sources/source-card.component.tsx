@@ -204,20 +204,36 @@ const Name = styled.div`
 	border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;
 	background-color: var(--color-white);
+
+	html[data-theme="DARK"] & {
+		background-color: var(--color-gray9);
+	}
 	height: ${rem('44px')};
 
 	.source__label {
 		&__title {
+			--text-shadow-color: rgba(255, 255, 255, 0.2);
+
+
+
+			html[data-theme="DARK"] & {
+				--text-shadow-color: rgba(0, 0, 0, 0.2);
+			}
+
 			width: 100%;
 			text-align: center;
 			font-family: var(--body-font-family);
 			font-size: ${rem('12px')};
 			line-height: 1.333;
 			color: var(--color-gray8);
+
+			html[data-theme="DARK"] & {
+				color: var(--color-gray3);
+			}
 			letter-spacing: 0;
 			margin: 0;
 			padding: ${rem('4px')} ${rem('8px')};
-			text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.2);
+			text-shadow: 0px 1px 1px var(--text-shadow-color);
 			text-transform: capitalize;
 		}
 	}
