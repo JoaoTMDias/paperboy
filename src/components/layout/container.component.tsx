@@ -12,6 +12,7 @@ interface IContainerProps {
 	theme?: any;
 	title: string;
 	style?: string | object;
+	children: React.ReactNode;
 }
 
 /**
@@ -34,9 +35,12 @@ const Container: React.FunctionComponent<IContainerProps> = props => {
 		}
 	}
 	return (
-		<MainContent aria-labelledby="page-title" {...allProps}>
+		<MainContent id="page-main" aria-labelledby="page-title" {...allProps}>
 			<A11yPageTitle title={props.title} />
-			<Wrapper {...allProps}>{children}</Wrapper>
+			<Wrapper {...allProps}>
+				<Trigger id="container-trigger" />
+				{children}
+			</Wrapper>
 		</MainContent>
 	);
 };
@@ -62,6 +66,14 @@ const MainContent = styled.main`
 		css`
 			width: calc(100% - 2rem);
 		`};
+`;
+
+const Trigger = styled.aside`
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	top: 0;
+	left: 0:
 `;
 
 const Wrapper = styled.div`

@@ -37,7 +37,7 @@ const debounce = (func: any) => {
 };
 
 // Component Props
-interface IUITopNavigationBarWithCloseProps {
+interface ITopNavigationWithCloseProps {
 	title: string;
 	source: string;
 	theme?: any;
@@ -55,7 +55,7 @@ interface Hero {
 	trigger: number;
 }
 
-interface IUITopNavigationBarWithCloseState {
+interface ITopNavigationWithCloseState {
 	root: HTMLElement | null;
 	speed?: number;
 	hero: Hero;
@@ -68,11 +68,11 @@ interface IUITopNavigationBarWithCloseState {
  * @date  12/December/2018 at 16:40
  * @extends {React.SFC}
  */
-class UITopNavigationBarWithClose extends React.Component<
-	IUITopNavigationBarWithCloseProps,
-	IUITopNavigationBarWithCloseState
+class TopNavigationWithClose extends React.Component<
+	ITopNavigationWithCloseProps,
+	ITopNavigationWithCloseState
 > {
-	constructor(props: IUITopNavigationBarWithCloseProps) {
+	constructor(props: ITopNavigationWithCloseProps) {
 		super(props);
 		// example how to bind object in React ES6
 		this.handleScroll = this.handleScroll.bind(this);
@@ -144,7 +144,7 @@ class UITopNavigationBarWithClose extends React.Component<
 	}
 
 	shouldComponentUpdate(
-		nextProps: IUITopNavigationBarWithCloseProps,
+		nextProps: ITopNavigationWithCloseProps,
 	): boolean {
 		const { title, source } = this.props;
 
@@ -308,4 +308,4 @@ const Close = styled(Link)`
 	height: ${rem('44px')};
 `;
 
-export default UITopNavigationBarWithClose;
+export default TopNavigationWithClose;

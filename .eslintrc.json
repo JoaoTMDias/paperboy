@@ -14,6 +14,7 @@
 		"@typescript-eslint",
 		"react",
 		"prettier",
+		"react-hooks",
 		"import"
 	],
 	"env": {
@@ -40,7 +41,7 @@
 				"extensions": [".js", ".jsx", ".ts", ".tsx"]
 			}
 		],
-		"react/prop-types": 2,
+		"react/prop-types": "off",
 		"react/require-default-props": "off",
 		"jsx-a11y/href-no-hash": "off",
 		"class-methods-use-this": "off",
@@ -69,16 +70,14 @@
 		],
 		"quotes": ["warn", "single"],
 		"@typescript-eslint/interface-name-prefix": [2, "always"],
-		"@typescript-eslint/class-name-casing": [
-			2,
-			"always"
-		],
+		"@typescript-eslint/class-name-casing": 2,
 		"@typescript-eslint/explicit-member-accessibility": 0,
 		"indent": "off",
 		"@typescript-eslint/indent": ["error", "tab"],
 		"@typescript-eslint/no-explicit-any": 0,
 		"@typescript-eslint/explicit-function-return-type": 0,
-		"@typescript-eslint/restrict-plus-operands": [2, "always"]
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn"
 	},
 	"settings": {
 		"import/parsers": {

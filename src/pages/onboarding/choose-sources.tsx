@@ -11,8 +11,8 @@ import {
 	UIButton,
 	UICallToAction,
 	UIContentSpinner,
-	UITopNavigationBar,
-	UITopNavigationBarWithTitle,
+	TopNavigation,
+	TopNavigationWithTitle,
 	UISearchForm,
 	UISection,
 } from '../../components/index';
@@ -318,12 +318,12 @@ class ChooseSourcesPage extends React.PureComponent<
 		}
 		return (
 			<Layout authenticated={authenticated}>
-				<UITopNavigationBar shadow="hairline">
-					<UITopNavigationBarWithTitle
+				<TopNavigation shadow="hairline">
+					<TopNavigationWithTitle
 						title="What do you fancy reading?"
 						subtitle="Breaking news from over 30,000 sources"
 					/>
-				</UITopNavigationBar>
+				</TopNavigation>
 				<Modal delay={1000}>
 					<Confirm
 						title="Use location services?"

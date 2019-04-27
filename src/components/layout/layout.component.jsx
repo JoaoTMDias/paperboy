@@ -14,7 +14,7 @@ import {
 	Modal,
 	ChangeAppTheme,
 } from '../index';
-import UITopNavigationBar from '../navigation/header/top-navigation.component';
+import TopNavigation from '../navigation/header/top-navigation.component';
 import MainNavigation from '../navigation/main/main-navigation.component';
 import BottomNavigation from '../navigation/bottom-navigation/bottom-navigation.component';
 import { above } from '../../helpers/index.helpers';
@@ -95,7 +95,7 @@ const Layout = props => {
 			console.log('isDesktop? ', isDesktop);
 			return (
 				<React.Fragment>
-					{header && <UITopNavigationBar key="page-header" />}
+					{header && <TopNavigation key="page-header" />}
 					{isDesktop && <MainNavigation key="main-navigation" />}
 					{children}
 					{!isDesktop && bottomNavigation && (

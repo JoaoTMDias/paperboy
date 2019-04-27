@@ -13,7 +13,7 @@ import { EAppThemeType } from '../../interfaces/theme.interfaces';
 // Preferences initial state
 const initialState: PreferencesReducer = {
 	type: null,
-	theme: EAppThemeType.LIGHT,
+	theme: EAppThemeType.DARK,
 	sources: {
 		quantity: 0,
 		items: [],

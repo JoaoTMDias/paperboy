@@ -10,7 +10,7 @@ import {
 	Container,
 	Layout,
 	LazyLoadingImage,
-	UITopNavigationBarWithClose,
+	TopNavigationWithClose,
 } from '../../../components/index';
 import { NEWS_PAGE } from '../../../data/constants/index.constants';
 import { ILatestNewsArticle } from '../../../data/interfaces/news.interface';
@@ -33,7 +33,7 @@ class ArticleDetailPage extends React.Component<IArticleDetailPageProps, any> {
 			const data: ILatestNewsArticle = state;
 			return (
 				<Layout header={false} bottomNavigation={false}>
-					<UITopNavigationBarWithClose
+					<TopNavigationWithClose
 						title={data.title}
 						source="source"
 					/>

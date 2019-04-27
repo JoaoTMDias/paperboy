@@ -4,7 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 // Component Props
-interface IUITopNavigationBarWithTitleProps {
+interface ITopNavigationWithTitleProps {
 	title: string;
 	subtitle: string;
 	theme?: any;
@@ -16,11 +16,11 @@ interface IUITopNavigationBarWithTitleProps {
  * @date  12/December/2018 at 16:40
  * @extends {React.SFC}
  */
-class UITopNavigationBarWithTitle extends React.Component<
-	IUITopNavigationBarWithTitleProps
+class TopNavigationWithTitle extends React.Component<
+	ITopNavigationWithTitleProps
 	> {
 	shouldComponentUpdate(
-		nextProps: IUITopNavigationBarWithTitleProps,
+		nextProps: ITopNavigationWithTitleProps,
 		nextState,
 	): boolean {
 		if (
@@ -91,4 +91,4 @@ const Container = styled.div`
 	}
 `;
 
-export default UITopNavigationBarWithTitle;
+export default TopNavigationWithTitle;
