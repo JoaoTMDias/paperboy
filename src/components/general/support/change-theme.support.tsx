@@ -1,5 +1,6 @@
 // Libraries
 import * as React from "react";
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
 import { EAppThemeType } from "../../../data/interfaces/theme.interfaces";
@@ -14,6 +15,7 @@ interface IChangeAppThemeProps {
 interface IChangeAppThemeState {
     rootElement: HTMLElement | null;
     hasNewTheme: boolean | null;
+    themeColor: string;
 }
 
 
@@ -34,6 +36,7 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
         this.state = {
             rootElement: null,
             hasNewTheme: false,
+            themeColor: '#e81b1f',
         }
     }
 
@@ -109,6 +112,7 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
      */
     changeCurrentTheme(theme: EAppThemeType) {
         const { rootElement } = this.state;
+        let themeColor = '#1c1e22';
 
         if (rootElement) {
             rootElement.classList.add('theme-transition')
@@ -117,15 +121,26 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
                 rootElement.classList.remove('theme-transition')
             }, 1000);
         }
+
+        if(theme === EAppThemeType.LIGHT){
+            themeColor = '#e81b1f';
+        }
+
+        this.setState({
+            themeColor,
+        });
     }
 
     render() {
         const { currentTheme } = this.props;
-
-        console.log('currentTheme: ', currentTheme);
+        const { themeColor } = this.state;
 
         return (
-            <aside data-theme={currentTheme} tabIndex={-1} />
+            <aside data-theme={currentTheme} tabIndex={-1}>
+                <Helmet>
+                    <meta name="theme-color" content={`${themeColor}`} />
+                </Helmet>
+            </aside>
         );
     }
 };
