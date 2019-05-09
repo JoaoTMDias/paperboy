@@ -131,7 +131,7 @@ class LatestNewsTab extends React.Component<ILatestNewsTabProps, any> {
 					overscanCount={3}
 					outerElementType="div"
 					innerElementType="ol"
-					direction="vertical"
+					layout="vertical"
 				>{this.renderRow}</List>
 			);
 		} else {

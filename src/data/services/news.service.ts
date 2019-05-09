@@ -1,5 +1,5 @@
 // Libraries
-import axios from 'axios';
+import axios, { AxiosPromise } from 'axios';
 
 // Constants
 import { NEWS_API_KEY } from '../constants/news.constants';
@@ -11,7 +11,7 @@ export default {
 	 * @param {any} source
 	 * @returns
 	 */
-	getAllLatestNews(source: any[]) {
+	getAllLatestNews(source: any[]): AxiosPromise<any> {
 		return axios.get(
 			`https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${NEWS_API_KEY}`,
 		);
@@ -22,7 +22,7 @@ export default {
 	 *
 	 * @returns
 	 */
-	getAllAvailableSources() {
+	getAllAvailableSources(): AxiosPromise<any> {
 		return axios.get(
 			`https://newsapi.org/v2/sources?apiKey=${NEWS_API_KEY}`,
 		);
@@ -33,7 +33,7 @@ export default {
 	 *
 	 * @returns
 	 */
-	getAvailableSourcesFromLanguage(language: string) {
+	getAvailableSourcesFromLanguage(language: string): AxiosPromise<any> {
 		return axios.get(
 			`https://newsapi.org/v2/sources?language=${language}&apiKey=${NEWS_API_KEY}`,
 		);
@@ -45,7 +45,7 @@ export default {
 	 * @param {any} term
 	 * @returns
 	 */
-	searchForTerm(term: string) {
+	searchForTerm(term: string): AxiosPromise<any> {
 		return axios.get(
 			`https://newsapi.org/v2/everything?q=${term}&sortBy=relevancy&pageSize=25&apiKey=${NEWS_API_KEY}`,
 		);

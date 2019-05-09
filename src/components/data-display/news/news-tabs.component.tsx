@@ -268,9 +268,9 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 
 		if (tabBarHeader && trigger) {
 			const ScrollPosition = getScrollPosition();
-			if (ScrollPosition.y >= trigger) {
+			if (ScrollPosition && ScrollPosition.y >= trigger) {
 				tabBarHeader.classList.add('is-scrolling');
-			} else if (ScrollPosition.y < trigger) {
+			} else if (ScrollPosition && ScrollPosition.y < trigger) {
 				tabBarHeader.classList.remove('is-scrolling');
 			}
 
