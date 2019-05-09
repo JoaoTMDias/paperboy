@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { FixedSizeList, ListChildComponentProps } from 'react-window';
 
 import { ThumbnailLarge, UIContentSpinner } from '../../index';
 
@@ -19,6 +20,11 @@ interface ILatestNewsTabProps {
 	dispatch: any;
 }
 
+
+interface IVirtualListProps extends ListChildComponentProps {
+	key?: React.Key;
+}
+
 /**
  * @description Latest News Tab
  * @date 2019-01-17
@@ -26,7 +32,7 @@ interface ILatestNewsTabProps {
  * @extends {React.Component<ILatestNewsTabProps, any>}
  */
 class LatestNewsTab extends React.Component<ILatestNewsTabProps, any> {
-	constructor(props: ILatestNewsTabProps) {
+	constructor (props: ILatestNewsTabProps) {
 		super(props);
 	}
 
@@ -96,21 +102,38 @@ class LatestNewsTab extends React.Component<ILatestNewsTabProps, any> {
 		return false;
 	}
 
+
+	/**
+	 * @description
+	 * @memberof LatestNewsTab
+	 */
+	renderRow = ({ index, key, style }: IVirtualListProps) => {
+		const { latest } = this.props;
+		const article = latest.articles[index];
+
+		return (
+			<Item key={key} id={`latest-news__article__${index}`} style={style}>
+				<ThumbnailLarge id={index} options={article} />
+			</Item>
+		);
+	};
+
 	render() {
 		const { latest } = this.props;
 
 		if (latest && latest.totalResults > 0) {
-			const list = latest.articles.map(
-				(article: ILatestNewsArticle, index: number) => {
-					return (
-						<Item key={index} id={`latest-news__article__${index}`}>
-							<ThumbnailLarge id={index} options={article} />
-						</Item>
-					);
-				},
+			return (
+				<List
+					width={window.innerWidth}
+					height={window.innerHeight - (48 + 48)}
+					itemCount={latest.articles.length}
+					itemSize={window.innerHeight * 0.4}
+					overscanCount={3}
+					outerElementType="div"
+					innerElementType="ol"
+					direction="vertical"
+				>{this.renderRow}</List>
 			);
-
-			return <List>{list}</List>;
 		} else {
 			return <UIContentSpinner isFullPage={true} />;
 		}
@@ -118,8 +141,15 @@ class LatestNewsTab extends React.Component<ILatestNewsTabProps, any> {
 }
 
 // Styling
-const List = styled.ol`
-	width: 100%;
+const List = styled(FixedSizeList)`
+	position: relative;
+	width: 100vw;
+	height: calc(var(--viewport-height) - (var(--top-navigation-bar-height) * 2));
+    overflow: auto;
+    will-change: transform;
+
+	ol {
+		width: 100%;
 	height: 100%;
 	list-style-type: none;
 	margin: 0;
@@ -129,6 +159,8 @@ const List = styled.ol`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
+	}
+
 `;
 
 const Item = styled.li`
