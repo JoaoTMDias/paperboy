@@ -123,24 +123,39 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
         }
 
         if(theme === EAppThemeType.LIGHT){
-            themeColor = '#e81b1f';
+            themeColor = '#ffffff';
         }
 
         this.setState({
             themeColor,
+        }, () => {
+            this.changeCurrentThemeColor()
         });
     }
 
-    render() {
-        const { currentTheme } = this.props;
+    /**
+     * @description Updates the Current Meta Theme Color
+     * @author João Dias
+     * @date 2019-05-09
+     * @memberof ChangeAppTheme
+     */
+    changeCurrentThemeColor(){
         const { themeColor } = this.state;
 
+        const metaThemeColor = document.querySelector("meta[name=theme-color]");
+
+        if(metaThemeColor){
+            metaThemeColor.setAttribute("content", themeColor);
+        }
+    }
+
+
+
+    render() {
+        const { currentTheme } = this.props;
+
         return (
-            <aside data-theme={currentTheme} tabIndex={-1}>
-                <Helmet>
-                    <meta name="theme-color" content={`${themeColor}`} />
-                </Helmet>
-            </aside>
+            <aside data-theme={currentTheme} tabIndex={-1} />
         );
     }
 };
