@@ -37,13 +37,14 @@ class TabItem extends React.Component<ITabItemProps> {
 		const { to, label, layout, children } = this.props;
 		const { ...navItemProps } = this.props;
 		return (
-			<Wrapper layout={layout}>
+			<Wrapper layout={layout} {...navItemProps}>
 				<TabLink
 					to={to}
 					activeClassName="is-active"
 					aria-label={`Click/Tap to go to the page: ${label}`}
 					tabIndex={0}
 					layout={layout}
+					{...navItemProps}
 				>
 					<Icon className="tab__icon">{children}</Icon>
 					<Label className="label">{label}</Label>

@@ -25,7 +25,7 @@ class SourceCard extends React.Component<ISourceCardProps> {
 		checked: false,
 	};
 
-	shouldComponentUpdate(nextProps: ISourceCardProps, nextState) {
+	shouldComponentUpdate(nextProps: ISourceCardProps) {
 		return nextProps.checked !== this.props.checked;
 	}
 

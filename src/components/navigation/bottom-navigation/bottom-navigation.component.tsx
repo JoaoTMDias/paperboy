@@ -18,6 +18,7 @@ import {
 	SEARCH_PAGE,
 	SETTINGS_PAGE,
 } from '../../../data/constants/index.constants';
+import { withMemo } from '../../../helpers/index.helpers';
 
 // Component Props
 interface IBottomNavigationProps {
@@ -90,4 +91,4 @@ const List = styled.ul`
 	align-items: center;
 `;
 
-export default React.memo(BottomNavigation);
+export default withMemo(BottomNavigation, []);

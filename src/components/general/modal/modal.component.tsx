@@ -14,7 +14,7 @@ interface IModalState {
 	isModalOpen: boolean;
 }
 
-class Modal extends React.Component<IModalProps, IModalState> {
+class Modal extends React.PureComponent<IModalProps, IModalState> {
 	static defaultProps = {
 		backgroundOpacity: 0.3,
 		align: 'bottom',

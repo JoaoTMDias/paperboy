@@ -71,8 +71,8 @@ interface ITopNavigationWithCloseState {
 class TopNavigationWithClose extends React.Component<
 	ITopNavigationWithCloseProps,
 	ITopNavigationWithCloseState
-> {
-	constructor(props: ITopNavigationWithCloseProps) {
+	> {
+	constructor (props: ITopNavigationWithCloseProps) {
 		super(props);
 		// example how to bind object in React ES6
 		this.handleScroll = this.handleScroll.bind(this);
@@ -223,6 +223,9 @@ class TopNavigationWithClose extends React.Component<
 
 // Styling
 const Container = styled.div`
+	--top-navigation-bar--detail-background: transparent;
+	--top-navigation-bar--title-color: var(--color-gray9);
+	--top-navigation-bar--height:  ${rem('44px')};
 	width: 100%;
 	flex: auto;
 	display: flex;
@@ -239,6 +242,7 @@ const Container = styled.div`
 
 	.center {
 		width: 100%;
+		height: var(--top-navigation-bar--height);
 		overflow: hidden;
 		display: flex;
 		flex-direction: row;
@@ -249,16 +253,19 @@ const Container = styled.div`
 		.title {
 			font-family: var(--heading-font-family);
 			font-size: ${rem('14px')};
-			color: var(--color-gray9);
+			color: var(--top-navigation-bar--title-color);
 			letter-spacing: 0;
 			margin-bottom: 0;
 			position: absolute;
 			z-index: -1;
 			opacity: 0;
-			text-align: center;
+			white-space: nowrap;
+			overflow: hidden;
 			text-overflow: ellipsis;
-			max-height: ${rem('25px')};
-			width: 0;
+			text-align: center;
+			max-height: var(--top-navigation-bar--height);
+			width: calc(100vw - 112px);
+
 		}
 	}
 
@@ -267,7 +274,11 @@ const Container = styled.div`
 		width: ${rem('24px')};
 		height: ${rem('24px')};
 		border-radius: ${rem('24px')};
-		transform: translate3d(30vw, 0, 0);
+		opacity: 1;
+		transform: scale(1);
+		flex-basis: width: ${rem('24px')};
+		flex-shrink: 0;
+		flex-grow: 0;
 	}
 
 	.close,
@@ -280,7 +291,13 @@ const Container = styled.div`
 	}
 
 	&.is-scrolling {
-		background-color: var(--color-white);
+		--top-navigation-bar--detail-background: var(--color-white);
+
+		html[data-theme='DARK'] && {
+			--top-navigation-bar--detail-background: var(--color-black);
+			--top-navigation-bar--detail-foreground: var(--color-gray4);
+			--top-navigation-bar--title-color: var(--color-gray1);
+		}
 
 		.title {
 			opacity: 1;
@@ -290,15 +307,11 @@ const Container = styled.div`
 			flex: auto;
 		}
 
-		#brand-logo {
+		#brand-logo, img {
 			opacity: 0;
 			transform: scale(0);
-			width: 0;
-		}
-
-		img {
-			flex: 1;
-			transform: translate3d(0, 0, 0);
+			position: absolute;
+			left: 0;
 		}
 	}
 `;

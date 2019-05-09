@@ -1,9 +1,15 @@
 // Libraries
 import { rem } from 'polished';
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 // Component Props
+export enum ETopNavigationType {
+	STICKY = 'sticky',
+	FIXED = 'fixed',
+	RELATIVE = 'relative',
+}
+
 interface ITopNavigationProps {
 	isSticky?: boolean;
 	shadow?: 'default' | 'hairline' | 'none';
@@ -38,12 +44,30 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 		this.state = {
 			rootContainer: {
 				parentContainer: null,
-				threshold: 0.9,
+				threshold: 0.5,
 			},
 			navigationElement: null,
 			containerElement: null,
 			hasInitializedIntersectionObserver: false,
 		}
+	}
+
+	shouldComponentUpdate(nextProps: ITopNavigationProps, nextState: ITopNavigationState) {
+		const { isSticky, shadow } = this.props;
+		const { rootContainer, navigationElement, containerElement, hasInitializedIntersectionObserver } = this.state;
+
+		if (nextProps.isSticky !== isSticky || nextProps.shadow !== shadow) {
+			return true;
+		}
+
+		if (nextState.containerElement !== containerElement ||
+			nextState.rootContainer !== rootContainer ||
+			nextState.navigationElement !== navigationElement ||
+			nextState.hasInitializedIntersectionObserver !== hasInitializedIntersectionObserver) {
+			return true;
+		}
+
+		return false;
 	}
 
 	componentDidMount(): boolean {
@@ -79,10 +103,6 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 		return false;
 	}
 
-	shouldComponentUpdate(nextProps: ITopNavigationProps) {
-		return nextProps.shadow !== this.props.shadow;
-	}
-
 	initObserver(): boolean {
 		const { containerElement, rootContainer, navigationElement } = this.state;
 
@@ -97,14 +117,13 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 
 					if (element.isIntersecting) {
 						console.log('is intersecting');
-						navigationElement.classList.remove('is-out-of-bounds');
+						navigationElement.classList.remove('is-sticky');
 					} else {
 						console.log('is not intersecting');
-						navigationElement.classList.add('is-out-of-bounds');
+						navigationElement.classList.add('is-sticky');
 					}
 				},
 				{
-					root: rootContainer.parentContainer,
 					threshold: rootContainer.threshold,
 				},
 			);
@@ -121,14 +140,6 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 		return false;
 	}
 
-	getStickyPosition(itemY: number, rootY: number): string {
-		if (itemY > rootY) {
-			return 'is-out-of-bounds--bottom';
-		} else {
-			return 'is-out-of-bounds--top';
-		}
-	}
-
 	render() {
 		const { children, isSticky } = this.props;
 		return <Wrapper id="page-top-navigation" isSticky={isSticky}>{children}</Wrapper>;
@@ -136,21 +147,36 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 }
 
 // Styling
+const fadeInDownBar = keyframes`
+	to {
+		transform: translateY(0);
+	}
+`;
+
 const Wrapper = styled.header`
 	position: ${(props: ITopNavigationProps) => {
 		if (props.isSticky) {
-			return 'sticky';
+			return 'relative';
 		}
 
 		return 'fixed';
 	}};
+
+	&.is-sticky {
+		transform: ${`translateY(${rem('-100px')})`};
+		animation-name: ${fadeInDownBar};
+		animation-duration: 250ms;
+		animation-fill-mode: both;
+		position: fixed;
+	}
+
 	top: 0;
 	left: 0;
 	right: 0;
 	width: 100%;
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: flex-start;
 	align-items: center;
 	height: auto;
 	min-height: ${rem('48px')};

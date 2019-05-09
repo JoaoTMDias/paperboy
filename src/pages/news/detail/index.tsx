@@ -220,10 +220,10 @@ const HeroCopy = styled.div`
 
 const ArticleContent = styled.div`
 	padding: calc(var(--global-padding) * 1.5) var(--global-padding);
-	color: var(--color-gray9);
 	z-index: 2;
 
 	.lead {
+		color: var(--content-lead-color);
 		font-family: var(--body-font-family);
 		font-weight: 300;
 		font-size: ${rem('18px')};
@@ -234,7 +234,7 @@ const ArticleContent = styled.div`
 
 	p {
 		font-family: var(--content-font-family);
-		color: var(--color-gray8);
+		color: var(--content-paragraph-color);
 		font-size: ${rem('17px')};
 		letter-spacing: ${rem('0.4px')};
 		line-height: ${rem('28px')};

@@ -60,6 +60,7 @@ const Container = styled.div`
 	align-items: flex-start;
 	margin-top: ${rem('20px')};
 	margin-right: ${rem('16px')};
+
 	margin-bottom: ${rem('20px')};
 	margin-left: 0;
 	background-color: var(--body-background);
@@ -80,7 +81,7 @@ const Container = styled.div`
 				font-size: ${rem('14px')};
 				color: var(--color-gray7);
 
-				html[dark-theme="DARK"] && {
+				html[data-theme="DARK"] && {
 					color: var(--color-gray4);
 				}
 

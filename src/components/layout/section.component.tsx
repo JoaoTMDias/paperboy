@@ -1,7 +1,6 @@
 // Libraries
 import { rem } from 'polished';
 import * as React from 'react';
-import { render } from 'react-dom';
 import styled, { css } from 'styled-components';
 
 // Component Props

@@ -36,6 +36,7 @@ interface INewsTabsState {
 	trigger: number | undefined;
 	tabBarHeader: HTMLDivElement | null;
 	currentTabIndex: number;
+	hasChangedTabs: boolean;
 }
 
 /**
@@ -70,6 +71,7 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 			trigger: 50,
 			tabBarHeader: null,
 			currentTabIndex: 0,
+			hasChangedTabs: false,
 		};
 	}
 
@@ -164,6 +166,7 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 		});
 
 		this.changeTabIndex(index);
+		this.initTabsChanged();
 	};
 
 	/**
@@ -177,7 +180,29 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 		});
 
 		this.changeTabIndex(value);
+		this.initTabsChanged();
 	};
+
+	/**
+	 * @description Changes the Tabs Initializer state
+	 * @author João Dias
+	 * @date 2019-05-03
+	 * @returns {boolean}
+	 * @memberof TabsPages
+	 */
+	initTabsChanged(): boolean {
+		const { hasChangedTabs } = this.state;
+
+		if (hasChangedTabs) {
+			return false;
+		}
+
+		this.setState({
+			hasChangedTabs: true,
+		});
+
+		return true;
+	}
 
 	/**
 	 * @description Change Tab
@@ -303,8 +328,38 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 		);
 	};
 
+
+
+	/**
+	 * @description Renders the Tab Items. When the component starts only renders one child.
+	 * @author João Dias
+	 * @date 2019-05-03
+	 * @returns
+	 * @memberof TabsPages
+	 */
+	renderTabItems() {
+		const { children } = this.props;
+		const { hasChangedTabs, currentTabIndex } = this.state;
+
+		if (hasChangedTabs === false) {
+			const filteredChildren = React.Children.map(
+				children,
+				(child: React.ReactNode, childrenIndex: number) => {
+					if (childrenIndex === currentTabIndex) {
+						return child;
+					}
+					return <div className="tabs-page--placeholder">&nbsp;</div>;
+				},
+			);
+
+			return filteredChildren;
+		}
+
+		return children;
+	}
+
 	render() {
-		const { id, children } = this.props;
+		const { id } = this.props;
 		const { currentTabIndex } = this.state;
 
 		return (
@@ -323,7 +378,7 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 						height: 'var(--tabs-container-height)',
 					}}
 				>
-					{children}
+					{this.renderTabItems()}
 				</TabsContainer>
 			</TabsWrapper>
 		);

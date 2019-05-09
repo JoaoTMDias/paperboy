@@ -5,7 +5,6 @@ import { SourceCard, SourceListItem } from '../../index';
 
 // Component Props
 interface ISourcesListProps {
-	theme?: any;
 	layout?: 'horizontal' | 'vertical';
 	label: string;
 	data: any | null;
@@ -30,40 +29,43 @@ import IconWallStreetJournal from '../../../assets/images/sources/icon-wall-stre
  * @date  24/December/2018 at 01:43
  * @extends {React.SFC}
  */
-const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
-	const { data, layout } = props;
+class SourcesList extends React.PureComponent<ISourcesListProps> {
+	static defaultProps = {
+		layout: 'vertical',
+		label: 'label',
+	};
 
-	const renderData = () => {
-		let item;
+	renderData() {
+		const { data, layout, handleChange, selectedOptions } = this.props;
 
-		if (layout === 'horizontal') {
-			item = data.map((source: any, index: number) => {
-				let cover;
+		const item = data.map((source: any, index: number) => {
+			let cover;
 
-				if (source.id === 'bbc-news') {
-					cover = IconBBCNews;
-				} else if (source.id === 'cnn') {
-					cover = IconCNN;
-				} else if (source.id === 'fox-news') {
-					cover = IconFoxNews;
-				} else if (source.id === 'google-news') {
-					cover = IconGoogleNews;
-				} else if (source.id === 'the-times-of-india') {
-					cover = IconTimesOfIndia;
-				} else if (source.id === 'the-new-york-times') {
-					cover = IconNewYorkTimes;
-				} else if (source.id === 'the-guardian-uk') {
-					cover = IconGuardian;
-				} else if (source.id === 'usa-today') {
-					cover = IconUSAToday;
-				} else if (source.id === 'the-wall-street-journal') {
-					cover = IconWallStreetJournal;
-				} else {
-					cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${
-						source.url
+			if (source.id === 'bbc-news') {
+				cover = IconBBCNews;
+			} else if (source.id === 'cnn') {
+				cover = IconCNN;
+			} else if (source.id === 'fox-news') {
+				cover = IconFoxNews;
+			} else if (source.id === 'google-news') {
+				cover = IconGoogleNews;
+			} else if (source.id === 'the-times-of-india') {
+				cover = IconTimesOfIndia;
+			} else if (source.id === 'the-new-york-times') {
+				cover = IconNewYorkTimes;
+			} else if (source.id === 'the-guardian-uk') {
+				cover = IconGuardian;
+			} else if (source.id === 'usa-today') {
+				cover = IconUSAToday;
+			} else if (source.id === 'the-wall-street-journal') {
+				cover = IconWallStreetJournal;
+			} else {
+				cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${
+					source.url
 					}&size=70..120..200`;
-				}
+			}
 
+			if (layout === 'horizontal') {
 				return (
 					<SourceCard
 						key={source.id}
@@ -71,74 +73,47 @@ const SourcesList: React.FunctionComponent<ISourcesListProps> = props => {
 						label={source.name}
 						src={cover}
 						handleChange={(event: React.SyntheticEvent) =>
-							props.handleChange(event, index)
+							handleChange(event, index)
 						}
-						checked={props.selectedOptions.indexOf(source.id) > -1}
+						checked={selectedOptions.indexOf(source.id) > -1}
 					/>
-				);
-			});
-		} else if (layout === 'vertical') {
-			item = data.map((source: any, index: number) => {
-				let cover;
+				)
+			}
 
-				if (source.id === 'bbc-news') {
-					cover = IconBBCNews;
-				} else if (source.id === 'cnn') {
-					cover = IconCNN;
-				} else if (source.id === 'fox-news') {
-					cover = IconFoxNews;
-				} else if (source.id === 'google-news') {
-					cover = IconGoogleNews;
-				} else if (source.id === 'the-times-of-india') {
-					cover = IconTimesOfIndia;
-				} else if (source.id === 'the-new-york-times') {
-					cover = IconNewYorkTimes;
-				} else if (source.id === 'the-guardian-uk') {
-					cover = IconGuardian;
-				} else if (source.id === 'usa-today') {
-					cover = IconUSAToday;
-				} else if (source.id === 'the-wall-street-journal') {
-					cover = IconWallStreetJournal;
-				} else {
-					console.log('source: ', source.url);
-					cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${
-						source.url
-					}&size=70..120..200`;
-				}
+			return (
+				<SourceListItem
+					key={source.id}
+					id={source.id}
+					label={source.name}
+					src={cover}
+					handleChange={(event: React.SyntheticEvent) =>
+						handleChange(event, index)
+					}
+					checked={selectedOptions.indexOf(source.id) > -1}
+				/>
+			);
 
-				return (
-					<SourceListItem
-						key={source.id}
-						id={source.id}
-						label={source.name}
-						src={cover}
-						handleChange={(event: React.SyntheticEvent) =>
-							props.handleChange(event, index)
-						}
-						checked={props.selectedOptions.indexOf(source.id) > -1}
-					/>
-				);
-			});
-		}
+		});
 
 		return item;
 	};
 
-	return (
-		<SourcesListWrapper
-			role="group"
-			aria-label={props.label}
-			layout={props.layout}
-		>
-			{props.data ? renderData() : null}
-		</SourcesListWrapper>
-	);
-};
+	render() {
+		const { label, data, layout } = this.props;
+		const { ...sourcesListProps } = this.props;
 
-SourcesList.defaultProps = {
-	layout: 'vertical',
-	label: 'label',
-};
+		return (
+			<SourcesListWrapper
+				role="group"
+				aria-label={label}
+				layout={layout}
+				{...sourcesListProps}
+			>
+				{data && this.renderData()}
+			</SourcesListWrapper>
+		);
+	}
+}
 
 // Styling
 const SourcesListWrapper = styled.ul`
@@ -160,7 +135,9 @@ const SourcesListWrapper = styled.ul`
 	.source__item {
 		flex: 1;
 		margin-right: ${(props: ISourcesListProps) =>
-			props.layout === 'horizontal' ? '1rem' : '0'};
+		props.layout === 'horizontal' ? '1rem' : '0'};
 	}
 `;
+
+
 export default SourcesList;

@@ -21,7 +21,7 @@ interface ISourceListItemProps {
  * @extends {React.SFC}
  */
 class SourceListItem extends React.Component<ISourceListItemProps, any> {
-	shouldComponentUpdate(nextProps: ISourceListItemProps, nextState) {
+	shouldComponentUpdate(nextProps: ISourceListItemProps) {
 		return nextProps.checked !== this.props.checked;
 	}
 

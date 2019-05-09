@@ -17,6 +17,7 @@ import {
 	UISection,
 } from '../../components/index';
 
+
 // Redux
 import {
 	NewsSourcesCategories,
@@ -73,8 +74,8 @@ interface IChooseSourcesPageState {
 class ChooseSourcesPage extends React.PureComponent<
 	IChooseSourcesPageProps,
 	IChooseSourcesPageState
-> {
-	constructor(props: IChooseSourcesPageProps) {
+	> {
+	constructor (props: IChooseSourcesPageProps) {
 		super(props);
 
 		this.showSearchBar = this.showSearchBar.bind(this);
@@ -149,7 +150,7 @@ class ChooseSourcesPage extends React.PureComponent<
 		document.removeEventListener('scroll', this.showSearchBar);
 	}
 
-	showSearchBar(event: Event) {}
+	showSearchBar(event: Event) { }
 
 	/**
 	 * @description Attemps to find the user's location using the HTML5 GeoLocation API.
@@ -201,7 +202,7 @@ class ChooseSourcesPage extends React.PureComponent<
 		if (content.hasLocation && content.data.countryCode) {
 			const language: string = `${
 				content.data.countryCode
-			}`.toLowerCase();
+				}`.toLowerCase();
 			this.props.dispatch(getAvailableNewSourcesFromLanguage(language));
 		}
 	}
@@ -216,14 +217,15 @@ class ChooseSourcesPage extends React.PureComponent<
 	 * @memberof ChooseSourcesPage
 	 */
 	renderListOfSourcesFromLanguage(data: any) {
+		const { chosen } = this.state;
 		return (
 			<UISection id="sources-language" title="In your Language">
 				<SourcesList
 					layout="horizontal"
 					label="Language Specific News Sources"
 					data={data}
-					selectedOptions={this.state.chosen.list}
-					handleChange={this.handleClickOnItem}
+					selectedOptions={chosen.list}
+					handleChange={(event: React.SyntheticEvent, index: number) => this.handleClickOnItem(event, index)}
 				/>
 			</UISection>
 		);
@@ -270,6 +272,7 @@ class ChooseSourcesPage extends React.PureComponent<
 	 * @memberof ChooseSourcesPage
 	 */
 	handleClickOnItem(event: React.SyntheticEvent, position: number) {
+		event.preventDefault();
 		const inputTarget = event.target as HTMLInputElement;
 		const clickedItem = inputTarget.value;
 		let chosenItems: string[];
@@ -343,7 +346,7 @@ class ChooseSourcesPage extends React.PureComponent<
 						placeholder="Type to search and filter..."
 						label="Submit filter query"
 					/>
-					<UISection
+					{Top20EditorSuggestions && (<UISection
 						id="sources-editors-suggestions"
 						title="Editor's Suggestions"
 					>
@@ -354,15 +357,15 @@ class ChooseSourcesPage extends React.PureComponent<
 							selectedOptions={this.state.chosen.list}
 							handleChange={this.handleClickOnItem}
 						/>
-					</UISection>
+					</UISection>)}
 					{sources && sources.language.length > 0
 						? this.renderListOfSourcesFromLanguage(sources.language)
 						: null}
 					{hasData ? (
 						this.renderListOfCategories({ ...filter })
 					) : (
-						<UIContentSpinner isFullPage={true} />
-					)}
+							<UIContentSpinner isFullPage={true} />
+						)}
 				</Container>
 				<UICallToAction>
 					<UIButton
