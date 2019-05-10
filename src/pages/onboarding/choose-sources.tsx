@@ -22,6 +22,7 @@ import {
 import {
 	NewsSourcesCategories,
 	IGlobalStoreState,
+	IListOfCategorizedSources,
 } from '../../data/interfaces/index.interface';
 import {
 	getAllAvailableNewsSources,
@@ -36,23 +37,27 @@ import {
 } from '../../data/constants/index.constants';
 
 // Data
-import Top20EditorSuggestions from '../../data/dummy/news-sources-suggestions.js';
+import Top20EditorSuggestions from '../../data/dummy/news-sources-suggestions';
 
-type ListOfCategories = Object[];
 
 interface LanguageSupport {
 	hasLocation: boolean;
 	data: any;
 }
 
+export interface IChosenSource {
+	name: string;
+	category: string;
+}
+
 interface ChosenSources {
-	list: string[];
+	list: IChosenSource[];
 }
 
 interface IChooseSourcesPageProps {
 	authenticated: boolean;
 	dispatch: any;
-	sources: NewsSourcesCategories | null;
+	sources: IListOfCategorizedSources[] | null;
 	geoLocation: boolean;
 	userLanguage: LanguageSupport | null;
 	chosenSources: any;
@@ -239,9 +244,9 @@ class ChooseSourcesPage extends React.PureComponent<
 	 * @returns
 	 * @memberof ChooseSourcesPage
 	 */
-	renderListOfCategories(data: ListOfCategories) {
-		const list = Object.entries(data).map((category, index) => {
-			const title = category[0];
+	renderListOfCategories(data: IListOfCategorizedSources[]) {
+		const list = data.map((category: IListOfCategorizedSources, index) => {
+			const title = category.name;
 			return (
 				<UISection
 					key={`sources-${title}-${index}`}
@@ -252,7 +257,7 @@ class ChooseSourcesPage extends React.PureComponent<
 					<SourcesList
 						layout="vertical"
 						label="Language Specific News Sources"
-						data={category[1]}
+						data={category.items}
 						selectedOptions={this.state.chosen.list}
 						handleChange={this.handleClickOnItem}
 					/>
@@ -271,15 +276,19 @@ class ChooseSourcesPage extends React.PureComponent<
 	 * @param {number} position
 	 * @memberof ChooseSourcesPage
 	 */
-	handleClickOnItem(event: React.SyntheticEvent, position: number) {
+	handleClickOnItem(event: React.SyntheticEvent, position: number, category: string) {
 		event.preventDefault();
 		const inputTarget = event.target as HTMLInputElement;
-		const clickedItem = inputTarget.value;
-		let chosenItems: string[];
+		const clickedItem: IChosenSource = {
+			name: inputTarget.value,
+			category,
+		};
+
+		let chosenItems: IChosenSource[];
 
 		if (this.state.chosen.list.indexOf(clickedItem) > -1) {
 			chosenItems = this.state.chosen.list.filter(
-				(word: string) => word !== clickedItem,
+				(stateSource: IChosenSource) => stateSource !== clickedItem,
 			);
 		} else {
 			chosenItems = [...this.state.chosen.list, clickedItem];
@@ -308,13 +317,7 @@ class ChooseSourcesPage extends React.PureComponent<
 	public render() {
 		const { authenticated, sources } = this.props;
 		const { hasData, chosen } = this.state;
-		const disableButton = chosen.list.length < 3 ? true : false;
-
-		const {
-			available: [],
-			language: [],
-			...filter // tslint:disable-line
-		} = sources;
+		const disableButton = chosen.list && chosen.list.length < 3 ? true : false;
 
 		if (authenticated) {
 			return <Redirect to={NEWS_PAGE} noThrow={true} />;
@@ -346,23 +349,25 @@ class ChooseSourcesPage extends React.PureComponent<
 						placeholder="Type to search and filter..."
 						label="Submit filter query"
 					/>
-					{Top20EditorSuggestions && (<UISection
-						id="sources-editors-suggestions"
-						title="Editor's Suggestions"
-					>
-						<SourcesList
-							layout="horizontal"
-							label="The Top 20 Editor's Suggestions for news sources."
-							data={Top20EditorSuggestions}
-							selectedOptions={this.state.chosen.list}
-							handleChange={this.handleClickOnItem}
-						/>
-					</UISection>)}
-					{sources && sources.language.length > 0
+					{Top20EditorSuggestions && (
+						<UISection
+							id="sources-editors-suggestions"
+							title="Editor's Suggestions"
+						>
+							<SourcesList
+								layout="horizontal"
+								label="The Top 20 Editor's Suggestions for news sources."
+								data={Top20EditorSuggestions}
+								selectedOptions={this.state.chosen.list}
+								handleChange={this.handleClickOnItem}
+							/>
+						</UISection>
+					)}
+					{/* {sources
 						? this.renderListOfSourcesFromLanguage(sources.language)
-						: null}
-					{hasData ? (
-						this.renderListOfCategories({ ...filter })
+						: null} */}
+					{hasData && sources ? (
+						this.renderListOfCategories(sources)
 					) : (
 							<UIContentSpinner isFullPage={true} />
 						)}
@@ -384,7 +389,7 @@ class ChooseSourcesPage extends React.PureComponent<
 const mapStateToProps = (state: IGlobalStoreState) => ({
 	authenticated: state.preferences.authenticated,
 	sources: state.news.sources,
-	chosenSources: state.preferences.sources.items,
+	chosenSources: state.preferences.chosenSources.items,
 	geoLocation: state.general.supports.geoLocation,
 	userLanguage: state.general.userLanguage,
 });

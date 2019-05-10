@@ -133,7 +133,7 @@ class NewsPage extends React.Component<INewsPageProps, any> {
 
 const mapStateToProps = (state: IGlobalStoreState) => ({
 	authenticated: state.preferences.authenticated,
-	sources: state.preferences.sources,
+	sources: state.preferences.chosenSources,
 });
 
 export default connect(mapStateToProps)(NewsPage);

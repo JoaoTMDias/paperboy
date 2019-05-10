@@ -1,13 +1,14 @@
 import { EAppThemeType } from './theme.interfaces';
+import { IListOfCategorizedSources } from './news.interface';
 
 export interface PreferencesReducer {
 	type: null;
 	theme?: EAppThemeType | undefined;
-	sources: ChosenNewsSources;
+	chosenSources: ChosenNewsSources;
 	authenticated: boolean;
 }
 
 export interface ChosenNewsSources {
 	quantity: number;
-	items: string[];
+	items: IListOfCategorizedSources[];
 }

@@ -11,17 +11,12 @@ import { AxiosResponse } from 'axios';
 import {
 	IAllAvailableNewsSource,
 	IGetAllNewsSources,
+	IListOfCategorizedSources,
 } from '../../interfaces/index.interface';
 
 interface IAvaiableRegionalNewsSources {
 	status: string;
-	sources: object[];
-}
-
-interface IListOfCategorizedSources {
-	name: string;
-	items: IAllAvailableNewsSource[];
-	length: number;
+	sources: IAllAvailableNewsSource[];
 }
 
 /**
@@ -91,7 +86,6 @@ const getAllAvailableNewsSources = () => {
 	}
 
 	function updateStore(data: IListOfCategorizedSources[]) {
-		debugger;
 		return {
 			type: GET_ALL_AVAILABLE_NEWS_SOURCES,
 			payload: {
@@ -131,9 +125,16 @@ const getAvailableNewSourcesFromLanguage = (language: string) => (
 ) => {
 	const AvailableNewsSources = (data: IAvaiableRegionalNewsSources) => {
 		if (data.status === 'ok' && data.sources.length > 0) {
+			const newEntry: IListOfCategorizedSources = {
+				name: 'language',
+				length: data.sources.length,
+				items: data.sources,
+			};
 			return {
 				type: GET_ALL_AVAILABLE_NEWS_SOURCES_LANGUAGE,
-				language: data.sources,
+				payload: {
+					data: newEntry,
+				},
 			};
 		}
 
@@ -161,14 +162,16 @@ const getAllLatestNewsFromSource = (source: any) => {
 	function LatestNewsList(news: any) {
 		return {
 			type: GET_LATEST_NEWS,
-			latest: news,
+			payload: {
+				data: news,
+			},
 		};
 	}
 
 	return (dispatch: any) => {
 		NewsService.getAllLatestNews(source)
-			.then(result => {
-				if (result.data) {
+			.then((result: AxiosResponse) => {
+				if (result && result.data) {
 					dispatch(LatestNewsList(result.data));
 				}
 			})

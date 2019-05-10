@@ -7,14 +7,17 @@ import {
 	SET_APP_THEME,
 } from '../../constants/index.constants';
 
-import { PreferencesReducer } from '../../interfaces/index.interface';
+import {
+	PreferencesReducer,
+	IReduxActions,
+} from '../../interfaces/index.interface';
 import { EAppThemeType } from '../../interfaces/theme.interfaces';
 
 // Preferences initial state
 const initialState: PreferencesReducer = {
 	type: null,
 	theme: EAppThemeType.DARK,
-	sources: {
+	chosenSources: {
 		quantity: 0,
 		items: [],
 	},
@@ -28,14 +31,18 @@ const initialState: PreferencesReducer = {
  * @param {any} action
  * @returns
  */
-function preferences(state: PreferencesReducer = initialState, action: any) {
+function preferences(
+	state: PreferencesReducer = initialState,
+	action: IReduxActions,
+) {
 	switch (action.type) {
 		case GET_CHOSEN_NEWS_SOURCES:
 			return {
 				...state,
 				type: action.type,
-				sources: {
-					items: action.available,
+				chosenSources: {
+					...state.chosenSources,
+					items: action.payload.data,
 				},
 			};
 
@@ -43,9 +50,9 @@ function preferences(state: PreferencesReducer = initialState, action: any) {
 			return {
 				...state,
 				type: action.type,
-				sources: {
-					quantity: action.sources.quantity,
-					items: action.sources.items,
+				chosenSources: {
+					quantity: action.payload.data.quantity,
+					items: action.payload.data.items,
 				},
 			};
 
@@ -53,7 +60,7 @@ function preferences(state: PreferencesReducer = initialState, action: any) {
 			return {
 				type: action.type,
 				...state,
-				authenticated: action.authenticated,
+				authenticated: action.payload.daata,
 			};
 
 		case SET_APP_THEME:
@@ -65,7 +72,7 @@ function preferences(state: PreferencesReducer = initialState, action: any) {
 		case RESET_APP_STATE:
 			return {
 				type: null,
-				sources: {
+				chosenSources: {
 					quantity: 0,
 					items: [],
 				},

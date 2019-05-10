@@ -3,14 +3,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { SourceCard, SourceListItem } from '../../index';
 
-// Component Props
-interface ISourcesListProps {
-	layout?: 'horizontal' | 'vertical';
-	label: string;
-	data: any | null;
-	handleChange: any;
-	selectedOptions: string[];
-}
 
 // Assets
 import IconBBCNews from '../../../assets/images/sources/icon-bbc-news.svg';
@@ -22,6 +14,17 @@ import IconNewYorkTimes from '../../../assets/images/sources/icon-new-york-times
 import IconTimesOfIndia from '../../../assets/images/sources/icon-times-of-india.svg';
 import IconUSAToday from '../../../assets/images/sources/icon-usa-today.svg';
 import IconWallStreetJournal from '../../../assets/images/sources/icon-wall-street-journal.svg';
+import { IAllAvailableNewsSource } from '../../../data/interfaces/index.interface';
+import { IChosenSource } from '../../../pages/onboarding/choose-sources';
+
+// Component Props
+interface ISourcesListProps {
+	layout?: 'horizontal' | 'vertical';
+	label: string;
+	data: IAllAvailableNewsSource[] | null;
+	handleChange: any;
+	selectedOptions: IChosenSource[];
+}
 
 /**
  * @description Sources: List of Sources
@@ -38,64 +41,77 @@ class SourcesList extends React.PureComponent<ISourcesListProps> {
 	renderData() {
 		const { data, layout, handleChange, selectedOptions } = this.props;
 
-		const item = data.map((source: any, index: number) => {
-			let cover;
+		if (data) {
+			const item = data.map((source: IAllAvailableNewsSource, index: number) => {
+				let cover;
 
-			if (source.id === 'bbc-news') {
-				cover = IconBBCNews;
-			} else if (source.id === 'cnn') {
-				cover = IconCNN;
-			} else if (source.id === 'fox-news') {
-				cover = IconFoxNews;
-			} else if (source.id === 'google-news') {
-				cover = IconGoogleNews;
-			} else if (source.id === 'the-times-of-india') {
-				cover = IconTimesOfIndia;
-			} else if (source.id === 'the-new-york-times') {
-				cover = IconNewYorkTimes;
-			} else if (source.id === 'the-guardian-uk') {
-				cover = IconGuardian;
-			} else if (source.id === 'usa-today') {
-				cover = IconUSAToday;
-			} else if (source.id === 'the-wall-street-journal') {
-				cover = IconWallStreetJournal;
-			} else {
-				cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${
-					source.url
-					}&size=70..120..200`;
-			}
+				if (source.id === 'bbc-news') {
+					cover = IconBBCNews;
+				} else if (source.id === 'cnn') {
+					cover = IconCNN;
+				} else if (source.id === 'fox-news') {
+					cover = IconFoxNews;
+				} else if (source.id === 'google-news') {
+					cover = IconGoogleNews;
+				} else if (source.id === 'the-times-of-india') {
+					cover = IconTimesOfIndia;
+				} else if (source.id === 'the-new-york-times') {
+					cover = IconNewYorkTimes;
+				} else if (source.id === 'the-guardian-uk') {
+					cover = IconGuardian;
+				} else if (source.id === 'usa-today') {
+					cover = IconUSAToday;
+				} else if (source.id === 'the-wall-street-journal') {
+					cover = IconWallStreetJournal;
+				} else {
+					cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${
+						source.url
+						}&size=70..120..200`;
+				}
 
-			if (layout === 'horizontal') {
+				const matching: IChosenSource = {
+					name: source.id,
+					category: source.category
+				}
+
+				const filterCheck = selectedOptions.filter((option: IChosenSource) => (option.name === matching.name));
+				const isChecked = filterCheck && filterCheck.length > 0 ? true : false;
+
+				if (layout === 'horizontal') {
+
+					return (
+						<SourceCard
+							key={source.id}
+							id={source.id}
+							label={source.name}
+							category={source.category}
+							src={cover}
+							handleChange={(event: React.SyntheticEvent) =>
+								handleChange(event, index, source.category)
+							}
+							checked={isChecked}
+						/>
+					)
+				}
+
 				return (
-					<SourceCard
+					<SourceListItem
 						key={source.id}
 						id={source.id}
 						label={source.name}
+						category={source.category}
 						src={cover}
 						handleChange={(event: React.SyntheticEvent) =>
-							handleChange(event, index)
+							handleChange(event, index, source.category)
 						}
-						checked={selectedOptions.indexOf(source.id) > -1}
+						checked={isChecked}
 					/>
-				)
-			}
+				);
 
-			return (
-				<SourceListItem
-					key={source.id}
-					id={source.id}
-					label={source.name}
-					src={cover}
-					handleChange={(event: React.SyntheticEvent) =>
-						handleChange(event, index)
-					}
-					checked={selectedOptions.indexOf(source.id) > -1}
-				/>
-			);
+			});
 
-		});
-
-		return item;
+			return item;
+		}
 	};
 
 	render() {

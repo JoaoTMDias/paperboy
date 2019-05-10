@@ -121,7 +121,7 @@ class PreloaderPage extends React.PureComponent<
 
 const mapStateToProps = (state: IGlobalStoreState) => ({
 	authenticated: state.preferences.authenticated,
-	chosenSources: state.preferences.sources.items,
+	chosenSources: state.preferences.chosenSources.items,
 	articles: state.news.latest,
 });
 

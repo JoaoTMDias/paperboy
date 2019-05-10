@@ -1,13 +1,24 @@
+import { IAllAvailableNewsSource } from "./sources.interface";
+
 export interface ILatestNews {
 	status: string;
 	totalResults: number;
 	articles: ILatestNewsArticle[];
 }
 
+export interface IListOfCategorizedSources {
+	name: string;
+	items: IAllAvailableNewsSource[];
+	length: number;
+}
+
 export interface INewsReducer {
 	type: string | null;
-	latest: ILatestNews;
-	sources: Sources;
+	articles: {
+		latest: ILatestNews;
+		others: ILatestNews[];
+	};
+	sources: IListOfCategorizedSources[];
 }
 
 interface Source {
