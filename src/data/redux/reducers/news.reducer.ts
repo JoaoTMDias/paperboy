@@ -1,3 +1,5 @@
+import { produce } from 'immer';
+
 // Constants
 import {
 	GET_LATEST_NEWS,
@@ -18,8 +20,7 @@ const initialState = {
 		},
 		others: [],
 	},
-	sources: [
-	],
+	sources: [],
 };
 
 /**
@@ -32,26 +33,19 @@ const initialState = {
 function news(state = initialState, action: IReduxActions) {
 	switch (action.type) {
 		case GET_ALL_AVAILABLE_NEWS_SOURCES_LANGUAGE:
-			return {
-				...state,
-				sources: [...state.sources, action.payload.data],
-			};
+			return produce(state, draftState => {
+				draftState.sources = action.payload.data;
+			});
 
 		case GET_ALL_AVAILABLE_NEWS_SOURCES:
-			return {
-				...state,
-				sources: [...state.sources, ...action.payload.data],
-			};
+			return produce(state, draftState => {
+				draftState.sources = action.payload.data;
+			});
 
 		case GET_LATEST_NEWS:
-			return {
-				...state,
-				type: action.type,
-				articles: {
-					...state.articles,
-					latest: action.payload.data,
-				},
-			};
+			return produce(state, draftState => {
+				draftState.articles.latest = action.payload.data;
+			});
 
 		case RESET_APP_STATE:
 			return {

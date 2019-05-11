@@ -1,9 +1,9 @@
 import { IAllAvailableNewsSource } from "./sources.interface";
 
-export interface ILatestNews {
+export interface INewsArticle {
 	status: string;
 	totalResults: number;
-	articles: ILatestNewsArticle[];
+	articles: INewsArticleItem[];
 }
 
 export interface IListOfCategorizedSources {
@@ -15,8 +15,8 @@ export interface IListOfCategorizedSources {
 export interface INewsReducer {
 	type: string | null;
 	articles: {
-		latest: ILatestNews;
-		others: ILatestNews[];
+		latest: INewsArticle;
+		others: INewsArticle[];
 	};
 	sources: IListOfCategorizedSources[];
 }
@@ -26,7 +26,7 @@ interface Source {
 	name: string;
 }
 
-export interface ILatestNewsArticle {
+export interface INewsArticleItem {
 	source: Source;
 	author: string;
 	title: string;

@@ -13,7 +13,7 @@ import {
 	TopNavigationWithClose,
 } from '../../../components/index';
 import { NEWS_PAGE } from '../../../data/constants/index.constants';
-import { ILatestNewsArticle } from '../../../data/interfaces/news.interface';
+import { INewsArticleItem } from '../../../data/interfaces/news.interface';
 
 interface IArticleDetailPageProps {
 	authenticated: boolean;
@@ -30,7 +30,7 @@ class ArticleDetailPage extends React.Component<IArticleDetailPageProps, any> {
 	public render() {
 		const { state } = this.props.location;
 		if (state) {
-			const data: ILatestNewsArticle = state;
+			const data: INewsArticleItem = state;
 			return (
 				<Layout header={false} bottomNavigation={false}>
 					<TopNavigationWithClose

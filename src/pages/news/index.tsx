@@ -12,7 +12,7 @@ import {
 import { LatestNewsTab } from '../../components/data-display/news/index.news';
 
 import {
-	ILatestNews,
+	INewsArticle,
 	IGlobalStoreState,
 	ChosenNewsSources,
 } from '../../data/interfaces/index.interface';
@@ -21,6 +21,7 @@ import {
 	NEWS_PAGE,
 	ONBOARDING_PAGE,
 } from '../../data/constants/index.constants';
+import { IChosenSource } from '../onboarding/choose-sources';
 
 const Tabs = [
 	{
@@ -48,7 +49,7 @@ const Tabs = [
 interface INewsPageProps {
 	authenticated: boolean;
 	sources: ChosenNewsSources;
-	latest: ILatestNews;
+	latest: INewsArticle;
 	dispatch: any;
 }
 
@@ -91,6 +92,11 @@ class NewsPage extends React.Component<INewsPageProps, any> {
 		const { sources } = this.props;
 
 		if (sources && sources.quantity > 0) {
+			const list = sources.items.map((source: IChosenSource) => {
+				const { name } = source;
+
+				return name;
+			});
 			return (
 				<NewsTabs
 					id="news-tabs"
@@ -99,9 +105,9 @@ class NewsPage extends React.Component<INewsPageProps, any> {
 						backgroundColor: 'white',
 					}}
 				>
-					<LatestNewsTab sources={sources} />
-					<LatestNewsTab sources={sources} />
-					<LatestNewsTab sources={sources} />
+					<LatestNewsTab sources={list} />
+					<LatestNewsTab sources={list} />
+					<LatestNewsTab sources={list} />
 				</NewsTabs>
 			);
 		}

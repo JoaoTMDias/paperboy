@@ -60,7 +60,7 @@ function preferences(
 			return {
 				type: action.type,
 				...state,
-				authenticated: action.payload.daata,
+				authenticated: action.payload.data,
 			};
 
 		case SET_APP_THEME:

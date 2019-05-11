@@ -1,6 +1,7 @@
 import { Redirect } from '@reach/router';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { findIndex, isMatch } from 'lodash';
 import { navigate } from 'gatsby';
 import {
 	Confirm,
@@ -278,6 +279,7 @@ class ChooseSourcesPage extends React.PureComponent<
 	 */
 	handleClickOnItem(event: React.SyntheticEvent, position: number, category: string) {
 		event.preventDefault();
+		const { chosen } = this.state;
 		const inputTarget = event.target as HTMLInputElement;
 		const clickedItem: IChosenSource = {
 			name: inputTarget.value,
@@ -286,12 +288,14 @@ class ChooseSourcesPage extends React.PureComponent<
 
 		let chosenItems: IChosenSource[];
 
-		if (this.state.chosen.list.indexOf(clickedItem) > -1) {
-			chosenItems = this.state.chosen.list.filter(
+		const hasSelectedItemAlready = findIndex(chosen.list, (item: IChosenSource) => { return isMatch(item, clickedItem) }) > -1;
+
+		if (hasSelectedItemAlready) {
+			chosenItems = chosen.list.filter(
 				(stateSource: IChosenSource) => stateSource !== clickedItem,
 			);
 		} else {
-			chosenItems = [...this.state.chosen.list, clickedItem];
+			chosenItems = [...chosen.list, clickedItem];
 		}
 
 		this.setState(prevState => ({

@@ -5,7 +5,7 @@ import { rem } from 'polished';
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { ILatestNewsArticle } from '../../../data/interfaces/index.interface';
+import { INewsArticleItem } from '../../../data/interfaces/index.interface';
 
 import { ThumbnailImage } from '../../index';
 import { NEWS_DETAIL_PAGE } from '../../../data/constants/router.constants';
@@ -14,7 +14,7 @@ import { NEWS_DETAIL_PAGE } from '../../../data/constants/router.constants';
 interface IThumbnailLargeProps {
 	theme?: any;
 	id: number;
-	options: ILatestNewsArticle;
+	options: INewsArticleItem;
 }
 
 /**

@@ -1,3 +1,5 @@
+import { produce } from 'immer';
+
 // Constants
 import {
 	SET_ONLINE_STATUS,
@@ -72,8 +74,6 @@ function general(state: IGeneral = initialState, action: GeneralActions) {
 
 		case SET_FEATURE_SUPPORT:
 			const { hasAudited, ...rest } = action.payload;
-
-			console.log('rest: ', ...rest);
 
 			return {
 				...state,

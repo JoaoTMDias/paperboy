@@ -12,6 +12,7 @@ import {
 	IAllAvailableNewsSource,
 	IGetAllNewsSources,
 	IListOfCategorizedSources,
+	INewsArticle,
 } from '../../interfaces/index.interface';
 
 interface IAvaiableRegionalNewsSources {
@@ -158,8 +159,8 @@ const getAvailableNewSourcesFromLanguage = (language: string) => (
  * @param {*} source
  * @returns
  */
-const getAllLatestNewsFromSource = (source: any) => {
-	function LatestNewsList(news: any) {
+const getAllLatestNewsFromSource = (source: string[]) => {
+	function updateStore(news: INewsArticle[]) {
 		return {
 			type: GET_LATEST_NEWS,
 			payload: {
@@ -172,7 +173,7 @@ const getAllLatestNewsFromSource = (source: any) => {
 		NewsService.getAllLatestNews(source)
 			.then((result: AxiosResponse) => {
 				if (result && result.data) {
-					dispatch(LatestNewsList(result.data));
+					dispatch(updateStore(result.data));
 				}
 			})
 			.catch(error => {});
