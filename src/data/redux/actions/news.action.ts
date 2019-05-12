@@ -7,10 +7,17 @@ import {
 
 // Services
 import NewsService from '../../services/news.service';
+import { AxiosResponse } from 'axios';
+import {
+	IAllAvailableNewsSource,
+	IGetAllNewsSources,
+	IListOfCategorizedSources,
+	INewsArticle,
+} from '../../interfaces/index.interface';
 
 interface IAvaiableRegionalNewsSources {
 	status: string;
-	sources: object[];
+	sources: IAllAvailableNewsSource[];
 }
 
 /**
@@ -20,50 +27,89 @@ interface IAvaiableRegionalNewsSources {
  * @returns
  */
 const getAllAvailableNewsSources = () => {
-	function AvailableNewsSources(data: any) {
-		const general = data.sources.filter(
-			(source: any) => source.category === 'general',
-		);
-		const business = data.sources.filter(
-			(source: any) => source.category === 'business',
-		);
-		const entertainment = data.sources.filter(
-			(source: any) => source.category === 'entertainment',
-		);
-		const health = data.sources.filter(
-			(source: any) => source.category === 'health',
-		);
-		const science = data.sources.filter(
-			(source: any) => source.category === 'science',
-		);
-		const sports = data.sources.filter(
-			(source: any) => source.category === 'sports',
-		);
-		const technology = data.sources.filter(
-			(source: any) => source.category === 'technology',
+	/**
+	 * @description Receives the raw data from the service and returns an organized list of news sources
+	 * @author João Dias
+	 * @date 2019-05-09
+	 * @param {IAllAvailableNewsSource[]} data
+	 * @returns {(IListOfCategorizedSources[] | null)}
+	 */
+	function filterData(
+		data: IAllAvailableNewsSource[],
+	): IListOfCategorizedSources[] | null {
+		// Gets only the items that are categorized
+		const allItemsWithCategory = data.filter(
+			(source: IAllAvailableNewsSource) => source.category !== null,
 		);
 
+		// Returns all the categories in all the items
+		const allAppearingCategories = allItemsWithCategory.map(
+			(source: IAllAvailableNewsSource) => {
+				const { category, ...otherKeys } = source;
+
+				return category;
+			},
+		);
+
+		// Returns the final list of categories
+		const reducedCategories = allAppearingCategories.reduce(
+			(previousValue: string[], currentValue: string) => {
+				if (previousValue.indexOf(currentValue) < 0) {
+					previousValue.push(currentValue);
+				}
+				return previousValue;
+			},
+			[],
+		);
+
+		const newData: IListOfCategorizedSources[] = [];
+		reducedCategories.forEach((category: string) => {
+			const filterData = data.filter(
+				(source: IAllAvailableNewsSource) =>
+					source.category === category,
+			);
+
+			const entry = {
+				name: category,
+				items: filterData,
+				length: filterData.length,
+			};
+
+			newData.push(entry);
+			return entry;
+		});
+
+		if (newData && newData.length > 0) {
+			return newData;
+		}
+
+		return null;
+	}
+
+	function updateStore(data: IListOfCategorizedSources[]) {
 		return {
 			type: GET_ALL_AVAILABLE_NEWS_SOURCES,
-			sources: {
+			payload: {
 				data,
-				general,
-				business,
-				entertainment,
-				health,
-				science,
-				sports,
-				technology,
 			},
 		};
 	}
 
 	return (dispatch: any) => {
 		NewsService.getAllAvailableSources()
-			.then(result => {
-				if (result.data) {
-					dispatch(AvailableNewsSources(result.data));
+			.then((result: AxiosResponse) => {
+				if (result && result.data) {
+					const rawSources: IAllAvailableNewsSource[] =
+						result.data.sources;
+
+					const organizedSources = filterData(rawSources);
+
+					if (organizedSources) {
+						dispatch(updateStore(organizedSources));
+					}
 				}
+
+				return null;
 			})
 			.catch(error => {});
 	};
@@ -80,9 +126,16 @@ const getAvailableNewSourcesFromLanguage = (language: string) => (
 ) => {
 	const AvailableNewsSources = (data: IAvaiableRegionalNewsSources) => {
 		if (data.status === 'ok' && data.sources.length > 0) {
+			const newEntry: IListOfCategorizedSources = {
+				name: 'language',
+				length: data.sources.length,
+				items: data.sources,
+			};
 			return {
 				type: GET_ALL_AVAILABLE_NEWS_SOURCES_LANGUAGE,
-				language: data.sources,
+				payload: {
+					data: newEntry,
+				},
 			};
 		}
 
@@ -106,19 +159,21 @@ const getAvailableNewSourcesFromLanguage = (language: string) => (
  * @param {*} source
  * @returns
  */
-const getAllLatestNewsFromSource = (source: any) => {
-	function LatestNewsList(news: any) {
+const getAllLatestNewsFromSource = (source: string[]) => {
+	function updateStore(news: INewsArticle[]) {
 		return {
 			type: GET_LATEST_NEWS,
-			latest: news,
+			payload: {
+				data: news,
+			},
 		};
 	}
 
 	return (dispatch: any) => {
 		NewsService.getAllLatestNews(source)
-			.then(result => {
-				if (result.data) {
-					dispatch(LatestNewsList(result.data));
+			.then((result: AxiosResponse) => {
+				if (result && result.data) {
+					dispatch(updateStore(result.data));
 				}
 			})
 			.catch(error => {});

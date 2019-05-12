@@ -6,17 +6,15 @@ import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import { ThumbnailLarge, UIContentSpinner } from '../../index';
 
 import {
-	ILatestNews,
-	ILatestNewsArticle,
+	INewsArticle,
 	IGlobalStoreState,
 } from '../../../data/interfaces/index.interface';
 
-import { ChosenNewsSources } from '../../../data/interfaces/index.interface';
 import { getAllLatestNewsFromSource } from '../../../data/redux/actions/index.actions';
 
-interface ILatestNewsTabProps {
-	sources: ChosenNewsSources;
-	latest: ILatestNews;
+interface INewsArticleTabProps {
+	sources: string[];
+	latest: INewsArticle;
 	dispatch: any;
 }
 
@@ -29,10 +27,10 @@ interface IVirtualListProps extends ListChildComponentProps {
  * @description Latest News Tab
  * @date 2019-01-17
  * @class LatestNewsTab
- * @extends {React.Component<ILatestNewsTabProps, any>}
+ * @extends {React.Component<INewsArticleTabProps, any>}
  */
-class LatestNewsTab extends React.Component<ILatestNewsTabProps, any> {
-	constructor (props: ILatestNewsTabProps) {
+class LatestNewsTab extends React.Component<INewsArticleTabProps, any> {
+	constructor (props: INewsArticleTabProps) {
 		super(props);
 	}
 
@@ -43,10 +41,10 @@ class LatestNewsTab extends React.Component<ILatestNewsTabProps, any> {
 	 * @memberof LatestNewsTab
 	 */
 	componentDidMount() {
-		const { sources } = this.props;
+		const { sources, dispatch } = this.props;
 
-		if (sources && sources.quantity > 0) {
-			this.props.dispatch(getAllLatestNewsFromSource(sources.items));
+		if (sources && sources.length > 0) {
+			dispatch(getAllLatestNewsFromSource(sources));
 		}
 	}
 
@@ -56,16 +54,17 @@ class LatestNewsTab extends React.Component<ILatestNewsTabProps, any> {
 	 * - User has new sources to pick from and fetch data
 	 * - The data itself is new.
 	 * @date 2019-01-19
-	 * @param {ILatestNewsTabProps} nextProps
+	 * @param {INewsArticleTabProps} nextProps
 	 * @param {*} nextState
 	 * @returns {boolean}
 	 * @memberof LatestNewsTab
 	 */
 	shouldComponentUpdate(
-		nextProps: ILatestNewsTabProps,
+		nextProps: INewsArticleTabProps,
 		nextState: any,
 	): boolean {
 		const { sources, latest } = this.props;
+
 		if (
 			nextProps.sources !== sources ||
 			nextProps.latest.articles !== latest.articles
@@ -82,13 +81,13 @@ class LatestNewsTab extends React.Component<ILatestNewsTabProps, any> {
 	 *
 	 * If so, fetches data.
 	 * @date 2019-01-19
-	 * @param {ILatestNewsTabProps} nextProps
+	 * @param {INewsArticleTabProps} nextProps
 	 * @param {*} nextState
 	 * @returns {boolean}
 	 * @memberof LatestNewsTab
 	 */
 	componentDidUpdate(
-		nextProps: ILatestNewsTabProps,
+		nextProps: INewsArticleTabProps,
 		nextState: any,
 	): boolean {
 		const { sources } = this.props;
@@ -131,7 +130,7 @@ class LatestNewsTab extends React.Component<ILatestNewsTabProps, any> {
 					overscanCount={3}
 					outerElementType="div"
 					innerElementType="ol"
-					direction="vertical"
+					layout="vertical"
 				>{this.renderRow}</List>
 			);
 		} else {
@@ -174,7 +173,7 @@ const Item = styled.li`
 `;
 
 const mapStateToProps = (state: IGlobalStoreState) => ({
-	latest: state.news.latest,
+	latest: state.news.articles.latest,
 });
 
 export default connect(mapStateToProps)(LatestNewsTab);

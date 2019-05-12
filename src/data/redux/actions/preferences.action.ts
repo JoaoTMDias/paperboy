@@ -4,26 +4,31 @@ import {
 	SET_APP_THEME,
 } from '../../constants/index.constants';
 import { EAppThemeType } from '../../interfaces/theme.interfaces';
+import { IChosenSource } from '../../../pages/onboarding/choose-sources';
 
 /**
  * @description Updates the store with the new chosen sources
  * @date 2019-01-09
  * @param {string[]} sources
  */
-export const SetChosenNewsSources = (sources: string[]) => {
+export const SetChosenNewsSources = (sources: IChosenSource[]) => {
 	return {
 		type: SET_CHOSEN_NEWS_SOURCES,
-		sources: {
-			quantity: sources.length,
-			items: sources,
-		},
+		payload: {
+			data: {
+				quantity: sources.length,
+				items: sources,
+			}
+		}
 	};
 };
 
 export const setUserAuthentication = (state: boolean) => {
 	return {
 		type: SET_USER_AUTHENTICATION,
-		authenticated: state,
+		payload:  {
+			data: state,
+		}
 	};
 };
 

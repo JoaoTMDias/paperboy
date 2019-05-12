@@ -9,6 +9,7 @@ interface ISourceCardProps {
 	theme?: any;
 	id: string;
 	label: string;
+	category: string;
 	src: string;
 	handleChange: any;
 	checked: boolean;
@@ -30,7 +31,7 @@ class SourceCard extends React.Component<ISourceCardProps> {
 	}
 
 	public render() {
-		const { id, label, src, handleChange, checked } = this.props;
+		const { id, label, src, category, handleChange, checked } = this.props;
 
 		const status: string = checked ? 'is-checked' : '';
 
@@ -43,6 +44,7 @@ class SourceCard extends React.Component<ISourceCardProps> {
 						id={`source-${id}-input`}
 						className="source__input"
 						type="checkbox"
+						data-category={category}
 						value={`${id}`}
 						name="source-input"
 						checked={checked}

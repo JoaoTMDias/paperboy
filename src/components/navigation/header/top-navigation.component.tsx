@@ -140,6 +140,13 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 		return false;
 	}
 
+	componentWillUnmount() {
+		const { containerElement } = this.state;
+		if(this.observer){
+			this.observer.unobserve(containerElement);
+		}
+	}
+
 	render() {
 		const { children, isSticky } = this.props;
 		return <Wrapper id="page-top-navigation" isSticky={isSticky}>{children}</Wrapper>;

@@ -12,7 +12,7 @@ import {
 interface IPreloaderPageProps {
 	authenticated: boolean;
 	dispatch: any;
-	chosenSources: any;
+	chosenSources: IChosenSource[];
 	articles: {};
 }
 
@@ -23,6 +23,7 @@ interface IPreloaderPageState {
 
 import { NEWS_PAGE } from '../../data/constants/index.constants';
 import { IGlobalStoreState } from '../../data/interfaces/index.interface';
+import { IChosenSource } from './choose-sources';
 
 /**
  * @description The Preloader Page
@@ -33,8 +34,8 @@ import { IGlobalStoreState } from '../../data/interfaces/index.interface';
 class PreloaderPage extends React.PureComponent<
 	IPreloaderPageProps,
 	IPreloaderPageState
-> {
-	constructor(props: IPreloaderPageProps) {
+	> {
+	constructor (props: IPreloaderPageProps) {
 		super(props);
 
 		this.state = {
@@ -59,13 +60,19 @@ class PreloaderPage extends React.PureComponent<
 	 * @memberof PreloaderPage
 	 */
 	componentDidMount() {
-		const { chosenSources } = this.props;
+		const { chosenSources, dispatch } = this.props;
 		const { delay } = this.state;
 		if (chosenSources) {
+			const sources = chosenSources.map((source: IChosenSource) => {
+				const { name } = source;
+
+				return name;
+			});
+
 			this.timer = setTimeout(
 				() =>
-					this.props.dispatch(
-						getAllLatestNewsFromSource(chosenSources),
+					dispatch(
+						getAllLatestNewsFromSource(sources),
 					),
 				delay,
 			);
@@ -121,8 +128,8 @@ class PreloaderPage extends React.PureComponent<
 
 const mapStateToProps = (state: IGlobalStoreState) => ({
 	authenticated: state.preferences.authenticated,
-	chosenSources: state.preferences.sources.items,
-	articles: state.news.latest,
+	chosenSources: state.preferences.chosenSources.items,
+	articles: state.news.articles.latest.articles,
 });
 
 export default connect(mapStateToProps)(PreloaderPage);

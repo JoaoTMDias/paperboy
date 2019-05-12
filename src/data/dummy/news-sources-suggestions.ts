@@ -1,11 +1,13 @@
-const Top20EditorSuggestions = [
+import { IAllAvailableNewsSource, EAllNewsSourcesCategories } from "../interfaces/index.interface";
+
+const Top20EditorSuggestions: IAllAvailableNewsSource[] = [
 	{
 		id: 'bbc-news',
 		name: 'BBC News',
 		description:
 			'Use BBC News for up-to-the-minute news, breaking news, video, audio and feature stories. BBC News provides trusted World and UK news as well as local and regional perspectives. Also entertainment, business, science, technology and health news.',
 		url: 'http://www.bbc.co.uk/news',
-		category: 'general',
+		category: EAllNewsSourcesCategories.General,
 		language: 'en',
 		country: 'gb',
 	},
@@ -15,7 +17,7 @@ const Top20EditorSuggestions = [
 		description:
 			'View the latest news and breaking news today for U.S., world, weather, entertainment, politics and health at CNN',
 		url: 'http://us.cnn.com',
-		category: 'general',
+		category: EAllNewsSourcesCategories.General,
 		language: 'en',
 		country: 'us',
 	},
@@ -25,7 +27,7 @@ const Top20EditorSuggestions = [
 		description:
 			'Breaking News, Latest News and Current News from FOXNews.com. Breaking news and video. Latest Current News: U.S., World, Entertainment, Health, Business, Technology, Politics, Sports.',
 		url: 'http://www.foxnews.com',
-		category: 'general',
+		category: EAllNewsSourcesCategories.General,
 		language: 'en',
 		country: 'us',
 	},
@@ -36,7 +38,7 @@ const Top20EditorSuggestions = [
 		description:
 			'Comprehensive, up-to-date news coverage, aggregated from sources all over the world by Google News.',
 		url: 'https://news.google.com',
-		category: 'general',
+		category: EAllNewsSourcesCategories.General,
 		language: 'en',
 		country: 'us',
 	},
@@ -46,7 +48,7 @@ const Top20EditorSuggestions = [
 		description:
 			'Times of India brings the Latest News and Top Breaking headlines on Politics and Current Affairs in India and around the World, Sports, Business, Bollywood News and Entertainment, Science, Technology, Health and Fitness news, Cricket and opinions from leading columnists.',
 		url: 'http://timesofindia.indiatimes.com',
-		category: 'general',
+		category: EAllNewsSourcesCategories.General,
 		language: 'en',
 		country: 'in',
 	},
@@ -57,7 +59,7 @@ const Top20EditorSuggestions = [
 		description:
 			'The New York Times: Find breaking news, multimedia, reviews & opinion on Washington, business, sports, movies, travel, books, jobs, education, real estate, cars & more at nytimes.com.',
 		url: 'http://www.nytimes.com',
-		category: 'general',
+		category: EAllNewsSourcesCategories.General,
 		language: 'en',
 		country: 'us',
 	},
@@ -67,7 +69,7 @@ const Top20EditorSuggestions = [
 		description:
 			"Latest news, sport, business, comment, analysis and reviews from the Guardian, the world's leading liberal voice.",
 		url: 'https://www.theguardian.com/uk',
-		category: 'general',
+		category: EAllNewsSourcesCategories.General,
 		language: 'en',
 		country: 'gb',
 	},
@@ -77,7 +79,7 @@ const Top20EditorSuggestions = [
 		description:
 			'Get the latest national, international, and political news at USATODAY.com.',
 		url: 'http://www.usatoday.com/news',
-		category: 'general',
+		category: EAllNewsSourcesCategories.General,
 		language: 'en',
 		country: 'us',
 	},
