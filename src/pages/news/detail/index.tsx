@@ -23,10 +23,6 @@ interface IArticleDetailPageProps {
 class ArticleDetailPage extends React.Component<IArticleDetailPageProps, any> {
 	private hero = React.createRef<HTMLDivElement>();
 
-	componentDidMount() {
-		console.log('props: ', this.props.location.state);
-	}
-
 	public render() {
 		const { state } = this.props.location;
 		if (state) {

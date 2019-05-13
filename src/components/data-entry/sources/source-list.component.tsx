@@ -116,26 +116,29 @@ class SourcesList extends React.PureComponent<ISourcesListProps> {
 
 	render() {
 		const { label, data, layout } = this.props;
-		const { ...sourcesListProps } = this.props;
 
-		return (
-			<SourcesListWrapper
-				role="group"
-				aria-label={label}
-				layout={layout}
-				{...sourcesListProps}
-			>
-				{data && this.renderData()}
-			</SourcesListWrapper>
-		);
+		if (data) {
+			return (
+				<SourcesListWrapper
+					role="group"
+					aria-label={label}
+					layout={layout}
+					style={{
+						flexDirection: layout === 'horizontal' ? 'row' : 'column',
+					}}
+				>
+					{data && this.renderData()}
+				</SourcesListWrapper>
+			);
+		}
+
+		return null;
 	}
 }
 
 // Styling
-const SourcesListWrapper = styled.ul`
+const SourcesListWrapper = styled.ol`
 	display: flex;
-	flex-direction: ${(props: ISourcesListProps) =>
-		props.layout === 'horizontal' ? 'row' : 'column'};
 	justify-content: flex-start;
 	align-items: center;
 	flex-wrap: nowrap;
@@ -150,8 +153,6 @@ const SourcesListWrapper = styled.ul`
 
 	.source__item {
 		flex: 1;
-		margin-right: ${(props: ISourcesListProps) =>
-		props.layout === 'horizontal' ? '1rem' : '0'};
 	}
 `;
 

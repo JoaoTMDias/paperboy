@@ -110,7 +110,6 @@ class TopNavigationWithClose extends React.Component<
 
 			const pastScrollHeightTrigger = heroHeight - herotitleWrapperHeight;
 			const navbar: HTMLDivElement | null = this.navBar.current;
-			console.log('navbar: ', navbar);
 
 			this.setState(
 				{

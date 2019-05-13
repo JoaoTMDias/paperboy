@@ -1,3 +1,4 @@
+import { produce } from 'immer';
 import { Redirect } from '@reach/router';
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -279,6 +280,7 @@ class ChooseSourcesPage extends React.PureComponent<
 	 */
 	handleClickOnItem(event: React.SyntheticEvent, position: number, category: string) {
 		event.preventDefault();
+
 		const { chosen } = this.state;
 		const inputTarget = event.target as HTMLInputElement;
 		const clickedItem: IChosenSource = {
@@ -286,21 +288,21 @@ class ChooseSourcesPage extends React.PureComponent<
 			category,
 		};
 
-		let chosenItems: IChosenSource[];
+		const chosenItems = produce(chosen.list, (draftState: IChosenSource[]) => {
+			const hasSelectedItemAlready = findIndex(draftState, (item: IChosenSource) => { return isMatch(item, clickedItem) }) > -1;
 
-		const hasSelectedItemAlready = findIndex(chosen.list, (item: IChosenSource) => { return isMatch(item, clickedItem) }) > -1;
+			if (hasSelectedItemAlready) {
+				draftState.splice(draftState.findIndex((stateSource: IChosenSource) => stateSource !== clickedItem), 1);
+			} else {
+				draftState.push(clickedItem)
+			}
+		});
 
-		if (hasSelectedItemAlready) {
-			chosenItems = chosen.list.filter(
-				(stateSource: IChosenSource) => stateSource !== clickedItem,
-			);
-		} else {
-			chosenItems = [...chosen.list, clickedItem];
-		}
-
-		this.setState(prevState => ({
-			chosen: { ...prevState.chosen, list: chosenItems },
-		}));
+		this.setState(
+			produce((draftState: IChooseSourcesPageState) => {
+				draftState.chosen.list = chosenItems
+			})
+		);
 	}
 
 	/**

@@ -13,6 +13,7 @@ interface ISourceListItemProps {
 	src: string;
 	handleChange: any;
 	checked: boolean;
+	style?: React.CSSProperties;
 }
 
 /**
@@ -31,12 +32,12 @@ class SourceListItem extends React.Component<ISourceListItemProps, any> {
 	};
 
 	public render() {
-		const { id, label, src, category, handleChange, checked } = this.props;
+		const { id, label, src, category, handleChange, checked, style } = this.props;
 
 		const status: string = checked ? 'is-checked' : '';
 
 		return (
-			<Wrapper className={`source__item ${status}`}>
+			<Wrapper className={`source__item ${status}`} style={style}>
 				<label htmlFor={`source-${id}-input`} tabIndex={0}>
 					<Input
 						id={`source-${id}-input`}
@@ -95,6 +96,7 @@ const Wrapper = styled.li`
 	width: 100%;
 	display: flex;
 	margin: 0;
+
 
 	* {
 		&:active,

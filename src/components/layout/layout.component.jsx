@@ -92,7 +92,6 @@ const Layout = props => {
 			: false;
 
 		if (authenticated) {
-			console.log('isDesktop? ', isDesktop);
 			return (
 				<React.Fragment>
 					{header && <TopNavigation key="page-header" />}

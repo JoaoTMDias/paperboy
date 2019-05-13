@@ -116,10 +116,8 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 					const element = entries[0];
 
 					if (element.isIntersecting) {
-						console.log('is intersecting');
 						navigationElement.classList.remove('is-sticky');
 					} else {
-						console.log('is not intersecting');
 						navigationElement.classList.add('is-sticky');
 					}
 				},
@@ -142,7 +140,7 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 
 	componentWillUnmount() {
 		const { containerElement } = this.state;
-		if(this.observer){
+		if (this.observer) {
 			this.observer.unobserve(containerElement);
 		}
 	}

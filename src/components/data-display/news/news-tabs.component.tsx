@@ -76,7 +76,6 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 	}
 
 	componentDidMount() {
-		console.log('tabs: ', this.props.tabsHeader);
 		this.setupEventListeners();
 		const hasHashOnUrl = getHash();
 
