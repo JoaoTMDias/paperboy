@@ -34,6 +34,7 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 				<meta httpEquiv="x-ua-compatible" content="ie=edge" />
 
 				{/* Meta */}
+				<link rel="manifest" href="/manifest.json" />
 				{helmet.title.toComponent()}
 				{helmet.meta.toComponent()}
 
@@ -49,9 +50,9 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 				<meta name="twitter:site" content="@joaotmdias" />
 				<meta name="twitter:creator" content="@joaotmdias" />
 				<meta property="twitter:image" content={openGraphUrl} />
-				<link rel="preload" as="font" href={`${config.siteMetadata.url}/fonts/paperboy-headings-bold.woff2`} type="font/woff2" crossorigin />
-				<link rel="preload" as="font" href={`${config.siteMetadata.url}/fonts/paperboy-headings-regular.woff2`} type="font/woff2" crossorigin />
-				<link rel="preload" as="font" href={`${config.siteMetadata.url}/fonts/paperboy-content-regular.woff2`} type="font/woff2" crossorigin />
+				<link rel="preload" href={`${config.siteMetadata.url}/fonts/paperboy-headings-bold.woff2`} type="font/woff2" as="font" />
+				<link rel="preload" href={`${config.siteMetadata.url}/fonts/paperboy-headings-regular.woff2`} type="font/woff2" as="font" />
+				<link rel="preload" href={`${config.siteMetadata.url}/fonts/paperboy-content-regular.woff2`} type="font/woff2" as="font" />
 			</head>
 			<body>
 				<noscript class="no-javascript"><h1 class="no-javascript__title">We need you to activate Javascript in order to run our app 🤓.</h1></noscript>
