@@ -51,6 +51,7 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 				<meta property="twitter:image" content={openGraphUrl} />
 			</head>
 			<body>
+				<noscript class="no-javascript"><h1 class="no-javascript__title">We need you to activate Javascript in order to run our app 🤓.</h1></noscript>
 				<div
 					id="___gatsby"
 					dangerouslySetInnerHTML={{ __html: body }}

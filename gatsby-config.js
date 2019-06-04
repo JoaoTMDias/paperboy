@@ -61,9 +61,6 @@ module.exports = {
 
 		// Site Configs
 		{
-			resolve: 'gatsby-plugin-google-analytics',
-			options: analyticsOptions,
-		}, {
 			resolve: 'gatsby-plugin-manifest',
 			options: manifestOptions,
 		}, {
