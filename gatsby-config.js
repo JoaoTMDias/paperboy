@@ -569,7 +569,7 @@ module.exports = {
 		title: 'Paperboy',
 		author: 'João Dias',
 		url: 'https://joaodias.me',
-		siteUrl: 'https://getpaperboy.netlify.com',
+		siteUrl: 'https://getpaperboy.xyz',
 		description: 'A news app',
 	},
 	plugins: [
