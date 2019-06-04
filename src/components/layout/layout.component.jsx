@@ -168,7 +168,7 @@ const Layout = props => {
 									{
 										name: 'apple-mobile-web-app-capable',
 										content: 'yes',
-									}
+									},
 									{
 										name: 'msapplication-TileColor',
 										content: '#E74D3C',
