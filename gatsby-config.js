@@ -44,7 +44,7 @@ module.exports = {
 	siteMetadata: {
 		title: 'Paperboy',
 		author: 'João Dias',
-		url: 'https://joaodias.me',
+		url: 'https://getpaperboy.xyz',
 		siteUrl: 'https://getpaperboy.xyz',
 		description: 'A news app',
 	},
@@ -63,7 +63,8 @@ module.exports = {
 		{
 			resolve: 'gatsby-plugin-manifest',
 			options: manifestOptions,
-		}, {
+		},
+		{
 			resolve: 'gatsby-plugin-offline',
 			options: offlineOptions,
 		},

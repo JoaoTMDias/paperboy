@@ -23,7 +23,7 @@ const isProduction: boolean = process.env.NODE_ENV === 'production';
 const HTML: React.FunctionComponent<IHTMLProps> = props => {
 	const helmet: HelmetData = Helmet.rewind();
 	const openGraphUrl: string = isProduction
-		? `${config.url}/share.png`
+		? `${config.siteMetadata.url}/share.png`
 		: '/share.png';
 	const { headComponents, body, postBodyComponents } = props;
 
@@ -49,6 +49,9 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 				<meta name="twitter:site" content="@joaotmdias" />
 				<meta name="twitter:creator" content="@joaotmdias" />
 				<meta property="twitter:image" content={openGraphUrl} />
+				<link rel="preload" as="font" href={`${config.siteMetadata.url}/fonts/paperboy-headings-bold.woff2`} type="font/woff2" crossorigin />
+				<link rel="preload" as="font" href={`${config.siteMetadata.url}/fonts/paperboy-headings-regular.woff2`} type="font/woff2" crossorigin />
+				<link rel="preload" as="font" href={`${config.siteMetadata.url}/fonts/paperboy-content-regular.woff2`} type="font/woff2" crossorigin />
 			</head>
 			<body>
 				<noscript class="no-javascript"><h1 class="no-javascript__title">We need you to activate Javascript in order to run our app 🤓.</h1></noscript>

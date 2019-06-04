@@ -1,9 +1,9 @@
 // Font-weight: bold
 @font-face {
 	font-family: 'paperboy-font-bold';
-	src: url('/paperboy-headings-bold.woff2') format('woff2'),
-		url('/paperboy-headings-bold.woff') format('woff'),
-		url('/paperboy-headings-bold.ttf') format('truetype');
+	src: url('/fonts/paperboy-headings-bold.woff2') format('woff2'),
+		url('/fonts/paperboy-headings-bold.woff') format('woff'),
+		url('/fonts/paperboy-headings-bold.ttf') format('truetype');
 	font-style: normal;
 	font-weight: bold;
 	font-display: swap;
@@ -13,9 +13,9 @@
 // Font-weight: light
 @font-face {
 	font-family: 'paperboy-font-regular';
-	src: url('/paperboy-headings-regular.woff2') format('woff2'),
-		url('/paperboy-headings-regular.woff') format('woff'),
-		url('/paperboy-headings-regular.ttf') format('truetype');
+	src: url('/fonts/paperboy-headings-regular.woff2') format('woff2'),
+		url('/fonts/paperboy-headings-regular.woff') format('woff'),
+		url('/fonts/paperboy-headings-regular.ttf') format('truetype');
 	font-style: normal;
 	font-weight: 300;
 	font-display: swap;
@@ -25,9 +25,9 @@
 
 @font-face {
 	font-family: 'paperboy-content-regular';
-	src: url('/paperboy-content-regular.woff2') format('woff2'),
-		url('/paperboy-content-regular.woff') format('woff'),
-		url('/paperboy-content-regular.ttf') format('truetype');
+	src: url('/fonts/paperboy-content-regular.woff2') format('woff2'),
+		url('/fonts/paperboy-content-regular.woff') format('woff'),
+		url('/fonts/paperboy-content-regular.ttf') format('truetype');
 	font-style: normal;
 	font-weight: 400;
 	font-display: swap;
