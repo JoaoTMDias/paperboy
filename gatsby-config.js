@@ -544,26 +544,6 @@ const offlineOptions = {
 	cacheId: 'paperboy-cache',
 };
 
-const sitemapOptions = {
-	output: '/sitemap.xml',
-	query: `
-      {
-          site {
-              siteMetadata {
-                  siteUrl
-              }
-          }
-
-          allSitePage {
-              edges {
-                  node {
-                      path
-                  }
-              }
-          }
-      }`,
-};
-
 module.exports = {
 	siteMetadata: {
 		title: 'Paperboy',
@@ -579,19 +559,12 @@ module.exports = {
 		// React Helmet
 		'gatsby-plugin-react-helmet',
 
-		// Images
-		'gatsby-transformer-sharp',
-		'gatsby-plugin-sharp',
-
 		// Styling
 		'gatsby-plugin-styled-components',
 		'gatsby-plugin-sass',
 
 		// Site Configs
 		{
-			resolve: 'gatsby-plugin-sitemap',
-			options: sitemapOptions,
-		}, {
 			resolve: 'gatsby-plugin-google-analytics',
 			options: analyticsOptions,
 		}, {
