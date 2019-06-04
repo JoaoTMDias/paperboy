@@ -9,7 +9,18 @@ export interface PreferencesReducer {
 	authenticated: boolean;
 }
 
+export type IChosenNewsSourcesItems = {
+	[key: string]: string[];
+}
+
 export interface ChosenNewsSources {
 	quantity: number;
-	items: IChosenSource[];
+	categories: string[];
+	tabs: INewsPageHeaderItems[];
+	items: IChosenNewsSourcesItems;
+}
+
+export interface INewsPageHeaderItems {
+	id: string;
+	label: string;
 }

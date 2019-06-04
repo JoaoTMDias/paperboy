@@ -1,3 +1,5 @@
+import { produce } from 'immer';
+
 // Constants
 import {
 	GET_CHOSEN_NEWS_SOURCES,
@@ -19,7 +21,16 @@ const initialState: PreferencesReducer = {
 	theme: EAppThemeType.DARK,
 	chosenSources: {
 		quantity: 0,
-		items: [],
+		categories: [],
+		items: {
+			latest: [],
+		},
+		tabs: [
+			{
+				id: 'latest',
+				label: 'Latest',
+			}
+		],
 	},
 	authenticated: false,
 };
@@ -35,53 +46,29 @@ function preferences(
 	state: PreferencesReducer = initialState,
 	action: IReduxActions,
 ) {
-	switch (action.type) {
-		case GET_CHOSEN_NEWS_SOURCES:
-			return {
-				...state,
-				type: action.type,
-				chosenSources: {
-					...state.chosenSources,
-					items: action.payload.data,
-				},
-			};
+	return produce(state, (draftState: PreferencesReducer) => {
+		switch (action.type) {
+			case SET_CHOSEN_NEWS_SOURCES:
+			case GET_CHOSEN_NEWS_SOURCES:
+				draftState.chosenSources = action.payload.data;
+				break;
 
-		case SET_CHOSEN_NEWS_SOURCES:
-			return {
-				...state,
-				type: action.type,
-				chosenSources: {
-					quantity: action.payload.data.quantity,
-					items: action.payload.data.items,
-				},
-			};
+			case SET_USER_AUTHENTICATION:
+				draftState.authenticated = action.payload.data;
+				break;
 
-		case SET_USER_AUTHENTICATION:
-			return {
-				type: action.type,
-				...state,
-				authenticated: action.payload.data,
-			};
 
-		case SET_APP_THEME:
-			return {
-				...state,
-				theme: action.payload.data,
-			};
+			case SET_APP_THEME:
+				draftState.theme = action.payload.data;
+				break;
 
-		case RESET_APP_STATE:
-			return {
-				type: null,
-				chosenSources: {
-					quantity: 0,
-					items: [],
-				},
-				authenticated: false,
-			};
-
-		default:
-			return state;
-	}
+			case RESET_APP_STATE:
+				draftState.type = initialState.type;
+				draftState.chosenSources = initialState.chosenSources;
+				draftState.authenticated = initialState.authenticated;
+				break;
+		}
+	});
 }
 
 export default preferences;

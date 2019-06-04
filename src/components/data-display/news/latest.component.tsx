@@ -29,7 +29,7 @@ interface IVirtualListProps extends ListChildComponentProps {
  * @class LatestNewsTab
  * @extends {React.Component<INewsArticleTabProps, any>}
  */
-class LatestNewsTab extends React.Component<INewsArticleTabProps, any> {
+class LatestNewsTab extends React.PureComponent<INewsArticleTabProps, any> {
 	constructor (props: INewsArticleTabProps) {
 		super(props);
 	}
@@ -49,33 +49,6 @@ class LatestNewsTab extends React.Component<INewsArticleTabProps, any> {
 	}
 
 	/**
-	 * @description Page only re-renders if the user props change, such as:
-	 * - User is no longer unauthenticated/authenticated
-	 * - User has new sources to pick from and fetch data
-	 * - The data itself is new.
-	 * @date 2019-01-19
-	 * @param {INewsArticleTabProps} nextProps
-	 * @param {*} nextState
-	 * @returns {boolean}
-	 * @memberof LatestNewsTab
-	 */
-	shouldComponentUpdate(
-		nextProps: INewsArticleTabProps,
-		nextState: any,
-	): boolean {
-		const { sources, latest } = this.props;
-
-		if (
-			nextProps.sources !== sources ||
-			nextProps.latest.articles !== latest.articles
-		) {
-			return true;
-		}
-
-		return false;
-	}
-
-	/**
 	 * @description When the page updates, checks if the redux store has returned:
 	 * - a new list of sources.
 	 *
@@ -92,8 +65,8 @@ class LatestNewsTab extends React.Component<INewsArticleTabProps, any> {
 	): boolean {
 		const { sources } = this.props;
 
-		if (nextProps.sources !== sources && sources.quantity > 0) {
-			this.props.dispatch(getAllLatestNewsFromSource(sources.items));
+		if (nextProps.sources !== sources && sources.length > 0) {
+			this.props.dispatch(getAllLatestNewsFromSource(sources));
 
 			return true;
 		}

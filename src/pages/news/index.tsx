@@ -21,30 +21,18 @@ import {
 	NEWS_PAGE,
 	ONBOARDING_PAGE,
 } from '../../data/constants/index.constants';
-import { IChosenSource } from '../onboarding/choose-sources';
 
-const Tabs = [
+const defaultTabs: INewsPageHeaderItems[] = [
 	{
 		id: 'latest',
 		label: 'Latest',
 	},
-	{
-		id: 'general',
-		label: 'General',
-	},
-	{
-		id: 'sports',
-		label: 'Sports',
-	},
-	{
-		id: 'financial',
-		label: 'Financial',
-	},
-	{
-		id: 'tech',
-		label: 'Tech',
-	},
 ];
+interface INewsPageHeaderItems {
+	id: string;
+	label: string;
+}
+
 
 interface INewsPageProps {
 	authenticated: boolean;
@@ -53,33 +41,93 @@ interface INewsPageProps {
 	dispatch: any;
 }
 
+interface INewsPageState {
+	hasData: boolean;
+	tabsHeaderItems: INewsPageHeaderItems[] | null;
+}
+
 /**
  * @description News Page Tab
  * @date 2019-01-17
  * @class NewsPage
  * @extends {React.Component<INewsPageProps, any>}
  */
-class NewsPage extends React.Component<INewsPageProps, any> {
-	/**
-	 * @description Page only re-renders if the user props change, such as:
-	 * - User is no longer unauthenticated/authenticated
-	 * - User has new sources to pick from and fetch data
-	 * @date 2019-01-19
-	 * @param {INewsPageProps} nextProps
-	 * @param {*} nextState
-	 * @returns {boolean}
-	 * @memberof NewsPage
-	 */
-	shouldComponentUpdate(nextProps: INewsPageProps, nextState: any): boolean {
-		const { authenticated, sources } = this.props;
-		if (
-			nextProps.authenticated !== authenticated ||
-			nextProps.sources !== sources
-		) {
+class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
+	constructor (props: INewsPageProps) {
+		super(props);
+
+		this.state = {
+			hasData: false,
+			tabsHeaderItems: null,
+		}
+	}
+
+	componentDidMount() {
+		const { sources } = this.props;
+		const checkForData = this.checkIfHasSources(sources);
+
+		if (checkForData) {
+			this.setupNewsTabsHeader(sources.tabs);
+		}
+
+	}
+
+	checkIfHasSources(sources: ChosenNewsSources) {
+
+		if (sources && sources.quantity > 0) {
+			this.setState({
+				hasData: true,
+			});
+
 			return true;
 		}
 
 		return false;
+	}
+
+	componentDidUpdate(prevProps: INewsPageProps) {
+		const { sources } = this.props;
+		const { hasData } = this.state;
+
+		if (hasData) {
+
+		}
+		if (prevProps.sources !== sources && sources.quantity > 0) {
+			this.setupNewsTabsHeader(sources.tabs);
+		}
+
+	}
+
+	/**
+	 * @description
+	 * @author João Dias
+	 * @date 2019-06-04
+	 * @param {IChosenSource[]} items
+	 * @memberof NewsPage
+	 */
+	setupNewsTabsHeader(tabs: INewsPageHeaderItems[]) {
+		if (tabs) {
+			const tabsHeaderItems = this.filterOutAllHeaderCategories(tabs);
+			this.setState({
+				tabsHeaderItems,
+			});
+		}
+	}
+
+	/**
+	 * @description
+	 * @author João Dias
+	 * @date 2019-06-04
+	 * @param {IChosenSource[]} items
+	 * @returns
+	 * @memberof NewsPage
+	 */
+	filterOutAllHeaderCategories(tabs: INewsPageHeaderItems[]) {
+		const list = [
+			...defaultTabs,
+			...tabs,
+		];
+		return list;
 	}
 
 	/**
@@ -88,26 +136,21 @@ class NewsPage extends React.Component<INewsPageProps, any> {
 	 * @returns
 	 * @memberof NewsPage
 	 */
-	renderNewsTabs() {
+	renderNewsTabs(tabsHeaderItems: INewsPageHeaderItems[]) {
 		const { sources } = this.props;
+		const { hasData } = this.state;
 
-		if (sources && sources.quantity > 0) {
-			const list = sources.items.map((source: IChosenSource) => {
-				const { name } = source;
-
-				return name;
-			});
+		if (hasData && sources && tabsHeaderItems.length > 0) {
 			return (
 				<NewsTabs
 					id="news-tabs"
-					tabsHeader={Tabs}
+					tabsHeader={tabsHeaderItems}
 					style={{
-						backgroundColor: 'white',
+						backgroundColor: 'var(--body-background)',
 					}}
 				>
-					<LatestNewsTab sources={list} />
-					<LatestNewsTab sources={list} />
-					<LatestNewsTab sources={list} />
+					<LatestNewsTab sources={sources.items.latest} />
+					<LatestNewsTab sources={sources.items.latest} />
 				</NewsTabs>
 			);
 		}
@@ -117,6 +160,7 @@ class NewsPage extends React.Component<INewsPageProps, any> {
 
 	render() {
 		const { authenticated } = this.props;
+		const { tabsHeaderItems } = this.state;
 
 		if (!authenticated) {
 			return <Redirect from={NEWS_PAGE} to={ONBOARDING_PAGE} noThrow />;
@@ -130,7 +174,7 @@ class NewsPage extends React.Component<INewsPageProps, any> {
 					title="Current Page is: News"
 					offsetTop="2.75rem"
 				>
-					{this.renderNewsTabs()}
+					{tabsHeaderItems ? this.renderNewsTabs(tabsHeaderItems) : <p>Loading...</p>}
 				</Container>
 			</Layout>
 		);

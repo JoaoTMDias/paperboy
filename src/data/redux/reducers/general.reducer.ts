@@ -53,46 +53,31 @@ interface GeneralActions {
  * @returns
  */
 function general(state: IGeneral = initialState, action: GeneralActions) {
-	switch (action.type) {
-		case SET_ONLINE_STATUS:
-			return {
-				...state,
-				isOnline: action.status,
-			};
+	return produce(state, (draftState: IGeneral) => {
+		switch (action.type) {
+			case SET_ONLINE_STATUS:
+				draftState.isOnline = action.status;
+				break;
 
-		case SET_PLATFORM:
-			return {
-				...state,
-				platform: action.platform,
-			};
+			case SET_PLATFORM:
+				draftState.platform = action.platform;
+				break;
 
-		case SET_STANDALONE_STATUS:
-			return {
-				...state,
-				isStandalone: action.status,
-			};
+			case SET_STANDALONE_STATUS:
+				draftState.isStandalone = action.status;
+				break;
 
-		case SET_FEATURE_SUPPORT:
-			const { hasAudited, ...rest } = action.payload;
+			case SET_FEATURE_SUPPORT:
+				draftState.isStandalone = action.payload.hasAudited;
+				draftState.supports = action.payload.supports;
+				break;
 
-			return {
-				...state,
-				hasAudited: action.payload.hasAudited,
-				...rest,
-			};
-
-		case SET_USER_COUNTRY:
-			return {
-				...state,
-				userLanguage: Object.assign({}, state.userLanguage, {
-					hasLocation: action.payload.hasLocation,
-					data: action.payload.data,
-				}),
-			};
-
-		default:
-			return state;
-	}
+			case SET_USER_COUNTRY:
+				draftState.userLanguage.hasLocation = action.payload.hasLocation;
+				draftState.userLanguage.data = action.payload.data;
+				break;
+		}
+	});
 }
 
 export default general;

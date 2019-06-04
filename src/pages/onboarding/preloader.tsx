@@ -12,7 +12,7 @@ import {
 interface IPreloaderPageProps {
 	authenticated: boolean;
 	dispatch: any;
-	chosenSources: IChosenSource[];
+	chosenSources: IChosenNewsSourcesItems;
 	articles: {};
 }
 
@@ -22,8 +22,7 @@ interface IPreloaderPageState {
 }
 
 import { NEWS_PAGE } from '../../data/constants/index.constants';
-import { IGlobalStoreState } from '../../data/interfaces/index.interface';
-import { IChosenSource } from './choose-sources';
+import { IGlobalStoreState, IChosenNewsSourcesItems } from '../../data/interfaces/index.interface';
 
 /**
  * @description The Preloader Page
@@ -62,17 +61,15 @@ class PreloaderPage extends React.PureComponent<
 	componentDidMount() {
 		const { chosenSources, dispatch } = this.props;
 		const { delay } = this.state;
-		if (chosenSources) {
-			const sources = chosenSources.map((source: IChosenSource) => {
-				const { name } = source;
 
-				return name;
-			});
+		if (chosenSources && Object.keys(chosenSources).length > 0) {
+			const hasLatestKey = chosenSources.hasOwnProperty('latest');
+			const latestSources = hasLatestKey ? chosenSources.latest : ['cnn', 'bbc-news'];
 
 			this.timer = setTimeout(
 				() =>
 					dispatch(
-						getAllLatestNewsFromSource(sources),
+						getAllLatestNewsFromSource(latestSources),
 					),
 				delay,
 			);
@@ -86,15 +83,16 @@ class PreloaderPage extends React.PureComponent<
 	 * @param {*} prevState
 	 * @memberof PreloaderPage
 	 */
-	componentDidUpdate(prevProps: any, prevState: any) {
+	componentDidUpdate(prevProps: IPreloaderPageProps) {
+		const { articles, dispatch } = this.props;
 		// If there are news sources to display as a list
-		if (prevProps.articles !== this.props.articles) {
+		if (prevProps.articles !== articles) {
 			this.setState(
 				{
 					hasData: true,
 				},
 				() => {
-					this.props.dispatch(setUserAuthentication(true));
+					dispatch(setUserAuthentication(true));
 				},
 			);
 		}

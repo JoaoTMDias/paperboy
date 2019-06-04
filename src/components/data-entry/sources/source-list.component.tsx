@@ -32,11 +32,21 @@ interface ISourcesListProps {
  * @date  24/December/2018 at 01:43
  * @extends {React.SFC}
  */
-class SourcesList extends React.PureComponent<ISourcesListProps> {
+class SourcesList extends React.Component<ISourcesListProps> {
 	static defaultProps = {
 		layout: 'vertical',
 		label: 'label',
 	};
+
+	shouldComponentUpdate(nextProps: ISourcesListProps) {
+		const { data, selectedOptions } = this.props;
+
+		if (nextProps.data !== data || nextProps.selectedOptions !== selectedOptions) {
+			return true;
+		}
+
+		return false;
+	}
 
 	renderData() {
 		const { data, layout, handleChange, selectedOptions } = this.props;
