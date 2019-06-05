@@ -5,6 +5,7 @@ const manifestOptions = {
 	short_name: 'Paperboy',
 	description: 'A News app',
 	orientation: "portrait",
+	scope: "/",
 	start_url: '/',
 	background_color: '#e81b1f',
 	theme_color: '#e81b1f',
