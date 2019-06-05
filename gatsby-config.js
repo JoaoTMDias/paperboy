@@ -25,9 +25,6 @@ const manifestOptions = {
 			type: "image/png"
 		},
 	],
-	icon_options: {
-		purpose: `maskable`,
-	},
 };
 
 const analyticsOptions = {
@@ -44,8 +41,8 @@ module.exports = {
 	siteMetadata: {
 		title: 'Paperboy',
 		author: 'João Dias',
-		url: 'https://getpaperboy.xyz',
-		siteUrl: 'https://getpaperboy.xyz',
+		url: 'https://www.getpaperboy.xyz',
+		siteUrl: 'https://www.getpaperboy.xyz',
 		description: 'A news app',
 	},
 	plugins: [
