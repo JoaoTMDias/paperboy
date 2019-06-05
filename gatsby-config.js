@@ -15,8 +15,8 @@ const manifestOptions = {
 	icon: 'src/assets/images/app-icon.png',
 	icons: [
 		{
-			src: '/android/android-launchericon-512-512.png',
-			sizes: '512x512',
+			src: '/android/android-launchericon-144-144.png',
+			sizes: '144x144',
 			type: 'image/png',
 		},
 		{
@@ -25,8 +25,8 @@ const manifestOptions = {
 			type: 'image/png',
 		},
 		{
-			src: '/android/android-launchericon-144-144.png',
-			sizes: '144x144',
+			src: '/android/android-launchericon-512-512.png',
+			sizes: '512x512',
 			type: 'image/png',
 		},
 	],
