@@ -69,7 +69,7 @@ class UIAnchor extends React.Component<IUIAnchorProps> {
 // Styling
 const Button = styled.button`
 	width: 100%;
-	height: var(--bottom-navigation-bar-height, ${rem('48px')});
+	height: var(--bottom-navigation-bar-height, ${rem('56px')});
 	background-color: var(--color-primary);
 	color: var(--color-white);
 	text-align: center;
@@ -118,7 +118,7 @@ const Button = styled.button`
 
 const Anchor = styled(Link)`
 	width: 100%;
-	height: var(--bottom-navigation-bar-height, ${rem('48px')});
+	height: var(--bottom-navigation-bar-height, ${rem('56px')});
 	background-color: var(--color-primary);
 	color: var(--color-white);
 	text-align: center;

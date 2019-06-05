@@ -61,7 +61,7 @@ const BottomNavigation: React.FunctionComponent<
 const Wrapper = styled.footer`
 	width: 100%;
 	max-width: 100vw;
-	height: var(--bottom-navigation-bar-height);
+	height: var(--bottom-navigation-bar-height, 3.5rem);
 	bottom: 0;
 	left: 0;
 	right: 0;
