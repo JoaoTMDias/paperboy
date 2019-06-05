@@ -1,29 +1,33 @@
 const manifestOptions = {
-	dir: "ltr",
-	lang: "EN",
+	dir: 'ltr',
+	lang: 'EN',
 	name: 'Paperboy',
 	short_name: 'Paperboy',
 	description: 'A News app',
-	orientation: "portrait",
-	scope: "/",
+	orientation: 'portrait',
+	scope: '/',
 	start_url: '/',
 	background_color: '#e81b1f',
 	theme_color: '#e81b1f',
 	display: 'standalone',
 	related_applications: [],
 	prefer_related_applications: false,
-	icon: "src/assets/images/app-icon.png",
+	icon: 'src/assets/images/app-icon.png',
 	icons: [
-
 		{
-			src: "/android/android-launchericon-512-512.png",
-			sizes: "512x512",
-			type: "image/png"
+			src: '/android/android-launchericon-512-512.png',
+			sizes: '512x512',
+			type: 'image/png',
 		},
 		{
-			src: "/android/android-launchericon-192-192.png",
-			sizes: "192x192",
-			type: "image/png"
+			src: '/android/android-launchericon-192-192.png',
+			sizes: '192x192',
+			type: 'image/png',
+		},
+		{
+			src: '/android/android-launchericon-144-144.png',
+			sizes: '144x144',
+			type: 'image/png',
 		},
 	],
 };
