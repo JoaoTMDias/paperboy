@@ -297,7 +297,6 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 						classes={{
 							root: 'tabs-page--tab',
 							selected: 'tabs-page--is-selected',
-							label: 'tabs-page--label',
 						}}
 					/>
 				);

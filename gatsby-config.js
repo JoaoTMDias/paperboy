@@ -42,6 +42,17 @@ const offlineOptions = {
 	cacheId: 'paperboy-cache',
 };
 
+const netlifyHeaders = {
+	options: {
+		headers: {
+			'/*': [
+				'Access-Control-Allow-Origin: *',
+				'Content-Type: application/font-woff2',
+			],
+		},
+	},
+};
+
 module.exports = {
 	siteMetadata: {
 		title: 'Paperboy',
@@ -62,6 +73,10 @@ module.exports = {
 		'gatsby-plugin-sass',
 
 		// Site Configs
+		{
+			resolve: `gatsby-plugin-netlify`,
+			options: netlifyHeaders,
+		},
 		{
 			resolve: 'gatsby-plugin-manifest',
 			options: manifestOptions,

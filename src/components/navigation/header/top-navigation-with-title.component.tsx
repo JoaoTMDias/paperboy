@@ -59,7 +59,7 @@ const Container = styled.div`
 	justify-content: center;
 	align-items: flex-start;
 	margin-top: ${rem('20px')};
-	margin-right: ${rem('16px')};
+	margin-right: 0;
 
 	margin-bottom: ${rem('20px')};
 	margin-left: 0;

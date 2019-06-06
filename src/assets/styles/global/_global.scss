@@ -220,12 +220,27 @@ body {
 }
 
 #___gatsby,
-#device-audit {
+#device-audit,
+#no-javascript,
+	{
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	right: 0;
 	left: 0;
+}
+
+.no-javascript {
+	background-color: var(--color-primary);
+	color: var(--color-white);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: var(--global-padding);
+	margin: 0;
+	z-index: 100;
 }
 
 // Suppress the focus outline on elements that cannot be accessed via keyboard.

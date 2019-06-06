@@ -42,9 +42,11 @@ import {
 	UISubtitle,
 } from './general/typography/typography.theme';
 import UISection from './layout/section.component';
+import FormSwitch from './data-entry/forms/switch/form-switch.component';
 
 // ICONOGRAPHY
 export * from './general/icons/icons';
+export * from './data-display/lists/index.lists';
 
 export {
 	Audit,
@@ -81,4 +83,5 @@ export {
 	ThumbnailLarge,
 	ThumbnailImage,
 	LazyLoadingImage,
+	FormSwitch
 };
