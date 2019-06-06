@@ -50,9 +50,9 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 				<meta name="twitter:site" content="@joaotmdias" />
 				<meta name="twitter:creator" content="@joaotmdias" />
 				<meta property="twitter:image" content={openGraphUrl} />
-				<link rel="preload" href={`${config.siteMetadata.url}/fonts/paperboy-headings-bold.woff2`} type="font/woff2" as="font" crossOrigin="use-credentials" />
-				<link rel="preload" href={`${config.siteMetadata.url}/fonts/paperboy-headings-regular.woff2`} type="font/woff2" as="font" crossOrigin="use-credentials" />
-				<link rel="preload" href={`${config.siteMetadata.url}/fonts/paperboy-content-regular.woff2`} type="font/woff2" as="font" crossOrigin="use-credentials" />
+				<link rel="preload" href={`${config.siteMetadata.url}/fonts/paperboy-headings-bold.woff2`} type="font/woff2" as="font" crossOrigin="anonymous" />
+				<link rel="preload" href={`${config.siteMetadata.url}/fonts/paperboy-headings-regular.woff2`} type="font/woff2" as="font" crossOrigin="anonymous" />
+				<link rel="preload" href={`${config.siteMetadata.url}/fonts/paperboy-content-regular.woff2`} type="font/woff2" as="font" crossOrigin="anonymous" />
 			</head>
 			<body>
 				<noscript id="no-javascript" className="no-javascript">
