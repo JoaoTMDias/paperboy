@@ -26,10 +26,6 @@ interface IChangeAppThemeState {
  * @returns {React.FunctionComponent<IChangeAppThemeProps>}
  */
 class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAppThemeState> {
-    static defaultProps = {
-        currentTheme: EAppThemeType.LIGHT,
-    };
-
     constructor (props: IChangeAppThemeProps) {
         super(props);
 
@@ -55,7 +51,6 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
 
             this.setState({
                 rootElement,
-                hasNewTheme: false
             }, () => {
                 if (currentTheme) {
                     const hasDarkModeInSystemPreferences = window.matchMedia("preferes-color-scheme: dark").matches ? window.matchMedia("preferes-color-scheme: dark").matches : false;
@@ -70,10 +65,10 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
         return false;
     }
 
-    componentDidUpdate(nextProps: IChangeAppThemeProps) {
+    componentDidUpdate(prevProps: IChangeAppThemeProps) {
         const { currentTheme } = this.props;
-        if (nextProps.currentTheme && nextProps.currentTheme !== currentTheme) {
-            this.handleChangeCurrentAppTheme(nextProps.currentTheme);
+        if (prevProps.currentTheme && currentTheme && prevProps.currentTheme !== currentTheme) {
+            this.handleChangeCurrentAppTheme(currentTheme);
         }
     }
 
@@ -88,7 +83,6 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
      */
     handleChangeCurrentAppTheme(theme: EAppThemeType): boolean {
         const { rootElement } = this.state;
-
         let hasNewTheme = false;
 
         if (theme && rootElement) {
@@ -122,7 +116,7 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
             }, 1000);
         }
 
-        if(theme === EAppThemeType.LIGHT){
+        if (theme === EAppThemeType.LIGHT) {
             themeColor = '#ffffff';
         }
 
@@ -139,12 +133,12 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
      * @date 2019-05-09
      * @memberof ChangeAppTheme
      */
-    changeCurrentThemeColor(){
+    changeCurrentThemeColor() {
         const { themeColor } = this.state;
 
         const metaThemeColor = document.querySelector("meta[name=theme-color]");
 
-        if(metaThemeColor){
+        if (metaThemeColor) {
             metaThemeColor.setAttribute("content", themeColor);
         }
     }
@@ -153,6 +147,7 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
 
     render() {
         const { currentTheme } = this.props;
+        const { themeColor } = this.state;
 
         return (
             <aside data-theme={currentTheme} tabIndex={-1} />

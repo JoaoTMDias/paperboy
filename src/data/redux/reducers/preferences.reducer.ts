@@ -59,6 +59,7 @@ function preferences(
 
 
 			case SET_APP_THEME:
+				console.log('action.payload.data: ', action.payload.data);
 				draftState.theme = action.payload.data;
 				break;
 

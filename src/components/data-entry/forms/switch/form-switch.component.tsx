@@ -8,7 +8,8 @@ import { rem } from "polished";
 interface IFormSwitchProps {
     id: string;
     checked: boolean;
-    handleOnClickToChange(event: React.ChangeEvent<HTMLInputElement>): void;
+    value: string;
+    onChange(event: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 
@@ -19,11 +20,22 @@ interface IFormSwitchProps {
  * @returns {React.FunctionComponent<IFormSwitchProps>}
  */
 const FormSwitch: React.FunctionComponent<IFormSwitchProps> = (props) => {
-    const { id, checked, handleOnClickToChange } = props;
+    const { id, checked, value, onChange } = props;
+
+    const labelValue = checked ? 'On' : 'Off'
     return (
-        <SwitchWrapper className="form-switch">
-            <input id={`${id}-input`} type="checkbox" className="switch__checkbox" onChange={handleOnClickToChange} checked={checked} />
-            <div className="switch__input" />
+        <SwitchWrapper className={`form-switch ${checked && 'is-checked'}`}>
+            <input
+                id={`${id}-input`}
+                name={`${id}-input`}
+                type="checkbox"
+                className="switch__input"
+                value={value}
+                onChange={onChange}
+                checked={checked}
+                tabIndex={-1}
+            />
+            <span className="switch__label">{labelValue}</span>
         </SwitchWrapper>
     );
 };
@@ -33,8 +45,14 @@ const SwitchWrapper = styled.div`
     --bg-disabled-color: rgba(0, 0, 0, .26);
     --bg-enabled-color: rgba(63, 81, 181, .5);
     --lever-disabled-color: #fff;
-    --lever-enabled-color: #3f51b5;
+    --lever-enabled-color: var(--color-primary);
     --icon-size: ${rem('48px')};
+
+    --form-switch-label: var(--color-gray8);
+
+    html[data-theme="DARK"] & {
+        --form-switch-label: var(--color-gray3);
+    }
 
 
     display: flex;
@@ -48,9 +66,9 @@ const SwitchWrapper = styled.div`
     font-size: 16px;
 
     .switch {
-        &__checkbox {
+        &__input {
             position: absolute;
-            top: 0;
+            top: 17px;
             left: 0;
             width: 36px;
             height: 20px;
@@ -58,15 +76,19 @@ const SwitchWrapper = styled.div`
             z-index: 0;
         }
 
-        &__input {
+        &__label {
             display: block;
-            padding: 0;
+            padding: 0 0 0 44px;
             cursor: pointer;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: var(--form-switch-label);
+
 
             &:before {
                 content: '';
                 position: absolute;
-                top: 5px;
+                top: 17px;
                 left: 0;
                 width: 36px;
                 height: 14px;
@@ -79,7 +101,7 @@ const SwitchWrapper = styled.div`
             &:after {
                 content: '';
                 position: absolute;
-                top: 2px;
+                top: 14px;
                 left: 0;
                 width: 20px;
                 height: 20px;
@@ -92,7 +114,15 @@ const SwitchWrapper = styled.div`
             }
         }
 
-        &__checkbox:checked + &__input {
+        /* &__checkbox:focus + .switch__input {
+            &:after {
+                outline: 1px dotted currentColor;
+            }
+        } */
+    }
+
+    &.is-checked {
+        .switch__label {
             &:before {
                 background-color: var(--bg-enabled-color);
             }
@@ -102,13 +132,7 @@ const SwitchWrapper = styled.div`
                 background-color: var(--lever-enabled-color);
             }
         }
-
-        &__checkbox:focus + &__input {
-            &:after {
-                outline: 1px dotted currentColor;
-            }
-        }
     }
 `;
 
-export default React.memo(FormSwitch);
+export default FormSwitch;
