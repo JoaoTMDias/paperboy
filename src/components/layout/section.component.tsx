@@ -143,7 +143,7 @@ const SectionTitle = styled.h3`
 
 	letter-spacing: ${rem('0.17px')};
 	line-height: ${rem('14px')};
-	margin-bottom: var(--global-padding);
+	margin-bottom: calc(var(--global-padding) * 0.5);
 	padding: 0;
 
 	${(props: IUISectionProps) =>

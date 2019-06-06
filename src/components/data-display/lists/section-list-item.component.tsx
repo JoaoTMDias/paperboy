@@ -67,7 +67,7 @@ const ListWrapper = styled.li`
     --section-list-item-height: ${rem('64px')};
     --icon-size: ${rem('48px')};
     --list-item-title-color: var(--color-gray9);
-    --list-item-subtitle-color: var(--color-gray6);
+    --list-item-subtitle-color: var(--color-gray8);
 
     html[data-theme="DARK"] & {
         --list-item-title-color: var(--color-gray0);
@@ -76,7 +76,7 @@ const ListWrapper = styled.li`
 
     width: 100%;
     height: var(--section-list-item-height, 4rem);
-    padding: calc(var(--global-padding) * 0.5) var(--global-padding);
+    padding: calc(var(--global-padding) * 0.5) 0;
     margin: 0;
     ${flexRow({
     direction: 'row',
@@ -125,6 +125,19 @@ const ListWrapper = styled.li`
                 margin: 0;
                 padding: 0;
             }
+
+            &__subtitle {
+                width: 100%;
+                font-family: var(--body-font-family);
+                font-weight: 300;
+                font-size: ${rem('14px')};
+                color: var(--list-item-subtitle-color);
+                line-height: 1;
+                margin: 0;
+                margin-top: 0.25rem;
+                padding: 0;
+            }
+
 
             &__icon {
                 width: ${rem('80px')};

@@ -9,6 +9,7 @@ import {
 	SectionListItem,
 	ESectionListItemType,
 	FormSwitch,
+	UISection,
 } from '../components/index';
 
 import { EAppThemeType } from "../data/interfaces/theme.interfaces";
@@ -63,22 +64,24 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 					title="Current Page is: News"
 					offsetTop="5.875rem"
 				>
-					<SectionListItem
-						id="dark-theme"
-						title="Dark Theme"
-						type={ESectionListItemType.BUTTON}
-						onClick={(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => this.handleToggleDarkTheme(event)}
-					>
-						<FormSwitch
+					<UISection id="sources-language" title="Appearance">
+						<SectionListItem
 							id="dark-theme"
-							value={EAppThemeType.DARK}
-							checked={theme === EAppThemeType.DARK}
-							onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-								event.preventDefault();
-							}}
-						/>
-					</SectionListItem>
-
+							title="Dark Theme"
+							subtitle="Easier on the eyes on low light"
+							type={ESectionListItemType.BUTTON}
+							onClick={(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => this.handleToggleDarkTheme(event)}
+						>
+							<FormSwitch
+								id="dark-theme"
+								value={EAppThemeType.DARK}
+								checked={theme === EAppThemeType.DARK}
+								onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+									event.preventDefault();
+								}}
+							/>
+						</SectionListItem>
+					</UISection>
 				</Container>
 			</Layout>
 		);
