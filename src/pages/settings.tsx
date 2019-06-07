@@ -36,6 +36,13 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 		super(props);
 	}
 
+	/**
+	 * @description Switches between Dark/Light theme
+	 * @author João Dias
+	 * @date 2019-06-07
+	 * @param {React.MouseEvent<HTMLLabelElement, MouseEvent>} event
+	 * @memberof SettingsPage
+	 */
 	handleToggleDarkTheme(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) {
 		event.preventDefault();
 
@@ -61,10 +68,28 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 					fullwidth
 					fullheight
 					isFixed={false}
-					title="Current Page is: News"
+					title="Current Page is: Settings"
 					offsetTop="5.875rem"
 				>
-					<UISection id="sources-language" title="Appearance">
+					<UISection id="settings-appearance" title="Appearance">
+						<SectionListItem
+							id="dark-theme"
+							title="Dark Theme"
+							subtitle="Easier on the eyes on low light"
+							type={ESectionListItemType.BUTTON}
+							onClick={(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => this.handleToggleDarkTheme(event)}
+						>
+							<FormSwitch
+								id="dark-theme"
+								value={EAppThemeType.DARK}
+								checked={theme === EAppThemeType.DARK}
+								onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+									event.preventDefault();
+								}}
+							/>
+						</SectionListItem>
+					</UISection>
+					<UISection id="settings-others" title="Others">
 						<SectionListItem
 							id="dark-theme"
 							title="Dark Theme"
