@@ -42,9 +42,9 @@ const FormSwitch: React.FunctionComponent<IFormSwitchProps> = (props) => {
 
 // Styling
 const SwitchWrapper = styled.div`
-    --bg-disabled-color: rgba(0, 0, 0, .26);
-    --bg-enabled-color: rgba(63, 81, 181, .5);
-    --lever-disabled-color: #fff;
+    --bg-disabled-color: var(--color-gray3);
+    --bg-enabled-color: hsla(215, 78%, 64%);
+    --lever-disabled-color: var(--color-white);
     --lever-enabled-color: var(--color-primary);
     --icon-size: ${rem('48px')};
 

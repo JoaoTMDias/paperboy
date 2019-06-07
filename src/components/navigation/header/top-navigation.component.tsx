@@ -159,6 +159,13 @@ const fadeInDownBar = keyframes`
 `;
 
 const Wrapper = styled.header`
+	--top-bar-background-color: var(--color-white);
+
+	html[data-theme="DARK"] & {
+		--top-bar-background-color: var(--body-background);
+	};
+
+
 	position: ${(props: ITopNavigationProps) => {
 		if (props.isSticky) {
 			return 'relative';
@@ -187,7 +194,7 @@ const Wrapper = styled.header`
 	min-height: ${rem('48px')};
 	padding-left: ${rem('16px')};
 	padding-right: ${rem('16px')};
-	background-color: var(--body-background);
+	background-color: var(--top-bar-background-color);
 	box-shadow: ${(props: ITopNavigationProps) => {
 		if (props.shadow) {
 			if (props.shadow === 'default') {

@@ -8,6 +8,7 @@ import IconSettings from './settings.icon';
 import IconSafariShare from './safari-share.icon';
 import IconClose from './close.icon';
 import IconShare from './share.icon';
+import IconArrowRight from './arrow-right.icon';
 
 export {
 	IconNews,
@@ -20,4 +21,5 @@ export {
 	IconBrandingSmall,
 	IconClose,
 	IconShare,
+	IconArrowRight
 };

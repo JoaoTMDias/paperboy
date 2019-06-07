@@ -6,9 +6,9 @@ import thunk from 'redux-thunk';
 import rootReducer from '../reducers/index.reducer';
 
 const persistConfig = {
-	key: 'paperboy',
+	key: 'paperboy-persist',
 	storage,
-	blacklist: ['news'],
+	whitelist: ['preferences'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

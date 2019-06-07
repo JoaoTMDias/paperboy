@@ -2,6 +2,8 @@
 import * as React from "react";
 import styled from "styled-components";
 import { rem } from "polished";
+import { Link } from 'gatsby';
+
 
 import { flexRow } from '../../../helpers/index.helpers';
 
@@ -13,6 +15,7 @@ export enum ESectionListItemType {
 
 interface ISectionListItemProps {
     id: string;
+    to?: string;
     title: string;
     subtitle?: string | null;
     type: ESectionListItemType;
@@ -27,11 +30,7 @@ interface ISectionListItemProps {
  * @returns {React.FunctionComponent<ISectionListItemProps>}
  */
 export const SectionListItem: React.FunctionComponent<ISectionListItemProps> = (props) => {
-    const { id, title, subtitle, type, onClick, children } = props;
-
-    const renderInnerContent = () => {
-
-    };
+    const { id, to, title, subtitle, type, onClick, children } = props;
 
     return (
         <ListWrapper id={id} className="section-list__item">
@@ -50,16 +49,36 @@ export const SectionListItem: React.FunctionComponent<ISectionListItemProps> = (
                         )}
                     </div>
                     {children && (
-                        <div className="section-list__item__icon">
+                        <div className="section-list__item__icon toggle">
                             {children}
                         </div>
                     )}
                 </label>
             ) : (
-                    null
+                    <Link
+                        to={to}
+                        className={`section-list__item__label`}
+                        tabIndex={0}
+                    >
+                        <div className="section-list__item__text">
+                            <h3 className="section-list__item__title">{title}</h3>
+                            {subtitle && (
+                                <h6 className="section-list__item__subtitle">{subtitle}</h6>
+                            )}
+                        </div>
+                        {children && (
+                            <div className="section-list__item__icon">
+                                {children}
+                            </div>
+                        )}
+                    </Link>
                 )}
         </ListWrapper>
     );
+};
+
+SectionListItem.defaultProps = {
+    to: '#',
 };
 
 // Styling
@@ -68,16 +87,26 @@ const ListWrapper = styled.li`
     --icon-size: ${rem('48px')};
     --list-item-title-color: var(--color-gray9);
     --list-item-subtitle-color: var(--color-gray8);
+    --list-item-border-bottom-color: var(--color-gray1);
+
 
     html[data-theme="DARK"] & {
         --list-item-title-color: var(--color-gray0);
         --list-item-subtitle-color: var(--color-gray3);
+        --list-item-border-bottom-color: var(--color-gray8);
     }
 
     width: 100%;
     height: var(--section-list-item-height, 4rem);
     padding: calc(var(--global-padding) * 0.5) 0;
     margin: 0;
+    border-bottom: 1px solid var(--list-item-border-bottom-color);
+
+    &:only-child,
+    &:last-child {
+        border-bottom-color: transparent;
+    }
+
     ${flexRow({
     direction: 'row',
     justifyContent: 'flex-start',
@@ -119,7 +148,7 @@ const ListWrapper = styled.li`
                 width: 100%;
                 font-family: var(--body-font-family);
                 font-weight: 300;
-                font-size: ${rem('16px')};
+                font-size: ${rem('14px')};
                 color: var(--list-item-title-color);
                 line-height: 1;
                 margin: 0;
@@ -140,8 +169,14 @@ const ListWrapper = styled.li`
 
 
             &__icon {
-                width: ${rem('80px')};
+                width: var(--icon-size);
                 height: var(--icon-size);
+                margin-right: calc(var(--global-margin) * -1);
+
+                &.toggle {
+                    width: ${rem('80px')};
+                    margin: 0;
+                }
             }
         }
     }

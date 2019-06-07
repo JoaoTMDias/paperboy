@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Container } from '../components/index';
+import { Layout, Container } from '../../components/index';
 
 const CategoriesPage = () => (
 	<Layout header={false}>

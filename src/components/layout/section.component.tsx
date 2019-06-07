@@ -122,6 +122,7 @@ const SectionWrapper = styled.section`
 		}
 	}};
 
+
 	&:only-child {
 		margin-bottom: 0;
 	}
@@ -135,13 +136,13 @@ const SectionTitle = styled.h3`
 	};
 
 	font-family: var(--body-font-family);
-	font-size: ${rem('14px')};
+	font-size: ${rem('12px')};
 	text-transform: capitalize;
 	color: var(--section-title-color);
 
 
 
-	letter-spacing: ${rem('0.17px')};
+	letter-spacing: ${rem('0.4px')};
 	line-height: ${rem('14px')};
 	margin-bottom: calc(var(--global-padding) * 0.5);
 	padding: 0;
