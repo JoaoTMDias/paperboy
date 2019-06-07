@@ -5,12 +5,13 @@ import { rem } from "polished";
 import { Link } from 'gatsby';
 
 
-import { flexRow } from '../../../helpers/index.helpers';
+import { flexRow, elevation } from '../../../helpers/index.helpers';
 
 // Interface
 export enum ESectionListItemType {
     LINK = "LINK",
     BUTTON = "BUTTON",
+    BANNER = "BANNER",
 }
 
 interface ISectionListItemProps {
@@ -18,6 +19,7 @@ interface ISectionListItemProps {
     to?: string;
     title: string;
     subtitle?: string | null;
+    isStandalone?: boolean | undefined;
     type: ESectionListItemType;
     onClick?(event: React.MouseEvent<HTMLLabelElement, MouseEvent>): void;
 }
@@ -30,31 +32,36 @@ interface ISectionListItemProps {
  * @returns {React.FunctionComponent<ISectionListItemProps>}
  */
 export const SectionListItem: React.FunctionComponent<ISectionListItemProps> = (props) => {
-    const { id, to, title, subtitle, type, onClick, children } = props;
+    const { id, to, title, subtitle, type, onClick, isStandalone, children } = props;
 
-    return (
-        <ListWrapper id={id} className="section-list__item">
-            {type === ESectionListItemType.BUTTON ? (
-                <label
-                    htmlFor={`${id}-input`}
-                    className={`section-list__item__label ${children && 'has-icon'}`}
-                    onClick={onClick}
-                    tabIndex={0}
-                >
+    function renderInnerContent(type: ESectionListItemType) {
+        switch (type) {
+            default:
+            case ESectionListItemType.BUTTON:
+                return (
+                    <label
+                        htmlFor={`${id}-input`}
+                        className={`section-list__item__label ${children && 'has-icon'}`}
+                        onClick={onClick}
+                        tabIndex={0}
+                    >
 
-                    <div className="section-list__item__text">
-                        <h3 className="section-list__item__title">{title}</h3>
-                        {subtitle && (
-                            <h6 className="section-list__item__subtitle">{subtitle}</h6>
-                        )}
-                    </div>
-                    {children && (
-                        <div className="section-list__item__icon toggle">
-                            {children}
+                        <div className="section-list__item__text">
+                            <h3 className="section-list__item__title">{title}</h3>
+                            {subtitle && (
+                                <h6 className="section-list__item__subtitle">{subtitle}</h6>
+                            )}
                         </div>
-                    )}
-                </label>
-            ) : (
+                        {children && (
+                            <div className="section-list__item__icon toggle">
+                                {children}
+                            </div>
+                        )}
+                    </label>
+                );
+
+            case ESectionListItemType.LINK:
+                return (
                     <Link
                         to={to}
                         className={`section-list__item__label`}
@@ -72,13 +79,40 @@ export const SectionListItem: React.FunctionComponent<ISectionListItemProps> = (
                             </div>
                         )}
                     </Link>
-                )}
+                );
+
+            case ESectionListItemType.BANNER:
+                return (
+                    <button
+                        type="button"
+                        className={`section-list__item__label`}
+                        tabIndex={0}
+                        disabled={isStandalone}
+                    >
+                        <div className="section-list__item__text">
+                            <h3 className="section-list__item__title">{title}</h3>
+                            {subtitle && (
+                                <h6 className="section-list__item__subtitle">{subtitle}</h6>
+                            )}
+                        </div>
+                        <div className={`section-list__item__banner ${isStandalone ? 'is-standalone' : ''}`}>
+                            {isStandalone && isStandalone === true ? 'Installed' : 'Install'}
+                        </div>
+                    </button>
+                );
+        }
+    }
+
+    return (
+        <ListWrapper id={id} className="section-list__item">
+            {renderInnerContent(type)}
         </ListWrapper>
     );
 };
 
 SectionListItem.defaultProps = {
     to: '#',
+    isStandalone: false,
 };
 
 // Styling
@@ -113,6 +147,8 @@ const ListWrapper = styled.li`
     alignItems: 'center',
 })};
 
+
+
     .section-list {
         &__item {
             &__label {
@@ -123,6 +159,7 @@ const ListWrapper = styled.li`
     justifyContent: 'space-between',
     alignItems: 'center',
 })};
+
 
                  &.has-icon {
                     .section-list__item__text {
@@ -144,27 +181,31 @@ const ListWrapper = styled.li`
     alignItems: 'flex-start',
 })};
             }
-            &__title {
+
+            &__title,
+            &__subtitle {
                 width: 100%;
                 font-family: var(--body-font-family);
+                text-align: left;
                 font-weight: 300;
+                line-height: 1;
+                margin: 0;
+                padding: 0;
+            }
+
+            &__title {
                 font-size: ${rem('14px')};
                 color: var(--list-item-title-color);
+                letter-spacing: 0.4px;
                 line-height: 1;
                 margin: 0;
                 padding: 0;
             }
 
             &__subtitle {
-                width: 100%;
-                font-family: var(--body-font-family);
-                font-weight: 300;
-                font-size: ${rem('14px')};
+                font-size: ${rem('13px')};
                 color: var(--list-item-subtitle-color);
-                line-height: 1;
-                margin: 0;
                 margin-top: 0.25rem;
-                padding: 0;
             }
 
 
@@ -178,7 +219,25 @@ const ListWrapper = styled.li`
                     margin: 0;
                 }
             }
+
+            &__banner {
+                background-color: var(--color-primary);
+                padding: ${rem('8px')} var(--global-padding);
+                border-radius: ${rem('34px')};
+                color: var(--color-white);
+                ${elevation[1]};
+
+                &.is-standalone {
+                    background-color: var(--color-gray3);
+                    color: var(--color-gray6);
+                    box-shadow: none;
+                }
+            }
         }
+    }
+
+    button.section-list__item__label {
+        padding: 0;
     }
 `;
 

@@ -156,14 +156,14 @@ class Audit extends React.Component<IAuditProps, any> {
 	 * @memberof Audit
 	 */
 	setStandaloneStatus() {
+		const { dispatch } = this.props;
 		if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 			const isInWebAppiOS = window.navigator.standalone === true;
 			const isInWebAppChrome = window.matchMedia(
-				'(display-mode: standalone)',
+				"(display-mode: standalone)"
 			).matches;
 			const status: boolean = !!(isInWebAppiOS || isInWebAppChrome);
-
-			this.props.dispatch(setStandaloneStatus(status));
+			dispatch(setStandaloneStatus(status));
 		}
 	}
 

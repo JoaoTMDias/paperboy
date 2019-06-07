@@ -16,6 +16,7 @@ import {
 import { EAppThemeType } from "../../data/interfaces/theme.interfaces";
 import { setAppTheme } from "../../data/redux/actions/preferences.action";
 import { A11Y_SETTINGS_PAGE, PRIVACY_POLICY_SETTINGS_PAGE, OPEN_SOURCE_SETTINGS_PAGE } from "../../data/constants/router.constants";
+import { IGlobalStoreState } from "../../data/interfaces/index.interface";
 
 
 // Interface
@@ -23,6 +24,7 @@ interface ISettingsPageProps {
 	dispatch?: any;
 	authenticated: boolean;
 	children?: any;
+	isStandalone: boolean;
 	theme: EAppThemeType;
 }
 
@@ -34,6 +36,10 @@ interface ISettingsPageProps {
  * @returns {React.FunctionComponent<ISettingsPageProps>}
  */
 class SettingsPage extends React.Component<ISettingsPageProps> {
+	static defaultProps = {
+		isStandalone: false,
+	};
+
 	constructor (props: ISettingsPageProps) {
 		super(props);
 	}
@@ -56,7 +62,7 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 	}
 
 	render() {
-		const { authenticated, theme } = this.props;
+		const { authenticated, theme, isStandalone } = this.props;
 
 		return (
 			<Layout authenticated={authenticated} header={false}>
@@ -76,6 +82,16 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 					offsetTop="5.875rem"
 				>
 					<UISection id="settings-general" title="General">
+						<SectionListItem
+							id="about-paperboy"
+							title="Add to Home Screen"
+							subtitle="Instant Installation"
+							type={ESectionListItemType.BANNER}
+							isStandalone={isStandalone}
+						>
+							<IconArrowRight />
+						</SectionListItem>
+
 						<SectionListItem
 							id="about-paperboy"
 							title="Accessibility"
@@ -139,9 +155,10 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 	}
 }
 
-const mapState2Props = (state: any) => ({
+const mapState2Props = (state: IGlobalStoreState) => ({
 	authenticated: state.preferences.authenticated,
 	theme: state.preferences.theme,
+	isStandalone: state.general.isStandalone,
 });
 
 export default connect(mapState2Props)(SettingsPage);

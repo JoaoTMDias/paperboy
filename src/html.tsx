@@ -64,6 +64,13 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 
 				/>
 				{postBodyComponents}
+				{/* <script
+					dangerouslySetInnerHTML={{
+						__html: `
+						window.deferredAddToHomeScreenPrompt,window.addEventListener("beforeinstallprompt",(e) => {e.preventDefault(),window.deferredAddToHomeScreenPrompt=e});
+        `,
+					}}
+				/> */}
 			</body>
 		</html>
 	);

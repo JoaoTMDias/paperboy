@@ -30,13 +30,13 @@ class AddToHomeScreen extends React.PureComponent<IAddToHomeScreenProps, any> {
 
 				<Content className="dialog__content">
 					<h2 id="dialog__title" className="dialog__content__title">
-						Install Paperboy
+						Add to  Paperboy
 					</h2>
 					<p
 						id="dialog__description"
 						className="dialog__content__description"
 					>
-						Install the app on your homescreen for quick and easy
+						Install the app on your home screen for quick and easy
 						access while you're on the go.
 					</p>
 					<p id="dialog__tip" className="dialog__content__tip">

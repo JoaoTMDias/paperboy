@@ -68,7 +68,7 @@ function general(state: IGeneral = initialState, action: GeneralActions) {
 				break;
 
 			case SET_FEATURE_SUPPORT:
-				draftState.isStandalone = action.payload.hasAudited;
+				draftState.hasAudited = action.payload.hasAudited;
 				draftState.supports = action.payload.supports;
 				break;
 
