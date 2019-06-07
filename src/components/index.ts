@@ -43,6 +43,7 @@ import {
 } from './general/typography/typography.theme';
 import UISection from './layout/section.component';
 import FormSwitch from './data-entry/forms/switch/form-switch.component';
+import AddToHomeScreenWithInstall from './general/pwa/add-to-homescreen-with-install.component';
 
 // ICONOGRAPHY
 export * from './general/icons/icons';
@@ -83,5 +84,6 @@ export {
 	ThumbnailLarge,
 	ThumbnailImage,
 	LazyLoadingImage,
-	FormSwitch
+	FormSwitch,
+	AddToHomeScreenWithInstall
 };

@@ -7,10 +7,12 @@ import {
 	TopNavigation,
 	TopNavigationWithTitle,
 	SectionListItem,
-	ESectionListItemType,
-	FormSwitch,
 	UISection,
-	IconArrowRight,
+	ListItemWithSwitch,
+	ListItemWithLink,
+	ListItemWithButton,
+	AddToHomeScreenWithInstall,
+	EListItemButtonType
 } from '../../components/index';
 
 import { EAppThemeType } from "../../data/interfaces/theme.interfaces";
@@ -84,69 +86,66 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 					<UISection id="settings-general" title="General">
 						<SectionListItem
 							id="about-paperboy"
-							title="Add to Home Screen"
-							subtitle="Instant Installation"
-							type={ESectionListItemType.BANNER}
-							isStandalone={isStandalone}
 						>
-							<IconArrowRight />
+							<AddToHomeScreenWithInstall
+								id="about-paperboy"
+								title="Add to Home Screen"
+								subtitle="Instant Installation"
+								isStandalone={isStandalone}
+							/>
 						</SectionListItem>
 
-						<SectionListItem
-							id="about-paperboy"
-							title="Accessibility"
-							type={ESectionListItemType.LINK}
-							to={A11Y_SETTINGS_PAGE}
-							onClick={(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => this.handleToggleDarkTheme(event)}
-						>
-							<IconArrowRight />
+						<SectionListItem id="about-paperboy">
+							<ListItemWithLink
+								id="about-paperboy"
+								title="Accessibility"
+								to={A11Y_SETTINGS_PAGE}
+							/>
 						</SectionListItem>
 					</UISection>
 					<UISection id="settings-appearance" title="Appearance">
-						<SectionListItem
-							id="dark-theme"
-							title="Dark Theme"
-							subtitle="Easier on the eyes on low light"
-							type={ESectionListItemType.BUTTON}
-							onClick={(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => this.handleToggleDarkTheme(event)}
-						>
-							<FormSwitch
+						<SectionListItem id="dark-theme">
+							<ListItemWithSwitch
 								id="dark-theme"
-								value={EAppThemeType.DARK}
-								checked={theme === EAppThemeType.DARK}
-								onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-									event.preventDefault();
-								}}
+								title="Dark Theme"
+								subtitle="Easier on the eyes on low light"
+								defaultValue={EAppThemeType.DARK}
+								value={theme}
+								onClick={(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => this.handleToggleDarkTheme(event)}
 							/>
 						</SectionListItem>
 					</UISection>
 					<UISection id="settings-others" title="Others">
-						<SectionListItem
-							id="about-paperboy"
-							title="About"
-							to={A11Y_SETTINGS_PAGE}
-							type={ESectionListItemType.LINK}
-							onClick={(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => this.handleToggleDarkTheme(event)}
-						>
-							<IconArrowRight />
+						<SectionListItem id="about-paperboy">
+							<ListItemWithLink
+								id="about-paperboy"
+								title="About"
+								to={A11Y_SETTINGS_PAGE}
+							/>
 						</SectionListItem>
-						<SectionListItem
-							id="privacy-policy-paperboy"
-							title="Privacy Policy"
-							to={PRIVACY_POLICY_SETTINGS_PAGE}
-							type={ESectionListItemType.LINK}
-							onClick={(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => this.handleToggleDarkTheme(event)}
-						>
-							<IconArrowRight />
+						<SectionListItem id="privacy-policy-paperboy">
+							<ListItemWithLink
+								id="privacy-policy-paperboy"
+								title="Privacy Policy"
+								to={PRIVACY_POLICY_SETTINGS_PAGE}
+							/>
 						</SectionListItem>
-						<SectionListItem
-							id="open-source-libraries-paperboy"
-							title="Open-Source Libraries"
-							to={OPEN_SOURCE_SETTINGS_PAGE}
-							type={ESectionListItemType.LINK}
-							onClick={(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => this.handleToggleDarkTheme(event)}
-						>
-							<IconArrowRight />
+						<SectionListItem id="open-source-libraries-paperboy">
+							<ListItemWithLink
+								id="open-source-libraries-paperboy"
+								title="Open-Source Libraries"
+								to={OPEN_SOURCE_SETTINGS_PAGE}
+							/>
+						</SectionListItem>
+					</UISection>
+					<UISection id="settings-exit">
+						<SectionListItem id="logout-paperboy">
+							<ListItemWithButton
+								id="logout-paperboy"
+								title="Log Out"
+								type={EListItemButtonType.PRIMARY}
+								onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => console.log('click on delete: ', event)}
+						/>
 						</SectionListItem>
 					</UISection>
 				</Container>
