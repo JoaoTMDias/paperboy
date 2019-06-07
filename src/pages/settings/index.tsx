@@ -60,7 +60,9 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 
 		return (
 			<Layout authenticated={authenticated} header={false}>
-				<TopNavigation shadow="hairline">
+				<TopNavigation shadow="hairline" style={{
+					marginBottom: '1.25rem',
+				}}>
 					<TopNavigationWithTitle
 						title="Settings"
 						subtitle="Personalize the app to your taste"

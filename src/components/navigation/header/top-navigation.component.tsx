@@ -13,6 +13,7 @@ export enum ETopNavigationType {
 interface ITopNavigationProps {
 	isSticky?: boolean;
 	shadow?: 'default' | 'hairline' | 'none';
+	style?: React.CSSProperties;
 }
 
 interface ITopNavigationState {
@@ -146,8 +147,8 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 	}
 
 	render() {
-		const { children, isSticky } = this.props;
-		return <Wrapper id="page-top-navigation" isSticky={isSticky}>{children}</Wrapper>;
+		const { children, isSticky, style } = this.props;
+		return <Wrapper id="page-top-navigation" isSticky={isSticky} style={style}>{children}</Wrapper>;
 	}
 }
 

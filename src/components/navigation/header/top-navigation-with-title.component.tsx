@@ -52,6 +52,12 @@ class TopNavigationWithTitle extends React.Component<
 
 // Styling
 const Container = styled.div`
+	--top-bar-background-color: var(--color-white);
+
+	html[data-theme="DARK"] & {
+		--top-bar-background-color: var(--body-background);
+	};
+
 	width: 100%;
 	flex: auto;
 	display: flex;
@@ -63,7 +69,7 @@ const Container = styled.div`
 
 	margin-bottom: ${rem('20px')};
 	margin-left: 0;
-	background-color: var(--body-background);
+	background-color: var(--top-bar-background-color);
 
 	.top-navigation {
 		&-with-title {
