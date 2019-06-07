@@ -40,9 +40,9 @@ class TopNavigationWithTitle extends React.Component<
 		const { title, subtitle } = this.props;
 
 		return (
-			<Container>
-				<h2 className="top-navigation-with-title__title">{title}</h2>
-				<p className="top-navigation-with-title__subtitle">
+			<Container id="top-navigation-with-title" className="shrink-when-sticky">
+				<h2 className="top-navigation-with-title__title title">{title}</h2>
+				<p className="hide-when-sticky top-navigation-with-title__subtitle">
 					{subtitle}
 				</p>
 			</Container>

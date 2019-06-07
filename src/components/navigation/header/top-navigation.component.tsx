@@ -2,6 +2,7 @@
 import { rem } from 'polished';
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { elevation } from '../../../helpers/index.helpers';
 
 // Component Props
 export enum ETopNavigationType {
@@ -181,6 +182,20 @@ const Wrapper = styled.header`
 		animation-duration: 250ms;
 		animation-fill-mode: both;
 		position: fixed;
+		${elevation[1]};
+
+		.title {
+			transform-origin: left center;
+			transform: scale(0.7);
+		}
+		.shrink-when-sticky {
+			margin-top: calc(var(--global-margin) * 0.5);
+			margin-bottom: calc(var(--global-margin) * 0.5);
+		}
+
+		.hide-when-sticky {
+			display: none;
+		}
 	}
 
 	top: 0;
