@@ -238,6 +238,8 @@ const ListWrapper = styled.li`
 
     button.section-list__item__label {
         padding: 0;
+        -webkit-appearance: none;
+        border: none;
     }
 `;
 
