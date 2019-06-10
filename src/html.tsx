@@ -50,6 +50,7 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 				<meta name="twitter:site" content="@joaotmdias" />
 				<meta name="twitter:creator" content="@joaotmdias" />
 				<meta property="twitter:image" content={openGraphUrl} />
+				<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 				<link rel="preload" href={`/fonts/paperboy-headings-bold.woff2`} type="font/woff2" as="font" crossOrigin="anonymous" />
 				<link rel="preload" href={`/fonts/paperboy-headings-regular.woff2`} type="font/woff2" as="font" crossOrigin="anonymous" />
 				<link rel="preload" href={`/fonts/paperboy-content-regular.woff2`} type="font/woff2" as="font" crossOrigin="anonymous" />

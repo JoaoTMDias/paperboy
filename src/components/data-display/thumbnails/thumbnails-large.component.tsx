@@ -29,82 +29,41 @@ const ThumbnailLarge: React.FunctionComponent<IThumbnailLargeProps> = props => {
 
 	const time: string = `${distanceInWordsToNow(publishedAt)} ago`;
 
-	switch (source.name) {
-		case 'CNN':
-		case 'BBC News':
-			return (
-				<Anchor
-					to={NEWS_DETAIL_PAGE}
-					aria-labelledby={`thumbnail__title--${id}`}
-					tabIndex={0}
-					state={props.options}
-				>
-					<Article>
-						<div className="thumbnail-image__gradient" />
-						<ThumbnailImage
-							src={urlToImage}
-							width="100%"
-							height="100%"
-							alt={title}
-							placeholderColor={`var(--color-gray6)`}
-						/>
-						<Copy>
-							<h2
-								id={`thumbnail__title--${id}`}
-								className="thumbnail__title"
-							>
-								{title}
-							</h2>
-							<div className="thumbnail__metadata">
-								<h3 className="thumbnail__metadata__source">
-									{source.name}
-								</h3>
-								<time className="thumbnail__metadata__time">
-									{time}
-								</time>
-							</div>
-						</Copy>
-					</Article>
-				</Anchor>
-			);
-
-		default:
-			return (
-				<ExternalAnchor
-					href={url}
-					target="_blank"
-					aria-labelledby={`thumbnail__title--${id}`}
-					tabIndex={0}
-				>
-					<Article>
-						<div className="thumbnail-image__gradient" />
-						<ThumbnailImage
-							src={urlToImage}
-							width="100%"
-							height="100%"
-							alt={title}
-							placeholderColor={`var(--color-gray6)`}
-						/>
-						<Copy>
-							<h2
-								id={`thumbnail__title--${id}`}
-								className="thumbnail__title"
-							>
-								{title}
-							</h2>
-							<div className="thumbnail__metadata">
-								<h3 className="thumbnail__metadata__source">
-									{source.name}
-								</h3>
-								<time className="thumbnail__metadata__time">
-									{time}
-								</time>
-							</div>
-						</Copy>
-					</Article>
-				</ExternalAnchor>
-			);
-	}
+	return (
+		<Anchor
+			to={NEWS_DETAIL_PAGE}
+			aria-labelledby={`thumbnail__title--${id}`}
+			tabIndex={0}
+			state={props.options}
+		>
+			<Article>
+				<div className="thumbnail-image__gradient" />
+				<ThumbnailImage
+					src={urlToImage}
+					width="100%"
+					height="100%"
+					alt={title}
+					placeholderColor={`var(--color-gray6)`}
+				/>
+				<Copy>
+					<h2
+						id={`thumbnail__title--${id}`}
+						className="thumbnail__title"
+					>
+						{title}
+					</h2>
+					<div className="thumbnail__metadata">
+						<h3 className="thumbnail__metadata__source">
+							{source.name}
+						</h3>
+						<time className="thumbnail__metadata__time">
+							{time}
+						</time>
+					</div>
+				</Copy>
+			</Article>
+		</Anchor>
+	);
 };
 
 // Styling

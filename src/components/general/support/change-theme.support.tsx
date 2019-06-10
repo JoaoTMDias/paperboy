@@ -123,7 +123,7 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
         this.setState({
             themeColor,
         }, () => {
-            this.changeCurrentThemeColor()
+            this.changeCurrentThemeColor(theme)
         });
     }
 
@@ -133,13 +133,17 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
      * @date 2019-05-09
      * @memberof ChangeAppTheme
      */
-    changeCurrentThemeColor() {
+    changeCurrentThemeColor(theme: EAppThemeType) {
         const { themeColor } = this.state;
-
         const metaThemeColor = document.querySelector("meta[name=theme-color]");
-
+        const metaStatusBar = document.querySelector("meta[name=apple-mobile-web-app-status-bar-style]");
+        const statusBarColor = theme === EAppThemeType.DARK ? 'black-translucent' : 'default';
         if (metaThemeColor) {
             metaThemeColor.setAttribute("content", themeColor);
+        }
+
+        if (metaStatusBar) {
+            metaStatusBar.setAttribute("content", statusBarColor);
         }
     }
 
