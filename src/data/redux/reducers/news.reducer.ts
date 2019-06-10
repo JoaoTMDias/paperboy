@@ -48,9 +48,11 @@ function news(state = initialState, action: IReduxActions) {
 			});
 
 		case RESET_APP_STATE:
-			return {
-				initialState,
-			};
+			if(action.payload.status){
+				return {
+					...initialState,
+				};
+			}
 
 		default:
 			return state;

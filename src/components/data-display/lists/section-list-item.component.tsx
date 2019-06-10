@@ -36,7 +36,7 @@ const ListWrapper = styled.li`
 
 
     html[data-theme="DARK"] & {
-        --list-item-border-bottom-color: var(--color-gray8);
+        --list-item-border-bottom-color: var(--color-gray9);
         --list-item-background-color-hover: var(--color-gray8);
     }
 
@@ -46,14 +46,14 @@ const ListWrapper = styled.li`
     margin: 0;
     border-bottom: 1px solid var(--list-item-border-bottom-color);
     background-color: var(--list-item-background-color);
+    transition: all 120ms ease;
 
     &:only-child,
     &:last-child {
         border-bottom-color: transparent;
     }
 
-    &:hover,
-    &:focus {
+    &:hover {
         background-color: var(--list-item-background-color-hover);
     }
 

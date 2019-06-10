@@ -12,6 +12,7 @@ interface IUISectionProps {
 	role?: string;
 	grouped?: boolean;
 	children?: React.ReactNode;
+	style?: React.CSSProperties;
 }
 
 /**
@@ -42,7 +43,7 @@ class UISection extends React.PureComponent<IUISectionProps> {
 	}
 
 	public render() {
-		const { id, title, children, role, layout, grouped } = this.props;
+		const { id, title, children, style, role, layout, grouped } = this.props;
 
 		if (grouped) {
 			return (
@@ -53,6 +54,7 @@ class UISection extends React.PureComponent<IUISectionProps> {
 					layout={layout}
 					role={`${role}`}
 					grouped={grouped}
+					style={style}
 				>
 					{this.renderTitle()}
 					<Wrapper id={`wrapper-${id}`} grouped={grouped}>
@@ -68,6 +70,7 @@ class UISection extends React.PureComponent<IUISectionProps> {
 				title={title}
 				layout={layout}
 				role={`${role}`}
+				style={style}
 			>
 				{this.renderTitle()}
 				{children}

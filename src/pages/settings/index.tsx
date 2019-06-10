@@ -16,9 +16,10 @@ import {
 } from '../../components/index';
 
 import { EAppThemeType } from "../../data/interfaces/theme.interfaces";
-import { setAppTheme } from "../../data/redux/actions/preferences.action";
-import { A11Y_SETTINGS_PAGE, PRIVACY_POLICY_SETTINGS_PAGE, OPEN_SOURCE_SETTINGS_PAGE } from "../../data/constants/router.constants";
+import { setAppTheme, resetAppState } from "../../data/redux/actions/index.actions";
+import { A11Y_SETTINGS_PAGE, PRIVACY_POLICY_SETTINGS_PAGE, OPEN_SOURCE_SETTINGS_PAGE, SETTINGS_PAGE, ONBOARDING_PAGE } from "../../data/constants/router.constants";
 import { IGlobalStoreState } from "../../data/interfaces/index.interface";
+import { Redirect } from "@reach/router";
 
 
 // Interface
@@ -63,9 +64,20 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 
 	}
 
+	handleClickToClearPreferences(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+		event.preventDefault();
+
+		const { dispatch } = this.props;
+
+		dispatch(resetAppState(true));
+	}
+
 	render() {
 		const { authenticated, theme, isStandalone } = this.props;
 
+		if (!authenticated) {
+			return <Redirect from={SETTINGS_PAGE} to={ONBOARDING_PAGE} noThrow />;
+		}
 		return (
 			<Layout authenticated={authenticated} header={false}>
 				<TopNavigation shadow="hairline" style={{
@@ -138,14 +150,16 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 							/>
 						</SectionListItem>
 					</UISection>
-					<UISection id="settings-exit">
+					<UISection id="settings-exit" style={{
+						marginBottom: '4rem',
+					}}>
 						<SectionListItem id="logout-paperboy">
 							<ListItemWithButton
 								id="logout-paperboy"
-								title="Log Out"
+								title="Clear Preferences"
 								type={EListItemButtonType.PRIMARY}
-								onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => console.log('click on delete: ', event)}
-						/>
+								onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => this.handleClickToClearPreferences(event)}
+							/>
 						</SectionListItem>
 					</UISection>
 				</Container>

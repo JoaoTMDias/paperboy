@@ -2,6 +2,7 @@ import {
 	SET_CHOSEN_NEWS_SOURCES,
 	SET_USER_AUTHENTICATION,
 	SET_APP_THEME,
+	RESET_APP_STATE
 } from '../../constants/index.constants';
 import { EAppThemeType } from '../../interfaces/theme.interfaces';
 import { IChosenSource } from '../../../pages/onboarding/choose-sources';
@@ -115,4 +116,21 @@ export function setAppTheme(theme: EAppThemeType){
 			data: theme,
 		},
 	};
+}
+
+/**
+ * @description Resets the app back to its initial state
+ * @author João Dias
+ * @date 2019-06-10
+ * @export
+ * @param {boolean} status
+ * @returns
+ */
+export function resetAppState(status: boolean){
+	return {
+		type: RESET_APP_STATE,
+		payload: {
+			status,
+		}
+	}
 }

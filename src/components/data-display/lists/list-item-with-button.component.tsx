@@ -17,6 +17,7 @@ interface IListItemWithButtonProps {
     type: EListItemButtonType;
     subtitle?: string | null;
     onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
+    style?: React.CSSProperties;
 }
 
 
@@ -27,7 +28,7 @@ interface IListItemWithButtonProps {
  * @returns {React.FunctionComponent<IListItemWithButtonProps>}
  */
 export const ListItemWithButton: React.FunctionComponent<IListItemWithButtonProps> = (props) => {
-    const { id, title, subtitle, type, onClick, children } = props;
+    const { id, title, subtitle, style, type, onClick, children } = props;
     return (
         <Action
             id={`${id}-button ${children && 'has-icon'}`}
@@ -35,6 +36,7 @@ export const ListItemWithButton: React.FunctionComponent<IListItemWithButtonProp
             onClick={onClick}
             type={type}
             tabIndex={0}
+            style={style}
         >
             {children && (
                 <div className="icon">

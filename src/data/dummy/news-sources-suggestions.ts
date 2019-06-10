@@ -22,17 +22,6 @@ const Top20EditorSuggestions: IAllAvailableNewsSource[] = [
 		country: 'us',
 	},
 	{
-		id: 'fox-news',
-		name: 'Fox News',
-		description:
-			'Breaking News, Latest News and Current News from FOXNews.com. Breaking news and video. Latest Current News: U.S., World, Entertainment, Health, Business, Technology, Politics, Sports.',
-		url: 'http://www.foxnews.com',
-		category: EAllNewsSourcesCategories.General,
-		language: 'en',
-		country: 'us',
-	},
-
-	{
 		id: 'google-news',
 		name: 'Google News',
 		description:
@@ -52,7 +41,6 @@ const Top20EditorSuggestions: IAllAvailableNewsSource[] = [
 		language: 'en',
 		country: 'in',
 	},
-
 	{
 		id: 'the-new-york-times',
 		name: 'The New York Times',
@@ -79,6 +67,16 @@ const Top20EditorSuggestions: IAllAvailableNewsSource[] = [
 		description:
 			'Get the latest national, international, and political news at USATODAY.com.',
 		url: 'http://www.usatoday.com/news',
+		category: EAllNewsSourcesCategories.General,
+		language: 'en',
+		country: 'us',
+	},
+	{
+		id: 'fox-news',
+		name: 'Fox News',
+		description:
+			'Breaking News, Latest News and Current News from FOXNews.com. Breaking news and video. Latest Current News: U.S., World, Entertainment, Health, Business, Technology, Politics, Sports.',
+		url: 'http://www.foxnews.com',
 		category: EAllNewsSourcesCategories.General,
 		language: 'en',
 		country: 'us',

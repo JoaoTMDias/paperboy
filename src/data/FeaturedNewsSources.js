@@ -65,16 +65,6 @@ export default [
 		country: `us`,
 	},
 	{
-		id: `fox-news`,
-		name: `Fox News`,
-		description: `Breaking News, Latest News and Current News from FOXNews.com. Breaking news and video. Latest Current News: U.S., World, Entertainment, Health, Business, Technology, Politics, Sports.`,
-		url: `http://www.foxnews.com`,
-		category: `general`,
-		language: `en`,
-		country: `us`,
-	},
-
-	{
 		id: `google-news`,
 		name: `Google News`,
 		description: `Comprehensive, up-to-date news coverage, aggregated from sources all over the world by Google News.`,
@@ -93,7 +83,15 @@ export default [
 		language: `en`,
 		country: `us`,
 	},
-
+	{
+		id: `fox-news`,
+		name: `Fox News`,
+		description: `Breaking News, Latest News and Current News from FOXNews.com. Breaking news and video. Latest Current News: U.S., World, Entertainment, Health, Business, Technology, Politics, Sports.`,
+		url: `http://www.foxnews.com`,
+		category: `general`,
+		language: `en`,
+		country: `us`,
+	},
 	{
 		id: `the-times-of-india`,
 		name: `The Times of India`,

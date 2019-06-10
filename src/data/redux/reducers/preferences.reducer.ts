@@ -59,14 +59,16 @@ function preferences(
 
 
 			case SET_APP_THEME:
-				console.log('action.payload.data: ', action.payload.data);
 				draftState.theme = action.payload.data;
 				break;
 
 			case RESET_APP_STATE:
-				draftState.type = initialState.type;
-				draftState.chosenSources = initialState.chosenSources;
-				draftState.authenticated = initialState.authenticated;
+				if(action.payload.status) {
+					draftState.type = initialState.type;
+					draftState.theme = initialState.theme;
+					draftState.authenticated = initialState.authenticated;
+					draftState.chosenSources = initialState.chosenSources;
+				}
 				break;
 		}
 	});
