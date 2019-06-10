@@ -6,7 +6,7 @@ import styled, { keyframes } from 'styled-components';
 // Component Props
 interface IUIDialogProps {
 	theme?: any;
-	onClick: any;
+	onClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
 }
 
 /**
@@ -55,7 +55,7 @@ const Dialog = styled.div`
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 102;
+	z-index: 104;
 
 	display: flex;
 	flex-direction: column;

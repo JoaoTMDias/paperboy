@@ -62,7 +62,9 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
 	 * @date 2019-01-06
 	 * @memberof Modal
 	 */
-	handleCloseModal() {
+	handleCloseModal(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+		event.preventDefault();
+
 		this.setState({
 			isModalOpen: false,
 		});
@@ -79,10 +81,12 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
 						backgroundOpacity={backgroundOpacity}
 						align={align}
 						delay={delay}
-						onClick={this.handleCloseModal}
-						tabIndex={0}
+						onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => this.handleCloseModal(event)}
+						tabIndex={-1}
 					>
-						<UIDialog onClick={this.handleCloseModal}>
+						<UIDialog onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+							return event.preventDefault();
+						}}>
 							{children}
 						</UIDialog>
 					</ModalWrapper>
