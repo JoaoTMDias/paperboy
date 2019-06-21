@@ -11,7 +11,7 @@ interface ISourceListItemProps {
 	label: string;
 	category: string;
 	src: string;
-	handleChange: any;
+	handleChange(event: React.ChangeEvent<HTMLInputElement>): void;
 	checked: boolean;
 	style?: React.CSSProperties;
 }
@@ -22,17 +22,20 @@ interface ISourceListItemProps {
  * @date  27/December/2018 at 00:57
  * @extends {React.SFC}
  */
-class SourceListItem extends React.Component<ISourceListItemProps, any> {
-	shouldComponentUpdate(nextProps: ISourceListItemProps) {
-		return nextProps.checked !== this.props.checked;
-	}
-
+class SourceListItem extends React.PureComponent<ISourceListItemProps, any> {
 	static defaultProps = {
 		checked: false,
 	};
 
+	handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
+		const { handleChange } = this.props;
+
+		event.preventDefault();
+		handleChange(event);
+	}
+
 	public render() {
-		const { id, label, src, category, handleChange, checked, style } = this.props;
+		const { id, label, src, category, checked, style } = this.props;
 
 		const status: string = checked ? 'is-checked' : '';
 
@@ -47,7 +50,7 @@ class SourceListItem extends React.Component<ISourceListItemProps, any> {
 						value={`${id}`}
 						name={`source-${id}-input`}
 						checked={checked}
-						onChange={handleChange}
+						onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleOnChange(event)}
 						tabIndex={-1}
 					/>
 					<Logo className="source__cover">
@@ -60,7 +63,7 @@ class SourceListItem extends React.Component<ISourceListItemProps, any> {
 					</Logo>
 					<Name className="source__label">
 						<h4
-							id="source-label-cnn"
+							id={`source-label-${id}`}
 							className="source__label__title"
 						>
 							{label}

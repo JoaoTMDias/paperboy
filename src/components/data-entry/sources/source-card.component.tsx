@@ -3,6 +3,7 @@ import { rem } from 'polished';
 import * as React from 'react';
 import styled from 'styled-components';
 import { LazyLoadingImage } from '../../index';
+import { Field } from 'formik';
 
 // Component Props
 interface ISourceCardProps {
@@ -11,7 +12,7 @@ interface ISourceCardProps {
 	label: string;
 	category: string;
 	src: string;
-	handleChange: any;
+	handleChange(event: React.ChangeEvent<HTMLInputElement>): void;
 	checked: boolean;
 	style?: React.CSSProperties
 }
@@ -22,17 +23,20 @@ interface ISourceCardProps {
  * @date  27/December/2018 at 00:57
  * @extends {React.SFC}
  */
-class SourceCard extends React.Component<ISourceCardProps> {
+class SourceCard extends React.PureComponent<ISourceCardProps> {
 	static defaultProps = {
 		checked: false,
 	};
 
-	shouldComponentUpdate(nextProps: ISourceCardProps) {
-		return nextProps.checked !== this.props.checked;
+	handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
+		const { handleChange } = this.props;
+
+		event.preventDefault();
+		handleChange(event);
 	}
 
 	public render() {
-		const { id, label, src, category, handleChange, checked, style } = this.props;
+		const { id, label, src, category, checked, style } = this.props;
 		const status: string = checked ? 'is-checked' : '';
 
 		return (
@@ -46,7 +50,7 @@ class SourceCard extends React.Component<ISourceCardProps> {
 						value={`${id}`}
 						name="source-input"
 						checked={checked}
-						onChange={handleChange}
+						onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleOnChange(event)}
 						tabIndex={-1}
 					/>
 					<Icon
@@ -79,7 +83,7 @@ class SourceCard extends React.Component<ISourceCardProps> {
 					</Logo>
 					<Name className="source__label">
 						<h4
-							id="source-label-cnn"
+							id={`source-label-${id}-card`}
 							className="source__label__title"
 						>
 							{label}
@@ -186,7 +190,7 @@ const Logo = styled.figure`
 	}
 `;
 
-const Input = styled.input`
+const Input = styled(Field)`
 	position: absolute;
 	opacity: 0;
 	cursor: pointer;

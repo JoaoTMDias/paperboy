@@ -22,7 +22,7 @@ interface ISourcesListProps {
 	layout?: 'horizontal' | 'vertical';
 	label: string;
 	data: IAllAvailableNewsSource[] | null;
-	handleChange: any;
+	handleChange(event: React.SyntheticEvent, position: number, category: string): void;
 	selectedOptions: IChosenSource[];
 }
 
@@ -32,52 +32,83 @@ interface ISourcesListProps {
  * @date  24/December/2018 at 01:43
  * @extends {React.SFC}
  */
-class SourcesList extends React.Component<ISourcesListProps> {
+class SourcesList extends React.PureComponent<ISourcesListProps> {
 	static defaultProps = {
 		layout: 'vertical',
 		label: 'label',
 	};
 
-	shouldComponentUpdate(nextProps: ISourcesListProps) {
-		const { data, selectedOptions } = this.props;
+	/**
+	 * @description Returns the news source cover
+	 * @author João Dias
+	 * @date 2019-06-21
+	 * @param {string} id
+	 * @returns
+	 * @memberof SourcesList
+	 */
+	getNewsSourceCover(source: IAllAvailableNewsSource): string {
+		let cover;
 
-		if (nextProps.data !== data || nextProps.selectedOptions !== selectedOptions) {
-			return true;
+		switch (source.id) {
+			case 'bbc-news':
+				cover = IconBBCNews;
+				break;
+
+			case 'cnn':
+				cover = IconCNN;
+				break;
+
+			case 'fox-news':
+				cover = IconFoxNews;
+				break;
+
+			case 'google-news':
+				cover = IconGoogleNews;
+				break;
+
+			case 'the-times-of-india':
+				cover = IconTimesOfIndia;
+				break;
+
+			case 'the-new-york-times':
+				cover = IconNewYorkTimes;
+				break;
+
+			case 'the-guardian-uk':
+				cover = IconGuardian;
+				break;
+
+			case 'usa-today':
+				cover = IconUSAToday;
+				break;
+
+			case 'the-wall-street-journal':
+				cover = IconWallStreetJournal;
+				break;
+
+			default:
+				cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${
+					source.url
+					}&size=70..120..200`;
+				break;
 		}
 
-		return false;
+		return cover;
 	}
 
+	/**
+	 * @description
+	 * @author João Dias
+	 * @date 2019-06-21
+	 * @returns
+	 * @memberof SourcesList
+	 */
 	renderData() {
 		const { data, layout, handleChange, selectedOptions } = this.props;
 
 		if (data) {
 			const item = data.map((source: IAllAvailableNewsSource, index: number) => {
-				let cover;
-
-				if (source.id === 'bbc-news') {
-					cover = IconBBCNews;
-				} else if (source.id === 'cnn') {
-					cover = IconCNN;
-				} else if (source.id === 'fox-news') {
-					cover = IconFoxNews;
-				} else if (source.id === 'google-news') {
-					cover = IconGoogleNews;
-				} else if (source.id === 'the-times-of-india') {
-					cover = IconTimesOfIndia;
-				} else if (source.id === 'the-new-york-times') {
-					cover = IconNewYorkTimes;
-				} else if (source.id === 'the-guardian-uk') {
-					cover = IconGuardian;
-				} else if (source.id === 'usa-today') {
-					cover = IconUSAToday;
-				} else if (source.id === 'the-wall-street-journal') {
-					cover = IconWallStreetJournal;
-				} else {
-					cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${
-						source.url
-						}&size=70..120..200`;
-				}
+				const cover: string = this.getNewsSourceCover(source);
 
 				const matching: IChosenSource = {
 					name: source.id,
@@ -96,8 +127,9 @@ class SourcesList extends React.Component<ISourcesListProps> {
 							label={source.name}
 							category={source.category}
 							src={cover}
-							handleChange={(event: React.SyntheticEvent) =>
-								handleChange(event, index, source.category)
+							handleChange={(event: React.SyntheticEvent) => {
+								return handleChange(event, index, source.category)
+							}
 							}
 							checked={isChecked}
 						/>
@@ -111,9 +143,9 @@ class SourcesList extends React.Component<ISourcesListProps> {
 						label={source.name}
 						category={source.category}
 						src={cover}
-						handleChange={(event: React.SyntheticEvent) =>
-							handleChange(event, index, source.category)
-						}
+						handleChange={(event: React.SyntheticEvent) => {
+							return handleChange(event, index, source.category)
+						}}
 						checked={isChecked}
 					/>
 				);
@@ -126,13 +158,14 @@ class SourcesList extends React.Component<ISourcesListProps> {
 
 	render() {
 		const { label, data, layout } = this.props;
+		const { ...sourceListProps } = this.props;
 
 		if (data) {
 			return (
 				<SourcesListWrapper
 					role="group"
 					aria-label={label}
-					layout={layout}
+					{...sourceListProps}
 					style={{
 						flexDirection: layout === 'horizontal' ? 'row' : 'column',
 					}}
