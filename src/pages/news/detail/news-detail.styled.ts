@@ -20,6 +20,7 @@ export const Article = styled.article`
 	animation-timing-function: var(--default-timing-function);
 
 	position: relative;
+	margin-bottom: calc(var(--global-margin) * 3);
 `;
 
 export const Hero = styled.div`
@@ -190,6 +191,24 @@ export const ArticleLink = styled.a`
 			color: var(--color-white);
 		}
 	}
+`;
+
+export const BottomOptionsBar = styled.aside`
+	width: 100%;
+	height: ${rem('48px')};
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	background-color: var(--color-gray1);
+	border-top: 1px solid var(--color-gray3);
+
+	position: fixed;
+	z-index: 10;
+	bottom: 0;
+	left: 0;
 `;
 
 export default Article;

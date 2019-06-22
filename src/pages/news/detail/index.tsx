@@ -9,6 +9,7 @@ import {
 	HeroCopy,
 	ArticleContent,
 	ArticleLink,
+	BottomOptionsBar,
 } from './news-detail.styled';
 
 // Components
@@ -204,6 +205,14 @@ class ArticleDetailPage extends React.Component<
 								</ArticleLink>
 							</ArticleContent>
 						</Article>
+						<BottomOptionsBar
+							id="bottom-options-bar"
+							className="bottom-options-bar"
+						>
+							<button type="button">Aa</button>
+							<button type="button">Save</button>
+							<button type="button">Share</button>
+						</BottomOptionsBar>
 					</Container>
 				</Layout>
 			);
