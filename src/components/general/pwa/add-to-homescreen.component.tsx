@@ -17,7 +17,7 @@ interface IAddToHomeScreenProps {
  * @extends {React.Component<IAddToHomeScreenProps, any>}
  */
 class AddToHomeScreen extends React.PureComponent<IAddToHomeScreenProps, any> {
-	constructor (props: IAddToHomeScreenProps) {
+	constructor(props: IAddToHomeScreenProps) {
 		super(props);
 	}
 
@@ -30,23 +30,30 @@ class AddToHomeScreen extends React.PureComponent<IAddToHomeScreenProps, any> {
 	 */
 	handleOnClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		event.preventDefault();
-		const windowNavigator = (window.navigator as any)
-
+		const windowNavigator = window.navigator as any;
 
 		if (windowNavigator && windowNavigator.share) {
-			windowNavigator.share({
-				title: 'Web Fundamentals',
-				text: 'Check out Web Fundamentals — it rocks!',
-				url: 'https://developers.google.com/web',
-			})
+			windowNavigator
+				.share({
+					title: 'Web Fundamentals',
+					text: 'Check out Web Fundamentals — it rocks!',
+					url: 'https://developers.google.com/web',
+				})
 				.then(() => console.log('Successful share'))
-				.catch((error) => console.log('Error sharing', error));
+				.catch(error => console.log('Error sharing', error));
 		}
 	}
 
 	render() {
 		return (
-			<Wrapper id="add-to-homescreen-modal" type="button" onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => this.handleOnClick(event)} tabIndex={1}>
+			<Wrapper
+				id="add-to-homescreen-modal"
+				type="button"
+				onClick={(
+					event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+				) => this.handleOnClick(event)}
+				tabIndex={1}
+			>
 				<IconStrip className="dialog__logo" tabIndex={-1}>
 					<IconBrandingSmall />
 				</IconStrip>
@@ -101,7 +108,7 @@ const Content = styled.div`
 	width: 100%;
 	margin: 0 auto;
 
-	html[data-theme="DARK"] & {
+	html[data-theme='DARK'] & {
 		.dialog {
 			&__content {
 				&__title {

@@ -51,7 +51,14 @@ const IconBrandingSmall: React.FunctionComponent<
 			fillRule="evenodd"
 			d="M0 0h15.16a4 4 0 0 1 4 4v24a4 4 0 0 1-4 4H.09"
 		/>
-		<rect className="icon-left" width="32" height="32" x="27.16" fill="#f0ecec" rx="4" />
+		<rect
+			className="icon-left"
+			width="32"
+			height="32"
+			x="27.16"
+			fill="#f0ecec"
+			rx="4"
+		/>
 		<path
 			className="icon-right-far"
 			fill="#faf9f8"
@@ -75,10 +82,10 @@ const Icon = styled.svg`
 	width: 100%;
 	height: 100%;
 
-	html[data-theme="DARK"] & {
+	html[data-theme='DARK'] & {
 		.icon {
 			&-left,
-			&-right {
+			&-right  {
 				fill: var(--color-gray8);
 
 				&-far {

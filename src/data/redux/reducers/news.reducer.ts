@@ -48,7 +48,7 @@ function news(state = initialState, action: IReduxActions) {
 			});
 
 		case RESET_APP_STATE:
-			if(action.payload.status){
+			if (action.payload.status) {
 				return {
 					...initialState,
 				};

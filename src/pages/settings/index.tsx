@@ -1,6 +1,7 @@
 // Libraries
-import * as React from "react";
+import * as React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from '@reach/router';
 import {
 	Container,
 	Layout,
@@ -12,15 +13,22 @@ import {
 	ListItemWithLink,
 	ListItemWithButton,
 	AddToHomeScreenWithInstall,
-	EListItemButtonType
+	EListItemButtonType,
 } from '../../components/index';
 
-import { EAppThemeType } from "../../data/interfaces/theme.interfaces";
-import { setAppTheme, resetAppState } from "../../data/redux/actions/index.actions";
-import { A11Y_SETTINGS_PAGE, PRIVACY_POLICY_SETTINGS_PAGE, OPEN_SOURCE_SETTINGS_PAGE, SETTINGS_PAGE, ONBOARDING_PAGE } from "../../data/constants/router.constants";
-import { IGlobalStoreState } from "../../data/interfaces/index.interface";
-import { Redirect } from "@reach/router";
-
+import { EAppThemeType } from '../../data/interfaces/theme.interfaces';
+import {
+	setAppTheme,
+	resetAppState,
+} from '../../data/redux/actions/index.actions';
+import {
+	A11Y_SETTINGS_PAGE,
+	PRIVACY_POLICY_SETTINGS_PAGE,
+	OPEN_SOURCE_SETTINGS_PAGE,
+	SETTINGS_PAGE,
+	ONBOARDING_PAGE,
+} from '../../data/constants/router.constants';
+import { IGlobalStoreState } from '../../data/interfaces/index.interface';
 
 // Interface
 interface ISettingsPageProps {
@@ -30,7 +38,6 @@ interface ISettingsPageProps {
 	isStandalone: boolean;
 	theme: EAppThemeType;
 }
-
 
 /**
  * @description Settings Page
@@ -43,7 +50,7 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 		isStandalone: false,
 	};
 
-	constructor (props: ISettingsPageProps) {
+	constructor(props: ISettingsPageProps) {
 		super(props);
 	}
 
@@ -54,17 +61,23 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 	 * @param {React.MouseEvent<HTMLLabelElement, MouseEvent>} event
 	 * @memberof SettingsPage
 	 */
-	handleToggleDarkTheme(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) {
+	handleToggleDarkTheme(
+		event: React.MouseEvent<HTMLLabelElement, MouseEvent>,
+	) {
 		event.preventDefault();
 
 		const { dispatch, theme } = this.props;
 
-		const themeToSet = theme && theme === EAppThemeType.LIGHT ? EAppThemeType.DARK : EAppThemeType.LIGHT;
+		const themeToSet =
+			theme && theme === EAppThemeType.LIGHT
+				? EAppThemeType.DARK
+				: EAppThemeType.LIGHT;
 		dispatch(setAppTheme(themeToSet));
-
 	}
 
-	handleClickToClearPreferences(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+	handleClickToClearPreferences(
+		event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+	) {
 		event.preventDefault();
 
 		const { dispatch } = this.props;
@@ -76,13 +89,18 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 		const { authenticated, theme, isStandalone } = this.props;
 
 		if (!authenticated) {
-			return <Redirect from={SETTINGS_PAGE} to={ONBOARDING_PAGE} noThrow />;
+			return (
+				<Redirect from={SETTINGS_PAGE} to={ONBOARDING_PAGE} noThrow />
+			);
 		}
 		return (
 			<Layout authenticated={authenticated} header={false}>
-				<TopNavigation shadow="hairline" style={{
-					marginBottom: '1.25rem',
-				}}>
+				<TopNavigation
+					shadow="hairline"
+					style={{
+						marginBottom: '1.25rem',
+					}}
+				>
 					<TopNavigationWithTitle
 						title="Settings"
 						subtitle="Personalize the app to your taste"
@@ -96,9 +114,7 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 					offsetTop="5.875rem"
 				>
 					<UISection id="settings-general" title="General">
-						<SectionListItem
-							id="about-paperboy"
-						>
+						<SectionListItem id="about-paperboy">
 							<AddToHomeScreenWithInstall
 								id="about-paperboy"
 								title="Add to Home Screen"
@@ -123,7 +139,12 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 								subtitle="Easier on the eyes on low light"
 								defaultValue={EAppThemeType.DARK}
 								value={theme}
-								onClick={(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => this.handleToggleDarkTheme(event)}
+								onClick={(
+									event: React.MouseEvent<
+										HTMLLabelElement,
+										MouseEvent
+									>,
+								) => this.handleToggleDarkTheme(event)}
 							/>
 						</SectionListItem>
 					</UISection>
@@ -150,15 +171,23 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 							/>
 						</SectionListItem>
 					</UISection>
-					<UISection id="settings-exit" style={{
-						marginBottom: '4rem',
-					}}>
+					<UISection
+						id="settings-exit"
+						style={{
+							marginBottom: '4rem',
+						}}
+					>
 						<SectionListItem id="logout-paperboy">
 							<ListItemWithButton
 								id="logout-paperboy"
 								title="Clear Preferences"
 								type={EListItemButtonType.PRIMARY}
-								onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => this.handleClickToClearPreferences(event)}
+								onClick={(
+									event: React.MouseEvent<
+										HTMLButtonElement,
+										MouseEvent
+									>,
+								) => this.handleClickToClearPreferences(event)}
 							/>
 						</SectionListItem>
 					</UISection>

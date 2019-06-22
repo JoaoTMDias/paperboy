@@ -64,11 +64,11 @@ const Wrapper = styled.nav`
 			? '0px 4px 20px 0px rgba(255,255,255,0.5)'
 			: '0px -4px 20px 0px rgba(255,255,255,1)'};
 
-	html[data-theme="DARK"] && {
-			box-shadow: ${(props: IUICallToActionProps) =>
-		props.isTop
-			? '0px 4px 20px 0px rgba(0,0,0,0.5)'
-			: '0px -4px 20px 0px rgba(0,0,0,1)'};
+	html[data-theme='DARK'] && {
+		box-shadow: ${(props: IUICallToActionProps) =>
+			props.isTop
+				? '0px 4px 20px 0px rgba(0,0,0,0.5)'
+				: '0px -4px 20px 0px rgba(0,0,0,1)'};
 	}
 
 	animation-name: ${onEnter};
@@ -87,9 +87,9 @@ const Wrapper = styled.nav`
 		}
 
 		box-shadow: ${(props: IUICallToActionProps) =>
-		props.float
-			? '0px 4px 16px 4px hsla(var(--cta-shadow-color-hue), 78%, 57%, 0.24)'
-		: '0px 2px 0px 2px hsla(var(--cta-shadow-color-hue),78%,57%,0.24)'};
+			props.float
+				? '0px 4px 16px 4px hsla(var(--cta-shadow-color-hue), 78%, 57%, 0.24)'
+				: '0px 2px 0px 2px hsla(var(--cta-shadow-color-hue),78%,57%,0.24)'};
 	}
 `;
 

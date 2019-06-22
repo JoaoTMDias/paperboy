@@ -15,10 +15,10 @@ export interface IViewportHeightState {
 }
 
 class ViewportHeight extends React.Component<
-    IViewportHeightProps,
-    IViewportHeightState
-    > {
-	constructor (props: IViewportHeightProps) {
+	IViewportHeightProps,
+	IViewportHeightState
+> {
+	constructor(props: IViewportHeightProps) {
 		super(props);
 
 		this.getDevicePlatform = this.getDevicePlatform.bind(this);
@@ -54,8 +54,8 @@ class ViewportHeight extends React.Component<
 
 		if (
 			nextProps.platform !== platform ||
-            (nextState && nextState.viewportUnit !== viewportUnit) ||
-            (nextState && nextState.viewportHeight !== viewportHeight)
+			(nextState && nextState.viewportUnit !== viewportUnit) ||
+			(nextState && nextState.viewportHeight !== viewportHeight)
 		) {
 			return true;
 		}

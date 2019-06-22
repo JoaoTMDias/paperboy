@@ -9,7 +9,7 @@ export interface PreferencesReducer {
 	authenticated: boolean;
 }
 
-export type IChosenNewsSourcesItems = {
+export interface IChosenNewsSourcesItems {
 	[key: string]: string[];
 }
 

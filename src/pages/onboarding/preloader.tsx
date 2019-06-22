@@ -9,6 +9,12 @@ import {
 	setUserAuthentication,
 } from '../../data/redux/actions/index.actions';
 
+import { NEWS_PAGE } from '../../data/constants/index.constants';
+import {
+	IGlobalStoreState,
+	IChosenNewsSourcesItems,
+} from '../../data/interfaces/index.interface';
+
 interface IPreloaderPageProps {
 	authenticated: boolean;
 	dispatch: any;
@@ -21,9 +27,6 @@ interface IPreloaderPageState {
 	delay: number;
 }
 
-import { NEWS_PAGE } from '../../data/constants/index.constants';
-import { IGlobalStoreState, IChosenNewsSourcesItems } from '../../data/interfaces/index.interface';
-
 /**
  * @description The Preloader Page
  * @date 2019-01-06
@@ -33,8 +36,8 @@ import { IGlobalStoreState, IChosenNewsSourcesItems } from '../../data/interface
 class PreloaderPage extends React.PureComponent<
 	IPreloaderPageProps,
 	IPreloaderPageState
-	> {
-	constructor (props: IPreloaderPageProps) {
+> {
+	constructor(props: IPreloaderPageProps) {
 		super(props);
 
 		this.state = {
@@ -64,13 +67,12 @@ class PreloaderPage extends React.PureComponent<
 
 		if (chosenSources && Object.keys(chosenSources).length > 0) {
 			const hasLatestKey = chosenSources.hasOwnProperty('latest');
-			const latestSources = hasLatestKey ? chosenSources.latest : ['cnn', 'bbc-news'];
+			const latestSources = hasLatestKey
+				? chosenSources.latest
+				: ['cnn', 'bbc-news'];
 
 			this.timer = setTimeout(
-				() =>
-					dispatch(
-						getAllLatestNewsFromSource(latestSources),
-					),
+				() => dispatch(getAllLatestNewsFromSource(latestSources)),
 				delay,
 			);
 		}
@@ -85,6 +87,7 @@ class PreloaderPage extends React.PureComponent<
 	 */
 	componentDidUpdate(prevProps: IPreloaderPageProps) {
 		const { articles, dispatch } = this.props;
+
 		// If there are news sources to display as a list
 		if (prevProps.articles !== articles) {
 			this.setState(
@@ -106,18 +109,18 @@ class PreloaderPage extends React.PureComponent<
 		const { authenticated } = this.props;
 
 		if (authenticated) {
-			return <Redirect to={NEWS_PAGE} noThrow={true} />;
+			return <Redirect to={NEWS_PAGE} noThrow />;
 		}
 
 		return (
 			<Layout authenticated={authenticated}>
 				<Container
-					fullwidth={true}
-					fullheight={true}
-					isFixed={true}
+					fullwidth
+					fullheight
+					isFixed
 					title="Current Page is: Preloader screen."
 				>
-					<UIContentSpinner isFullPage={true} />
+					<UIContentSpinner isFullPage />
 				</Container>
 			</Layout>
 		);

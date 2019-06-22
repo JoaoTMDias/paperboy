@@ -2,7 +2,13 @@ import { produce } from 'immer';
 import { Redirect } from '@reach/router';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Formik, FormikActions, FieldArray, FieldArrayRenderProps, FormikProps } from 'formik';
+import {
+	Formik,
+	FormikActions,
+	FieldArray,
+	FieldArrayRenderProps,
+	FormikProps,
+} from 'formik';
 import { findIndex, isMatch } from 'lodash';
 import { navigate } from 'gatsby';
 import {
@@ -18,7 +24,6 @@ import {
 	TopNavigationWithTitle,
 	UISection,
 } from '../../components/index';
-
 
 // Redux
 import {
@@ -44,7 +49,6 @@ import Top20EditorSuggestions from '../../data/dummy/news-sources-suggestions';
 
 // Validation Schema
 import { ChooseSourcesValidationSchema } from './choose-sources-validation-schema';
-
 
 interface LanguageSupport {
 	hasLocation: boolean;
@@ -85,8 +89,8 @@ interface IChooseSourcesPageState {
 class ChooseSourcesPage extends React.PureComponent<
 	IChooseSourcesPageProps,
 	IChooseSourcesPageState
-	> {
-	constructor (props: IChooseSourcesPageProps) {
+> {
+	constructor(props: IChooseSourcesPageProps) {
 		super(props);
 
 		this.state = {
@@ -171,8 +175,8 @@ class ChooseSourcesPage extends React.PureComponent<
 			getPosition()
 				.then((position: any) => {
 					if (position.coords) {
-						const latitude: number = position.coords.latitude;
-						const longitude: number = position.coords.longitude;
+						const { latitude } = position.coords;
+						const { longitude } = position.coords;
 
 						this.props.dispatch(
 							getUserCountryCodeByCoordinates(
@@ -196,13 +200,10 @@ class ChooseSourcesPage extends React.PureComponent<
 	 */
 	getUserSourcesByLanguage(content: any) {
 		if (content.hasLocation && content.data.countryCode) {
-			const language: string = `${
-				content.data.countryCode
-				}`.toLowerCase();
+			const language: string = `${content.data.countryCode}`.toLowerCase();
 			this.props.dispatch(getAvailableNewSourcesFromLanguage(language));
 		}
 	}
-
 
 	/**
 	 * @description Render a list of suggested editorial sources
@@ -213,10 +214,11 @@ class ChooseSourcesPage extends React.PureComponent<
 	 * @returns
 	 * @memberof ChooseSourcesPage
 	 */
-	renderListOfSuggestedSources(data: IAllAvailableNewsSource[], formProps: FormikProps<ChosenSources>) {
-		const {
-			values
-		} = formProps;
+	renderListOfSuggestedSources(
+		data: IAllAvailableNewsSource[],
+		formProps: FormikProps<ChosenSources>,
+	) {
+		const { values } = formProps;
 
 		return (
 			<FieldArray
@@ -232,20 +234,26 @@ class ChooseSourcesPage extends React.PureComponent<
 								label="The Top 20 Editor's Suggestions for news sources."
 								data={data}
 								selectedOptions={formProps.values.list}
-								handleChange={
-									(event: React.SyntheticEvent, position: number, category: string) => {
-										this.handleClickOnItem(event, position, category, values, arrayHelpers);
-									}
-								}
+								handleChange={(
+									event: React.SyntheticEvent,
+									position: number,
+									category: string,
+								) => {
+									this.handleClickOnItem(
+										event,
+										position,
+										category,
+										values,
+										arrayHelpers,
+									);
+								}}
 							/>
 						</UISection>
-					)
+					);
 				}}
 			/>
 		);
 	}
-
-
 
 	/**
 	 * @description Displays a list of different categories of news sources.
@@ -255,7 +263,10 @@ class ChooseSourcesPage extends React.PureComponent<
 	 * @returns
 	 * @memberof ChooseSourcesPage
 	 */
-	renderListOfCategories(data: IListOfCategorizedSources[], formProps: FormikProps<ChosenSources>) {
+	renderListOfCategories(
+		data: IListOfCategorizedSources[],
+		formProps: FormikProps<ChosenSources>,
+	) {
 		const { values } = formProps;
 		return (
 			<FieldArray
@@ -263,31 +274,46 @@ class ChooseSourcesPage extends React.PureComponent<
 				render={(arrayHelpers: FieldArrayRenderProps) => {
 					return (
 						<article>
-							{data.map((category: IListOfCategorizedSources, index) => {
-								const title = category.name;
-								return (
-									<UISection
-										key={`sources-${title}-${index}`}
-										id={`sources-${title}`}
-										title={title}
-										grouped={true}
-									>
-										<SourcesList
-											layout="vertical"
-											label="Language Specific News Sources"
-											data={category.items}
-											selectedOptions={formProps.values.list}
-											handleChange={
-												(event: React.SyntheticEvent, position: number, category: string) => {
-													this.handleClickOnItem(event, position, category, values, arrayHelpers);
+							{data.map(
+								(
+									category: IListOfCategorizedSources,
+									index,
+								) => {
+									const title = category.name;
+									return (
+										<UISection
+											key={`sources-${title}-${index}`}
+											id={`sources-${title}`}
+											title={title}
+											grouped
+										>
+											<SourcesList
+												layout="vertical"
+												label="Language Specific News Sources"
+												data={category.items}
+												selectedOptions={
+													formProps.values.list
 												}
-											}
-										/>
-									</UISection>
-								);
-							})}
+												handleChange={(
+													event: React.SyntheticEvent,
+													position: number,
+													category: string,
+												) => {
+													this.handleClickOnItem(
+														event,
+														position,
+														category,
+														values,
+														arrayHelpers,
+													);
+												}}
+											/>
+										</UISection>
+									);
+								},
+							)}
 						</article>
-					)
+					);
 				}}
 			/>
 		);
@@ -301,7 +327,13 @@ class ChooseSourcesPage extends React.PureComponent<
 	 * @param {number} position
 	 * @memberof ChooseSourcesPage
 	 */
-	handleClickOnItem(event: React.SyntheticEvent, position: number, category: string, arrayValues: ChosenSources, arrayHelpers: FieldArrayRenderProps) {
+	handleClickOnItem(
+		event: React.SyntheticEvent,
+		position: number,
+		category: string,
+		arrayValues: ChosenSources,
+		arrayHelpers: FieldArrayRenderProps,
+	) {
 		event.preventDefault();
 		const inputTarget = event.target as HTMLInputElement;
 		const clickedItem: IChosenSource = {
@@ -309,7 +341,10 @@ class ChooseSourcesPage extends React.PureComponent<
 			category,
 		};
 
-		const hasSelectedItemAlready = findIndex(arrayValues.list, (item: IChosenSource) => { return isMatch(item, clickedItem) }) > -1;
+		const hasSelectedItemAlready =
+			findIndex(arrayValues.list, (item: IChosenSource) => {
+				return isMatch(item, clickedItem);
+			}) > -1;
 
 		if (hasSelectedItemAlready) {
 			arrayHelpers.remove(position);
@@ -340,7 +375,7 @@ class ChooseSourcesPage extends React.PureComponent<
 		const { hasData, chosen } = this.state;
 
 		if (authenticated) {
-			return <Redirect to={NEWS_PAGE} noThrow={true} />;
+			return <Redirect to={NEWS_PAGE} noThrow />;
 		}
 		return (
 			<Layout authenticated={authenticated}>
@@ -386,19 +421,24 @@ class ChooseSourcesPage extends React.PureComponent<
 								className="modal-dialog__container"
 							>
 								<Container
-									fullwidth={true}
-									isFixed={true}
+									fullwidth
+									isFixed
 									title="Current Page is: Choose News Sources."
 									offsetTop="1rem"
 								>
-									{Top20EditorSuggestions && (
-										this.renderListOfSuggestedSources(Top20EditorSuggestions, props)
-									)}
-									{hasData && sources ? (
-										this.renderListOfCategories(sources, props)
-									) : (
-											<UIContentSpinner isFullPage={true} />
+									{Top20EditorSuggestions &&
+										this.renderListOfSuggestedSources(
+											Top20EditorSuggestions,
+											props,
 										)}
+									{hasData && sources ? (
+										this.renderListOfCategories(
+											sources,
+											props,
+										)
+									) : (
+										<UIContentSpinner isFullPage />
+									)}
 								</Container>
 								<UICallToAction>
 									<UIButton
@@ -415,8 +455,7 @@ class ChooseSourcesPage extends React.PureComponent<
 									/>
 								</UICallToAction>
 							</form>
-						)
-
+						);
 					}}
 				</Formik>
 			</Layout>

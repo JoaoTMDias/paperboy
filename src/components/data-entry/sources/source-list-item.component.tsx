@@ -50,7 +50,9 @@ class SourceListItem extends React.PureComponent<ISourceListItemProps, any> {
 						value={`${id}`}
 						name={`source-${id}-input`}
 						checked={checked}
-						onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleOnChange(event)}
+						onChange={(
+							event: React.ChangeEvent<HTMLInputElement>,
+						) => this.handleOnChange(event)}
 						tabIndex={-1}
 					/>
 					<Logo className="source__cover">
@@ -99,7 +101,6 @@ const Wrapper = styled.li`
 	width: 100%;
 	display: flex;
 	margin: 0;
-
 
 	* {
 		&:active,
@@ -181,7 +182,7 @@ const Icon = styled.svg`
 	.icon__circle {
 		fill: var(--color-gray2);
 
-		html[data-theme="DARK"] & {
+		html[data-theme='DARK'] & {
 			fill: var(--color-black);
 		}
 	}
@@ -189,7 +190,7 @@ const Icon = styled.svg`
 	.icon__check {
 		fill: var(--color-gray2);
 
-		html[data-theme="DARK"] & {
+		html[data-theme='DARK'] & {
 			fill: var(--color-gray9);
 		}
 	}
@@ -239,7 +240,7 @@ const Name = styled.div`
 			--text-shadow-color: rgba(255, 255, 255, 0.2);
 			--title-color: var(--color-gray8);
 
-			html[data-theme="DARK"] & {
+			html[data-theme='DARK'] & {
 				--text-shadow-color: rgba(0, 0, 0, 0.2);
 				--title-color: var(--color-gray2);
 			}

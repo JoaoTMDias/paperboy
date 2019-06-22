@@ -18,7 +18,6 @@ interface INewsArticleTabProps {
 	dispatch: any;
 }
 
-
 interface IVirtualListProps extends ListChildComponentProps {
 	key?: React.Key;
 }
@@ -30,7 +29,7 @@ interface IVirtualListProps extends ListChildComponentProps {
  * @extends {React.Component<INewsArticleTabProps, any>}
  */
 class LatestNewsTab extends React.PureComponent<INewsArticleTabProps, any> {
-	constructor (props: INewsArticleTabProps) {
+	constructor(props: INewsArticleTabProps) {
 		super(props);
 	}
 
@@ -74,7 +73,6 @@ class LatestNewsTab extends React.PureComponent<INewsArticleTabProps, any> {
 		return false;
 	}
 
-
 	/**
 	 * @description
 	 * @memberof LatestNewsTab
@@ -104,11 +102,12 @@ class LatestNewsTab extends React.PureComponent<INewsArticleTabProps, any> {
 					outerElementType="div"
 					innerElementType="ol"
 					layout="vertical"
-				>{this.renderRow}</List>
+				>
+					{this.renderRow}
+				</List>
 			);
-		} else {
-			return <UIContentSpinner isFullPage={true} />;
 		}
+		return <UIContentSpinner isFullPage />;
 	}
 }
 
@@ -116,23 +115,24 @@ class LatestNewsTab extends React.PureComponent<INewsArticleTabProps, any> {
 const List = styled(FixedSizeList)`
 	position: relative;
 	width: 100vw;
-	height: calc(var(--viewport-height) - (var(--top-navigation-bar-height) * 2));
-    overflow: auto;
-    will-change: transform;
+	height: calc(
+		var(--viewport-height) - (var(--top-navigation-bar-height) * 2)
+	);
+	overflow: auto;
+	will-change: transform;
 
 	ol {
 		width: 100%;
-	height: 100%;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+		height: 100%;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
 
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
 	}
-
 `;
 
 const Item = styled.li`

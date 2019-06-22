@@ -3,7 +3,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { SourceCard, SourceListItem } from '../../index';
 
-
 // Assets
 import IconBBCNews from '../../../assets/images/sources/icon-bbc-news.svg';
 import IconCNN from '../../../assets/images/sources/icon-cnn.svg';
@@ -22,7 +21,11 @@ interface ISourcesListProps {
 	layout?: 'horizontal' | 'vertical';
 	label: string;
 	data: IAllAvailableNewsSource[] | null;
-	handleChange(event: React.SyntheticEvent, position: number, category: string): void;
+	handleChange(
+		event: React.SyntheticEvent,
+		position: number,
+		category: string,
+	): void;
 	selectedOptions: IChosenSource[];
 }
 
@@ -87,9 +90,7 @@ class SourcesList extends React.PureComponent<ISourcesListProps> {
 				break;
 
 			default:
-				cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${
-					source.url
-					}&size=70..120..200`;
+				cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${source.url}&size=70..120..200`;
 				break;
 		}
 
@@ -107,54 +108,64 @@ class SourcesList extends React.PureComponent<ISourcesListProps> {
 		const { data, layout, handleChange, selectedOptions } = this.props;
 
 		if (data) {
-			const item = data.map((source: IAllAvailableNewsSource, index: number) => {
-				const cover: string = this.getNewsSourceCover(source);
+			const item = data.map(
+				(source: IAllAvailableNewsSource, index: number) => {
+					const cover: string = this.getNewsSourceCover(source);
 
-				const matching: IChosenSource = {
-					name: source.id,
-					category: source.category
-				}
+					const matching: IChosenSource = {
+						name: source.id,
+						category: source.category,
+					};
 
-				const filterCheck = selectedOptions.filter((option: IChosenSource) => (option.name === matching.name));
-				const isChecked = filterCheck && filterCheck.length > 0 ? true : false;
+					const filterCheck = selectedOptions.filter(
+						(option: IChosenSource) =>
+							option.name === matching.name,
+					);
+					const isChecked = !!(filterCheck && filterCheck.length > 0);
 
-				if (layout === 'horizontal') {
+					if (layout === 'horizontal') {
+						return (
+							<SourceCard
+								key={source.id}
+								id={source.id}
+								label={source.name}
+								category={source.category}
+								src={cover}
+								handleChange={(event: React.SyntheticEvent) => {
+									return handleChange(
+										event,
+										index,
+										source.category,
+									);
+								}}
+								checked={isChecked}
+							/>
+						);
+					}
 
 					return (
-						<SourceCard
+						<SourceListItem
 							key={source.id}
 							id={source.id}
 							label={source.name}
 							category={source.category}
 							src={cover}
 							handleChange={(event: React.SyntheticEvent) => {
-								return handleChange(event, index, source.category)
-							}
-							}
+								return handleChange(
+									event,
+									index,
+									source.category,
+								);
+							}}
 							checked={isChecked}
 						/>
-					)
-				}
-
-				return (
-					<SourceListItem
-						key={source.id}
-						id={source.id}
-						label={source.name}
-						category={source.category}
-						src={cover}
-						handleChange={(event: React.SyntheticEvent) => {
-							return handleChange(event, index, source.category)
-						}}
-						checked={isChecked}
-					/>
-				);
-
-			});
+					);
+				},
+			);
 
 			return item;
 		}
-	};
+	}
 
 	render() {
 		const { label, data, layout } = this.props;
@@ -167,7 +178,8 @@ class SourcesList extends React.PureComponent<ISourcesListProps> {
 					aria-label={label}
 					{...sourceListProps}
 					style={{
-						flexDirection: layout === 'horizontal' ? 'row' : 'column',
+						flexDirection:
+							layout === 'horizontal' ? 'row' : 'column',
 					}}
 				>
 					{data && this.renderData()}
@@ -198,6 +210,5 @@ const SourcesListWrapper = styled.ol`
 		flex: 1;
 	}
 `;
-
 
 export default SourcesList;

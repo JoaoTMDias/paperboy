@@ -71,9 +71,10 @@ interface ITopNavigationWithCloseState {
 class TopNavigationWithClose extends React.Component<
 	ITopNavigationWithCloseProps,
 	ITopNavigationWithCloseState
-	> {
-	constructor (props: ITopNavigationWithCloseProps) {
+> {
+	constructor(props: ITopNavigationWithCloseProps) {
 		super(props);
+
 		// example how to bind object in React ES6
 		this.handleScroll = this.handleScroll.bind(this);
 
@@ -100,7 +101,7 @@ class TopNavigationWithClose extends React.Component<
 			const hero: HTMLDivElement | null = document.querySelector(
 				'.above-the-fold',
 			);
-			const heroHeight: number = 384;
+			const heroHeight = 384;
 			const heroTitleWrapper: HTMLDivElement | null = document.querySelector(
 				'.hero__title',
 			);
@@ -123,7 +124,7 @@ class TopNavigationWithClose extends React.Component<
 						trigger: pastScrollHeightTrigger,
 						height: heroHeight,
 					},
-					navbar: navbar,
+					navbar,
 				},
 				() => {
 					document.addEventListener(
@@ -142,16 +143,13 @@ class TopNavigationWithClose extends React.Component<
 		document.removeEventListener('scroll', debounce(this.handleScroll));
 	}
 
-	shouldComponentUpdate(
-		nextProps: ITopNavigationWithCloseProps,
-	): boolean {
+	shouldComponentUpdate(nextProps: ITopNavigationWithCloseProps): boolean {
 		const { title, source } = this.props;
 
 		if (nextProps.title !== title || nextProps.source !== source) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	/**

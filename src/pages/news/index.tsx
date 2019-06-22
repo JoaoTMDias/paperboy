@@ -33,7 +33,6 @@ interface INewsPageHeaderItems {
 	label: string;
 }
 
-
 interface INewsPageProps {
 	authenticated: boolean;
 	sources: ChosenNewsSources;
@@ -53,13 +52,13 @@ interface INewsPageState {
  * @extends {React.Component<INewsPageProps, any>}
  */
 class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
-	constructor (props: INewsPageProps) {
+	constructor(props: INewsPageProps) {
 		super(props);
 
 		this.state = {
 			hasData: false,
 			tabsHeaderItems: null,
-		}
+		};
 	}
 
 	componentDidMount() {
@@ -69,11 +68,9 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 		if (checkForData) {
 			this.setupNewsTabsHeader(sources.tabs);
 		}
-
 	}
 
 	checkIfHasSources(sources: ChosenNewsSources) {
-
 		if (sources && sources.quantity > 0) {
 			this.setState({
 				hasData: true,
@@ -90,12 +87,10 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 		const { hasData } = this.state;
 
 		if (hasData) {
-
 		}
 		if (prevProps.sources !== sources && sources.quantity > 0) {
 			this.setupNewsTabsHeader(sources.tabs);
 		}
-
 	}
 
 	/**
@@ -123,10 +118,7 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 	 * @memberof NewsPage
 	 */
 	filterOutAllHeaderCategories(tabs: INewsPageHeaderItems[]) {
-		const list = [
-			...defaultTabs,
-			...tabs,
-		];
+		const list = [...defaultTabs, ...tabs];
 		return list;
 	}
 
@@ -174,7 +166,11 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 					title="Current Page is: News"
 					offsetTop="2.75rem"
 				>
-					{tabsHeaderItems ? this.renderNewsTabs(tabsHeaderItems) : <p>Loading...</p>}
+					{tabsHeaderItems ? (
+						this.renderNewsTabs(tabsHeaderItems)
+					) : (
+						<p>Loading...</p>
+					)}
 				</Container>
 			</Layout>
 		);

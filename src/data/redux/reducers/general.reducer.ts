@@ -73,7 +73,8 @@ function general(state: IGeneral = initialState, action: GeneralActions) {
 				break;
 
 			case SET_USER_COUNTRY:
-				draftState.userLanguage.hasLocation = action.payload.hasLocation;
+				draftState.userLanguage.hasLocation =
+					action.payload.hasLocation;
 				draftState.userLanguage.data = action.payload.data;
 				break;
 		}

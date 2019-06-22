@@ -119,9 +119,7 @@ class Audit extends React.Component<IAuditProps, any> {
 	 * @memberof Audit
 	 */
 	setFeatureSupport() {
-		const supportsGeolocation: boolean = !!(
-			navigator && navigator.geolocation
-		);
+		const supportsGeolocation = !!(navigator && navigator.geolocation);
 		const supportsBatteryInformation: boolean =
 			'getBattery' in window.navigator;
 		let supportsNetworkInformation = false;
@@ -160,9 +158,9 @@ class Audit extends React.Component<IAuditProps, any> {
 		if (typeof window !== 'undefined' && typeof document !== 'undefined') {
 			const isInWebAppiOS = window.navigator.standalone === true;
 			const isInWebAppChrome = window.matchMedia(
-				"(display-mode: standalone)"
+				'(display-mode: standalone)',
 			).matches;
-			const status: boolean = !!(isInWebAppiOS || isInWebAppChrome);
+			const status = !!(isInWebAppiOS || isInWebAppChrome);
 			dispatch(setStandaloneStatus(status));
 		}
 	}

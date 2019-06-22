@@ -26,22 +26,19 @@ const IndexPage: React.FunctionComponent<IIndexPageProps> = props => {
 	const { authenticated } = props;
 
 	if (authenticated) {
-		return <Redirect to={NEWS_PAGE} noThrow={true} />;
+		return <Redirect to={NEWS_PAGE} noThrow />;
 	}
 	return (
 		<Layout authenticated={authenticated}>
-			<UICallToAction float={true}>
+			<UICallToAction float>
 				<UIAnchor
 					to={ONBOARDING_CHOOSE_SOURCES_PAGE}
 					text="Choose your favorite sources"
 					label="Click to navigate to the next screen, where you can pick your favorite sources from a wide array of options."
 				/>
 			</UICallToAction>
-			<Container
-				fullheight={true}
-				title="Current Page is the Welcome Screen."
-			>
-				<IconBrandingLarge visible={true} />
+			<Container fullheight title="Current Page is the Welcome Screen.">
+				<IconBrandingLarge visible />
 				<UISubtitle text="This is Paperboy" />
 				<UIDisplay text="Information is Power" />
 				<UILead text="See the most important news of the hour, right from your favorite sources." />

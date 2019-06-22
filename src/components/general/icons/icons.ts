@@ -21,5 +21,5 @@ export {
 	IconBrandingSmall,
 	IconClose,
 	IconShare,
-	IconArrowRight
+	IconArrowRight,
 };

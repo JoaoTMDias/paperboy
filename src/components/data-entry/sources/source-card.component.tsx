@@ -2,8 +2,8 @@
 import { rem } from 'polished';
 import * as React from 'react';
 import styled from 'styled-components';
-import { LazyLoadingImage } from '../../index';
 import { Field } from 'formik';
+import { LazyLoadingImage } from '../../index';
 
 // Component Props
 interface ISourceCardProps {
@@ -14,7 +14,7 @@ interface ISourceCardProps {
 	src: string;
 	handleChange(event: React.ChangeEvent<HTMLInputElement>): void;
 	checked: boolean;
-	style?: React.CSSProperties
+	style?: React.CSSProperties;
 }
 
 /**
@@ -50,7 +50,9 @@ class SourceCard extends React.PureComponent<ISourceCardProps> {
 						value={`${id}`}
 						name="source-input"
 						checked={checked}
-						onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleOnChange(event)}
+						onChange={(
+							event: React.ChangeEvent<HTMLInputElement>,
+						) => this.handleOnChange(event)}
 						tabIndex={-1}
 					/>
 					<Icon
@@ -210,7 +212,7 @@ const Name = styled.div`
 	border-bottom-right-radius: 8px;
 	background-color: var(--color-white);
 
-	html[data-theme="DARK"] & {
+	html[data-theme='DARK'] & {
 		background-color: var(--color-gray9);
 	}
 	height: ${rem('44px')};
@@ -219,9 +221,7 @@ const Name = styled.div`
 		&__title {
 			--text-shadow-color: rgba(255, 255, 255, 0.2);
 
-
-
-			html[data-theme="DARK"] & {
+			html[data-theme='DARK'] & {
 				--text-shadow-color: rgba(0, 0, 0, 0.2);
 			}
 
@@ -232,7 +232,7 @@ const Name = styled.div`
 			line-height: 1.333;
 			color: var(--color-gray8);
 
-			html[data-theme="DARK"] & {
+			html[data-theme='DARK'] & {
 				color: var(--color-gray3);
 			}
 			letter-spacing: 0;

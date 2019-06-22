@@ -1,4 +1,4 @@
-import { IAllAvailableNewsSource } from "./sources.interface";
+import { IAllAvailableNewsSource } from './sources.interface';
 
 export interface INewsArticle {
 	status: string;

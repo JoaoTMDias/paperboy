@@ -1,17 +1,15 @@
 // Libraries
-import * as React from "react";
-import styled from "styled-components";
-import { rem } from "polished";
-
+import * as React from 'react';
+import styled from 'styled-components';
+import { rem } from 'polished';
 
 // Interface
 interface IFormSwitchProps {
-    id: string;
-    checked: boolean;
-    value: string;
-    onChange(event: React.ChangeEvent<HTMLInputElement>): void;
+	id: string;
+	checked: boolean;
+	value: string;
+	onChange(event: React.ChangeEvent<HTMLInputElement>): void;
 }
-
 
 /**
  * @description Component Description
@@ -19,120 +17,130 @@ interface IFormSwitchProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IFormSwitchProps>}
  */
-const FormSwitch: React.FunctionComponent<IFormSwitchProps> = (props) => {
-    const { id, checked, value, onChange } = props;
+const FormSwitch: React.FunctionComponent<IFormSwitchProps> = props => {
+	const { id, checked, value, onChange } = props;
 
-    const labelValue = checked ? 'On' : 'Off'
-    return (
-        <SwitchWrapper className={`form-switch ${checked && 'is-checked'}`}>
-            <input
-                id={`${id}-input`}
-                name={`${id}-input`}
-                type="checkbox"
-                className="switch__input"
-                value={value}
-                onChange={onChange}
-                checked={checked}
-                tabIndex={-1}
-            />
-            <span className="switch__label">{labelValue}</span>
-        </SwitchWrapper>
-    );
+	const labelValue = checked ? 'On' : 'Off';
+	return (
+		<SwitchWrapper
+			className={`form-switch ${checked ? 'is-checked' : ''}`}
+			data-testid="form-switch"
+			role="checkbox"
+			aria-checked={checked}
+		>
+			<input
+				id={`${id}-input`}
+				data-testid="form-switch-input"
+				name={`${id}-input`}
+				type="checkbox"
+				className="switch__input"
+				value={value}
+				onChange={onChange}
+				checked={checked}
+				tabIndex={-1}
+			/>
+			<span className="switch__label">{labelValue}</span>
+		</SwitchWrapper>
+	);
+};
+
+FormSwitch.defaultProps = {
+	checked: false,
 };
 
 // Styling
 const SwitchWrapper = styled.div`
-    --bg-disabled-color: var(--color-gray3);
-    --bg-enabled-color: hsla(215, 78%, 64%);
-    --lever-disabled-color: var(--color-white);
-    --lever-enabled-color: var(--color-primary);
-    --icon-size: ${rem('48px')};
+	--bg-disabled-color: var(--color-gray3);
+	--bg-enabled-color: hsla(215, 78%, 64%);
+	--lever-disabled-color: var(--color-white);
+	--lever-enabled-color: var(--color-primary);
+	--icon-size: ${rem('48px')};
 
-    --form-switch-label: var(--color-gray8);
+	--form-switch-label: var(--color-gray8);
 
-    html[data-theme="DARK"] & {
-        --form-switch-label: var(--color-gray3);
-    }
+	html[data-theme='DARK'] & {
+		--form-switch-label: var(--color-gray3);
+	}
 
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	font-size: 16px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    font-size: 16px;
+	.switch {
+		&__input {
+			position: absolute;
+			top: 17px;
+			left: 0;
+			width: 36px;
+			height: 20px;
+			opacity: 0;
+			z-index: 0;
+		}
 
-    .switch {
-        &__input {
-            position: absolute;
-            top: 17px;
-            left: 0;
-            width: 36px;
-            height: 20px;
-            opacity: 0;
-            z-index: 0;
-        }
+		&__label {
+			display: block;
+			padding: 0 0 0 44px;
+			cursor: pointer;
+			text-transform: uppercase;
+			font-size: 12px;
+			color: var(--form-switch-label);
 
-        &__label {
-            display: block;
-            padding: 0 0 0 44px;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 12px;
-            color: var(--form-switch-label);
+			&:before {
+				content: '';
+				position: absolute;
+				top: 17px;
+				left: 0;
+				width: 36px;
+				height: 14px;
+				background-color: var(--bg-disabled-color);
+				border-radius: 14px;
+				z-index: 1;
+				transition: background-color 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+			}
 
+			&:after {
+				content: '';
+				position: absolute;
+				top: 14px;
+				left: 0;
+				width: 20px;
+				height: 20px;
+				background-color: var(--lever-disabled-color);
+				border-radius: 14px;
+				box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+					0 3px 1px -2px rgba(0, 0, 0, 0.2),
+					0 1px 5px 0 rgba(0, 0, 0, 0.12);
+				z-index: 2;
+				transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+				transition-property: left, background-color;
+			}
+		}
 
-            &:before {
-                content: '';
-                position: absolute;
-                top: 17px;
-                left: 0;
-                width: 36px;
-                height: 14px;
-                background-color: var(--bg-disabled-color);
-                border-radius: 14px;
-                z-index: 1;
-                transition: background-color 0.28s cubic-bezier(.4, 0, .2, 1);
-            }
-
-            &:after {
-                content: '';
-                position: absolute;
-                top: 14px;
-                left: 0;
-                width: 20px;
-                height: 20px;
-                background-color: var(--lever-disabled-color);
-                border-radius: 14px;
-                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
-                z-index: 2;
-                transition: all 0.28s cubic-bezier(.4, 0, .2, 1);
-                transition-property: left, background-color;
-            }
-        }
-
-        /* &__checkbox:focus + .switch__input {
+		/* &__checkbox:focus + .switch__input {
             &:after {
                 outline: 1px dotted currentColor;
             }
         } */
-    }
+	}
 
-    &.is-checked {
-        .switch__label {
-            &:before {
-                background-color: var(--bg-enabled-color);
-            }
+	&.is-checked {
+		.switch__label {
+			&:before {
+				background-color: var(--bg-enabled-color);
+			}
 
-            &:after {
-                left: 16px;
-                background-color: var(--lever-enabled-color);
-            }
-        }
-    }
+			&:after {
+				left: 16px;
+				background-color: var(--lever-enabled-color);
+			}
+		}
+	}
 `;
 
 export default FormSwitch;

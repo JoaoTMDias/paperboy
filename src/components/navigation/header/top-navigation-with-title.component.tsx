@@ -18,7 +18,7 @@ interface ITopNavigationWithTitleProps {
  */
 class TopNavigationWithTitle extends React.Component<
 	ITopNavigationWithTitleProps
-	> {
+> {
 	shouldComponentUpdate(
 		nextProps: ITopNavigationWithTitleProps,
 		nextState,
@@ -28,9 +28,8 @@ class TopNavigationWithTitle extends React.Component<
 			nextProps.subtitle !== this.props.subtitle
 		) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	/**
@@ -40,8 +39,13 @@ class TopNavigationWithTitle extends React.Component<
 		const { title, subtitle } = this.props;
 
 		return (
-			<Container id="top-navigation-with-title" className="shrink-when-sticky">
-				<h2 className="top-navigation-with-title__title title">{title}</h2>
+			<Container
+				id="top-navigation-with-title"
+				className="shrink-when-sticky"
+			>
+				<h2 className="top-navigation-with-title__title title">
+					{title}
+				</h2>
 				<p className="hide-when-sticky top-navigation-with-title__subtitle">
 					{subtitle}
 				</p>
@@ -54,9 +58,9 @@ class TopNavigationWithTitle extends React.Component<
 const Container = styled.div`
 	--top-bar-background-color: var(--color-white);
 
-	html[data-theme="DARK"] & {
+	html[data-theme='DARK'] & {
 		--top-bar-background-color: var(--body-background);
-	};
+	}
 
 	width: 100%;
 	flex: auto;
@@ -87,7 +91,7 @@ const Container = styled.div`
 				font-size: ${rem('14px')};
 				color: var(--color-gray7);
 
-				html[data-theme="DARK"] && {
+				html[data-theme='DARK'] && {
 					color: var(--color-gray4);
 				}
 

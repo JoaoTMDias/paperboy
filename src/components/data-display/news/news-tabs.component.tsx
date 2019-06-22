@@ -63,7 +63,7 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 
 	private tabsHeader = React.createRef<HTMLElement>();
 
-	constructor (props: INewsTabsProps) {
+	constructor(props: INewsTabsProps) {
 		super(props);
 		this.handleScroll = this.handleScroll.bind(this);
 
@@ -238,6 +238,7 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 				{
 					currentTabIndex: index,
 				},
+
 				// () => {
 				// 	if (index >= 0) {
 				// 		const tabHashName = `${tabsHeader[index].id}`;
@@ -325,8 +326,6 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 			</TabsHeader>
 		);
 	};
-
-
 
 	/**
 	 * @description Renders the Tab Items. When the component starts only renders one child.
@@ -418,7 +417,7 @@ const TabsContainer = styled(SwipeableViews)`
 const TabsHeader = styled(Tabs)`
 	border-bottom: var(--tabs-header-border-bottom);
 	position: var(--tabs-header-position);
-			background-color: var(--tabs-background) !important;
+	background-color: var(--tabs-background) !important;
 
 	width: 100%;
 	z-index: 1;
@@ -435,7 +434,8 @@ const TabsHeader = styled(Tabs)`
 
 		&--indicator {
 			background-color: var(--tabs-header-indicator) !important;
-			transition: left 250ms var(--default-timing-function), width 64ms var(--default-timing-function);
+			transition: left 250ms var(--default-timing-function),
+				width 64ms var(--default-timing-function);
 			height: 3px;
 			border-top-left-radius: 3px;
 			border-top-right-radius: 3px;

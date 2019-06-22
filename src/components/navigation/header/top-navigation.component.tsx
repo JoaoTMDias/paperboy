@@ -33,14 +33,17 @@ interface ITopNavigationState {
  * @date  12/December/2018 at 15:42
  * @extends {React.SFC}
  */
-class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationState> {
+class TopNavigation extends React.Component<
+	ITopNavigationProps,
+	ITopNavigationState
+> {
 	static defaultProps = {
 		isSticky: true,
-	}
+	};
 
 	private observer: IntersectionObserver | null = null;
 
-	constructor (props: ITopNavigationProps) {
+	constructor(props: ITopNavigationProps) {
 		super(props);
 
 		this.state = {
@@ -51,21 +54,32 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 			navigationElement: null,
 			containerElement: null,
 			hasInitializedIntersectionObserver: false,
-		}
+		};
 	}
 
-	shouldComponentUpdate(nextProps: ITopNavigationProps, nextState: ITopNavigationState) {
+	shouldComponentUpdate(
+		nextProps: ITopNavigationProps,
+		nextState: ITopNavigationState,
+	) {
 		const { isSticky, shadow } = this.props;
-		const { rootContainer, navigationElement, containerElement, hasInitializedIntersectionObserver } = this.state;
+		const {
+			rootContainer,
+			navigationElement,
+			containerElement,
+			hasInitializedIntersectionObserver,
+		} = this.state;
 
 		if (nextProps.isSticky !== isSticky || nextProps.shadow !== shadow) {
 			return true;
 		}
 
-		if (nextState.containerElement !== containerElement ||
+		if (
+			nextState.containerElement !== containerElement ||
 			nextState.rootContainer !== rootContainer ||
 			nextState.navigationElement !== navigationElement ||
-			nextState.hasInitializedIntersectionObserver !== hasInitializedIntersectionObserver) {
+			nextState.hasInitializedIntersectionObserver !==
+				hasInitializedIntersectionObserver
+		) {
 			return true;
 		}
 
@@ -74,9 +88,14 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 
 	componentDidMount(): boolean {
 		if (document !== undefined) {
-			const parentContainer: HTMLElement | null = document.documentElement;
-			const navigationElement: HTMLElement | null = document.querySelector('#page-top-navigation');
-			const containerElement: HTMLElement | null = document.querySelector('#container-trigger');
+			const parentContainer: HTMLElement | null =
+				document.documentElement;
+			const navigationElement: HTMLElement | null = document.querySelector(
+				'#page-top-navigation',
+			);
+			const containerElement: HTMLElement | null = document.querySelector(
+				'#container-trigger',
+			);
 
 			if (parentContainer && navigationElement && containerElement) {
 				this.setState(
@@ -89,10 +108,11 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 						navigationElement,
 					}),
 					() => {
-						const { containerElement, navigationElement } = this.state;
-						if (
-							containerElement && navigationElement
-						) {
+						const {
+							containerElement,
+							navigationElement,
+						} = this.state;
+						if (containerElement && navigationElement) {
 							this.initObserver();
 						}
 					},
@@ -106,13 +126,13 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 	}
 
 	initObserver(): boolean {
-		const { containerElement, rootContainer, navigationElement } = this.state;
+		const {
+			containerElement,
+			rootContainer,
+			navigationElement,
+		} = this.state;
 
-		if (
-			rootContainer &&
-			containerElement &&
-			navigationElement
-		) {
+		if (rootContainer && containerElement && navigationElement) {
 			this.observer = new IntersectionObserver(
 				(entries: IntersectionObserverEntry[]) => {
 					const element = entries[0];
@@ -149,7 +169,11 @@ class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationS
 
 	render() {
 		const { children, isSticky, style } = this.props;
-		return <Wrapper id="page-top-navigation" isSticky={isSticky} style={style}>{children}</Wrapper>;
+		return (
+			<Wrapper id="page-top-navigation" isSticky={isSticky} style={style}>
+				{children}
+			</Wrapper>
+		);
 	}
 }
 
@@ -163,10 +187,9 @@ const fadeInDownBar = keyframes`
 const Wrapper = styled.header`
 	--top-bar-background-color: var(--color-white);
 
-	html[data-theme="DARK"] & {
+	html[data-theme='DARK'] & {
 		--top-bar-background-color: var(--body-background);
-	};
-
+	}
 
 	position: ${(props: ITopNavigationProps) => {
 		if (props.isSticky) {

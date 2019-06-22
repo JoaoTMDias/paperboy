@@ -1,4 +1,4 @@
-import { produce } from 'immer';
+import { produce } from 'immer';
 
 // Constants
 import {
@@ -29,7 +29,7 @@ const initialState: PreferencesReducer = {
 			{
 				id: 'latest',
 				label: 'Latest',
-			}
+			},
 		],
 	},
 	authenticated: false,
@@ -57,13 +57,12 @@ function preferences(
 				draftState.authenticated = action.payload.data;
 				break;
 
-
 			case SET_APP_THEME:
 				draftState.theme = action.payload.data;
 				break;
 
 			case RESET_APP_STATE:
-				if(action.payload.status) {
+				if (action.payload.status) {
 					draftState.type = initialState.type;
 					draftState.theme = initialState.theme;
 					draftState.authenticated = initialState.authenticated;

@@ -85,5 +85,5 @@ export {
 	ThumbnailImage,
 	LazyLoadingImage,
 	FormSwitch,
-	AddToHomeScreenWithInstall
+	AddToHomeScreenWithInstall,
 };

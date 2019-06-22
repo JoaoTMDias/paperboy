@@ -17,7 +17,8 @@ const A11yPageTitle: React.FunctionComponent<IA11yPageTitleProps> = props => {
 	const { title } = props;
 	return (
 		<Title
-			id="page-title"
+			id="a11y-page-title"
+			data-testid="a11y-page-title"
 			role="alert"
 			aria-live="polite"
 			aria-atomic="true"
@@ -41,4 +42,4 @@ A11yPageTitle.defaultProps = {
 	title: 'Page Title',
 };
 
-export default React.memo(A11yPageTitle);
+export default A11yPageTitle;

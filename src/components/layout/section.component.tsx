@@ -43,7 +43,15 @@ class UISection extends React.PureComponent<IUISectionProps> {
 	}
 
 	public render() {
-		const { id, title, children, style, role, layout, grouped } = this.props;
+		const {
+			id,
+			title,
+			children,
+			style,
+			role,
+			layout,
+			grouped,
+		} = this.props;
 
 		if (grouped) {
 			return (
@@ -125,7 +133,6 @@ const SectionWrapper = styled.section`
 		}
 	}};
 
-
 	&:only-child {
 		margin-bottom: 0;
 	}
@@ -134,16 +141,14 @@ const SectionWrapper = styled.section`
 const SectionTitle = styled.h3`
 	--section-title-color: var(--color-gray8);
 
-	html[data-theme="DARK"] & {
+	html[data-theme='DARK'] & {
 		color: var(--color-gray4);
-	};
+	}
 
 	font-family: var(--body-font-family);
 	font-size: ${rem('12px')};
 	text-transform: capitalize;
 	color: var(--section-title-color);
-
-
 
 	letter-spacing: ${rem('0.4px')};
 	line-height: ${rem('14px')};

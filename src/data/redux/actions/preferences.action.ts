@@ -2,11 +2,14 @@ import {
 	SET_CHOSEN_NEWS_SOURCES,
 	SET_USER_AUTHENTICATION,
 	SET_APP_THEME,
-	RESET_APP_STATE
+	RESET_APP_STATE,
 } from '../../constants/index.constants';
 import { EAppThemeType } from '../../interfaces/theme.interfaces';
 import { IChosenSource } from '../../../pages/onboarding/choose-sources';
-import { INewsPageHeaderItems, ChosenNewsSources } from '../../interfaces/index.interface';
+import {
+	INewsPageHeaderItems,
+	ChosenNewsSources,
+} from '../../interfaces/index.interface';
 
 /**
  * @description Updates the store with the new chosen sources
@@ -14,14 +17,12 @@ import { INewsPageHeaderItems, ChosenNewsSources } from '../../interfaces/index.
  * @param {string[]} sources
  */
 export const SetChosenNewsSources = (sources: IChosenSource[]) => {
-	function filterSources(sources: IChosenSource[]){
-		const allItemsWithCategory = sources.map(
-			(source: IChosenSource) => {
-				const { category } = source;
+	function filterSources(sources: IChosenSource[]) {
+		const allItemsWithCategory = sources.map((source: IChosenSource) => {
+			const { category } = source;
 
-				return category;
-			},
-		);
+			return category;
+		});
 
 		// Returns the final list of categories
 		const reducedCategories = allItemsWithCategory.reduce(
@@ -34,46 +35,42 @@ export const SetChosenNewsSources = (sources: IChosenSource[]) => {
 			[],
 		);
 
-		let tabs: INewsPageHeaderItems[] = [];
+		const tabs: INewsPageHeaderItems[] = [];
 		let items = {};
 		let allSourcesMerged: string[] = [];
 		reducedCategories.forEach((category: string) => {
 			const tab: INewsPageHeaderItems = {
 				id: category,
 				label: category,
-			}
+			};
 			tabs.push(tab);
 
 			const sourcesOfCategory: string[] = sources.map(
 				(source: IChosenSource) => {
-					if(category && source && source.category === category){
-						return source.name
+					if (category && source && source.category === category) {
+						return source.name;
 					}
 
 					return '';
-				}
+				},
 			);
 
-			if(sourcesOfCategory){
-				allSourcesMerged = [
-					...allSourcesMerged,
-					...sourcesOfCategory
-				];
+			if (sourcesOfCategory) {
+				allSourcesMerged = [...allSourcesMerged, ...sourcesOfCategory];
 			}
 
 			items = {
 				...items,
 				[`${category}`]: sourcesOfCategory,
-			}
+			};
 
 			return items;
 		});
 
 		const allItems = {
 			latest: allSourcesMerged,
-			...items
-		}
-
+			...items,
+		};
 
 		return {
 			quantity: reducedCategories.length,
@@ -88,16 +85,16 @@ export const SetChosenNewsSources = (sources: IChosenSource[]) => {
 		type: SET_CHOSEN_NEWS_SOURCES,
 		payload: {
 			data,
-		}
+		},
 	};
 };
 
 export const setUserAuthentication = (state: boolean) => {
 	return {
 		type: SET_USER_AUTHENTICATION,
-		payload:  {
+		payload: {
 			data: state,
-		}
+		},
 	};
 };
 
@@ -109,7 +106,7 @@ export const setUserAuthentication = (state: boolean) => {
  * @param {EAppThemeType} theme
  * @returns
  */
-export function setAppTheme(theme: EAppThemeType){
+export function setAppTheme(theme: EAppThemeType) {
 	return {
 		type: SET_APP_THEME,
 		payload: {
@@ -126,11 +123,11 @@ export function setAppTheme(theme: EAppThemeType){
  * @param {boolean} status
  * @returns
  */
-export function resetAppState(status: boolean){
+export function resetAppState(status: boolean) {
 	return {
 		type: RESET_APP_STATE,
 		payload: {
 			status,
-		}
-	}
+		},
+	};
 }

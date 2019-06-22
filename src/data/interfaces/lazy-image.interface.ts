@@ -1,21 +1,21 @@
 export enum EImageType {
 	IMAGE = 'IMAGE',
 	PICTURE = 'PICTURE',
-};
+}
 
 export interface IImageSourceString {
-	url: string,
-	density: number,
-};
+	url: string;
+	density: number;
+}
 
 export interface ISourceMedia {
-	type: string,
-	breakpoint: number,
-};
+	type: string;
+	breakpoint: number;
+}
 
 export interface IPictureSources {
-	srcSet: IImageSourceString[],
-	media: ISourceMedia,
+	srcSet: IImageSourceString[];
+	media: ISourceMedia;
 }
 
 export interface IImageLazyProps {
