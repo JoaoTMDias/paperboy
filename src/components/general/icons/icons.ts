@@ -9,6 +9,10 @@ import IconSafariShare from './safari-share.icon';
 import IconClose from './close.icon';
 import IconShare from './share.icon';
 import IconArrowRight from './arrow-right.icon';
+import IconFacebook from './icon.facebook';
+import IconSMS from './icon.sms';
+import IconWhatsapp from './icon.whatsapp';
+import IconTwitter from './icon.twitter';
 
 export {
 	IconNews,
@@ -22,4 +26,8 @@ export {
 	IconClose,
 	IconShare,
 	IconArrowRight,
+	IconFacebook,
+	IconSMS,
+	IconWhatsapp,
+	IconTwitter,
 };

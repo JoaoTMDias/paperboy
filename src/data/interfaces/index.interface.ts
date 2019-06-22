@@ -4,3 +4,4 @@ export * from './preferences.interface';
 export * from './sources.interface';
 export * from './redux.interfaces';
 export * from './lazy-image.interface';
+export * from './modal.interface';

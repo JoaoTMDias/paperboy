@@ -44,6 +44,7 @@ import {
 import UISection from './layout/section.component';
 import FormSwitch from './data-entry/forms/switch/form-switch.component';
 import AddToHomeScreenWithInstall from './general/pwa/add-to-homescreen-with-install.component';
+import ShareSheetPortal from './general/social/ShareSheet/index';
 
 // ICONOGRAPHY
 export * from './general/icons/icons';
@@ -86,4 +87,5 @@ export {
 	LazyLoadingImage,
 	FormSwitch,
 	AddToHomeScreenWithInstall,
+	ShareSheetPortal,
 };

@@ -17,26 +17,143 @@ import {
 	Layout,
 	LazyLoadingImage,
 	TopNavigationWithClose,
+	Modal,
+	ShareSheetPortal,
 } from '../../../components/index.components';
 import { NEWS_PAGE } from '../../../data/constants/index.constants';
 import { INewsArticleItem } from '../../../data/interfaces/news.interface';
+import { EModalAlignType } from '../../../data/interfaces/modal.interface';
+
+enum EModalType {
+	SHARE = 'SHARE',
+	DIALOG = 'DIALOG',
+}
 
 interface IArticleDetailPageProps {
 	authenticated: boolean;
 	location: H.Location;
 }
 
-class ArticleDetailPage extends React.Component<IArticleDetailPageProps, any> {
+interface IArticleDetailPageState {
+	showShareSheet: boolean;
+	showDialog: boolean;
+}
+
+class ArticleDetailPage extends React.Component<
+	IArticleDetailPageProps,
+	IArticleDetailPageState
+> {
 	private hero = React.createRef<HTMLDivElement>();
 
+	constructor(props: IArticleDetailPageProps) {
+		super(props);
+
+		this.state = {
+			showShareSheet: false,
+			showDialog: false,
+		};
+	}
+
+	/**
+	 * @description
+	 * @author João Dias
+	 * @date 2019-04-30
+	 * @param {React.SyntheticEvent} event
+	 * @param {EModalType} type
+	 * @returns
+	 * @memberof GroupDetailPage
+	 */
+	handleClickToOpenModal(event: React.SyntheticEvent, type: EModalType) {
+		event.preventDefault();
+
+		const { showShareSheet, showDialog } = this.state;
+
+		switch (type) {
+			case EModalType.SHARE:
+				this.setState({
+					showShareSheet: !showShareSheet,
+				});
+				return true;
+
+			case EModalType.DIALOG:
+				this.setState({
+					showDialog: !showDialog,
+				});
+				return true;
+
+			default:
+				return false;
+		}
+	}
+
+	handleClickToCloseModal(
+		event: React.MouseEvent<HTMLElement, MouseEvent>,
+		type: EModalType,
+	): boolean {
+		event.preventDefault();
+
+		const { showShareSheet, showDialog } = this.state;
+
+		switch (type) {
+			case EModalType.SHARE:
+				this.setState({
+					showShareSheet: !showShareSheet,
+				});
+				return true;
+
+			case EModalType.DIALOG:
+				this.setState({
+					showDialog: !showDialog,
+				});
+				return true;
+
+			default:
+				return false;
+		}
+	}
+
 	public render() {
-		const { state } = this.props.location;
+		const { showShareSheet } = this.state;
+		const { location } = this.props;
+		const { state } = location;
 		if (state) {
 			const data: INewsArticleItem = state;
 			return (
 				<Layout header={false} bottomNavigation={false}>
+					{showShareSheet && (
+						<Modal
+							align={EModalAlignType.BOTTOM}
+							isModalOpen={showShareSheet}
+							handleClickToCloseModal={(
+								event: React.MouseEvent<
+									HTMLElement,
+									MouseEvent
+								>,
+							) =>
+								this.handleClickToCloseModal(
+									event,
+									EModalType.SHARE,
+								)
+							}
+						>
+							<React.Suspense fallback={<div>Loading...</div>}>
+								<ShareSheetPortal articleData={data} />
+							</React.Suspense>
+						</Modal>
+					)}
 					<TopNavigationWithClose
 						title={data.title}
+						handleOnClickToShare={(
+							event: React.MouseEvent<
+								HTMLButtonElement,
+								MouseEvent
+							>,
+						) => {
+							this.handleClickToOpenModal(
+								event,
+								EModalType.SHARE,
+							);
+						}}
 						source="source"
 					/>
 					<Container

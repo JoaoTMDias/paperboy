@@ -40,6 +40,9 @@ const debounce = (func: any) => {
 interface ITopNavigationWithCloseProps {
 	title: string;
 	source: string;
+	handleOnClickToShare(
+		event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+	): void;
 	theme?: any;
 }
 
@@ -185,17 +188,17 @@ class TopNavigationWithClose extends React.Component<
 	 * render
 	 */
 	public render() {
-		const { title, source } = this.props;
+		const { title, source, handleOnClickToShare } = this.props;
 
 		return (
 			<Container ref={this.navBar}>
-				<Close
+				<TopBarLink
 					className="close"
 					to={NEWS_PAGE}
 					aria-label="Close this window and go back to the news page"
 				>
 					<IconClose />
-				</Close>
+				</TopBarLink>
 				<div className="center">
 					<LazyLoadingImage
 						id="brand-logo"
@@ -206,13 +209,14 @@ class TopNavigationWithClose extends React.Component<
 					/>
 					<h2 className="title">{title}</h2>
 				</div>
-				<Close
+				<TopBarButton
+					type="button"
 					className="share"
-					to={NEWS_PAGE}
-					aria-label="Close this window and go back to the news page"
+					aria-label="Show the Share Sheet"
+					onClick={handleOnClickToShare}
 				>
 					<IconShare platform="ios" />
-				</Close>
+				</TopBarButton>
 			</Container>
 		);
 	}
@@ -285,6 +289,8 @@ const Container = styled.div`
 		justify-content: center;
 		align-items: center;
 		text-align: center;
+		background-color: rgba(0,0,0,0.1);
+		border-radius: 50%;
 	}
 
 	&.is-scrolling {
@@ -313,9 +319,16 @@ const Container = styled.div`
 	}
 `;
 
-const Close = styled(Link)`
+const TopBarLink = styled(Link)`
 	width: ${rem('44px')};
 	height: ${rem('44px')};
+`;
+
+const TopBarButton = styled.button`
+	width: ${rem('44px')};
+	height: ${rem('44px')};
+	-webkit-appearance: none;
+	border: none;
 `;
 
 export default TopNavigationWithClose;
