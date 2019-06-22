@@ -9,7 +9,7 @@ import {
 	HeroCopy,
 	ArticleContent,
 	ArticleLink,
-} from './new-detail.styled';
+} from './news-detail.styled';
 
 // Components
 import {

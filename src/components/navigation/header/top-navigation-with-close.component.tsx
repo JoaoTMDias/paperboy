@@ -289,8 +289,12 @@ const Container = styled.div`
 		justify-content: center;
 		align-items: center;
 		text-align: center;
-		background-color: rgba(0,0,0,0.1);
+		background-color: transparent;
 		border-radius: 50%;
+	}
+
+	.share {
+		background-color: rgba(0,0,0,0.1);
 	}
 
 	&.is-scrolling {

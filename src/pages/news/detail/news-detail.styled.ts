@@ -55,11 +55,12 @@ export const Hero = styled.div`
 		left: 0;
 		right: 0;
 		background-image: linear-gradient(
-			to bottom,
-			rgba(0, 0, 0, 0),
-			rgba(0, 0, 0, 0.9)
+			180deg,
+			rgba(0, 0, 0, 0.4) 0%,
+			rgba(0, 0, 0, 0) 15%,
+			rgba(0, 0, 0, 0.9) 100%
 		);
-		height: 75%;
+		height: 100%;
 		width: 100%;
 		overflow: hidden;
 		content: '';
