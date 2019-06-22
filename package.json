@@ -55,7 +55,7 @@
 		"format:lint": "eslint --fix src/**/*.tsx",
 		"test": "jest --watchAll --env=jsdom",
 		"type-check": "tsc --noEmit",
-		"prebuild": "yarn lint && yarn test"
+		"prebuild": "yarn format:fix && yarn format:lint && yarn test"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.4.5",

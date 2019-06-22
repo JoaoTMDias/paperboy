@@ -48,7 +48,7 @@ import {
 import Top20EditorSuggestions from '../../data/dummy/news-sources-suggestions';
 
 // Validation Schema
-import { ChooseSourcesValidationSchema } from './choose-sources-validation-schema';
+import ChooseSourcesValidationSchema from './choose-sources-validation-schema';
 
 interface LanguageSupport {
 	hasLocation: boolean;

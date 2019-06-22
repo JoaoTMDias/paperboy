@@ -11,3 +11,5 @@ export const ChooseSourcesValidationSchema = Yup.object().shape({
 		.min(3, 'Add at least three options')
 		.required('This field is required'),
 });
+
+export default ChooseSourcesValidationSchema;
