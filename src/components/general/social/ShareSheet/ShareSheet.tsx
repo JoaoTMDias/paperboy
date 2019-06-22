@@ -65,9 +65,7 @@ const ShareSheetPortal: React.FunctionComponent<
 		}
 		return (
 			<ShareSheet className="share-sheet" data-testid="share-sheet">
-				<h3 className="share-sheet__title">
-					Share this article with someone
-				</h3>
+				<h3 className="share-sheet__title">Share this article</h3>
 				<ul className="share-sheet__list">
 					<li className="share-sheet__option">
 						<FacebookShareButton

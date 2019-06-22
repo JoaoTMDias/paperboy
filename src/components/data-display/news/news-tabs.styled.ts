@@ -3,7 +3,7 @@ import { FixedSizeList } from 'react-window';
 import SwipeableViews from 'react-swipeable-views';
 import Tabs from '@material-ui/core/Tabs';
 
-export const List = styled(FixedSizeList)`
+export const VirtualizedList = styled(FixedSizeList)`
 	position: relative;
 	width: 100vw;
 	height: calc(
@@ -23,6 +23,35 @@ export const List = styled(FixedSizeList)`
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: center;
+	}
+`;
+
+export const List = styled.ol`
+	position: relative;
+	margin: 0;
+	width: 100vw;
+	height: auto;
+	overflow: auto;
+	will-change: transform;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+
+	.list__item {
+		flex-basis: 50%;
+		width: 50%;
+		margin: 0;
+
+		&--first {
+			flex-basis: 100%;
+			width: 100%;
+		}
 	}
 `;
 

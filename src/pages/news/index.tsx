@@ -9,7 +9,10 @@ import {
 	UIContentSpinner,
 } from '../../components/index.components';
 
-import { LatestNewsTab } from '../../components/data-display/news/index.news';
+import {
+	LatestNewsTab,
+	LatestNewsCategoryTab,
+} from '../../components/data-display/news/index.news';
 
 import {
 	INewsArticle,
@@ -142,7 +145,7 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 					}}
 				>
 					<LatestNewsTab sources={sources.items.latest} />
-					<LatestNewsTab sources={sources.items.latest} />
+					<LatestNewsCategoryTab sources={sources.items.latest} />
 				</NewsTabs>
 			);
 		}
