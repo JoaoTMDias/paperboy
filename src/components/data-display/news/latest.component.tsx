@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
-import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import { ListChildComponentProps } from 'react-window';
 
-import { ThumbnailLarge, UIContentSpinner } from '../../index';
+import { ThumbnailLarge, UIContentSpinner } from '../../index.components';
+
+import { List, Item } from './news-tabs.styled';
 
 import {
 	INewsArticle,
@@ -58,14 +59,11 @@ class LatestNewsTab extends React.PureComponent<INewsArticleTabProps, any> {
 	 * @returns {boolean}
 	 * @memberof LatestNewsTab
 	 */
-	componentDidUpdate(
-		nextProps: INewsArticleTabProps,
-		nextState: any,
-	): boolean {
-		const { sources } = this.props;
+	componentDidUpdate(nextProps: INewsArticleTabProps): boolean {
+		const { sources, dispatch } = this.props;
 
 		if (nextProps.sources !== sources && sources.length > 0) {
-			this.props.dispatch(getAllLatestNewsFromSource(sources));
+			dispatch(getAllLatestNewsFromSource(sources));
 
 			return true;
 		}
@@ -110,40 +108,6 @@ class LatestNewsTab extends React.PureComponent<INewsArticleTabProps, any> {
 		return <UIContentSpinner isFullPage />;
 	}
 }
-
-// Styling
-const List = styled(FixedSizeList)`
-	position: relative;
-	width: 100vw;
-	height: calc(
-		var(--viewport-height) - (var(--top-navigation-bar-height) * 2)
-	);
-	overflow: auto;
-	will-change: transform;
-
-	ol {
-		width: 100%;
-		height: 100%;
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-	}
-`;
-
-const Item = styled.li`
-	width: 100%;
-	height: auto;
-	position: relative;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-`;
 
 const mapStateToProps = (state: IGlobalStoreState) => ({
 	latest: state.news.articles.latest,

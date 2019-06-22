@@ -23,7 +23,7 @@ import {
 	TopNavigation,
 	TopNavigationWithTitle,
 	UISection,
-} from '../../components/index';
+} from '../../components/index.components';
 
 // Redux
 import {
@@ -87,8 +87,8 @@ interface IChooseSourcesPageState {
  * @extends {React.Component<IChooseSourcesPageProps, IChooseSourcesPageState>}
  */
 class ChooseSourcesPage extends React.PureComponent<
-	IChooseSourcesPageProps,
-	IChooseSourcesPageState
+	ChooseSourcesPageProps,
+	ChooseSourcesPageState
 > {
 	constructor(props: IChooseSourcesPageProps) {
 		super(props);
@@ -445,12 +445,7 @@ class ChooseSourcesPage extends React.PureComponent<
 										type="submit"
 										text="Let's Go"
 										label="Click to set these as your news sources."
-										onClick={(
-											event: React.MouseEvent<
-												HTMLButtonElement,
-												MouseEvent
-											>,
-										) => submitForm()}
+										onClick={() => submitForm()}
 										disabled={!dirty || isSubmitting}
 									/>
 								</UICallToAction>

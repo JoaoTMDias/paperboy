@@ -10,7 +10,7 @@ import {
 	UIDisplay,
 	UILead,
 	UISubtitle,
-} from '../components/index';
+} from '../components/index.components';
 
 import {
 	NEWS_PAGE,

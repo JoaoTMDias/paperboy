@@ -1,7 +1,11 @@
 import { Redirect } from '@reach/router';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Container, Layout, UIContentSpinner } from '../../components/index';
+import {
+	Container,
+	Layout,
+	UIContentSpinner,
+} from '../../components/index.components';
 
 // Redux
 import {

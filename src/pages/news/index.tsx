@@ -7,7 +7,7 @@ import {
 	Layout,
 	NewsTabs,
 	UIContentSpinner,
-} from '../../components/index';
+} from '../../components/index.components';
 
 import { LatestNewsTab } from '../../components/data-display/news/index.news';
 

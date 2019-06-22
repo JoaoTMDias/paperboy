@@ -1,7 +1,7 @@
 // Libraries
 import * as React from 'react';
 import styled from 'styled-components';
-import { SourceCard, SourceListItem } from '../../index';
+import { SourceCard, SourceListItem } from '../../index.components';
 
 // Assets
 import IconBBCNews from '../../../assets/images/sources/icon-bbc-news.svg';

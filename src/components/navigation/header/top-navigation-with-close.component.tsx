@@ -5,7 +5,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 // Components
-import { LazyLoadingImage, IconClose, IconShare } from '../../index';
+import { LazyLoadingImage, IconClose, IconShare } from '../../index.components';
 
 // Constants
 import { NEWS_PAGE } from '../../../data/constants/index.constants';

@@ -3,7 +3,7 @@ import { rem } from 'polished';
 import * as React from 'react';
 import styled from 'styled-components';
 import { Field } from 'formik';
-import { LazyLoadingImage } from '../../index';
+import { LazyLoadingImage } from '../../index.components';
 
 // Component Props
 interface ISourceCardProps {

@@ -11,7 +11,7 @@ import {
 	Layout,
 	LazyLoadingImage,
 	TopNavigationWithClose,
-} from '../../../components/index';
+} from '../../../components/index.components';
 import { NEWS_PAGE } from '../../../data/constants/index.constants';
 import { INewsArticleItem } from '../../../data/interfaces/news.interface';
 

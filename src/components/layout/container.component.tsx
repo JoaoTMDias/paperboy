@@ -1,7 +1,7 @@
 // Libraries
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import { A11yPageTitle } from '../index';
+import { A11yPageTitle } from '../index.components';
 
 // Component Props
 interface IContainerProps {

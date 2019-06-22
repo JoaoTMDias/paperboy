@@ -1,6 +1,7 @@
 // Libraries
 import * as React from 'react';
-import styled from 'styled-components';
+
+import Title from './a11ypagetitle.styled';
 
 // Component Props
 interface IA11yPageTitleProps {
@@ -28,15 +29,6 @@ const A11yPageTitle: React.FunctionComponent<IA11yPageTitleProps> = props => {
 		</Title>
 	);
 };
-
-const Title = styled.h1`
-	clip: rect(1px, 1px, 1px, 1px);
-	height: 1px;
-	overflow: hidden;
-	position: absolute !important;
-	width: 1px;
-	opacity: 0;
-`;
 
 A11yPageTitle.defaultProps = {
 	title: 'Page Title',

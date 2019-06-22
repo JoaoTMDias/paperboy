@@ -1,13 +1,10 @@
 // Libraries
 import * as React from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { navigate } from 'gatsby';
 
 // Tabs
-import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import SwipeableViews from 'react-swipeable-views';
+import { TabsContainer, TabsHeader, TabsWrapper } from './news-tabs.styled';
 
 // Helpers
 import {
@@ -234,20 +231,9 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 	 */
 	changeTabIndex(index: number) {
 		if (index !== null && index !== undefined) {
-			this.setState(
-				{
-					currentTabIndex: index,
-				},
-
-				// () => {
-				// 	if (index >= 0) {
-				// 		const tabHashName = `${tabsHeader[index].id}`;
-				// 		if (tabHashName) {
-				// 			navigate(`#${tabHashName}`);
-				// 		}
-				// 	}
-				// },
-			);
+			this.setState({
+				currentTabIndex: index,
+			});
 
 			return true;
 		}
@@ -382,87 +368,13 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 	}
 }
 
-// Styling
-const TabsWrapper = styled.div`
-	height: 100%;
-	background-color: var(--tabs-background);
-`;
-
-const TabsContainer = styled(SwipeableViews)`
-	background-color: var(--tabs-background);
-	height: auto;
-	min-height: var(--tabs-container-height);
-
-	.react-swipeable-view-container {
-		/* override to animate height */
-		height: var(--tabs-container-height) !important;
-		overflow-y: initial;
-		-webkit-overflow-scrolling: touch;
-		background-color: var(--tabs-background);
-
-		[aria-hidden='true'] {
-			pointer-events: none;
-			user-select: none;
-			position: relative;
-		}
-
-		[aria-hidden='false'] {
-			pointer-events: inherit;
-			user-select: inherit;
-			position: relative;
-		}
-	}
-`;
-
-const TabsHeader = styled(Tabs)`
-	border-bottom: var(--tabs-header-border-bottom);
-	position: var(--tabs-header-position);
-	background-color: var(--tabs-background) !important;
-
-	width: 100%;
-	z-index: 1;
-
-	&.is-scrolling {
-		position: var(--tabs-header-position-scrolling);
-		top: 0;
-	}
-
-	.tabs-page {
-		&--header {
-			background-color: var(--tabs-background) !important;
-		}
-
-		&--indicator {
-			background-color: var(--tabs-header-indicator) !important;
-			transition: left 250ms var(--default-timing-function),
-				width 64ms var(--default-timing-function);
-			height: 3px;
-			border-top-left-radius: 3px;
-			border-top-right-radius: 3px;
-			border-bottom-left-radius: 0px;
-			border-bottom-right-radius: 0px;
-		}
-
-		&--tab,
-		&--label {
-			font-size: var(--tabs-header-font-size);
-			text-transform: capitalize;
-			font-weight: 400;
-			font-family: var(--tabs-header-font-family);
-			color: var(--tabs-header-color);
-			letter-spacing: -0.41px;
-			line-height: 1.294117647;
-		}
-
-		&--is-selected {
-			.tabs-page--label {
-				color: var(--tabs-header-color-selected);
-				font-weight: 700;
-			}
-		}
-	}
-`;
-
+/**
+ * @description
+ * @author João Dias
+ * @date 2019-06-22
+ * @param {IGlobalStoreState} state
+ * @returns
+ */
 function mapStateToProps(state: IGlobalStoreState) {
 	return {
 		platform: state.general.platform,

@@ -14,7 +14,7 @@ import {
 	ListItemWithButton,
 	AddToHomeScreenWithInstall,
 	EListItemButtonType,
-} from '../../components/index';
+} from '../../components/index.components';
 
 import { EAppThemeType } from '../../data/interfaces/theme.interfaces';
 import {

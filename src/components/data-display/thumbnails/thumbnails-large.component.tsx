@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import { INewsArticleItem } from '../../../data/interfaces/index.interface';
 
-import { ThumbnailImage } from '../../index';
+import { ThumbnailImage } from '../../index.components';
 import { NEWS_DETAIL_PAGE } from '../../../data/constants/router.constants';
 
 // Component Props

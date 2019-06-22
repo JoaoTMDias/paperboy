@@ -3,7 +3,7 @@ import { rem } from 'polished';
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { UISection } from '../../index';
+import { UISection } from '../../index.components';
 
 // Component Props
 interface IUISearchFormProps {
@@ -37,9 +37,8 @@ class UISearchForm extends React.Component<IUISearchFormProps> {
 			nextProps.label !== label
 		) {
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	/**

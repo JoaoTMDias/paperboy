@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { IconBrandingSmall, IconSafariShare } from '../../index';
+import { IconBrandingSmall, IconSafariShare } from '../../index.components';
 import { IGlobalStoreState } from '../../../data/interfaces/index.interface';
 
 interface IAddToHomeScreenProps {

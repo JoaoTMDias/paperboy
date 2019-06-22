@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Portal, UIDialog } from '../../index';
+import { Portal, UIDialog } from '../../index.components';
 
 interface IModalProps {
 	theme?: any;

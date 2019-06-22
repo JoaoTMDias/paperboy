@@ -13,7 +13,7 @@ import {
 	AddToHomeScreen,
 	Modal,
 	ChangeAppTheme,
-} from '../index';
+} from '../index.components';
 import TopNavigation from '../navigation/header/top-navigation.component';
 import MainNavigation from '../navigation/main/main-navigation.component';
 import BottomNavigation from '../navigation/bottom-navigation/bottom-navigation.component';

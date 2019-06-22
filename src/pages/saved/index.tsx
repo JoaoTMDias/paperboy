@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
 import React from 'react';
 
-import { Layout } from '../../components/index';
+import { Layout } from '../../components/index.components';
 
 const SavedPage = () => (
 	<Layout>

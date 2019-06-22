@@ -3,7 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { rem } from 'polished';
 import { Link } from 'gatsby';
-import { FormSwitch } from '../..';
+import { FormSwitch } from '../../index.components';
 import flexRow from '../../../helpers/row.helper';
 import { IconArrowRight } from '../../general/icons/icons';
 

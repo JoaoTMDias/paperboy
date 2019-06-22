@@ -9,7 +9,7 @@ import {
 	IconSearch,
 	IconSettings,
 	TabItem,
-} from '../../index';
+} from '../../index.components';
 
 import {
 	CATEGORIES_PAGE,
