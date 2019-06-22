@@ -361,12 +361,11 @@ class ChooseSourcesPage extends React.PureComponent<
 	 * @param {MouseEvent} event
 	 * @memberof ChooseSourcesPage
 	 */
-	handleSubmit(event: MouseEvent) {
-		event.preventDefault();
-		const { list } = this.state.chosen;
+	handleSubmit(list: IChosenSource[]) {
+		const { dispatch } = this.props;
 
 		if (list.length >= 3) {
-			this.props.dispatch(SetChosenNewsSources(list));
+			dispatch(SetChosenNewsSources(list));
 		}
 	}
 
@@ -395,7 +394,15 @@ class ChooseSourcesPage extends React.PureComponent<
 				</Modal>
 				<Formik
 					initialValues={chosen}
-					onSubmit
+					onSubmit={(
+						values: ChosenSources,
+						actions: FormikActions<ChosenSources>,
+					) => {
+						this.handleSubmit(values.list);
+						setTimeout(() => {
+							actions.setSubmitting(false);
+						}, 2000);
+					}}
 					validationSchema={ChooseSourcesValidationSchema}
 					validateOnBlur
 					validateOnChange
@@ -403,16 +410,17 @@ class ChooseSourcesPage extends React.PureComponent<
 					{props => {
 						const {
 							values,
-							touched,
 							dirty,
 							isSubmitting,
-							handleChange,
-							handleBlur,
 							handleSubmit,
 							submitForm,
-							handleReset,
-							setFieldValue,
 						} = props;
+
+						const disableSubmitButton = !!(
+							values &&
+							values.list.length < 3 &&
+							(!dirty || isSubmitting)
+						);
 
 						return (
 							<form
@@ -446,7 +454,7 @@ class ChooseSourcesPage extends React.PureComponent<
 										text="Let's Go"
 										label="Click to set these as your news sources."
 										onClick={() => submitForm()}
-										disabled={!dirty || isSubmitting}
+										disabled={disableSubmitButton}
 									/>
 								</UICallToAction>
 							</form>
