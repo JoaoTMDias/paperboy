@@ -21,6 +21,10 @@ import {
 	Modal,
 	ShareSheetPortal,
 } from '../../../components/index.components';
+import {
+	IconTypeset,
+	IconBookmark,
+} from '../../../components/general/icons/icons';
 import { NEWS_PAGE } from '../../../data/constants/index.constants';
 import { INewsArticleItem } from '../../../data/interfaces/news.interface';
 import { EModalAlignType } from '../../../data/interfaces/modal.interface';
@@ -209,9 +213,27 @@ class ArticleDetailPage extends React.Component<
 							id="bottom-options-bar"
 							className="bottom-options-bar"
 						>
-							<button type="button">Aa</button>
-							<button type="button">Save</button>
-							<button type="button">Share</button>
+							<button
+								type="button"
+								className="bottom-options-bar__button"
+								aria-label="Choose the font size you prefer"
+							>
+								<IconTypeset isActive={false} />
+							</button>
+							<button
+								type="button"
+								className="bottom-options-bar__button"
+								aria-label="Save this icon for a later reading"
+							>
+								<IconBookmark isActive={false} />
+							</button>
+							<button
+								type="button"
+								className="bottom-options-bar__button"
+								aria-label="Save this icon for a later reading"
+							>
+								<IconBookmark isActive={false} />
+							</button>
 						</BottomOptionsBar>
 					</Container>
 				</Layout>

@@ -13,6 +13,8 @@ import IconFacebook from './icon.facebook';
 import IconSMS from './icon.sms';
 import IconWhatsapp from './icon.whatsapp';
 import IconTwitter from './icon.twitter';
+import IconBookmark from './icon.bookmark';
+import IconTypeset from './icon.typeset';
 
 export {
 	IconNews,
@@ -30,4 +32,6 @@ export {
 	IconSMS,
 	IconWhatsapp,
 	IconTwitter,
+	IconBookmark,
+	IconTypeset,
 };

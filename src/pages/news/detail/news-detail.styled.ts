@@ -209,6 +209,25 @@ export const BottomOptionsBar = styled.aside`
 	z-index: 10;
 	bottom: 0;
 	left: 0;
+
+	.bottom-options-bar {
+		&__button {
+			width: calc(100% / 3);
+			height: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+
+			&:nth-child(1) {
+				justify-content: flex-start;
+			}
+
+			&:nth-child(3) {
+				justify-content: flex-end;
+			}
+		}
+	}
 `;
 
 export default Article;
