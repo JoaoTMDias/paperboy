@@ -190,3 +190,5 @@ export const ArticleLink = styled.a`
 		}
 	}
 `;
+
+export default Article;
