@@ -62,7 +62,8 @@
 		--tabs-header-color-selected: $tabs-header-color-selected,
 		--content-lead-color: var(--color-gray9),
 		--content-paragraph-color: var(--color-gray9),
-		--article-base-font-size: 16,
+		--base-font-size: $base-font-size,
+		--article-base-font-size: var(--base-font-size),
 	)
 );
 

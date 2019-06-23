@@ -33,6 +33,7 @@ const initialState: PreferencesReducer = {
 		],
 	},
 	authenticated: false,
+	baseFontSize: 16,
 };
 
 /**

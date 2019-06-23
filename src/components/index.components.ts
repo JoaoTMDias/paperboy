@@ -10,6 +10,7 @@ import Layout from './layout/layout.component';
 
 // A11Y
 import A11yPageTitle from './a11y/a11ypagetitle.component';
+import ArticleTypeset from './a11y/ArticleTypeset/index';
 
 // NAVIGATION
 import BottomNavigation from './navigation/bottom-navigation/bottom-navigation.component';
@@ -90,4 +91,5 @@ export {
 	FormSwitch,
 	AddToHomeScreenWithInstall,
 	ShareSheetPortal,
+	ArticleTypeset,
 };

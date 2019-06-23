@@ -15,6 +15,7 @@ import IconWhatsapp from './icon.whatsapp';
 import IconTwitter from './icon.twitter';
 import IconBookmark from './icon.bookmark';
 import IconTypeset from './icon.typeset';
+import IconChangeTypeSize from './icon.change-type';
 
 export {
 	IconNews,
@@ -34,4 +35,5 @@ export {
 	IconTwitter,
 	IconBookmark,
 	IconTypeset,
+	IconChangeTypeSize,
 };

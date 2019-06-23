@@ -84,7 +84,7 @@ export const HeroCopy = styled.div`
 		width: 100%;
 		font-family: var(--body-font-family);
 		font-weight: normal;
-		font-size: calc((22 / var(--article-base-font-size)) * 1rem);
+		font-size: calc((22 / var(--base-font-size, 16)) * 1rem);
 		color: var(--color-white);
 		letter-spacing: 0;
 		text-align: left;
@@ -114,7 +114,7 @@ export const HeroCopy = styled.div`
 		&__source,
 		&__time {
 			color: var(--color-white);
-			font-size: calc((11 / var(--article-base-font-size)) * 1rem);
+			font-size: calc((11 / var(--base-font-size, 16)) * 1rem);
 		}
 
 		&__source {
@@ -139,7 +139,7 @@ export const ArticleContent = styled.div`
 		color: var(--content-lead-color);
 		font-family: var(--body-font-family);
 		font-weight: 300;
-		font-size: calc((16 / var(--article-base-font-size)) * 1rem);
+		font-size: calc((16 / var(--base-font-size, 16)) * 1rem);
 		letter-spacing: ${rem('0.22px')};
 		line-height: ${rem('32px')};
 		margin-bottom: ${rem('24px')};
@@ -148,7 +148,7 @@ export const ArticleContent = styled.div`
 	p {
 		font-family: var(--content-font-family);
 		color: var(--content-paragraph-color);
-		font-size: calc((17 / var(--article-base-font-size)) * 1rem);
+		font-size: calc((17 / var(--base-font-size, 16)) * 1rem);
 		letter-spacing: ${rem('0.4px')};
 		line-height: ${rem('28px')};
 	}
@@ -173,12 +173,12 @@ export const ArticleLink = styled.a`
 
 	.article-link {
 		&__title {
-			font-size: calc((16 / var(--article-base-font-size)) * 1rem);
+			font-size: calc((16 / var(--base-font-size, 16)) * 1rem);
 			font-family: var(--heading-font-family);
 		}
 
 		&__source {
-			font-size: calc((10 / var(--article-base-font-size)) * 1rem);
+			font-size: calc((10 / var(--base-font-size, 16)) * 1rem);
 			text-transform: uppercase;
 			letter-spacing: 1px;
 			color: var(--color-gray7);
@@ -206,7 +206,7 @@ export const BottomOptionsBar = styled.aside`
 	justify-content: space-between;
 	align-items: center;
 
-	background-color: var(--color-gray1);
+	background-color: var(--color-gray0);
 	border-top: 1px solid var(--color-gray3);
 
 	position: fixed;
@@ -223,6 +223,7 @@ export const BottomOptionsBar = styled.aside`
 			justify-content: center;
 			align-items: center;
 			-webkit-appearance: none;
+			background-color: transparent;
 			border: none;
 
 			&:nth-child(1) {

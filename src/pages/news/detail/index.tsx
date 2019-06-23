@@ -20,6 +20,7 @@ import {
 	TopNavigationWithClose,
 	Modal,
 	ShareSheetPortal,
+	ArticleTypeset,
 } from '../../../components/index.components';
 import {
 	IconTypeset,
@@ -146,7 +147,7 @@ class ArticleDetailPage extends React.Component<
 							</React.Suspense>
 						</Modal>
 					)}
-					{showTypesetPanel && <p>TypesetPanel</p>}
+					{showTypesetPanel && <ArticleTypeset />}
 					<TopNavigationWithClose
 						title={data.title}
 						source="source"

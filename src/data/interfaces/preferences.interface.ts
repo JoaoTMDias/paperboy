@@ -7,6 +7,7 @@ export interface PreferencesReducer {
 	theme?: EAppThemeType | undefined;
 	chosenSources: ChosenNewsSources;
 	authenticated: boolean;
+	baseFontSize: number;
 }
 
 export interface IChosenNewsSourcesItems {

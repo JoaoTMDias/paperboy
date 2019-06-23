@@ -34,40 +34,20 @@ $color-black: hsl(0, 9%, 4%);
 $cta: $color-select;
 
 $global-font-size: 100%;
+$base-font-size: 16;
 $global-width: rem-calc(1200);
 $global-lineheight: $ratio;
 $global-shadow: 0 2px 4px 0 hsla(0, 0%, 0%, 0.2),
-0 -1px 0 0 hsla(0, 0%, 0%, 0.02);
+	0 -1px 0 0 hsla(0, 0%, 0%, 0.02);
 $body-background: $color-gray0;
 $body-font-color: $color-black;
-$heading-font-family: 'paperboy-font-bold',
--apple-system,
-BlinkMacSystemFont,
-'Open Sans',
-'Roboto',
-'Segoe UI',
-Roboto,
-Oxygen,
-Ubuntu,
-Cantarell,
-'Helvetica Neue',
-sans-serif;
-$body-font-family: 'paperboy-font-regular',
--apple-system,
-BlinkMacSystemFont,
-'Open Sans',
-'Roboto',
-'Segoe UI',
-Roboto,
-Oxygen,
-Ubuntu,
-Cantarell,
-'Helvetica Neue',
-sans-serif;
-$content-font-family: 'paperboy-content-regular',
-Times,
-Georgia,
-serif;
+$heading-font-family: 'paperboy-font-bold', -apple-system, BlinkMacSystemFont,
+	'Open Sans', 'Roboto', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+	'Helvetica Neue', sans-serif;
+$body-font-family: 'paperboy-font-regular', -apple-system, BlinkMacSystemFont,
+	'Open Sans', 'Roboto', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+	'Helvetica Neue', sans-serif;
+$content-font-family: 'paperboy-content-regular', Times, Georgia, serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
