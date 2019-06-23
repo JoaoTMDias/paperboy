@@ -218,6 +218,8 @@ export const BottomOptionsBar = styled.aside`
 			flex-direction: row;
 			justify-content: center;
 			align-items: center;
+			-webkit-appearance: none;
+			border: none;
 
 			&:nth-child(1) {
 				justify-content: flex-start;

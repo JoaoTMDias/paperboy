@@ -40,9 +40,6 @@ const debounce = (func: any) => {
 interface ITopNavigationWithCloseProps {
 	title: string;
 	source: string;
-	handleOnClickToShare(
-		event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-	): void;
 	theme?: any;
 }
 
@@ -188,7 +185,7 @@ class TopNavigationWithClose extends React.Component<
 	 * render
 	 */
 	public render() {
-		const { title, source, handleOnClickToShare } = this.props;
+		const { title, source } = this.props;
 
 		return (
 			<Container ref={this.navBar}>
@@ -209,14 +206,6 @@ class TopNavigationWithClose extends React.Component<
 					/>
 					<h2 className="title">{title}</h2>
 				</div>
-				<TopBarButton
-					type="button"
-					className="share"
-					aria-label="Show the Share Sheet"
-					onClick={handleOnClickToShare}
-				>
-					<IconShare platform="ios" />
-				</TopBarButton>
 			</Container>
 		);
 	}
@@ -242,12 +231,12 @@ const Container = styled.div`
 	transition: all 200ms ease-in-out;
 
 	.center {
-		width: 100%;
+		width: calc(100% - 44px);
 		height: var(--top-navigation-bar--height);
 		overflow: hidden;
 		display: flex;
 		flex-direction: row;
-		justify-content: flex-start;
+		justify-content: center;
 		align-items: center;
 		position: relative;
 

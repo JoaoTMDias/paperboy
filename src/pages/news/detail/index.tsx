@@ -148,17 +148,6 @@ class ArticleDetailPage extends React.Component<
 					)}
 					<TopNavigationWithClose
 						title={data.title}
-						handleOnClickToShare={(
-							event: React.MouseEvent<
-								HTMLButtonElement,
-								MouseEvent
-							>,
-						) => {
-							this.handleClickToOpenModal(
-								event,
-								EModalType.SHARE,
-							);
-						}}
 						source="source"
 					/>
 					<Container
@@ -231,6 +220,17 @@ class ArticleDetailPage extends React.Component<
 								type="button"
 								className="bottom-options-bar__button"
 								aria-label="Save this icon for a later reading"
+								onClick={(
+									event: React.MouseEvent<
+										HTMLButtonElement,
+										MouseEvent
+									>,
+								) => {
+									this.handleClickToOpenModal(
+										event,
+										EModalType.SHARE,
+									);
+								}}
 							>
 								<IconBookmark isActive={false} />
 							</button>
