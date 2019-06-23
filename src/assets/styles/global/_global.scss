@@ -1,4 +1,6 @@
-@include css-vars((--color-primary: $color-primary,
+@include css-vars(
+	(
+		--color-primary: $color-primary,
 		--color-select: $color-select,
 		--color-select-gradient: lighten($color-select, 5%),
 		--color-white: $color-white,
@@ -18,7 +20,8 @@
 		--footer-background: #0d182a,
 		--top-navigation-bar-height: $top-navigation-bar-height,
 		--bottom-navigation-bar-height: $bottom-navigation-bar-height,
-		--bottom-navigation-background-color: $bottom-navigation-background-color,
+		--bottom-navigation-background-color:
+			$bottom-navigation-background-color,
 		--bottom-navigation-text-color: $bottom-navigation-text-color,
 		--button-radius: $button-radius,
 		--heading-font-family: $heading-font-family,
@@ -58,16 +61,19 @@
 		--tabs-header-color: $tabs-header-color,
 		--tabs-header-color-selected: $tabs-header-color-selected,
 		--content-lead-color: var(--color-gray9),
-		--content-paragraph-color: var(--color-gray9)));
+		--content-paragraph-color: var(--color-gray9),
+		--article-base-font-size: 16,
+	)
+);
 
 :root {
-	&[data-theme="LIGHT"] {
+	&[data-theme='LIGHT'] {
 		--color-primary: #{$color-primary};
 		--color-select: #{$color-select};
 		--color-select-gradient: #{lighten($color-select, 5%)};
 		--color-white: #{$color-white};
 		--color-gray0: #{$color-gray0};
-		--color-gray1:#{$color-gray1};
+		--color-gray1: #{$color-gray1};
 		--color-gray2: #{$color-gray2};
 		--color-gray3: #{$color-gray3};
 		--color-gray4: #{$color-gray4};
@@ -99,7 +105,7 @@
 		--cta-shadow-color-hue: 6;
 	}
 
-	&[data-theme="DARK"] {
+	&[data-theme='DARK'] {
 		--color-primary: #{$color-select};
 		--color-select: #{$color-primary};
 		--color-select-gradient: #{lighten($color-select, 5%)};
@@ -164,7 +170,8 @@ html {
 *::before,
 *::after {
 	box-sizing: inherit;
-	transition: all 200ms var(--default-timing-function, $default-timing-function); // 1
+	transition: all 200ms
+		var(--default-timing-function, $default-timing-function); // 1
 }
 
 *:focus {
@@ -221,8 +228,7 @@ body {
 
 #___gatsby,
 #device-audit,
-#no-javascript,
-	{
+#no-javascript {
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -385,7 +391,10 @@ a {
 
 	&:hover {
 		color: var(--color-anchor-hover, $color-anchor-hover);
-		text-decoration: var(--anchor-text-decoration-hover, $anchor-text-decoration-hover);
+		text-decoration: var(
+			--anchor-text-decoration-hover,
+			$anchor-text-decoration-hover
+		);
 	}
 }
 

@@ -25,7 +25,7 @@ export const Article = styled.article`
 
 export const Hero = styled.div`
 	width: 100%;
-	height: calc(var(--viewport-height) * 0.72);
+	height: calc(var(--viewport-height) * 0.6);
 	overflow: hidden;
 	position: relative;
 
@@ -33,6 +33,10 @@ export const Hero = styled.div`
 	flex-direction: column;
 	justify-content: flex-end;
 	z-index: 1;
+
+	@media all and (min-height: 37.5rem) {
+		height: calc(var(--viewport-height) * 0.56);
+	}
 
 	img,
 	svg.image__placeholder {
@@ -80,7 +84,7 @@ export const HeroCopy = styled.div`
 		width: 100%;
 		font-family: var(--body-font-family);
 		font-weight: normal;
-		font-size: ${rem('22px')};
+		font-size: calc((22 / var(--article-base-font-size)) * 1rem);
 		color: var(--color-white);
 		letter-spacing: 0;
 		text-align: left;
@@ -110,7 +114,7 @@ export const HeroCopy = styled.div`
 		&__source,
 		&__time {
 			color: var(--color-white);
-			font-size: ${rem('11px')};
+			font-size: calc((11 / var(--article-base-font-size)) * 1rem);
 		}
 
 		&__source {
@@ -135,7 +139,7 @@ export const ArticleContent = styled.div`
 		color: var(--content-lead-color);
 		font-family: var(--body-font-family);
 		font-weight: 300;
-		font-size: ${rem('18px')};
+		font-size: calc((16 / var(--article-base-font-size)) * 1rem);
 		letter-spacing: ${rem('0.22px')};
 		line-height: ${rem('32px')};
 		margin-bottom: ${rem('24px')};
@@ -144,7 +148,7 @@ export const ArticleContent = styled.div`
 	p {
 		font-family: var(--content-font-family);
 		color: var(--content-paragraph-color);
-		font-size: ${rem('17px')};
+		font-size: calc((17 / var(--article-base-font-size)) * 1rem);
 		letter-spacing: ${rem('0.4px')};
 		line-height: ${rem('28px')};
 	}
@@ -169,12 +173,12 @@ export const ArticleLink = styled.a`
 
 	.article-link {
 		&__title {
-			font-size: var(--global-font-size);
+			font-size: calc((16 / var(--article-base-font-size)) * 1rem);
 			font-family: var(--heading-font-family);
 		}
 
 		&__source {
-			font-size: ${rem('10px')};
+			font-size: calc((10 / var(--article-base-font-size)) * 1rem);
 			text-transform: uppercase;
 			letter-spacing: 1px;
 			color: var(--color-gray7);

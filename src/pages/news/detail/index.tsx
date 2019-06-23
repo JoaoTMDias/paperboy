@@ -31,7 +31,7 @@ import { EModalAlignType } from '../../../data/interfaces/modal.interface';
 
 enum EModalType {
 	SHARE = 'SHARE',
-	DIALOG = 'DIALOG',
+	PANEL = 'PANEL',
 }
 
 interface IArticleDetailPageProps {
@@ -41,7 +41,7 @@ interface IArticleDetailPageProps {
 
 interface IArticleDetailPageState {
 	showShareSheet: boolean;
-	showDialog: boolean;
+	showTypesetPanel: boolean;
 }
 
 class ArticleDetailPage extends React.Component<
@@ -55,7 +55,7 @@ class ArticleDetailPage extends React.Component<
 
 		this.state = {
 			showShareSheet: false,
-			showDialog: false,
+			showTypesetPanel: false,
 		};
 	}
 
@@ -71,7 +71,7 @@ class ArticleDetailPage extends React.Component<
 	handleClickToOpenModal(event: React.SyntheticEvent, type: EModalType) {
 		event.preventDefault();
 
-		const { showShareSheet, showDialog } = this.state;
+		const { showShareSheet, showTypesetPanel } = this.state;
 
 		switch (type) {
 			case EModalType.SHARE:
@@ -80,9 +80,9 @@ class ArticleDetailPage extends React.Component<
 				});
 				return true;
 
-			case EModalType.DIALOG:
+			case EModalType.PANEL:
 				this.setState({
-					showDialog: !showDialog,
+					showTypesetPanel: !showTypesetPanel,
 				});
 				return true;
 
@@ -97,7 +97,7 @@ class ArticleDetailPage extends React.Component<
 	): boolean {
 		event.preventDefault();
 
-		const { showShareSheet, showDialog } = this.state;
+		const { showShareSheet, showTypesetPanel } = this.state;
 
 		switch (type) {
 			case EModalType.SHARE:
@@ -106,9 +106,9 @@ class ArticleDetailPage extends React.Component<
 				});
 				return true;
 
-			case EModalType.DIALOG:
+			case EModalType.PANEL:
 				this.setState({
-					showDialog: !showDialog,
+					showTypesetPanel: !showTypesetPanel,
 				});
 				return true;
 
@@ -118,7 +118,7 @@ class ArticleDetailPage extends React.Component<
 	}
 
 	public render() {
-		const { showShareSheet } = this.state;
+		const { showShareSheet, showTypesetPanel } = this.state;
 		const { location } = this.props;
 		const { state } = location;
 		if (state) {
@@ -146,6 +146,7 @@ class ArticleDetailPage extends React.Component<
 							</React.Suspense>
 						</Modal>
 					)}
+					{showTypesetPanel && <p>TypesetPanel</p>}
 					<TopNavigationWithClose
 						title={data.title}
 						source="source"
@@ -206,8 +207,19 @@ class ArticleDetailPage extends React.Component<
 								type="button"
 								className="bottom-options-bar__button"
 								aria-label="Choose the font size you prefer"
+								onClick={(
+									event: React.MouseEvent<
+										HTMLButtonElement,
+										MouseEvent
+									>,
+								) => {
+									this.handleClickToOpenModal(
+										event,
+										EModalType.PANEL,
+									);
+								}}
 							>
-								<IconTypeset isActive={false} />
+								<IconTypeset isActive={showTypesetPanel} />
 							</button>
 							<button
 								type="button"
