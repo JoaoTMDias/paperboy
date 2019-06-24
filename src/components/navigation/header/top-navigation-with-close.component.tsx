@@ -265,7 +265,7 @@ const Container = styled.div`
 		height: ${rem('24px')};
 		border-radius: ${rem('24px')};
 		opacity: 1;
-		transform: scale(1);
+		transform: scale(1) translateX(-44px);
 		flex-basis: width: ${rem('24px')};
 		flex-shrink: 0;
 		flex-grow: 0;

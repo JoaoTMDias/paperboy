@@ -384,7 +384,7 @@ class ChooseSourcesPage extends React.PureComponent<
 						subtitle="Breaking news from over 30,000 sources"
 					/>
 				</TopNavigation>
-				<Modal delay={100000}>
+				<Modal delay={10000}>
 					<Confirm
 						title="Use location services?"
 						description="Can I use your devices' location to find any news sources related to your country/language?"

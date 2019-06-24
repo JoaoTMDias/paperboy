@@ -25,8 +25,7 @@ import MainNavigation from './navigation/main/main-navigation.component';
 
 // UI
 import { LatestNewsTab, NewsTabs } from './data-display/news/index.news';
-import ThumbnailSmall from './data-display/thumbnails/thumbnails-small.component';
-import ThumbnailLarge from './data-display/thumbnails/thumbnails-large.component';
+import ArticleThumbnail from './data-display/thumbnails/thumbnails-large.component';
 import ThumbnailImage from './data-display/thumbnails/thumbnails-image.component';
 import UISearchForm from './data-entry/forms/search-form.component';
 import SourceCard from './data-entry/sources/source-card.component';
@@ -84,8 +83,7 @@ export {
 	UIContentSpinner,
 	LatestNewsTab,
 	NewsTabs,
-	ThumbnailSmall,
-	ThumbnailLarge,
+	ArticleThumbnail,
 	ThumbnailImage,
 	LazyLoadingImage,
 	FormSwitch,

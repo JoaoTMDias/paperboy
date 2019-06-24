@@ -2,11 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { ListChildComponentProps } from 'react-window';
 
-import {
-	ThumbnailLarge,
-	ThumbnailSmall,
-	UIContentSpinner,
-} from '../../index.components';
+import { ArticleThumbnail, UIContentSpinner } from '../../index.components';
 
 import { List, Item } from './news-tabs.styled';
 
@@ -17,6 +13,7 @@ import {
 } from '../../../data/interfaces/index.interface';
 
 import { getAllLatestNewsFromSource } from '../../../data/redux/actions/index.actions';
+import { EThumbnailType } from '../thumbnails/thumbnails-large.component';
 
 interface INewsArticleTabProps {
 	sources: string[];
@@ -93,7 +90,11 @@ class LatestNewsCategoryTab extends React.PureComponent<
 							key={`latest-news-category__article__${article.publishedAt}`}
 							id={`latest-news-category__article__${index}`}
 						>
-							<ThumbnailLarge id={index} options={article} />
+							<ArticleThumbnail
+								id={index}
+								options={article}
+								type={EThumbnailType.LARGE}
+							/>
 						</Item>
 					);
 				}
@@ -103,7 +104,11 @@ class LatestNewsCategoryTab extends React.PureComponent<
 						key={`latest-news-category__article__${article.publishedAt}`}
 						id={`latest-news-category__article__${index}`}
 					>
-						<ThumbnailSmall id={index} options={article} />
+						<ArticleThumbnail
+							id={index}
+							options={article}
+							type={EThumbnailType.SMALL}
+						/>
 					</Item>
 				);
 			},

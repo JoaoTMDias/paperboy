@@ -1,13 +1,14 @@
 import { EAppThemeType } from './theme.interfaces';
-import { IListOfCategorizedSources } from './news.interface';
+import { IListOfCategorizedSources, INewsArticleItem } from './news.interface';
 import { IChosenSource } from '../../pages/onboarding/choose-sources';
 
 export interface PreferencesReducer {
 	type: null;
 	theme?: EAppThemeType | undefined;
 	chosenSources: ChosenNewsSources;
+	saved: INewsArticleItem[];
 	authenticated: boolean;
-	baseFontSize: number;
+	baseFontRatio: number;
 }
 
 export interface IChosenNewsSourcesItems {

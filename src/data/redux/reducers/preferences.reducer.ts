@@ -7,6 +7,8 @@ import {
 	SET_CHOSEN_NEWS_SOURCES,
 	SET_USER_AUTHENTICATION,
 	SET_APP_THEME,
+	SET_BASE_FONT_RATIO,
+	SET_SAVE_OR_UNSAVE_ARTICLE,
 } from '../../constants/index.constants';
 
 import {
@@ -32,8 +34,27 @@ const initialState: PreferencesReducer = {
 			},
 		],
 	},
+	saved: [
+		{
+			source: {
+				id: 'google-news',
+				name: 'Google News',
+			},
+			author: 'Nicole Gaouette and Noah Gray, CNN',
+			title: "Trump announces 'hard-hitting' new sanctions against Iran",
+			description:
+				"President Donald Trump announced new sanctions against Iran Monday in part to retaliate after the downing of a US drone last week, with the punitive measures targeting Iran's most senior leader, military officials and its top diplomat, Foreign Minister Javad …",
+			url:
+				'https://www.cnn.com/2019/06/24/politics/trump-iran-sanctions/index.html',
+			urlToImage:
+				'https://cdn.cnn.com/cnnnext/dam/assets/190507081502-13-donald-trump-lead-image-super-tease.jpg',
+			publishedAt: '2019-06-24T16:42:00+00:00',
+			content:
+				"Washington (CNN)President Donald Trump announced new sanctions against Iran Monday in part to retaliate after the downing of a US drone last week, with the punitive measures targeting Iran's most senior leader, military officials and its top diplomat, Foreign… [+1849 chars]",
+		},
+	],
 	authenticated: false,
-	baseFontSize: 16,
+	baseFontRatio: 1,
 };
 
 /**
@@ -60,6 +81,14 @@ function preferences(
 
 			case SET_APP_THEME:
 				draftState.theme = action.payload.data;
+				break;
+
+			case SET_BASE_FONT_RATIO:
+				draftState.baseFontRatio = action.payload.data;
+				break;
+
+			case SET_SAVE_OR_UNSAVE_ARTICLE:
+				draftState.saved = action.payload.data;
 				break;
 
 			case RESET_APP_STATE:

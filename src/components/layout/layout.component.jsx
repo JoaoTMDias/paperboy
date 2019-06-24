@@ -87,9 +87,7 @@ const Layout = props => {
 	const { children, authenticated, header, bottomNavigation } = props;
 
 	const renderNavigationElements = () => {
-		const isDesktop = window.matchMedia('(min-width: 64rem)').matches
-			? true
-			: false;
+		const isDesktop = !!window.matchMedia('(min-width: 64rem)').matches;
 
 		if (authenticated) {
 			return (

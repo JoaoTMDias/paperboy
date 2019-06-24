@@ -95,16 +95,8 @@ class ViewportHeight extends React.Component<
 	 */
 	getDevicePlatform() {
 		const { platform } = this.props;
-		const iOS = 'ios';
 
-		switch (platform) {
-			case iOS:
-				this.handleFixViewportHeightUnits();
-				break;
-
-			default:
-				break;
-		}
+		this.handleFixViewportHeightUnits(platform);
 	}
 
 	/**
@@ -116,9 +108,10 @@ class ViewportHeight extends React.Component<
 	 * @date 2019-04-11
 	 * @memberof ViewportHeight
 	 */
-	handleFixViewportHeightUnits() {
+	handleFixViewportHeightUnits(platform: string) {
 		const vHeight = window.innerHeight;
 		const vUnit = vHeight * 0.01;
+		const iOS = 'ios';
 
 		this.setState(
 			{
@@ -130,13 +123,20 @@ class ViewportHeight extends React.Component<
 
 				if (viewportUnit && viewportHeight) {
 					document.documentElement.style.setProperty(
-						'--viewport-height-unit',
-						`${viewportUnit}px`,
+						'--viewport-height-unitless',
+						`${viewportHeight}`,
 					);
-					document.documentElement.style.setProperty(
-						'--viewport-height',
-						`${viewportHeight}px`,
-					);
+
+					if (platform && platform === iOS) {
+						document.documentElement.style.setProperty(
+							'--viewport-height-unit',
+							`${viewportUnit}px`,
+						);
+						document.documentElement.style.setProperty(
+							'--viewport-height',
+							`${viewportHeight}px`,
+						);
+					}
 				}
 			},
 		);

@@ -32,7 +32,10 @@ module.exports = {
 		],
 		'comma-dangle': [1, 'always-multiline'],
 
-		'no-param-reassign': ['error', { ignorePropertyModificationsFor: ['draftState', 'draft'] }],
+		'no-param-reassign': [
+			'error',
+			{ ignorePropertyModificationsFor: ['draftState', 'draft'] },
+		],
 		'class-methods-use-this': 'off',
 		'require-jsdoc': 2,
 		'lines-around-comment': [

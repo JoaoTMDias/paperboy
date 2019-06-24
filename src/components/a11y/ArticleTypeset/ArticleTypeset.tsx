@@ -1,19 +1,22 @@
 // Libraries
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import * as S from './ArticleTypeset.styled';
 import { IconChangeTypeSize } from '../../general/icons/icons';
 import { EIconChangeTypeSize } from '../../general/icons/icon.change-type';
 import { IGlobalStoreState } from '../../../data/interfaces/index.interface';
+import { setBaseFontRatio } from '../../../data/redux/actions/index.actions';
 
 // Interface
 interface IArticleTypesetProps {
 	theme?: any;
-	baseFontSize: number;
+	baseFontRatio: number;
+	dispatch: Dispatch<any>;
 }
 
 interface IArticleTypesetState {
-	currentFontSizeValue: number;
+	currentBaseFontSizeRatio: number;
 	htmlElement: HTMLElement | null;
 }
 
@@ -28,34 +31,43 @@ class ArticleTypeset extends React.Component<
 	IArticleTypesetState
 > {
 	static defaultProps = {
-		baseFontSize: 16,
+		baseFontRatio: 1,
 	};
 
 	constructor(props: IArticleTypesetProps) {
 		super(props);
 
 		this.state = {
-			currentFontSizeValue: 16,
+			currentBaseFontSizeRatio: 1,
 			htmlElement: null,
 		};
 	}
 
 	componentDidMount() {
-		const { baseFontSize } = this.props;
-		const { currentFontSizeValue } = this.state;
-
+		const { baseFontRatio } = this.props;
 		const rootElement: HTMLElement = document.documentElement;
 
 		if (rootElement) {
 			this.setState(
 				{
 					htmlElement: rootElement,
-					currentFontSizeValue: baseFontSize,
+					currentBaseFontSizeRatio: baseFontRatio,
 				},
 				() => {
-					this.updateRootBaseFontSize(currentFontSizeValue);
+					this.updateRootbaseFontRatio(baseFontRatio);
 				},
 			);
+		}
+	}
+
+	public componentDidUpdate(prevProps: IArticleTypesetProps) {
+		const { baseFontRatio } = this.props;
+		const { currentBaseFontSizeRatio } = this.state;
+		if (
+			prevProps.baseFontRatio !== baseFontRatio &&
+			baseFontRatio !== currentBaseFontSizeRatio
+		) {
+			this.updateRootbaseFontRatio(baseFontRatio);
 		}
 	}
 
@@ -70,10 +82,11 @@ class ArticleTypeset extends React.Component<
 	 */
 	handleOnChangeRangeValue(event: React.ChangeEvent<HTMLInputElement>) {
 		event.preventDefault();
+		const { dispatch } = this.props;
 
 		const { value } = event.target;
-
-		this.updateRootBaseFontSize(value);
+		dispatch(setBaseFontRatio(parseFloat(value)));
+		this.updateRootbaseFontRatio(value);
 	}
 
 	/**
@@ -83,20 +96,20 @@ class ArticleTypeset extends React.Component<
 	 * @param {number} size
 	 * @memberof ArticleTypeset
 	 */
-	updateRootBaseFontSize(size: number | string) {
+	updateRootbaseFontRatio(size: number | string) {
 		const { htmlElement } = this.state;
 
 		if (htmlElement) {
-			htmlElement.style.setProperty('--base-font-size', `${size}`);
+			htmlElement.style.setProperty('--base-font-ratio', `${size}`);
 		}
 	}
 
 	render() {
-		const { baseFontSize } = this.props;
+		const { baseFontRatio } = this.props;
 		return (
 			<S.PanelWrapper id="article-typeset" className="article-typeset">
 				<header className="article-typeset__header">
-					<h4 className="article-typeset__title">Font Size</h4>
+					<h4 className="article-typeset__title">Change font size</h4>
 				</header>
 				<div className="article-typeset__content">
 					<IconChangeTypeSize type={EIconChangeTypeSize.SMALL} />
@@ -106,10 +119,10 @@ class ArticleTypeset extends React.Component<
 							className="article-typeset__input "
 							name="typeset"
 							type="range"
-							min="14"
-							max="18"
-							defaultValue={`${baseFontSize}`}
-							step="1"
+							min="0.75"
+							max="1.25"
+							defaultValue={`${baseFontRatio}`}
+							step="0.25"
 							onChange={(
 								event: React.ChangeEvent<HTMLInputElement>,
 							) => this.handleOnChangeRangeValue(event)}
@@ -131,7 +144,7 @@ class ArticleTypeset extends React.Component<
  */
 function mapStateToProps(state: IGlobalStoreState) {
 	return {
-		baseFontSize: state.preferences.baseFontSize,
+		baseFontRatio: state.preferences.baseFontRatio,
 	};
 }
 

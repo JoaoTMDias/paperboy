@@ -34,7 +34,12 @@ export const PanelWrapper = styled.aside`
 			text-align: center;
 
 			font-family: var(--body-font-family);
-			font-size: calc((14 / var(--article-base-font-size)) * 1rem);
+			font-size: font-size: calc(
+			(
+					((14 * var(--base-font-ratio, 1)) * 100) /
+						var(--viewport-height-unitless)
+				) * 1vh
+		);
 			color: var(--color-gray7);
 			letter-spacing: 0;
 			line-height: ${rem('32px')};
@@ -69,7 +74,6 @@ export const PanelWrapper = styled.aside`
 			-webkit-appearance: none;
 			width: 100%;
 			margin: ${rem('13px')} 0;
-			transform: rotate(0.5turn);
 			&:focus {
 				outline: none;
 			}
@@ -84,7 +88,7 @@ export const PanelWrapper = styled.aside`
 				border: 0px solid rgba(1, 1, 1, 0);
 			}
 			&::-webkit-slider-thumb {
-				box-shadow: -3px -3px 8px rgba(0, 0, 0, 0.15),
+				box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15),
 					0px 0px 3px rgba(13, 13, 13, 0.15);
 				border: 0px solid var(--color-white);
 				height: ${rem('28px')};

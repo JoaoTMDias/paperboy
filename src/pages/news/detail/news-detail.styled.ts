@@ -84,7 +84,12 @@ export const HeroCopy = styled.div`
 		width: 100%;
 		font-family: var(--body-font-family);
 		font-weight: normal;
-		font-size: calc((22 / var(--base-font-size, 16)) * 1rem);
+		font-size: calc(
+			(
+					((22 * var(--base-font-ratio, 1)) * 100) /
+						var(--viewport-height-unitless)
+				) * 1vh
+		);
 		color: var(--color-white);
 		letter-spacing: 0;
 		text-align: left;
@@ -100,7 +105,10 @@ export const HeroCopy = styled.div`
 		-webkit-line-clamp: var(--number-of-lines);
 		-webkit-box-orient: vertical;
 		max-height: calc(
-			var(--number-of-lines) * var(--global-lineheight) * 1.1rem
+			(
+					var(--number-of-lines) * var(--global-lineheight) *
+						var(--base-font-ratio, 1) + 0.5
+				) * 1rem
 		);
 	}
 
@@ -114,7 +122,12 @@ export const HeroCopy = styled.div`
 		&__source,
 		&__time {
 			color: var(--color-white);
-			font-size: calc((11 / var(--base-font-size, 16)) * 1rem);
+			font-size: calc(
+				(
+						((11 * var(--base-font-ratio, 1)) * 100) /
+							var(--viewport-height-unitless)
+					) * 1vh
+			);
 		}
 
 		&__source {
@@ -139,7 +152,12 @@ export const ArticleContent = styled.div`
 		color: var(--content-lead-color);
 		font-family: var(--body-font-family);
 		font-weight: 300;
-		font-size: calc((16 / var(--base-font-size, 16)) * 1rem);
+		font-size: calc(
+			(
+					((16 * var(--base-font-ratio, 1)) * 100) /
+						var(--viewport-height-unitless)
+				) * 1vh
+		);
 		letter-spacing: ${rem('0.22px')};
 		line-height: ${rem('32px')};
 		margin-bottom: ${rem('24px')};
@@ -148,7 +166,12 @@ export const ArticleContent = styled.div`
 	p {
 		font-family: var(--content-font-family);
 		color: var(--content-paragraph-color);
-		font-size: calc((17 / var(--base-font-size, 16)) * 1rem);
+		font-size: calc(
+			(
+					((16 * var(--base-font-ratio, 1)) * 100) /
+						var(--viewport-height-unitless)
+				) * 1vh
+		);
 		letter-spacing: ${rem('0.4px')};
 		line-height: ${rem('28px')};
 	}
@@ -173,12 +196,22 @@ export const ArticleLink = styled.a`
 
 	.article-link {
 		&__title {
-			font-size: calc((16 / var(--base-font-size, 16)) * 1rem);
+			font-size: calc(
+				(
+						((16 * var(--base-font-ratio, 1)) * 100) /
+							var(--viewport-height-unitless)
+					) * 1vh
+			);
 			font-family: var(--heading-font-family);
 		}
 
 		&__source {
-			font-size: calc((10 / var(--base-font-size, 16)) * 1rem);
+			font-size: calc(
+				(
+						((10 * var(--base-font-ratio, 1)) * 100) /
+							var(--viewport-height-unitless)
+					) * 1vh
+			);
 			text-transform: uppercase;
 			letter-spacing: 1px;
 			color: var(--color-gray7);

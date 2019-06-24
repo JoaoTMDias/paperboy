@@ -11,7 +11,7 @@ describe('<A11yPageTitle />', () => {
 		const testId = 'a11y-page-title';
 		const { getByTestId, debug } = render(
 			<div>
-				<A11yPageTitle title={testTitle} />,
+				<A11yPageTitle title={testTitle} />
 			</div>,
 		);
 

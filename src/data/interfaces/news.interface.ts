@@ -47,6 +47,11 @@ export interface INewsArticles {
 	country: string;
 }
 
+export enum INewsArticleSavedType {
+	SAVE = 'SAVE',
+	UNSAVE = 'UNSAVE',
+}
+
 export interface Sources {
 	language: any[];
 	general: INewsArticles[];

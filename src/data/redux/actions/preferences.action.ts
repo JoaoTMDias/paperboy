@@ -3,12 +3,15 @@ import {
 	SET_USER_AUTHENTICATION,
 	SET_APP_THEME,
 	RESET_APP_STATE,
+	SET_BASE_FONT_RATIO,
+	SET_SAVE_OR_UNSAVE_ARTICLE,
 } from '../../constants/index.constants';
 import { EAppThemeType } from '../../interfaces/theme.interfaces';
 import { IChosenSource } from '../../../pages/onboarding/choose-sources';
 import {
 	INewsPageHeaderItems,
 	ChosenNewsSources,
+	INewsArticleItem,
 } from '../../interfaces/index.interface';
 
 /**
@@ -128,6 +131,39 @@ export function resetAppState(status: boolean) {
 		type: RESET_APP_STATE,
 		payload: {
 			status,
+		},
+	};
+}
+
+/**
+ * @description Sets the Base Font Ratio for font-size calculations
+ * @author João Dias
+ * @date 2019-06-24
+ * @export
+ * @param {number} ratio
+ */
+export function setBaseFontRatio(ratio: number) {
+	return {
+		type: SET_BASE_FONT_RATIO,
+		payload: {
+			data: ratio,
+		},
+	};
+}
+
+/**
+ * @description
+ * @author João Dias
+ * @date 2019-06-24
+ * @export
+ * @param {INewsArticleItem} article
+ * @returns
+ */
+export function handleSaveOrUnsaveArticle(article: INewsArticleItem[]) {
+	return {
+		type: SET_SAVE_OR_UNSAVE_ARTICLE,
+		payload: {
+			data: article,
 		},
 	};
 }

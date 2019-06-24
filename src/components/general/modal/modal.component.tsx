@@ -5,13 +5,17 @@ import { Portal, UIDialog } from '../../index.components';
 
 interface IModalProps {
 	theme?: any;
+	isModalOpen: boolean;
 	backgroundOpacity?: number;
 	align?: 'top' | 'middle' | 'bottom';
 	delay?: number | null;
+	handleClickToCloseModal?(
+		event: React.MouseEvent<HTMLElement, MouseEvent>,
+	): void;
 }
 
 interface IModalState {
-	isModalOpen: boolean;
+	shouldOpenModal: boolean;
 }
 
 class Modal extends React.PureComponent<IModalProps, IModalState> {
@@ -25,10 +29,8 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
 
 	constructor(props: IModalProps) {
 		super(props);
-		this.handleCloseModal = this.handleCloseModal.bind(this);
-
 		this.state = {
-			isModalOpen: false,
+			shouldOpenModal: false,
 		};
 	}
 
@@ -38,12 +40,15 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
 	 * @memberof Modal
 	 */
 	componentDidMount() {
-		const { delay } = this.props;
+		const { delay, isModalOpen } = this.props;
 
 		if (delay && delay > 0) {
-			this.timer = setTimeout(() => this.handleOpenModal(), delay);
+			this.timer = setTimeout(
+				() => this.handleOpenModal(isModalOpen),
+				delay,
+			);
 		} else {
-			this.handleOpenModal();
+			this.handleOpenModal(isModalOpen);
 		}
 	}
 
@@ -51,30 +56,30 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
 		clearTimeout(this.timer);
 	}
 
-	handleOpenModal() {
-		this.setState({
-			isModalOpen: true,
-		});
-	}
+	handleOnClickOnBackground(event) {
+		const { handleClickToCloseModal } = this.props;
 
-	/**
-	 * @description Closes the modal
-	 * @date 2019-01-06
-	 * @memberof Modal
-	 */
-	handleCloseModal(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 		event.preventDefault();
 
-		this.setState({
-			isModalOpen: false,
-		});
+		if (handleClickToCloseModal) {
+			handleClickToCloseModal(event);
+		}
+	}
+
+	handleOpenModal(status: boolean) {
+		if (status) {
+			this.setState({
+				shouldOpenModal: true,
+			});
+		}
 	}
 
 	public render() {
 		const { children, backgroundOpacity, align, delay } = this.props;
-		const { isModalOpen } = this.state;
 
-		if (isModalOpen) {
+		const { shouldOpenModal } = this.state;
+
+		if (shouldOpenModal) {
 			return (
 				<Portal>
 					<ModalWrapper
@@ -83,7 +88,7 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
 						delay={delay}
 						onClick={(
 							event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-						) => this.handleCloseModal(event)}
+						) => this.handleOnClickOnBackground(event)}
 						tabIndex={-1}
 					>
 						<UIDialog
