@@ -1,5 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-import { rem } from 'polished';
+import styled, { keyframes } from "styled-components";
+import { rem } from "polished";
 
 export const OpeningAnimation = keyframes`
   from {
@@ -59,16 +59,11 @@ export const Hero = styled.div`
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-image: linear-gradient(
-			180deg,
-			rgba(0, 0, 0, 0.4) 0%,
-			rgba(0, 0, 0, 0) 15%,
-			rgba(0, 0, 0, 0.9) 100%
-		);
+		background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 15%, rgba(0, 0, 0, 0.9) 100%);
 		height: 100%;
 		width: 100%;
 		overflow: hidden;
-		content: '';
+		content: "";
 	}
 `;
 
@@ -78,18 +73,13 @@ export const HeroCopy = styled.div`
 	display: flex;
 	flex-direction: column;
 	z-index: 1;
-	padding: 0 ${rem('32px')} ${rem('16px')} ${rem('16px')};
+	padding: 0 ${rem("32px")} ${rem("16px")} ${rem("16px")};
 
 	.title {
 		width: 100%;
 		font-family: var(--body-font-family);
 		font-weight: normal;
-		font-size: calc(
-			(
-					((22 * var(--base-font-ratio, 1)) * 100) /
-						var(--viewport-height-unitless)
-				) * 1vh
-		);
+		font-size: calc((((22 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
 		color: var(--color-white);
 		letter-spacing: 0;
 		text-align: left;
@@ -104,12 +94,7 @@ export const HeroCopy = styled.div`
 		display: -webkit-box;
 		-webkit-line-clamp: var(--number-of-lines);
 		-webkit-box-orient: vertical;
-		max-height: calc(
-			(
-					var(--number-of-lines) * var(--global-lineheight) *
-						var(--base-font-ratio, 1) + 0.5
-				) * 1rem
-		);
+		max-height: calc((var(--number-of-lines) * var(--global-lineheight) * var(--base-font-ratio, 1) + 0.5) * 1rem);
 	}
 
 	.metadata {
@@ -122,12 +107,7 @@ export const HeroCopy = styled.div`
 		&__source,
 		&__time {
 			color: var(--color-white);
-			font-size: calc(
-				(
-						((11 * var(--base-font-ratio, 1)) * 100) /
-							var(--viewport-height-unitless)
-					) * 1vh
-			);
+			font-size: calc((((11 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
 		}
 
 		&__source {
@@ -152,33 +132,23 @@ export const ArticleContent = styled.div`
 		color: var(--content-lead-color);
 		font-family: var(--body-font-family);
 		font-weight: 300;
-		font-size: calc(
-			(
-					((16 * var(--base-font-ratio, 1)) * 100) /
-						var(--viewport-height-unitless)
-				) * 1vh
-		);
-		letter-spacing: ${rem('0.22px')};
-		line-height: ${rem('32px')};
-		margin-bottom: ${rem('24px')};
+		font-size: calc((((16 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
+		letter-spacing: ${rem("0.22px")};
+		line-height: ${rem("32px")};
+		margin-bottom: ${rem("24px")};
 	}
 
 	p {
 		font-family: var(--content-font-family);
 		color: var(--content-paragraph-color);
-		font-size: calc(
-			(
-					((16 * var(--base-font-ratio, 1)) * 100) /
-						var(--viewport-height-unitless)
-				) * 1vh
-		);
-		letter-spacing: ${rem('0.4px')};
-		line-height: ${rem('28px')};
+		font-size: calc((((16 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
+		letter-spacing: ${rem("0.4px")};
+		line-height: ${rem("28px")};
 	}
 `;
 
 export const ArticleLink = styled.a`
-	--button-size: ${rem('56px')};
+	--button-size: ${rem("56px")};
 	width: 100%;
 	height: var(--button-size);
 
@@ -196,22 +166,12 @@ export const ArticleLink = styled.a`
 
 	.article-link {
 		&__title {
-			font-size: calc(
-				(
-						((16 * var(--base-font-ratio, 1)) * 100) /
-							var(--viewport-height-unitless)
-					) * 1vh
-			);
+			font-size: calc((((16 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
 			font-family: var(--heading-font-family);
 		}
 
 		&__source {
-			font-size: calc(
-				(
-						((10 * var(--base-font-ratio, 1)) * 100) /
-							var(--viewport-height-unitless)
-					) * 1vh
-			);
+			font-size: calc((((10 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
 			text-transform: uppercase;
 			letter-spacing: 1px;
 			color: var(--color-gray7);
@@ -232,7 +192,7 @@ export const ArticleLink = styled.a`
 
 export const BottomOptionsBar = styled.aside`
 	width: 100%;
-	height: ${rem('48px')};
+	height: ${rem("48px")};
 
 	display: flex;
 	flex-direction: row;

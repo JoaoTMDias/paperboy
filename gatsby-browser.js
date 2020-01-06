@@ -2,7 +2,7 @@
  * @description Wrap Redux Root Element
  * @date 2019-01-15
  */
-import wrapWithProvider from './wrap-with-provider';
+import wrapWithProvider from "./wrap-with-provider";
 export const wrapRootElement = wrapWithProvider;
 
 /**
@@ -30,7 +30,7 @@ const confirmDialog = msg => {
 };
 
 export const onServiceWorkerUpdateFound = () => {
-	console.log('A new update has been found.');
+	console.log("A new update has been found.");
 };
 
 /**
@@ -39,11 +39,7 @@ export const onServiceWorkerUpdateFound = () => {
  * @date 2019-01-15
  */
 export const onServiceWorkerUpdateReady = () => {
-	confirmDialog(
-		`Paperboy has been updated.` + `Reload to display the latest version?`,
-	)
+	confirmDialog(`Paperboy has been updated.` + `Reload to display the latest version?`)
 		.then(() => window.location.reload())
-		.catch(err =>
-			console.info(`Service Worker will keep the current version`),
-		);
+		.catch(err => console.info(`Service Worker will keep the current version`));
 };

@@ -1,8 +1,8 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
-import { rem } from 'polished';
-import { flexRow, elevation } from '../../../helpers/index.helpers';
+import * as React from "react";
+import styled from "styled-components";
+import { rem } from "polished";
+import { flexRow, elevation } from "../../../helpers/index.helpers";
 
 // Interface
 interface IAddToHomeScreenWithInstallProps {
@@ -18,9 +18,7 @@ interface IAddToHomeScreenWithInstallProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IAddToHomeScreenWithInstallProps>}
  */
-const AddToHomeScreenWithInstall: React.FunctionComponent<
-	IAddToHomeScreenWithInstallProps
-> = props => {
+const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScreenWithInstallProps> = props => {
 	const { id, title, subtitle, isStandalone } = props;
 
 	/**
@@ -29,12 +27,10 @@ const AddToHomeScreenWithInstall: React.FunctionComponent<
 	 * @date 2019-06-07
 	 * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
 	 */
-	function handleClickToInstall(
-		event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-	) {
+	function handleClickToInstall(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		event.preventDefault();
 
-		console.log('click to install');
+		console.log("click to install");
 	}
 
 	return (
@@ -43,18 +39,14 @@ const AddToHomeScreenWithInstall: React.FunctionComponent<
 			className="section-list__item__label"
 			tabIndex={0}
 			disabled={isStandalone}
-			onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-				handleClickToInstall(event)
-			}
+			onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleClickToInstall(event)}
 		>
 			<div className="text">
 				<h3 className="text__title">{title}</h3>
 				{subtitle && <h6 className="text__subtitle">{subtitle}</h6>}
 			</div>
-			<div className={`banner ${isStandalone ? 'is-standalone' : ''}`}>
-				{isStandalone && isStandalone === true
-					? 'Installed'
-					: 'Install'}
+			<div className={`banner ${isStandalone ? "is-standalone" : ""}`}>
+				{isStandalone && isStandalone === true ? "Installed" : "Install"}
 			</div>
 		</Wrapper>
 	);
@@ -62,11 +54,11 @@ const AddToHomeScreenWithInstall: React.FunctionComponent<
 
 // Styling
 const Wrapper = styled.button`
-	--icon-size: ${rem('48px')};
+	--icon-size: ${rem("48px")};
 	--list-item-title-color: var(--color-gray9);
 	--list-item-subtitle-color: var(--color-gray8);
 
-	html[data-theme='DARK'] & {
+	html[data-theme="DARK"] & {
 		--list-item-title-color: var(--color-gray0);
 		--list-item-subtitle-color: var(--color-gray3);
 	}
@@ -74,9 +66,9 @@ const Wrapper = styled.button`
 	width: 100%;
 	margin: 0;
 	${flexRow({
-		direction: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
+		direction: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
 	})};
 
 	padding: 0;
@@ -98,7 +90,7 @@ const Wrapper = styled.button`
 		}
 
 		&__title {
-			font-size: ${rem('14px')};
+			font-size: ${rem("14px")};
 			color: var(--list-item-title-color);
 			letter-spacing: 0.4px;
 			line-height: 1;
@@ -107,7 +99,7 @@ const Wrapper = styled.button`
 		}
 
 		&__subtitle {
-			font-size: ${rem('13px')};
+			font-size: ${rem("13px")};
 			color: var(--list-item-subtitle-color);
 			margin-top: 0.25rem;
 		}
@@ -115,8 +107,8 @@ const Wrapper = styled.button`
 
 	.banner {
 		background-color: var(--color-primary);
-		padding: ${rem('8px')} var(--global-padding);
-		border-radius: ${rem('34px')};
+		padding: ${rem("8px")} var(--global-padding);
+		border-radius: ${rem("34px")};
 		color: var(--color-white);
 		${elevation[1]};
 

@@ -1,4 +1,4 @@
-import { IAllAvailableNewsSource } from './sources.interface';
+import { IAllAvailableNewsSource } from "./sources.interface";
 
 export interface INewsArticle {
 	status: string;
@@ -48,8 +48,8 @@ export interface INewsArticles {
 }
 
 export enum INewsArticleSavedType {
-	SAVE = 'SAVE',
-	UNSAVE = 'UNSAVE',
+	SAVE = "SAVE",
+	UNSAVE = "UNSAVE",
 }
 
 export interface Sources {
@@ -64,11 +64,11 @@ export interface Sources {
 }
 
 export enum Category {
-	Business = 'business',
-	Entertainment = 'entertainment',
-	General = 'general',
-	Health = 'health',
-	Science = 'science',
-	Sports = 'sports',
-	Technology = 'technology',
+	Business = "business",
+	Entertainment = "entertainment",
+	General = "general",
+	Health = "health",
+	Science = "science",
+	Sports = "sports",
+	Technology = "technology",
 }

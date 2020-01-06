@@ -1,1 +1,1 @@
-export { default } from './ShareSheet';
+export { default } from "./ShareSheet";

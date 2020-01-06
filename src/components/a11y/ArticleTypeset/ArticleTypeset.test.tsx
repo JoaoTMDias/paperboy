@@ -1,10 +1,11 @@
-import * as React from 'react';
-import { shallow } from 'enzyme';
-import ArticleTypeset from './ArticleTypeset';
+import * as React from "react";
+import { render } from "@testing-library/react";
+import ArticleTypeset from "./ArticleTypeset";
+import Provider from "../../../../wrap-with-provider";
 
-describe('<ArticleTypeset />', () => {
-	test('renders', () => {
-		const wrapper = shallow(<ArticleTypeset />);
+describe("<ArticleTypeset />", () => {
+	test("renders", () => {
+		const wrapper = render(<Provider element={<ArticleTypeset />} />);
 		expect(wrapper).toMatchSnapshot();
 	});
 });

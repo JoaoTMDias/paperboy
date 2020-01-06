@@ -1,4 +1,4 @@
-import { produce } from 'immer';
+import { produce } from "immer";
 
 // Constants
 import {
@@ -6,8 +6,8 @@ import {
 	GET_ALL_AVAILABLE_NEWS_SOURCES,
 	GET_ALL_AVAILABLE_NEWS_SOURCES_LANGUAGE,
 	RESET_APP_STATE,
-} from '../../constants/index.constants';
-import { IReduxActions } from '../../interfaces/index.interface';
+} from "../../constants/index.constants";
+import { IReduxActions } from "../../interfaces/index.interface";
 
 // News initial state
 const initialState = {

@@ -1,12 +1,12 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
-import { rem } from 'polished';
+import * as React from "react";
+import styled from "styled-components";
+import { rem } from "polished";
 
 // Component Props
 interface IIconShareProps {
 	theme?: any;
-	platform: 'android' | 'ios' | 'desktop';
+	platform: "android" | "ios" | "desktop";
 }
 
 /**
@@ -18,7 +18,7 @@ interface IIconShareProps {
 const IconShare: React.FunctionComponent<IIconShareProps> = props => {
 	const renderIcon = () => {
 		switch (props.platform) {
-			case 'ios':
+			case "ios":
 				return (
 					<g>
 						<path
@@ -32,8 +32,8 @@ const IconShare: React.FunctionComponent<IIconShareProps> = props => {
 					</g>
 				);
 
-			case 'android':
-			case 'desktop':
+			case "android":
+			case "desktop":
 			default:
 				return (
 					<path
@@ -45,12 +45,7 @@ const IconShare: React.FunctionComponent<IIconShareProps> = props => {
 	};
 
 	return (
-		<Icon
-			xmlns="http://www.w3.org/2000/svg"
-			viewBox="0 0 44 44"
-			aria-labelledby="share-icon-title"
-			tabIndex={-1}
-		>
+		<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" aria-labelledby="share-icon-title" tabIndex={-1}>
 			<title id="share-icon-title">Share Icon</title>
 			{renderIcon()}
 		</Icon>
@@ -58,13 +53,13 @@ const IconShare: React.FunctionComponent<IIconShareProps> = props => {
 };
 
 IconShare.defaultProps = {
-	platform: 'ios',
+	platform: "ios",
 };
 
 // Styling
 const Icon = styled.svg`
-	width: ${rem('44px')};
-	height: ${rem('44px')};
+	width: ${rem("44px")};
+	height: ${rem("44px")};
 `;
 
 export default IconShare;

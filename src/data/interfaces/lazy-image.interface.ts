@@ -1,6 +1,6 @@
 export enum EImageType {
-	IMAGE = 'IMAGE',
-	PICTURE = 'PICTURE',
+	IMAGE = "IMAGE",
+	PICTURE = "PICTURE",
 }
 
 export interface IImageSourceString {
@@ -32,8 +32,8 @@ export interface IImageLazyProps {
 	alt: string;
 	debounce?: number;
 	placeholderColor?: string;
-	loading?: 'lazy' | 'eager' | 'auto';
-	animation?: 'fade' | 'zoom' | null;
+	loading?: "lazy" | "eager" | "auto";
+	animation?: "fade" | "zoom" | null;
 	speed?: number;
 	style?: React.CSSProperties;
 	fit?: string;

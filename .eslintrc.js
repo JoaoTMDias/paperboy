@@ -7,11 +7,11 @@
 
 module.exports = {
 	extends: [
-		'./eslint/rules/react',
-		'./eslint/rules/a11y',
-		'./eslint/rules/typescript',
-		'./eslint/rules/prettier',
-		'./eslint/rules/general',
+		"./eslint/rules/react",
+		"./eslint/rules/a11y",
+		"./eslint/rules/typescript",
+		"./eslint/rules/prettier",
+		"./eslint/rules/general",
 	].map(require.resolve),
 	globals: {
 		window: true,

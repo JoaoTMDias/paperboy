@@ -1,10 +1,10 @@
 // Libraries
-import * as React from 'react';
-import Helmet from 'react-helmet';
-import { connect } from 'react-redux';
+import * as React from "react";
+import Helmet from "react-helmet";
+import { connect } from "react-redux";
 
-import { EAppThemeType } from '../../../data/interfaces/theme.interfaces';
-import { IGlobalStoreState } from '../../../data/interfaces/index.interface';
+import { EAppThemeType } from "../../../data/interfaces/theme.interfaces";
+import { IGlobalStoreState } from "../../../data/interfaces/index.interface";
 
 // Interface
 interface IChangeAppThemeProps {
@@ -23,17 +23,14 @@ interface IChangeAppThemeState {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IChangeAppThemeProps>}
  */
-class ChangeAppTheme extends React.PureComponent<
-	IChangeAppThemeProps,
-	IChangeAppThemeState
-> {
+class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAppThemeState> {
 	constructor(props: IChangeAppThemeProps) {
 		super(props);
 
 		this.state = {
 			rootElement: null,
 			hasNewTheme: false,
-			themeColor: '#e81b1f',
+			themeColor: "#e81b1f",
 		};
 	}
 
@@ -47,9 +44,7 @@ class ChangeAppTheme extends React.PureComponent<
 	componentDidMount(): boolean {
 		const { currentTheme } = this.props;
 		if (document !== undefined) {
-			const rootElement = document.documentElement
-				? document.documentElement
-				: null;
+			const rootElement = document.documentElement ? document.documentElement : null;
 
 			this.setState(
 				{
@@ -57,15 +52,10 @@ class ChangeAppTheme extends React.PureComponent<
 				},
 				() => {
 					if (currentTheme) {
-						const hasDarkModeInSystemPreferences = window.matchMedia(
-							'preferes-color-scheme: dark',
-						).matches
-							? window.matchMedia('preferes-color-scheme: dark')
-									.matches
+						const hasDarkModeInSystemPreferences = window.matchMedia("preferes-color-scheme: dark").matches
+							? window.matchMedia("preferes-color-scheme: dark").matches
 							: false;
-						const theme = hasDarkModeInSystemPreferences
-							? EAppThemeType.DARK
-							: currentTheme;
+						const theme = hasDarkModeInSystemPreferences ? EAppThemeType.DARK : currentTheme;
 						this.handleChangeCurrentAppTheme(theme);
 					}
 				},
@@ -79,11 +69,7 @@ class ChangeAppTheme extends React.PureComponent<
 
 	componentDidUpdate(prevProps: IChangeAppThemeProps) {
 		const { currentTheme } = this.props;
-		if (
-			prevProps.currentTheme &&
-			currentTheme &&
-			prevProps.currentTheme !== currentTheme
-		) {
+		if (prevProps.currentTheme && currentTheme && prevProps.currentTheme !== currentTheme) {
 			this.handleChangeCurrentAppTheme(currentTheme);
 		}
 	}
@@ -125,18 +111,18 @@ class ChangeAppTheme extends React.PureComponent<
 	 */
 	changeCurrentTheme(theme: EAppThemeType) {
 		const { rootElement } = this.state;
-		let themeColor = '#1c1e22';
+		let themeColor = "#1c1e22";
 
 		if (rootElement) {
-			rootElement.classList.add('theme-transition');
-			rootElement.setAttribute('data-theme', theme);
+			rootElement.classList.add("theme-transition");
+			rootElement.setAttribute("data-theme", theme);
 			window.setTimeout(function() {
-				rootElement.classList.remove('theme-transition');
+				rootElement.classList.remove("theme-transition");
 			}, 1000);
 		}
 
 		if (theme === EAppThemeType.LIGHT) {
-			themeColor = '#ffffff';
+			themeColor = "#ffffff";
 		}
 
 		this.setState(
@@ -157,18 +143,15 @@ class ChangeAppTheme extends React.PureComponent<
 	 */
 	changeCurrentThemeColor(theme: EAppThemeType) {
 		const { themeColor } = this.state;
-		const metaThemeColor = document.querySelector('meta[name=theme-color]');
-		const metaStatusBar = document.querySelector(
-			'meta[name=apple-mobile-web-app-status-bar-style]',
-		);
-		const statusBarColor =
-			theme === EAppThemeType.DARK ? 'black-translucent' : 'default';
+		const metaThemeColor = document.querySelector("meta[name=theme-color]");
+		const metaStatusBar = document.querySelector("meta[name=apple-mobile-web-app-status-bar-style]");
+		const statusBarColor = theme === EAppThemeType.DARK ? "black-translucent" : "default";
 		if (metaThemeColor) {
-			metaThemeColor.setAttribute('content', themeColor);
+			metaThemeColor.setAttribute("content", themeColor);
 		}
 
 		if (metaStatusBar) {
-			metaStatusBar.setAttribute('content', statusBarColor);
+			metaStatusBar.setAttribute("content", statusBarColor);
 		}
 	}
 

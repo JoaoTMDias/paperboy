@@ -1,9 +1,9 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
-import { rem } from 'polished';
+import * as React from "react";
+import styled from "styled-components";
+import { rem } from "polished";
 
-import { flexRow } from '../../../helpers/index.helpers';
+import { flexRow } from "../../../helpers/index.helpers";
 
 interface ISectionListItemProps {
 	id: string;
@@ -15,9 +15,7 @@ interface ISectionListItemProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<ISectionListItemProps>}
  */
-export const SectionListItem: React.FunctionComponent<
-	ISectionListItemProps
-> = props => {
+export const SectionListItem: React.FunctionComponent<ISectionListItemProps> = props => {
 	const { id, children } = props;
 
 	return (
@@ -29,12 +27,12 @@ export const SectionListItem: React.FunctionComponent<
 
 // Styling
 const ListWrapper = styled.li`
-	--section-list-item-height: ${rem('64px')};
+	--section-list-item-height: ${rem("64px")};
 	--list-item-border-bottom-color: var(--color-gray1);
 	--list-item-background-color: var(--body-background);
 	--list-item-background-color-hover: var(--color-gray1);
 
-	html[data-theme='DARK'] & {
+	html[data-theme="DARK"] & {
 		--list-item-border-bottom-color: var(--color-gray9);
 		--list-item-background-color-hover: var(--color-gray8);
 	}
@@ -57,9 +55,9 @@ const ListWrapper = styled.li`
 	}
 
 	${flexRow({
-		direction: 'row',
-		justifyContent: 'flex-start',
-		alignItems: 'center',
+		direction: "row",
+		justifyContent: "flex-start",
+		alignItems: "center",
 	})};
 `;
 

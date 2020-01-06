@@ -1,7 +1,7 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
-import { rem } from 'polished';
+import * as React from "react";
+import styled from "styled-components";
+import { rem } from "polished";
 
 // Interface
 interface IFormSwitchProps {
@@ -20,10 +20,10 @@ interface IFormSwitchProps {
 const FormSwitch: React.FunctionComponent<IFormSwitchProps> = props => {
 	const { id, checked, value, onChange } = props;
 
-	const labelValue = checked ? 'On' : 'Off';
+	const labelValue = checked ? "On" : "Off";
 	return (
 		<SwitchWrapper
-			className={`form-switch ${checked ? 'is-checked' : ''}`}
+			className={`form-switch ${checked ? "is-checked" : ""}`}
 			data-testid="form-switch"
 			role="checkbox"
 			aria-checked={checked}
@@ -54,11 +54,11 @@ const SwitchWrapper = styled.div`
 	--bg-enabled-color: hsla(215, 78%, 64%);
 	--lever-disabled-color: var(--color-white);
 	--lever-enabled-color: var(--color-primary);
-	--icon-size: ${rem('48px')};
+	--icon-size: ${rem("48px")};
 
 	--form-switch-label: var(--color-gray8);
 
-	html[data-theme='DARK'] & {
+	html[data-theme="DARK"] & {
 		--form-switch-label: var(--color-gray3);
 	}
 
@@ -92,7 +92,7 @@ const SwitchWrapper = styled.div`
 			color: var(--form-switch-label);
 
 			&:before {
-				content: '';
+				content: "";
 				position: absolute;
 				top: 17px;
 				left: 0;
@@ -105,7 +105,7 @@ const SwitchWrapper = styled.div`
 			}
 
 			&:after {
-				content: '';
+				content: "";
 				position: absolute;
 				top: 14px;
 				left: 0;
@@ -113,9 +113,7 @@ const SwitchWrapper = styled.div`
 				height: 20px;
 				background-color: var(--lever-disabled-color);
 				border-radius: 14px;
-				box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-					0 3px 1px -2px rgba(0, 0, 0, 0.2),
-					0 1px 5px 0 rgba(0, 0, 0, 0.12);
+				box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 				z-index: 2;
 				transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 				transition-property: left, background-color;

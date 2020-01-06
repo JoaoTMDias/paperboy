@@ -1,7 +1,7 @@
 // Libraries
-import * as React from 'react';
+import * as React from "react";
 
-import Title from './a11ypagetitle.styled';
+import Title from "./a11ypagetitle.styled";
 
 // Component Props
 interface IA11yPageTitleProps {
@@ -31,7 +31,7 @@ const A11yPageTitle: React.FunctionComponent<IA11yPageTitleProps> = props => {
 };
 
 A11yPageTitle.defaultProps = {
-	title: 'Page Title',
+	title: "Page Title",
 };
 
 export default A11yPageTitle;

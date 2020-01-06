@@ -1,7 +1,7 @@
 // Libraries
-import * as React from 'react';
-import styled, { css } from 'styled-components';
-import { A11yPageTitle } from '../index.components';
+import * as React from "react";
+import styled, { css } from "styled-components";
+import { A11yPageTitle } from "../index.components";
 
 // Component Props
 interface IContainerProps {
@@ -24,14 +24,11 @@ interface IContainerProps {
 const Container: React.FunctionComponent<IContainerProps> = props => {
 	const { offsetTop, children, ...allProps } = props;
 
-	if (offsetTop && typeof document !== 'undefined') {
+	if (offsetTop && typeof document !== "undefined") {
 		const pageBody: HTMLElement | null = document.documentElement;
 
 		if (pageBody) {
-			pageBody.style.setProperty(
-				'--top-navigation-bar-height',
-				`${offsetTop}`,
-			);
+			pageBody.style.setProperty("--top-navigation-bar-height", `${offsetTop}`);
 		}
 	}
 	return (
@@ -81,12 +78,10 @@ const Wrapper = styled.div`
 	height: auto;
 	margin-top: ${(props: IContainerProps) => {
 		if (props.theme) {
-			const margin = props.fullheight
-				? '0'
-				: 'var(--top-navigation-bar-height)';
+			const margin = props.fullheight ? "0" : "var(--top-navigation-bar-height)";
 			return margin;
 		}
-		return '0';
+		return "0";
 	}};
 	margin-bottom: 0;
 	display: flex;
@@ -110,7 +105,7 @@ Container.defaultProps = {
 	isFixed: false,
 	fullheight: false,
 	fullwidth: false,
-	title: 'page title',
+	title: "page title",
 };
 
 export default React.memo(Container);

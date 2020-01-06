@@ -1,9 +1,9 @@
 // Libraries
-import * as React from 'react';
-import Helmet, { HelmetData } from 'react-helmet';
+import * as React from "react";
+import Helmet, { HelmetData } from "react-helmet";
 
 // Configurations
-import config from '../gatsby-config';
+import config from "../gatsby-config";
 
 // Component Props
 interface IHTMLProps {
@@ -12,7 +12,7 @@ interface IHTMLProps {
 	postBodyComponents: any;
 }
 
-const isProduction: boolean = process.env.NODE_ENV === 'production';
+const isProduction: boolean = process.env.NODE_ENV === "production";
 
 /**
  * @description HTML Starter File
@@ -22,9 +22,7 @@ const isProduction: boolean = process.env.NODE_ENV === 'production';
  */
 const HTML: React.FunctionComponent<IHTMLProps> = props => {
 	const helmet: HelmetData = Helmet.rewind();
-	const openGraphUrl: string = isProduction
-		? `${config.siteMetadata.url}/share.png`
-		: '/share.png';
+	const openGraphUrl: string = isProduction ? `${config.siteMetadata.url}/share.png` : "/share.png";
 	const { headComponents, body, postBodyComponents } = props;
 
 	return (
@@ -40,20 +38,14 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 
 				{headComponents}
 
-				<meta
-					property="og:site_name"
-					content={config.siteMetadata.title}
-				/>
+				<meta property="og:site_name" content={config.siteMetadata.title} />
 				<meta property="og:type" content="website" />
 				<meta property="og:image" content={openGraphUrl} />
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:site" content="@joaotmdias" />
 				<meta name="twitter:creator" content="@joaotmdias" />
 				<meta property="twitter:image" content={openGraphUrl} />
-				<meta
-					name="apple-mobile-web-app-status-bar-style"
-					content="default"
-				/>
+				<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 				<link
 					rel="preload"
 					href="/fonts/paperboy-headings-bold.woff2"
@@ -78,15 +70,9 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 			</head>
 			<body>
 				<noscript id="no-javascript" className="no-javascript">
-					<h1 className="no-javascript__title">
-						We need you to activate Javascript in order to run
-						Paperboy 🤓.
-					</h1>
+					<h1 className="no-javascript__title">We need you to activate Javascript in order to run Paperboy 🤓.</h1>
 				</noscript>
-				<div
-					id="___gatsby"
-					dangerouslySetInnerHTML={{ __html: body }}
-				/>
+				<div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
 				{postBodyComponents}
 				{/* <script
 					dangerouslySetInnerHTML={{

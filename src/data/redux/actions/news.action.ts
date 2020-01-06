@@ -1,19 +1,14 @@
 // Constants
+import { AxiosResponse } from "axios";
 import {
 	GET_ALL_AVAILABLE_NEWS_SOURCES,
 	GET_ALL_AVAILABLE_NEWS_SOURCES_LANGUAGE,
 	GET_LATEST_NEWS,
-} from '../../constants/index.constants';
+} from "../../constants/index.constants";
 
 // Services
-import NewsService from '../../services/news.service';
-import { AxiosResponse } from 'axios';
-import {
-	IAllAvailableNewsSource,
-	IGetAllNewsSources,
-	IListOfCategorizedSources,
-	INewsArticle,
-} from '../../interfaces/index.interface';
+import NewsService from "../../services/news.service";
+import { IAllAvailableNewsSource, IListOfCategorizedSources, INewsArticle } from "../../interfaces/index.interface";
 
 interface IAvaiableRegionalNewsSources {
 	status: string;
@@ -34,40 +29,28 @@ const getAllAvailableNewsSources = () => {
 	 * @param {IAllAvailableNewsSource[]} data
 	 * @returns {(IListOfCategorizedSources[] | null)}
 	 */
-	function filterData(
-		data: IAllAvailableNewsSource[],
-	): IListOfCategorizedSources[] | null {
+	function filterData(data: IAllAvailableNewsSource[]): IListOfCategorizedSources[] | null {
 		// Gets only the items that are categorized
-		const allItemsWithCategory = data.filter(
-			(source: IAllAvailableNewsSource) => source.category !== null,
-		);
+		const allItemsWithCategory = data.filter((source: IAllAvailableNewsSource) => source.category !== null);
 
 		// Returns all the categories in all the items
-		const allAppearingCategories = allItemsWithCategory.map(
-			(source: IAllAvailableNewsSource) => {
-				const { category, ...otherKeys } = source;
+		const allAppearingCategories = allItemsWithCategory.map((source: IAllAvailableNewsSource) => {
+			const { category } = source;
 
-				return category;
-			},
-		);
+			return category;
+		});
 
 		// Returns the final list of categories
-		const reducedCategories = allAppearingCategories.reduce(
-			(previousValue: string[], currentValue: string) => {
-				if (previousValue.indexOf(currentValue) < 0) {
-					previousValue.push(currentValue);
-				}
-				return previousValue;
-			},
-			[],
-		);
+		const reducedCategories = allAppearingCategories.reduce((previousValue: string[], currentValue: string) => {
+			if (previousValue.indexOf(currentValue) < 0) {
+				previousValue.push(currentValue);
+			}
+			return previousValue;
+		}, []);
 
 		const newData: IListOfCategorizedSources[] = [];
 		reducedCategories.forEach((category: string) => {
-			const filterData = data.filter(
-				(source: IAllAvailableNewsSource) =>
-					source.category === category,
-			);
+			const filterData = data.filter((source: IAllAvailableNewsSource) => source.category === category);
 
 			const entry = {
 				name: category,
@@ -99,8 +82,7 @@ const getAllAvailableNewsSources = () => {
 		NewsService.getAllAvailableSources()
 			.then((result: AxiosResponse) => {
 				if (result && result.data) {
-					const rawSources: IAllAvailableNewsSource[] =
-						result.data.sources;
+					const rawSources: IAllAvailableNewsSource[] = result.data.sources;
 
 					const organizedSources = filterData(rawSources);
 
@@ -121,13 +103,11 @@ const getAllAvailableNewsSources = () => {
  * @date 2019-01-09
  * @param {string} language
  */
-const getAvailableNewSourcesFromLanguage = (language: string) => (
-	dispatch: any,
-) => {
+const getAvailableNewSourcesFromLanguage = (language: string) => (dispatch: any) => {
 	const AvailableNewsSources = (data: IAvaiableRegionalNewsSources) => {
-		if (data.status === 'ok' && data.sources.length > 0) {
+		if (data.status === "ok" && data.sources.length > 0) {
 			const newEntry: IListOfCategorizedSources = {
-				name: 'language',
+				name: "language",
 				length: data.sources.length,
 				items: data.sources,
 			};
@@ -138,8 +118,6 @@ const getAvailableNewSourcesFromLanguage = (language: string) => (
 				},
 			};
 		}
-
-		return;
 	};
 
 	NewsService.getAvailableSourcesFromLanguage(language)
@@ -180,8 +158,4 @@ const getAllLatestNewsFromSource = (source: string[]) => {
 	};
 };
 
-export {
-	getAllAvailableNewsSources,
-	getAvailableNewSourcesFromLanguage,
-	getAllLatestNewsFromSource,
-};
+export { getAllAvailableNewsSources, getAvailableNewSourcesFromLanguage, getAllLatestNewsFromSource };

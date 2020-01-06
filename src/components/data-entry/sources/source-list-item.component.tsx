@@ -1,8 +1,8 @@
 // Libraries
-import { rem } from 'polished';
-import * as React from 'react';
-import styled from 'styled-components';
-import { LazyLoadingImage } from '../../index.components';
+import { rem } from "polished";
+import * as React from "react";
+import styled from "styled-components";
+import { LazyLoadingImage } from "../../index.components";
 
 // Component Props
 interface ISourceListItemProps {
@@ -37,7 +37,7 @@ class SourceListItem extends React.PureComponent<ISourceListItemProps, any> {
 	public render() {
 		const { id, label, src, category, checked, style } = this.props;
 
-		const status: string = checked ? 'is-checked' : '';
+		const status: string = checked ? "is-checked" : "";
 
 		return (
 			<Wrapper className={`source__item ${status}`} style={style}>
@@ -50,40 +50,20 @@ class SourceListItem extends React.PureComponent<ISourceListItemProps, any> {
 						value={`${id}`}
 						name={`source-${id}-input`}
 						checked={checked}
-						onChange={(
-							event: React.ChangeEvent<HTMLInputElement>,
-						) => this.handleOnChange(event)}
+						onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleOnChange(event)}
 						tabIndex={-1}
 					/>
 					<Logo className="source__cover">
-						<LazyLoadingImage
-							src={src}
-							width="105"
-							height="105"
-							alt={`${label} logo`}
-						/>
+						<LazyLoadingImage src={src} width="105" height="105" alt={`${label} logo`} />
 					</Logo>
 					<Name className="source__label">
-						<h4
-							id={`source-label-${id}`}
-							className="source__label__title"
-						>
+						<h4 id={`source-label-${id}`} className="source__label__title">
 							{label}
 						</h4>
 					</Name>
-					<Icon
-						role="image"
-						className="source__status"
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-					>
+					<Icon role="image" className="source__status" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<title>check</title>
-						<circle
-							className="icon__circle"
-							cx="12"
-							cy="12"
-							r="12"
-						/>
+						<circle className="icon__circle" cx="12" cy="12" r="12" />
 						<path
 							className="icon__check"
 							d="M8.75,17.4l-4.3-4.31A1.2,1.2,0,0,1,6.14,11.4l3.47,3.46L17.86,6.6a1.2,1.2,0,0,1,1.69,1.69l-9.1,9.11A1.2,1.2,0,0,1,8.75,17.4Z"
@@ -97,7 +77,7 @@ class SourceListItem extends React.PureComponent<ISourceListItemProps, any> {
 
 // Styling
 const Wrapper = styled.li`
-	max-height: ${rem('64px')};
+	max-height: ${rem("64px")};
 	width: 100%;
 	display: flex;
 	margin: 0;
@@ -111,11 +91,7 @@ const Wrapper = styled.li`
 
 	&.is-checked {
 		transform: scale(1);
-		background-image: linear-gradient(
-			45deg,
-			var(--color-select),
-			var(--color-select-gradient)
-		);
+		background-image: linear-gradient(45deg, var(--color-select), var(--color-select-gradient));
 
 		.source__status {
 			.icon__circle {
@@ -128,8 +104,7 @@ const Wrapper = styled.li`
 		}
 
 		label {
-			box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.08),
-				0 0 6px 0 rgba(0, 0, 0, 0.16);
+			box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.08), 0 0 6px 0 rgba(0, 0, 0, 0.16);
 		}
 
 		.source__label {
@@ -146,10 +121,10 @@ const Wrapper = styled.li`
 		width: 100%;
 		height: 100%;
 		margin: 0;
-		padding-top: ${rem('8px')};
+		padding-top: ${rem("8px")};
 		padding-right: 0;
-		padding-bottom: ${rem('8px')};
-		padding-left: ${rem('8px')};
+		padding-bottom: ${rem("8px")};
+		padding-left: ${rem("8px")};
 
 		box-shadow: 0 2px 0 0px rgba(0, 0, 0, 0.05);
 		border-radius: 0;
@@ -160,8 +135,7 @@ const Wrapper = styled.li`
 		align-items: center;
 
 		&:active {
-			box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.04),
-				0 0 4px 0 rgba(0, 0, 0, 0.08);
+			box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.04), 0 0 4px 0 rgba(0, 0, 0, 0.08);
 			transform: scale(0.96);
 		}
 	}
@@ -169,10 +143,10 @@ const Wrapper = styled.li`
 
 const Icon = styled.svg`
 	position: absolute;
-	top: ${rem('20px')};
-	right: ${rem('8px')};
-	width: ${rem('24px')};
-	height: ${rem('24px')};
+	top: ${rem("20px")};
+	right: ${rem("8px")};
+	width: ${rem("24px")};
+	height: ${rem("24px")};
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -182,7 +156,7 @@ const Icon = styled.svg`
 	.icon__circle {
 		fill: var(--color-gray2);
 
-		html[data-theme='DARK'] & {
+		html[data-theme="DARK"] & {
 			fill: var(--color-black);
 		}
 	}
@@ -190,7 +164,7 @@ const Icon = styled.svg`
 	.icon__check {
 		fill: var(--color-gray2);
 
-		html[data-theme='DARK'] & {
+		html[data-theme="DARK"] & {
 			fill: var(--color-gray9);
 		}
 	}
@@ -199,7 +173,7 @@ const Icon = styled.svg`
 const Logo = styled.figure`
 	margin: 0;
 	width: 100%;
-	max-width: ${rem('48px')};
+	max-width: ${rem("48px")};
 	height: auto;
 	overflow: hidden;
 	position: relative;
@@ -225,22 +199,22 @@ const Input = styled.input`
 
 const Name = styled.div`
 	display: flex;
-	width: calc(100% - ${rem('72px')});
+	width: calc(100% - ${rem("72px")});
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
 	position: relative;
 	overflow: hidden;
 	background-color: transparent;
-	height: ${rem('48px')};
-	line-height: ${rem('48px')};
+	height: ${rem("48px")};
+	line-height: ${rem("48px")};
 
 	.source__label {
 		&__title {
 			--text-shadow-color: rgba(255, 255, 255, 0.2);
 			--title-color: var(--color-gray8);
 
-			html[data-theme='DARK'] & {
+			html[data-theme="DARK"] & {
 				--text-shadow-color: rgba(0, 0, 0, 0.2);
 				--title-color: var(--color-gray2);
 			}
@@ -248,12 +222,12 @@ const Name = styled.div`
 			width: 100%;
 			text-align: left;
 			font-family: var(--body-font-family);
-			font-size: ${rem('12px')};
+			font-size: ${rem("12px")};
 			line-height: 1.333;
 			color: var(--title-color);
 			letter-spacing: 0;
 			margin: 0;
-			padding: ${rem('4px')} ${rem('8px')};
+			padding: ${rem("4px")} ${rem("8px")};
 			text-shadow: 0px 1px 1px var(--text-shadow-color);
 			text-transform: capitalize;
 		}

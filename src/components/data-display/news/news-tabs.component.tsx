@@ -1,20 +1,16 @@
 // Libraries
-import * as React from 'react';
-import { connect } from 'react-redux';
+import * as React from "react";
+import { connect } from "react-redux";
 
 // Tabs
-import Tab from '@material-ui/core/Tab';
-import { TabsContainer, TabsHeader, TabsWrapper } from './news-tabs.styled';
+import Tab from "@material-ui/core/Tab";
+import { TabsContainer, TabsHeader, TabsWrapper } from "./news-tabs.styled";
 
 // Helpers
-import {
-	debounce,
-	Logger,
-	getScrollPosition,
-} from '../../../helpers/index.helpers';
+import { debounce, Logger, getScrollPosition } from "../../../helpers/index.helpers";
 
 // Interfaces
-import { IGlobalStoreState } from '../../../data/interfaces/redux.interfaces';
+import { IGlobalStoreState } from "../../../data/interfaces/redux.interfaces";
 
 interface IHeaderTabs {
 	id: string;
@@ -81,10 +77,7 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 		}
 	}
 
-	shouldComponentUpdate(
-		nextProps: INewsTabsProps,
-		nextState: INewsTabsState,
-	): boolean {
+	shouldComponentUpdate(nextProps: INewsTabsProps, nextState: INewsTabsState): boolean {
 		const { id, tabsHeader, hasHeader } = this.props;
 		const { currentTabIndex, tabBarHeader, trigger } = this.state;
 
@@ -103,7 +96,7 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener('scroll', debounce(this.handleScroll));
+		document.removeEventListener("scroll", debounce(this.handleScroll));
 	}
 
 	/**
@@ -117,17 +110,11 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 	setupEventListeners() {
 		const { hasHeader } = this.props;
 		if (document !== undefined) {
-			const tabBarHeader: HTMLDivElement | null = document.querySelector(
-				'.tabs-page--header',
-			);
-			const navigationBar = document.querySelector('.navigation-bar');
-			const navigationBarHeight =
-				hasHeader && navigationBar
-					? navigationBar.getBoundingClientRect().top
-					: 50;
+			const tabBarHeader: HTMLDivElement | null = document.querySelector(".tabs-page--header");
+			const navigationBar = document.querySelector(".navigation-bar");
+			const navigationBarHeight = hasHeader && navigationBar ? navigationBar.getBoundingClientRect().top : 50;
 
-			const trigger =
-				hasHeader && navigationBarHeight ? navigationBarHeight : 50;
+			const trigger = hasHeader && navigationBarHeight ? navigationBarHeight : 50;
 
 			this.setState(
 				{
@@ -135,13 +122,9 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 					trigger,
 				},
 				() => {
-					document.addEventListener(
-						'scroll',
-						debounce(this.handleScroll),
-						{
-							passive: true,
-						},
-					);
+					document.addEventListener("scroll", debounce(this.handleScroll), {
+						passive: true,
+					});
 				},
 			);
 		}
@@ -157,7 +140,7 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 	 */
 	handleOnSwipeToChangeIndex = (index: number, indexLatest: number) => {
 		Logger({
-			type: 'log',
+			type: "log",
 			message: `previous tab index: ${indexLatest}`,
 		});
 
@@ -171,7 +154,7 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 	 */
 	handleOnClickToChangeTab = (event: any, value: number) => {
 		Logger({
-			type: 'info',
+			type: "info",
 			message: event,
 		});
 
@@ -210,12 +193,10 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 	checkIfHashExists(hash: string) {
 		const { tabsHeader } = this.props;
 
-		const tabIndex = tabsHeader.findIndex(
-			(tab: IHeaderTabs) => tab.id === hash,
-		);
+		const tabIndex = tabsHeader.findIndex((tab: IHeaderTabs) => tab.id === hash);
 
 		Logger({
-			type: 'info',
+			type: "info",
 			message: `index: ${tabIndex}`,
 		});
 
@@ -255,9 +236,9 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 		if (tabBarHeader && trigger) {
 			const ScrollPosition = getScrollPosition();
 			if (ScrollPosition && ScrollPosition.y >= trigger) {
-				tabBarHeader.classList.add('is-scrolling');
+				tabBarHeader.classList.add("is-scrolling");
 			} else if (ScrollPosition && ScrollPosition.y < trigger) {
-				tabBarHeader.classList.remove('is-scrolling');
+				tabBarHeader.classList.remove("is-scrolling");
 			}
 
 			return true;
@@ -274,37 +255,35 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 		const { tabsHeader, style } = this.props;
 		const { currentTabIndex } = this.state;
 
-		const tabs: JSX.Element[] = tabsHeader.map(
-			(tab: IHeaderTabs, index: number) => {
-				return (
-					<Tab
-						key={tab.id}
-						id={`tab-${index}-${tab.id}`}
-						label={tab.label}
-						classes={{
-							root: 'tabs-page--tab',
-							selected: 'tabs-page--is-selected',
-						}}
-					/>
-				);
-			},
-		);
+		const tabs: JSX.Element[] = tabsHeader.map((tab: IHeaderTabs, index: number) => {
+			return (
+				<Tab
+					key={tab.id}
+					id={`tab-${index}-${tab.id}`}
+					label={tab.label}
+					classes={{
+						root: "tabs-page--tab",
+						selected: "tabs-page--is-selected",
+					}}
+				/>
+			);
+		});
 
 		return (
 			<TabsHeader
 				innerRef={this.tabsHeader}
 				action={() =>
 					Logger({
-						type: 'info',
-						message: 'Tabs Header was mounted',
+						type: "info",
+						message: "Tabs Header was mounted",
 					})
 				}
 				className="tabs-page--header"
 				value={currentTabIndex}
 				onChange={this.handleOnClickToChangeTab}
 				classes={{
-					root: 'tabs-page--header',
-					indicator: 'tabs-page--indicator',
+					root: "tabs-page--header",
+					indicator: "tabs-page--indicator",
 				}}
 				style={style}
 			>
@@ -325,15 +304,12 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 		const { hasChangedTabs, currentTabIndex } = this.state;
 
 		if (hasChangedTabs === false) {
-			const filteredChildren = React.Children.map(
-				children,
-				(child: React.ReactNode, childrenIndex: number) => {
-					if (childrenIndex === currentTabIndex) {
-						return child;
-					}
-					return <div className="tabs-page--placeholder">&nbsp;</div>;
-				},
-			);
+			const filteredChildren = React.Children.map(children, (child: React.ReactNode, childrenIndex: number) => {
+				if (childrenIndex === currentTabIndex) {
+					return child;
+				}
+				return <div className="tabs-page--placeholder">&nbsp;</div>;
+			});
 
 			return filteredChildren;
 		}
@@ -358,7 +334,7 @@ class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 					hysteresis={1}
 					enableMouseEvents
 					style={{
-						height: 'var(--tabs-container-height)',
+						height: "var(--tabs-container-height)",
 					}}
 				>
 					{this.renderTabItems()}

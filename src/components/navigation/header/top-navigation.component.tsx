@@ -1,19 +1,19 @@
 // Libraries
-import { rem } from 'polished';
-import * as React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { elevation } from '../../../helpers/index.helpers';
+import { rem } from "polished";
+import * as React from "react";
+import styled, { keyframes } from "styled-components";
+import { elevation } from "../../../helpers/index.helpers";
 
 // Component Props
 export enum ETopNavigationType {
-	STICKY = 'sticky',
-	FIXED = 'fixed',
-	RELATIVE = 'relative',
+	STICKY = "sticky",
+	FIXED = "fixed",
+	RELATIVE = "relative",
 }
 
 interface ITopNavigationProps {
 	isSticky?: boolean;
-	shadow?: 'default' | 'hairline' | 'none';
+	shadow?: "default" | "hairline" | "none";
 	style?: React.CSSProperties;
 }
 
@@ -33,10 +33,7 @@ interface ITopNavigationState {
  * @date  12/December/2018 at 15:42
  * @extends {React.SFC}
  */
-class TopNavigation extends React.Component<
-	ITopNavigationProps,
-	ITopNavigationState
-> {
+class TopNavigation extends React.Component<ITopNavigationProps, ITopNavigationState> {
 	static defaultProps = {
 		isSticky: true,
 	};
@@ -57,17 +54,9 @@ class TopNavigation extends React.Component<
 		};
 	}
 
-	shouldComponentUpdate(
-		nextProps: ITopNavigationProps,
-		nextState: ITopNavigationState,
-	) {
+	shouldComponentUpdate(nextProps: ITopNavigationProps, nextState: ITopNavigationState) {
 		const { isSticky, shadow } = this.props;
-		const {
-			rootContainer,
-			navigationElement,
-			containerElement,
-			hasInitializedIntersectionObserver,
-		} = this.state;
+		const { rootContainer, navigationElement, containerElement, hasInitializedIntersectionObserver } = this.state;
 
 		if (nextProps.isSticky !== isSticky || nextProps.shadow !== shadow) {
 			return true;
@@ -77,8 +66,7 @@ class TopNavigation extends React.Component<
 			nextState.containerElement !== containerElement ||
 			nextState.rootContainer !== rootContainer ||
 			nextState.navigationElement !== navigationElement ||
-			nextState.hasInitializedIntersectionObserver !==
-				hasInitializedIntersectionObserver
+			nextState.hasInitializedIntersectionObserver !== hasInitializedIntersectionObserver
 		) {
 			return true;
 		}
@@ -88,14 +76,9 @@ class TopNavigation extends React.Component<
 
 	componentDidMount(): boolean {
 		if (document !== undefined) {
-			const parentContainer: HTMLElement | null =
-				document.documentElement;
-			const navigationElement: HTMLElement | null = document.querySelector(
-				'#page-top-navigation',
-			);
-			const containerElement: HTMLElement | null = document.querySelector(
-				'#container-trigger',
-			);
+			const parentContainer: HTMLElement | null = document.documentElement;
+			const navigationElement: HTMLElement | null = document.querySelector("#page-top-navigation");
+			const containerElement: HTMLElement | null = document.querySelector("#container-trigger");
 
 			if (parentContainer && navigationElement && containerElement) {
 				this.setState(
@@ -108,10 +91,7 @@ class TopNavigation extends React.Component<
 						navigationElement,
 					}),
 					() => {
-						const {
-							containerElement,
-							navigationElement,
-						} = this.state;
+						const { containerElement, navigationElement } = this.state;
 						if (containerElement && navigationElement) {
 							this.initObserver();
 						}
@@ -126,11 +106,7 @@ class TopNavigation extends React.Component<
 	}
 
 	initObserver(): boolean {
-		const {
-			containerElement,
-			rootContainer,
-			navigationElement,
-		} = this.state;
+		const { containerElement, rootContainer, navigationElement } = this.state;
 
 		if (rootContainer && containerElement && navigationElement) {
 			this.observer = new IntersectionObserver(
@@ -138,9 +114,9 @@ class TopNavigation extends React.Component<
 					const element = entries[0];
 
 					if (element.isIntersecting) {
-						navigationElement.classList.remove('is-sticky');
+						navigationElement.classList.remove("is-sticky");
 					} else {
-						navigationElement.classList.add('is-sticky');
+						navigationElement.classList.add("is-sticky");
 					}
 				},
 				{
@@ -187,20 +163,20 @@ const fadeInDownBar = keyframes`
 const Wrapper = styled.header`
 	--top-bar-background-color: var(--color-white);
 
-	html[data-theme='DARK'] & {
+	html[data-theme="DARK"] & {
 		--top-bar-background-color: var(--body-background);
 	}
 
 	position: ${(props: ITopNavigationProps) => {
 		if (props.isSticky) {
-			return 'relative';
+			return "relative";
 		}
 
-		return 'fixed';
+		return "fixed";
 	}};
 
 	&.is-sticky {
-		transform: ${`translateY(${rem('-100px')})`};
+		transform: ${`translateY(${rem("-100px")})`};
 		animation-name: ${fadeInDownBar};
 		animation-duration: 250ms;
 		animation-fill-mode: both;
@@ -230,20 +206,20 @@ const Wrapper = styled.header`
 	justify-content: flex-start;
 	align-items: center;
 	height: auto;
-	min-height: ${rem('48px')};
-	padding-left: ${rem('16px')};
-	padding-right: ${rem('16px')};
+	min-height: ${rem("48px")};
+	padding-left: ${rem("16px")};
+	padding-right: ${rem("16px")};
 	background-color: var(--top-bar-background-color);
 	box-shadow: ${(props: ITopNavigationProps) => {
 		if (props.shadow) {
-			if (props.shadow === 'default') {
-				return '0 0 4px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.12)';
+			if (props.shadow === "default") {
+				return "0 0 4px 0 rgba(0, 0, 0, 0.24), 0 4px 4px 0 rgba(0, 0, 0, 0.12)";
 			}
-			if (props.shadow === 'hairline') {
-				return '0 1px 0 var(--color-gray4)';
+			if (props.shadow === "hairline") {
+				return "0 1px 0 var(--color-gray4)";
 			}
-			if (props.shadow === 'none') {
-				return 'none';
+			if (props.shadow === "none") {
+				return "none";
 			}
 		}
 	}};

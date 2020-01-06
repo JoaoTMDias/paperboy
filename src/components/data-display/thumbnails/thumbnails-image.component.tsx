@@ -1,10 +1,10 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
-import { rem } from 'polished';
-import { IImageLazyProps } from '../../../data/interfaces/index.interface';
+import * as React from "react";
+import styled from "styled-components";
+import { rem } from "polished";
+import { IImageLazyProps } from "../../../data/interfaces/index.interface";
 
-import LazyLoadingImage from '../../general/images/image.lazyload.component';
+import LazyLoadingImage from "../../general/images/image.lazyload.component";
 
 /**
  * @description Component Description
@@ -16,10 +16,7 @@ const ThumbnailImage: React.FunctionComponent<IImageLazyProps> = props => {
 	const { ...thumbnailProps } = props;
 	return (
 		<Image className="thumbnail-image__container">
-			<LazyLoadingImage
-				className="thumbnail-image__cover"
-				{...thumbnailProps}
-			/>
+			<LazyLoadingImage className="thumbnail-image__cover" {...thumbnailProps} />
 		</Image>
 	);
 };
@@ -44,10 +41,7 @@ const Image = styled.figure`
 		position: relative;
 
 		&:before {
-			background-image: linear-gradient(
-				rgba(0, 0, 0, 0.1) 0%,
-				rgba(0, 0, 0, 0.8) 75%
-			);
+			background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 75%);
 		}
 	}
 `;

@@ -1,6 +1,6 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from "react";
+import styled from "styled-components";
 
 // Component Props
 interface IIconNewsProps {
@@ -14,17 +14,9 @@ interface IIconNewsProps {
  * @extends {React.SFC}
  */
 const IconNews: React.FunctionComponent<IIconNewsProps> = props => (
-	<Icon
-		xmlns="http://www.w3.org/2000/svg"
-		viewBox="0 0 26 26"
-		aria-labelledby="news-icon-title"
-		tabIndex={-1}
-	>
+	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-labelledby="news-icon-title" tabIndex={-1}>
 		<title id="news-icon-title">Tab Icon: News</title>
-		<path
-			className="tab__icon--default"
-			d="M23,0H3A2,2,0,0,0,1,2V24a2,2,0,0,0,2,2H23a2,2,0,0,0,2-2V2a2,2,0,0,0-2-2"
-		/>
+		<path className="tab__icon--default" d="M23,0H3A2,2,0,0,0,1,2V24a2,2,0,0,0,2,2H23a2,2,0,0,0,2-2V2a2,2,0,0,0-2-2" />
 		<path
 			className="tab__icon--negative"
 			d="M22.09,2.09A.91.91,0,0,1,23,3V23a.91.91,0,0,1-.91.91H3.91A.91.91,0,0,1,3,23V3a.91.91,0,0,1,.91-.91H22.09"

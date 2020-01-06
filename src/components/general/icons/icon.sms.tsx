@@ -1,7 +1,7 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
-import { rem } from 'polished';
+import * as React from "react";
+import styled from "styled-components";
+import { rem } from "polished";
 
 /**********
  ** Component: IconDislike
@@ -21,9 +21,9 @@ const IconSMS = () => {
 	);
 };
 
-const Icon = styled('svg')`
-	width: ${rem('30px')};
-	height: ${rem('30px')};
+const Icon = styled("svg")`
+	width: ${rem("30px")};
+	height: ${rem("30px")};
 `;
 
 export default IconSMS;

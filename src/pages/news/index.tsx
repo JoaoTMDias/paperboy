@@ -1,34 +1,19 @@
-import { Redirect } from '@reach/router';
-import * as React from 'react';
-import { connect } from 'react-redux';
+import { Redirect } from "@reach/router";
+import * as React from "react";
+import { connect } from "react-redux";
 
-import {
-	Container,
-	Layout,
-	NewsTabs,
-	UIContentSpinner,
-} from '../../components/index.components';
+import { Container, Layout, NewsTabs, UIContentSpinner } from "../../components/index.components";
 
-import {
-	LatestNewsTab,
-	LatestNewsCategoryTab,
-} from '../../components/data-display/news/index.news';
+import { LatestNewsTab, LatestNewsCategoryTab } from "../../components/data-display/news/index.news";
 
-import {
-	INewsArticle,
-	IGlobalStoreState,
-	ChosenNewsSources,
-} from '../../data/interfaces/index.interface';
+import { INewsArticle, IGlobalStoreState, ChosenNewsSources } from "../../data/interfaces/index.interface";
 
-import {
-	NEWS_PAGE,
-	ONBOARDING_PAGE,
-} from '../../data/constants/index.constants';
+import { NEWS_PAGE, ONBOARDING_PAGE } from "../../data/constants/index.constants";
 
 const defaultTabs: INewsPageHeaderItems[] = [
 	{
-		id: 'latest',
-		label: 'Latest',
+		id: "latest",
+		label: "Latest",
 	},
 ];
 interface INewsPageHeaderItems {
@@ -141,7 +126,7 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 					id="news-tabs"
 					tabsHeader={tabsHeaderItems}
 					style={{
-						backgroundColor: 'var(--body-background)',
+						backgroundColor: "var(--body-background)",
 					}}
 				>
 					<LatestNewsTab sources={sources.items.latest} />
@@ -162,18 +147,8 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 		}
 		return (
 			<Layout authenticated header={false}>
-				<Container
-					fullwidth
-					fullheight
-					isFixed={false}
-					title="Current Page is: News"
-					offsetTop="2.75rem"
-				>
-					{tabsHeaderItems ? (
-						this.renderNewsTabs(tabsHeaderItems)
-					) : (
-						<p>Loading...</p>
-					)}
+				<Container fullwidth fullheight isFixed={false} title="Current Page is: News" offsetTop="2.75rem">
+					{tabsHeaderItems ? this.renderNewsTabs(tabsHeaderItems) : <p>Loading...</p>}
 				</Container>
 			</Layout>
 		);

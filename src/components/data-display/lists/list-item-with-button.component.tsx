@@ -1,14 +1,14 @@
 // Libraries
-import * as React from 'react';
-import styled, { css } from 'styled-components';
-import { rem } from 'polished';
-import { flexRow, elevation } from '../../../helpers/index.helpers';
+import * as React from "react";
+import styled, { css } from "styled-components";
+import { rem } from "polished";
+import { flexRow, elevation } from "../../../helpers/index.helpers";
 
 // Interface
 export enum EListItemButtonType {
-	NORMAL = 'NORMAL',
-	PRIMARY = 'PRIMARY',
-	SECONDARY = 'SECONDARY',
+	NORMAL = "NORMAL",
+	PRIMARY = "PRIMARY",
+	SECONDARY = "SECONDARY",
 }
 
 interface IListItemWithButtonProps {
@@ -26,13 +26,11 @@ interface IListItemWithButtonProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IListItemWithButtonProps>}
  */
-export const ListItemWithButton: React.FunctionComponent<
-	IListItemWithButtonProps
-> = props => {
+export const ListItemWithButton: React.FunctionComponent<IListItemWithButtonProps> = props => {
 	const { id, title, subtitle, style, type, onClick, children } = props;
 	return (
 		<Action
-			id={`${id}-button ${children && 'has-icon'}`}
+			id={`${id}-button ${children && "has-icon"}`}
 			className="section-list__item__label"
 			onClick={onClick}
 			type={type}
@@ -58,7 +56,7 @@ const Action = styled.button`
 	--button-color: var(--color-gray9);
 	--button-border-color: var(--color-gray9);
 
-	--icon-size: ${rem('48px')};
+	--icon-size: ${rem("48px")};
 	--list-item-title-color: var(--button-color);
 	--list-item-subtitle-color: var(--button-color);
 
@@ -95,7 +93,7 @@ const Action = styled.button`
 	border: 1px sollid var(--button-border-color);
 	${elevation[1]};
 
-	html[data-theme='DARK'] & {
+	html[data-theme="DARK"] & {
 		--list-item-title-color: var(--color-gray0);
 		--list-item-subtitle-color: var(--color-gray3);
 	}
@@ -104,9 +102,9 @@ const Action = styled.button`
 	height: 100%;
 	margin: 0;
 	${flexRow({
-		direction: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
+		direction: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
 	})};
 
 	&:focus {
@@ -138,7 +136,7 @@ const Action = styled.button`
 		}
 
 		&__title {
-			font-size: ${rem('14px')};
+			font-size: ${rem("14px")};
 			color: var(--list-item-title-color);
 			letter-spacing: 0.4px;
 			line-height: 1;
@@ -147,7 +145,7 @@ const Action = styled.button`
 		}
 
 		&__subtitle {
-			font-size: ${rem('13px')};
+			font-size: ${rem("13px")};
 			color: var(--list-item-subtitle-color);
 			margin-top: 0.25rem;
 		}

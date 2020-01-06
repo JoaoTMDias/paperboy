@@ -1,6 +1,6 @@
-declare module 'intersection-observer';
+declare module "intersection-observer";
 
-declare module '*.svg' {
+declare module "*.svg" {
 	const content: any;
 	export default content;
 }

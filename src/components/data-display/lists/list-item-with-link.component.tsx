@@ -1,11 +1,11 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
-import { rem } from 'polished';
-import { Link } from 'gatsby';
-import { FormSwitch } from '../../index.components';
-import flexRow from '../../../helpers/row.helper';
-import { IconArrowRight } from '../../general/icons/icons';
+import * as React from "react";
+import styled from "styled-components";
+import { rem } from "polished";
+import { Link } from "gatsby";
+import { FormSwitch } from "../../index.components";
+import flexRow from "../../../helpers/row.helper";
+import { IconArrowRight } from "../../general/icons/icons";
 
 // Interface
 interface IListItemWithLinkProps {
@@ -21,17 +21,10 @@ interface IListItemWithLinkProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IListItemWithLinkProps>}
  */
-export const ListItemWithLink: React.FunctionComponent<
-	IListItemWithLinkProps
-> = props => {
+export const ListItemWithLink: React.FunctionComponent<IListItemWithLinkProps> = props => {
 	const { id, to, title, subtitle } = props;
 	return (
-		<Action
-			id={`${id}-link`}
-			to={to}
-			className="section-list__item__label"
-			tabIndex={0}
-		>
+		<Action id={`${id}-link`} to={to} className="section-list__item__label" tabIndex={0}>
 			<div className="text">
 				<h3 className="text__title">{title}</h3>
 				{subtitle && <h6 className="text__subtitle">{subtitle}</h6>}
@@ -45,11 +38,11 @@ export const ListItemWithLink: React.FunctionComponent<
 
 // Styling
 const Action = styled(Link)`
-	--icon-size: ${rem('48px')};
+	--icon-size: ${rem("48px")};
 	--list-item-title-color: var(--color-gray9);
 	--list-item-subtitle-color: var(--color-gray8);
 
-	html[data-theme='DARK'] & {
+	html[data-theme="DARK"] & {
 		--list-item-title-color: var(--color-gray0);
 		--list-item-subtitle-color: var(--color-gray3);
 	}
@@ -57,9 +50,9 @@ const Action = styled(Link)`
 	width: 100%;
 	margin: 0;
 	${flexRow({
-		direction: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
+		direction: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
 	})};
 
 	&:focus {
@@ -87,7 +80,7 @@ const Action = styled(Link)`
 		}
 
 		&__title {
-			font-size: ${rem('14px')};
+			font-size: ${rem("14px")};
 			color: var(--list-item-title-color);
 			letter-spacing: 0.4px;
 			line-height: 1;
@@ -96,7 +89,7 @@ const Action = styled(Link)`
 		}
 
 		&__subtitle {
-			font-size: ${rem('13px')};
+			font-size: ${rem("13px")};
 			color: var(--list-item-subtitle-color);
 			margin-top: 0.25rem;
 		}

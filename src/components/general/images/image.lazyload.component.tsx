@@ -1,7 +1,7 @@
 // Libraries
-import * as React from 'react';
-import { LazyImage } from 'react-lazy-images';
-import styled, { keyframes, css } from 'styled-components';
+import * as React from "react";
+import { LazyImage } from "react-lazy-images";
+import styled, { keyframes, css } from "styled-components";
 
 // Component Prop
 
@@ -10,7 +10,7 @@ import {
 	EImageType,
 	IImageSourceString,
 	IPictureSources,
-} from '../../../data/interfaces/index.interface';
+} from "../../../data/interfaces/index.interface";
 
 const DEFAULT_BASELINE_VALUE = 16;
 
@@ -25,11 +25,11 @@ class LazyLoadingImage extends React.PureComponent<IImageLazyProps> {
 		type: EImageType.IMAGE,
 		useNativeLazyLoading: false,
 		source: null,
-		width: '200',
-		height: '200',
-		loading: 'lazy',
-		placeholderColor: 'transparent',
-		animation: 'fade',
+		width: "200",
+		height: "200",
+		loading: "lazy",
+		placeholderColor: "transparent",
+		animation: "fade",
 		debounce: 200,
 	};
 
@@ -42,25 +42,16 @@ class LazyLoadingImage extends React.PureComponent<IImageLazyProps> {
 	 * @memberof LazyLoadingImage
 	 */
 	renderPictureSources(sources: IPictureSources[]) {
-		const pictureSources = sources.map(
-			({ srcSet, media }, index: number) => {
-				const mediaValue = `(${media.type}: ${media.breakpoint *
-					DEFAULT_BASELINE_VALUE}rem)`;
-				const arrayOfSrcSet: string[] = [];
+		const pictureSources = sources.map(({ srcSet, media }, index: number) => {
+			const mediaValue = `(${media.type}: ${media.breakpoint * DEFAULT_BASELINE_VALUE}rem)`;
+			const arrayOfSrcSet: string[] = [];
 
-				srcSet.map((set: IImageSourceString) => {
-					arrayOfSrcSet.push(`${set.url} ${set.density}x`);
-				});
+			srcSet.map((set: IImageSourceString) => {
+				arrayOfSrcSet.push(`${set.url} ${set.density}x`);
+			});
 
-				return (
-					<source
-						key={`source-${index}-key`}
-						srcSet={arrayOfSrcSet.join()}
-						media={mediaValue}
-					/>
-				);
-			},
-		);
+			return <source key={`source-${index}-key`} srcSet={arrayOfSrcSet.join()} media={mediaValue} />;
+		});
 
 		return pictureSources;
 	}
@@ -134,14 +125,8 @@ class LazyLoadingImage extends React.PureComponent<IImageLazyProps> {
 							width={width}
 							height={height}
 						>
-							<title id="placeholder-title">
-								{imageProps.alt}
-							</title>
-							<path
-								className="placeholder__background"
-								fill={placeholderColor}
-								d="M0 0h24v24H0z"
-							/>
+							<title id="placeholder-title">{imageProps.alt}</title>
+							<path className="placeholder__background" fill={placeholderColor} d="M0 0h24v24H0z" />
 						</Placeholder>
 					);
 				}}
@@ -157,19 +142,13 @@ class LazyLoadingImage extends React.PureComponent<IImageLazyProps> {
 							width={width}
 							height={height}
 						>
-							<path
-								className="placeholder__background"
-								fill={placeholderColor}
-								d="M0 0h24v24H0z"
-							/>
+							<path className="placeholder__background" fill={placeholderColor} d="M0 0h24v24H0z" />
 						</Placeholder>
 					);
 				}}
 				actual={() => {
 					if (type === EImageType.PICTURE && sources) {
-						const pictureSources = this.renderPictureSources(
-							sources,
-						);
+						const pictureSources = this.renderPictureSources(sources);
 
 						return (
 							<Picture
@@ -256,15 +235,15 @@ const ZoomImage = keyframes`
 
 const Image = styled.img`
 	background-color: ${(props: IImageLazyProps) =>
-		props.placeholderColor ? `${props.placeholderColor}` : 'transparent'};
+		props.placeholderColor ? `${props.placeholderColor}` : "transparent"};
 
 	${(props: IImageLazyProps) => {
 		const { animation, speed } = props;
 
 		if (animation) {
-			const duration = speed ? `${speed}ms` : '128ms';
+			const duration = speed ? `${speed}ms` : "128ms";
 			switch (animation) {
-				case 'zoom':
+				case "zoom":
 					return css`
 						opacity: 0;
 						transform: scale(1);
@@ -275,7 +254,7 @@ const Image = styled.img`
 					`;
 
 				default:
-				case 'fade':
+				case "fade":
 					return css`
 						opacity: 0;
 						animation-fill-mode: forwards;
@@ -293,11 +272,10 @@ const Image = styled.img`
 			return `${props.fit}`;
 		}
 
-		return 'cover';
+		return "cover";
 	}};
 
-	object-position: ${(props: IImageLazyProps) =>
-		`${props.positionTop} ${props.positionLeft}`};
+	object-position: ${(props: IImageLazyProps) => `${props.positionTop} ${props.positionLeft}`};
 `;
 
 const Picture = styled.picture`

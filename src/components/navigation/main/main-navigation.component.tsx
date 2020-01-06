@@ -1,16 +1,9 @@
-import { rem } from 'polished';
-import React from 'react';
-import styled from 'styled-components';
+import { rem } from "polished";
+import React from "react";
+import styled from "styled-components";
 
 // Components
-import {
-	IconCategories,
-	IconNews,
-	IconSaved,
-	IconSearch,
-	IconSettings,
-	TabItem,
-} from '../../index.components';
+import { IconCategories, IconNews, IconSaved, IconSearch, IconSettings, TabItem } from "../../index.components";
 
 import {
 	CATEGORIES_PAGE,
@@ -18,10 +11,10 @@ import {
 	SAVED_PAGE,
 	SEARCH_PAGE,
 	SETTINGS_PAGE,
-} from '../../../data/constants/index.constants';
+} from "../../../data/constants/index.constants";
 
 // Helpers
-import { above } from '../../../helpers/index.helpers';
+import { above } from "../../../helpers/index.helpers";
 
 const MainNavigation = () => (
 	<Wrapper>
@@ -37,11 +30,7 @@ const MainNavigation = () => (
 				<TabItem to={SEARCH_PAGE} label="Search" layout="vertical">
 					<IconSearch />
 				</TabItem>
-				<TabItem
-					to={CATEGORIES_PAGE}
-					label="Categories"
-					layout="vertical"
-				>
+				<TabItem to={CATEGORIES_PAGE} label="Categories" layout="vertical">
 					<IconCategories />
 				</TabItem>
 				<TabItem to={SETTINGS_PAGE} label="Settings" layout="vertical">
@@ -54,7 +43,7 @@ const MainNavigation = () => (
 
 const Wrapper = styled.div`
 	width: 100%;
-	max-width: ${rem('200px')};
+	max-width: ${rem("200px")};
 	min-height: 100vh;
 	color: var(--color-white);
 	background-color: var(--color-black);
@@ -72,8 +61,8 @@ const Wrapper = styled.div`
     justify-content: flex-start;
 
       & ~ main {
-        width: calc(100vw - ${rem('200px')});
-        margin-left: ${rem('200px')};
+        width: calc(100vw - ${rem("200px")});
+        margin-left: ${rem("200px")};
       }
 
   `};

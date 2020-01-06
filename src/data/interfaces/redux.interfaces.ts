@@ -1,6 +1,6 @@
-import { IGeneral } from './general.interface';
-import { INewsReducer } from './news.interface';
-import { PreferencesReducer } from './preferences.interface';
+import { IGeneral } from "./general.interface";
+import { INewsReducer } from "./news.interface";
+import { PreferencesReducer } from "./preferences.interface";
 
 export interface IReduxActions {
 	type: string;

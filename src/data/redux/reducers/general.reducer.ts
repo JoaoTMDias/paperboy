@@ -1,4 +1,4 @@
-import { produce } from 'immer';
+import { produce } from "immer";
 
 // Constants
 import {
@@ -7,17 +7,13 @@ import {
 	SET_FEATURE_SUPPORT,
 	SET_PLATFORM,
 	SET_USER_COUNTRY,
-} from '../../constants/index.constants';
-import {
-	IGeneral,
-	FeatureSupport,
-	UserLanguage,
-} from '../../interfaces/general.interface';
+} from "../../constants/index.constants";
+import { IGeneral } from "../../interfaces/general.interface";
 
 // Preferences initial state
 const initialState = {
-	version: '0.0.1',
-	platform: 'unknown',
+	version: "0.0.1",
+	platform: "unknown",
 	hasAudited: false,
 	isOnline: true,
 	isStandalone: false,
@@ -73,8 +69,7 @@ function general(state: IGeneral = initialState, action: GeneralActions) {
 				break;
 
 			case SET_USER_COUNTRY:
-				draftState.userLanguage.hasLocation =
-					action.payload.hasLocation;
+				draftState.userLanguage.hasLocation = action.payload.hasLocation;
 				draftState.userLanguage.data = action.payload.data;
 				break;
 		}

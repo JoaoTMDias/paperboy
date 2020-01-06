@@ -1,6 +1,7 @@
-import { Redirect } from '@reach/router';
-import * as React from 'react';
-import { connect } from 'react-redux';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Redirect } from "@reach/router";
+import * as React from "react";
+import { connect } from "react-redux";
 import {
 	Container,
 	IconBrandingLarge,
@@ -10,12 +11,9 @@ import {
 	UIDisplay,
 	UILead,
 	UISubtitle,
-} from '../components/index.components';
+} from "../components/index.components";
 
-import {
-	NEWS_PAGE,
-	ONBOARDING_CHOOSE_SOURCES_PAGE,
-} from '../data/constants/index.constants';
+import { NEWS_PAGE, ONBOARDING_CHOOSE_SOURCES_PAGE } from "../data/constants/index.constants";
 
 interface IIndexPageProps {
 	authenticated: boolean;

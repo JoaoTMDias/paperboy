@@ -4,14 +4,10 @@ import {
 	SET_STANDALONE_STATUS,
 	SET_FEATURE_SUPPORT,
 	SET_USER_COUNTRY,
-} from '../../constants/index.constants';
+} from "../../constants/index.constants";
 
-import GeneralService from '../../services/general.service';
-import {
-	Supports,
-	FeatureSupport,
-	LocationData,
-} from '../../interfaces/general.interface';
+import GeneralService from "../../services/general.service";
+import { FeatureSupport, LocationData } from "../../interfaces/general.interface";
 
 /**
  * @description Defines the network status of the device: online or offline
@@ -68,8 +64,8 @@ const setFeatureSupport = (features: FeatureSupport) => {
  * @param {*} platform
  * @returns
  */
-const setPlatform = platform => {
-	if (typeof platform === 'string') {
+const setPlatform = (platform: any) => {
+	if (typeof platform === "string") {
 		return {
 			type: SET_PLATFORM,
 			platform,
@@ -85,10 +81,7 @@ const setPlatform = platform => {
  * @param {*} latitude
  * @param {*} longitude
  */
-const getUserCountryCodeByCoordinates = (
-	latitude: number,
-	longitude: number,
-) => {
+const getUserCountryCodeByCoordinates = (latitude: number, longitude: number) => {
 	const updateStore = (data: LocationData) => {
 		return {
 			type: SET_USER_COUNTRY,
@@ -111,10 +104,4 @@ const getUserCountryCodeByCoordinates = (
 	};
 };
 
-export {
-	setOnlineStatus,
-	setStandaloneStatus,
-	setFeatureSupport,
-	setPlatform,
-	getUserCountryCodeByCoordinates,
-};
+export { setOnlineStatus, setStandaloneStatus, setFeatureSupport, setPlatform, getUserCountryCodeByCoordinates };

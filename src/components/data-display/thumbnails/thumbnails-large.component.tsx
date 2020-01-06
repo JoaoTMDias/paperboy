@@ -1,19 +1,19 @@
 // Libraries
-import { distanceInWordsToNow } from 'date-fns';
-import * as React from 'react';
+import { formatDistanceToNow } from "date-fns";
+import * as React from "react";
 
-import { ThumbnailImage } from '../../index.components';
-import { INewsArticleItem } from '../../../data/interfaces/index.interface';
-import { NEWS_DETAIL_PAGE } from '../../../data/constants/router.constants';
+import { ThumbnailImage } from "../../index.components";
+import { INewsArticleItem } from "../../../data/interfaces/index.interface";
+import { NEWS_DETAIL_PAGE } from "../../../data/constants/router.constants";
 
-import { Anchor, Article, Copy } from './thumbnails.styled';
-import LazyLoadingImage from '../../general/images/image.lazyload.component';
+import { Anchor, Article, Copy } from "./thumbnails.styled";
+import LazyLoadingImage from "../../general/images/image.lazyload.component";
 
 // Component Props
 export enum EThumbnailType {
-	LARGE = 'LARGE',
-	SAVED = 'SAVED',
-	SMALL = 'SMALL',
+	LARGE = "LARGE",
+	SAVED = "SAVED",
+	SMALL = "SMALL",
 }
 
 export interface IArticleThumbnailProps {
@@ -28,13 +28,11 @@ export interface IArticleThumbnailProps {
  * @date  17/January/2019 at 00:05
  * @extends {React.SFC}
  */
-const ArticleThumbnail: React.FunctionComponent<
-	IArticleThumbnailProps
-> = props => {
+const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = props => {
 	const { id, type, options } = props;
 	const { title, urlToImage, url, source, publishedAt } = options;
-
-	const time = `${distanceInWordsToNow(publishedAt)} ago`;
+	const timestamp = Date.parse(publishedAt);
+	const time = `${formatDistanceToNow(timestamp)} ago`;
 
 	return (
 		<Anchor
@@ -46,13 +44,9 @@ const ArticleThumbnail: React.FunctionComponent<
 			type={type}
 			options={options}
 		>
-			<Article
-				id={`thumbnail__article--${id}`}
-				type={type}
-				options={options}
-			>
+			<Article id={`thumbnail__article--${id}`} type={type} options={options}>
 				{type === EThumbnailType.LARGE ? (
-					<React.Fragment>
+					<>
 						<div className="thumbnail-image__gradient" />
 						<ThumbnailImage
 							src={urlToImage}
@@ -61,7 +55,7 @@ const ArticleThumbnail: React.FunctionComponent<
 							alt={title}
 							placeholderColor="var(--color-gray6)"
 						/>
-					</React.Fragment>
+					</>
 				) : (
 					<LazyLoadingImage
 						className="thumbnail__image"
@@ -72,24 +66,13 @@ const ArticleThumbnail: React.FunctionComponent<
 						placeholderColor="var(--color-gray4)"
 					/>
 				)}
-				<Copy
-					id={`thumbnail__copy--${id}`}
-					type={type}
-					options={options}
-				>
-					<h2
-						id={`thumbnail__title--${id}`}
-						className="thumbnail__title"
-					>
+				<Copy id={`thumbnail__copy--${id}`} type={type} options={options}>
+					<h2 id={`thumbnail__title--${id}`} className="thumbnail__title">
 						{title}
 					</h2>
 					<div className="thumbnail__metadata">
-						<h3 className="thumbnail__metadata__source">
-							{source.name}
-						</h3>
-						<time className="thumbnail__metadata__time">
-							{time}
-						</time>
+						<h3 className="thumbnail__metadata__source">{source.name}</h3>
+						<time className="thumbnail__metadata__time">{time}</time>
 					</div>
 				</Copy>
 			</Article>

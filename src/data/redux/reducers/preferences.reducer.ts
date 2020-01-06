@@ -1,4 +1,4 @@
-import { produce } from 'immer';
+import { produce } from "immer";
 
 // Constants
 import {
@@ -9,13 +9,10 @@ import {
 	SET_APP_THEME,
 	SET_BASE_FONT_RATIO,
 	SET_SAVE_OR_UNSAVE_ARTICLE,
-} from '../../constants/index.constants';
+} from "../../constants/index.constants";
 
-import {
-	PreferencesReducer,
-	IReduxActions,
-} from '../../interfaces/index.interface';
-import { EAppThemeType } from '../../interfaces/theme.interfaces';
+import { PreferencesReducer, IReduxActions } from "../../interfaces/index.interface";
+import { EAppThemeType } from "../../interfaces/theme.interfaces";
 
 // Preferences initial state
 const initialState: PreferencesReducer = {
@@ -29,26 +26,24 @@ const initialState: PreferencesReducer = {
 		},
 		tabs: [
 			{
-				id: 'latest',
-				label: 'Latest',
+				id: "latest",
+				label: "Latest",
 			},
 		],
 	},
 	saved: [
 		{
 			source: {
-				id: 'google-news',
-				name: 'Google News',
+				id: "google-news",
+				name: "Google News",
 			},
-			author: 'Nicole Gaouette and Noah Gray, CNN',
+			author: "Nicole Gaouette and Noah Gray, CNN",
 			title: "Trump announces 'hard-hitting' new sanctions against Iran",
 			description:
 				"President Donald Trump announced new sanctions against Iran Monday in part to retaliate after the downing of a US drone last week, with the punitive measures targeting Iran's most senior leader, military officials and its top diplomat, Foreign Minister Javad …",
-			url:
-				'https://www.cnn.com/2019/06/24/politics/trump-iran-sanctions/index.html',
-			urlToImage:
-				'https://cdn.cnn.com/cnnnext/dam/assets/190507081502-13-donald-trump-lead-image-super-tease.jpg',
-			publishedAt: '2019-06-24T16:42:00+00:00',
+			url: "https://www.cnn.com/2019/06/24/politics/trump-iran-sanctions/index.html",
+			urlToImage: "https://cdn.cnn.com/cnnnext/dam/assets/190507081502-13-donald-trump-lead-image-super-tease.jpg",
+			publishedAt: "2019-06-24T16:42:00+00:00",
 			content:
 				"Washington (CNN)President Donald Trump announced new sanctions against Iran Monday in part to retaliate after the downing of a US drone last week, with the punitive measures targeting Iran's most senior leader, military officials and its top diplomat, Foreign… [+1849 chars]",
 		},
@@ -64,10 +59,7 @@ const initialState: PreferencesReducer = {
  * @param {any} action
  * @returns
  */
-function preferences(
-	state: PreferencesReducer = initialState,
-	action: IReduxActions,
-) {
+function preferences(state: PreferencesReducer = initialState, action: IReduxActions) {
 	return produce(state, (draftState: PreferencesReducer) => {
 		switch (action.type) {
 			case SET_CHOSEN_NEWS_SOURCES:

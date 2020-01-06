@@ -1,6 +1,6 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from "react";
+import styled from "styled-components";
 
 // Component Props
 interface IIconSettingsProps {
@@ -14,12 +14,7 @@ interface IIconSettingsProps {
  * @extends {React.SFC}
  */
 const IconSettings: React.FunctionComponent<IIconSettingsProps> = props => (
-	<Icon
-		xmlns="http://www.w3.org/2000/svg"
-		viewBox="0 0 26 26"
-		aria-labelledby="settings-icon-title"
-		tabIndex={-1}
-	>
+	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-labelledby="settings-icon-title" tabIndex={-1}>
 		<title id="settings-icon-title">Tab Icon: Settings</title>
 		<path
 			className="tab__icon--default"
@@ -33,18 +28,9 @@ const IconSettings: React.FunctionComponent<IIconSettingsProps> = props => (
 			className="tab__icon--default"
 			d="M16.81,3.9a3.88,3.88,0,0,0,2.54,3.66V26h2.54V7.56A3.9,3.9,0,0,0,24.43,3.9a3.81,3.81,0,1,0-7.62,0h0"
 		/>
-		<path
-			className="tab__icon--negative"
-			d="M4.11,3.9A1.27,1.27,0,1,1,5.38,5.2,1.27,1.27,0,0,1,4.11,3.9h0"
-		/>
-		<path
-			className="tab__icon--negative"
-			d="M14.27,16.9A1.27,1.27,0,1,1,13,15.6a1.27,1.27,0,0,1,1.27,1.3h0"
-		/>
-		<path
-			className="tab__icon--negative"
-			d="M21.89,3.9a1.27,1.27,0,1,1-1.27-1.3,1.27,1.27,0,0,1,1.27,1.3h0"
-		/>
+		<path className="tab__icon--negative" d="M4.11,3.9A1.27,1.27,0,1,1,5.38,5.2,1.27,1.27,0,0,1,4.11,3.9h0" />
+		<path className="tab__icon--negative" d="M14.27,16.9A1.27,1.27,0,1,1,13,15.6a1.27,1.27,0,0,1,1.27,1.3h0" />
+		<path className="tab__icon--negative" d="M21.89,3.9a1.27,1.27,0,1,1-1.27-1.3,1.27,1.27,0,0,1,1.27,1.3h0" />
 	</Icon>
 );
 

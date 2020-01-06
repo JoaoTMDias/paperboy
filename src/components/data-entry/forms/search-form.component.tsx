@@ -1,9 +1,9 @@
 // Libraries
-import { rem } from 'polished';
-import * as React from 'react';
-import styled from 'styled-components';
+import { rem } from "polished";
+import * as React from "react";
+import styled from "styled-components";
 
-import { UISection } from '../../index.components';
+import { UISection } from "../../index.components";
 
 // Component Props
 interface IUISearchFormProps {
@@ -31,11 +31,7 @@ class UISearchForm extends React.Component<IUISearchFormProps> {
 	shouldComponentUpdate(nextProps: IUISearchFormProps, nextState): boolean {
 		const { legend, placeholder, label } = this.props;
 
-		if (
-			nextProps.legend !== legend ||
-			nextProps.placeholder !== placeholder ||
-			nextProps.label !== label
-		) {
+		if (nextProps.legend !== legend || nextProps.placeholder !== placeholder || nextProps.label !== label) {
 			return true;
 		}
 		return false;
@@ -52,22 +48,11 @@ class UISearchForm extends React.Component<IUISearchFormProps> {
 					<fieldset>
 						<legend className="screen-readers">{legend}</legend>
 						<TextInput htmlFor="source-search">
-							<input
-								type="search"
-								name="source-search"
-								id="source-search"
-								placeholder={placeholder}
-								maxLength={50}
-							/>
+							<input type="search" name="source-search" id="source-search" placeholder={placeholder} maxLength={50} />
 						</TextInput>
 					</fieldset>
 					<Button type="submit" title={label}>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="18"
-							height="18"
-							role="image"
-						>
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" role="image">
 							<path
 								fill="var(--color-gray1)"
 								fillRule="evenodd"
@@ -88,7 +73,7 @@ const Form = styled.form`
 
 	background-color: var(--color-white, #ffffff);
 	border-radius: var(--global-radius);
-	padding: ${rem('8px')};
+	padding: ${rem("8px")};
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -139,7 +124,7 @@ const Button = styled.button`
 	height: 3rem;
 	background-color: var(--color-white);
 	&,
-	&[type='submit'] {
+	&[type="submit"] {
 		-webkit-appearance: none;
 		margin: 0;
 		padding: 0;
@@ -147,8 +132,8 @@ const Button = styled.button`
 	}
 
 	svg {
-		width: ${rem('18px')};
-		height: ${rem('18px')};
+		width: ${rem("18px")};
+		height: ${rem("18px")};
 		display: flex;
 	}
 `;

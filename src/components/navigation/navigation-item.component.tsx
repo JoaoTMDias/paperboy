@@ -1,14 +1,14 @@
 // Libraries
-import { Link } from 'gatsby';
-import { rem } from 'polished';
-import * as React from 'react';
-import styled, { css } from 'styled-components';
+import { Link } from "gatsby";
+import { rem } from "polished";
+import * as React from "react";
+import styled, { css } from "styled-components";
 
 // Component Props
 interface ITabItemProps {
 	to: string;
 	label: string;
-	layout?: 'vertical' | 'horizontal';
+	layout?: "vertical" | "horizontal";
 }
 
 /**
@@ -19,9 +19,9 @@ interface ITabItemProps {
  */
 class TabItem extends React.Component<ITabItemProps> {
 	static defaultProps = {
-		to: '/',
-		label: 'Label',
-		layout: 'horizontal',
+		to: "/",
+		label: "Label",
+		layout: "horizontal",
 	};
 
 	shouldComponentUpdate(nextProps: ITabItemProps, nextState: any) {
@@ -62,11 +62,11 @@ const Wrapper = styled.li`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	padding: ${rem('4px')} 0;
+	padding: ${rem("4px")} 0;
 	flex: 1;
 
 	${(props: ITabItemProps) =>
-		props.layout === 'vertical' &&
+		props.layout === "vertical" &&
 		css`
 			padding: 0;
 		`};
@@ -101,11 +101,11 @@ const TabLink = styled(Link)`
 	}
 
 	${(props: ITabItemProps) =>
-		props.layout === 'vertical' &&
+		props.layout === "vertical" &&
 		css`
 			flex-direction: row;
 			width: 100%;
-			padding: ${rem('8px')} var(--global-margin);
+			padding: ${rem("8px")} var(--global-margin);
 
 			&.is-active {
 				background-color: var(--bottom-navigation-background-color);
@@ -143,21 +143,21 @@ const TabLink = styled(Link)`
 `;
 
 const Icon = styled.figure`
-	width: ${rem('26px')};
-	height: ${rem('26px')};
-	padding: ${rem('2px')};
+	width: ${rem("26px")};
+	height: ${rem("26px")};
+	padding: ${rem("2px")};
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	margin: ${rem('4px')} 0;
+	margin: ${rem("4px")} 0;
 `;
 
 const Label = styled.span`
 	color: var(--bottom-navigation-text-color);
-	font-size: ${rem('9px')};
+	font-size: ${rem("9px")};
 	text-align: center;
 	opacity: 0;
-	letter-spacing: ${rem('0.5px')};
+	letter-spacing: ${rem("0.5px")};
 `;
 export default TabItem;

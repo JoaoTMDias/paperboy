@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { isAndroid, isBrowser, isIOS } from 'react-device-detect';
-import { connect } from 'react-redux';
+import * as React from "react";
+import { isAndroid, isBrowser, isIOS } from "react-device-detect";
+import { connect } from "react-redux";
 
 // Redux
 import {
@@ -8,9 +8,9 @@ import {
 	setOnlineStatus,
 	setPlatform,
 	setStandaloneStatus,
-} from '../../../data/redux/actions/index.actions';
-import { FeatureSupport } from '../../../data/interfaces/general.interface';
-import { IGlobalStoreState } from '../../../data/interfaces/index.interface';
+} from "../../../data/redux/actions/index.actions";
+import { FeatureSupport } from "../../../data/interfaces/general.interface";
+import { IGlobalStoreState } from "../../../data/interfaces/index.interface";
 
 export interface IAuditProps {
 	theme?: any;
@@ -55,10 +55,7 @@ class Audit extends React.Component<IAuditProps, any> {
 	 * @returns {boolean}
 	 * @memberof Audit
 	 */
-	shouldComponentUpdate(
-		nextProps: IAuditProps,
-		nexState: IAuditState,
-	): boolean {
+	shouldComponentUpdate(nextProps: IAuditProps, nexState: IAuditState): boolean {
 		const { hasAudited } = this.props;
 		if (nextProps.hasAudited !== hasAudited) {
 			return true;
@@ -98,16 +95,16 @@ class Audit extends React.Component<IAuditProps, any> {
 	 * @memberof Audit
 	 */
 	setOSPlatform() {
-		const android = 'android';
-		const iOS = 'ios';
-		let platform = 'unknown';
+		const android = "android";
+		const iOS = "ios";
+		let platform = "unknown";
 
 		if (isIOS) {
 			platform = iOS;
 		} else if (isAndroid) {
 			platform = android;
 		} else if (isBrowser) {
-			platform = 'desktop';
+			platform = "desktop";
 		}
 
 		this.props.dispatch(setPlatform(platform));
@@ -120,20 +117,16 @@ class Audit extends React.Component<IAuditProps, any> {
 	 */
 	setFeatureSupport() {
 		const supportsGeolocation = !!(navigator && navigator.geolocation);
-		const supportsBatteryInformation: boolean =
-			'getBattery' in window.navigator;
+		const supportsBatteryInformation: boolean = "getBattery" in window.navigator;
 		let supportsNetworkInformation = false;
 
 		if (window.navigator.connection) {
-			if (
-				'effectiveType' in window.navigator.connection ||
-				'type' in window.navigator.connection
-			) {
+			if ("effectiveType" in window.navigator.connection || "type" in window.navigator.connection) {
 				supportsNetworkInformation = true;
 			}
 		}
 
-		const supportsWebNotifications: boolean = 'Notification' in window;
+		const supportsWebNotifications: boolean = "Notification" in window;
 
 		const features: FeatureSupport = {
 			hasAudited: true,
@@ -155,21 +148,17 @@ class Audit extends React.Component<IAuditProps, any> {
 	 */
 	setStandaloneStatus() {
 		const { dispatch } = this.props;
-		if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+		if (typeof window !== "undefined" && typeof document !== "undefined") {
 			const isInWebAppiOS = window.navigator.standalone === true;
-			const isInWebAppChrome = window.matchMedia(
-				'(display-mode: standalone)',
-			).matches;
+			const isInWebAppChrome = window.matchMedia("(display-mode: standalone)").matches;
 			const status = !!(isInWebAppiOS || isInWebAppChrome);
 			dispatch(setStandaloneStatus(status));
 		}
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('online', () => this.setOnlineStatus(true));
-		window.removeEventListener('offline', () =>
-			this.setOnlineStatus(false),
-		);
+		window.removeEventListener("online", () => this.setOnlineStatus(true));
+		window.removeEventListener("offline", () => this.setOnlineStatus(false));
 	}
 
 	/**
@@ -191,10 +180,8 @@ class Audit extends React.Component<IAuditProps, any> {
 	 * @memberof Audit
 	 */
 	handleNetworkAudit() {
-		window.addEventListener('online', event => this.setOnlineStatus(true));
-		window.addEventListener('offline', event =>
-			this.setOnlineStatus(false),
-		);
+		window.addEventListener("online", event => this.setOnlineStatus(true));
+		window.addEventListener("offline", event => this.setOnlineStatus(false));
 		this.setOnlineStatus(navigator.onLine);
 	}
 

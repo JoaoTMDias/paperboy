@@ -1,10 +1,10 @@
-import { rem } from 'polished';
-import * as React from 'react';
-import { connect } from 'react-redux';
-import styled from 'styled-components';
+import { rem } from "polished";
+import * as React from "react";
+import { connect } from "react-redux";
+import styled from "styled-components";
 
-import { IconBrandingSmall, IconSafariShare } from '../../index.components';
-import { IGlobalStoreState } from '../../../data/interfaces/index.interface';
+import { IconBrandingSmall, IconSafariShare } from "../../index.components";
+import { IGlobalStoreState } from "../../../data/interfaces/index.interface";
 
 interface IAddToHomeScreenProps {
 	theme?: any;
@@ -35,12 +35,12 @@ class AddToHomeScreen extends React.PureComponent<IAddToHomeScreenProps, any> {
 		if (windowNavigator && windowNavigator.share) {
 			windowNavigator
 				.share({
-					title: 'Web Fundamentals',
-					text: 'Check out Web Fundamentals — it rocks!',
-					url: 'https://developers.google.com/web',
+					title: "Web Fundamentals",
+					text: "Check out Web Fundamentals — it rocks!",
+					url: "https://developers.google.com/web",
 				})
-				.then(() => console.log('Successful share'))
-				.catch(error => console.log('Error sharing', error));
+				.then(() => console.log("Successful share"))
+				.catch(error => console.log("Error sharing", error));
 		}
 	}
 
@@ -49,9 +49,7 @@ class AddToHomeScreen extends React.PureComponent<IAddToHomeScreenProps, any> {
 			<Wrapper
 				id="add-to-homescreen-modal"
 				type="button"
-				onClick={(
-					event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-				) => this.handleOnClick(event)}
+				onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => this.handleOnClick(event)}
 				tabIndex={1}
 			>
 				<IconStrip className="dialog__logo" tabIndex={-1}>
@@ -62,15 +60,11 @@ class AddToHomeScreen extends React.PureComponent<IAddToHomeScreenProps, any> {
 					<h2 id="dialog__title" className="dialog__content__title">
 						Add to Home Screen?
 					</h2>
-					<p
-						id="dialog__description"
-						className="dialog__content__description"
-					>
-						Install the app on your home screen for instant and easy
-						access while you're on the go.
+					<p id="dialog__description" className="dialog__content__description">
+						Install the app on your home screen for instant and easy access while you're on the go.
 					</p>
 					<p id="dialog__tip" className="dialog__content__tip">
-						Tap <IconSafariShare /> and then 'Add to homescreen'{' '}
+						Tap <IconSafariShare /> and then 'Add to homescreen'{" "}
 					</p>
 				</Content>
 			</Wrapper>
@@ -94,7 +88,7 @@ const Wrapper = styled.button`
 const IconStrip = styled.figure`
 	margin-top: 0;
 	margin-right: 0;
-	margin-bottom: ${rem('16px')};
+	margin-bottom: ${rem("16px")};
 	margin-left: 0;
 	width: 100%;
 	height: auto;
@@ -108,7 +102,7 @@ const Content = styled.div`
 	width: 100%;
 	margin: 0 auto;
 
-	html[data-theme='DARK'] & {
+	html[data-theme="DARK"] & {
 		.dialog {
 			&__content {
 				&__title {

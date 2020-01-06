@@ -1,9 +1,9 @@
-import { IThemeProps } from './index.interface';
+import { IThemeProps } from "./index.interface";
 
 export enum EModalAlignType {
-	TOP = 'top',
-	MIDDLE = 'middle',
-	BOTTOM = 'bottom',
+	TOP = "top",
+	MIDDLE = "middle",
+	BOTTOM = "bottom",
 }
 
 export interface IModalProps {
@@ -12,7 +12,5 @@ export interface IModalProps {
 	maxWidth?: number;
 	backgroundOpacity?: number;
 	align?: EModalAlignType;
-	handleClickToCloseModal?(
-		event: React.MouseEvent<HTMLElement, MouseEvent>,
-	): void;
+	handleClickToCloseModal?(event: React.MouseEvent<HTMLElement, MouseEvent>): void;
 }

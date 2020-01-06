@@ -1,8 +1,8 @@
 // Libraries
-import { Link } from 'gatsby';
-import { darken, rem } from 'polished';
-import * as React from 'react';
-import styled, { css } from 'styled-components';
+import { Link } from "gatsby";
+import { darken, rem } from "polished";
+import * as React from "react";
+import styled, { css } from "styled-components";
 
 // Component Props
 interface IUIButtonProps {
@@ -27,15 +27,9 @@ class UIButton extends React.Component<IUIButtonProps> {
 	public render() {
 		const { type, text, label, disabled, onClick } = this.props;
 
-		const linkText = disabled ? 'Select at least 3 sources ' : text;
+		const linkText = disabled ? "Select at least 3 sources " : text;
 		return (
-			<Button
-				type={type}
-				onClick={onClick}
-				aria-label={label}
-				tabIndex={0}
-				disabled={disabled}
-			>
+			<Button type={type} onClick={onClick} aria-label={label} tabIndex={0} disabled={disabled}>
 				{linkText}
 			</Button>
 		);
@@ -57,7 +51,7 @@ class UIAnchor extends React.Component<IUIAnchorProps> {
 	public render() {
 		const { to, text, label, disabled } = this.props;
 
-		const linkText = disabled ? 'Select at least 3 sources ' : text;
+		const linkText = disabled ? "Select at least 3 sources " : text;
 		return (
 			<Anchor to={to} aria-label={label} tabIndex={0} disabled={disabled}>
 				{linkText}
@@ -69,7 +63,7 @@ class UIAnchor extends React.Component<IUIAnchorProps> {
 // Styling
 const Button = styled.button`
 	width: 100%;
-	height: var(--bottom-navigation-bar-height, ${rem('56px')});
+	height: var(--bottom-navigation-bar-height, ${rem("56px")});
 	background-color: var(--color-primary);
 	color: var(--color-white);
 	text-align: center;
@@ -86,7 +80,7 @@ const Button = styled.button`
 	&:focus,
 	&:hover,
 	&:active {
-		background-color: ${darken(0.1, '#e74c3c')};
+		background-color: ${darken(0.1, "#e74c3c")};
 		color: currentColor;
 		outline: 1px dashed var(--color-gray2);
 	}
@@ -118,7 +112,7 @@ const Button = styled.button`
 
 const Anchor = styled(Link)`
 	width: 100%;
-	height: var(--bottom-navigation-bar-height, ${rem('56px')});
+	height: var(--bottom-navigation-bar-height, ${rem("56px")});
 	background-color: var(--color-primary);
 	color: var(--color-white);
 	text-align: center;
@@ -135,7 +129,7 @@ const Anchor = styled(Link)`
 	&:focus,
 	&:hover,
 	&:active {
-		background-color: ${darken(0.1, '#e74c3c')};
+		background-color: ${darken(0.1, "#e74c3c")};
 		color: currentColor;
 		outline: 1px dashed var(--color-gray2);
 	}

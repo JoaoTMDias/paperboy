@@ -47,9 +47,9 @@ export interface Breakpoints {
 }
 
 export enum EAppThemeType {
-	LIGHT = 'LIGHT',
-	DARK = 'DARK',
-	AMBIENT = 'AMBIENT',
+	LIGHT = "LIGHT",
+	DARK = "DARK",
+	AMBIENT = "AMBIENT",
 }
 
 export interface IAppTheme {

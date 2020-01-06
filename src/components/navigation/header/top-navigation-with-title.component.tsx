@@ -1,7 +1,7 @@
 // Libraries
-import { rem } from 'polished';
-import * as React from 'react';
-import styled from 'styled-components';
+import { rem } from "polished";
+import * as React from "react";
+import styled from "styled-components";
 
 // Component Props
 interface ITopNavigationWithTitleProps {
@@ -16,17 +16,9 @@ interface ITopNavigationWithTitleProps {
  * @date  12/December/2018 at 16:40
  * @extends {React.SFC}
  */
-class TopNavigationWithTitle extends React.Component<
-	ITopNavigationWithTitleProps
-> {
-	shouldComponentUpdate(
-		nextProps: ITopNavigationWithTitleProps,
-		nextState,
-	): boolean {
-		if (
-			nextProps.title !== this.props.title ||
-			nextProps.subtitle !== this.props.subtitle
-		) {
+class TopNavigationWithTitle extends React.Component<ITopNavigationWithTitleProps> {
+	shouldComponentUpdate(nextProps: ITopNavigationWithTitleProps, nextState): boolean {
+		if (nextProps.title !== this.props.title || nextProps.subtitle !== this.props.subtitle) {
 			return true;
 		}
 		return false;
@@ -39,16 +31,9 @@ class TopNavigationWithTitle extends React.Component<
 		const { title, subtitle } = this.props;
 
 		return (
-			<Container
-				id="top-navigation-with-title"
-				className="shrink-when-sticky"
-			>
-				<h2 className="top-navigation-with-title__title title">
-					{title}
-				</h2>
-				<p className="hide-when-sticky top-navigation-with-title__subtitle">
-					{subtitle}
-				</p>
+			<Container id="top-navigation-with-title" className="shrink-when-sticky">
+				<h2 className="top-navigation-with-title__title title">{title}</h2>
+				<p className="hide-when-sticky top-navigation-with-title__subtitle">{subtitle}</p>
 			</Container>
 		);
 	}
@@ -58,7 +43,7 @@ class TopNavigationWithTitle extends React.Component<
 const Container = styled.div`
 	--top-bar-background-color: var(--color-white);
 
-	html[data-theme='DARK'] & {
+	html[data-theme="DARK"] & {
 		--top-bar-background-color: var(--body-background);
 	}
 
@@ -68,10 +53,10 @@ const Container = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
-	margin-top: ${rem('20px')};
+	margin-top: ${rem("20px")};
 	margin-right: 0;
 
-	margin-bottom: ${rem('20px')};
+	margin-bottom: ${rem("20px")};
 	margin-left: 0;
 	background-color: var(--top-bar-background-color);
 
@@ -79,7 +64,7 @@ const Container = styled.div`
 		&-with-title {
 			&__title {
 				font-family: var(--heading-font-family);
-				font-size: ${rem('20px')};
+				font-size: ${rem("20px")};
 				color: var(--heading-1-color);
 
 				letter-spacing: 0;
@@ -88,10 +73,10 @@ const Container = styled.div`
 
 			&__subtitle {
 				font-family: var(--body-font-family);
-				font-size: ${rem('14px')};
+				font-size: ${rem("14px")};
 				color: var(--color-gray7);
 
-				html[data-theme='DARK'] && {
+				html[data-theme="DARK"] && {
 					color: var(--color-gray4);
 				}
 

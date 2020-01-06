@@ -1,12 +1,12 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
-import { rem } from 'polished';
+import * as React from "react";
+import styled from "styled-components";
+import { rem } from "polished";
 
 // Interface
 export enum EIconChangeTypeSize {
-	SMALL = 'SMALL',
-	LARGE = 'LARGE',
+	SMALL = "SMALL",
+	LARGE = "LARGE",
 }
 
 interface IIconChangeTypeSizeProps {
@@ -19,9 +19,7 @@ interface IIconChangeTypeSizeProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IIconChangeTypeSizeProps>}
  */
-const IconChangeTypeSize: React.FunctionComponent<
-	IIconChangeTypeSizeProps
-> = props => {
+const IconChangeTypeSize: React.FunctionComponent<IIconChangeTypeSizeProps> = props => {
 	const { type } = props;
 
 	return (
@@ -29,7 +27,7 @@ const IconChangeTypeSize: React.FunctionComponent<
 			<Icon
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 48 48"
-				className={type === EIconChangeTypeSize.SMALL ? '' : 'is-large'}
+				className={type === EIconChangeTypeSize.SMALL ? "" : "is-large"}
 				type={type}
 			>
 				<path
@@ -55,13 +53,13 @@ const Wrapper = styled.figure`
 	justify-content: center;
 	align-items: center;
 
-	width: ${rem('56px')};
-	height: ${rem('56px')};
+	width: ${rem("56px")};
+	height: ${rem("56px")};
 `;
 
 const Icon = styled.svg`
-	width: ${rem('48px')};
-	height: ${rem('48px')};
+	width: ${rem("48px")};
+	height: ${rem("48px")};
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -70,8 +68,8 @@ const Icon = styled.svg`
 	--letters: var(--color-gray7);
 
 	&.is-large {
-		width: ${rem('56px')};
-		height: ${rem('56px')};
+		width: ${rem("56px")};
+		height: ${rem("56px")};
 	}
 `;
 

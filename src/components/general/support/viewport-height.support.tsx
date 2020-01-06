@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
+import * as React from "react";
+import { connect } from "react-redux";
 
-import { IGlobalStoreState } from '../../../data/interfaces/index.interfaces';
-import { debounce } from '../../../helpers/index.helpers';
+import { IGlobalStoreState } from "../../../data/interfaces/index.interfaces";
+import { debounce } from "../../../helpers/index.helpers";
 
 // Interfaces
 export interface IViewportHeightProps {
@@ -14,10 +14,7 @@ export interface IViewportHeightState {
 	viewportHeight: number;
 }
 
-class ViewportHeight extends React.Component<
-	IViewportHeightProps,
-	IViewportHeightState
-> {
+class ViewportHeight extends React.Component<IViewportHeightProps, IViewportHeightState> {
 	constructor(props: IViewportHeightProps) {
 		super(props);
 
@@ -32,7 +29,7 @@ class ViewportHeight extends React.Component<
 	componentDidMount() {
 		this.getDevicePlatform();
 
-		window.addEventListener('resize', () => {
+		window.addEventListener("resize", () => {
 			debounce(this.getDevicePlatform);
 		});
 	}
@@ -45,10 +42,7 @@ class ViewportHeight extends React.Component<
 	 * @returns {boolean}
 	 * @memberof ViewportHeight
 	 */
-	shouldComponentUpdate(
-		nextProps: IViewportHeightProps,
-		nextState: IViewportHeightState,
-	): boolean {
+	shouldComponentUpdate(nextProps: IViewportHeightProps, nextState: IViewportHeightState): boolean {
 		const { platform } = this.props;
 		const { viewportUnit, viewportHeight } = this.state;
 
@@ -83,7 +77,7 @@ class ViewportHeight extends React.Component<
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('resize', () => {
+		window.removeEventListener("resize", () => {
 			debounce(this.getDevicePlatform);
 		});
 	}
@@ -111,7 +105,7 @@ class ViewportHeight extends React.Component<
 	handleFixViewportHeightUnits(platform: string) {
 		const vHeight = window.innerHeight;
 		const vUnit = vHeight * 0.01;
-		const iOS = 'ios';
+		const iOS = "ios";
 
 		this.setState(
 			{
@@ -122,20 +116,11 @@ class ViewportHeight extends React.Component<
 				const { viewportUnit, viewportHeight } = this.state;
 
 				if (viewportUnit && viewportHeight) {
-					document.documentElement.style.setProperty(
-						'--viewport-height-unitless',
-						`${viewportHeight}`,
-					);
+					document.documentElement.style.setProperty("--viewport-height-unitless", `${viewportHeight}`);
 
 					if (platform && platform === iOS) {
-						document.documentElement.style.setProperty(
-							'--viewport-height-unit',
-							`${viewportUnit}px`,
-						);
-						document.documentElement.style.setProperty(
-							'--viewport-height',
-							`${viewportHeight}px`,
-						);
+						document.documentElement.style.setProperty("--viewport-height-unit", `${viewportUnit}px`);
+						document.documentElement.style.setProperty("--viewport-height", `${viewportHeight}px`);
 					}
 				}
 			},

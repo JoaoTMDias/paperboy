@@ -1,6 +1,6 @@
-import { rem } from 'polished';
-import * as React from 'react';
-import styled, { css } from 'styled-components';
+import { rem } from "polished";
+import * as React from "react";
+import styled, { css } from "styled-components";
 
 interface IConfirmProps {
 	theme?: any;
@@ -26,10 +26,7 @@ const Confirm: React.FunctionComponent<IConfirmProps> = props => {
 				<h2 id="dialog__title" className="dialog__content__title">
 					{title}
 				</h2>
-				<p
-					id="dialog__description"
-					className="dialog__content__description"
-				>
+				<p id="dialog__description" className="dialog__content__description">
 					{description}
 				</p>
 			</Content>
@@ -62,7 +59,7 @@ const Content = styled.div`
 const Row = styled.div`
 	width: 100%;
 	flex: 0 0 auto;
-	padding: ${rem('8px')} ${rem('16px')};
+	padding: ${rem("8px")} ${rem("16px")};
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
@@ -71,7 +68,7 @@ const Row = styled.div`
 
 const Button = styled.button`
 	-webkit-appearance: none;
-	padding: ${rem('8px')} ${rem('16px')};
+	padding: ${rem("8px")} ${rem("16px")};
 	background-color: var(--body-background);
 	color: var(--body-font-color);
 	box-shadow: none;

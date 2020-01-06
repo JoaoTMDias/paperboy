@@ -1,7 +1,7 @@
 // Libraries
-import { rem } from 'polished';
-import * as React from 'react';
-import styled, { keyframes } from 'styled-components';
+import { rem } from "polished";
+import * as React from "react";
+import styled, { keyframes } from "styled-components";
 
 // Component Props
 interface IUIDialogProps {
@@ -45,9 +45,9 @@ const fadeInDialog = keyframes`
 
 const Dialog = styled.div`
 	width: calc(100% - 1rem);
-	max-width: ${rem('359px')};
+	max-width: ${rem("359px")};
 	margin: 0 auto;
-	padding: ${rem('16px')} 0 0 0;
+	padding: ${rem("16px")} 0 0 0;
 
 	background-color: var(--body-background);
 
@@ -88,29 +88,29 @@ const Dialog = styled.div`
 		}
 
 		&__title {
-			font-size: ${rem('20px')};
-			margin-bottom: ${rem('4px')};
+			font-size: ${rem("20px")};
+			margin-bottom: ${rem("4px")};
 			color: var(--color-gray8);
 		}
 
 		&__description {
-			font-size: ${rem('16px')};
+			font-size: ${rem("16px")};
 			margin-top: 0;
-			margin-bottom: ${rem('24px')};
+			margin-bottom: ${rem("24px")};
 			color: var(--color-gray7);
 		}
 
 		&__tip {
-			font-size: ${rem('14px')};
+			font-size: ${rem("14px")};
 			margin-top: 0;
 			margin-bottom: 0;
 			color: var(--color-gray8);
-			padding: ${rem('8px')};
+			padding: ${rem("8px")};
 			width: 100%;
 			background-color: var(--color-gray0);
 
 			svg {
-				width: ${rem('18px')};
+				width: ${rem("18px")};
 				height: auto;
 				display: inline-block;
 			}

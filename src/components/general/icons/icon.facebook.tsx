@@ -1,7 +1,7 @@
 // Libraries
-import * as React from 'react';
-import styled, { css } from 'styled-components';
-import { rem } from 'polished';
+import * as React from "react";
+import styled, { css } from "styled-components";
+import { rem } from "polished";
 
 interface IconProps {
 	width?: string;
@@ -25,12 +25,10 @@ const IconFacebook = (props: IconProps) => {
 	);
 };
 
-const Icon = styled('svg')`
+const Icon = styled("svg")`
 	${props => css`
-		width: ${(props: IconProps) =>
-			props.width ? `${rem(props.width)}` : `${rem('30px')}`};
-		height: ${(props: IconProps) =>
-			props.height ? `${rem(props.height)}` : `${rem('30px')}`};
+		width: ${(props: IconProps) => (props.width ? `${rem(props.width)}` : `${rem("30px")}`)};
+		height: ${(props: IconProps) => (props.height ? `${rem(props.height)}` : `${rem("30px")}`)};
 	`}
 `;
 

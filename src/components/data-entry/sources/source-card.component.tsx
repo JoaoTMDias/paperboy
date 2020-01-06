@@ -1,9 +1,9 @@
 // Libraries
-import { rem } from 'polished';
-import * as React from 'react';
-import styled from 'styled-components';
-import { Field } from 'formik';
-import { LazyLoadingImage } from '../../index.components';
+import { rem } from "polished";
+import * as React from "react";
+import styled from "styled-components";
+import { Field } from "formik";
+import { LazyLoadingImage } from "../../index.components";
 
 // Component Props
 interface ISourceCardProps {
@@ -37,7 +37,7 @@ class SourceCard extends React.PureComponent<ISourceCardProps> {
 
 	public render() {
 		const { id, label, src, category, checked, style } = this.props;
-		const status: string = checked ? 'is-checked' : '';
+		const status: string = checked ? "is-checked" : "";
 
 		return (
 			<Wrapper className={`source__item ${status}`} style={style}>
@@ -50,25 +50,12 @@ class SourceCard extends React.PureComponent<ISourceCardProps> {
 						value={`${id}`}
 						name="source-input"
 						checked={checked}
-						onChange={(
-							event: React.ChangeEvent<HTMLInputElement>,
-						) => this.handleOnChange(event)}
+						onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.handleOnChange(event)}
 						tabIndex={-1}
 					/>
-					<Icon
-						role="image"
-						className="source__status"
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-					>
+					<Icon role="image" className="source__status" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 						<title>check</title>
-						<circle
-							className="icon__circle"
-							cx="12"
-							cy="12"
-							r="12"
-							fill="var(--color-gray2)"
-						/>
+						<circle className="icon__circle" cx="12" cy="12" r="12" fill="var(--color-gray2)" />
 						<path
 							className="icon__check"
 							d="M8.75,17.4l-4.3-4.31A1.2,1.2,0,0,1,6.14,11.4l3.47,3.46L17.86,6.6a1.2,1.2,0,0,1,1.69,1.69l-9.1,9.11A1.2,1.2,0,0,1,8.75,17.4Z"
@@ -76,18 +63,10 @@ class SourceCard extends React.PureComponent<ISourceCardProps> {
 						/>
 					</Icon>
 					<Logo className="source__cover">
-						<LazyLoadingImage
-							src={src}
-							width="105"
-							height="105"
-							alt={`${label} logo`}
-						/>
+						<LazyLoadingImage src={src} width="105" height="105" alt={`${label} logo`} />
 					</Logo>
 					<Name className="source__label">
-						<h4
-							id={`source-label-${id}-card`}
-							className="source__label__title"
-						>
+						<h4 id={`source-label-${id}-card`} className="source__label__title">
 							{label}
 						</h4>
 					</Name>
@@ -99,8 +78,8 @@ class SourceCard extends React.PureComponent<ISourceCardProps> {
 
 // Styling
 const Wrapper = styled.li`
-	min-width: ${rem('105px')};
-	min-height: ${rem('148px')};
+	min-width: ${rem("105px")};
+	min-height: ${rem("148px")};
 	width: 100%;
 	scroll-snap-align: center;
 	display: flex;
@@ -126,16 +105,11 @@ const Wrapper = styled.li`
 		}
 
 		label {
-			box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.08),
-				0 0 6px 0 rgba(0, 0, 0, 0.16);
+			box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.08), 0 0 6px 0 rgba(0, 0, 0, 0.16);
 		}
 
 		.source__label {
-			background-image: linear-gradient(
-				45deg,
-				var(--color-select),
-				var(--color-select-gradient)
-			);
+			background-image: linear-gradient(45deg, var(--color-select), var(--color-select-gradient));
 
 			.source__label__title {
 				color: var(--color-white);
@@ -150,14 +124,12 @@ const Wrapper = styled.li`
 		height: 100%;
 		margin: 0;
 		padding: 0;
-		box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.02),
-			0 0 3px 1px rgba(0, 0, 0, 0.04);
+		box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.02), 0 0 3px 1px rgba(0, 0, 0, 0.04);
 		border-radius: 8px;
 		transform: scale(0.98);
 
 		&:active {
-			box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.04),
-				0 0 4px 0 rgba(0, 0, 0, 0.08);
+			box-shadow: 0 0px 8px 2px rgba(0, 0, 0, 0.04), 0 0 4px 0 rgba(0, 0, 0, 0.08);
 			transform: scale(0.96);
 		}
 	}
@@ -165,10 +137,10 @@ const Wrapper = styled.li`
 
 const Icon = styled.svg`
 	position: absolute;
-	top: ${rem('8px')};
-	right: ${rem('8px')};
-	width: ${rem('24px')};
-	height: ${rem('24px')};
+	top: ${rem("8px")};
+	right: ${rem("8px")};
+	width: ${rem("24px")};
+	height: ${rem("24px")};
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -212,32 +184,32 @@ const Name = styled.div`
 	border-bottom-right-radius: 8px;
 	background-color: var(--color-white);
 
-	html[data-theme='DARK'] & {
+	html[data-theme="DARK"] & {
 		background-color: var(--color-gray9);
 	}
-	height: ${rem('44px')};
+	height: ${rem("44px")};
 
 	.source__label {
 		&__title {
 			--text-shadow-color: rgba(255, 255, 255, 0.2);
 
-			html[data-theme='DARK'] & {
+			html[data-theme="DARK"] & {
 				--text-shadow-color: rgba(0, 0, 0, 0.2);
 			}
 
 			width: 100%;
 			text-align: center;
 			font-family: var(--body-font-family);
-			font-size: ${rem('12px')};
+			font-size: ${rem("12px")};
 			line-height: 1.333;
 			color: var(--color-gray8);
 
-			html[data-theme='DARK'] & {
+			html[data-theme="DARK"] & {
 				color: var(--color-gray3);
 			}
 			letter-spacing: 0;
 			margin: 0;
-			padding: ${rem('4px')} ${rem('8px')};
+			padding: ${rem("4px")} ${rem("8px")};
 			text-shadow: 0px 1px 1px var(--text-shadow-color);
 			text-transform: capitalize;
 		}

@@ -1,16 +1,10 @@
-import { produce } from 'immer';
-import { Redirect } from '@reach/router';
-import * as React from 'react';
-import { connect } from 'react-redux';
-import {
-	Formik,
-	FormikActions,
-	FieldArray,
-	FieldArrayRenderProps,
-	FormikProps,
-} from 'formik';
-import { findIndex, isMatch } from 'lodash';
-import { navigate } from 'gatsby';
+import { produce } from "immer";
+import { Redirect } from "@reach/router";
+import * as React from "react";
+import { connect } from "react-redux";
+import { Formik, FormikActions, FieldArray, FieldArrayRenderProps, FormikProps } from "formik";
+import { findIndex, isMatch } from "lodash";
+import { navigate } from "gatsby";
 import {
 	Confirm,
 	Container,
@@ -23,7 +17,7 @@ import {
 	TopNavigation,
 	TopNavigationWithTitle,
 	UISection,
-} from '../../components/index.components';
+} from "../../components/index.components";
 
 // Redux
 import {
@@ -31,24 +25,21 @@ import {
 	IGlobalStoreState,
 	IListOfCategorizedSources,
 	IAllAvailableNewsSource,
-} from '../../data/interfaces/index.interface';
+} from "../../data/interfaces/index.interface";
 import {
 	getAllAvailableNewsSources,
 	getAvailableNewSourcesFromLanguage,
 	getUserCountryCodeByCoordinates,
 	SetChosenNewsSources,
-} from '../../data/redux/actions/index.actions';
+} from "../../data/redux/actions/index.actions";
 
-import {
-	NEWS_PAGE,
-	ONBOARDING_PRELOADER,
-} from '../../data/constants/index.constants';
+import { NEWS_PAGE, ONBOARDING_PRELOADER } from "../../data/constants/index.constants";
 
 // Data
-import Top20EditorSuggestions from '../../data/dummy/news-sources-suggestions';
+import Top20EditorSuggestions from "../../data/dummy/news-sources-suggestions";
 
 // Validation Schema
-import ChooseSourcesValidationSchema from './choose-sources-validation-schema';
+import ChooseSourcesValidationSchema from "./choose-sources-validation-schema";
 
 interface LanguageSupport {
 	hasLocation: boolean;
@@ -86,10 +77,7 @@ interface IChooseSourcesPageState {
  * @class ChooseSourcesPage
  * @extends {React.Component<IChooseSourcesPageProps, IChooseSourcesPageState>}
  */
-class ChooseSourcesPage extends React.PureComponent<
-	ChooseSourcesPageProps,
-	ChooseSourcesPageState
-> {
+class ChooseSourcesPage extends React.PureComponent<ChooseSourcesPageProps, ChooseSourcesPageState> {
 	constructor(props: IChooseSourcesPageProps) {
 		super(props);
 
@@ -178,12 +166,7 @@ class ChooseSourcesPage extends React.PureComponent<
 						const { latitude } = position.coords;
 						const { longitude } = position.coords;
 
-						this.props.dispatch(
-							getUserCountryCodeByCoordinates(
-								latitude,
-								longitude,
-							),
-						);
+						this.props.dispatch(getUserCountryCodeByCoordinates(latitude, longitude));
 					}
 				})
 				.catch(err => {
@@ -214,10 +197,7 @@ class ChooseSourcesPage extends React.PureComponent<
 	 * @returns
 	 * @memberof ChooseSourcesPage
 	 */
-	renderListOfSuggestedSources(
-		data: IAllAvailableNewsSource[],
-		formProps: FormikProps<ChosenSources>,
-	) {
+	renderListOfSuggestedSources(data: IAllAvailableNewsSource[], formProps: FormikProps<ChosenSources>) {
 		const { values } = formProps;
 
 		return (
@@ -225,27 +205,14 @@ class ChooseSourcesPage extends React.PureComponent<
 				name="list"
 				render={(arrayHelpers: FieldArrayRenderProps) => {
 					return (
-						<UISection
-							id="sources-editors-suggestions"
-							title="Editor's Suggestions"
-						>
+						<UISection id="sources-editors-suggestions" title="Editor's Suggestions">
 							<SourcesList
 								layout="horizontal"
 								label="The Top 20 Editor's Suggestions for news sources."
 								data={data}
 								selectedOptions={formProps.values.list}
-								handleChange={(
-									event: React.SyntheticEvent,
-									position: number,
-									category: string,
-								) => {
-									this.handleClickOnItem(
-										event,
-										position,
-										category,
-										values,
-										arrayHelpers,
-									);
+								handleChange={(event: React.SyntheticEvent, position: number, category: string) => {
+									this.handleClickOnItem(event, position, category, values, arrayHelpers);
 								}}
 							/>
 						</UISection>
@@ -263,10 +230,7 @@ class ChooseSourcesPage extends React.PureComponent<
 	 * @returns
 	 * @memberof ChooseSourcesPage
 	 */
-	renderListOfCategories(
-		data: IListOfCategorizedSources[],
-		formProps: FormikProps<ChosenSources>,
-	) {
+	renderListOfCategories(data: IListOfCategorizedSources[], formProps: FormikProps<ChosenSources>) {
 		const { values } = formProps;
 		return (
 			<FieldArray
@@ -274,44 +238,22 @@ class ChooseSourcesPage extends React.PureComponent<
 				render={(arrayHelpers: FieldArrayRenderProps) => {
 					return (
 						<article>
-							{data.map(
-								(
-									category: IListOfCategorizedSources,
-									index,
-								) => {
-									const title = category.name;
-									return (
-										<UISection
-											key={`sources-${title}-${index}`}
-											id={`sources-${title}`}
-											title={title}
-											grouped
-										>
-											<SourcesList
-												layout="vertical"
-												label="Language Specific News Sources"
-												data={category.items}
-												selectedOptions={
-													formProps.values.list
-												}
-												handleChange={(
-													event: React.SyntheticEvent,
-													position: number,
-													category: string,
-												) => {
-													this.handleClickOnItem(
-														event,
-														position,
-														category,
-														values,
-														arrayHelpers,
-													);
-												}}
-											/>
-										</UISection>
-									);
-								},
-							)}
+							{data.map((category: IListOfCategorizedSources, index) => {
+								const title = category.name;
+								return (
+									<UISection key={`sources-${title}-${index}`} id={`sources-${title}`} title={title} grouped>
+										<SourcesList
+											layout="vertical"
+											label="Language Specific News Sources"
+											data={category.items}
+											selectedOptions={formProps.values.list}
+											handleChange={(event: React.SyntheticEvent, position: number, category: string) => {
+												this.handleClickOnItem(event, position, category, values, arrayHelpers);
+											}}
+										/>
+									</UISection>
+								);
+							})}
 						</article>
 					);
 				}}
@@ -388,16 +330,13 @@ class ChooseSourcesPage extends React.PureComponent<
 					<Confirm
 						title="Use location services?"
 						description="Can I use your devices' location to find any news sources related to your country/language?"
-						onCancel={() => console.log('canceled')}
+						onCancel={() => console.log("canceled")}
 						onConfirm={() => this.getUserCountry()}
 					/>
 				</Modal>
 				<Formik
 					initialValues={chosen}
-					onSubmit={(
-						values: ChosenSources,
-						actions: FormikActions<ChosenSources>,
-					) => {
+					onSubmit={(values: ChosenSources, actions: FormikActions<ChosenSources>) => {
 						this.handleSubmit(values.list);
 						setTimeout(() => {
 							actions.setSubmitting(false);
@@ -408,45 +347,15 @@ class ChooseSourcesPage extends React.PureComponent<
 					validateOnChange
 				>
 					{props => {
-						const {
-							values,
-							dirty,
-							isSubmitting,
-							handleSubmit,
-							submitForm,
-						} = props;
+						const { values, dirty, isSubmitting, handleSubmit, submitForm } = props;
 
-						const disableSubmitButton = !!(
-							values &&
-							values.list.length < 3 &&
-							(!dirty || isSubmitting)
-						);
+						const disableSubmitButton = !!(values && values.list.length < 3 && (!dirty || isSubmitting));
 
 						return (
-							<form
-								id="choose-sources-form"
-								onSubmit={handleSubmit}
-								className="modal-dialog__container"
-							>
-								<Container
-									fullwidth
-									isFixed
-									title="Current Page is: Choose News Sources."
-									offsetTop="1rem"
-								>
-									{Top20EditorSuggestions &&
-										this.renderListOfSuggestedSources(
-											Top20EditorSuggestions,
-											props,
-										)}
-									{hasData && sources ? (
-										this.renderListOfCategories(
-											sources,
-											props,
-										)
-									) : (
-										<UIContentSpinner isFullPage />
-									)}
+							<form id="choose-sources-form" onSubmit={handleSubmit} className="modal-dialog__container">
+								<Container fullwidth isFixed title="Current Page is: Choose News Sources." offsetTop="1rem">
+									{Top20EditorSuggestions && this.renderListOfSuggestedSources(Top20EditorSuggestions, props)}
+									{hasData && sources ? this.renderListOfCategories(sources, props) : <UIContentSpinner isFullPage />}
 								</Container>
 								<UICallToAction>
 									<UIButton

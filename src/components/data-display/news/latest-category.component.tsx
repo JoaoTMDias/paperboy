@@ -1,19 +1,15 @@
-import * as React from 'react';
-import { connect } from 'react-redux';
-import { ListChildComponentProps } from 'react-window';
+import * as React from "react";
+import { connect } from "react-redux";
+import { ListChildComponentProps } from "react-window";
 
-import { ArticleThumbnail, UIContentSpinner } from '../../index.components';
+import { ArticleThumbnail, UIContentSpinner } from "../../index.components";
 
-import { List, Item } from './news-tabs.styled';
+import { List, Item } from "./news-tabs.styled";
 
-import {
-	INewsArticle,
-	IGlobalStoreState,
-	INewsArticleItem,
-} from '../../../data/interfaces/index.interface';
+import { INewsArticle, IGlobalStoreState, INewsArticleItem } from "../../../data/interfaces/index.interface";
 
-import { getAllLatestNewsFromSource } from '../../../data/redux/actions/index.actions';
-import { EThumbnailType } from '../thumbnails/thumbnails-large.component';
+import { getAllLatestNewsFromSource } from "../../../data/redux/actions/index.actions";
+import { EThumbnailType } from "../thumbnails/thumbnails-large.component";
 
 interface INewsArticleTabProps {
 	sources: string[];
@@ -31,10 +27,7 @@ interface IVirtualListProps extends ListChildComponentProps {
  * @class LatestNewsCategoryTab
  * @extends {React.Component<INewsArticleTabProps, any>}
  */
-class LatestNewsCategoryTab extends React.PureComponent<
-	INewsArticleTabProps,
-	any
-> {
+class LatestNewsCategoryTab extends React.PureComponent<INewsArticleTabProps, any> {
 	constructor(props: INewsArticleTabProps) {
 		super(props);
 	}
@@ -81,38 +74,28 @@ class LatestNewsCategoryTab extends React.PureComponent<
 	 * @memberof LatestNewsCategoryTab
 	 */
 	renderRow = (articles: INewsArticleItem[]) => {
-		const list = articles.map(
-			(article: INewsArticleItem, index: number) => {
-				if (index === 0) {
-					return (
-						<Item
-							className="list__item list__item--first"
-							key={`latest-news-category__article__${article.publishedAt}`}
-							id={`latest-news-category__article__${index}`}
-						>
-							<ArticleThumbnail
-								id={index}
-								options={article}
-								type={EThumbnailType.LARGE}
-							/>
-						</Item>
-					);
-				}
+		const list = articles.map((article: INewsArticleItem, index: number) => {
+			if (index === 0) {
 				return (
 					<Item
-						className="list__item"
+						className="list__item list__item--first"
 						key={`latest-news-category__article__${article.publishedAt}`}
 						id={`latest-news-category__article__${index}`}
 					>
-						<ArticleThumbnail
-							id={index}
-							options={article}
-							type={EThumbnailType.SMALL}
-						/>
+						<ArticleThumbnail id={index} options={article} type={EThumbnailType.LARGE} />
 					</Item>
 				);
-			},
-		);
+			}
+			return (
+				<Item
+					className="list__item"
+					key={`latest-news-category__article__${article.publishedAt}`}
+					id={`latest-news-category__article__${index}`}
+				>
+					<ArticleThumbnail id={index} options={article} type={EThumbnailType.SMALL} />
+				</Item>
+			);
+		});
 
 		return <React.Fragment>{list}</React.Fragment>;
 	};

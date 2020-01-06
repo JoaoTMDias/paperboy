@@ -1,10 +1,6 @@
-import { css } from 'styled-components';
+import { css } from "styled-components";
 
-export const flexRow = ({
-	direction = 'row',
-	justifyContent = 'center',
-	alignItems = 'center',
-} = {}) => css`
+export const flexRow = ({ direction = "row", justifyContent = "center", alignItems = "center" } = {}) => css`
 	display: flex;
 	flex-direction: ${direction};
 	justify-content: ${justifyContent};

@@ -1,12 +1,12 @@
 // Libraries
-import { rem } from 'polished';
-import * as React from 'react';
-import styled, { css } from 'styled-components';
+import { rem } from "polished";
+import * as React from "react";
+import styled, { css } from "styled-components";
 
 // Component Props
 interface IUISectionProps {
 	theme?: any;
-	layout?: 'vertical' | 'horizontal';
+	layout?: "vertical" | "horizontal";
 	title?: string;
 	id: string;
 	role?: string;
@@ -23,7 +23,7 @@ interface IUISectionProps {
  */
 class UISection extends React.PureComponent<IUISectionProps> {
 	static defaultProps = {
-		layout: 'vertical',
+		layout: "vertical",
 		id: `${Math.random()}`,
 		grouped: false,
 	};
@@ -43,15 +43,7 @@ class UISection extends React.PureComponent<IUISectionProps> {
 	}
 
 	public render() {
-		const {
-			id,
-			title,
-			children,
-			style,
-			role,
-			layout,
-			grouped,
-		} = this.props;
+		const { id, title, children, style, role, layout, grouped } = this.props;
 
 		if (grouped) {
 			return (
@@ -108,16 +100,15 @@ const Wrapper = styled.div`
 const SectionWrapper = styled.section`
 	width: 100%;
 	max-width: 100%;
-	padding: 0
-		${(props: IUISectionProps) => (props.grouped === true ? '0' : '1rem')};
+	padding: 0 ${(props: IUISectionProps) => (props.grouped === true ? "0" : "1rem")};
 
 	overflow-x: hidden;
 	display: flex;
 	flex-direction: ${(props: IUISectionProps) => {
-		if (props.layout === 'horizontal') {
-			return 'row';
+		if (props.layout === "horizontal") {
+			return "row";
 		}
-		return 'column';
+		return "column";
 	}};
 	justify-content: flex-start;
 	align-items: flex-start;
@@ -125,11 +116,11 @@ const SectionWrapper = styled.section`
 	margin-right: auto;
 	margin-bottom: ${(props: IUISectionProps) => {
 		switch (props.role) {
-			case 'search':
-				return '2rem';
+			case "search":
+				return "2rem";
 
 			default:
-				return `${rem('48px')}`;
+				return `${rem("48px")}`;
 		}
 	}};
 
@@ -141,17 +132,17 @@ const SectionWrapper = styled.section`
 const SectionTitle = styled.h3`
 	--section-title-color: var(--color-gray8);
 
-	html[data-theme='DARK'] & {
+	html[data-theme="DARK"] & {
 		color: var(--color-gray4);
 	}
 
 	font-family: var(--body-font-family);
-	font-size: ${rem('12px')};
+	font-size: ${rem("12px")};
 	text-transform: capitalize;
 	color: var(--section-title-color);
 
-	letter-spacing: ${rem('0.4px')};
-	line-height: ${rem('14px')};
+	letter-spacing: ${rem("0.4px")};
+	line-height: ${rem("14px")};
 	margin-bottom: calc(var(--global-padding) * 0.5);
 	padding: 0;
 

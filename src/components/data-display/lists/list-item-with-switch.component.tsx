@@ -1,9 +1,9 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
-import { rem } from 'polished';
-import { FormSwitch } from '../../index.components';
-import flexRow from '../../../helpers/row.helper';
+import * as React from "react";
+import styled from "styled-components";
+import { rem } from "polished";
+import { FormSwitch } from "../../index.components";
+import flexRow from "../../../helpers/row.helper";
 
 // Interface
 interface IListItemWithSwitchProps {
@@ -21,17 +21,10 @@ interface IListItemWithSwitchProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IListItemWithSwitchProps>}
  */
-export const ListItemWithSwitch: React.FunctionComponent<
-	IListItemWithSwitchProps
-> = props => {
+export const ListItemWithSwitch: React.FunctionComponent<IListItemWithSwitchProps> = props => {
 	const { id, title, subtitle, onClick, defaultValue, value } = props;
 	return (
-		<Label
-			htmlFor={`${id}-input`}
-			className="section-list__item__label"
-			onClick={onClick}
-			tabIndex={0}
-		>
+		<Label htmlFor={`${id}-input`} className="section-list__item__label" onClick={onClick} tabIndex={0}>
 			<div className="text">
 				<h3 className="text__title">{title}</h3>
 				{subtitle && <h6 className="text__subtitle">{subtitle}</h6>}
@@ -52,11 +45,11 @@ export const ListItemWithSwitch: React.FunctionComponent<
 
 // Styling
 const Label = styled.label`
-	--icon-size: ${rem('48px')};
+	--icon-size: ${rem("48px")};
 	--list-item-title-color: var(--color-gray9);
 	--list-item-subtitle-color: var(--color-gray8);
 
-	html[data-theme='DARK'] & {
+	html[data-theme="DARK"] & {
 		--list-item-title-color: var(--color-gray0);
 		--list-item-subtitle-color: var(--color-gray3);
 	}
@@ -64,9 +57,9 @@ const Label = styled.label`
 	width: 100%;
 	margin: 0;
 	${flexRow({
-		direction: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
+		direction: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
 	})};
 
 	&:focus {
@@ -79,7 +72,7 @@ const Label = styled.label`
 		margin-right: calc(var(--global-margin) * -1);
 
 		&.toggle {
-			width: ${rem('80px')};
+			width: ${rem("80px")};
 			margin: 0;
 		}
 	}
@@ -99,7 +92,7 @@ const Label = styled.label`
 		}
 
 		&__title {
-			font-size: ${rem('14px')};
+			font-size: ${rem("14px")};
 			color: var(--list-item-title-color);
 			letter-spacing: 0.4px;
 			line-height: 1;
@@ -108,7 +101,7 @@ const Label = styled.label`
 		}
 
 		&__subtitle {
-			font-size: ${rem('13px')};
+			font-size: ${rem("13px")};
 			color: var(--list-item-subtitle-color);
 			margin-top: 0.25rem;
 		}

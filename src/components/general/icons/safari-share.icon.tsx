@@ -1,6 +1,6 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from "react";
+import styled from "styled-components";
 
 // Component Props
 interface IIconSafariShareProps {
@@ -13,9 +13,7 @@ interface IIconSafariShareProps {
  * @date  09/December/2018 at 16:22
  * @extends {React.SFC}
  */
-const IconSafariShare: React.FunctionComponent<
-	IIconSafariShareProps
-> = props => (
+const IconSafariShare: React.FunctionComponent<IIconSafariShareProps> = props => (
 	<Icon
 		id="safari-share-icon"
 		xmlns="http://www.w3.org/2000/svg"

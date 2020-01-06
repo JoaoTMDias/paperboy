@@ -1,14 +1,12 @@
-import styled from 'styled-components';
-import { FixedSizeList } from 'react-window';
-import SwipeableViews from 'react-swipeable-views';
-import Tabs from '@material-ui/core/Tabs';
+import styled from "styled-components";
+import { FixedSizeList } from "react-window";
+import SwipeableViews from "react-swipeable-views";
+import Tabs from "@material-ui/core/Tabs";
 
 export const VirtualizedList = styled(FixedSizeList)`
 	position: relative;
 	width: 100vw;
-	height: calc(
-		var(--viewport-height) - (var(--top-navigation-bar-height) * 2)
-	);
+	height: calc(var(--viewport-height) - (var(--top-navigation-bar-height) * 2));
 	overflow: auto;
 	will-change: transform;
 
@@ -82,13 +80,13 @@ export const TabsContainer = styled(SwipeableViews)`
 		-webkit-overflow-scrolling: touch;
 		background-color: var(--tabs-background);
 
-		[aria-hidden='true'] {
+		[aria-hidden="true"] {
 			pointer-events: none;
 			user-select: none;
 			position: relative;
 		}
 
-		[aria-hidden='false'] {
+		[aria-hidden="false"] {
 			pointer-events: inherit;
 			user-select: inherit;
 			position: relative;
@@ -116,8 +114,7 @@ export const TabsHeader = styled(Tabs)`
 
 		&--indicator {
 			background-color: var(--tabs-header-indicator) !important;
-			transition: left 250ms var(--default-timing-function),
-				width 64ms var(--default-timing-function);
+			transition: left 250ms var(--default-timing-function), width 64ms var(--default-timing-function);
 			height: 3px;
 			border-top-left-radius: 3px;
 			border-top-right-radius: 3px;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Title = styled.h1`
 	clip: rect(1px, 1px, 1px, 1px);

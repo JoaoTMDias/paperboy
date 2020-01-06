@@ -5,14 +5,10 @@ import {
 	RESET_APP_STATE,
 	SET_BASE_FONT_RATIO,
 	SET_SAVE_OR_UNSAVE_ARTICLE,
-} from '../../constants/index.constants';
-import { EAppThemeType } from '../../interfaces/theme.interfaces';
-import { IChosenSource } from '../../../pages/onboarding/choose-sources';
-import {
-	INewsPageHeaderItems,
-	ChosenNewsSources,
-	INewsArticleItem,
-} from '../../interfaces/index.interface';
+} from "../../constants/index.constants";
+import { EAppThemeType } from "../../interfaces/theme.interfaces";
+import { IChosenSource } from "../../../pages/onboarding/choose-sources";
+import { INewsPageHeaderItems, ChosenNewsSources, INewsArticleItem } from "../../interfaces/index.interface";
 
 /**
  * @description Updates the store with the new chosen sources
@@ -28,15 +24,12 @@ export const SetChosenNewsSources = (sources: IChosenSource[]) => {
 		});
 
 		// Returns the final list of categories
-		const reducedCategories = allItemsWithCategory.reduce(
-			(previousValue: string[], currentValue: string) => {
-				if (previousValue.indexOf(currentValue) < 0) {
-					previousValue.push(currentValue);
-				}
-				return previousValue;
-			},
-			[],
-		);
+		const reducedCategories = allItemsWithCategory.reduce((previousValue: string[], currentValue: string) => {
+			if (previousValue.indexOf(currentValue) < 0) {
+				previousValue.push(currentValue);
+			}
+			return previousValue;
+		}, []);
 
 		const tabs: INewsPageHeaderItems[] = [];
 		let items = {};
@@ -48,15 +41,13 @@ export const SetChosenNewsSources = (sources: IChosenSource[]) => {
 			};
 			tabs.push(tab);
 
-			const sourcesOfCategory: string[] = sources.map(
-				(source: IChosenSource) => {
-					if (category && source && source.category === category) {
-						return source.name;
-					}
+			const sourcesOfCategory: string[] = sources.map((source: IChosenSource) => {
+				if (category && source && source.category === category) {
+					return source.name;
+				}
 
-					return '';
-				},
-			);
+				return "";
+			});
 
 			if (sourcesOfCategory) {
 				allSourcesMerged = [...allSourcesMerged, ...sourcesOfCategory];

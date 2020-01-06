@@ -1,1 +1,1 @@
-export { default } from './ArticleTypeset';
+export { default } from "./ArticleTypeset";

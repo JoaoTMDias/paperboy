@@ -1,7 +1,7 @@
 // Libraries
-import { rem } from 'polished';
-import * as React from 'react';
-import styled, { keyframes } from 'styled-components';
+import { rem } from "polished";
+import * as React from "react";
+import styled, { keyframes } from "styled-components";
 
 // Component Props
 interface IIconBrandingLargeProps {
@@ -15,9 +15,7 @@ interface IIconBrandingLargeProps {
  * @date  09/December/2018 at 16:22
  * @extends {React.SFC}
  */
-const IconBrandingLarge: React.FunctionComponent<
-	IIconBrandingLargeProps
-> = props => {
+const IconBrandingLarge: React.FunctionComponent<IIconBrandingLargeProps> = props => {
 	const { visible } = props;
 	return (
 		<Wrapper visible={visible}>
@@ -28,9 +26,7 @@ const IconBrandingLarge: React.FunctionComponent<
 				aria-labelledby="branding-large-icon-title"
 				tabIndex={-1}
 			>
-				<title id="branding-large-icon-title">
-					Branding Icon: Large Logo
-				</title>
+				<title id="branding-large-icon-title">Branding Icon: Large Logo</title>
 				<path
 					fill="var(--color-primary, #e74c3c)"
 					fillRule="evenodd"
@@ -54,7 +50,7 @@ const onEnter = keyframes`
 
 const Wrapper = styled.figure`
 	width: auto;
-	max-height: ${rem('298px')};
+	max-height: ${rem("298px")};
 	height: 30vh;
 	position: relative;
 	left: 0;
@@ -65,8 +61,7 @@ const Wrapper = styled.figure`
 	animation-timing-function: var(--default-timing-function, ease-out);
 	animation-fill-mode: both;
 	overflow: hidden;
-	display: ${(props: IIconBrandingLargeProps) =>
-		props.visible ? 'flex' : 'none'};
+	display: ${(props: IIconBrandingLargeProps) => (props.visible ? "flex" : "none")};
 	margin: 0;
 
 	@media ${(props: IIconBrandingLargeProps) => props.theme.breakpointMedium} {

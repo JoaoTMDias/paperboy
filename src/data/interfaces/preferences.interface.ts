@@ -1,6 +1,6 @@
-import { EAppThemeType } from './theme.interfaces';
-import { IListOfCategorizedSources, INewsArticleItem } from './news.interface';
-import { IChosenSource } from '../../pages/onboarding/choose-sources';
+import { EAppThemeType } from "./theme.interfaces";
+import { IListOfCategorizedSources, INewsArticleItem } from "./news.interface";
+import { IChosenSource } from "../../pages/onboarding/choose-sources";
 
 export interface PreferencesReducer {
 	type: null;

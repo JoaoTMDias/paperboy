@@ -1,15 +1,8 @@
 // Libraries
-import * as React from 'react';
-import styled from 'styled-components';
+import * as React from "react";
+import styled from "styled-components";
 
-import {
-	IconCategories,
-	IconNews,
-	IconSaved,
-	IconSearch,
-	IconSettings,
-	TabItem,
-} from '../../index.components';
+import { IconCategories, IconNews, IconSaved, IconSearch, IconSettings, TabItem } from "../../index.components";
 
 import {
 	CATEGORIES_PAGE,
@@ -17,8 +10,8 @@ import {
 	SAVED_PAGE,
 	SEARCH_PAGE,
 	SETTINGS_PAGE,
-} from '../../../data/constants/index.constants';
-import { withMemo } from '../../../helpers/index.helpers';
+} from "../../../data/constants/index.constants";
+import { withMemo } from "../../../helpers/index.helpers";
 
 // Component Props
 interface IBottomNavigationProps {
@@ -31,9 +24,7 @@ interface IBottomNavigationProps {
  * @date  08/December/2018 at 15:20
  * @extends {React.SFC}
  */
-const BottomNavigation: React.FunctionComponent<
-	IBottomNavigationProps
-> = props => (
+const BottomNavigation: React.FunctionComponent<IBottomNavigationProps> = props => (
 	<Wrapper>
 		<Navigation>
 			<List>

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo } from "react";
 
 /**
  * @description A nice hoc that will update your component only if a certain prop(s) of your choice changes
@@ -8,18 +8,12 @@ import { memo } from 'react';
  * @param {*} checkedProps
  * @returns
  */
-export function withMemo(
-	Component: React.FunctionComponent<any>,
-	checkedProps: string[],
-) {
+export function withMemo(Component: React.FunctionComponent<any>, checkedProps: string[]) {
 	function areEqual(prevProps: any, nextProps: any) {
 		let isEqual = true;
 		for (let i = 0; i < checkedProps.length; i++) {
 			const checkedProp = checkedProps[i];
-			if (
-				JSON.stringify(prevProps[checkedProp]) !==
-				JSON.stringify(nextProps[checkedProp])
-			) {
+			if (JSON.stringify(prevProps[checkedProp]) !== JSON.stringify(nextProps[checkedProp])) {
 				isEqual = false;
 				break;
 			}

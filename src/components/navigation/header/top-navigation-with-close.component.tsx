@@ -1,16 +1,16 @@
 // Libraries
-import { Link } from 'gatsby';
-import { rem } from 'polished';
-import * as React from 'react';
-import styled from 'styled-components';
+import { Link } from "gatsby";
+import { rem } from "polished";
+import * as React from "react";
+import styled from "styled-components";
 
 // Components
-import { LazyLoadingImage, IconClose, IconShare } from '../../index.components';
+import { LazyLoadingImage, IconClose, IconShare } from "../../index.components";
 
 // Constants
-import { NEWS_PAGE } from '../../../data/constants/index.constants';
+import { NEWS_PAGE } from "../../../data/constants/index.constants";
 
-import CNN_LOGO from '../../../assets/images/sources/icon-cnn.svg';
+import CNN_LOGO from "../../../assets/images/sources/icon-cnn.svg";
 
 // Utility functions
 const getScrollPosition = (el = window) => ({
@@ -68,10 +68,7 @@ interface ITopNavigationWithCloseState {
  * @date  12/December/2018 at 16:40
  * @extends {React.SFC}
  */
-class TopNavigationWithClose extends React.Component<
-	ITopNavigationWithCloseProps,
-	ITopNavigationWithCloseState
-> {
+class TopNavigationWithClose extends React.Component<ITopNavigationWithCloseProps, ITopNavigationWithCloseState> {
 	constructor(props: ITopNavigationWithCloseProps) {
 		super(props);
 
@@ -98,16 +95,10 @@ class TopNavigationWithClose extends React.Component<
 
 	componentDidMount() {
 		if (document !== undefined) {
-			const hero: HTMLDivElement | null = document.querySelector(
-				'.above-the-fold',
-			);
+			const hero: HTMLDivElement | null = document.querySelector(".above-the-fold");
 			const heroHeight = 384;
-			const heroTitleWrapper: HTMLDivElement | null = document.querySelector(
-				'.hero__title',
-			);
-			const herotitleWrapperHeight: number | null = heroTitleWrapper
-				? heroTitleWrapper.offsetHeight
-				: 107;
+			const heroTitleWrapper: HTMLDivElement | null = document.querySelector(".hero__title");
+			const herotitleWrapperHeight: number | null = heroTitleWrapper ? heroTitleWrapper.offsetHeight : 107;
 
 			const pastScrollHeightTrigger = heroHeight - herotitleWrapperHeight;
 			const navbar: HTMLDivElement | null = this.navBar.current;
@@ -127,20 +118,16 @@ class TopNavigationWithClose extends React.Component<
 					navbar,
 				},
 				() => {
-					document.addEventListener(
-						'scroll',
-						debounce(this.handleScroll),
-						{
-							passive: true,
-						},
-					);
+					document.addEventListener("scroll", debounce(this.handleScroll), {
+						passive: true,
+					});
 				},
 			);
 		}
 	}
 
 	componentWillUnmount() {
-		document.removeEventListener('scroll', debounce(this.handleScroll));
+		document.removeEventListener("scroll", debounce(this.handleScroll));
 	}
 
 	shouldComponentUpdate(nextProps: ITopNavigationWithCloseProps): boolean {
@@ -164,17 +151,11 @@ class TopNavigationWithClose extends React.Component<
 		if (hero && navbar && root) {
 			const ScrollPosition = getScrollPosition();
 			if (ScrollPosition.y >= hero.trigger) {
-				root.style.setProperty(
-					'--top-navigation-bar--detail-foreground',
-					'var(--color-gray9)',
-				);
-				navbar.classList.add('is-scrolling');
+				root.style.setProperty("--top-navigation-bar--detail-foreground", "var(--color-gray9)");
+				navbar.classList.add("is-scrolling");
 			} else if (ScrollPosition.y < hero.trigger) {
-				root.style.setProperty(
-					'--top-navigation-bar--detail-foreground',
-					'var(--color-white)',
-				);
-				navbar.classList.remove('is-scrolling');
+				root.style.setProperty("--top-navigation-bar--detail-foreground", "var(--color-white)");
+				navbar.classList.remove("is-scrolling");
 			}
 		}
 
@@ -189,21 +170,11 @@ class TopNavigationWithClose extends React.Component<
 
 		return (
 			<Container ref={this.navBar}>
-				<TopBarLink
-					className="close"
-					to={NEWS_PAGE}
-					aria-label="Close this window and go back to the news page"
-				>
+				<TopBarLink className="close" to={NEWS_PAGE} aria-label="Close this window and go back to the news page">
 					<IconClose />
 				</TopBarLink>
 				<div className="center">
-					<LazyLoadingImage
-						id="brand-logo"
-						width="24"
-						height="24"
-						src={CNN_LOGO}
-						alt="CNN Logo"
-					/>
+					<LazyLoadingImage id="brand-logo" width="24" height="24" src={CNN_LOGO} alt="CNN Logo" />
 					<h2 className="title">{title}</h2>
 				</div>
 			</Container>
@@ -215,7 +186,7 @@ class TopNavigationWithClose extends React.Component<
 const Container = styled.div`
 	--top-navigation-bar--detail-background: transparent;
 	--top-navigation-bar--title-color: var(--color-gray9);
-	--top-navigation-bar--height:  ${rem('44px')};
+	--top-navigation-bar--height:  ${rem("44px")};
 	width: 100%;
 	flex: auto;
 	display: flex;
@@ -225,7 +196,7 @@ const Container = styled.div`
 
 	background-color: var(--top-navigation-bar--detail-background);
 	margin: 0;
-	padding: 0 ${rem('8px')};
+	padding: 0 ${rem("8px")};
 	position: fixed;
 	z-index: 10;
 	transition: all 200ms ease-in-out;
@@ -242,7 +213,7 @@ const Container = styled.div`
 
 		.title {
 			font-family: var(--heading-font-family);
-			font-size: ${rem('14px')};
+			font-size: ${rem("14px")};
 			color: var(--top-navigation-bar--title-color);
 			letter-spacing: 0;
 			margin-bottom: 0;
@@ -261,12 +232,12 @@ const Container = styled.div`
 
 	img,
 	#brand-logo {
-		width: ${rem('24px')};
-		height: ${rem('24px')};
-		border-radius: ${rem('24px')};
+		width: ${rem("24px")};
+		height: ${rem("24px")};
+		border-radius: ${rem("24px")};
 		opacity: 1;
 		transform: scale(1) translateX(-44px);
-		flex-basis: width: ${rem('24px')};
+		flex-basis: width: ${rem("24px")};
 		flex-shrink: 0;
 		flex-grow: 0;
 	}
@@ -313,13 +284,13 @@ const Container = styled.div`
 `;
 
 const TopBarLink = styled(Link)`
-	width: ${rem('44px')};
-	height: ${rem('44px')};
+	width: ${rem("44px")};
+	height: ${rem("44px")};
 `;
 
 const TopBarButton = styled.button`
-	width: ${rem('44px')};
-	height: ${rem('44px')};
+	width: ${rem("44px")};
+	height: ${rem("44px")};
 	-webkit-appearance: none;
 	border: none;
 `;
