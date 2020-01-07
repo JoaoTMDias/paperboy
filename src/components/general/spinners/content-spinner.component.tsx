@@ -18,7 +18,7 @@ interface IUISpinnerProps {
  * @description UX: Loading spinner used for content placeholder
  * @author  João Dias
  * @date  14/December/2018 at 10:37
- * @extends {React.SFC}
+ * @extends {React.FC}
  */
 const UIContentSpinner: React.FunctionComponent<IUISpinnerProps> = props => {
 	const { size, ...spinnerProps } = props;

@@ -1,0 +1,42 @@
+// Libraries
+import * as React from "react";
+import { A11yPageTitle } from "../index.components";
+import { MainContent, Wrapper, Trigger } from "./styles";
+import { IContainerProps } from "./types";
+
+/**
+ * @description Layout Container
+ * @author  João Dias
+ * @date  20/November/2018 at 16:55
+ * @extends {React.FunctionComponent}
+ */
+const Container: React.FunctionComponent<IContainerProps> = props => {
+	const { offsetTop, children, ...allProps } = props;
+
+	if (offsetTop && typeof document !== "undefined") {
+		const pageBody: HTMLElement | null = document.documentElement;
+
+		if (pageBody) {
+			pageBody.style.setProperty("--top-navigation-bar-height", `${offsetTop}`);
+		}
+	}
+
+	return (
+		<MainContent id="page-main" aria-labelledby="page-title" {...allProps}>
+			<A11yPageTitle title={props.title} />
+			<Wrapper {...allProps}>
+				<Trigger id="container-trigger" />
+				{children}
+			</Wrapper>
+		</MainContent>
+	);
+};
+
+Container.defaultProps = {
+	isFixed: false,
+	fullheight: false,
+	fullwidth: false,
+	title: "page title",
+};
+
+export default React.memo(Container);

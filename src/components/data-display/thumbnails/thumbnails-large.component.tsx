@@ -26,7 +26,7 @@ export interface IArticleThumbnailProps {
  * @description Article Thumbnail: Large
  * @author  João Dias
  * @date  17/January/2019 at 00:05
- * @extends {React.SFC}
+ * @extends {React.FC}
  */
 const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = props => {
 	const { id, type, options } = props;

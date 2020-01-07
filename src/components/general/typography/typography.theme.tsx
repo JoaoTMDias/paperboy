@@ -12,7 +12,7 @@ interface IHeadingsProps {
  * @description Display Heading: Level 1
  * @author  João Dias
  * @date  10/December/2018 at 23:15
- * @extends {React.SFC}
+ * @extends {React.FC}
  */
 const UIDisplay: React.FunctionComponent<IHeadingsProps> = props => {
 	const { text } = props;
@@ -27,7 +27,7 @@ const UIDisplay: React.FunctionComponent<IHeadingsProps> = props => {
  * @description Subtitle Heading
  * @author  João Dias
  * @date  10/December/2018 at 23:15
- * @extends {React.SFC}
+ * @extends {React.FC}
  */
 const UISubtitle: React.FunctionComponent<IHeadingsProps> = props => {
 	const { text } = props;
@@ -42,7 +42,7 @@ const UISubtitle: React.FunctionComponent<IHeadingsProps> = props => {
  * @description Lead Heading
  * @author  João Dias
  * @date  10/December/2018 at 23:15
- * @extends {React.SFC}
+ * @extends {React.FC}
  */
 const UILead: React.FunctionComponent<IHeadingsProps> = props => {
 	const { text } = props;

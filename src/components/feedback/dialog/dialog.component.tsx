@@ -13,7 +13,7 @@ interface IUIDialogProps {
  * @description Modal Component: Dialog
  * @author  João Dias
  * @date  07/January/2019 at 16:07
- * @extends {React.SFC}
+ * @extends {React.FC}
  */
 const UIDialog: React.FunctionComponent<IUIDialogProps> = props => {
 	const { onClick, children } = props;

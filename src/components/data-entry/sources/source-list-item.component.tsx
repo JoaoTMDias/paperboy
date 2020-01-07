@@ -20,7 +20,7 @@ interface ISourceListItemProps {
  * @description Source List Item
  * @author  João Dias
  * @date  27/December/2018 at 00:57
- * @extends {React.SFC}
+ * @extends {React.FC}
  */
 class SourceListItem extends React.PureComponent<ISourceListItemProps, any> {
 	static defaultProps = {

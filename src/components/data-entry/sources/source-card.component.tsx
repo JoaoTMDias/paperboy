@@ -21,7 +21,7 @@ interface ISourceCardProps {
  * @description Source List Item
  * @author  João Dias
  * @date  27/December/2018 at 00:57
- * @extends {React.SFC}
+ * @extends {React.FC}
  */
 class SourceCard extends React.PureComponent<ISourceCardProps> {
 	static defaultProps = {

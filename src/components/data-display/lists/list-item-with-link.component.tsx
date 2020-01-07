@@ -5,7 +5,7 @@ import { rem } from "polished";
 import { Link } from "gatsby";
 import { FormSwitch } from "../../index.components";
 import flexRow from "../../../helpers/row.helper";
-import { IconArrowRight } from "../../general/icons/icons";
+import { IconArrowRight } from "../../icons/icons";
 
 // Interface
 interface IListItemWithLinkProps {

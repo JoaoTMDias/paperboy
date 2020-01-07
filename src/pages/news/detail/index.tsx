@@ -15,7 +15,7 @@ import {
 	ShareSheetPortal,
 	ArticleTypeset,
 } from "../../../components/index.components";
-import { IconTypeset, IconBookmark } from "../../../components/general/icons/icons";
+import { IconTypeset, IconBookmark } from "../../../components/icons/icons";
 import { NEWS_PAGE } from "../../../data/constants/index.constants";
 import { INewsArticleItem } from "../../../data/interfaces/news.interface";
 import { EModalAlignType } from "../../../data/interfaces/modal.interface";

@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
  * @description Portal description
  * @author  João Dias
  * @date  07/January/2019 at 11:37
- * @extends {React.SFC}
+ * @extends {React.FC}
  */
 class Portal extends Component {
 	constructor(props) {

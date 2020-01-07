@@ -2,7 +2,7 @@
 import * as React from "react";
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from "react-share";
 
-import { IconFacebook, IconWhatsapp, IconTwitter, IconSMS } from "../../icons/icons";
+import { IconFacebook, IconWhatsapp, IconTwitter, IconSMS } from "../../../icons/icons";
 
 import ShareSheet from "./ShareSheet.styled";
 import { INewsArticleItem } from "../../../../data/interfaces/news.interface";

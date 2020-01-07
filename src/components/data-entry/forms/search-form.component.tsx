@@ -17,7 +17,7 @@ interface IUISearchFormProps {
  * @description Search Form Input
  * @author  João Dias
  * @date  28/December/2018 at 10:32
- * @extends {React.SFC}
+ * @extends {React.FC}
  */
 class UISearchForm extends React.Component<IUISearchFormProps> {
 	/**

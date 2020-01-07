@@ -29,7 +29,7 @@ interface ISourcesListProps {
  * @description Sources: List of Sources
  * @author  João Dias
  * @date  24/December/2018 at 01:43
- * @extends {React.SFC}
+ * @extends {React.FC}
  */
 class SourcesList extends React.PureComponent<ISourcesListProps> {
 	static defaultProps = {
