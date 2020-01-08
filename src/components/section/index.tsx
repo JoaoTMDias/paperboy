@@ -8,7 +8,7 @@ import { SectionWrapper, SectionTitle, Wrapper } from "./styles";
  * @date  24/December/2018 at 01:23
  * @extends {React.FC}
  */
-class UISection extends React.PureComponent<IUISectionProps> {
+export class UISection extends React.PureComponent<IUISectionProps> {
 	static defaultProps = {
 		layout: "vertical",
 		id: `${Math.random()}`,

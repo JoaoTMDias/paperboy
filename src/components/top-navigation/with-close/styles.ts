@@ -5,12 +5,12 @@ import styled from "styled-components";
 export const Container = styled.div`
 	--top-navigation-bar--detail-background: transparent;
 	--top-navigation-bar--title-color: var(--color-gray9);
-	--top-navigation-bar--height:  ${rem("44px")};
+	--top-navigation-bar--height: ${rem("44px")};
 	width: 100%;
 	flex: auto;
-	display: flex;
+	display: grid;
+	grid-template-columns: var(--top-navigation-bar--height) 1fr;
 	flex-direction: row;
-	justify-content: space-between;
 	align-items: center;
 
 	background-color: var(--top-navigation-bar--detail-background);
@@ -21,7 +21,7 @@ export const Container = styled.div`
 	transition: all 200ms ease-in-out;
 
 	.center {
-		width: calc(100% - 44px);
+		width: 100%;
 		height: var(--top-navigation-bar--height);
 		overflow: hidden;
 		display: flex;
@@ -30,35 +30,38 @@ export const Container = styled.div`
 		align-items: center;
 		position: relative;
 
+		.title,
+		img {
+			display: flex;
+		}
+
 		.title {
+			color: var(--top-navigation-bar--title-color);
 			font-family: var(--heading-font-family);
 			font-size: ${rem("14px")};
-			color: var(--top-navigation-bar--title-color);
 			letter-spacing: 0;
 			margin-bottom: 0;
-			position: absolute;
-			z-index: -1;
-			opacity: 0;
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			text-align: center;
 			max-height: var(--top-navigation-bar--height);
+			opacity: 0;
+			overflow: hidden;
+			position: absolute;
+			text-align: center;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 			width: calc(100vw - 112px);
-
+			z-index: -1;
+			display: none;
 		}
 	}
 
-	img,
 	#brand-logo {
-		width: ${rem("24px")};
-		height: ${rem("24px")};
-		border-radius: ${rem("24px")};
+		--size: calc(var(--top-navigation-bar--height) * 0.5);
+		width: var(--size);
+		height: var(--size);
+		border-radius: var(--size);
+		transform: translateX(calc(var(--size) * -1));
 		opacity: 1;
-		transform: scale(1) translateX(-44px);
-		flex-basis: width: ${rem("24px")};
-		flex-shrink: 0;
-		flex-grow: 0;
+		margin: 0 auto;
 	}
 
 	.close,
@@ -73,13 +76,13 @@ export const Container = styled.div`
 	}
 
 	.share {
-		background-color: rgba(0,0,0,0.1);
+		background-color: rgba(0, 0, 0, 0.1);
 	}
 
 	&.is-scrolling {
 		--top-navigation-bar--detail-background: var(--color-white);
 
-		html[data-theme='DARK'] && {
+		html[data-theme="DARK"] && {
 			--top-navigation-bar--detail-background: var(--color-black);
 			--top-navigation-bar--detail-foreground: var(--color-gray4);
 			--top-navigation-bar--title-color: var(--color-gray1);
@@ -93,7 +96,8 @@ export const Container = styled.div`
 			flex: auto;
 		}
 
-		#brand-logo, img {
+		#brand-logo,
+		img {
 			opacity: 0;
 			transform: scale(0);
 			position: absolute;

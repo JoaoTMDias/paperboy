@@ -37,6 +37,7 @@ const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = props 
 	return (
 		<Anchor
 			id={`thumbnail--${id}`}
+			role="listitem"
 			to={NEWS_DETAIL_PAGE}
 			aria-labelledby={`thumbnail__title--${id}`}
 			tabIndex={0}

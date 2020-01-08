@@ -4,16 +4,16 @@ import { Link } from "gatsby";
 import { IArticleThumbnailProps, EThumbnailType } from "./thumbnails-large.component";
 
 export const Anchor = styled(Link)`
-	width: 100%;
-	height: 40vh;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
 	align-items: center;
 	background-color: var(--color-gray1);
+	display: flex;
+	flex-direction: row;
+	height: 40vh;
+	justify-content: center;
+	overflow: hidden;
 	padding: 0;
 	position: relative;
-	overflow: hidden;
+	width: 100%;
 
 	&:hover,
 	&:focus {
@@ -22,18 +22,23 @@ export const Anchor = styled(Link)`
 
 	${(props: IArticleThumbnailProps) => {
 		switch (props.type) {
+			case EThumbnailType.LARGE:
+				return css`
+					min-height: ${rem("260px")};
+				`;
+
 			default:
 			case EThumbnailType.SAVED:
 				return css`
+					background-color: var(--color-white);
 					flex-direction: column;
 					justify-content: flex-start;
-
-					min-height: ${rem("230px")};
-					background-color: var(--color-white);
+					max-height: ${rem("128px")};
+					min-height: ${rem("128px")};
 					outline: 1px solid var(--color-gray1);
+					overflow: hidden;
 					padding: 0;
 					position: relative;
-					overflow: hidden;
 
 					&:hover,
 					&:focus {
@@ -45,15 +50,14 @@ export const Anchor = styled(Link)`
 
 			case EThumbnailType.SMALL:
 				return css`
+					background-color: var(--color-white);
 					flex-direction: column;
 					justify-content: flex-start;
-
 					min-height: ${rem("230px")};
-					background-color: var(--color-white);
 					outline: 1px solid var(--color-gray1);
+					overflow: hidden;
 					padding: 0;
 					position: relative;
-					overflow: hidden;
 
 					&:hover,
 					&:focus {
@@ -67,30 +71,28 @@ export const Anchor = styled(Link)`
 `;
 
 export const Article = styled.article`
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
 	align-items: flex-start;
 	background-color: var(--color-gray1);
-	padding: var(--global-padding) 2rem var(--global-padding) var(--global-padding);
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: flex-end;
 	margin: 0;
-	position: relative;
 	overflow: hidden;
+	padding: var(--global-padding) 2rem var(--global-padding) var(--global-padding);
+	position: relative;
+	width: 100%;
 
 	.thumbnail-image {
 		&__gradient {
-			position: absolute;
 			background-image: linear-gradient(rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.8) 65%);
-			top: 0;
-			left: 0;
-			right: 0;
 			bottom: 0;
-
-			width: 100%;
 			height: 100%;
-
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 100%;
 			z-index: 1;
 		}
 	}
@@ -100,17 +102,21 @@ export const Article = styled.article`
 			case EThumbnailType.SAVED:
 				return css`
 					background-color: var(--color-white);
+					display: grid;
+					grid-column-gap: ${rem("8px")};
+					grid-template-columns: ${rem("128px")} auto;
+					height: auto;
 					padding: var(--global-padding) var(--global-padding) calc(var(--global-padding) * 0.5) var(--global-padding);
 					transition: transform 128ms ease-out;
 
 					.thumbnail__image {
-						width: 100%;
+						border-radius: ${rem("2px")};
 						height: ${rem("96px")};
-						margin-top: 0;
-						margin-right: 0;
 						margin-bottom: calc(var(--global-padding) * 0.5);
 						margin-left: 0;
-						border-radius: ${rem("2px")};
+						margin-right: 0;
+						margin-top: 0;
+						width: 100%;
 					}
 				`;
 
@@ -121,13 +127,13 @@ export const Article = styled.article`
 					transition: transform 128ms ease-out;
 
 					.thumbnail__image {
-						width: 100%;
+						border-radius: ${rem("2px")};
 						height: ${rem("96px")};
-						margin-top: 0;
-						margin-right: 0;
 						margin-bottom: calc(var(--global-padding) * 0.5);
 						margin-left: 0;
-						border-radius: ${rem("2px")};
+						margin-right: 0;
+						margin-top: 0;
+						width: 100%;
 					}
 				`;
 
@@ -146,25 +152,23 @@ export const Copy = styled.div`
 
 	.thumbnail {
 		&__title {
-			width: 100%;
-			font-family: var(--body-font-family);
-			font-weight: 300;
-			font-size: ${rem("18px")};
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: var(--number-of-lines);
 			color: var(--color-white);
+			display: -webkit-box;
+			display: flex;
+			font-family: var(--body-font-family);
+			font-size: ${rem("18px")};
+			font-weight: 300;
 			letter-spacing: 0;
-			text-align: left;
 			line-height: 1.4444;
 			margin-bottom: var(--global-margin);
-
+			max-height: calc(var(--number-of-lines) * var(--global-lineheight) * 1rem);
 			overflow: hidden;
+			text-align: left;
 			text-overflow: -o-ellipsis-lastline;
 			text-overflow: ellipsis;
-			display: flex;
-			/* autoprefixer: off */
-			display: -webkit-box;
-			-webkit-line-clamp: var(--number-of-lines);
-			-webkit-box-orient: vertical;
-			max-height: calc(var(--number-of-lines) * var(--global-lineheight) * 1rem);
+			width: 100%;
 		}
 
 		&__metadata {

@@ -38,10 +38,11 @@ import Modal from "./general/modal";
 import AddToHomeScreen from "./add-to-homescreen";
 import UIContentSpinner from "./general/spinners/content-spinner.component";
 import { UIDisplay, UILead, UISubtitle } from "./general/typography/typography.theme";
-import UISection from "./section";
 import FormSwitch from "./data-entry/forms/switch/form-switch.component";
 import AddToHomeScreenWithInstall from "./add-to-homescreen/with-install-button";
 import ShareSheetPortal from "./general/social/ShareSheet/index";
+
+export * from "./section";
 
 // ICONOGRAPHY
 export * from "./icons/icons";
@@ -72,7 +73,6 @@ export {
 	UIDisplay,
 	UILead,
 	UISubtitle,
-	UISection,
 	UISearchForm,
 	AddToHomeScreen,
 	UIDialog,

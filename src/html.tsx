@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 // Libraries
 import * as React from "react";
 import Helmet, { HelmetData } from "react-helmet";
@@ -26,13 +27,30 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 	const { headComponents, body, postBodyComponents } = props;
 
 	return (
-		<html lang="en">
+		<html
+			lang="en"
+			prefix="http://ogp.me/ns#"
+			i18n-values="dir:textdirection"
+			itemType="http://schema.org/WebPage"
+			dir="ltr"
+		>
 			<head>
 				<meta charSet="utf-8" />
 				<meta httpEquiv="x-ua-compatible" content="ie=edge" />
 
 				{/* Meta */}
 				<link rel="manifest" href="/manifest.json" />
+				<meta name="description" content="João Dias" />
+				<meta
+					name="viewport"
+					content="width=device-width,minimum-scale=1.0,initial-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover"
+				/>
+				<meta name="HandheldFriendly" content="true" />
+				<meta name="MobileOptimized" content="375" />
+				<meta name="apple-mobile-web-app-capable" content="yes" />
+				<meta name="mobile-web-app-capable" content="yes" />
+				<meta name="msapplication-TileColor" content="#E74D3C" />
+				<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 				{helmet.title.toComponent()}
 				{helmet.meta.toComponent()}
 
@@ -70,7 +88,13 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 			</head>
 			<body>
 				<noscript id="no-javascript" className="no-javascript">
-					<h1 className="no-javascript__title">We need you to activate Javascript in order to run Paperboy 🤓.</h1>
+					<h1 className="no-javascript__title">
+						I need you to activate Javascript in order to see my website
+						<span role="img" aria-label="A nerdy-looking emoji">
+							🤓
+						</span>
+						.
+					</h1>
 				</noscript>
 				<div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
 				{postBodyComponents}

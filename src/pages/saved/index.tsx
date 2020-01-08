@@ -3,14 +3,14 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "@reach/router";
 import {
+	ArticleThumbnail,
 	Container,
 	Layout,
 	TopNavigation,
 	TopNavigationWithTitle,
 	UISection,
-	ArticleThumbnail,
 } from "../../components/index.components";
-
+import { List } from "./styles";
 import { ONBOARDING_PAGE, SAVED_PAGE } from "../../data/constants/router.constants";
 import { IGlobalStoreState, INewsArticleItem } from "../../data/interfaces/index.interface";
 import { EThumbnailType } from "../../components/data-display/thumbnails/thumbnails-large.component";
@@ -29,49 +29,54 @@ interface ISavedPageProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<ISavedPageProps>}
  */
-class SavedPage extends React.Component<ISavedPageProps> {
-	handleRemoveItemFromList(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+const SavedPage: React.FunctionComponent<ISavedPageProps> = ({ authenticated, saved }) => {
+	/**
+	 *
+	 *
+	 * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
+	 */
+	function handleRemoveItemFromList(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		event.preventDefault();
 	}
 
-	renderListOfArticles() {
-		const { saved } = this.props;
-
+	/**
+	 *
+	 *
+	 * @returns
+	 */
+	function renderListOfArticles() {
 		const list = saved.map((savedArticle: INewsArticleItem, index: number) => {
 			const keyIndex = `thumbnail__saved--${index}`;
 
 			return <ArticleThumbnail key={keyIndex} id={keyIndex} options={savedArticle} type={EThumbnailType.SAVED} />;
 		});
 
-		return <ul>{list}</ul>;
+		return <List role="list">{list}</List>;
 	}
 
-	render() {
-		const { authenticated, saved } = this.props;
-		const numberOfArticles = saved ? saved.length : 0;
+	const numberOfArticles = saved ? saved.length : 0;
 
-		if (!authenticated) {
-			return <Redirect from={SAVED_PAGE} to={ONBOARDING_PAGE} noThrow />;
-		}
-		return (
-			<Layout authenticated={authenticated} header={false}>
-				<TopNavigation
-					shadow="hairline"
-					style={{
-						marginBottom: "1.25rem",
-					}}
-				>
-					<TopNavigationWithTitle title="Saved" subtitle="Read the news anytime" />
-				</TopNavigation>
-				<Container fullwidth fullheight isFixed={false} title="Current Page is: Saved" offsetTop="5.875rem">
-					<UISection id="saved-list" title={`Inbox (${numberOfArticles})`}>
-						{this.renderListOfArticles()}
-					</UISection>
-				</Container>
-			</Layout>
-		);
+	if (!authenticated) {
+		return <Redirect from={SAVED_PAGE} to={ONBOARDING_PAGE} noThrow />;
 	}
-}
+	return (
+		<Layout authenticated={authenticated} header={false}>
+			<TopNavigation
+				shadow="hairline"
+				style={{
+					marginBottom: "1.25rem",
+				}}
+			>
+				<TopNavigationWithTitle title="Saved" subtitle="Read the news anytime" />
+			</TopNavigation>
+			<Container fullwidth fullheight isFixed={false} title="Current Page is: Saved" offsetTop="5.875rem">
+				<UISection id="saved-list" title={`Inbox (${numberOfArticles})`}>
+					{renderListOfArticles()}
+				</UISection>
+			</Container>
+		</Layout>
+	);
+};
 
 const mapState2Props = (state: IGlobalStoreState) => ({
 	authenticated: state.preferences.authenticated,

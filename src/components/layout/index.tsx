@@ -1,6 +1,5 @@
 // Libraries
 import React from "react";
-import Helmet from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
 import { isIOS } from "react-device-detect";
 import { Audit, BottomNavigation, ViewportHeight, AddToHomeScreen, Modal, ChangeAppTheme } from "../index.components";
@@ -68,49 +67,6 @@ const Layout: React.FunctionComponent<ILayoutProps> = ({ children, authenticated
 						<ChangeAppTheme />
 						<AppLayout id="app-layout">
 							{renderAddToHomescren()}
-							<Helmet
-								htmlAttributes={{
-									lang: "en",
-									prefix: "http://ogp.me/ns#",
-									"userLanguage-values": "dir:textdirection",
-									itemscope: undefined,
-									itemtype: "http://schema.org/WebPage",
-									dir: "ltr",
-								}}
-								title="Paperboy - Welcome"
-								meta={[
-									{
-										name: "description",
-										content: "Paperboy",
-									},
-									{
-										name: "viewport",
-										content:
-											"width=device-width,minimum-scale=1.0,initial-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover",
-									},
-									{
-										name: "HandheldFriendly",
-										content: "true",
-									},
-									{ name: "MobileOptimized", content: "375" },
-									{
-										name: "mobile-web-app-capable",
-										content: "yes",
-									},
-									{
-										name: "apple-mobile-web-app-capable",
-										content: "yes",
-									},
-									{
-										name: "msapplication-TileColor",
-										content: "#E74D3C",
-									},
-									{
-										name: "apple-mobile-web-app-status-bar-style",
-										content: "default",
-									},
-								]}
-							/>
 							{renderNavigationElements()}
 						</AppLayout>
 						<div id="portal" />
