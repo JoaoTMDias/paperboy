@@ -13,19 +13,19 @@ import {
 	ListItemWithLink,
 	ListItemWithButton,
 	AddToHomeScreenWithInstall,
-	EListItemButtonType,
-} from "../../components/index.components";
+} from "components/index.components";
 
-import { EAppThemeType } from "../../data/interfaces/theme.interfaces";
-import { setAppTheme, resetAppState } from "../../data/redux/actions/index.actions";
+import { EAppThemeType } from "data/interfaces/theme";
+import { setAppTheme, resetAppState } from "data/redux/actions/index.actions";
 import {
 	A11Y_SETTINGS_PAGE,
 	PRIVACY_POLICY_SETTINGS_PAGE,
 	OPEN_SOURCE_SETTINGS_PAGE,
 	SETTINGS_PAGE,
 	ONBOARDING_PAGE,
-} from "../../data/constants/router.constants";
-import { IGlobalStoreState } from "../../data/interfaces/index.interface";
+} from "data/constants/router.constants";
+import { IGlobalStoreState } from "data/interfaces/index";
+import { EListItemButtonType } from "components/lists/list-types";
 
 // Interface
 interface ISettingsPageProps {
@@ -143,7 +143,7 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 							<ListItemWithButton
 								id="logout-paperboy"
 								title="Clear Preferences"
-								type={EListItemButtonType.PRIMARY}
+								flavour={EListItemButtonType.PRIMARY}
 								onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
 									this.handleClickToClearPreferences(event)
 								}

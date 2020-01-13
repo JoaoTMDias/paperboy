@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ArticleTypeset /> renders 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <aside
+        class="sc-kgoBCf hrrNbT article-typeset"
+        id="article-typeset"
+      >
+        <header
+          class="article-typeset__header"
+        >
+          <h4
+            class="article-typeset__title"
+          >
+            Change font size
+          </h4>
+        </header>
+        <div
+          class="article-typeset__content"
+        >
+          <figure
+            class="sc-gzVnrw eMdhaH"
+          >
+            <svg
+              class="sc-htoDjs gVmYje"
+              type="SMALL"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M22.09 24.85l-1.5-3.45-1.47 3.45zm-2.17-5.26h1.4l3.8 8.69h-1.6l-.88-2.09h-4.08l-.89 2.09h-1.55zm10.52 6a4.43 4.43 0 0 0-1.44-.3c-.94 0-1.5.39-1.5 1 0 .62.56 1 1.26 1 1 0 1.73-.55 1.73-1.37zm0 2.73v-.8a2.62 2.62 0 0 1-2.11.93 2.08 2.08 0 0 1-2.31-2c0-1.44 1.12-2.13 2.63-2.13a5.46 5.46 0 0 1 1.8.27v-.13c0-.9-.56-1.39-1.6-1.39a4.46 4.46 0 0 0-1.86.41l-.41-1.2a5.62 5.62 0 0 1 2.42-.61c1.92 0 2.86 1 2.86 2.75v3.86z"
+                fill="var(--letters)"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </figure>
+          <label
+            class="article-typeset__label"
+            for="typeset"
+          >
+            <input
+              class="article-typeset__input "
+              id="typeset"
+              max="1.25"
+              min="0.75"
+              name="typeset"
+              step="0.25"
+              type="range"
+              value="1"
+            />
+          </label>
+          <figure
+            class="sc-gzVnrw eMdhaH"
+          >
+            <svg
+              class="sc-htoDjs gVmYje is-large"
+              type="LARGE"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M22.09 24.85l-1.5-3.45-1.47 3.45zm-2.17-5.26h1.4l3.8 8.69h-1.6l-.88-2.09h-4.08l-.89 2.09h-1.55zm10.52 6a4.43 4.43 0 0 0-1.44-.3c-.94 0-1.5.39-1.5 1 0 .62.56 1 1.26 1 1 0 1.73-.55 1.73-1.37zm0 2.73v-.8a2.62 2.62 0 0 1-2.11.93 2.08 2.08 0 0 1-2.31-2c0-1.44 1.12-2.13 2.63-2.13a5.46 5.46 0 0 1 1.8.27v-.13c0-.9-.56-1.39-1.6-1.39a4.46 4.46 0 0 0-1.86.41l-.41-1.2a5.62 5.62 0 0 1 2.42-.61c1.92 0 2.86 1 2.86 2.75v3.86z"
+                fill="var(--letters)"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </figure>
+        </div>
+      </aside>
+    </div>
+  </body>,
+  "container": <div>
+    <aside
+      class="sc-kgoBCf hrrNbT article-typeset"
+      id="article-typeset"
+    >
+      <header
+        class="article-typeset__header"
+      >
+        <h4
+          class="article-typeset__title"
+        >
+          Change font size
+        </h4>
+      </header>
+      <div
+        class="article-typeset__content"
+      >
+        <figure
+          class="sc-gzVnrw eMdhaH"
+        >
+          <svg
+            class="sc-htoDjs gVmYje"
+            type="SMALL"
+            viewBox="0 0 48 48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22.09 24.85l-1.5-3.45-1.47 3.45zm-2.17-5.26h1.4l3.8 8.69h-1.6l-.88-2.09h-4.08l-.89 2.09h-1.55zm10.52 6a4.43 4.43 0 0 0-1.44-.3c-.94 0-1.5.39-1.5 1 0 .62.56 1 1.26 1 1 0 1.73-.55 1.73-1.37zm0 2.73v-.8a2.62 2.62 0 0 1-2.11.93 2.08 2.08 0 0 1-2.31-2c0-1.44 1.12-2.13 2.63-2.13a5.46 5.46 0 0 1 1.8.27v-.13c0-.9-.56-1.39-1.6-1.39a4.46 4.46 0 0 0-1.86.41l-.41-1.2a5.62 5.62 0 0 1 2.42-.61c1.92 0 2.86 1 2.86 2.75v3.86z"
+              fill="var(--letters)"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </figure>
+        <label
+          class="article-typeset__label"
+          for="typeset"
+        >
+          <input
+            class="article-typeset__input "
+            id="typeset"
+            max="1.25"
+            min="0.75"
+            name="typeset"
+            step="0.25"
+            type="range"
+            value="1"
+          />
+        </label>
+        <figure
+          class="sc-gzVnrw eMdhaH"
+        >
+          <svg
+            class="sc-htoDjs gVmYje is-large"
+            type="LARGE"
+            viewBox="0 0 48 48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22.09 24.85l-1.5-3.45-1.47 3.45zm-2.17-5.26h1.4l3.8 8.69h-1.6l-.88-2.09h-4.08l-.89 2.09h-1.55zm10.52 6a4.43 4.43 0 0 0-1.44-.3c-.94 0-1.5.39-1.5 1 0 .62.56 1 1.26 1 1 0 1.73-.55 1.73-1.37zm0 2.73v-.8a2.62 2.62 0 0 1-2.11.93 2.08 2.08 0 0 1-2.31-2c0-1.44 1.12-2.13 2.63-2.13a5.46 5.46 0 0 1 1.8.27v-.13c0-.9-.56-1.39-1.6-1.39a4.46 4.46 0 0 0-1.86.41l-.41-1.2a5.62 5.62 0 0 1 2.42-.61c1.92 0 2.86 1 2.86 2.75v3.86z"
+              fill="var(--letters)"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </figure>
+      </div>
+    </aside>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

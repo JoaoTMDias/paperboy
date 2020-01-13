@@ -2,9 +2,8 @@ import { Dispatch } from "redux";
 
 // Interface
 export interface IArticleTypesetProps {
-	theme?: any;
 	baseFontRatio: number;
-	dispatch: Dispatch<any>;
+	dispatch?: Dispatch<any>;
 }
 
 export interface IArticleTypesetState {

@@ -1,8 +1,7 @@
 import * as React from "react";
 import { render, cleanup } from "@testing-library/react";
-
+import { EAppThemeType } from "data/interfaces/index";
 import FormSwitch from "./form-switch.component";
-import { EAppThemeType } from "../../../../data/interfaces/theme.interfaces";
 
 // automatically unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);

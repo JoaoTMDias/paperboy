@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Portal, UIDialog } from "../../index.components";
+import { Portal, UIDialog } from "components/index.components";
 import { IModalProps, IModalState } from "./types";
 import { ModalWrapper } from "./styles";
 
@@ -10,6 +10,7 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
 		backgroundOpacity: 0.3,
 		align: "bottom",
 		delay: null,
+		isModalOpen: false,
 	};
 
 	constructor(props: IModalProps) {
@@ -21,16 +22,16 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
 
 	/**
 	 * @description When the component mounts, sets a 15sec timeout and then shows.
-	 * @date 2019-01-06
+	 *
 	 * @memberof Modal
 	 */
 	componentDidMount() {
-		const { delay, isModalOpen } = this.props;
+		const { delay } = this.props;
 
 		if (delay && delay > 0) {
-			this.timer = setTimeout(() => this.handleOpenModal(isModalOpen), delay);
+			this.timer = setTimeout(() => this.handleOpenModal(), delay);
 		} else {
-			this.handleOpenModal(isModalOpen);
+			this.handleOpenModal();
 		}
 	}
 
@@ -48,7 +49,9 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
 		}
 	}
 
-	handleOpenModal(status: boolean) {
+	handleOpenModal() {
+		const { isModalOpen: status } = this.props;
+
 		if (status) {
 			this.setState({
 				shouldOpenModal: true,

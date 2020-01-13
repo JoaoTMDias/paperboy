@@ -2,20 +2,20 @@
 import { rem } from "polished";
 import * as React from "react";
 import styled, { keyframes } from "styled-components";
+import { above } from "helpers/index.helpers";
 
 // Component Props
 interface IIconBrandingLargeProps {
-	theme?: any;
 	visible: boolean;
 }
 
 /**
  * @description Branding Icon: Large Logo
- * @author  João Dias
+
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-const IconBrandingLarge: React.FunctionComponent<IIconBrandingLargeProps> = props => {
+export const IconBrandingLarge: React.FunctionComponent<IIconBrandingLargeProps> = props => {
 	const { visible } = props;
 	return (
 		<Wrapper visible={visible}>
@@ -64,9 +64,9 @@ const Wrapper = styled.figure`
 	display: ${(props: IIconBrandingLargeProps) => (props.visible ? "flex" : "none")};
 	margin: 0;
 
-	@media ${(props: IIconBrandingLargeProps) => props.theme.breakpointMedium} {
+	${above.medium`
 		display: flex;
-	}
+	`};
 `;
 
 const Icon = styled.svg`

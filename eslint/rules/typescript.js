@@ -34,6 +34,14 @@ module.exports = {
 			typescript: {
 				directory: "./",
 			},
+			"babel-module": {
+				root: ["./src"],
+				alias: {
+					components: "./src/components",
+					data: "./src/data",
+					helpers: "./src/helpers",
+				},
+			},
 		},
 	},
 };

@@ -3,17 +3,15 @@ import * as React from "react";
 import styled from "styled-components";
 
 // Component Props
-interface IIconSearchProps {
-	theme?: any;
-}
+interface IIconSearchProps {}
 
 /**
  * @description Tab Icon: Search
- * @author  João Dias
+
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-const IconSearch: React.FunctionComponent<IIconSearchProps> = props => (
+export const IconSearch: React.FunctionComponent<IIconSearchProps> = props => (
 	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-labelledby="search-icon-title" tabIndex={-1}>
 		<title id="search-icon-title">Tab Icon: Search</title>
 		<path

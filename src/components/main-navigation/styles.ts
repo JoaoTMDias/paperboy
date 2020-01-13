@@ -1,6 +1,6 @@
 import { rem } from "polished";
 import styled from "styled-components";
-import { above } from "../../helpers/index.helpers";
+import { above } from "helpers/index.helpers";
 
 export const Wrapper = styled.div`
 	width: 100%;

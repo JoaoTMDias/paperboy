@@ -2,7 +2,7 @@
 import axios, { AxiosPromise } from "axios";
 
 // Constants
-import { NEWS_API_KEY } from "../constants/news.constants";
+import { NEWS_API_KEY } from "data/constants/news.constants";
 
 export default {
 	/**

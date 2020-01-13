@@ -17,7 +17,7 @@ const isProduction: boolean = process.env.NODE_ENV === "production";
 
 /**
  * @description HTML Starter File
- * @author  João Dias
+
  * @date  01/December/2018 at 16:19
  * @extends {React.FunctionComponent}
  */

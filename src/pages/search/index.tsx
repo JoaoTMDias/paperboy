@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Container } from "../../components/index.components";
+import { Layout, Container } from "components/index.components";
 
 const SearchPage = () => (
 	<Layout header={false}>

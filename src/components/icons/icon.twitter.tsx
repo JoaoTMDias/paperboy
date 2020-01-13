@@ -2,16 +2,18 @@
 import * as React from "react";
 import styled, { css } from "styled-components";
 import { rem } from "polished";
+
 interface IconProps {
 	width?: string;
 	height?: string;
 }
-/**********
+
+/** ********
  ** Component: IconDislike
  ** @type: functional stateless component
  ** @description:  Twitter Icon
- **********/
-const IconTwitter = (props: IconProps) => {
+ ********* */
+export const IconTwitter = (props: IconProps) => {
 	return (
 		<Icon {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
 			<title>ic_modal_share_twitter</title>

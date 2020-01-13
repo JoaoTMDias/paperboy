@@ -1,11 +1,10 @@
 // Libraries
 import * as React from "react";
 import { connect } from "react-redux";
+import { IGlobalStoreState } from "data/interfaces/index";
+import { setBaseFontRatio } from "data/redux/actions/index.actions";
+import { IconChangeTypeSize, EIconChangeTypeSize } from "components/icons/index";
 import * as S from "./styles";
-import { IconChangeTypeSize } from "../icons/icons";
-import { EIconChangeTypeSize } from "../icons/icon.change-type";
-import { IGlobalStoreState } from "../../data/interfaces/index.interface";
-import { setBaseFontRatio } from "../../data/redux/actions/index.actions";
 import { IArticleTypesetProps, IArticleTypesetState } from "./types";
 
 /**
@@ -67,8 +66,10 @@ export class ArticleTypeset extends React.Component<IArticleTypesetProps, IArtic
 		const { dispatch } = this.props;
 
 		const { value } = event.target;
-		dispatch(setBaseFontRatio(parseFloat(value)));
-		this.updateRootbaseFontRatio(value);
+		if (dispatch) {
+			dispatch(setBaseFontRatio(parseFloat(value)));
+			this.updateRootbaseFontRatio(value);
+		}
 	}
 
 	/**

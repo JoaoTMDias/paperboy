@@ -1,7 +1,6 @@
 export interface ITopNavigationWithCloseProps {
 	title: string;
 	source: string;
-	theme?: any;
 }
 
 export interface IHeroTitle {

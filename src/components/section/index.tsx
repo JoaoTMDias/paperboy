@@ -4,7 +4,7 @@ import { SectionWrapper, SectionTitle, Wrapper } from "./styles";
 
 /**
  * @description Page Section Component
- * @author  João Dias
+
  * @date  24/December/2018 at 01:23
  * @extends {React.FC}
  */
@@ -18,9 +18,11 @@ export class UISection extends React.PureComponent<IUISectionProps> {
 	renderTitle() {
 		const { id, title, grouped } = this.props;
 
+		const sectionTitle = `${id}-section-title`;
+
 		if (title) {
 			return (
-				<SectionTitle id={`${id}-section-title`} grouped={grouped}>
+				<SectionTitle id={sectionTitle} grouped={grouped}>
 					{title}
 				</SectionTitle>
 			);

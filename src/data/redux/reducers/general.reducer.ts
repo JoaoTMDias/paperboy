@@ -7,8 +7,8 @@ import {
 	SET_FEATURE_SUPPORT,
 	SET_PLATFORM,
 	SET_USER_COUNTRY,
-} from "../../constants/index.constants";
-import { IGeneral } from "../../interfaces/general.interface";
+} from "data/constants/index.constants";
+import { IGeneral } from "data/interfaces/general";
 
 // Preferences initial state
 const initialState = {

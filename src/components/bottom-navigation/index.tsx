@@ -1,20 +1,14 @@
 // Libraries
 import * as React from "react";
+import { CATEGORIES_PAGE, NEWS_PAGE, SAVED_PAGE, SEARCH_PAGE, SETTINGS_PAGE } from "data/constants/index.constants";
+import { withMemo } from "helpers/index.helpers";
+import { TabItem } from "components/top-navigation/tab-item/index";
+import { IconCategories, IconNews, IconSaved, IconSearch, IconSettings } from "components/icons/index";
 import { Wrapper, Navigation, List } from "./styles";
-import { IconCategories, IconNews, IconSaved, IconSearch, IconSettings, TabItem } from "../index.components";
-
-import {
-	CATEGORIES_PAGE,
-	NEWS_PAGE,
-	SAVED_PAGE,
-	SEARCH_PAGE,
-	SETTINGS_PAGE,
-} from "../../data/constants/index.constants";
-import { withMemo } from "../../helpers/index.helpers";
 
 /**
  * @description Main Mobile Navigation
- * @author  João Dias
+
  * @date  08/December/2018 at 15:20
  * @extends {React.FC}
  */

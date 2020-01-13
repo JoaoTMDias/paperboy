@@ -1,3 +1,5 @@
+const path = require("path");
+
 const manifestOptions = {
 	dir: "ltr",
 	lang: "EN",
@@ -50,6 +52,14 @@ const netlifyHeaders = {
 	},
 };
 
+const importOptions = {
+	src: path.join(__dirname, "src"),
+	pages: path.join(__dirname, "src/pages"),
+	data: path.join(__dirname, "src/data"),
+	helpers: path.join(__dirname, "src/helpers"),
+	components: path.join(__dirname, "src/components"),
+};
+
 module.exports = {
 	siteMetadata: {
 		title: "Paperboy",
@@ -61,6 +71,10 @@ module.exports = {
 	plugins: [
 		// Typescript
 		"gatsby-plugin-typescript",
+		{
+			resolve: "gatsby-plugin-root-import",
+			options: importOptions,
+		},
 
 		// React Helmet
 		"gatsby-plugin-react-helmet",
@@ -71,7 +85,7 @@ module.exports = {
 
 		// Site Configs
 		{
-			resolve: `gatsby-plugin-netlify`,
+			resolve: "gatsby-plugin-netlify",
 			options: netlifyHeaders,
 		},
 		{

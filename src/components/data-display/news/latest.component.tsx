@@ -2,13 +2,13 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { ListChildComponentProps } from "react-window";
 
-import { ArticleThumbnail, UIContentSpinner } from "../../index.components";
+import { ArticleThumbnail, ContentSpinner } from "components/index.components";
 
 import { VirtualizedList, Item } from "./news-tabs.styled";
 
-import { INewsArticle, IGlobalStoreState } from "../../../data/interfaces/index.interface";
+import { INewsArticle, IGlobalStoreState } from "data/interfaces/index";
 
-import { getAllLatestNewsFromSource } from "../../../data/redux/actions/index.actions";
+import { getAllLatestNewsFromSource } from "data/redux/actions/index.actions";
 import { EThumbnailType } from "../thumbnails/thumbnails-large.component";
 
 interface INewsArticleTabProps {
@@ -28,10 +28,6 @@ interface IVirtualListProps extends ListChildComponentProps {
  * @extends {React.Component<INewsArticleTabProps, any>}
  */
 class LatestNewsTab extends React.PureComponent<INewsArticleTabProps, any> {
-	constructor(props: INewsArticleTabProps) {
-		super(props);
-	}
-
 	/**
 	 * @description When the page mounts, checks if there are already chosen news
 	 * sources to pick from and update the latest news feed.
@@ -76,10 +72,11 @@ class LatestNewsTab extends React.PureComponent<INewsArticleTabProps, any> {
 	renderRow = ({ index, key, style }: IVirtualListProps) => {
 		const { latest } = this.props;
 		const article = latest.articles[index];
+		const id = `${index}`;
 
 		return (
 			<Item key={key} id={`latest-news__article__${index}`} style={style}>
-				<ArticleThumbnail id={index} options={article} type={EThumbnailType.LARGE} />
+				<ArticleThumbnail id={id} options={article} type={EThumbnailType.LARGE} />
 			</Item>
 		);
 	};
@@ -103,7 +100,7 @@ class LatestNewsTab extends React.PureComponent<INewsArticleTabProps, any> {
 				</VirtualizedList>
 			);
 		}
-		return <UIContentSpinner isFullPage />;
+		return <ContentSpinner fullPage />;
 	}
 }
 

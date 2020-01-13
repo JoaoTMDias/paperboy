@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as H from "history";
 
-import { Article, Hero, HeroCopy, ArticleContent, ArticleLink, BottomOptionsBar } from "./news-detail.styled";
+import { Article, Hero, HeroCopy, ArticleContent, ArticleLink, BottomOptionsBar } from "./styles";
 
 // Components
 import {
@@ -14,11 +14,11 @@ import {
 	Modal,
 	ShareSheetPortal,
 	ArticleTypeset,
-} from "../../../components/index.components";
-import { IconTypeset, IconBookmark } from "../../../components/icons/icons";
-import { NEWS_PAGE } from "../../../data/constants/index.constants";
-import { INewsArticleItem } from "../../../data/interfaces/news.interface";
-import { EModalAlignType } from "../../../data/interfaces/modal.interface";
+} from "components/index.components";
+import { IconTypeset, IconBookmark } from "components/icons/index";
+import { NEWS_PAGE } from "data/constants/index.constants";
+import { INewsArticleItem } from "data/interfaces/news";
+import { EModalAlignType } from "data/interfaces/modal";
 
 enum EModalType {
 	SHARE = "SHARE",

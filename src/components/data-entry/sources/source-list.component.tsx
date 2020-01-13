@@ -1,7 +1,7 @@
 // Libraries
 import * as React from "react";
 import styled from "styled-components";
-import { SourceCard, SourceListItem } from "../../index.components";
+import { SourceCard, SourceListItem } from "components/index.components";
 
 // Assets
 import IconBBCNews from "../../../assets/images/sources/icon-bbc-news.svg";
@@ -13,7 +13,7 @@ import IconNewYorkTimes from "../../../assets/images/sources/icon-new-york-times
 import IconTimesOfIndia from "../../../assets/images/sources/icon-times-of-india.svg";
 import IconUSAToday from "../../../assets/images/sources/icon-usa-today.svg";
 import IconWallStreetJournal from "../../../assets/images/sources/icon-wall-street-journal.svg";
-import { IAllAvailableNewsSource } from "../../../data/interfaces/index.interface";
+import { IAllAvailableNewsSource } from "data/interfaces/index";
 import { IChosenSource } from "../../../pages/onboarding/choose-sources";
 
 // Component Props
@@ -27,7 +27,7 @@ interface ISourcesListProps {
 
 /**
  * @description Sources: List of Sources
- * @author  João Dias
+
  * @date  24/December/2018 at 01:43
  * @extends {React.FC}
  */

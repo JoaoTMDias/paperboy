@@ -1,6 +1,6 @@
 import * as React from "react";
 import { render } from "@testing-library/react";
-import ArticleTypeset from ".";
+import { ArticleTypeset } from "./index";
 import Provider from "../../../wrap-with-provider";
 
 describe("<ArticleTypeset />", () => {

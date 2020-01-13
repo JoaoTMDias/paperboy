@@ -1,16 +1,10 @@
 import React from "react";
+import { IconCategories, IconNews, IconSaved, IconSearch, IconSettings } from "components/icons/index";
+import { CATEGORIES_PAGE, NEWS_PAGE, SAVED_PAGE, SEARCH_PAGE, SETTINGS_PAGE } from "data/constants/index.constants";
+import { TabItem } from "components/top-navigation/tab-item";
 import { Wrapper, List, Nav } from "./styles";
 
 // Components
-import { IconCategories, IconNews, IconSaved, IconSearch, IconSettings, TabItem } from "../index.components";
-
-import {
-	CATEGORIES_PAGE,
-	NEWS_PAGE,
-	SAVED_PAGE,
-	SEARCH_PAGE,
-	SETTINGS_PAGE,
-} from "../../data/constants/index.constants";
 
 const MainNavigation = () => (
 	<Wrapper>

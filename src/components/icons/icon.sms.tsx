@@ -3,12 +3,12 @@ import * as React from "react";
 import styled from "styled-components";
 import { rem } from "polished";
 
-/**********
+/** ********
  ** Component: IconDislike
  ** @type: functional stateless component
  ** @description:  SMS Icon
- **********/
-const IconSMS = () => {
+ ********* */
+export const IconSMS = () => {
 	return (
 		<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
 			<title>ic_modal_share_sms</title>

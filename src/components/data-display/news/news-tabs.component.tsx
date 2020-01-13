@@ -4,13 +4,13 @@ import { connect } from "react-redux";
 
 // Tabs
 import Tab from "@material-ui/core/Tab";
-import { TabsContainer, TabsHeader, TabsWrapper } from "./news-tabs.styled";
 
 // Helpers
-import { debounce, Logger, getScrollPosition } from "../../../helpers/index.helpers";
+import { debounce, Logger, getScrollPosition } from "helpers/index.helpers";
 
 // Interfaces
-import { IGlobalStoreState } from "../../../data/interfaces/redux.interfaces";
+import { IGlobalStoreState } from "data/interfaces/redux";
+import { TabsContainer, TabsHeader, TabsWrapper } from "./news-tabs.styled";
 
 interface IHeaderTabs {
 	id: string;
@@ -50,11 +50,11 @@ function getHash(): string {
  * @extends {React.Component<INewsTabsProps, any>}
  */
 class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
+	private tabsHeader = React.createRef<HTMLElement>();
+
 	static defaultProps = {
 		hasHeader: true,
 	};
-
-	private tabsHeader = React.createRef<HTMLElement>();
 
 	constructor(props: INewsTabsProps) {
 		super(props);

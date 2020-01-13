@@ -1,7 +1,7 @@
 // Libraries
 import * as React from "react";
 
-import Title from "./a11ypagetitle.styled";
+import Title from "./styles";
 
 // Component Props
 interface IA11yPageTitleProps {
@@ -10,7 +10,7 @@ interface IA11yPageTitleProps {
 
 /**
  * @description Accessible Page Title for Reach Router
- * @author  João Dias
+
  * @date  29/November/2018 at 23:42
  * @extends {React.FunctionComponent}
  */

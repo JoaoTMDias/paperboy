@@ -4,11 +4,11 @@ import {
 	GET_ALL_AVAILABLE_NEWS_SOURCES,
 	GET_ALL_AVAILABLE_NEWS_SOURCES_LANGUAGE,
 	GET_LATEST_NEWS,
-} from "../../constants/index.constants";
+} from "data/constants/index.constants";
 
 // Services
-import NewsService from "../../services/news.service";
-import { IAllAvailableNewsSource, IListOfCategorizedSources, INewsArticle } from "../../interfaces/index.interface";
+import NewsService from "data/services/news.service";
+import { IAllAvailableNewsSource, IListOfCategorizedSources, INewsArticle } from "data/interfaces/index";
 
 interface IAvaiableRegionalNewsSources {
 	status: string;

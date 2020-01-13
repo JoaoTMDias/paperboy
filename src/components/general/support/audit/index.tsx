@@ -1,14 +1,8 @@
 import * as React from "react";
 import { isAndroid, isBrowser, isIOS } from "react-device-detect";
 import { connect } from "react-redux";
-import {
-	setFeatureSupport,
-	setOnlineStatus,
-	setPlatform,
-	setStandaloneStatus,
-} from "../../../../data/redux/actions/index.actions";
-import { FeatureSupport } from "../../../../data/interfaces/general.interface";
-import { IGlobalStoreState } from "../../../../data/interfaces/index.interface";
+import { IGlobalStoreState, FeatureSupport } from "data/interfaces/index";
+import { setFeatureSupport, setOnlineStatus, setPlatform, setStandaloneStatus } from "data/redux/actions/index.actions";
 import { IAuditProps, IAuditState } from "./types";
 
 class Audit extends React.Component<IAuditProps, any> {
@@ -66,15 +60,25 @@ class Audit extends React.Component<IAuditProps, any> {
 		}
 	}
 
+	componentWillUnmount() {
+		window.removeEventListener("online", () => this.setOnlineStatus(true));
+		window.removeEventListener("offline", () => this.setOnlineStatus(false));
+	}
+
 	/**
-	 * @description
+	 * @description Check if is standalone mode (added to homescreen)
 	 * @date 2019-01-05
 	 * @memberof Audit
 	 */
-	handleDeviceAudit() {
-		this.setOSPlatform();
-		this.setStandaloneStatus();
-		this.setFeatureSupport();
+	setStandaloneStatus() {
+		const { dispatch } = this.props;
+		if (typeof window !== "undefined" && typeof document !== "undefined") {
+			const WindowNavigator: any = window.navigator;
+			const isInWebAppiOS = WindowNavigator.standalone === true;
+			const isInWebAppChrome = window.matchMedia("(display-mode: standalone)").matches;
+			const status = !!(isInWebAppiOS || isInWebAppChrome);
+			dispatch(setStandaloneStatus(status));
+		}
 	}
 
 	/**
@@ -83,12 +87,14 @@ class Audit extends React.Component<IAuditProps, any> {
 	 * @memberof Audit
 	 */
 	setFeatureSupport() {
+		const { dispatch } = this.props;
 		const supportsGeolocation = !!(navigator && navigator.geolocation);
-		const supportsBatteryInformation: boolean = "getBattery" in window.navigator;
+		const supportsBatteryInformation = "getBattery" in window.navigator;
 		let supportsNetworkInformation = false;
+		const WindowNavigator: any = window.navigator;
 
-		if (window.navigator.connection) {
-			if ("effectiveType" in window.navigator.connection || "type" in window.navigator.connection) {
+		if (WindowNavigator && WindowNavigator.connection) {
+			if ("effectiveType" in WindowNavigator.connection || "type" in WindowNavigator.connection) {
 				supportsNetworkInformation = true;
 			}
 		}
@@ -105,27 +111,7 @@ class Audit extends React.Component<IAuditProps, any> {
 			},
 		};
 
-		this.props.dispatch(setFeatureSupport(features));
-	}
-
-	/**
-	 * @description Check if is standalone mode (added to homescreen)
-	 * @date 2019-01-05
-	 * @memberof Audit
-	 */
-	setStandaloneStatus() {
-		const { dispatch } = this.props;
-		if (typeof window !== "undefined" && typeof document !== "undefined") {
-			const isInWebAppiOS = window.navigator.standalone === true;
-			const isInWebAppChrome = window.matchMedia("(display-mode: standalone)").matches;
-			const status = !!(isInWebAppiOS || isInWebAppChrome);
-			dispatch(setStandaloneStatus(status));
-		}
-	}
-
-	componentWillUnmount() {
-		window.removeEventListener("online", () => this.setOnlineStatus(true));
-		window.removeEventListener("offline", () => this.setOnlineStatus(false));
+		dispatch(setFeatureSupport(features));
 	}
 
 	/**
@@ -160,6 +146,17 @@ class Audit extends React.Component<IAuditProps, any> {
 			dispatch(setOnlineStatus(status));
 		}
 	};
+
+	/**
+	 * @description
+	 * @date 2019-01-05
+	 * @memberof Audit
+	 */
+	handleDeviceAudit() {
+		this.setOSPlatform();
+		this.setStandaloneStatus();
+		this.setFeatureSupport();
+	}
 
 	/**
 	 * @description Performs a network audit for these conditions

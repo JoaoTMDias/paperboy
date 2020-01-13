@@ -35,11 +35,8 @@ export const Wrapper = styled.div`
 	width: 100%;
 	height: auto;
 	margin-top: ${(props: IContainerProps) => {
-		if (props.theme) {
-			const margin = props.fullheight ? "0" : "var(--top-navigation-bar-height)";
-			return margin;
-		}
-		return "0";
+		const margin = props.fullheight ? "0" : "var(--top-navigation-bar-height)";
+		return margin;
 	}};
 	margin-bottom: 0;
 	display: flex;

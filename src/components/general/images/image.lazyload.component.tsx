@@ -5,18 +5,13 @@ import styled, { keyframes, css } from "styled-components";
 
 // Component Prop
 
-import {
-	IImageLazyProps,
-	EImageType,
-	IImageSourceString,
-	IPictureSources,
-} from "../../../data/interfaces/index.interface";
+import { IImageLazyProps, EImageType, IImageSourceString, IPictureSources } from "data/interfaces/index";
 
 const DEFAULT_BASELINE_VALUE = 16;
 
 /**
  * @description Lazy Loading Image Component
- * @author  João Dias
+
  * @date  29/December/2018 at 01:17
  * @extends {React.FunctionComponent}
  */

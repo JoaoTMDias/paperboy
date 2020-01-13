@@ -1,6 +1,6 @@
 import { rem } from "polished";
 import styled, { keyframes } from "styled-components";
-import { elevation } from "../../../helpers/index.helpers";
+import { elevation } from "helpers/index.helpers";
 import { ITopNavigationProps } from "./types";
 
 // Styling

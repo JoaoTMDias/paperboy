@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { rem } from "polished";
 import { flexRow } from "../../../../helpers/index.helpers";
 
-const ShareSheet = styled.aside`
+export const ShareSheet = styled.aside`
 	width: 100%;
 	height: auto;
 	padding-top: 0;

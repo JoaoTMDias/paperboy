@@ -1,14 +1,9 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { ListChildComponentProps } from "react-window";
-
-import { ArticleThumbnail, UIContentSpinner } from "../../index.components";
-
+import { INewsArticle, IGlobalStoreState, INewsArticleItem } from "data/interfaces/index";
+import { getAllLatestNewsFromSource } from "data/redux/actions/index.actions";
+import { ArticleThumbnail, ContentSpinner } from "components/index.components";
 import { List, Item } from "./news-tabs.styled";
-
-import { INewsArticle, IGlobalStoreState, INewsArticleItem } from "../../../data/interfaces/index.interface";
-
-import { getAllLatestNewsFromSource } from "../../../data/redux/actions/index.actions";
 import { EThumbnailType } from "../thumbnails/thumbnails-large.component";
 
 interface INewsArticleTabProps {
@@ -17,9 +12,9 @@ interface INewsArticleTabProps {
 	dispatch: any;
 }
 
-interface IVirtualListProps extends ListChildComponentProps {
-	key?: React.Key;
-}
+// interface IVirtualListProps extends ListChildComponentProps {
+// 	key?: React.Key;
+// }
 
 /**
  * @description Latest News Tab
@@ -28,10 +23,6 @@ interface IVirtualListProps extends ListChildComponentProps {
  * @extends {React.Component<INewsArticleTabProps, any>}
  */
 class LatestNewsCategoryTab extends React.PureComponent<INewsArticleTabProps, any> {
-	constructor(props: INewsArticleTabProps) {
-		super(props);
-	}
-
 	/**
 	 * @description When the page mounts, checks if there are already chosen news
 	 * sources to pick from and update the latest news feed.
@@ -75,29 +66,25 @@ class LatestNewsCategoryTab extends React.PureComponent<INewsArticleTabProps, an
 	 */
 	renderRow = (articles: INewsArticleItem[]) => {
 		const list = articles.map((article: INewsArticleItem, index: number) => {
+			const id = `${index}`;
+			const key = `latest-news-category__article__${article.publishedAt}`;
+
 			if (index === 0) {
 				return (
-					<Item
-						className="list__item list__item--first"
-						key={`latest-news-category__article__${article.publishedAt}`}
-						id={`latest-news-category__article__${index}`}
-					>
-						<ArticleThumbnail id={index} options={article} type={EThumbnailType.LARGE} />
+					<Item className="list__item list__item--first" key={key} id={`latest-news-category__article__${index}`}>
+						<ArticleThumbnail id={id} options={article} type={EThumbnailType.LARGE} />
 					</Item>
 				);
 			}
+
 			return (
-				<Item
-					className="list__item"
-					key={`latest-news-category__article__${article.publishedAt}`}
-					id={`latest-news-category__article__${index}`}
-				>
-					<ArticleThumbnail id={index} options={article} type={EThumbnailType.SMALL} />
+				<Item className="list__item" key={key} id={`latest-news-category__article__${index}`}>
+					<ArticleThumbnail id={id} options={article} type={EThumbnailType.SMALL} />
 				</Item>
 			);
 		});
 
-		return <React.Fragment>{list}</React.Fragment>;
+		return <>{list}</>;
 	};
 
 	render() {
@@ -106,7 +93,7 @@ class LatestNewsCategoryTab extends React.PureComponent<INewsArticleTabProps, an
 		if (latest && latest.totalResults > 0) {
 			return <List>{this.renderRow(latest.articles)}</List>;
 		}
-		return <UIContentSpinner isFullPage />;
+		return <ContentSpinner fullPage />;
 	}
 }
 

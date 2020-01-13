@@ -2,9 +2,9 @@
 import { formatDistanceToNow } from "date-fns";
 import * as React from "react";
 
-import { ThumbnailImage } from "../../index.components";
-import { INewsArticleItem } from "../../../data/interfaces/index.interface";
-import { NEWS_DETAIL_PAGE } from "../../../data/constants/router.constants";
+import { INewsArticleItem } from "data/interfaces/index";
+import { NEWS_DETAIL_PAGE } from "data/constants/router.constants";
+import { ThumbnailImage } from "components/index.components";
 
 import { Anchor, Article, Copy } from "./thumbnails.styled";
 import LazyLoadingImage from "../../general/images/image.lazyload.component";
@@ -24,13 +24,13 @@ export interface IArticleThumbnailProps {
 
 /**
  * @description Article Thumbnail: Large
- * @author  João Dias
+
  * @date  17/January/2019 at 00:05
  * @extends {React.FC}
  */
 const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = props => {
 	const { id, type, options } = props;
-	const { title, urlToImage, url, source, publishedAt } = options;
+	const { title, urlToImage, source, publishedAt } = options;
 	const timestamp = Date.parse(publishedAt);
 	const time = `${formatDistanceToNow(timestamp)} ago`;
 
@@ -67,7 +67,7 @@ const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = props 
 						placeholderColor="var(--color-gray4)"
 					/>
 				)}
-				<Copy id={`thumbnail__copy--${id}`} type={type} options={options}>
+				<Copy id={`thumbnail__copy--${id}`} className="thumbnail__copy" type={type} options={options}>
 					<h2 id={`thumbnail__title--${id}`} className="thumbnail__title">
 						{title}
 					</h2>

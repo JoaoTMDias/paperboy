@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 
-import { IGlobalStoreState } from "../../../data/interfaces/index.interfaces";
-import { debounce } from "../../../helpers/index.helpers";
+import { IGlobalStoreState } from "data/interfaces/index";
+import { debounce } from "helpers/index.helpers";
 
 // Interfaces
 export interface IViewportHeightProps {

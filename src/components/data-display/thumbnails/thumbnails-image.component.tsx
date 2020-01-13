@@ -1,8 +1,7 @@
 // Libraries
 import * as React from "react";
 import styled from "styled-components";
-import { rem } from "polished";
-import { IImageLazyProps } from "../../../data/interfaces/index.interface";
+import { IImageLazyProps } from "data/interfaces/index";
 
 import LazyLoadingImage from "../../general/images/image.lazyload.component";
 

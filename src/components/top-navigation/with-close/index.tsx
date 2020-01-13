@@ -1,10 +1,11 @@
 import React from "react";
-import { Container, TopBarButton, TopBarLink } from "./styles";
+import { NEWS_PAGE } from "data/constants/index.constants";
+import { LazyLoadingImage } from "components/index.components";
+import { IconClose } from "components/icons/index";
+import { Container, TopBarLink } from "./styles";
 import CNN_LOGO from "../../../assets/images/sources/icon-cnn.svg";
-import { LazyLoadingImage, IconClose, IconShare } from "../../index.components";
 
 // Constants
-import { NEWS_PAGE } from "../../../data/constants/index.constants";
 import { ITopNavigationWithCloseProps, ITopNavigationWithCloseState } from "./types";
 
 // Utility functions
@@ -33,7 +34,7 @@ const debounce = (func: any) => {
 
 /**
  * @description Navigation with Title
- * @author  João Dias
+
  * @date  12/December/2018 at 16:40
  * @extends {React.FC}
  */
@@ -135,7 +136,7 @@ class TopNavigationWithClose extends React.Component<ITopNavigationWithCloseProp
 	 * render
 	 */
 	public render() {
-		const { title, source } = this.props;
+		const { title } = this.props;
 
 		return (
 			<Container ref={this.navBar}>

@@ -13,7 +13,7 @@ interface IIconTypesetProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IIconTypesetProps>}
  */
-const IconTypeset: React.FunctionComponent<IIconTypesetProps> = props => {
+export const IconTypeset: React.FunctionComponent<IIconTypesetProps> = props => {
 	const { isActive } = props;
 
 	return (

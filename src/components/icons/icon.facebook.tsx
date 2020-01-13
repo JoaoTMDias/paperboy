@@ -7,12 +7,13 @@ interface IconProps {
 	width?: string;
 	height?: string;
 }
-/**********
+
+/** ********
  ** Component: IconDislike
  ** @type: functional stateless component
  ** @description:  Facebook Icon
- **********/
-const IconFacebook = (props: IconProps) => {
+ ********* */
+export const IconFacebook = (props: IconProps) => {
 	return (
 		<Icon {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
 			<title>ic_modal_share_facebook</title>

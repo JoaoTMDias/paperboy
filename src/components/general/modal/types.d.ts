@@ -1,6 +1,5 @@
 export interface IModalProps {
-	theme?: any;
-	isModalOpen: boolean;
+	isModalOpen?: boolean;
 	backgroundOpacity?: number;
 	align?: "top" | "middle" | "bottom";
 	delay?: number | null;

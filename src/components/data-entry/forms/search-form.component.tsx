@@ -3,11 +3,10 @@ import { rem } from "polished";
 import * as React from "react";
 import styled from "styled-components";
 
-import { UISection } from "../../index.components";
+import { UISection } from "components/index.components";
 
 // Component Props
 interface IUISearchFormProps {
-	theme?: any;
 	legend: string;
 	placeholder: string;
 	label: string;
@@ -15,7 +14,7 @@ interface IUISearchFormProps {
 
 /**
  * @description Search Form Input
- * @author  João Dias
+
  * @date  28/December/2018 at 10:32
  * @extends {React.FC}
  */
@@ -28,7 +27,7 @@ class UISearchForm extends React.Component<IUISearchFormProps> {
 	 * @returns {boolean}
 	 * @memberof UISearchForm
 	 */
-	shouldComponentUpdate(nextProps: IUISearchFormProps, nextState): boolean {
+	shouldComponentUpdate(nextProps: IUISearchFormProps): boolean {
 		const { legend, placeholder, label } = this.props;
 
 		if (nextProps.legend !== legend || nextProps.placeholder !== placeholder || nextProps.label !== label) {

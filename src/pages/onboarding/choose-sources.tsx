@@ -13,11 +13,11 @@ import {
 	SourcesList,
 	UIButton,
 	UICallToAction,
-	UIContentSpinner,
+	ContentSpinner,
 	TopNavigation,
 	TopNavigationWithTitle,
 	UISection,
-} from "../../components/index.components";
+} from "components/index.components";
 
 // Redux
 import {
@@ -25,18 +25,18 @@ import {
 	IGlobalStoreState,
 	IListOfCategorizedSources,
 	IAllAvailableNewsSource,
-} from "../../data/interfaces/index.interface";
+} from "data/interfaces/index";
 import {
 	getAllAvailableNewsSources,
 	getAvailableNewSourcesFromLanguage,
 	getUserCountryCodeByCoordinates,
 	SetChosenNewsSources,
-} from "../../data/redux/actions/index.actions";
+} from "data/redux/actions/index.actions";
 
-import { NEWS_PAGE, ONBOARDING_PRELOADER } from "../../data/constants/index.constants";
+import { NEWS_PAGE, ONBOARDING_PRELOADER } from "data/constants/index.constants";
 
 // Data
-import Top20EditorSuggestions from "../../data/dummy/news-sources-suggestions";
+import Top20EditorSuggestions from "data/dummy/news-sources-suggestions";
 
 // Validation Schema
 import ChooseSourcesValidationSchema from "./choose-sources-validation-schema";
@@ -73,7 +73,7 @@ interface IChooseSourcesPageState {
 
 /**
  * @description The Choose Sources Page is where the user can pick his favorite news sources from a list.
- * @date 2019-01-06
+ *
  * @class ChooseSourcesPage
  * @extends {React.Component<IChooseSourcesPageProps, IChooseSourcesPageState>}
  */
@@ -355,7 +355,7 @@ class ChooseSourcesPage extends React.PureComponent<ChooseSourcesPageProps, Choo
 							<form id="choose-sources-form" onSubmit={handleSubmit} className="modal-dialog__container">
 								<Container fullwidth isFixed title="Current Page is: Choose News Sources." offsetTop="1rem">
 									{Top20EditorSuggestions && this.renderListOfSuggestedSources(Top20EditorSuggestions, props)}
-									{hasData && sources ? this.renderListOfCategories(sources, props) : <UIContentSpinner isFullPage />}
+									{hasData && sources ? this.renderListOfCategories(sources, props) : <ContentSpinner fullPage />}
 								</Container>
 								<UICallToAction>
 									<UIButton

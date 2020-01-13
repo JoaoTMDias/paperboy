@@ -4,7 +4,7 @@ export interface IContainerProps {
 	fullheight?: boolean;
 	fullwidth?: boolean;
 	offsetTop?: string;
-	theme?: any;
+
 	title: string;
 	style?: string | object;
 	children: React.ReactNode;

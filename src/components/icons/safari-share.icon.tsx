@@ -3,17 +3,15 @@ import * as React from "react";
 import styled from "styled-components";
 
 // Component Props
-interface IIconSafariShareProps {
-	theme?: any;
-}
+interface IIconSafariShareProps {}
 
 /**
  * @description Tab Icon: Share
- * @author  João Dias
+
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-const IconSafariShare: React.FunctionComponent<IIconSafariShareProps> = props => (
+export const IconSafariShare: React.FunctionComponent<IIconSafariShareProps> = props => (
 	<Icon
 		id="safari-share-icon"
 		xmlns="http://www.w3.org/2000/svg"

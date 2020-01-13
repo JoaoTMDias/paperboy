@@ -5,7 +5,7 @@ import { IUICallToActionProps } from "./types";
 
 /**
  * @description CallToAction
- * @author  João Dias
+
  * @date  21/November/2018 at 13:38
  * @extends {React.FunctionComponent}
  */

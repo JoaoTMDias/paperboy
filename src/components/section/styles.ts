@@ -1,5 +1,6 @@
 import { rem } from "polished";
 import styled, { css } from "styled-components";
+import { IUISectionProps } from "./types";
 
 // Styling
 export const Wrapper = styled.div`

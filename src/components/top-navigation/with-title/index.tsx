@@ -1,12 +1,12 @@
 // Libraries
 import React from "react";
+import { withMemo } from "helpers/index.helpers";
 import { Container } from "./styles";
-import { withMemo } from "../../../helpers/index.helpers";
 import { ITopNavigationWithTitleProps } from "./types";
 
 /**
  * @description Navigation with Title
- * @author  João Dias
+
  * @date  12/December/2018 at 16:40
  * @extends {React.FC}
  */

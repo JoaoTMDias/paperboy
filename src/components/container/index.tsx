@@ -6,7 +6,7 @@ import { IContainerProps } from "./types";
 
 /**
  * @description Layout Container
- * @author  João Dias
+
  * @date  20/November/2018 at 16:55
  * @extends {React.FunctionComponent}
  */

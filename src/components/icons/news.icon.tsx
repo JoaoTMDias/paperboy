@@ -3,17 +3,15 @@ import * as React from "react";
 import styled from "styled-components";
 
 // Component Props
-interface IIconNewsProps {
-	theme?: any;
-}
+interface IIconNewsProps {}
 
 /**
  * @description Tab Icon: News
- * @author  João Dias
+
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-const IconNews: React.FunctionComponent<IIconNewsProps> = props => (
+export const IconNews: React.FunctionComponent<IIconNewsProps> = props => (
 	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-labelledby="news-icon-title" tabIndex={-1}>
 		<title id="news-icon-title">Tab Icon: News</title>
 		<path className="tab__icon--default" d="M23,0H3A2,2,0,0,0,1,2V24a2,2,0,0,0,2,2H23a2,2,0,0,0,2-2V2a2,2,0,0,0-2-2" />

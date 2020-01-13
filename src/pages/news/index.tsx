@@ -1,14 +1,11 @@
 import { Redirect } from "@reach/router";
 import * as React from "react";
 import { connect } from "react-redux";
-
-import { Container, Layout, NewsTabs, UIContentSpinner } from "../../components/index.components";
-
-import { LatestNewsTab, LatestNewsCategoryTab } from "../../components/data-display/news/index.news";
-
-import { INewsArticle, IGlobalStoreState, ChosenNewsSources } from "../../data/interfaces/index.interface";
-
-import { NEWS_PAGE, ONBOARDING_PAGE } from "../../data/constants/index.constants";
+import { Container, Layout, NewsTabs, ContentSpinner } from "components/index.components";
+import { LatestNewsTab, LatestNewsCategoryTab } from "components/data-display/news/index.news";
+import { IGlobalStoreState, ChosenNewsSources } from "data/interfaces/index";
+import { NEWS_PAGE, ONBOARDING_PAGE } from "data/constants/index.constants";
+import { INewsPageProps, INewsPageState, INewsPageHeaderItems } from "./types";
 
 const defaultTabs: INewsPageHeaderItems[] = [
 	{
@@ -16,22 +13,6 @@ const defaultTabs: INewsPageHeaderItems[] = [
 		label: "Latest",
 	},
 ];
-interface INewsPageHeaderItems {
-	id: string;
-	label: string;
-}
-
-interface INewsPageProps {
-	authenticated: boolean;
-	sources: ChosenNewsSources;
-	latest: INewsArticle;
-	dispatch: any;
-}
-
-interface INewsPageState {
-	hasData: boolean;
-	tabsHeaderItems: INewsPageHeaderItems[] | null;
-}
 
 /**
  * @description News Page Tab
@@ -49,6 +30,11 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 		};
 	}
 
+	/**
+	 *
+	 *
+	 * @memberof NewsPage
+	 */
 	componentDidMount() {
 		const { sources } = this.props;
 		const checkForData = this.checkIfHasSources(sources);
@@ -58,18 +44,12 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 		}
 	}
 
-	checkIfHasSources(sources: ChosenNewsSources) {
-		if (sources && sources.quantity > 0) {
-			this.setState({
-				hasData: true,
-			});
-
-			return true;
-		}
-
-		return false;
-	}
-
+	/**
+	 *
+	 *
+	 * @param {INewsPageProps} prevProps
+	 * @memberof NewsPage
+	 */
 	componentDidUpdate(prevProps: INewsPageProps) {
 		const { sources } = this.props;
 		const { hasData } = this.state;
@@ -95,6 +75,25 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 				tabsHeaderItems,
 			});
 		}
+	}
+
+	/**
+	 *
+	 *
+	 * @param {ChosenNewsSources} sources
+	 * @returns
+	 * @memberof NewsPage
+	 */
+	checkIfHasSources(sources: ChosenNewsSources) {
+		if (sources && sources.quantity > 0) {
+			this.setState({
+				hasData: true,
+			});
+
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -135,7 +134,7 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 			);
 		}
 
-		return <UIContentSpinner isFullPage />;
+		return <ContentSpinner fullPage />;
 	}
 
 	render() {
@@ -145,10 +144,11 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 		if (!authenticated) {
 			return <Redirect from={NEWS_PAGE} to={ONBOARDING_PAGE} noThrow />;
 		}
+
 		return (
 			<Layout authenticated header={false}>
 				<Container fullwidth fullheight isFixed={false} title="Current Page is: News" offsetTop="2.75rem">
-					{tabsHeaderItems ? this.renderNewsTabs(tabsHeaderItems) : <p>Loading...</p>}
+					{tabsHeaderItems ? this.renderNewsTabs(tabsHeaderItems) : <ContentSpinner />}
 				</Container>
 			</Layout>
 		);

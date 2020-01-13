@@ -5,22 +5,21 @@ import styled, { css, keyframes } from "styled-components";
 
 // Component Props
 interface IUISpinnerProps {
-	theme?: any;
 	color?: string;
 	duration?: number;
 	size?: number;
 	center?: boolean;
 	isTemporary?: boolean;
-	isFullPage?: boolean;
+	fullPage?: boolean;
 }
 
 /**
  * @description UX: Loading spinner used for content placeholder
- * @author  João Dias
+
  * @date  14/December/2018 at 10:37
  * @extends {React.FC}
  */
-const UIContentSpinner: React.FunctionComponent<IUISpinnerProps> = props => {
+const ContentSpinner: React.FunctionComponent<IUISpinnerProps> = props => {
 	const { size, ...spinnerProps } = props;
 	return (
 		<Wrapper tabIndex={-1} {...spinnerProps}>
@@ -31,17 +30,13 @@ const UIContentSpinner: React.FunctionComponent<IUISpinnerProps> = props => {
 	);
 };
 
-UIContentSpinner.defaultProps = {
+ContentSpinner.defaultProps = {
 	color: "var(--color-primary)",
 	duration: 3000,
 	center: true,
 	size: 32,
 	isTemporary: false,
 };
-
-///////////
-// STYLING
-///////////
 
 // Animations
 const hideTimeout = keyframes`
@@ -79,7 +74,7 @@ const spinnerRotate = keyframes`
 const Wrapper = styled.div`
 	width: 100%;
 	height: ${(props: IUISpinnerProps) => {
-		if (props.isFullPage) {
+		if (props.fullPage) {
 			return "100vh";
 		} else if (props.center) {
 			return "100%";
@@ -105,7 +100,7 @@ const Wrapper = styled.div`
 			animation-name: ${hideTimeout};
 			animation-duration: 500ms;
 			animation-delay: ${(props: IUISpinnerProps) => (props.duration ? `${props.duration}ms` : `3000ms`)};
-			animation-timing-function: ${(props: IUISpinnerProps) => props.theme.easeInBack};
+			animation-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
 			animation-fill-mode: forwards;
 		`};
 
@@ -147,7 +142,7 @@ const Wrapper = styled.div`
 
 			animation-name: ${dashAnimation};
 			animation-duration: ${(props: IUISpinnerProps) => (props.duration ? `${props.duration * 0.5}ms` : "3000ms")};
-			animation-timing-function: ${(props: IUISpinnerProps) => props.theme.easeInOutQuint};
+			animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
 			animation-iteration-count: infinite;
 			animation-delay: 0;
 			animation-direction: normal;
@@ -157,4 +152,4 @@ const Wrapper = styled.div`
 	}
 `;
 
-export default UIContentSpinner;
+export default ContentSpinner;

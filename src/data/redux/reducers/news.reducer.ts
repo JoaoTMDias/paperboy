@@ -6,8 +6,8 @@ import {
 	GET_ALL_AVAILABLE_NEWS_SOURCES,
 	GET_ALL_AVAILABLE_NEWS_SOURCES_LANGUAGE,
 	RESET_APP_STATE,
-} from "../../constants/index.constants";
-import { IReduxActions } from "../../interfaces/index.interface";
+} from "data/constants/index.constants";
+import { IReduxActions } from "data/interfaces/index";
 
 // News initial state
 const initialState = {

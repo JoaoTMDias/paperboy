@@ -1,13 +1,13 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { IconBrandingSmall, IconSafariShare } from "components/icons/index";
+import { IGlobalStoreState } from "data/interfaces/index";
 import { Wrapper, IconStrip, Content } from "./styles";
-import { IconBrandingSmall, IconSafariShare } from "../index.components";
-import { IGlobalStoreState } from "../../data/interfaces/index.interface";
 import { IAddToHomeScreenProps } from "./types";
 
 /**
  * @description Dialog that invites the user to add to the homescreen
- * @date 2019-01-06
+ *
  * @class AddToHomeScreen
  * @extends {React.Component<IAddToHomeScreenProps, any>}
  */
@@ -31,7 +31,7 @@ class AddToHomeScreen extends React.PureComponent<IAddToHomeScreenProps, any> {
 					url: "https://developers.google.com/web",
 				})
 				.then(() => console.log("Successful share"))
-				.catch(error => console.log("Error sharing", error));
+				.catch((error: string) => console.log("Error sharing", error));
 		}
 	}
 

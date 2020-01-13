@@ -1,7 +1,7 @@
 // Libraries
 import axios from "axios";
 
-const username: string = `${process.env.GEONAMES_USERNAME}`;
+const username = `${process.env.GEONAMES_USERNAME}`;
 
 export default {
 	/**

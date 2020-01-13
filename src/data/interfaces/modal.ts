@@ -1,4 +1,4 @@
-import { IThemeProps } from "./index.interface";
+import { IThemeProps } from "./theme";
 
 export enum EModalAlignType {
 	TOP = "top",

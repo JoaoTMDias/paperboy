@@ -5,10 +5,10 @@ import {
 	RESET_APP_STATE,
 	SET_BASE_FONT_RATIO,
 	SET_SAVE_OR_UNSAVE_ARTICLE,
-} from "../../constants/index.constants";
-import { EAppThemeType } from "../../interfaces/theme.interfaces";
+} from "data/constants/index.constants";
+import { EAppThemeType } from "data/interfaces/theme";
+import { INewsPageHeaderItems, ChosenNewsSources, INewsArticleItem } from "data/interfaces/index";
 import { IChosenSource } from "../../../pages/onboarding/choose-sources";
-import { INewsPageHeaderItems, ChosenNewsSources, INewsArticleItem } from "../../interfaces/index.interface";
 
 /**
  * @description Updates the store with the new chosen sources

@@ -1,6 +1,6 @@
 import { rem } from "polished";
 import styled from "styled-components";
-import { flexRow, elevation } from "../../helpers/index.helpers";
+import { flexRow, elevation } from "helpers/index.helpers";
 
 export const Wrapper = styled.button`
 	width: 100%;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { render, cleanup } from "@testing-library/react";
 
-import A11yPageTitle from "./a11ypagetitle.component";
+import A11yPageTitle from ".";
 
 afterEach(cleanup);
 

@@ -5,13 +5,12 @@ import styled, { keyframes } from "styled-components";
 
 // Component Props
 interface IUIDialogProps {
-	theme?: any;
 	onClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
 }
 
 /**
  * @description Modal Component: Dialog
- * @author  João Dias
+
  * @date  07/January/2019 at 16:07
  * @extends {React.FC}
  */

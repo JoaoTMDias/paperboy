@@ -9,11 +9,11 @@ import {
 	TopNavigation,
 	TopNavigationWithTitle,
 	UISection,
-} from "../../components/index.components";
+} from "components/index.components";
 import { List } from "./styles";
-import { ONBOARDING_PAGE, SAVED_PAGE } from "../../data/constants/router.constants";
-import { IGlobalStoreState, INewsArticleItem } from "../../data/interfaces/index.interface";
-import { EThumbnailType } from "../../components/data-display/thumbnails/thumbnails-large.component";
+import { ONBOARDING_PAGE, SAVED_PAGE } from "data/constants/router.constants";
+import { IGlobalStoreState, INewsArticleItem } from "data/interfaces/index";
+import { EThumbnailType } from "components/data-display/thumbnails/thumbnails-large.component";
 
 // Interface
 interface ISavedPageProps {

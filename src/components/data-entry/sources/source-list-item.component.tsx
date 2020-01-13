@@ -2,11 +2,10 @@
 import { rem } from "polished";
 import * as React from "react";
 import styled from "styled-components";
-import { LazyLoadingImage } from "../../index.components";
+import { LazyLoadingImage } from "components/index.components";
 
 // Component Props
 interface ISourceListItemProps {
-	theme?: any;
 	id: string;
 	label: string;
 	category: string;
@@ -18,7 +17,7 @@ interface ISourceListItemProps {
 
 /**
  * @description Source List Item
- * @author  João Dias
+
  * @date  27/December/2018 at 00:57
  * @extends {React.FC}
  */

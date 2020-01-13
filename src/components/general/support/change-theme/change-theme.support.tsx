@@ -1,10 +1,9 @@
 // Libraries
 import * as React from "react";
-import Helmet from "react-helmet";
 import { connect } from "react-redux";
 
-import { EAppThemeType } from "../../../../data/interfaces/theme.interfaces";
-import { IGlobalStoreState } from "../../../../data/interfaces/index.interface";
+import { EAppThemeType } from "data/interfaces/theme";
+import { IGlobalStoreState } from "data/interfaces/index";
 
 // Interface
 interface IChangeAppThemeProps {
@@ -159,10 +158,16 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
 		const { currentTheme } = this.props;
 		const { themeColor } = this.state;
 
-		return <aside data-theme={currentTheme} tabIndex={-1} />;
+		return <aside data-theme={currentTheme} data-theme-color={themeColor} tabIndex={-1} />;
 	}
 }
 
+/**
+ *
+ *
+ * @param {IGlobalStoreState} state
+ * @returns
+ */
 function mapStateToProps(state: IGlobalStoreState) {
 	return {
 		currentTheme: state.preferences.theme,

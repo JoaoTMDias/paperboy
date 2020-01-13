@@ -1,6 +1,6 @@
 import React from "react";
+import { withMemo } from "helpers/index.helpers";
 import { Anchor } from "./styles";
-import { withMemo } from "../../helpers/index.helpers";
 import { IUIAnchorProps } from "./types";
 
 export const UIAnchor: React.FunctionComponent<IUIAnchorProps> = props => {

@@ -1,13 +1,13 @@
 import { Redirect } from "@reach/router";
 import * as React from "react";
 import { connect } from "react-redux";
-import { Container, Layout, UIContentSpinner } from "../../components/index.components";
+import { Container, Layout, ContentSpinner } from "components/index.components";
 
 // Redux
-import { getAllLatestNewsFromSource, setUserAuthentication } from "../../data/redux/actions/index.actions";
+import { getAllLatestNewsFromSource, setUserAuthentication } from "data/redux/actions/index.actions";
 
-import { NEWS_PAGE } from "../../data/constants/index.constants";
-import { IGlobalStoreState, IChosenNewsSourcesItems } from "../../data/interfaces/index.interface";
+import { NEWS_PAGE } from "data/constants/index.constants";
+import { IGlobalStoreState, IChosenNewsSourcesItems } from "data/interfaces/index";
 
 interface IPreloaderPageProps {
 	authenticated: boolean;
@@ -23,7 +23,7 @@ interface IPreloaderPageState {
 
 /**
  * @description The Preloader Page
- * @date 2019-01-06
+ *
  * @class PreloaderPage
  * @extends {React.Component<IPreloaderPageProps, IPreloaderPageState>}
  */
@@ -101,7 +101,7 @@ class PreloaderPage extends React.PureComponent<IPreloaderPageProps, IPreloaderP
 		return (
 			<Layout authenticated={authenticated}>
 				<Container fullwidth fullheight isFixed title="Current Page is: Preloader screen.">
-					<UIContentSpinner isFullPage />
+					<ContentSpinner fullPage />
 				</Container>
 			</Layout>
 		);

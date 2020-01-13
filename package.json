@@ -12,6 +12,7 @@
 		"@material-ui/core": "^4.8.3",
 		"@types/lodash": "^4.14.149",
 		"axios": "^0.19.0",
+		"classnames": "^2.2.6",
 		"date-fns": "^2.8.1",
 		"formik": "^2.1.1",
 		"gatsby": "^2.18.18",
@@ -54,20 +55,21 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "gatsby build",
-		"start": "gatsby develop",
 		"develop": "gatsby develop",
 		"format:fix": "prettier --write '{__mocks__,src,test}/**/*.{ts,tsx}' '*.js'",
 		"format:lint": "eslint --fix src/**/*.tsx",
-		"test": "jest --env=jsdom",
+		"prebuild": "npm run format:fix && npm run format:lint && npm run test",
+		"start": "gatsby develop",
 		"test:watch": "jest --watchAll --env=jsdom",
-		"type-check": "tsc --noEmit",
-		"prebuild": "npm run format:fix && npm run format:lint && npm run test"
+		"test": "jest --env=jsdom",
+		"type-check": "tsc --noEmit"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.7.7",
 		"@babel/polyfill": "^7.7.0",
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.4.0",
+		"@types/classnames": "^2.2.9",
 		"@types/jest": "^24.0.25",
 		"@types/node": "^13.1.4",
 		"@types/react": "^16.9.17",
@@ -94,9 +96,11 @@
 		"eslint-plugin-prettier": "^3.1.2",
 		"eslint-plugin-react": "^7.17.0",
 		"eslint-plugin-react-hooks": "^2.3.0",
+		"gatsby-plugin-root-import": "^2.0.5",
 		"husky": "^3.1.0",
 		"identity-obj-proxy": "^3.0.0",
 		"jest": "^24.9.0",
+		"js-logger": "^1.6.0",
 		"lint-staged": "^9.5.0",
 		"prettier": "^1.19.1",
 		"redux-devtools-extension": "^2.13.8",
@@ -147,12 +151,16 @@
 			"static"
 		],
 		"moduleFileExtensions": [
-			"ts",
-			"tsx",
 			"js",
-			"jsx"
+			"json",
+			"jsx",
+			"ts",
+			"tsx"
 		],
 		"moduleNameMapper": {
+			"^components/(.*)$": "<rootDir>/src/components/$1",
+			"^data/(.*)$": "<rootDir>/src/data/$1",
+			"^helpers/(.*)$": "<rootDir>/src/helpers/$1",
 			"typeface-*": "identity-obj-proxy",
 			".+\\.(css|styl|less|sass|scss)$": "identity-obj-proxy",
 			".+\\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/file.js"

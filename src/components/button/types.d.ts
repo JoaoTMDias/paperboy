@@ -3,8 +3,8 @@ export interface IUIButtonProps {
 	type: "button" | "submit" | "reset";
 	text: string;
 	label: string;
-	onClick?: any;
-	disabled?: boolean;
+	onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+	disabled: boolean;
 }
 
 export interface IUIAnchorProps {

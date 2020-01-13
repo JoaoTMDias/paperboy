@@ -1,5 +1,5 @@
 // GENERAL
-import Portal from "./general/portal/portal.component";
+import Portal from "./general/portal/portal";
 import Audit from "./general/support/audit";
 import ViewportHeight from "./general/support/viewport-height.support";
 import ChangeAppTheme from "./general/support/change-theme/change-theme.support";
@@ -9,7 +9,7 @@ import Container from "./container";
 import Layout from "./layout";
 
 // A11Y
-import A11yPageTitle from "./a11y/a11ypagetitle.component";
+import A11yPageTitle from "./a11y";
 import ArticleTypeset from "./ArticleTypeset/index";
 
 // NAVIGATION
@@ -36,17 +36,16 @@ import UIDialog from "./feedback/dialog/dialog.component";
 import LazyLoadingImage from "./general/images/image.lazyload.component";
 import Modal from "./general/modal";
 import AddToHomeScreen from "./add-to-homescreen";
-import UIContentSpinner from "./general/spinners/content-spinner.component";
+import ContentSpinner from "./content-spinner";
 import { UIDisplay, UILead, UISubtitle } from "./general/typography/typography.theme";
 import FormSwitch from "./data-entry/forms/switch/form-switch.component";
-import AddToHomeScreenWithInstall from "./add-to-homescreen/with-install-button";
-import ShareSheetPortal from "./general/social/ShareSheet/index";
+import { AddToHomeScreenWithInstall } from "./add-to-homescreen/with-install-button";
+import { ShareSheetPortal } from "./general/social/ShareSheet/index";
 
 export * from "./section";
 
 // ICONOGRAPHY
-export * from "./icons/icons";
-export * from "./data-display/lists/index.lists";
+export * from "./lists";
 
 export {
 	Audit,
@@ -76,7 +75,7 @@ export {
 	UISearchForm,
 	AddToHomeScreen,
 	UIDialog,
-	UIContentSpinner,
+	ContentSpinner,
 	LatestNewsTab,
 	NewsTabs,
 	ArticleThumbnail,

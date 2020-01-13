@@ -3,17 +3,15 @@ import * as React from "react";
 import styled from "styled-components";
 
 // Component Props
-interface IIconCategoriesProps {
-	theme?: any;
-}
+interface IIconCategoriesProps {}
 
 /**
  * @description Tab Icon: Categories
- * @author  João Dias
+
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-const IconCategories: React.FunctionComponent<IIconCategoriesProps> = props => (
+export const IconCategories: React.FunctionComponent<IIconCategoriesProps> = props => (
 	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-labelledby="categories-icon-title" tabIndex={-1}>
 		<title id="categories-icon-title">Tab Icon: Categories</title>
 		<path

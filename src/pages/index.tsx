@@ -4,16 +4,16 @@ import * as React from "react";
 import { connect } from "react-redux";
 import {
 	Container,
-	IconBrandingLarge,
 	Layout,
 	UIAnchor,
 	UICallToAction,
 	UIDisplay,
 	UILead,
 	UISubtitle,
-} from "../components/index.components";
+} from "components/index.components";
+import { IconBrandingLarge } from "components/icons/index";
 
-import { NEWS_PAGE, ONBOARDING_CHOOSE_SOURCES_PAGE } from "../data/constants/index.constants";
+import { NEWS_PAGE, ONBOARDING_CHOOSE_SOURCES_PAGE } from "data/constants/index.constants";
 
 interface IIndexPageProps {
 	authenticated: boolean;

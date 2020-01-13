@@ -9,10 +9,10 @@ import {
 	SET_APP_THEME,
 	SET_BASE_FONT_RATIO,
 	SET_SAVE_OR_UNSAVE_ARTICLE,
-} from "../../constants/index.constants";
+} from "data/constants/index.constants";
 
-import { PreferencesReducer, IReduxActions } from "../../interfaces/index.interface";
-import { EAppThemeType } from "../../interfaces/theme.interfaces";
+import { PreferencesReducer, IReduxActions } from "data/interfaces/index";
+import { EAppThemeType } from "data/interfaces/theme";
 
 // Preferences initial state
 const initialState: PreferencesReducer = {

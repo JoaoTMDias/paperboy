@@ -1,19 +1,17 @@
 import { rem } from "polished";
 import * as React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 interface IConfirmProps {
-	theme?: any;
 	title: string;
 	description: string;
 	onCancel: any;
 	onConfirm: any;
-	primary?: boolean;
 }
 
 /**
  * @description Dialog that invites the user to take an action.
- * @date 2019-01-06
+ *
  * @class Confirm
  * @extends {React.Component<IConfirmProps, any>}
  */
@@ -21,7 +19,7 @@ interface IConfirmProps {
 const Confirm: React.FunctionComponent<IConfirmProps> = props => {
 	const { title, description, onCancel, onConfirm } = props;
 	return (
-		<React.Fragment>
+		<>
 			<Content className="dialog__content">
 				<h2 id="dialog__title" className="dialog__content__title">
 					{title}
@@ -31,14 +29,14 @@ const Confirm: React.FunctionComponent<IConfirmProps> = props => {
 				</p>
 			</Content>
 			<Row>
-				<Button onClick={onConfirm} tabIndex={0}>
+				<Button type="button" onClick={onConfirm}>
 					Yes, allow
 				</Button>
-				<Button primary={true} onClick={onCancel} tabIndex={0}>
+				<Button type="button" className="is-primary" onClick={onCancel}>
 					No, thanks
 				</Button>
 			</Row>
-		</React.Fragment>
+		</>
 	);
 };
 
@@ -79,12 +77,10 @@ const Button = styled.button`
 		margin-right: 16px;
 	}
 
-	${(props: IConfirmProps) =>
-		props.primary &&
-		css`
-			background-color: var(--color-select);
-			color: var(--color-white);
-		`}
+	&.is-primary {
+		background-color: var(--color-select);
+		color: var(--color-white);
+	}
 `;
 
 export default Confirm;

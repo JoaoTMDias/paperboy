@@ -4,10 +4,10 @@ import {
 	SET_STANDALONE_STATUS,
 	SET_FEATURE_SUPPORT,
 	SET_USER_COUNTRY,
-} from "../../constants/index.constants";
+} from "data/constants/index.constants";
 
-import GeneralService from "../../services/general.service";
-import { FeatureSupport, LocationData } from "../../interfaces/general.interface";
+import GeneralService from "data/services/general.service";
+import { FeatureSupport, LocationData } from "data/interfaces/general";
 
 /**
  * @description Defines the network status of the device: online or offline

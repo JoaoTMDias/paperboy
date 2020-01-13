@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cleanup, render } from "@testing-library/react";
 
-import ShareSheetPortal from "./ShareSheet";
+import { ShareSheetPortal } from "./index";
 
 afterEach(cleanup);
 

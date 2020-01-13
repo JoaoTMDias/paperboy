@@ -71,17 +71,20 @@ export const Anchor = styled(Link)`
 `;
 
 export const Article = styled.article`
+	--thumbnail-image-height: ${rem("96px")};
+	--thumbnail-image-margin: calc(var(--global-padding) * 0.5);
+	--thumbnail-copy-height: calc(100% - calc(var(--thumbnail-image-height) + var(--thumbnail-image-margin)));
 	align-items: flex-start;
 	background-color: var(--color-gray1);
 	display: flex;
 	flex-direction: column;
-	height: 100%;
 	justify-content: flex-end;
 	margin: 0;
 	overflow: hidden;
 	padding: var(--global-padding) 2rem var(--global-padding) var(--global-padding);
 	position: relative;
 	width: 100%;
+	height: 100%;
 
 	.thumbnail-image {
 		&__gradient {
@@ -111,7 +114,7 @@ export const Article = styled.article`
 
 					.thumbnail__image {
 						border-radius: ${rem("2px")};
-						height: ${rem("96px")};
+						height: var(--thumbnail-image-height);
 						margin-bottom: calc(var(--global-padding) * 0.5);
 						margin-left: 0;
 						margin-right: 0;
@@ -122,18 +125,29 @@ export const Article = styled.article`
 
 			case EThumbnailType.SMALL:
 				return css`
+					justify-content: flex-start;
 					background-color: var(--color-white);
 					padding: var(--global-padding) var(--global-padding) calc(var(--global-padding) * 0.5) var(--global-padding);
 					transition: transform 128ms ease-out;
 
-					.thumbnail__image {
-						border-radius: ${rem("2px")};
-						height: ${rem("96px")};
-						margin-bottom: calc(var(--global-padding) * 0.5);
-						margin-left: 0;
-						margin-right: 0;
-						margin-top: 0;
-						width: 100%;
+					.thumbnail {
+						&__image {
+							border-radius: ${rem("2px")};
+							height: var(--thumbnail-image-height);
+							margin-bottom: var(--thumbnail-image-margin);
+							margin-left: 0;
+							margin-right: 0;
+							margin-top: 0;
+							width: 100%;
+						}
+
+						&__copy {
+							height: var(--thumbnail-copy-height);
+							display: flex;
+							flex-direction: column;
+							justify-content: space-between;
+							align-items: flex-start;
+						}
 					}
 				`;
 

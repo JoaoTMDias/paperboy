@@ -1,4 +1,4 @@
-import { IAllAvailableNewsSource, EAllNewsSourcesCategories } from "../interfaces/index.interface";
+import { IAllAvailableNewsSource, EAllNewsSourcesCategories } from "data/interfaces";
 
 const Top20EditorSuggestions: IAllAvailableNewsSource[] = [
 	{

@@ -1,5 +1,4 @@
 export interface IUISectionProps {
-	theme?: any;
 	layout?: "vertical" | "horizontal";
 	title?: string;
 	id: string;
