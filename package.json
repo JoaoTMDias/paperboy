@@ -55,14 +55,18 @@
 	"license": "MIT",
 	"scripts": {
 		"clean": "rm -rf node_modules && rm -rf ./.cache",
+		"rebuild": "npm run clean && npm run install",
 		"build": "gatsby build",
 		"develop": "gatsby develop",
-		"format:fix": "prettier --write '{__mocks__,src,test}/**/*.{ts,tsx}' '*.js'",
+		"prettier:base": "prettier --parser typescript",
+		"format:fix": "npm run prettier:base -- --write 'src/**/*.{ts,tsx, js, jsx, json}'",
 		"format:lint": "eslint --fix src/**/*.tsx",
 		"prebuild": "npm run format:fix && npm run format:lint && npm run test",
 		"start": "gatsby develop",
-		"test:watch": "jest --watchAll --env=jsdom",
 		"test": "jest --env=jsdom",
+		"test:watch": "jest --watchAll --env=jsdom",
+		"test:cypress": "cypress run",
+		"test:cypress-ui": "cypress open",
 		"type-check": "tsc --noEmit"
 	},
 	"devDependencies": {
