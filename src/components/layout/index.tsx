@@ -1,10 +1,9 @@
 // Libraries
-import React from "react";
+import React, { useRef } from "react";
 import { StaticQuery, graphql } from "gatsby";
 import { isIOS } from "react-device-detect";
 import { Audit, BottomNavigation, ViewportHeight, AddToHomeScreen, Modal, ChangeAppTheme } from "../index.components";
 import TopNavigation from "../top-navigation/default/index";
-import MainNavigation from "../main-navigation";
 import { Provider } from "./theme-provider";
 import { AppLayout } from "./styles";
 import { ILayoutProps } from "./types";
@@ -14,21 +13,20 @@ import "./layout.scss";
 
 // Layout Component
 const Layout: React.FunctionComponent<ILayoutProps> = ({ children, authenticated, header, bottomNavigation }) => {
+	const isStandalone = useRef(window.matchMedia('(display-mode: standalone)').matches)
+
 	/**
 	 *
 	 *
 	 * @returns
 	 */
 	function renderNavigationElements() {
-		const isDesktop = !!window.matchMedia("(min-width: 64rem)").matches;
-
 		if (authenticated) {
 			return (
 				<>
 					{header && <TopNavigation key="page-header" />}
-					{isDesktop && <MainNavigation key="main-navigation" />}
 					{children}
-					{!isDesktop && bottomNavigation && <BottomNavigation key="bottom-navigation" />}
+					{bottomNavigation && <BottomNavigation key="bottom-navigation" />}
 				</>
 			);
 		}
@@ -40,7 +38,7 @@ const Layout: React.FunctionComponent<ILayoutProps> = ({ children, authenticated
 		if (isIOS) {
 			return (
 				<Modal delay={600000}>
-					<AddToHomeScreen />
+					<AddToHomeScreen isStandalone={isStandalone.current} />
 				</Modal>
 			);
 		}

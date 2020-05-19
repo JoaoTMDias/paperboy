@@ -1,5 +1,5 @@
 import * as React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { IconBrandingSmall, IconSafariShare } from "components/icons/index";
 import { IGlobalStoreState } from "data/interfaces/index";
 import { Wrapper, IconStrip, Content } from "./styles";
@@ -7,11 +7,10 @@ import { IAddToHomeScreenProps } from "./types";
 
 /**
  * @description Dialog that invites the user to add to the homescreen
- *
- * @class AddToHomeScreen
- * @extends {React.Component<IAddToHomeScreenProps, any>}
  */
-class AddToHomeScreen extends React.PureComponent<IAddToHomeScreenProps, any> {
+const AddToHomeScreen: React.FC<IAddToHomeScreenProps> = () => {
+	const isStandalone = useSelector((state: IGlobalStoreState) => state.general.isStandalone);
+
 	/**
 	 * @description
 	 * @author João Dias
@@ -19,7 +18,7 @@ class AddToHomeScreen extends React.PureComponent<IAddToHomeScreenProps, any> {
 	 * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
 	 * @memberof AddToHomeScreen
 	 */
-	handleOnClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+	function handleOnClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		event.preventDefault();
 		const windowNavigator = window.navigator as any;
 
@@ -35,35 +34,29 @@ class AddToHomeScreen extends React.PureComponent<IAddToHomeScreenProps, any> {
 		}
 	}
 
-	render() {
-		return (
-			<Wrapper
-				id="add-to-homescreen-modal"
-				type="button"
-				onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => this.handleOnClick(event)}
-			>
-				<IconStrip className="dialog__logo" tabIndex={-1}>
-					<IconBrandingSmall />
-				</IconStrip>
+	return (
+		<Wrapper
+			id="add-to-homescreen-modal"
+			type="button"
+			onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleOnClick(event)}
+		>
+			<IconStrip className="dialog__logo" tabIndex={-1}>
+				<IconBrandingSmall />
+			</IconStrip>
 
-				<Content className="dialog__content">
-					<h2 id="dialog__title" className="dialog__content__title">
-						Add to Home Screen?
-					</h2>
-					<p id="dialog__description" className="dialog__content__description">
-						Install the app on your home screen for instant and easy access while you're on the go.
-					</p>
-					<p id="dialog__tip" className="dialog__content__tip">
-						Tap <IconSafariShare /> and then 'Add to homescreen'{" "}
-					</p>
-				</Content>
-			</Wrapper>
-		);
-	}
+			<Content className="dialog__content">
+				<h2 id="dialog__title" className="dialog__content__title">
+					Add to Home Screen?
+				</h2>
+				<p id="dialog__description" className="dialog__content__description">
+					Install the app on your home screen for instant and easy access while you're on the go.
+				</p>
+				<p id="dialog__tip" className="dialog__content__tip">
+					Tap <IconSafariShare /> and then 'Add to homescreen'{" "}
+				</p>
+			</Content>
+		</Wrapper>
+	);
 }
 
-const mapStateToProps = (state: IGlobalStoreState) => ({
-	isStandalone: state.general.isStandalone,
-});
-
-export default connect(mapStateToProps)(AddToHomeScreen);
+export default AddToHomeScreen;

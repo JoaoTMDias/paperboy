@@ -4,20 +4,18 @@ import { SectionWrapper, SectionTitle, Wrapper } from "./styles";
 
 /**
  * @description Page Section Component
-
- * @date  24/December/2018 at 01:23
  * @extends {React.FC}
  */
-export class UISection extends React.PureComponent<IUISectionProps> {
-	static defaultProps = {
-		layout: "vertical",
-		id: `${Math.random()}`,
-		grouped: false,
-	};
-
-	renderTitle() {
-		const { id, title, grouped } = this.props;
-
+export const UISection: React.FC<IUISectionProps> = ({
+	id,
+	title,
+	children,
+	style,
+	role,
+	layout,
+	grouped
+}) => {
+	function renderTitle() {
 		const sectionTitle = `${id}-section-title`;
 
 		if (title) {
@@ -31,27 +29,7 @@ export class UISection extends React.PureComponent<IUISectionProps> {
 		return null;
 	}
 
-	public render() {
-		const { id, title, children, style, role, layout, grouped } = this.props;
-
-		if (grouped) {
-			return (
-				<SectionWrapper
-					id={id}
-					aria-labelledby={`${id}-section-title`}
-					title={title}
-					layout={layout}
-					role={role}
-					grouped={grouped}
-					style={style}
-				>
-					{this.renderTitle()}
-					<Wrapper id={`wrapper-${id}`} grouped={grouped}>
-						{children}
-					</Wrapper>
-				</SectionWrapper>
-			);
-		}
+	if (grouped) {
 		return (
 			<SectionWrapper
 				id={id}
@@ -59,13 +37,35 @@ export class UISection extends React.PureComponent<IUISectionProps> {
 				title={title}
 				layout={layout}
 				role={role}
+				grouped={grouped}
 				style={style}
 			>
-				{this.renderTitle()}
-				{children}
+				{renderTitle()}
+				<Wrapper id={`wrapper-${id}`} grouped={grouped}>
+					{children}
+				</Wrapper>
 			</SectionWrapper>
 		);
 	}
+	return (
+		<SectionWrapper
+			id={id}
+			aria-labelledby={`${id}-section-title`}
+			title={title}
+			layout={layout}
+			role={role}
+			style={style}
+		>
+			{renderTitle()}
+			{children}
+		</SectionWrapper>
+	);
 }
+
+UISection.defaultProps = {
+	layout: "vertical",
+	id: `${Math.random()}`,
+	grouped: false,
+};
 
 export default UISection;

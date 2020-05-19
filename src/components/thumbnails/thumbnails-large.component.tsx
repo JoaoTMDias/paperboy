@@ -2,25 +2,12 @@
 import { formatDistanceToNow } from "date-fns";
 import * as React from "react";
 
-import { INewsArticleItem } from "data/interfaces/index";
 import { NEWS_DETAIL_PAGE } from "data/constants/router.constants";
 import { ThumbnailImage } from "components/index.components";
 
-import { Anchor, Article, Copy } from "./thumbnails.styled";
-import LazyLoadingImage from "../../general/images/image.lazyload.component";
-
-// Component Props
-export enum EThumbnailType {
-	LARGE = "LARGE",
-	SAVED = "SAVED",
-	SMALL = "SMALL",
-}
-
-export interface IArticleThumbnailProps {
-	id: string;
-	options: INewsArticleItem;
-	type: EThumbnailType;
-}
+import { Anchor, Article, Copy } from "./styles";
+import LazyLoadingImage from "../general/images/image.lazyload.component";
+import { EThumbnailType, IArticleThumbnailProps } from "./types.d";
 
 /**
  * @description Article Thumbnail: Large

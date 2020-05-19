@@ -1,6 +1,5 @@
 // Libraries
 import * as React from "react";
-import styled from "styled-components";
 import { SourceCard, SourceListItem } from "components/index.components";
 
 // Assets
@@ -13,17 +12,11 @@ import IconNewYorkTimes from "../../../assets/images/sources/icon-new-york-times
 import IconTimesOfIndia from "../../../assets/images/sources/icon-times-of-india.svg";
 import IconUSAToday from "../../../assets/images/sources/icon-usa-today.svg";
 import IconWallStreetJournal from "../../../assets/images/sources/icon-wall-street-journal.svg";
+import { ISourcesListProps } from "./types";
 import { IAllAvailableNewsSource } from "data/interfaces/index";
 import { IChosenSource } from "../../../pages/onboarding/choose-sources";
 
-// Component Props
-interface ISourcesListProps {
-	layout?: "horizontal" | "vertical";
-	label: string;
-	data: IAllAvailableNewsSource[] | null;
-	handleChange(event: React.SyntheticEvent, position: number, category: string): void;
-	selectedOptions: IChosenSource[];
-}
+import { SourcesListWrapper } from "./styles";
 
 /**
  * @description Sources: List of Sources
@@ -172,25 +165,5 @@ class SourcesList extends React.PureComponent<ISourcesListProps> {
 		return null;
 	}
 }
-
-// Styling
-const SourcesListWrapper = styled.ol`
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	flex-wrap: nowrap;
-	overflow-x: scroll;
-	overflow-y: hidden;
-	margin: 0;
-	padding: 4px;
-	width: 100%;
-	scroll-snap-type: x proximity;
-	-webkit-overflow-scrolling: touch;
-	background-color: var(--body-background);
-
-	.source__item {
-		flex: 1;
-	}
-`;
 
 export default SourcesList;

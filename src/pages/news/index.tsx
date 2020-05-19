@@ -2,7 +2,7 @@ import { Redirect } from "@reach/router";
 import * as React from "react";
 import { connect } from "react-redux";
 import { Container, Layout, NewsTabs, ContentSpinner } from "components/index.components";
-import { LatestNewsTab, LatestNewsCategoryTab } from "components/data-display/news/index.news";
+import { LatestNewsTab, LatestNewsCategoryTab } from "components/news/index";
 import { IGlobalStoreState, ChosenNewsSources } from "data/interfaces/index";
 import { NEWS_PAGE, ONBOARDING_PAGE } from "data/constants/index.constants";
 import { INewsPageProps, INewsPageState, INewsPageHeaderItems } from "./types";
@@ -21,7 +21,7 @@ const defaultTabs: INewsPageHeaderItems[] = [
  * @extends {React.Component<INewsPageProps, any>}
  */
 class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
-	constructor(props: INewsPageProps) {
+	constructor (props: INewsPageProps) {
 		super(props);
 
 		this.state = {
@@ -116,7 +116,7 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 	 * @memberof NewsPage
 	 */
 	renderNewsTabs(tabsHeaderItems: INewsPageHeaderItems[]) {
-		const { sources } = this.props;
+		const { sources, platform } = this.props;
 		const { hasData } = this.state;
 
 		if (hasData && sources && tabsHeaderItems.length > 0) {
@@ -124,6 +124,7 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 				<NewsTabs
 					id="news-tabs"
 					tabsHeader={tabsHeaderItems}
+					platform={platform}
 					style={{
 						backgroundColor: "var(--body-background)",
 					}}
@@ -156,6 +157,7 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 }
 
 const mapStateToProps = (state: IGlobalStoreState) => ({
+	platform: state.general.platform,
 	authenticated: state.preferences.authenticated,
 	sources: state.preferences.chosenSources,
 });

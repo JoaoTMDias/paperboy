@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { rem } from "polished";
 import { Link } from "gatsby";
-import { IArticleThumbnailProps, EThumbnailType } from "./thumbnails-large.component";
+import { IArticleThumbnailProps, EThumbnailType } from "./types.d";
 
 export const Anchor = styled(Link)`
 	align-items: center;

@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 // Libraries
 import * as React from "react";
-import Helmet, { HelmetData } from "react-helmet";
+import { Helmet, HelmetData } from "react-helmet";
 
 // Configurations
 import config from "../gatsby-config";
@@ -22,7 +22,7 @@ const isProduction: boolean = process.env.NODE_ENV === "production";
  * @extends {React.FunctionComponent}
  */
 const HTML: React.FunctionComponent<IHTMLProps> = props => {
-	const helmet: HelmetData = Helmet.rewind();
+	const helmet: HelmetData | undefined  = Helmet.rewind();
 	const openGraphUrl: string = isProduction ? `${config.siteMetadata.url}/share.png` : "/share.png";
 	const { headComponents, body, postBodyComponents } = props;
 
@@ -51,9 +51,8 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 				<meta name="mobile-web-app-capable" content="yes" />
 				<meta name="msapplication-TileColor" content="#E74D3C" />
 				<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-				{helmet.title.toComponent()}
-				{helmet.meta.toComponent()}
 
+				{helmet.meta.toComponent()}
 				{headComponents}
 
 				<meta property="og:site_name" content={config.siteMetadata.title} />
@@ -89,22 +88,11 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 			<body>
 				<noscript id="no-javascript" className="no-javascript">
 					<h1 className="no-javascript__title">
-						I need you to activate Javascript in order to see my website
-						<span role="img" aria-label="A nerdy-looking emoji">
-							🤓
-						</span>
-						.
+						I need you to activate Javascript in order to see my website.
 					</h1>
 				</noscript>
 				<div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
 				{postBodyComponents}
-				{/* <script
-					dangerouslySetInnerHTML={{
-						__html: `
-						window.deferredAddToHomeScreenPrompt,window.addEventListener("beforeinstallprompt",(e) => {e.preventDefault(),window.deferredAddToHomeScreenPrompt=e});
-        `,
-					}}
-				/> */}
 			</body>
 		</html>
 	);

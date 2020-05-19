@@ -3,7 +3,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { IImageLazyProps } from "data/interfaces/index";
 
-import LazyLoadingImage from "../../general/images/image.lazyload.component";
+import LazyLoadingImage from "../general/images/image.lazyload.component";
 
 /**
  * @description Component Description

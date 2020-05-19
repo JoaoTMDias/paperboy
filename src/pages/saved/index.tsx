@@ -13,7 +13,7 @@ import {
 import { List } from "./styles";
 import { ONBOARDING_PAGE, SAVED_PAGE } from "data/constants/router.constants";
 import { IGlobalStoreState, INewsArticleItem } from "data/interfaces/index";
-import { EThumbnailType } from "components/data-display/thumbnails/thumbnails-large.component";
+import { EThumbnailType } from "../../components/thumbnails/types.d";
 
 // Interface
 interface ISavedPageProps {

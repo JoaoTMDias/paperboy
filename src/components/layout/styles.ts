@@ -10,7 +10,7 @@ export const AppLayout = styled.div`
 
 	${above.large`
 		display: grid;
-		grid-template-columns: minmax(12.5rem, auto) 1fr;
+		grid-template-columns: minmax(12.5rem, auto) auto;
 	`};
 `;
 

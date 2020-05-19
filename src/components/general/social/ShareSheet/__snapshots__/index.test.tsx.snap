@@ -2,7 +2,7 @@
 
 exports[`<ShareSheet /> renders 1`] = `
 <aside
-  class="sc-kgoBCf fWLreB share-sheet"
+  class="sc-fzoLag lkNioF share-sheet"
   data-testid="share-sheet"
 >
   <h3
@@ -19,14 +19,13 @@ exports[`<ShareSheet /> renders 1`] = `
       <button
         aria-label="facebook"
         class="react-share__ShareButton"
-        quote="'I'm scared for my daughter': Life in India's first city that's almost out of water http://us.cnn.com/2019/06/22/india/chennai-india-water-crisis-intl/index.html"
         style="background-color: transparent; padding: 0px; cursor: pointer;"
       >
         <figure
           class="share-sheet__option__icon"
         >
           <svg
-            class="sc-gZMcBi eCwRlL"
+            class="sc-fzpans ghxJMG"
             viewBox="0 0 32 32"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -53,15 +52,13 @@ exports[`<ShareSheet /> renders 1`] = `
       <button
         aria-label="whatsapp"
         class="react-share__ShareButton"
-        separator=""
         style="background-color: transparent; padding: 0px; cursor: pointer;"
-        title="'I'm scared for my daughter': Life in India's first city that's almost out of water"
       >
         <figure
           class="share-sheet__option__icon"
         >
           <svg
-            class="sc-iwsKbI hptvHb"
+            class="sc-fzoLsD gdOvwi"
             viewBox="0 0 32 32"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -99,13 +96,12 @@ exports[`<ShareSheet /> renders 1`] = `
         aria-label="twitter"
         class="react-share__ShareButton"
         style="background-color: transparent; padding: 0px; cursor: pointer;"
-        title="'I'm scared for my daughter': Life in India's first city that's almost out of water"
       >
         <figure
           class="share-sheet__option__icon"
         >
           <svg
-            class="sc-VigVT jvVPaj"
+            class="sc-fznyAO cqRDXz"
             viewBox="0 0 32 32"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -137,7 +133,7 @@ exports[`<ShareSheet /> renders 1`] = `
           class="share-sheet__option__icon"
         >
           <svg
-            class="sc-gqjmRU sNuNR"
+            class="sc-fzplWN gousWg"
             viewBox="0 0 32 32"
             xmlns="http://www.w3.org/2000/svg"
           >

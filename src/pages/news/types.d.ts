@@ -6,6 +6,7 @@ export interface INewsPageHeaderItems {
 }
 
 export interface INewsPageProps {
+	platform: string;
 	authenticated: boolean;
 	sources: ChosenNewsSources;
 	latest: INewsArticle;

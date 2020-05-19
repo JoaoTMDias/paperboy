@@ -9,7 +9,6 @@ import Container from "./container";
 import Layout from "./layout";
 
 // A11Y
-import A11yPageTitle from "./a11y";
 import ArticleTypeset from "./ArticleTypeset/index";
 
 // NAVIGATION
@@ -22,11 +21,8 @@ import TabItem from "./top-navigation/tab-item";
 
 import TopNavigation from "./top-navigation/default";
 import MainNavigation from "./main-navigation";
-
-// UI
-import { LatestNewsTab, NewsTabs } from "./data-display/news/index.news";
-import ArticleThumbnail from "./data-display/thumbnails/thumbnails-large.component";
-import ThumbnailImage from "./data-display/thumbnails/thumbnails-image.component";
+import ArticleThumbnail from "./thumbnails/thumbnails-large.component";
+import ThumbnailImage from "./thumbnails/thumbnails-image.component";
 import UISearchForm from "./data-entry/forms/search-form.component";
 import SourceCard from "./data-entry/sources/source-card.component";
 import SourceListItem from "./data-entry/sources/source-list-item.component";
@@ -42,6 +38,9 @@ import FormSwitch from "./data-entry/forms/switch/form-switch.component";
 import { AddToHomeScreenWithInstall } from "./add-to-homescreen/with-install-button";
 import { ShareSheetPortal } from "./general/social/ShareSheet/index";
 
+// UI
+export * from "./news";
+
 export * from "./section";
 
 // ICONOGRAPHY
@@ -56,7 +55,6 @@ export {
 	Layout,
 	Modal,
 	Confirm,
-	A11yPageTitle,
 	TabItem,
 	BottomNavigation,
 	UIAnchor,
@@ -76,8 +74,6 @@ export {
 	AddToHomeScreen,
 	UIDialog,
 	ContentSpinner,
-	LatestNewsTab,
-	NewsTabs,
 	ArticleThumbnail,
 	ThumbnailImage,
 	LazyLoadingImage,

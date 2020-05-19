@@ -1,25 +1,11 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { ListChildComponentProps } from "react-window";
-
 import { ArticleThumbnail, ContentSpinner } from "components/index.components";
-
-import { VirtualizedList, Item } from "./news-tabs.styled";
-
-import { INewsArticle, IGlobalStoreState } from "data/interfaces/index";
-
+import { VirtualizedList, Item } from "./styles";
+import { IGlobalStoreState } from "data/interfaces/index";
 import { getAllLatestNewsFromSource } from "data/redux/actions/index.actions";
-import { EThumbnailType } from "../thumbnails/thumbnails-large.component";
-
-interface INewsArticleTabProps {
-	sources: string[];
-	latest: INewsArticle;
-	dispatch: any;
-}
-
-interface IVirtualListProps extends ListChildComponentProps {
-	key?: React.Key;
-}
+import { EThumbnailType } from "components/thumbnails/types.d.ts";
+import { INewsArticleTabProps, IVirtualListProps } from "./types";
 
 /**
  * @description Latest News Tab
@@ -27,7 +13,7 @@ interface IVirtualListProps extends ListChildComponentProps {
  * @class LatestNewsTab
  * @extends {React.Component<INewsArticleTabProps, any>}
  */
-class LatestNewsTab extends React.PureComponent<INewsArticleTabProps, any> {
+export class LatestNewsTab extends React.PureComponent<INewsArticleTabProps, any> {
 	/**
 	 * @description When the page mounts, checks if there are already chosen news
 	 * sources to pick from and update the latest news feed.

@@ -1,36 +1,11 @@
 // Libraries
 import * as React from "react";
 import { connect } from "react-redux";
-
-// Tabs
 import Tab from "@material-ui/core/Tab";
-
-// Helpers
 import { debounce, Logger, getScrollPosition } from "helpers/index.helpers";
-
-// Interfaces
 import { IGlobalStoreState } from "data/interfaces/redux";
-import { TabsContainer, TabsHeader, TabsWrapper } from "./news-tabs.styled";
-
-interface IHeaderTabs {
-	id: string;
-	label: string;
-}
-
-interface INewsTabsProps {
-	id: string;
-	hasHeader: boolean;
-	tabsHeader: IHeaderTabs[];
-	style?: React.CSSProperties;
-	platform: string;
-}
-
-interface INewsTabsState {
-	trigger: number | undefined;
-	tabBarHeader: HTMLDivElement | null;
-	currentTabIndex: number;
-	hasChangedTabs: boolean;
-}
+import { TabsContainer, TabsHeader, TabsWrapper } from "./styles";
+import { INewsTabsProps, INewsTabsState, IHeaderTabs } from "./types";
 
 /**
  * @description Returns the hash...without the hash, just the name :)
@@ -49,7 +24,7 @@ function getHash(): string {
  * @class NewsTabs
  * @extends {React.Component<INewsTabsProps, any>}
  */
-class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
+export class NewsTabs extends React.Component<INewsTabsProps, INewsTabsState> {
 	private tabsHeader = React.createRef<HTMLElement>();
 
 	static defaultProps = {

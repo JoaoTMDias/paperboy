@@ -1,6 +1,5 @@
 // Libraries
 import * as React from "react";
-import { A11yPageTitle } from "../index.components";
 import { MainContent, Wrapper, Trigger } from "./styles";
 import { IContainerProps } from "./types";
 
@@ -23,7 +22,6 @@ const Container: React.FunctionComponent<IContainerProps> = props => {
 
 	return (
 		<MainContent id="page-main" aria-labelledby="page-title" {...allProps}>
-			<A11yPageTitle title={props.title} />
 			<Wrapper {...allProps}>
 				<Trigger id="container-trigger" />
 				{children}
