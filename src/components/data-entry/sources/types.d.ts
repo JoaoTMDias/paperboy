@@ -5,7 +5,7 @@ export interface ISourcesListProps {
 	layout?: "horizontal" | "vertical";
 	label: string;
 	data: IAllAvailableNewsSource[] | null;
-	handleChange(event: React.SyntheticEvent, position: number, category: string): void;
+	handleChange(target: string, category: string): void;
 	selectedOptions: IChosenSource[];
 }
 
@@ -14,7 +14,7 @@ export interface ISourceListItemProps {
 	label: string;
 	category: string;
 	src: string;
-	handleChange(event: React.ChangeEvent<HTMLInputElement>): void;
+	handleChange(target: string): void;
 	checked: boolean;
 	style?: React.CSSProperties;
 }
@@ -24,7 +24,7 @@ export interface ISourceCardProps {
 	label: string;
 	category: string;
 	src: string;
-	handleChange(event: React.ChangeEvent<HTMLInputElement>): void;
+	handleChange(target: string): void;
 	checked: boolean;
 	style?: React.CSSProperties;
 }

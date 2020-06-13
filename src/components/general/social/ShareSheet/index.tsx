@@ -22,7 +22,7 @@ interface IShareSheetPortalProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IShareSheetPortalProps>}
  */
-export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> = props => {
+export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> = (props) => {
 	const { articleData } = props;
 	const shareUri = articleData && articleData.url;
 	const shareMessage = `${articleData && articleData.title}`;

@@ -14,7 +14,7 @@ interface IHeadingsProps {
  * @date  10/December/2018 at 23:15
  * @extends {React.FC}
  */
-const UIDisplay: React.FunctionComponent<IHeadingsProps> = props => {
+const UIDisplay: React.FunctionComponent<IHeadingsProps> = (props) => {
 	const { text } = props;
 	return (
 		<Heading1 id="page-display-heading" data-testid="ui-display-title">
@@ -29,7 +29,7 @@ const UIDisplay: React.FunctionComponent<IHeadingsProps> = props => {
  * @date  10/December/2018 at 23:15
  * @extends {React.FC}
  */
-const UISubtitle: React.FunctionComponent<IHeadingsProps> = props => {
+const UISubtitle: React.FunctionComponent<IHeadingsProps> = (props) => {
 	const { text } = props;
 	return (
 		<Subtitle id="page-subtitle-heading" data-testid="ui-subtitle-title">
@@ -44,7 +44,7 @@ const UISubtitle: React.FunctionComponent<IHeadingsProps> = props => {
  * @date  10/December/2018 at 23:15
  * @extends {React.FC}
  */
-const UILead: React.FunctionComponent<IHeadingsProps> = props => {
+const UILead: React.FunctionComponent<IHeadingsProps> = (props) => {
 	const { text } = props;
 	return (
 		<Lead id="page-lead" data-testid="ui-lead-title">

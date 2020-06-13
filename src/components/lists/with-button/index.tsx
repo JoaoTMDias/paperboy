@@ -9,7 +9,7 @@ import { Button } from "../styles";
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IListItemWithButtonProps>}
  */
-export const ListItemWithButton: React.FunctionComponent<IListItemWithButtonProps> = props => {
+export const ListItemWithButton: React.FunctionComponent<IListItemWithButtonProps> = (props) => {
 	const { id, title, subtitle, style, flavour, onClick, children } = props;
 
 	const buttonId = `${id}-button ${children && "has-icon"}`;

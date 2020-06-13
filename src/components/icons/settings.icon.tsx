@@ -11,7 +11,7 @@ interface IIconSettingsProps {}
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-export const IconSettings: React.FunctionComponent<IIconSettingsProps> = props => (
+export const IconSettings: React.FunctionComponent<IIconSettingsProps> = (props) => (
 	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-labelledby="settings-icon-title" tabIndex={-1}>
 		<title id="settings-icon-title">Tab Icon: Settings</title>
 		<path

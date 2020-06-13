@@ -115,7 +115,7 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
 		if (rootElement) {
 			rootElement.classList.add("theme-transition");
 			rootElement.setAttribute("data-theme", theme);
-			window.setTimeout(function() {
+			window.setTimeout(function () {
 				rootElement.classList.remove("theme-transition");
 			}, 1000);
 		}

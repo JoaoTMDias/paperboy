@@ -17,6 +17,7 @@ import { IAllAvailableNewsSource } from "data/interfaces/index";
 import { IChosenSource } from "../../../pages/onboarding/choose-sources";
 
 import { SourcesListWrapper } from "./styles";
+import { withMemo } from "helpers/index.helpers";
 
 /**
  * @description Sources: List of Sources
@@ -24,12 +25,7 @@ import { SourcesListWrapper } from "./styles";
  * @date  24/December/2018 at 01:43
  * @extends {React.FC}
  */
-class SourcesList extends React.PureComponent<ISourcesListProps> {
-	static defaultProps = {
-		layout: "vertical",
-		label: "label",
-	};
-
+const SourcesList: React.FC<ISourcesListProps> = ({ data, handleChange, label, layout, selectedOptions }) => {
 	/**
 	 * @description Returns the news source cover
 	 * @author João Dias
@@ -38,7 +34,7 @@ class SourcesList extends React.PureComponent<ISourcesListProps> {
 	 * @returns
 	 * @memberof SourcesList
 	 */
-	getNewsSourceCover(source: IAllAvailableNewsSource): string {
+	function getNewsSourceCover(source: IAllAvailableNewsSource): string {
 		let cover;
 
 		switch (source.id) {
@@ -93,12 +89,10 @@ class SourcesList extends React.PureComponent<ISourcesListProps> {
 	 * @returns
 	 * @memberof SourcesList
 	 */
-	renderData() {
-		const { data, layout, handleChange, selectedOptions } = this.props;
-
+	function renderData() {
 		if (data) {
-			const item = data.map((source: IAllAvailableNewsSource, index: number) => {
-				const cover: string = this.getNewsSourceCover(source);
+			const item = data.map((source: IAllAvailableNewsSource) => {
+				const cover = getNewsSourceCover(source);
 
 				const matching: IChosenSource = {
 					name: source.id,
@@ -116,8 +110,8 @@ class SourcesList extends React.PureComponent<ISourcesListProps> {
 							label={source.name}
 							category={source.category}
 							src={cover}
-							handleChange={(event: React.SyntheticEvent) => {
-								return handleChange(event, index, source.category);
+							handleChange={(target: string) => {
+								return handleChange(target, source.category);
 							}}
 							checked={isChecked}
 						/>
@@ -131,8 +125,8 @@ class SourcesList extends React.PureComponent<ISourcesListProps> {
 						label={source.name}
 						category={source.category}
 						src={cover}
-						handleChange={(event: React.SyntheticEvent) => {
-							return handleChange(event, index, source.category);
+						handleChange={(target) => {
+							return handleChange(target, source.category);
 						}}
 						checked={isChecked}
 					/>
@@ -143,27 +137,26 @@ class SourcesList extends React.PureComponent<ISourcesListProps> {
 		}
 	}
 
-	render() {
-		const { label, data, layout } = this.props;
-		const { ...sourceListProps } = this.props;
-
-		if (data) {
-			return (
-				<SourcesListWrapper
-					role="group"
-					aria-label={label}
-					{...sourceListProps}
-					style={{
-						flexDirection: layout === "horizontal" ? "row" : "column",
-					}}
-				>
-					{data && this.renderData()}
-				</SourcesListWrapper>
-			);
-		}
-
-		return null;
+	if (data) {
+		return (
+			<SourcesListWrapper
+				role="group"
+				aria-label={label}
+				style={{
+					flexDirection: layout === "horizontal" ? "row" : "column",
+				}}
+			>
+				{data && renderData()}
+			</SourcesListWrapper>
+		);
 	}
-}
 
-export default SourcesList;
+	return null;
+};
+
+SourcesList.defaultProps = {
+	layout: "vertical",
+	label: "label",
+};
+
+export default withMemo(SourcesList, ["data", "layout", "selectedOptions"]);

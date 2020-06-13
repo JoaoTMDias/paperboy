@@ -19,7 +19,7 @@ interface IIconChangeTypeSizeProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IIconChangeTypeSizeProps>}
  */
-export const IconChangeTypeSize: React.FunctionComponent<IIconChangeTypeSizeProps> = props => {
+export const IconChangeTypeSize: React.FunctionComponent<IIconChangeTypeSizeProps> = (props) => {
 	const { type } = props;
 
 	return (

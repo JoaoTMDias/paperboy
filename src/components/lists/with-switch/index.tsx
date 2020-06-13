@@ -10,7 +10,7 @@ import { IListItemWithSwitchProps } from "../list-types";
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IListItemWithSwitchProps>}
  */
-export const ListItemWithSwitch: React.FunctionComponent<IListItemWithSwitchProps> = props => {
+export const ListItemWithSwitch: React.FunctionComponent<IListItemWithSwitchProps> = (props) => {
 	const { id, title, subtitle, onClick, defaultValue, value } = props;
 	return (
 		<Label htmlFor={`${id}-input`} className="section-list__item__label" onClick={onClick} tabIndex={0}>

@@ -9,6 +9,7 @@ import {
 // Services
 import NewsService from "data/services/news.service";
 import { IAllAvailableNewsSource, IListOfCategorizedSources, INewsArticle } from "data/interfaces/index";
+import { Dispatch, AnyAction } from "redux";
 
 interface IAvaiableRegionalNewsSources {
 	status: string;
@@ -25,7 +26,6 @@ const getAllAvailableNewsSources = () => {
 	/**
 	 * @description Receives the raw data from the service and returns an organized list of news sources
 	 * @author João Dias
-	 * @date 2019-05-09
 	 * @param {IAllAvailableNewsSource[]} data
 	 * @returns {(IListOfCategorizedSources[] | null)}
 	 */
@@ -78,6 +78,8 @@ const getAllAvailableNewsSources = () => {
 		};
 	}
 
+	debugger;
+
 	return (dispatch: any) => {
 		NewsService.getAllAvailableSources()
 			.then((result: AxiosResponse) => {
@@ -93,7 +95,7 @@ const getAllAvailableNewsSources = () => {
 
 				return null;
 			})
-			.catch(error => {});
+			.catch((error) => {});
 	};
 };
 
@@ -103,7 +105,7 @@ const getAllAvailableNewsSources = () => {
  * @date 2019-01-09
  * @param {string} language
  */
-const getAvailableNewSourcesFromLanguage = (language: string) => (dispatch: any) => {
+const getAvailableNewSourcesFromLanguage = (language: string) => (dispatch: Dispatch) => {
 	const AvailableNewsSources = (data: IAvaiableRegionalNewsSources) => {
 		if (data.status === "ok" && data.sources.length > 0) {
 			const newEntry: IListOfCategorizedSources = {
@@ -120,15 +122,17 @@ const getAvailableNewSourcesFromLanguage = (language: string) => (dispatch: any)
 		}
 	};
 
-	NewsService.getAvailableSourcesFromLanguage(language)
-		.then(result => {
-			if (result.data) {
-				if (result.data && result.data.sources) {
-					dispatch(AvailableNewsSources(result.data));
+	return (dispatch: any) => {
+		NewsService.getAvailableSourcesFromLanguage(language)
+			.then((result) => {
+				if (result.data) {
+					if (result.data && result.data.sources) {
+						dispatch(AvailableNewsSources(result.data));
+					}
 				}
-			}
-		})
-		.catch(error => {});
+			})
+			.catch((error) => {});
+	};
 };
 
 /**
@@ -147,14 +151,14 @@ const getAllLatestNewsFromSource = (source: string[]) => {
 		};
 	}
 
-	return (dispatch: any) => {
+	return (dispatch: Dispatch<AnyAction>) => {
 		NewsService.getAllLatestNews(source)
 			.then((result: AxiosResponse) => {
 				if (result && result.data) {
 					dispatch(updateStore(result.data));
 				}
 			})
-			.catch(error => {});
+			.catch((error) => {});
 	};
 };
 

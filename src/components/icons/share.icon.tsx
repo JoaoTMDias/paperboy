@@ -14,7 +14,7 @@ interface IIconShareProps {
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-export const IconShare: React.FunctionComponent<IIconShareProps> = props => {
+export const IconShare: React.FunctionComponent<IIconShareProps> = (props) => {
 	const renderIcon = () => {
 		switch (props.platform) {
 			case "ios":

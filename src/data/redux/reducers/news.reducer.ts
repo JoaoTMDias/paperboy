@@ -33,17 +33,17 @@ const initialState = {
 function news(state = initialState, action: IReduxActions) {
 	switch (action.type) {
 		case GET_ALL_AVAILABLE_NEWS_SOURCES_LANGUAGE:
-			return produce(state, draftState => {
+			return produce(state, (draftState) => {
 				draftState.sources = action.payload.data;
 			});
 
 		case GET_ALL_AVAILABLE_NEWS_SOURCES:
-			return produce(state, draftState => {
+			return produce(state, (draftState) => {
 				draftState.sources = action.payload.data;
 			});
 
 		case GET_LATEST_NEWS:
-			return produce(state, draftState => {
+			return produce(state, (draftState) => {
 				draftState.articles.latest = action.payload.data;
 			});
 

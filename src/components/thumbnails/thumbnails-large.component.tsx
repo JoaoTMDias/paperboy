@@ -15,7 +15,7 @@ import { EThumbnailType, IArticleThumbnailProps } from "./types.d";
  * @date  17/January/2019 at 00:05
  * @extends {React.FC}
  */
-const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = props => {
+const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = (props) => {
 	const { id, type, options } = props;
 	const { title, urlToImage, source, publishedAt } = options;
 	const timestamp = Date.parse(publishedAt);

@@ -8,6 +8,7 @@ import {
 
 import GeneralService from "data/services/general.service";
 import { FeatureSupport, LocationData } from "data/interfaces/general";
+import { Dispatch } from "redux";
 
 /**
  * @description Defines the network status of the device: online or offline
@@ -92,15 +93,15 @@ const getUserCountryCodeByCoordinates = (latitude: number, longitude: number) =>
 		};
 	};
 
-	return (dispatch: any) => {
+	return (dispatch: Dispatch) => {
 		GeneralService.getUserCountryCodeByCoordinates(latitude, longitude)
-			.then(result => {
+			.then((result) => {
 				if (result.data) {
 					const country = result.data;
 					dispatch(updateStore(country));
 				}
 			})
-			.catch(error => {});
+			.catch((error) => {});
 	};
 };
 

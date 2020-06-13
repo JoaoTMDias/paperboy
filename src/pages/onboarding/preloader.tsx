@@ -1,49 +1,36 @@
+import React, { useState, useEffect } from "react";
 import { Redirect } from "@reach/router";
-import * as React from "react";
+import { Dispatch, bindActionCreators, AnyAction } from "redux";
 import { connect } from "react-redux";
+import { usePrevious } from "react-use";
 import { Container, Layout, ContentSpinner } from "components/index.components";
-
-// Redux
+import Meta from "components/meta/index";
 import { getAllLatestNewsFromSource, setUserAuthentication } from "data/redux/actions/index.actions";
-
 import { NEWS_PAGE } from "data/constants/index.constants";
-import { IGlobalStoreState, IChosenNewsSourcesItems } from "data/interfaces/index";
+import { IGlobalStoreState, IChosenNewsSourcesItems, IBasePageProps, INewsArticleItem } from "data/interfaces/index";
 
-interface IPreloaderPageProps {
-	authenticated: boolean;
-	dispatch: any;
-	chosenSources: IChosenNewsSourcesItems;
-	articles: {};
-}
-
-interface IPreloaderPageState {
-	hasData: boolean;
-	delay: number;
-}
-
-/**
- * @description The Preloader Page
- *
- * @class PreloaderPage
- * @extends {React.Component<IPreloaderPageProps, IPreloaderPageState>}
- */
-class PreloaderPage extends React.PureComponent<IPreloaderPageProps, IPreloaderPageState> {
-	constructor(props: IPreloaderPageProps) {
-		super(props);
-
-		this.state = {
-			hasData: false,
-			delay: 3000,
+interface IPreloaderPageActions {
+	getAllLatestNewsFromSource: (source: string[]) => (dispatch: Dispatch<AnyAction>) => void;
+	setUserAuthentication: (
+		state: boolean,
+	) => {
+		type: string;
+		payload: {
+			data: boolean;
 		};
-	}
-
-	static defaultProps = {
-		chosenSources: null,
-		authenticated: false,
-		articles: {},
 	};
+}
 
-	public timer: any = null;
+interface IPreloaderPageProps extends IBasePageProps {
+	authenticated: boolean;
+	actions: IPreloaderPageActions;
+	chosenSources: IChosenNewsSourcesItems;
+	articles: INewsArticleItem[];
+}
+
+const PreloaderPage: React.FC<IPreloaderPageProps> = ({ authenticated, actions, chosenSources, articles }) => {
+	const [hasData, setHasData] = useState(false);
+	const previousArticles = usePrevious(articles);
 
 	/**
 	 * @description When the Page mounts, adds an event listener for the search bar
@@ -52,17 +39,14 @@ class PreloaderPage extends React.PureComponent<IPreloaderPageProps, IPreloaderP
 	 * @date 2018-12-29
 	 * @memberof PreloaderPage
 	 */
-	componentDidMount() {
-		const { chosenSources, dispatch } = this.props;
-		const { delay } = this.state;
-
+	useEffect(() => {
 		if (chosenSources && Object.keys(chosenSources).length > 0) {
 			const hasLatestKey = chosenSources.hasOwnProperty("latest");
 			const latestSources = hasLatestKey ? chosenSources.latest : ["cnn", "bbc-news"];
 
-			this.timer = setTimeout(() => dispatch(getAllLatestNewsFromSource(latestSources)), delay);
+			actions.getAllLatestNewsFromSource(latestSources);
 		}
-	}
+	}, []);
 
 	/**
 	 * @description Dispatches a number of actions depending on updated props
@@ -71,47 +55,51 @@ class PreloaderPage extends React.PureComponent<IPreloaderPageProps, IPreloaderP
 	 * @param {*} prevState
 	 * @memberof PreloaderPage
 	 */
-	componentDidUpdate(prevProps: IPreloaderPageProps) {
-		const { articles, dispatch } = this.props;
-
-		// If there are news sources to display as a list
-		if (prevProps.articles !== articles) {
-			this.setState(
-				{
-					hasData: true,
-				},
-				() => {
-					dispatch(setUserAuthentication(true));
-				},
-			);
+	useEffect(() => {
+		if (previousArticles?.length !== articles.length) {
+			setHasData(true);
+			actions.setUserAuthentication(true);
 		}
+	}, [articles]);
+
+	if (authenticated && hasData) {
+		return <Redirect to={NEWS_PAGE} noThrow />;
 	}
 
-	componentWillUnmount() {
-		clearTimeout(this.timer);
-	}
+	return (
+		<Layout authenticated={authenticated}>
+			<Meta title="Fetching news..." location={location} />
+			<Container fullwidth fullheight isFixed title="Current Page is: Preloader screen.">
+				<ContentSpinner fullPage />
+			</Container>
+		</Layout>
+	);
+};
 
-	public render() {
-		const { authenticated } = this.props;
+PreloaderPage.defaultProps = {
+	chosenSources: undefined,
+	authenticated: false,
+	articles: [],
+};
 
-		if (authenticated) {
-			return <Redirect to={NEWS_PAGE} noThrow />;
-		}
-
-		return (
-			<Layout authenticated={authenticated}>
-				<Container fullwidth fullheight isFixed title="Current Page is: Preloader screen.">
-					<ContentSpinner fullPage />
-				</Container>
-			</Layout>
-		);
-	}
+function mapStateToProps(state: IGlobalStoreState) {
+	return {
+		authenticated: state.preferences.authenticated,
+		chosenSources: state.preferences.chosenSources.items,
+		articles: state.news.articles.latest.articles,
+	};
 }
 
-const mapStateToProps = (state: IGlobalStoreState) => ({
-	authenticated: state.preferences.authenticated,
-	chosenSources: state.preferences.chosenSources.items,
-	articles: state.news.articles.latest.articles,
-});
+function mapDispatchToProps(dispatch: Dispatch) {
+	return {
+		actions: bindActionCreators(
+			{
+				getAllLatestNewsFromSource,
+				setUserAuthentication,
+			},
+			dispatch,
+		),
+	};
+}
 
-export default connect(mapStateToProps)(PreloaderPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PreloaderPage);

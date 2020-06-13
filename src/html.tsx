@@ -21,8 +21,8 @@ const isProduction: boolean = process.env.NODE_ENV === "production";
  * @date  01/December/2018 at 16:19
  * @extends {React.FunctionComponent}
  */
-const HTML: React.FunctionComponent<IHTMLProps> = props => {
-	const helmet: HelmetData | undefined  = Helmet.rewind();
+const HTML: React.FunctionComponent<IHTMLProps> = (props) => {
+	const helmet: HelmetData | undefined = Helmet.rewind();
 	const openGraphUrl: string = isProduction ? `${config.siteMetadata.url}/share.png` : "/share.png";
 	const { headComponents, body, postBodyComponents } = props;
 
@@ -87,9 +87,7 @@ const HTML: React.FunctionComponent<IHTMLProps> = props => {
 			</head>
 			<body>
 				<noscript id="no-javascript" className="no-javascript">
-					<h1 className="no-javascript__title">
-						I need you to activate Javascript in order to see my website.
-					</h1>
+					<h1 className="no-javascript__title">I need you to activate Javascript in order to see my website.</h1>
 				</noscript>
 				<div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
 				{postBodyComponents}

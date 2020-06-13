@@ -27,7 +27,7 @@ export const IconFacebook = (props: IconProps) => {
 };
 
 const Icon = styled("svg")`
-	${props => css`
+	${(props) => css`
 		width: ${(props: IconProps) => (props.width ? `${rem(props.width)}` : `${rem("30px")}`)};
 		height: ${(props: IconProps) => (props.height ? `${rem(props.height)}` : `${rem("30px")}`)};
 	`}

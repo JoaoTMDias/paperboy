@@ -14,20 +14,23 @@ import {
 import { IconBrandingLarge } from "components/icons/index";
 
 import { NEWS_PAGE, ONBOARDING_CHOOSE_SOURCES_PAGE } from "data/constants/index.constants";
+import Meta from "components/meta/index";
+import { IBasePageProps } from "datainterfaces";
 
-interface IIndexPageProps {
+interface IIndexPageProps extends IBasePageProps {
 	authenticated: boolean;
 	children?: any;
 }
 
-const IndexPage: React.FunctionComponent<IIndexPageProps> = props => {
-	const { authenticated } = props;
+const IndexPage: React.FunctionComponent<IIndexPageProps> = (props) => {
+	const { authenticated, location } = props;
 
 	if (authenticated) {
 		return <Redirect to={NEWS_PAGE} noThrow />;
 	}
 	return (
 		<Layout authenticated={authenticated}>
+			<Meta title="Start page" location={location} />
 			<UICallToAction float>
 				<UIAnchor
 					to={ONBOARDING_CHOOSE_SOURCES_PAGE}

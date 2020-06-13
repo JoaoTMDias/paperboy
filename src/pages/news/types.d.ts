@@ -10,7 +10,6 @@ export interface INewsPageProps {
 	authenticated: boolean;
 	sources: ChosenNewsSources;
 	latest: INewsArticle;
-	dispatch: any;
 }
 
 export interface INewsPageState {

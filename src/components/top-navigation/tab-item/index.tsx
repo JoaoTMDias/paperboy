@@ -9,7 +9,7 @@ import { Wrapper, TabLink, Icon, Label } from "./styles";
  * @date  08/December/2018 at 15:41
  * @extends {React.FC}
  */
-export const TabItem: React.FunctionComponent<ITabItemProps> = props => {
+export const TabItem: React.FunctionComponent<ITabItemProps> = (props) => {
 	const { to, label, layout, children } = props;
 
 	return (

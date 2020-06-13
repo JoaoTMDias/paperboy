@@ -14,7 +14,7 @@ interface IUIDialogProps {
  * @date  07/January/2019 at 16:07
  * @extends {React.FC}
  */
-const UIDialog: React.FunctionComponent<IUIDialogProps> = props => {
+const UIDialog: React.FunctionComponent<IUIDialogProps> = (props) => {
 	const { onClick, children } = props;
 	return (
 		<Dialog

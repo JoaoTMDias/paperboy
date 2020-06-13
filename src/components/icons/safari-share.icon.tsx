@@ -11,7 +11,7 @@ interface IIconSafariShareProps {}
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-export const IconSafariShare: React.FunctionComponent<IIconSafariShareProps> = props => (
+export const IconSafariShare: React.FunctionComponent<IIconSafariShareProps> = (props) => (
 	<Icon
 		id="safari-share-icon"
 		xmlns="http://www.w3.org/2000/svg"

@@ -9,7 +9,7 @@ import { IAddToHomeScreenWithInstallProps } from "./types";
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IAddToHomeScreenWithInstallProps>}
  */
-export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScreenWithInstallProps> = props => {
+export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScreenWithInstallProps> = (props) => {
 	const { id, title, subtitle, isStandalone } = props;
 
 	/**

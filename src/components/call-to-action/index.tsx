@@ -9,13 +9,9 @@ import { IUICallToActionProps } from "./types";
  * @date  21/November/2018 at 13:38
  * @extends {React.FunctionComponent}
  */
-const UICallToAction: React.FunctionComponent<IUICallToActionProps> = props => {
+const UICallToAction: React.FunctionComponent<IUICallToActionProps> = (props) => {
 	const { children, ...ctaProps } = props;
-	return (
-		<Wrapper {...ctaProps} tabIndex={0}>
-			{children}
-		</Wrapper>
-	);
+	return <Wrapper {...ctaProps}>{children}</Wrapper>;
 };
 
 UICallToAction.defaultProps = {

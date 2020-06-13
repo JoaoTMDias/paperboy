@@ -15,7 +15,7 @@ interface IIconBrandingLargeProps {
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-export const IconBrandingLarge: React.FunctionComponent<IIconBrandingLargeProps> = props => {
+export const IconBrandingLarge: React.FunctionComponent<IIconBrandingLargeProps> = (props) => {
 	const { visible } = props;
 	return (
 		<Wrapper visible={visible}>

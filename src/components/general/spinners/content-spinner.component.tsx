@@ -19,7 +19,7 @@ interface IUISpinnerProps {
  * @date  14/December/2018 at 10:37
  * @extends {React.FC}
  */
-const ContentSpinner: React.FunctionComponent<IUISpinnerProps> = props => {
+const ContentSpinner: React.FunctionComponent<IUISpinnerProps> = (props) => {
 	const { size, ...spinnerProps } = props;
 	return (
 		<Wrapper tabIndex={-1} {...spinnerProps}>

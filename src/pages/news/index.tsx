@@ -1,11 +1,12 @@
 import { Redirect } from "@reach/router";
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Container, Layout, NewsTabs, ContentSpinner } from "components/index.components";
 import { LatestNewsTab, LatestNewsCategoryTab } from "components/news/index";
-import { IGlobalStoreState, ChosenNewsSources } from "data/interfaces/index";
+import { IGlobalStoreState } from "data/interfaces/index";
 import { NEWS_PAGE, ONBOARDING_PAGE } from "data/constants/index.constants";
-import { INewsPageProps, INewsPageState, INewsPageHeaderItems } from "./types";
+import { INewsPageProps, INewsPageHeaderItems } from "./types";
+import { usePrevious } from "react-use";
 
 const defaultTabs: INewsPageHeaderItems[] = [
 	{
@@ -20,46 +21,22 @@ const defaultTabs: INewsPageHeaderItems[] = [
  * @class NewsPage
  * @extends {React.Component<INewsPageProps, any>}
  */
-class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
-	constructor (props: INewsPageProps) {
-		super(props);
+const NewsPage: React.FC<INewsPageProps> = ({ platform, authenticated, sources }) => {
+	const [hasData, setHasData] = useState(false);
+	const [tabsHeaderItems, setTabsHeaderItems] = useState<INewsPageHeaderItems[] | null>(null);
+	const previousSources = usePrevious(sources);
 
-		this.state = {
-			hasData: false,
-			tabsHeaderItems: null,
-		};
-	}
-
-	/**
-	 *
-	 *
-	 * @memberof NewsPage
-	 */
-	componentDidMount() {
-		const { sources } = this.props;
-		const checkForData = this.checkIfHasSources(sources);
-
-		if (checkForData) {
-			this.setupNewsTabsHeader(sources.tabs);
+	useEffect(() => {
+		if (checkIfHasSources()) {
+			setupNewsTabsHeader(sources.tabs);
 		}
-	}
+	}, []);
 
-	/**
-	 *
-	 *
-	 * @param {INewsPageProps} prevProps
-	 * @memberof NewsPage
-	 */
-	componentDidUpdate(prevProps: INewsPageProps) {
-		const { sources } = this.props;
-		const { hasData } = this.state;
-
-		if (hasData) {
+	useEffect(() => {
+		if (previousSources && previousSources.quantity !== sources.quantity) {
+			setupNewsTabsHeader(sources.tabs);
 		}
-		if (prevProps.sources !== sources && sources.quantity > 0) {
-			this.setupNewsTabsHeader(sources.tabs);
-		}
-	}
+	}, [sources]);
 
 	/**
 	 * @description
@@ -68,27 +45,22 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 	 * @param {IChosenSource[]} items
 	 * @memberof NewsPage
 	 */
-	setupNewsTabsHeader(tabs: INewsPageHeaderItems[]) {
+	function setupNewsTabsHeader(tabs: INewsPageHeaderItems[]) {
 		if (tabs) {
-			const tabsHeaderItems = this.filterOutAllHeaderCategories(tabs);
-			this.setState({
-				tabsHeaderItems,
-			});
+			const tabsHeaderItems = filterOutAllHeaderCategories(tabs);
+			setTabsHeaderItems(tabsHeaderItems);
 		}
 	}
 
 	/**
 	 *
 	 *
-	 * @param {ChosenNewsSources} sources
 	 * @returns
 	 * @memberof NewsPage
 	 */
-	checkIfHasSources(sources: ChosenNewsSources) {
+	function checkIfHasSources() {
 		if (sources && sources.quantity > 0) {
-			this.setState({
-				hasData: true,
-			});
+			setHasData(true);
 
 			return true;
 		}
@@ -104,7 +76,7 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 	 * @returns
 	 * @memberof NewsPage
 	 */
-	filterOutAllHeaderCategories(tabs: INewsPageHeaderItems[]) {
+	function filterOutAllHeaderCategories(tabs: INewsPageHeaderItems[]) {
 		const list = [...defaultTabs, ...tabs];
 		return list;
 	}
@@ -115,10 +87,7 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 	 * @returns
 	 * @memberof NewsPage
 	 */
-	renderNewsTabs(tabsHeaderItems: INewsPageHeaderItems[]) {
-		const { sources, platform } = this.props;
-		const { hasData } = this.state;
-
+	function renderNewsTabs(tabsHeaderItems: INewsPageHeaderItems[]) {
 		if (hasData && sources && tabsHeaderItems.length > 0) {
 			return (
 				<NewsTabs
@@ -138,23 +107,18 @@ class NewsPage extends React.PureComponent<INewsPageProps, INewsPageState> {
 		return <ContentSpinner fullPage />;
 	}
 
-	render() {
-		const { authenticated } = this.props;
-		const { tabsHeaderItems } = this.state;
-
-		if (!authenticated) {
-			return <Redirect from={NEWS_PAGE} to={ONBOARDING_PAGE} noThrow />;
-		}
-
-		return (
-			<Layout authenticated header={false}>
-				<Container fullwidth fullheight isFixed={false} title="Current Page is: News" offsetTop="2.75rem">
-					{tabsHeaderItems ? this.renderNewsTabs(tabsHeaderItems) : <ContentSpinner />}
-				</Container>
-			</Layout>
-		);
+	if (!authenticated) {
+		return <Redirect from={NEWS_PAGE} to={ONBOARDING_PAGE} noThrow />;
 	}
-}
+
+	return (
+		<Layout authenticated header={false}>
+			<Container fullwidth fullheight isFixed={false} title="Current Page is: News" offsetTop="2.75rem">
+				{tabsHeaderItems ? renderNewsTabs(tabsHeaderItems) : <ContentSpinner />}
+			</Container>
+		</Layout>
+	);
+};
 
 const mapStateToProps = (state: IGlobalStoreState) => ({
 	platform: state.general.platform,

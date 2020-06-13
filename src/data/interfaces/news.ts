@@ -8,8 +8,8 @@ export interface INewsArticle {
 
 export interface IListOfCategorizedSources {
 	name: string;
-	items: IAllAvailableNewsSource[];
-	length: number;
+	items?: IAllAvailableNewsSource[];
+	length?: number;
 }
 
 export interface INewsReducer {

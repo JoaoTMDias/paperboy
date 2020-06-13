@@ -1,8 +1,14 @@
 // Libraries
-import axios, { AxiosPromise } from "axios";
+import axios, { AxiosPromise, AxiosResponse } from "axios";
 
 // Constants
 import { NEWS_API_KEY } from "data/constants/news.constants";
+import { IGetAllNewsSources, INewsArticle } from "data/interfaces";
+
+const instance = axios.create({
+	baseURL: "https://newsapi.org/v2/",
+	headers: { Authorization: `Bearer ${NEWS_API_KEY}` },
+});
 
 export default {
 	/**
@@ -11,8 +17,9 @@ export default {
 	 * @param {any} source
 	 * @returns
 	 */
-	getAllLatestNews(source: any[]): AxiosPromise<any> {
-		return axios.get(`https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${NEWS_API_KEY}`);
+	async getAllLatestNews(source: string[]): Promise<INewsArticle> {
+		const { data }: AxiosResponse<INewsArticle> = await instance.get(`/top-headlines?sources=${source}`);
+		return data;
 	},
 
 	/**
@@ -20,8 +27,9 @@ export default {
 	 *
 	 * @returns
 	 */
-	getAllAvailableSources(): AxiosPromise<any> {
-		return axios.get(`https://newsapi.org/v2/sources?apiKey=${NEWS_API_KEY}`);
+	async getAllAvailableSources(): Promise<IGetAllNewsSources> {
+		const { data }: AxiosResponse<IGetAllNewsSources> = await instance.get(`/sources`);
+		return data;
 	},
 
 	/**
@@ -29,8 +37,9 @@ export default {
 	 *
 	 * @returns
 	 */
-	getAvailableSourcesFromLanguage(language: string): AxiosPromise<any> {
-		return axios.get(`https://newsapi.org/v2/sources?language=${language}&apiKey=${NEWS_API_KEY}`);
+	async getAvailableSourcesFromLanguage(language: string): Promise<IGetAllNewsSources> {
+		const { data }: AxiosResponse<IGetAllNewsSources> = await instance.get(`/sources?language=${language}`);
+		return data;
 	},
 
 	/**
@@ -39,7 +48,10 @@ export default {
 	 * @param {any} term
 	 * @returns
 	 */
-	searchForTerm(term: string): AxiosPromise<any> {
-		return axios.get(`https://newsapi.org/v2/everything?q=${term}&sortBy=relevancy&pageSize=25&apiKey=${NEWS_API_KEY}`);
+	async searchForTerm(term: string): Promise<INewsArticle> {
+		const { data }: AxiosResponse<INewsArticle> = await instance.get(
+			`/everything?q=${term}&sortBy=relevancy&pageSize=25`,
+		);
+		return data;
 	},
 };

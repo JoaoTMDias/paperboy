@@ -9,7 +9,7 @@ import { ISectionListItemProps } from "../list-types";
  * @date 2019-02-16
  * @returns {React.FunctionComponent<ISectionListItemProps>}
  */
-export const SectionListItem: React.FunctionComponent<ISectionListItemProps> = props => {
+export const SectionListItem: React.FunctionComponent<ISectionListItemProps> = (props) => {
 	const { id, children } = props;
 
 	return (

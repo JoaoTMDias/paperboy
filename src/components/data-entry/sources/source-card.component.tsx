@@ -3,42 +3,37 @@ import * as React from "react";
 import { LazyLoadingImage } from "components/index.components";
 import { ISourceCardProps } from "./types";
 import { SourceCardWrapper, SourceCardInput, SourceCardIcon, SourceCardLogo, SourceCardName } from "./styles";
+import KEY_CODES from "helpers/key-codes";
+import { withMemo } from "helpers/index.helpers";
 
 /**
  * @description Source List Item
  * @extends {React.FC}
  */
-const SourceCard: React.FC<ISourceCardProps> = ({ id, label, src, category, checked, style }) => {
+const SourceCard: React.FC<ISourceCardProps> = ({ id, label, src, category, checked, style, handleChange }) => {
 	const status: string = checked ? "is-checked" : "";
 
-	function handleOnChange(event: React.ChangeEvent<HTMLInputElement>) {
-		const { handleChange } = this.props;
+	function onKeyUp(event: React.KeyboardEvent<HTMLInputElement>) {
+		switch (event.keyCode) {
+			case KEY_CODES.ENTER:
+			case KEY_CODES.SPACE:
+				const target = event.target as HTMLInputElement;
+				handleChange(target.value);
+				break;
 
-		event.preventDefault();
-		handleChange(event);
+			default:
+				break;
+		}
+	}
+
+	function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+		handleChange(event.target.value);
 	}
 
 	return (
 		<SourceCardWrapper className={`source__item ${status}`} style={style}>
 			<label htmlFor={`source-${id}-input`} tabIndex={0}>
-				<SourceCardInput
-					id={`source-${id}-input`}
-					className="source__input"
-					type="checkbox"
-					data-category={category}
-					value={`${id}`}
-					name="source-input"
-					checked={checked}
-					onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleOnChange(event)}
-					tabIndex={-1}
-				/>
-				<SourceCardIcon
-					role="image"
-					className="source__status"
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24"
-				>
-					<title>check</title>
+				<SourceCardIcon role="image" className="source__status" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<circle className="icon__circle" cx="12" cy="12" r="12" fill="var(--color-gray2)" />
 					<path
 						className="icon__check"
@@ -55,12 +50,23 @@ const SourceCard: React.FC<ISourceCardProps> = ({ id, label, src, category, chec
 					</h4>
 				</SourceCardName>
 			</label>
+			<SourceCardInput
+				id={`source-${id}-input`}
+				className="source__input"
+				type="checkbox"
+				data-category={category}
+				value={`${id}`}
+				name="source-input"
+				checked={checked}
+				onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>) => onKeyUp(event)}
+				onChange={(event: React.ChangeEvent<HTMLInputElement>) => onChange(event)}
+			/>
 		</SourceCardWrapper>
 	);
-}
+};
 
 SourceCard.defaultProps = {
 	checked: false,
 };
 
-export default SourceCard;
+export default withMemo(SourceCard, ["checked"]);

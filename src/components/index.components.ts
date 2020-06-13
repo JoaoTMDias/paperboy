@@ -46,6 +46,8 @@ export * from "./section";
 // ICONOGRAPHY
 export * from "./lists";
 
+export { siteMetadata as config } from "../../gatsby-config";
+
 export {
 	Audit,
 	ViewportHeight,

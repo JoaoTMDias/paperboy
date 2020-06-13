@@ -11,7 +11,7 @@ import LazyLoadingImage from "../general/images/image.lazyload.component";
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IThumbnailImageProps>}
  */
-const ThumbnailImage: React.FunctionComponent<IImageLazyProps> = props => {
+const ThumbnailImage: React.FunctionComponent<IImageLazyProps> = (props) => {
 	const { ...thumbnailProps } = props;
 	return (
 		<Image className="thumbnail-image__container">

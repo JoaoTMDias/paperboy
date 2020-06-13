@@ -6,15 +6,7 @@ import { SectionWrapper, SectionTitle, Wrapper } from "./styles";
  * @description Page Section Component
  * @extends {React.FC}
  */
-export const UISection: React.FC<IUISectionProps> = ({
-	id,
-	title,
-	children,
-	style,
-	role,
-	layout,
-	grouped
-}) => {
+export const UISection: React.FC<IUISectionProps> = ({ id, title, children, style, role, layout, grouped }) => {
 	function renderTitle() {
 		const sectionTitle = `${id}-section-title`;
 
@@ -60,7 +52,7 @@ export const UISection: React.FC<IUISectionProps> = ({
 			{children}
 		</SectionWrapper>
 	);
-}
+};
 
 UISection.defaultProps = {
 	layout: "vertical",

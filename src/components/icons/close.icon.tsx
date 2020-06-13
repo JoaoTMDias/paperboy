@@ -12,7 +12,7 @@ interface IIconShareProps {}
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-export const IconClose: React.FunctionComponent<IIconShareProps> = props => (
+export const IconClose: React.FunctionComponent<IIconShareProps> = (props) => (
 	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" aria-labelledby="close-icon-title" tabIndex={-1}>
 		<title id="close-icon-title">Close Icon</title>
 		<path

@@ -57,6 +57,6 @@ const AddToHomeScreen: React.FC<IAddToHomeScreenProps> = () => {
 			</Content>
 		</Wrapper>
 	);
-}
+};
 
 export default AddToHomeScreen;

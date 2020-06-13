@@ -16,7 +16,7 @@ interface IConfirmProps {
  * @extends {React.Component<IConfirmProps, any>}
  */
 
-const Confirm: React.FunctionComponent<IConfirmProps> = props => {
+const Confirm: React.FunctionComponent<IConfirmProps> = (props) => {
 	const { title, description, onCancel, onConfirm } = props;
 	return (
 		<>

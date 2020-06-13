@@ -11,7 +11,7 @@ interface IIconBrandingSmallProps {}
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-export const IconBrandingSmall: React.FunctionComponent<IIconBrandingSmallProps> = props => (
+export const IconBrandingSmall: React.FunctionComponent<IIconBrandingSmallProps> = (props) => (
 	<Icon
 		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 166.32 32"

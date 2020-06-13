@@ -7,7 +7,7 @@ import { IUIButtonProps } from "./types";
  * @description Button: Primary
  * @extends {React.FC}
  */
-export const UIButton: React.FunctionComponent<IUIButtonProps> = props => {
+export const UIButton: React.FunctionComponent<IUIButtonProps> = (props) => {
 	const { text, disabled } = props;
 	const linkText = disabled ? "Select at least 3 sources " : text;
 

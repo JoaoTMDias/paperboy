@@ -13,7 +13,7 @@ import "./layout.scss";
 
 // Layout Component
 const Layout: React.FunctionComponent<ILayoutProps> = ({ children, authenticated, header, bottomNavigation }) => {
-	const isStandalone = useRef(window.matchMedia('(display-mode: standalone)').matches)
+	const isStandalone = useRef(window.matchMedia("(display-mode: standalone)").matches);
 
 	/**
 	 *

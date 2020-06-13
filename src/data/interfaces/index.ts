@@ -6,3 +6,4 @@ export * from "./redux";
 export * from "./lazy-image.interface";
 export * from "./modal";
 export * from "./theme";
+export * from "./page";

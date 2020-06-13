@@ -124,6 +124,7 @@ export const Logo = styled.figure`
 	overflow: hidden;
 	position: relative;
 	border-radius: 8px;
+	background-color: var(--color-gray3);
 
 	img {
 		object-fit: cover;
@@ -181,6 +182,7 @@ export const Name = styled.div`
 `;
 
 export const SourceCardWrapper = styled.li`
+	position: relative;
 	min-width: ${rem("105px")};
 	min-height: ${rem("148px")};
 	width: 100%;
@@ -257,6 +259,7 @@ export const SourceCardLogo = styled.figure`
 	position: relative;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
+	background-color: var(--color-gray3);
 
 	img {
 		object-fit: cover;

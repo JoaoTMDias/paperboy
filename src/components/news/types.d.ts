@@ -1,5 +1,6 @@
 import { ListChildComponentProps } from "react-window";
 import { INewsArticle } from "data/interfaces/index";
+import { Dispatch, AnyAction } from "redux";
 
 export interface IHeaderTabs {
 	id: string;
@@ -21,12 +22,16 @@ export interface INewsTabsState {
 	hasChangedTabs: boolean;
 }
 
+interface INewsArticleTabActions {
+	getAllLatestNewsFromSource: (source: string[]) => (dispatch: Dispatch<AnyAction>) => void;
+}
+
 interface INewsArticleTabProps {
 	sources: string[];
-	latest: INewsArticle;
-	dispatch: any;
 }
 
 interface IVirtualListProps extends ListChildComponentProps {
+	index: number;
 	key?: React.Key;
+	style: React.CSSProperties;
 }

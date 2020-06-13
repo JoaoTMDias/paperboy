@@ -9,7 +9,7 @@ import { IContainerProps } from "./types";
  * @date  20/November/2018 at 16:55
  * @extends {React.FunctionComponent}
  */
-const Container: React.FunctionComponent<IContainerProps> = props => {
+const Container: React.FunctionComponent<IContainerProps> = (props) => {
 	const { offsetTop, children, ...allProps } = props;
 
 	if (offsetTop && typeof document !== "undefined") {

@@ -11,7 +11,7 @@ interface IIconSearchProps {}
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-export const IconSearch: React.FunctionComponent<IIconSearchProps> = props => (
+export const IconSearch: React.FunctionComponent<IIconSearchProps> = (props) => (
 	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-labelledby="search-icon-title" tabIndex={-1}>
 		<title id="search-icon-title">Tab Icon: Search</title>
 		<path

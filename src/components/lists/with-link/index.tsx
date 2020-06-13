@@ -10,7 +10,7 @@ import { Action } from "../styles";
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IListItemWithLinkProps>}
  */
-export const ListItemWithLink: React.FunctionComponent<IListItemWithLinkProps> = props => {
+export const ListItemWithLink: React.FunctionComponent<IListItemWithLinkProps> = (props) => {
 	const { id, to, title, subtitle } = props;
 	return (
 		<Action id={`${id}-link`} to={to} className="section-list__item__label" tabIndex={0}>

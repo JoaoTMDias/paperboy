@@ -167,8 +167,8 @@ class Audit extends React.Component<IAuditProps, any> {
 	 * @memberof Audit
 	 */
 	handleNetworkAudit() {
-		window.addEventListener("online", event => this.setOnlineStatus(true));
-		window.addEventListener("offline", event => this.setOnlineStatus(false));
+		window.addEventListener("online", (event) => this.setOnlineStatus(true));
+		window.addEventListener("offline", (event) => this.setOnlineStatus(false));
 		this.setOnlineStatus(navigator.onLine);
 	}
 

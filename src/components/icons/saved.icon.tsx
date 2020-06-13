@@ -11,7 +11,7 @@ interface IIconSavedProps {}
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-export const IconSaved: React.FunctionComponent<IIconSavedProps> = props => (
+export const IconSaved: React.FunctionComponent<IIconSavedProps> = (props) => (
 	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-labelledby="saved-icon-title" tabIndex={-1}>
 		<title id="saved-icon-title">Tab Icon: Saved</title>
 		<path

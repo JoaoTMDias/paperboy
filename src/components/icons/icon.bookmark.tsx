@@ -13,7 +13,7 @@ interface IIconBookmarkProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IIconBookmarkProps>}
  */
-export const IconBookmark: React.FunctionComponent<IIconBookmarkProps> = props => {
+export const IconBookmark: React.FunctionComponent<IIconBookmarkProps> = (props) => {
 	const { isActive } = props;
 
 	return (
