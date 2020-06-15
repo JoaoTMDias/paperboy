@@ -98,14 +98,10 @@ export const TabsHeader = styled(Tabs)`
 	border-bottom: var(--tabs-header-border-bottom);
 	position: var(--tabs-header-position);
 	background-color: var(--tabs-background) !important;
+	top: 0;
 
 	width: 100%;
-	z-index: 1;
-
-	&.is-scrolling {
-		position: var(--tabs-header-position-scrolling);
-		top: 0;
-	}
+	z-index: 100;
 
 	.tabs-page {
 		&--header {

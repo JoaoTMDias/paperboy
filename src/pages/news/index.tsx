@@ -33,7 +33,7 @@ const NewsPage: React.FC<INewsPageProps> = ({ platform, authenticated, sources }
 	}, []);
 
 	useEffect(() => {
-		if (previousSources && previousSources.quantity !== sources.quantity) {
+		if (previousSources?.quantity !== sources.quantity) {
 			setupNewsTabsHeader(sources.tabs);
 		}
 	}, [sources]);
@@ -93,7 +93,6 @@ const NewsPage: React.FC<INewsPageProps> = ({ platform, authenticated, sources }
 				<NewsTabs
 					id="news-tabs"
 					tabsHeader={tabsHeaderItems}
-					platform={platform}
 					style={{
 						backgroundColor: "var(--body-background)",
 					}}
@@ -113,7 +112,7 @@ const NewsPage: React.FC<INewsPageProps> = ({ platform, authenticated, sources }
 
 	return (
 		<Layout authenticated header={false}>
-			<Container fullwidth fullheight isFixed={false} title="Current Page is: News" offsetTop="2.75rem">
+			<Container fullwidth fullheight isFixed={false} title="Current Page is: News" offsetTop="3rem">
 				{tabsHeaderItems ? renderNewsTabs(tabsHeaderItems) : <ContentSpinner />}
 			</Container>
 		</Layout>

@@ -9,10 +9,8 @@ export interface IHeaderTabs {
 
 export interface INewsTabsProps {
 	id: string;
-	hasHeader: boolean;
 	tabsHeader: IHeaderTabs[];
 	style?: React.CSSProperties;
-	platform: string;
 }
 
 export interface INewsTabsState {
