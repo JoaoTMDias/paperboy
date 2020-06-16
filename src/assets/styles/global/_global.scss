@@ -20,8 +20,7 @@
 		--footer-background: #0d182a,
 		--top-navigation-bar-height: $top-navigation-bar-height,
 		--bottom-navigation-bar-height: $bottom-navigation-bar-height,
-		--bottom-navigation-background-color:
-			$bottom-navigation-background-color,
+		--bottom-navigation-background-color: $bottom-navigation-background-color,
 		--bottom-navigation-text-color: $bottom-navigation-text-color,
 		--button-radius: $button-radius,
 		--heading-font-family: $heading-font-family,
@@ -44,10 +43,10 @@
 		--anchor-text-decoration: $anchor-text-decoration,
 		--anchor-text-decoration-hover: $anchor-text-decoration-hover,
 		--default-timing-function: $default-timing-function,
-		--breakpoint-medium: 'all and (min-width: #{$breakpoint-medium})',
-		--breakpoint-large: 'all and (min-width: #{$breakpoint-large})',
-		--breakpoint-xlarge: 'all and (min-width: #{$breakpoint-xlarge})',
-		--breakpoint-xxlarge: 'all and (min-width: #{$breakpoint-xxlarge})',
+		--breakpoint-medium: "all and (min-width: #{$breakpoint-medium})",
+		--breakpoint-large: "all and (min-width: #{$breakpoint-large})",
+		--breakpoint-xlarge: "all and (min-width: #{$breakpoint-xlarge})",
+		--breakpoint-xxlarge: "all and (min-width: #{$breakpoint-xxlarge})",
 		--viewport-height-unit: $viewport-unit,
 		--viewport-height: calc(var(--viewport-height-unit, 1vh) * 100),
 		--tabs-background: $tabs-background,
@@ -67,7 +66,7 @@
 );
 
 :root {
-	&[data-theme='LIGHT'] {
+	&[data-theme="LIGHT"] {
 		--color-primary: #{$color-primary};
 		--color-select: #{$color-select};
 		--color-select-gradient: #{lighten($color-select, 5%)};
@@ -105,7 +104,7 @@
 		--cta-shadow-color-hue: 6;
 	}
 
-	&[data-theme='DARK'] {
+	&[data-theme="DARK"] {
 		--color-primary: #{$color-select};
 		--color-select: #{$color-primary};
 		--color-select-gradient: #{lighten($color-select, 5%)};
@@ -115,11 +114,11 @@
 		--color-gray3: #ced3d9;
 		--color-gray4: #bec4cc;
 		--color-gray5: #acb3be;
-		--color-gray6: #97a0ae;
-		--color-gray7: #7f8999;
-		--color-gray8: #646c78;
-		--color-gray9: #3a3f46;
-		--color-black: #1c1e22;
+		--color-gray6: hsl(217, 12%, 56%);
+		--color-gray7: hsl(217, 11%, 47%);
+		--color-gray8: hsl(216, 9%, 35%);
+		--color-gray9: hsl(215, 9%, 17%);
+		--color-black: hsl(220, 10%, 4%);
 		--body-background: var(--color-black);
 		--body-font-color: var(--color-gray0);
 		--top-navigation-bar-height: #{$top-navigation-bar-height};
@@ -170,8 +169,7 @@ html {
 *::before,
 *::after {
 	box-sizing: inherit;
-	transition: all 200ms
-		var(--default-timing-function, $default-timing-function); // 1
+	transition: all 200ms var(--default-timing-function, $default-timing-function); // 1
 }
 
 *:focus {
@@ -254,7 +252,7 @@ body {
 // might still respond to pointer events.
 //
 // Credit: https://github.com/suitcss/base
-[tabindex='-1']:focus {
+[tabindex="-1"]:focus {
 	outline: none !important;
 	user-select: none;
 	pointer-events: none;
@@ -391,10 +389,7 @@ a {
 
 	&:hover {
 		color: var(--color-anchor-hover, $color-anchor-hover);
-		text-decoration: var(
-			--anchor-text-decoration-hover,
-			$anchor-text-decoration-hover
-		);
+		text-decoration: var(--anchor-text-decoration-hover, $anchor-text-decoration-hover);
 	}
 }
 
@@ -425,7 +420,7 @@ pre,
 code,
 kbd,
 samp {
-	font-family: 'Dank Mono', 'Fira Code', monospace; // Correct the inheritance and scaling of font size in all browsers.
+	font-family: "Dank Mono", "Fira Code", monospace; // Correct the inheritance and scaling of font size in all browsers.
 	font-size: 1em; // Correct the odd `em` font sizing in all browsers.
 }
 
@@ -471,7 +466,7 @@ svg:not(:root) {
 a,
 area,
 button,
-[role='button'],
+[role="button"],
 input,
 label,
 select,
@@ -564,9 +559,9 @@ select {
  */
 
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
 	-webkit-appearance: button;
 }
 
@@ -575,9 +570,9 @@ button,
  */
 
 button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
 	border-style: none;
 	padding: 0;
 }
@@ -587,9 +582,9 @@ button::-moz-focus-inner,
  */
 
 button:-moz-focusring,
-[type='button']:-moz-focusring,
-[type='reset']:-moz-focusring,
-[type='submit']:-moz-focusring {
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
 	outline: 1px dotted var(--color-gray2, $color-gray2);
 }
 
@@ -598,18 +593,18 @@ button:-moz-focusring,
  * 2. Remove the padding in IE 10.
  */
 
-[type='checkbox'],
-[type='radio'] {
+[type="checkbox"],
+[type="radio"] {
 	box-sizing: border-box;
 	/* 1 */
 	padding: 0;
 	/* 2 */
 }
 
-input[type='date'],
-input[type='time'],
-input[type='datetime-local'],
-input[type='month'] {
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
 	// Remove the default appearance of temporal inputs to avoid a Mobile Safari
 	// bug where setting a custom line-height prevents text from being vertically
 	// centered within the input.
@@ -666,8 +661,8 @@ progress {
  * Correct the cursor style of increment and decrement buttons in Chrome.
  */
 
-[type='number']::-webkit-inner-spin-button,
-[type='number']::-webkit-outer-spin-button {
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
 	height: auto;
 }
 
@@ -676,7 +671,7 @@ progress {
  * 2. Correct the outline style in Safari.
  */
 
-[type='search'] {
+[type="search"] {
 	-webkit-appearance: textfield;
 	/* 1 */
 	outline-offset: -2px;
@@ -686,8 +681,8 @@ progress {
 //
 // Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
 //
-[type='search']::-webkit-search-cancel-button,
-[type='search']::-webkit-search-decoration {
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
 	-webkit-appearance: none;
 }
 
@@ -695,7 +690,7 @@ progress {
  * Remove the inner padding in Chrome and Safari on macOS.
  */
 
-[type='search']::-webkit-search-decoration {
+[type="search"]::-webkit-search-decoration {
 	-webkit-appearance: none;
 }
 

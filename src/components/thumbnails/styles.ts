@@ -2,13 +2,21 @@ import styled, { css } from "styled-components";
 import { rem } from "polished";
 import { Link } from "gatsby";
 import { IArticleThumbnailProps, EThumbnailType } from "./types.d";
+import { theme } from "helpers/theme.helper";
 
 export const Anchor = styled(Link)`
+	--thumbnail-outline-color: var(--color-gray1);
+	--anchor-height: calc(var(--viewport-height) * 0.4);
+
+	${theme.dark`
+		--thumbnail-outline-color: var(--color-gray9);
+	`};
+
 	align-items: center;
 	background-color: var(--color-gray1);
 	display: flex;
 	flex-direction: row;
-	height: 40vh;
+	height: var(--anchor-height, 40vh);
 	justify-content: center;
 	overflow: hidden;
 	padding: 0;
@@ -35,7 +43,6 @@ export const Anchor = styled(Link)`
 					justify-content: flex-start;
 					max-height: ${rem("128px")};
 					min-height: ${rem("128px")};
-					outline: 1px solid var(--color-gray1);
 					overflow: hidden;
 					padding: 0;
 					position: relative;
@@ -54,7 +61,7 @@ export const Anchor = styled(Link)`
 					flex-direction: column;
 					justify-content: flex-start;
 					min-height: ${rem("230px")};
-					outline: 1px solid var(--color-gray1);
+					outline: 1px solid var(--thumbnail-outline-color);
 					overflow: hidden;
 					padding: 0;
 					position: relative;
@@ -74,6 +81,12 @@ export const Article = styled.article`
 	--thumbnail-image-height: ${rem("96px")};
 	--thumbnail-image-margin: calc(var(--global-padding) * 0.5);
 	--thumbnail-copy-height: calc(100% - calc(var(--thumbnail-image-height) + var(--thumbnail-image-margin)));
+	--thumbnail-background: var(--color-white);
+
+	${theme.dark`
+		--thumbnail-background: var(--color-black);
+	`};
+
 	align-items: flex-start;
 	background-color: var(--color-gray1);
 	display: flex;
@@ -104,7 +117,7 @@ export const Article = styled.article`
 		switch (props.type) {
 			case EThumbnailType.SAVED:
 				return css`
-					background-color: var(--color-white);
+					background-color: var(--thumbnail-background);
 					display: grid;
 					grid-column-gap: ${rem("8px")};
 					grid-template-columns: ${rem("128px")} auto;
@@ -126,7 +139,7 @@ export const Article = styled.article`
 			case EThumbnailType.SMALL:
 				return css`
 					justify-content: flex-start;
-					background-color: var(--color-white);
+					background-color: var(--thumbnail-background);
 					padding: var(--global-padding) var(--global-padding) calc(var(--global-padding) * 0.5) var(--global-padding);
 					transition: transform 128ms ease-out;
 
@@ -158,7 +171,15 @@ export const Article = styled.article`
 `;
 
 export const Copy = styled.div`
+	--thumbnail-title-color: var(--color-black);
+	--thumbnail-subtitle: var(--color-gray8);
 	--number-of-lines: 3;
+
+	${theme.dark`
+		--thumbnail-title-color: var(--color-gray0);
+		--thumbnail-subtitle: var(--color-gray2);
+	`}
+
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -220,7 +241,7 @@ export const Copy = styled.div`
 					.thumbnail {
 						&__title {
 							font-size: ${rem("13px")};
-							color: var(--color-black);
+							color: var(--thumbnail-title-color);
 							line-height: 1.22222222;
 							margin-bottom: calc(var(--global-margin) * 1.5);
 
@@ -235,7 +256,7 @@ export const Copy = styled.div`
 
 							&__source,
 							&__time {
-								color: var(--color-gray8);
+								color: var(--thumbnail-subtitle);
 								font-size: ${rem("10px")};
 								letter-spacing: ${rem("0.25px")};
 							}
@@ -258,7 +279,7 @@ export const Copy = styled.div`
 					.thumbnail {
 						&__title {
 							font-size: ${rem("13px")};
-							color: var(--color-black);
+							color: var(--thumbnail-title-color);
 							line-height: 1.22222222;
 							margin-bottom: calc(var(--global-margin) * 1.5);
 
@@ -273,7 +294,7 @@ export const Copy = styled.div`
 
 							&__source,
 							&__time {
-								color: var(--color-gray8);
+								color: var(--thumbnail-subtitle);
 								font-size: ${rem("10px")};
 								letter-spacing: ${rem("0.25px")};
 							}

@@ -1,5 +1,5 @@
 import { ListChildComponentProps } from "react-window";
-import { INewsArticle } from "data/interfaces/index";
+import { INewsPageHeaderItems, IChosenNewsSourcesItems } from "data/interfaces/index";
 import { Dispatch, AnyAction } from "redux";
 
 export interface IHeaderTabs {
@@ -9,7 +9,7 @@ export interface IHeaderTabs {
 
 export interface INewsTabsProps {
 	id: string;
-	tabsHeader: IHeaderTabs[];
+	items: IChosenNewsSourcesItems;
 	style?: React.CSSProperties;
 }
 

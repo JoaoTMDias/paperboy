@@ -72,6 +72,7 @@ export const TabsContainer = styled(SwipeableViews)`
 	background-color: var(--tabs-background);
 	height: auto;
 	min-height: var(--tabs-container-height);
+	margin-top: var(--top-navigation-bar-height);
 
 	.react-swipeable-view-container {
 		/* override to animate height */
@@ -96,10 +97,9 @@ export const TabsContainer = styled(SwipeableViews)`
 
 export const TabsHeader = styled(Tabs)`
 	border-bottom: var(--tabs-header-border-bottom);
-	position: var(--tabs-header-position);
+	position: fixed;
 	background-color: var(--tabs-background) !important;
 	top: 0;
-
 	width: 100%;
 	z-index: 100;
 
@@ -109,11 +109,12 @@ export const TabsHeader = styled(Tabs)`
 		}
 
 		&--indicator {
+			--indicator-height: 0.1875rem;
 			background-color: var(--tabs-header-indicator) !important;
 			transition: left 250ms var(--default-timing-function), width 64ms var(--default-timing-function);
-			height: 3px;
-			border-top-left-radius: 3px;
-			border-top-right-radius: 3px;
+			height: var(--indicator-height);
+			border-top-left-radius: var(--indicator-height);
+			border-top-right-radius: var(--indicator-height);
 			border-bottom-left-radius: 0px;
 			border-bottom-right-radius: 0px;
 		}

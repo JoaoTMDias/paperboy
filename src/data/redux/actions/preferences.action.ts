@@ -17,59 +17,50 @@ import { IChosenSource } from "../../../pages/onboarding/choose-sources";
  */
 export const SetChosenNewsSources = (sources: IChosenSource[]) => {
 	function filterSources(sources: IChosenSource[]) {
-		const allItemsWithCategory = sources.map((source: IChosenSource) => {
-			const { category } = source;
+		const reducedCategories = sources
+			.map((source: IChosenSource) => {
+				const { category } = source;
 
-			return category;
-		});
-
-		// Returns the final list of categories
-		const reducedCategories = allItemsWithCategory.reduce((previousValue: string[], currentValue: string) => {
-			if (previousValue.indexOf(currentValue) < 0) {
-				previousValue.push(currentValue);
-			}
-			return previousValue;
-		}, []);
+				return category;
+			})
+			.reduce((previousValue: string[], currentValue: string) => {
+				if (previousValue.indexOf(currentValue) < 0) {
+					previousValue.push(currentValue);
+				}
+				return previousValue;
+			}, []);
 
 		const tabs: INewsPageHeaderItems[] = [];
-		let items = {};
 		let allSourcesMerged: string[] = [];
 		reducedCategories.forEach((category: string) => {
+			const categorySources: string[] = sources
+				.map((source: IChosenSource) => {
+					if (category && source && source.category === category) {
+						return source.name;
+					}
+
+					return "";
+				})
+				.filter((source) => source !== "");
+
 			const tab: INewsPageHeaderItems = {
 				id: category,
-				label: category,
+				sources: [...categorySources],
 			};
 			tabs.push(tab);
 
-			const sourcesOfCategory: string[] = sources.map((source: IChosenSource) => {
-				if (category && source && source.category === category) {
-					return source.name;
-				}
-
-				return "";
-			});
-
-			if (sourcesOfCategory) {
-				allSourcesMerged = [...allSourcesMerged, ...sourcesOfCategory];
+			if (categorySources) {
+				allSourcesMerged = [...allSourcesMerged, ...categorySources].filter((source) => source !== "");
 			}
-
-			items = {
-				...items,
-				[`${category}`]: sourcesOfCategory,
-			};
-
-			return items;
 		});
 
 		const allItems = {
 			latest: allSourcesMerged,
-			...items,
+			tabs: [...tabs],
 		};
 
 		return {
 			quantity: reducedCategories.length,
-			categories: reducedCategories,
-			tabs,
 			items: allItems,
 		};
 	}

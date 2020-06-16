@@ -11,17 +11,16 @@ export interface PreferencesReducer {
 }
 
 export interface IChosenNewsSourcesItems {
-	[key: string]: string[];
+	latest: string[];
+	tabs: INewsPageHeaderItems[];
 }
 
 export interface ChosenNewsSources {
 	quantity: number;
-	categories: string[];
-	tabs: INewsPageHeaderItems[];
 	items: IChosenNewsSourcesItems;
 }
 
 export interface INewsPageHeaderItems {
 	id: string;
-	label: string;
+	sources: string[];
 }

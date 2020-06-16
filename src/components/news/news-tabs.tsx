@@ -1,9 +1,12 @@
 // Libraries
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Tab from "@material-ui/core/Tab";
 import { Logger, withMemo } from "helpers/index.helpers";
 import { TabsContainer, TabsHeader, TabsWrapper } from "./styles";
-import { INewsTabsProps, IHeaderTabs } from "./types";
+import { INewsTabsProps } from "./types";
+import LatestNewsCategoryTab from "./latest-category";
+import LatestNewsTab from "./latest-news-tab";
+import { INewsPageHeaderItems } from "data/interfaces";
 
 /**
  * @description Returns the hash...without the hash, just the name :)
@@ -16,15 +19,31 @@ function getHash(): string {
 	return hash;
 }
 
+const DEFAULT_TABS: INewsPageHeaderItems = {
+	id: "latest",
+	sources: [],
+};
+
+const TAB_CLASSES = {
+	root: "tabs-page--tab",
+	selected: "tabs-page--is-selected",
+};
+
 /**
  * @description News Page Tab
  * @date 2019-01-17
  * @class NewsTabs
  * @extends {React.Component<INewsTabsProps, any>}
  */
-export const NewsTabs: React.FC<INewsTabsProps> = ({ id, tabsHeader, children, style }) => {
+export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, children, style }) => {
+	const { current: tabs } = useRef([
+		{
+			...DEFAULT_TABS,
+			sources: [...items.latest],
+		},
+		...items.tabs,
+	]);
 	const [currentTab, setCurrentTab] = useState(0);
-	const [hasChangedTabs, setHasChangedTabs] = useState(false);
 
 	useEffect(() => {
 		const hasHashOnUrl = getHash();
@@ -49,7 +68,6 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, tabsHeader, children, s
 		});
 
 		setCurrentTab(index);
-		!hasChangedTabs && setHasChangedTabs(true);
 	}
 
 	/**
@@ -58,7 +76,6 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, tabsHeader, children, s
 	 */
 	function handleOnClickToChangeTab(event: React.ChangeEvent<{}>, value: number) {
 		setCurrentTab(value);
-		!hasChangedTabs && setHasChangedTabs(true);
 	}
 
 	/**
@@ -69,12 +86,7 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, tabsHeader, children, s
 	 * @memberof NewsTabs
 	 */
 	function checkIfHashExists(hash: string) {
-		const current = tabsHeader.findIndex((tab: IHeaderTabs) => tab.id === hash);
-
-		Logger({
-			type: "info",
-			message: `index: ${current}`,
-		});
+		const current = tabs.findIndex((tab) => tab.id === hash);
 
 		setCurrentTab(current);
 	}
@@ -84,18 +96,15 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, tabsHeader, children, s
 	 * @memberof NewsTabs
 	 */
 	function renderTabHeader() {
-		const tabs: JSX.Element[] = tabsHeader.map((tab: IHeaderTabs, index: number) => {
-			return (
-				<Tab
-					key={tab.id}
-					id={`tab-${index}-${tab.id}`}
-					label={tab.label}
-					classes={{
-						root: "tabs-page--tab",
-						selected: "tabs-page--is-selected",
-					}}
-				/>
-			);
+		const list = tabs.map((tab, index: number) => {
+			if (tab.id === "latest") {
+				const id = `tab-${index}-${tab.id}`;
+				return <Tab key={id} id={id} label={tab.id} classes={TAB_CLASSES} />;
+			}
+
+			const id = `tab-${index}-${tab.id}`;
+
+			return <Tab key={id} id={id} label={tab.id} classes={TAB_CLASSES} />;
 		});
 
 		return (
@@ -104,14 +113,14 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, tabsHeader, children, s
 					root: "tabs-page--header",
 					indicator: "tabs-page--indicator",
 				}}
-				onChange={handleOnClickToChangeTab}
+				children={list}
 				className="tabs-page--header"
+				onChange={handleOnClickToChangeTab}
 				orientation="horizontal"
 				scrollButtons="auto"
+				style={style}
 				value={currentTab}
 				variant="scrollable"
-				children={tabs}
-				style={style}
 			/>
 		);
 	}
@@ -124,23 +133,15 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, tabsHeader, children, s
 	 * @memberof TabsPages
 	 */
 	function renderTabItems() {
-		if (hasChangedTabs === false) {
-			const filteredChildren = React.Children.map(children, (child: React.ReactNode, childrenIndex: number) => {
-				if (childrenIndex === currentTab) {
-					return child;
-				}
-				return <div className="tabs-page--placeholder">&nbsp;</div>;
-			});
+		const items = tabs.map((tab) => {
+			if (tab.id === "latest") {
+				return <LatestNewsTab key={tab.id} sources={tab.sources} />;
+			}
 
-			return filteredChildren;
-		}
+			return <LatestNewsCategoryTab key={tab.id} sources={tab.sources} />;
+		});
 
-		return children;
-	}
-
-	return (
-		<TabsWrapper id={id} className="tabs-page--wrapper">
-			{renderTabHeader()}
+		return (
 			<TabsContainer
 				id="tabs-page--content"
 				className="tabs-page--content"
@@ -151,8 +152,15 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, tabsHeader, children, s
 				hysteresis={1}
 				enableMouseEvents
 			>
-				{renderTabItems()}
+				{items}
 			</TabsContainer>
+		);
+	}
+
+	return (
+		<TabsWrapper id={id} className="tabs-page--wrapper">
+			{renderTabHeader()}
+			{renderTabItems()}
 		</TabsWrapper>
 	);
 };

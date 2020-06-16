@@ -20,16 +20,10 @@ const initialState: PreferencesReducer = {
 	theme: EAppThemeType.LIGHT,
 	chosenSources: {
 		quantity: 0,
-		categories: [],
 		items: {
 			latest: [],
+			tabs: [],
 		},
-		tabs: [
-			{
-				id: "latest",
-				label: "Latest",
-			},
-		],
 	},
 	saved: [
 		{

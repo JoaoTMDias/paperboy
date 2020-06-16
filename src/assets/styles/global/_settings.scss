@@ -7,7 +7,7 @@ $viewport-unit: 1vh;
 
 // 1. Global
 // ---------
-$top-navigation-bar-height: rem-calc(44);
+$top-navigation-bar-height: rem-calc(48);
 
 // 2. Breakpoints
 // --------------
@@ -30,7 +30,7 @@ $color-gray6: #af9b98;
 $color-gray7: #9b8380;
 $color-gray8: #7a6765;
 $color-gray9: #473c3b;
-$color-black: hsl(0, 9%, 4%);
+$color-black: #0b0909;
 $cta: $color-select;
 
 $global-font-size: 100%;
@@ -91,7 +91,10 @@ $default-timing-function: $ease-in-out-circ;
 // Page Tabs
 // ------------------
 $tabs-background: $color-white;
-$tabs-container-height: calc(var(--viewport-height) - 5.75rem);
+
+$tabs-container-height: calc(
+	var(--viewport-height) - (var(--bottom-navigation-bar-height) + #{$top-navigation-bar-height})
+);
 $tabs-header-bottom: 1px solid #b2b2b2;
 $tabs-header-position: sticky;
 $tabs-header-position-scrolling: fixed;

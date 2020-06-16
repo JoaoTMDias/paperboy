@@ -2,84 +2,25 @@ import { Redirect } from "@reach/router";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Container, Layout, NewsTabs, ContentSpinner } from "components/index.components";
-import { LatestNewsTab, LatestNewsCategoryTab } from "components/news/index";
+import { LatestNewsTab } from "components/news/index";
 import { IGlobalStoreState } from "data/interfaces/index";
 import { NEWS_PAGE, ONBOARDING_PAGE } from "data/constants/index.constants";
-import { INewsPageProps, INewsPageHeaderItems } from "./types";
-import { usePrevious } from "react-use";
-
-const defaultTabs: INewsPageHeaderItems[] = [
-	{
-		id: "latest",
-		label: "Latest",
-	},
-];
+import { INewsPageProps } from "./types";
 
 /**
- * @description News Page Tab
+ * News Page Tab
  * @date 2019-01-17
  * @class NewsPage
  * @extends {React.Component<INewsPageProps, any>}
  */
-const NewsPage: React.FC<INewsPageProps> = ({ platform, authenticated, sources }) => {
+const NewsPage: React.FC<INewsPageProps> = ({ authenticated, sources }) => {
 	const [hasData, setHasData] = useState(false);
-	const [tabsHeaderItems, setTabsHeaderItems] = useState<INewsPageHeaderItems[] | null>(null);
-	const previousSources = usePrevious(sources);
 
 	useEffect(() => {
-		if (checkIfHasSources()) {
-			setupNewsTabsHeader(sources.tabs);
+		if (sources?.quantity > 0 && sources.items.tabs.length > 0) {
+			setHasData(true);
 		}
 	}, []);
-
-	useEffect(() => {
-		if (previousSources?.quantity !== sources.quantity) {
-			setupNewsTabsHeader(sources.tabs);
-		}
-	}, [sources]);
-
-	/**
-	 * @description
-	 * @author João Dias
-	 * @date 2019-06-04
-	 * @param {IChosenSource[]} items
-	 * @memberof NewsPage
-	 */
-	function setupNewsTabsHeader(tabs: INewsPageHeaderItems[]) {
-		if (tabs) {
-			const tabsHeaderItems = filterOutAllHeaderCategories(tabs);
-			setTabsHeaderItems(tabsHeaderItems);
-		}
-	}
-
-	/**
-	 *
-	 *
-	 * @returns
-	 * @memberof NewsPage
-	 */
-	function checkIfHasSources() {
-		if (sources && sources.quantity > 0) {
-			setHasData(true);
-
-			return true;
-		}
-
-		return false;
-	}
-
-	/**
-	 * @description
-	 * @author João Dias
-	 * @date 2019-06-04
-	 * @param {IChosenSource[]} items
-	 * @returns
-	 * @memberof NewsPage
-	 */
-	function filterOutAllHeaderCategories(tabs: INewsPageHeaderItems[]) {
-		const list = [...defaultTabs, ...tabs];
-		return list;
-	}
 
 	/**
 	 * @description
@@ -87,19 +28,16 @@ const NewsPage: React.FC<INewsPageProps> = ({ platform, authenticated, sources }
 	 * @returns
 	 * @memberof NewsPage
 	 */
-	function renderNewsTabs(tabsHeaderItems: INewsPageHeaderItems[]) {
-		if (hasData && sources && tabsHeaderItems.length > 0) {
+	function renderNewsTabs() {
+		if (hasData && sources?.items) {
 			return (
 				<NewsTabs
 					id="news-tabs"
-					tabsHeader={tabsHeaderItems}
+					items={sources.items}
 					style={{
 						backgroundColor: "var(--body-background)",
 					}}
-				>
-					<LatestNewsTab sources={sources.items.latest} />
-					<LatestNewsCategoryTab sources={sources.items.latest} />
-				</NewsTabs>
+				/>
 			);
 		}
 
@@ -113,7 +51,7 @@ const NewsPage: React.FC<INewsPageProps> = ({ platform, authenticated, sources }
 	return (
 		<Layout authenticated header={false}>
 			<Container fullwidth fullheight isFixed={false} title="Current Page is: News" offsetTop="3rem">
-				{tabsHeaderItems ? renderNewsTabs(tabsHeaderItems) : <ContentSpinner />}
+				{hasData ? renderNewsTabs() : <ContentSpinner />}
 			</Container>
 		</Layout>
 	);
