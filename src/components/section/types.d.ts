@@ -4,6 +4,7 @@ export interface IUISectionProps {
 	id: string;
 	role?: string;
 	grouped?: boolean;
+	amount?: number;
 	children?: React.ReactNode;
 	style?: React.CSSProperties;
 }

@@ -159,7 +159,7 @@ export const Name = styled.div`
 	.source__label {
 		&__title {
 			--text-shadow-color: rgba(255, 255, 255, 0.2);
-			--title-color: var(--color-gray8);
+			--title-color: var(--color-gray9);
 
 			html[data-theme="DARK"] & {
 				--text-shadow-color: rgba(0, 0, 0, 0.2);

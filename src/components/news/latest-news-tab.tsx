@@ -23,11 +23,14 @@ export const LatestNewsTab: React.FC<INewsArticleTabProps> = ({ sources }) => {
 	 * @memberof LatestNewsTab
 	 */
 	function renderRow() {
-		const sources = data?.articles.map((article) => {
+		const sources = data?.articles.map((article, index) => {
+			const key = `article-thumbnail-${article.publishedAt}-${index}-key`;
+			const id = `article-thumbnail-${article.publishedAt}-${index}-thumbnail`;
+
 			return (
-				<Item key={article.publishedAt} id={article.publishedAt}>
+				<Item key={key} id={key}>
 					<ArticleThumbnail
-						id={`article-thumbnail-${article.publishedAt}`}
+						id={id}
 						options={article}
 						type={EThumbnailType.LARGE}
 					/>

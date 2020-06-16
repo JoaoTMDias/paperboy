@@ -1,12 +1,12 @@
 // Libraries
 import React, { useState, useEffect, useRef } from "react";
-import Tab from "@material-ui/core/Tab";
 import { Logger, withMemo } from "helpers/index.helpers";
-import { TabsContainer, TabsHeader, TabsWrapper } from "./styles";
+import { TabsContainer, TabsWrapper } from "./styles";
 import { INewsTabsProps } from "./types";
 import LatestNewsCategoryTab from "./latest-category";
 import LatestNewsTab from "./latest-news-tab";
 import { INewsPageHeaderItems } from "data/interfaces";
+import { TabList } from './tabs/tablist';
 
 /**
  * @description Returns the hash...without the hash, just the name :)
@@ -22,11 +22,6 @@ function getHash(): string {
 const DEFAULT_TABS: INewsPageHeaderItems = {
 	id: "latest",
 	sources: [],
-};
-
-const TAB_CLASSES = {
-	root: "tabs-page--tab",
-	selected: "tabs-page--is-selected",
 };
 
 /**
@@ -74,7 +69,7 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, children, style 
 	 * @description On Clicking on a Tab changes the Index
 	 * @memberof NewsTabs
 	 */
-	function handleOnClickToChangeTab(event: React.ChangeEvent<{}>, value: number) {
+	function handleOnClickToChangeTab(value: number) {
 		setCurrentTab(value);
 	}
 
@@ -96,31 +91,11 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, children, style 
 	 * @memberof NewsTabs
 	 */
 	function renderTabHeader() {
-		const list = tabs.map((tab, index: number) => {
-			if (tab.id === "latest") {
-				const id = `tab-${index}-${tab.id}`;
-				return <Tab key={id} id={id} label={tab.id} classes={TAB_CLASSES} />;
-			}
-
-			const id = `tab-${index}-${tab.id}`;
-
-			return <Tab key={id} id={id} label={tab.id} classes={TAB_CLASSES} />;
-		});
-
 		return (
-			<TabsHeader
-				classes={{
-					root: "tabs-page--header",
-					indicator: "tabs-page--indicator",
-				}}
-				children={list}
-				className="tabs-page--header"
-				onChange={handleOnClickToChangeTab}
-				orientation="horizontal"
-				scrollButtons="auto"
-				style={style}
-				value={currentTab}
-				variant="scrollable"
+			<TabList
+				list={tabs}
+				activeTab={currentTab}
+				onSelect={handleOnClickToChangeTab}
 			/>
 		);
 	}

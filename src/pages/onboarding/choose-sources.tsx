@@ -219,7 +219,7 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
 				name="list"
 				render={(arrayHelpers: FieldArrayRenderProps) => {
 					return (
-						<UISection id="sources-editors-suggestions" title="Editor's Suggestions">
+						<UISection id="sources-editors-suggestions" amount={data.length} title="Editor's Suggestions">
 							<SourcesList
 								layout="horizontal"
 								label="The Top 20 Editor's Suggestions for news sources."
@@ -257,7 +257,7 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
 								const id = `sources-${title}`;
 
 								return (
-									<UISection key={id} id={id} title={title} grouped>
+									<UISection key={id} id={id} title={title} amount={category.length} grouped>
 										<SourcesList
 											layout="vertical"
 											label="Language Specific News Sources"

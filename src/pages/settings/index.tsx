@@ -47,7 +47,7 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 		isStandalone: false,
 	};
 
-	constructor(props: ISettingsPageProps) {
+	constructor (props: ISettingsPageProps) {
 		super(props);
 	}
 
@@ -141,8 +141,8 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 					>
 						<SectionListItem id="logout-paperboy">
 							<ListItemWithButton
-								id="logout-paperboy"
-								title="Clear Preferences"
+								id="reset-preferences"
+								title="Reset Preferences"
 								flavour={EListItemButtonType.PRIMARY}
 								onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
 									this.handleClickToClearPreferences(event)

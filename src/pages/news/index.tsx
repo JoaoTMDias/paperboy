@@ -2,10 +2,10 @@ import { Redirect } from "@reach/router";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Container, Layout, NewsTabs, ContentSpinner } from "components/index.components";
-import { LatestNewsTab } from "components/news/index";
 import { IGlobalStoreState } from "data/interfaces/index";
 import { NEWS_PAGE, ONBOARDING_PAGE } from "data/constants/index.constants";
 import { INewsPageProps } from "./types";
+import Meta from 'components/meta';
 
 /**
  * News Page Tab
@@ -13,7 +13,7 @@ import { INewsPageProps } from "./types";
  * @class NewsPage
  * @extends {React.Component<INewsPageProps, any>}
  */
-const NewsPage: React.FC<INewsPageProps> = ({ authenticated, sources }) => {
+const NewsPage: React.FC<INewsPageProps> = ({ authenticated, sources, location }) => {
 	const [hasData, setHasData] = useState(false);
 
 	useEffect(() => {
@@ -50,6 +50,7 @@ const NewsPage: React.FC<INewsPageProps> = ({ authenticated, sources }) => {
 
 	return (
 		<Layout authenticated header={false}>
+			<Meta title="News" location={location} />
 			<Container fullwidth fullheight isFixed={false} title="Current Page is: News" offsetTop="3rem">
 				{hasData ? renderNewsTabs() : <ContentSpinner />}
 			</Container>

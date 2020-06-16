@@ -59,6 +59,7 @@
 		--tabs-header-font-family: $tabs-header-font-family,
 		--tabs-header-color: $tabs-header-color,
 		--tabs-header-color-selected: $tabs-header-color-selected,
+		--tabs-header-width: 4.75rem,
 		--content-lead-color: var(--color-gray9),
 		--content-paragraph-color: var(--color-gray9),
 		--base-font-ratio: $base-font-ratio,
@@ -225,7 +226,6 @@ body {
 }
 
 #___gatsby,
-#device-audit,
 #no-javascript {
 	position: absolute;
 	top: 0;
@@ -789,6 +789,7 @@ template {
 	}
 }
 
+.sr-only,
 .screen-readers {
 	position: absolute;
 	width: 0.0625em;

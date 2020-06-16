@@ -1,6 +1,7 @@
 import { rem } from "polished";
 import styled, { css } from "styled-components";
 import { IUISectionProps } from "./types";
+import { theme } from 'helpers/theme.helper';
 
 // Styling
 export const Wrapper = styled.div`
@@ -53,19 +54,21 @@ export const SectionWrapper = styled.section`
 `;
 
 export const SectionTitle = styled.h3`
-	--section-title-color: var(--color-gray8);
+	--section-title-color: var(--color-gray9);
+	--section-title-amount-color: var(--section-title-color);
+	--section-title-background-color: var(--color-gray2);
 
-	html[data-theme="DARK"] & {
-		color: var(--color-gray4);
-	}
+	${theme.dark`
+			--section-title-color: var(--color-gray4);
+	`};
 
 	font-family: var(--body-font-family);
 	font-size: ${rem("12px")};
 	text-transform: capitalize;
 	color: var(--section-title-color);
-
+	height: 1rem;
 	letter-spacing: ${rem("0.4px")};
-	line-height: ${rem("14px")};
+	line-height: 1rem;
 	margin-bottom: calc(var(--global-padding) * 0.5);
 	padding: 0;
 
@@ -75,4 +78,21 @@ export const SectionTitle = styled.h3`
 			padding-left: 1rem;
 			padding-right: 1rem;
 		`};
+
+	.section-title--amount {
+		color: var(--section-title-color);
+		background-color: var(--section-title-background-color);
+		font-size: ${rem("9px")};
+		text-transform: uppercase;
+		height: 1rem;
+		padding: ${rem("2px")} ${rem("4px")};
+		border-radius: 1rem;
+		display: inline-flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		max-width: 3rem;
+		flex-shrink: 0;
+		margin-left: 0.5rem;
+	}
 `;

@@ -2,6 +2,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "@reach/router";
+import * as H from "history";
 import {
 	ArticleThumbnail,
 	Container,
@@ -14,6 +15,7 @@ import { List } from "./styles";
 import { ONBOARDING_PAGE, SAVED_PAGE } from "data/constants/router.constants";
 import { IGlobalStoreState, INewsArticleItem } from "data/interfaces/index";
 import { EThumbnailType } from "../../components/thumbnails/types.d";
+import Meta from 'components/meta';
 
 // Interface
 interface ISavedPageProps {
@@ -21,6 +23,7 @@ interface ISavedPageProps {
 	authenticated: boolean;
 	children?: any;
 	saved: INewsArticleItem[];
+	location: H.Location;
 }
 
 /**
@@ -29,7 +32,7 @@ interface ISavedPageProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<ISavedPageProps>}
  */
-const SavedPage: React.FunctionComponent<ISavedPageProps> = ({ authenticated, saved }) => {
+const SavedPage: React.FunctionComponent<ISavedPageProps> = ({ authenticated, saved, location }) => {
 	/**
 	 *
 	 *
@@ -61,6 +64,7 @@ const SavedPage: React.FunctionComponent<ISavedPageProps> = ({ authenticated, sa
 	}
 	return (
 		<Layout authenticated={authenticated} header={false}>
+			<Meta title="Saved Articles" location={location} />
 			<TopNavigation
 				shadow="hairline"
 				style={{

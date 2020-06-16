@@ -23,7 +23,7 @@ interface IChangeAppThemeState {
  * @returns {React.FunctionComponent<IChangeAppThemeProps>}
  */
 class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAppThemeState> {
-	constructor(props: IChangeAppThemeProps) {
+	constructor (props: IChangeAppThemeProps) {
 		super(props);
 
 		this.state = {
@@ -158,7 +158,7 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
 		const { currentTheme } = this.props;
 		const { themeColor } = this.state;
 
-		return <aside data-theme={currentTheme} data-theme-color={themeColor} tabIndex={-1} />;
+		return <aside className="sr-only" data-theme={currentTheme} data-theme-color={themeColor} tabIndex={-1} />;
 	}
 }
 

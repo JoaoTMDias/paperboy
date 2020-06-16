@@ -1,5 +1,4 @@
-import { ListChildComponentProps } from "react-window";
-import { INewsPageHeaderItems, IChosenNewsSourcesItems } from "data/interfaces/index";
+import { IChosenNewsSourcesItems } from "data/interfaces/index";
 import { Dispatch, AnyAction } from "redux";
 
 export interface IHeaderTabs {
@@ -26,10 +25,4 @@ interface INewsArticleTabActions {
 
 interface INewsArticleTabProps {
 	sources: string[];
-}
-
-interface IVirtualListProps extends ListChildComponentProps {
-	index: number;
-	key?: React.Key;
-	style: React.CSSProperties;
 }

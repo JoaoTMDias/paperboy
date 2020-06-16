@@ -10,7 +10,7 @@ class Audit extends React.Component<IAuditProps, any> {
 		hasAudited: false,
 	};
 
-	constructor(props: IAuditProps) {
+	constructor (props: IAuditProps) {
 		super(props);
 
 		this.state = {
@@ -178,6 +178,7 @@ class Audit extends React.Component<IAuditProps, any> {
 		return (
 			<aside
 				id="device-audit"
+				className="sr-only"
 				data-online={isOnline}
 				data-standalone={isStandalone}
 				data-platform={platform}

@@ -15,7 +15,7 @@ export interface IViewportHeightState {
 }
 
 class ViewportHeight extends React.Component<IViewportHeightProps, IViewportHeightState> {
-	constructor(props: IViewportHeightProps) {
+	constructor (props: IViewportHeightProps) {
 		super(props);
 
 		this.getDevicePlatform = this.getDevicePlatform.bind(this);
@@ -133,7 +133,7 @@ class ViewportHeight extends React.Component<IViewportHeightProps, IViewportHeig
 		return (
 			<aside
 				id="device-viewport-height"
-				className="show-for-screen-readers"
+				className="sr-only"
 				data-viewport-height-unit={`${viewportUnit}`}
 				data-viewport-height={`${viewportHeight}`}
 				tabIndex={-1}
