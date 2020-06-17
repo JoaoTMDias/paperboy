@@ -32,7 +32,9 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-	width: var(--tabs-header-width);
+	width: auto;
+	max-width: calc(var(--tabs-header-width) * 2);
+	min-width: var(--tabs-header-width);
 	height: 100%;
 
 	.tab-list__tab {
@@ -45,7 +47,7 @@ export const ListItem = styled.li`
 		appearance: none;
 		border: none;
 		background-color: var(--tabs-background);
-		padding: 0;
+		padding: 0 1rem;
 		width: 100%;
 		height: 100%;
 		font-size: var(--tabs-header-font-size);

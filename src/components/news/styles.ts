@@ -52,21 +52,24 @@ export const TabsContainer = styled(SwipeableViews)`
 
 	.react-swipeable-view-container {
 		/* override to animate height */
-		height: var(--tabs-container-height) !important;
+		min-height: var(--tabs-container-height) !important;
 		overflow-y: initial;
-		-webkit-overflow-scrolling: touch;
 		background-color: var(--tabs-background);
 
 		[aria-hidden="true"] {
 			pointer-events: none;
 			user-select: none;
 			position: relative;
+			overflow-y: hidden !important;
 		}
 
 		[aria-hidden="false"] {
 			pointer-events: inherit;
 			user-select: inherit;
 			position: relative;
+			overflow-y: scroll !important;
+			scroll-behavior: smooth;
+			-webkit-overflow-scrolling: touch;
 		}
 	}
 `;
