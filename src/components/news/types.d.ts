@@ -1,4 +1,4 @@
-import { IChosenNewsSourcesItems } from "data/interfaces/index";
+import { IChosenNewsSourcesItems, IBasePageProps } from "data/interfaces/index";
 import { Dispatch, AnyAction } from "redux";
 
 export interface IHeaderTabs {
@@ -6,7 +6,7 @@ export interface IHeaderTabs {
 	label: string;
 }
 
-export interface INewsTabsProps {
+export interface INewsTabsProps extends IBasePageProps {
 	id: string;
 	items: IChosenNewsSourcesItems;
 	style?: React.CSSProperties;
@@ -23,6 +23,7 @@ interface INewsArticleTabActions {
 	getAllLatestNewsFromSource: (source: string[]) => (dispatch: Dispatch<AnyAction>) => void;
 }
 
-interface INewsArticleTabProps {
+interface INewsArticleTabProps extends IBasePageProps {
+	id: string;
 	sources: string[];
 }

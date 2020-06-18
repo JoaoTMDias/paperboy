@@ -142,6 +142,7 @@ const SourcesList: React.FC<ISourcesListProps> = ({ data, handleChange, label, l
 			<SourcesListWrapper
 				role="group"
 				aria-label={label}
+				data-layout={layout}
 				style={{
 					flexDirection: layout === "horizontal" ? "row" : "column",
 				}}

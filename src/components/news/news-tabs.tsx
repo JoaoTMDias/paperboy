@@ -6,7 +6,7 @@ import { INewsTabsProps } from "./types";
 import LatestNewsCategoryTab from "./latest-category";
 import LatestNewsTab from "./latest-news-tab";
 import { INewsPageHeaderItems } from "data/interfaces";
-import { TabList } from './tabs/tablist';
+import { TabList } from "./tabs/tablist";
 
 /**
  * @description Returns the hash...without the hash, just the name :)
@@ -30,7 +30,7 @@ const DEFAULT_TABS: INewsPageHeaderItems = {
  * @class NewsTabs
  * @extends {React.Component<INewsTabsProps, any>}
  */
-export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, children, style }) => {
+export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, location }) => {
 	const { current: tabs } = useRef([
 		{
 			...DEFAULT_TABS,
@@ -91,13 +91,7 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, children, style 
 	 * @memberof NewsTabs
 	 */
 	function renderTabHeader() {
-		return (
-			<TabList
-				list={tabs}
-				activeTab={currentTab}
-				onSelect={handleOnClickToChangeTab}
-			/>
-		);
+		return <TabList list={tabs} activeTab={currentTab} onSelect={handleOnClickToChangeTab} />;
 	}
 
 	/**
@@ -110,10 +104,10 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, children, style 
 	function renderTabItems() {
 		const items = tabs.map((tab) => {
 			if (tab.id === "latest") {
-				return <LatestNewsTab key={tab.id} sources={tab.sources} />;
+				return <LatestNewsTab key={tab.id} id={tab.id} sources={tab.sources} location={location} />;
 			}
 
-			return <LatestNewsCategoryTab key={tab.id} sources={tab.sources} />;
+			return <LatestNewsCategoryTab key={tab.id} id={tab.id} sources={tab.sources} location={location} />;
 		});
 
 		return (
@@ -124,7 +118,7 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, children, style 
 				animateHeight={false}
 				onChangeIndex={handleOnSwipeToChangeIndex}
 				disableLazyLoading={false}
-				hysteresis={1}
+				hysteresis={0.6}
 				enableMouseEvents
 			>
 				{items}

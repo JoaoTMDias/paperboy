@@ -15,7 +15,7 @@ import { List } from "./styles";
 import { ONBOARDING_PAGE, SAVED_PAGE } from "data/constants/router.constants";
 import { IGlobalStoreState, INewsArticleItem } from "data/interfaces/index";
 import { EThumbnailType } from "../../components/thumbnails/types.d";
-import Meta from 'components/meta';
+import Meta from "components/meta";
 
 // Interface
 interface ISavedPageProps {

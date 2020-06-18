@@ -14,7 +14,7 @@ export const UISection: React.FC<IUISectionProps> = ({ id, title, children, amou
 			return (
 				<SectionTitle id={sectionTitle} grouped={grouped}>
 					{title}
-					{amount && (<span className="section-title--amount">{amount}</span>)}
+					{amount && <span className="section-title--amount">{amount}</span>}
 				</SectionTitle>
 			);
 		}

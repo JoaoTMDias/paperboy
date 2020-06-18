@@ -7,11 +7,6 @@ export const AppLayout = styled.div`
 	flex-direction: column;
 	position: relative;
 	background-color: var(--body-background);
-
-	${above.large`
-		display: grid;
-		grid-template-columns: minmax(12.5rem, auto) auto;
-	`};
 `;
 
 export default AppLayout;

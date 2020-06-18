@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { rem } from "polished";
 import { Field } from "formik";
+import { above } from "helpers/index.helpers";
 
 // Styling
 export const SourcesListWrapper = styled.ol`
@@ -16,6 +17,25 @@ export const SourcesListWrapper = styled.ol`
 	scroll-snap-type: x proximity;
 	-webkit-overflow-scrolling: touch;
 	background-color: var(--body-background);
+
+	&[data-layout="vertical"] {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 0;
+
+		${above.medium`
+			grid-template-columns: repeat(2, 1fr);
+			grid-column-gap: 0.5rem;
+		`};
+
+		${above.large`
+			grid-template-columns: repeat(3, 1fr);
+		`};
+
+		${above.xlarge`
+			grid-template-columns: repeat(4, 1fr);
+		`};
+	}
 
 	.source__item {
 		flex: 1;

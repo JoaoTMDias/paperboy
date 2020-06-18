@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
-import KEY_CODES from 'helpers/key-codes';
-import { ListItem } from './styles';
+import KEY_CODES from "helpers/key-codes";
+import { ListItem } from "./styles";
 import classnames from "classnames";
-import { withMemo } from 'helpers/index.helpers';
+import { withMemo } from "helpers/index.helpers";
+import { IBasePageProps } from "data/interfaces/page";
+import Meta from "components/meta";
 
-interface ITabProps {
+interface ITabProps extends IBasePageProps {
 	id: string;
 	index: number;
 	name: string;
@@ -12,18 +14,12 @@ interface ITabProps {
 	onSelect: (value: number) => void;
 }
 
-const Tab: React.FunctionComponent<ITabProps> = ({
-	id,
-	index,
-	name,
-	selected,
-	onSelect
-}) => {
+const Tab: React.FunctionComponent<ITabProps> = ({ id, index, name, selected, onSelect, location }) => {
 	const { current: tabIdListItem } = useRef(`tab-list-item-${index}-${id}`);
 	const { current: tabId } = useRef(`tab-${index}-${id}`);
 	const { current: ariaControls } = useRef(`tabpanel-${id}`);
 	const classNames = classnames("tab-list__tab", {
-		"tab-list__tab--selected": selected
+		"tab-list__tab--selected": selected,
 	});
 
 	function handleOnKeyUp(event: React.KeyboardEvent<HTMLButtonElement>) {
@@ -38,6 +34,7 @@ const Tab: React.FunctionComponent<ITabProps> = ({
 
 	return (
 		<ListItem id={tabIdListItem} className="tab-list__item" role="presentation">
+			{selected && <Meta title={`${name.charAt(0).toUpperCase() + name.slice(1)} News`} location={location} />}
 			<button
 				id={tabId}
 				className={classNames}
@@ -51,7 +48,7 @@ const Tab: React.FunctionComponent<ITabProps> = ({
 				{name}
 			</button>
 		</ListItem>
-	)
+	);
 };
 
 export default withMemo(Tab, ["selected", "onSelect"]);

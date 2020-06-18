@@ -1,11 +1,9 @@
-import { Redirect } from "@reach/router";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Container, Layout, NewsTabs, ContentSpinner } from "components/index.components";
 import { IGlobalStoreState } from "data/interfaces/index";
-import { NEWS_PAGE, ONBOARDING_PAGE } from "data/constants/index.constants";
 import { INewsPageProps } from "./types";
-import Meta from 'components/meta';
+import Meta from "components/meta";
 
 /**
  * News Page Tab
@@ -29,11 +27,12 @@ const NewsPage: React.FC<INewsPageProps> = ({ authenticated, sources, location }
 	 * @memberof NewsPage
 	 */
 	function renderNewsTabs() {
-		if (hasData && sources?.items) {
+		if (hasData && sources?.items && location) {
 			return (
 				<NewsTabs
 					id="news-tabs"
 					items={sources.items}
+					location={location}
 					style={{
 						backgroundColor: "var(--body-background)",
 					}}
@@ -42,10 +41,6 @@ const NewsPage: React.FC<INewsPageProps> = ({ authenticated, sources, location }
 		}
 
 		return <ContentSpinner fullPage />;
-	}
-
-	if (!authenticated) {
-		return <Redirect from={NEWS_PAGE} to={ONBOARDING_PAGE} noThrow />;
 	}
 
 	return (

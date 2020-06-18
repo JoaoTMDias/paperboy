@@ -5,6 +5,7 @@ import { INewsArticle } from "data/interfaces/index";
 import { EThumbnailType } from "components/thumbnails/types.d.ts";
 import { INewsArticleTabProps } from "./types";
 import useNewsApi from "helpers/custom-hooks/useNewsAPI";
+import Meta from "components/meta";
 
 /**
  * @description Latest News Tab
@@ -12,7 +13,7 @@ import useNewsApi from "helpers/custom-hooks/useNewsAPI";
  * @class LatestNewsTab
  * @extends {React.Component<INewsArticleTabProps, any>}
  */
-export const LatestNewsTab: React.FC<INewsArticleTabProps> = ({ sources }) => {
+export const LatestNewsTab: React.FC<INewsArticleTabProps> = ({ id, sources, location }) => {
 	const { data, error, loading } = useNewsApi<INewsArticle>({
 		type: "latest",
 		options: sources,
@@ -24,16 +25,12 @@ export const LatestNewsTab: React.FC<INewsArticleTabProps> = ({ sources }) => {
 	 */
 	function renderRow() {
 		const sources = data?.articles.map((article, index) => {
-			const key = `article-thumbnail-${article.publishedAt}-${index}-key`;
-			const id = `article-thumbnail-${article.publishedAt}-${index}-thumbnail`;
+			const key = `article-thumbnail-${article.publishedAt}-${id}-${index}-key`;
+			const identifier = `article-thumbnail-${article.publishedAt}-${id}-${index}-thumbnail`;
 
 			return (
 				<Item key={key} id={key}>
-					<ArticleThumbnail
-						id={id}
-						options={article}
-						type={EThumbnailType.LARGE}
-					/>
+					<ArticleThumbnail id={identifier} options={article} type={EThumbnailType.LARGE} />
 				</Item>
 			);
 		});

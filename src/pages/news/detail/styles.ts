@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { rem } from "polished";
+import { above } from "helpers/index.helpers";
 
 export const OpeningAnimation = keyframes`
   from {
@@ -21,6 +22,20 @@ export const Article = styled.article`
 
 	position: relative;
 	margin-bottom: calc(var(--global-margin) * 3);
+
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 0;
+	height: 100%;
+
+	${above.medium`
+		grid-template-columns: repeat(2, 1fr);
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: calc(var(--viewport-height) - 3rem);
+	`};
 `;
 
 export const Hero = styled.div`
@@ -33,10 +48,6 @@ export const Hero = styled.div`
 	flex-direction: column;
 	justify-content: flex-end;
 	z-index: 1;
-
-	@media all and (min-height: 37.5rem) {
-		height: calc(var(--viewport-height) * 0.56);
-	}
 
 	img,
 	svg.image__placeholder {
@@ -65,15 +76,34 @@ export const Hero = styled.div`
 		overflow: hidden;
 		content: "";
 	}
+
+	${above.medium`
+		height: 100%;
+
+		.hero__title {
+			display: none;
+		}
+
+		&:after {
+			background-image: none;
+		}
+	`};
 `;
 
 export const HeroCopy = styled.div`
 	--number-of-lines: 3;
+	--max-height-ratio: 1rem;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	z-index: 1;
 	padding: 0 ${rem("32px")} ${rem("16px")} ${rem("16px")};
+
+	@media all and (max-width: 39.3975rem) {
+		#article-content && {
+			display: none;
+		}
+	}
 
 	.title {
 		width: 100%;
@@ -94,7 +124,13 @@ export const HeroCopy = styled.div`
 		display: -webkit-box;
 		-webkit-line-clamp: var(--number-of-lines);
 		-webkit-box-orient: vertical;
-		max-height: calc((var(--number-of-lines) * var(--global-lineheight) * var(--base-font-ratio, 1) + 0.5) * 1rem);
+		max-height: calc(
+			(var(--number-of-lines) * var(--global-lineheight) * var(--base-font-ratio, 1) + 0.5) * var(--max-height-ratio)
+		);
+
+		${above.medium`
+			--max-height-ratio: 2rem;
+		`};
 	}
 
 	.metadata {
@@ -122,10 +158,29 @@ export const HeroCopy = styled.div`
 			text-transform: capitalize;
 		}
 	}
+
+	${above.medium`
+		padding: 0 1rem 1rem 0;
+
+		.title,
+		.metadata__source,
+		.metadata__time {
+			color: var(--color-gray9);
+		}
+
+		.title {
+			font-size: calc((((28 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
+		}
+	`};
+
+	${above.large`
+		padding-top: 2rem;
+	`};
 `;
 
 export const ArticleContent = styled.div`
-	padding: calc(var(--global-padding) * 1.5) var(--global-padding);
+	--padding-factor: 1.5;
+	padding: calc(var(--global-padding) * var(--padding-factor)) var(--global-padding);
 	z-index: 2;
 
 	.lead {
@@ -145,6 +200,15 @@ export const ArticleContent = styled.div`
 		letter-spacing: ${rem("0.4px")};
 		line-height: ${rem("28px")};
 	}
+
+	${above.medium`
+		--padding-factor: 2;
+		padding: calc(var(--global-padding) * var(--padding-factor));
+	`};
+
+	${above.large`
+		--padding-factor: 2.5;
+	`};
 `;
 
 export const ArticleLink = styled.a`

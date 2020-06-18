@@ -23,7 +23,7 @@ interface IChangeAppThemeState {
  * @returns {React.FunctionComponent<IChangeAppThemeProps>}
  */
 class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAppThemeState> {
-	constructor (props: IChangeAppThemeProps) {
+	constructor(props: IChangeAppThemeProps) {
 		super(props);
 
 		this.state = {

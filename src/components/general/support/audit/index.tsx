@@ -10,7 +10,7 @@ class Audit extends React.Component<IAuditProps, any> {
 		hasAudited: false,
 	};
 
-	constructor (props: IAuditProps) {
+	constructor(props: IAuditProps) {
 		super(props);
 
 		this.state = {

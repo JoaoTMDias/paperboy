@@ -3,6 +3,7 @@ import { rem } from "polished";
 import { Link } from "gatsby";
 import { IArticleThumbnailProps, EThumbnailType } from "./types.d";
 import { theme } from "helpers/theme.helper";
+import { above } from "helpers/index.helpers";
 
 export const Anchor = styled(Link)`
 	--thumbnail-outline-color: var(--color-gray1);
@@ -152,6 +153,10 @@ export const Article = styled.article`
 							margin-right: 0;
 							margin-top: 0;
 							width: 100%;
+
+							${above.large`
+								height: 50%;
+							`};
 						}
 
 						&__copy {

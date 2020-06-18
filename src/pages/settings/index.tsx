@@ -47,7 +47,7 @@ class SettingsPage extends React.Component<ISettingsPageProps> {
 		isStandalone: false,
 	};
 
-	constructor (props: ISettingsPageProps) {
+	constructor(props: ISettingsPageProps) {
 		super(props);
 	}
 

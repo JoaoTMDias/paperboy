@@ -20,9 +20,9 @@ export const List = styled.div`
 	overflow-x: scroll;
 	scroll-behavior: smooth;
 	flex: 1 1 auto;
-    display: inline-block;
-    position: relative;
-    white-space: nowrap;
+	display: inline-block;
+	position: relative;
+	white-space: nowrap;
 	height: var(--top-navigation-bar-height, 3rem);
 
 	.tab-list--container {

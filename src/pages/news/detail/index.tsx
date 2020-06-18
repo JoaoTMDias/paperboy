@@ -19,6 +19,7 @@ import { IconTypeset, IconBookmark } from "components/icons/index";
 import { NEWS_PAGE } from "data/constants/index.constants";
 import { INewsArticleItem } from "data/interfaces/news";
 import { EModalAlignType } from "data/interfaces/modal";
+import Meta from "components/meta";
 
 enum EModalType {
 	SHARE = "SHARE",
@@ -110,6 +111,7 @@ class ArticleDetailPage extends React.Component<IArticleDetailPageProps, IArticl
 			const data: INewsArticleItem = state;
 			return (
 				<Layout header={false} bottomNavigation={false}>
+					<Meta title="News Detail" />
 					{showShareSheet && (
 						<Modal
 							align={EModalAlignType.BOTTOM}
@@ -139,7 +141,16 @@ class ArticleDetailPage extends React.Component<IArticleDetailPageProps, IArticl
 								</HeroCopy>
 								<LazyLoadingImage src={data.urlToImage} alt="Image" />
 							</Hero>
-							<ArticleContent>
+							<ArticleContent id="article-content">
+								<HeroCopy className="hero__title">
+									<h2 id="hero-cover-title--id" className="title">
+										{data.title}
+									</h2>
+									<div className="metadata">
+										<h3 className="metadata__source">{data.source.name}</h3>
+										<time className="metadata__time">About 1 hour ago</time>
+									</div>
+								</HeroCopy>
 								<h4 className="lead">{data.description}</h4>
 								<ArticleLink href={data.url} target="_blank" rel="noreferrer noopener" tabIndex={0}>
 									<span className="article-link__title">View Article</span>

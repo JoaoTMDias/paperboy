@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { above } from "helpers/index.helpers";
 import { IContainerProps } from "./types";
 
 export const MainContent = styled.main`
@@ -8,14 +7,6 @@ export const MainContent = styled.main`
 	margin-left: auto;
 	width: 100%;
 	min-height: calc(100% - 4rem);
-
-	${above.xlarge`
-		width: calc(100% - 4rem);
-	`};
-
-	${above.xxlarge`
-		width: 87.5rem;
-		`};
 
 	${(props: IContainerProps) =>
 		!props.fullwidth &&
