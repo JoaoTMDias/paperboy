@@ -6,7 +6,7 @@ import { NEWS_API_KEY } from "data/constants/news.constants";
 import { IGetAllNewsSources, INewsArticle } from "data/interfaces";
 
 const instance = axios.create({
-	baseURL: "https://newsapi.org/v2/",
+	baseURL: "https://paperboy-proxy-server.herokuapp.com",
 	headers: { Authorization: `Bearer ${NEWS_API_KEY}` },
 });
 

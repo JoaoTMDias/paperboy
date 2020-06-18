@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { rem } from "polished";
 
 export const Wrapper = styled.div`
 	width: 100%;
@@ -17,18 +16,29 @@ export const Wrapper = styled.div`
 	z-index: 1;
 `;
 
-export const List = styled.ul`
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;
+export const List = styled.div`
+	overflow-x: scroll;
+	scroll-behavior: smooth;
+	flex: 1 1 auto;
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
 	height: var(--top-navigation-bar-height, 3rem);
-	width: 100%;
-	flex-wrap: nowrap;
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	background-color: var(--tabs-background);
+
+	.tab-list--container {
+		display: inline-flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		width: auto;
+		height: var(--top-navigation-bar-height, 3rem);
+		min-width: 100%;
+		flex-wrap: nowrap;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		background-color: var(--tabs-background);
+	}
 `;
 
 export const ListItem = styled.li`

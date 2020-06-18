@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useLayoutEffect, useState } from "react";
 import { useSpring, config, animated } from "react-spring";
 import { INewsPageHeaderItems } from 'data/interfaces';
 import Tab from './tab';
@@ -10,22 +10,61 @@ interface ITabListProps {
 	onSelect: (value: number) => void;
 }
 
+interface ITabElementDimensions {
+	left: number;
+	width: number;
+}
 const DEFAULT_TAB_SIZE = 76;
+const DEFAULT_TAB_ELEMENT_DIMENSIONS: ITabElementDimensions[] = [
+	{
+		left: 0,
+		width: DEFAULT_TAB_SIZE
+	}
+];
 
 export const TabList: React.FunctionComponent<ITabListProps> = ({
 	list,
 	activeTab,
 	onSelect
 }) => {
-	const { transform } = useSpring({
-		transform: `translateX(${activeTab * DEFAULT_TAB_SIZE}px)`,
-		from: { transform: `translateX(-76px)`, },
+	const tabListContainer = useRef(null);
+	const [tabElements, setTabElements] = useState<ITabElementDimensions[]>(DEFAULT_TAB_ELEMENT_DIMENSIONS);
+	const animatedProps = useSpring({
+		to: {
+			transform: `translateX(${tabElements[activeTab].left}px)`,
+			width: `${tabElements[activeTab].width}px`,
+		},
+		from: {
+			transform: `translateX(-${DEFAULT_TAB_SIZE}px)`,
+			width: `0px`,
+		},
 		config: {
 			...config.stiff,
 			duration: 200
 		},
 	});
 	const Indicator = animated(TabIndicator);
+
+	useLayoutEffect(() => {
+		setTabElements(getTabsSize());
+	}, []);
+
+	function getTabsSize() {
+		const elements = Array.from(document.querySelectorAll(".tab-list__item"));
+
+		let sizes: ITabElementDimensions[] = [];
+
+		elements.forEach((element) => {
+			const dimensions = element.getBoundingClientRect();
+			const value = {
+				left: dimensions.left,
+				width: dimensions.width
+			}
+			sizes.push(value);
+		});
+
+		return sizes;
+	}
 
 	function renderList() {
 		const items = list.map((item, index) => {
@@ -59,10 +98,13 @@ export const TabList: React.FunctionComponent<ITabListProps> = ({
 		return (
 			<Wrapper className="tab-list--wrapper">
 				<Indicator style={{
-					transform
+					transform: animatedProps.transform,
+					width: animatedProps.width
 				}} />
-				<List role="tablist" className="tab-list--header">
-					{items}
+				<List className="tab-list--header">
+					<ul ref={tabListContainer} role="tablist" className="tab-list--container">
+						{items}
+					</ul>
 				</List>
 			</Wrapper>
 		)

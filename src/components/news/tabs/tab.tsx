@@ -37,7 +37,7 @@ const Tab: React.FunctionComponent<ITabProps> = ({
 	}
 
 	return (
-		<ListItem id={tabIdListItem} role="presentation">
+		<ListItem id={tabIdListItem} className="tab-list__item" role="presentation">
 			<button
 				id={tabId}
 				className={classNames}
