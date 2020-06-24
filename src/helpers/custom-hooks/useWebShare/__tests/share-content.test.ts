@@ -1,8 +1,8 @@
 import shareContent from "../share-content";
 
 describe("Share Content function", () => {
-	const successFn = () => { };
-	const errorFn = () => { };
+	const successFn = () => {};
+	const errorFn = () => {};
 
 	beforeEach(() => {
 		navigator.share = jest.fn(() => Promise.resolve());
@@ -40,4 +40,4 @@ describe("Share Content function", () => {
 	  expect(mockedSuccessFn).not.toBeCalled();
 	  expect(mockedErrorFn).toBeCalled();
 	}) */
-})
+});

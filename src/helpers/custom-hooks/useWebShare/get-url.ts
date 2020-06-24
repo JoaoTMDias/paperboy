@@ -7,9 +7,7 @@ function getUrl(url?: string): string {
 	if (!!url) {
 		return url;
 	} else {
-		const canonicalEl = document.querySelector(
-			"link[rel=canonical]"
-		) as HTMLLinkElement;
+		const canonicalEl = document.querySelector("link[rel=canonical]") as HTMLLinkElement;
 		return canonicalEl ? canonicalEl.href : window.location.href;
 	}
 }

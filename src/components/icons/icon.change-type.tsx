@@ -2,7 +2,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { rem } from "polished";
-import { theme } from 'helpers/theme.helper';
+import { theme } from "helpers/theme.helper";
 
 // Interface
 export enum EIconChangeTypeSize {

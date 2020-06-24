@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { rem } from "polished";
-import { theme } from 'helpers/theme.helper';
+import { theme } from "helpers/theme.helper";
 
 export const PanelWrapper = styled.aside`
 	--panel-wrapper-border-color: var(--color-gray1);

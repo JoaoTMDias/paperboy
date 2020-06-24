@@ -20,8 +20,8 @@ import { NEWS_PAGE } from "data/constants/index.constants";
 import { INewsArticleItem } from "data/interfaces/news";
 import { EModalAlignType } from "data/interfaces/modal";
 import Meta from "components/meta";
-import useWebShare from 'helpers/custom-hooks/useWebShare';
-import { IGlobalStoreState } from 'data/interfaces';
+import useWebShare from "helpers/custom-hooks/useWebShare";
+import { IGlobalStoreState } from "data/interfaces";
 
 enum EModalType {
 	SHARE = "SHARE",
@@ -33,11 +33,11 @@ interface IArticleDetailPageProps {
 	location: H.Location<INewsArticleItem>;
 }
 
-const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({
-	authenticated,
-	location
-}) => {
-	const { loading, isSupported, share } = useWebShare(() => handleClickToCloseModal(EModalType.SHARE), () => handleClickToCloseModal(EModalType.SHARE));
+const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ authenticated, location }) => {
+	const { loading, isSupported, share } = useWebShare(
+		() => handleClickToCloseModal(EModalType.SHARE),
+		() => handleClickToCloseModal(EModalType.SHARE),
+	);
 	const hero = useRef();
 	const [showShareSheet, setShowShareSheet] = useState(false);
 	const [showTypesetPanel, setshowTypesetPanel] = useState(false);
@@ -57,8 +57,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({
 					handleClickToCloseModal={(event: React.MouseEvent<HTMLElement, MouseEvent>) => {
 						event.preventDefault();
 						handleClickToCloseModal(EModalType.SHARE);
-					}
-					}
+					}}
 				>
 					<Suspense fallback={<div>Loading...</div>}>
 						<ShareSheetPortal articleData={data} />
@@ -73,7 +72,6 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({
 			url: data.url,
 		});
 	}
-
 
 	/**
 	 * @description
@@ -193,7 +191,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({
 	}
 
 	return <Redirect to={NEWS_PAGE} noThrow />;
-}
+};
 
 const mapStateToProps = (state: IGlobalStoreState) => ({
 	authenticated: state.preferences.authenticated,

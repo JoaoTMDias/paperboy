@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { rem } from "polished";
 import { flexRow } from "../../../../helpers/index.helpers";
-import { theme } from 'helpers/theme.helper';
+import { theme } from "helpers/theme.helper";
 
 export const ShareSheet = styled.aside`
 	--share-sheet-title: var(--color-gray6);
@@ -15,10 +15,10 @@ export const ShareSheet = styled.aside`
 	padding-left: ${rem("16px")};
 
 	${flexRow({
-	direction: "column",
-	justifyContent: "flex-end",
-	alignItems: "center",
-})};
+		direction: "column",
+		justifyContent: "flex-end",
+		alignItems: "center",
+	})};
 
 	--item-height: ${rem("48px")};
 
@@ -40,10 +40,10 @@ export const ShareSheet = styled.aside`
 			padding: 0;
 
 			${flexRow({
-	direction: "column",
-	justifyContent: "flex-start",
-	alignItems: "center",
-})};
+				direction: "column",
+				justifyContent: "flex-start",
+				alignItems: "center",
+			})};
 		}
 
 		&__option {
@@ -51,10 +51,10 @@ export const ShareSheet = styled.aside`
 			height: var(--item-height);
 
 			${flexRow({
-	direction: "row",
-	justifyContent: "flex-start",
-	alignItems: "center",
-})};
+				direction: "row",
+				justifyContent: "flex-start",
+				alignItems: "center",
+			})};
 
 			button,
 			.react-share__ShareButton,
@@ -66,10 +66,10 @@ export const ShareSheet = styled.aside`
 				padding: 0;
 
 				${flexRow({
-	direction: "row",
-	justifyContent: "flex-start",
-	alignItems: "center",
-})};
+					direction: "row",
+					justifyContent: "flex-start",
+					alignItems: "center",
+				})};
 			}
 
 			&__icon {
@@ -91,10 +91,10 @@ export const ShareSheet = styled.aside`
 				color: var(--share-sheet-name);
 
 				${flexRow({
-	direction: "row",
-	justifyContent: "flex-start",
-	alignItems: "center",
-})};
+					direction: "row",
+					justifyContent: "flex-start",
+					alignItems: "center",
+				})};
 			}
 		}
 	}

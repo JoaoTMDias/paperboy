@@ -19,9 +19,7 @@ interface IShareSheetPortalProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IShareSheetPortalProps>}
  */
-export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> = ({
-	articleData
-}) => {
+export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> = ({ articleData }) => {
 	if (articleData) {
 		const { url, title } = articleData;
 		const message = `${title} ${url}`;
@@ -55,11 +53,7 @@ export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> =
 						</TwitterShareButton>
 					</li>
 					<li className="share-sheet__option">
-						<button
-							type="button"
-							className="SocialMediaShareButton"
-							onClick={() => window.open(sms, "_blank")}
-						>
+						<button type="button" className="SocialMediaShareButton" onClick={() => window.open(sms, "_blank")}>
 							<figure className="share-sheet__option__icon">
 								<IconSMS />
 							</figure>

@@ -8,10 +8,10 @@ describe("Get url function", () => {
 
 	test("returns me current url", () => {
 		window = Object.create(window);
-		Object.defineProperty(window, 'location', {
+		Object.defineProperty(window, "location", {
 			value: {
-				href: "string"
-			}
+				href: "string",
+			},
 		});
 		const url = getUrl("string");
 		expect(url).toBe("string");

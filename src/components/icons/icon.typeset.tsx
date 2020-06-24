@@ -1,7 +1,7 @@
 // Libraries
 import * as React from "react";
 import styled from "styled-components";
-import { theme } from 'helpers/theme.helper';
+import { theme } from "helpers/theme.helper";
 
 // Interface
 interface IIconTypesetProps {

@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { rem } from "polished";
 import { above } from "helpers/index.helpers";
-import { theme } from 'helpers/theme.helper';
+import { theme } from "helpers/theme.helper";
 
 export const OpeningAnimation = keyframes`
   from {
