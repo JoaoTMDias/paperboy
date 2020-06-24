@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { rem } from "polished";
+import { theme } from 'helpers/theme.helper';
 
 export const PanelWrapper = styled.aside`
+	--panel-wrapper-border-color: var(--color-gray1);
+	--panel-wrapper-thumb-color: var(--color-white);
+
 	width: 100%;
 	height: ${rem("88px")};
 	position: fixed;
@@ -25,7 +29,7 @@ export const PanelWrapper = styled.aside`
 			flex-direction: row;
 			justify-content: center;
 			align-items: center;
-			border-bottom: 1px solid var(--color-gray1);
+			border-bottom: 1px solid var(--panel-wrapper-border-color);
 		}
 
 		&__title {
@@ -83,11 +87,11 @@ export const PanelWrapper = styled.aside`
 			}
 			&::-webkit-slider-thumb {
 				box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15), 0px 0px 3px rgba(13, 13, 13, 0.15);
-				border: 0px solid var(--color-white);
+				border: 0px solid var(--panel-wrapper-thumb-color);
 				height: ${rem("28px")};
 				width: ${rem("28px")};
 				border-radius: ${rem("28px")};
-				background: var(--color-white);
+				background: var(--panel-wrapper-thumb-color);
 				cursor: pointer;
 				-webkit-appearance: none;
 				margin-top: ${rem("-13px")};
@@ -106,11 +110,11 @@ export const PanelWrapper = styled.aside`
 			}
 			&::-moz-range-thumb {
 				box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15), 0px 0px 3px rgba(13, 13, 13, 0.15);
-				border: 0px solid var(--color-white);
+				border: 0px solid var(--panel-wrapper-thumb-color);
 				height: ${rem("28px")};
 				width: ${rem("28px")};
 				border-radius: ${rem("28px")};
-				background: var(--color-white);
+				background: var(--panel-wrapper-thumb-color);
 				cursor: pointer;
 			}
 			&::-ms-track {
@@ -135,11 +139,11 @@ export const PanelWrapper = styled.aside`
 			}
 			&::-ms-thumb {
 				box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15), 0px 0px 3px rgba(13, 13, 13, 0.15);
-				border: 0px solid var(--color-white);
+				border: 0px solid var(--panel-wrapper-thumb-color);
 				height: ${rem("28px")};
 				width: ${rem("28px")};
 				border-radius: ${rem("28px")};
-				background: var(--color-white);
+				background: var(--panel-wrapper-thumb-color);
 				cursor: pointer;
 				height: 2px;
 			}
@@ -153,6 +157,11 @@ export const PanelWrapper = styled.aside`
 			}
 		}
 	}
+
+	${theme.dark`
+		--panel-wrapper-border-color: var(--color-gray9);
+		--panel-wrapper-thumb-color: var(--color-gray3);
+	`};
 `;
 
 export default PanelWrapper;

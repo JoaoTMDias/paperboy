@@ -44,7 +44,7 @@ const fadeInDialog = keyframes`
 
 const Dialog = styled.div`
 	width: calc(100% - 1rem);
-	max-width: ${rem("359px")};
+	max-width: ${rem("414px")};
 	margin: 0 auto;
 	padding: ${rem("16px")} 0 0 0;
 

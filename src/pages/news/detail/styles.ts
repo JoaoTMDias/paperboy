@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { rem } from "polished";
 import { above } from "helpers/index.helpers";
+import { theme } from 'helpers/theme.helper';
 
 export const OpeningAnimation = keyframes`
   from {
@@ -212,7 +213,12 @@ export const ArticleContent = styled.div`
 `;
 
 export const ArticleLink = styled.a`
+	--link-color: var(--color-primary);
+	--link-source-color: var(--color-gray7);
+	--link-background-color: var(--body-background);
+	--link-border-color: var(--color-gray5);
 	--button-size: ${rem("56px")};
+
 	width: 100%;
 	height: var(--button-size);
 
@@ -223,9 +229,9 @@ export const ArticleLink = styled.a`
 
 	cursor: pointer;
 
-	color: var(--color-primary);
-	border: 1px solid var(--color-gray5);
-	background-color: var(--body-background);
+	color: var(--link-color);
+	border: 1px solid var(--link-border-color);
+	background-color: var(--link-background-color);
 	border-radius: var(--button-size);
 
 	.article-link {
@@ -238,7 +244,7 @@ export const ArticleLink = styled.a`
 			font-size: calc((((10 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
 			text-transform: uppercase;
 			letter-spacing: 1px;
-			color: var(--color-gray7);
+			color: var(--link-source-color);
 		}
 	}
 
@@ -252,9 +258,19 @@ export const ArticleLink = styled.a`
 			color: var(--color-white);
 		}
 	}
+
+	${theme.dark`
+		--link-color: var(--color-white);
+		--link-source-color: var(--color-gray2);
+		--link-background-color: var(--color-gray8);
+		--link-border-color: var(--color-gray8);
+	`};
 `;
 
-export const BottomOptionsBar = styled.aside`
+export const BottomOptionsBar = styled.nav`
+	--bar-background-color: var(--color-gray0);
+	--bar-border-top-color: var(--color-gray3);
+
 	width: 100%;
 	height: ${rem("48px")};
 
@@ -263,8 +279,8 @@ export const BottomOptionsBar = styled.aside`
 	justify-content: space-between;
 	align-items: center;
 
-	background-color: var(--color-gray0);
-	border-top: 1px solid var(--color-gray3);
+	background-color: var(--bar-background-color);
+	border-top: 1px solid var(--bar-border-top-color);
 
 	position: fixed;
 	z-index: 10;
@@ -292,6 +308,11 @@ export const BottomOptionsBar = styled.aside`
 			}
 		}
 	}
+
+	${theme.dark`
+		--bar-background-color: var(--color-black);
+		--bar-border-top-color: var(--color-gray9);
+	`};
 `;
 
 export default Article;

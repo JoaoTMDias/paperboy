@@ -1,6 +1,7 @@
 // Libraries
 import * as React from "react";
 import styled from "styled-components";
+import { theme } from 'helpers/theme.helper';
 
 // Interface
 interface IIconTypesetProps {
@@ -55,6 +56,17 @@ const Icon = styled.svg`
 		--letters: var(--color-white);
 		--inner-background: var(--outer-ring);
 	}
+
+	${theme.dark`
+		--outer-ring: var(--color-gray4);
+		--inner-background: var(--color-gray9);
+
+		&.is-active {
+			--outer-ring: var(--color-primary);
+			--letters: var(--color-white);
+			--inner-background: var(--outer-ring);
+		}
+	`};
 `;
 
 export default React.memo(IconTypeset);

@@ -2,6 +2,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import { rem } from "polished";
+import { theme } from 'helpers/theme.helper';
 
 // Interface
 export enum EIconChangeTypeSize {
@@ -71,6 +72,10 @@ const Icon = styled.svg`
 		width: ${rem("56px")};
 		height: ${rem("56px")};
 	}
+
+	${theme.dark`
+		--letters: var(--color-gray3);
+	`};
 `;
 
 export default React.memo(IconChangeTypeSize);
