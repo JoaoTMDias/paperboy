@@ -16,7 +16,7 @@ export const Wrapper = styled.button`
 `;
 
 // Styling
-export const AddToHomeWrapper = styled.button`
+export const InstallButton = styled.button`
 	--icon-size: ${rem("48px")};
 	--list-item-title-color: var(--color-gray9);
 	--list-item-subtitle-color: var(--color-gray8);
@@ -29,10 +29,10 @@ export const AddToHomeWrapper = styled.button`
 	width: 100%;
 	margin: 0;
 	${flexRow({
-		direction: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-	})};
+	direction: "row",
+	justifyContent: "space-between",
+	alignItems: "center",
+})};
 
 	padding: 0;
 	-webkit-appearance: none;

@@ -1,8 +1,10 @@
 // Libraries
 import React from "react";
-import { AddToHomeWrapper } from "./styles";
+import { InstallButton } from "./styles";
 import { IAddToHomeScreenWithInstallProps } from "./types";
 import { useAddToHomescreenPrompt } from 'helpers/custom-hooks/useAddToHomescreenPrompt';
+import ContentSpinner from 'components/content-spinner';
+import { SectionListItem } from 'components/lists';
 
 /**
  * @description Component Description
@@ -12,7 +14,7 @@ import { useAddToHomescreenPrompt } from 'helpers/custom-hooks/useAddToHomescree
  */
 export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScreenWithInstallProps> = (props) => {
 	const { id, title, subtitle, isStandalone } = props;
-	const [prompt, promptToInstall] = useAddToHomescreenPrompt();
+	const [isready, prompt, promptToInstall] = useAddToHomescreenPrompt();
 
 
 	/**
@@ -22,34 +24,41 @@ export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScree
 	 * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
 	 */
 	function handleClickToInstall() {
-		console.log("click to install");
-
 		if (prompt) {
-			debugger;
 			promptToInstall();
 		}
 	}
 
-	return (
-		<>
-			<AddToHomeWrapper
+	function renderButton() {
+		const classes = `banner ${isStandalone ? "is-standalone" : ""}`;
+		const text = isStandalone ? "Installed" : "Install";
+
+		return (
+			<div className={classes}>
+				{text}
+			</div>
+		)
+	}
+
+	const description = isready ? subtitle : "Checking if is installed...";
+
+	return isready ? (
+		<SectionListItem id="add-to-homescreen">
+			<InstallButton
 				id={id}
 				type="button"
 				className="section-list__item__label"
-				tabIndex={0}
 				disabled={isStandalone}
 				onClick={handleClickToInstall}
 			>
 				<div className="text">
 					<h3 className="text__title">{title}</h3>
-					{subtitle && <h6 className="text__subtitle">{subtitle}</h6>}
+					<p className="text__subtitle">{description}</p>
 				</div>
-				<div className={`banner ${isStandalone ? "is-standalone" : ""}`}>
-					{isStandalone && isStandalone === true ? "Installed" : "Install"}
-				</div>
-			</AddToHomeWrapper>
-		</>
-	);
+				{renderButton()}
+			</InstallButton>
+		</SectionListItem>
+	) : <ContentSpinner temporary />;
 };
 
 export default AddToHomeScreenWithInstall;

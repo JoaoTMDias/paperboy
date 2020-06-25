@@ -9,37 +9,56 @@ interface IBeforeInstallPromptEvent extends Event {
 	prompt(): Promise<void>;
 }
 
-export function useAddToHomescreenPrompt(): [
+type AddToHomescreenPromptReturn = [
+	boolean,
 	IBeforeInstallPromptEvent | null,
 	() => void
-] {
+];
+
+export function useAddToHomescreenPrompt(): AddToHomescreenPromptReturn {
+	const [isReadyToInstall, setIsReadyToInstall] = useState(false);
 	const [prompt, setState] = useState<IBeforeInstallPromptEvent | null>(
 		null
 	);
 
-	const promptToInstall = () => {
-		if (prompt) {
-			return prompt.prompt();
+	/**
+	 * Promps to install the app as a standalone web app
+	 *
+	 * @returns {Promise<void>}
+	 */
+	function promptToInstall() {
+		try {
+			if (prompt) {
+				return prompt.prompt();
+			}
+
+			return Promise.reject(
+				new Error(
+					'Tried installing before browser sent "beforeinstallprompt" event'
+				)
+			);
+		} catch (error) {
+			return Promise.reject(
+				new Error(
+					'Tried installing before browser sent "beforeinstallprompt" event'
+				)
+			);
 		}
-		return Promise.reject(
-			new Error(
-				'Tried installing before browser sent "beforeinstallprompt" event'
-			)
-		);
 	};
 
 	useEffect(() => {
-		const ready = (e: IBeforeInstallPromptEvent) => {
-			e.preventDefault();
-			setState(e);
+		const ready = (event: IBeforeInstallPromptEvent) => {
+			event.preventDefault();
+			setIsReadyToInstall(true);
+			setState(event);
 		};
 
-		window.addEventListener("beforeinstallprompt", ready as any);
+		window.addEventListener("beforeinstallprompt", ready);
 
 		return () => {
-			window.removeEventListener("beforeinstallprompt", ready as any);
+			window.removeEventListener("beforeinstallprompt", ready);
 		};
 	}, []);
 
-	return [prompt, promptToInstall];
+	return [isReadyToInstall, prompt, promptToInstall];
 }

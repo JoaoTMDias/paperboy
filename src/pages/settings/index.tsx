@@ -1,5 +1,5 @@
 // Libraries
-import * as React from "react";
+import React, { useRef } from "react";
 import { Dispatch, bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import {
@@ -59,6 +59,8 @@ const SettingsPage: React.FunctionComponent<ISettingsPageProps> = ({
 	actions,
 	location
 }) => {
+	const { current: isProduction } = useRef(process.env.NODE_ENV === "production")
+
 	/**
 	 *	@description Switches between Dark/Light theme
 	 */
@@ -83,15 +85,14 @@ const SettingsPage: React.FunctionComponent<ISettingsPageProps> = ({
 			</TopNavigation>
 			<Container fullwidth fullheight isFixed={false} offsetTop="5.875rem">
 				<UISection id="settings-general" title="General">
-					<SectionListItem id="about-paperboy">
+					{isProduction && (
 						<AddToHomeScreenWithInstall
 							id="about-paperboy"
 							title="Add to Home Screen"
 							subtitle="Instant Installation"
 							isStandalone={isStandalone}
 						/>
-					</SectionListItem>
-
+					)}
 					<SectionListItem id="about-paperboy">
 						<ListItemWithLink id="about-paperboy" title="Accessibility" to={A11Y_SETTINGS_PAGE} />
 					</SectionListItem>
