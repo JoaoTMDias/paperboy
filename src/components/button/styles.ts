@@ -70,6 +70,7 @@ export const Button = styled.button`
 
 export const Anchor = styled(Link)`
 	width: 100%;
+	max-width: 40rem;
 	height: var(--bottom-navigation-bar-height, ${rem("56px")});
 	background-color: var(--color-primary);
 	color: var(--color-white);

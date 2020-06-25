@@ -36,12 +36,6 @@ const IndexPage: React.FunctionComponent<IIndexPageProps> = ({ authenticated, lo
 						text="Choose your favorite sources"
 						label="Click to navigate to the next screen, where you can pick your favorite sources from a wide array of options."
 					/>
-				</UICallToAction>
-				<Container fullheight>
-					<IconBrandingLarge visible />
-					<UISubtitle text="Welcome!" />
-					<UIDisplay text="Paperboy" />
-					<UILead text="Hundreds of news sources and your favorite magazines and newspapers. Powered by News API and free of charge" />
 					{isready && (
 						<UIButton
 							id="add-to-homescreen"
@@ -51,6 +45,12 @@ const IndexPage: React.FunctionComponent<IIndexPageProps> = ({ authenticated, lo
 							onClick={promptToInstall}
 						/>
 					)}
+				</UICallToAction>
+				<Container fullheight>
+					<IconBrandingLarge visible />
+					<UISubtitle text="Welcome!" />
+					<UIDisplay text="Paperboy" />
+					<UILead text="Hundreds of news sources and your favorite magazines and newspapers. Powered by News API and free of charge" />
 				</Container>
 			</Layout>
 		);

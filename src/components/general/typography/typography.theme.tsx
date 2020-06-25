@@ -67,10 +67,13 @@ const onEnter = keyframes`
 
 const Heading1 = styled.h2`
 	width: 100%;
+	max-width: 40rem;
 	font-size: ${rem("36px")};
 	line-height: 1.15;
 	font-family: var(--heading-font-family);
 	color: var(--heading-1-color);
+	margin-left: auto;
+	margin-right: auto;
 	margin-bottom: ${rem("16px")};
 
 	animation-name: ${onEnter};
@@ -82,12 +85,15 @@ const Heading1 = styled.h2`
 
 const Subtitle = styled.h3`
 	width: 100%;
+	max-width: 40rem;
 	letter-spacing: -0.24px;
 	line-height: 20px;
 	font-size: ${rem("16px")};
 	line-height: 1.25;
 	color: var(--subtitle-color);
 	font-family: var(--heading-font-family);
+	margin-left: auto;
+	margin-right: auto;
 	margin-bottom: ${rem("8px")};
 
 	animation-name: ${onEnter};
@@ -99,12 +105,15 @@ const Subtitle = styled.h3`
 
 const Lead = styled.p`
 	width: 100%;
+	max-width: 40rem;
 	letter-spacing: -0.48px;
 	line-height: 20px;
 	font-size: ${rem("20px")};
 	line-height: var(--global-lineheight);
 	color: var(--lead-color);
 	font-family: var(--body-font-family);
+	margin-left: auto;
+	margin-right: auto;
 
 	animation-name: ${onEnter};
 	animation-duration: 300ms;
