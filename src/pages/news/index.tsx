@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Container, Layout, NewsTabs, ContentSpinner } from "components/index.components";
+import { Container, NewsTabs, ContentSpinner } from "components/index.components";
 import { IGlobalStoreState } from "data/interfaces/index";
 import { INewsPageProps } from "./types";
-import Meta from "components/meta";
+import { PrivateRoute } from 'helpers/index.helpers';
 
 /**
  * News Page Tab
@@ -11,7 +11,7 @@ import Meta from "components/meta";
  * @class NewsPage
  * @extends {React.Component<INewsPageProps, any>}
  */
-const NewsPage: React.FC<INewsPageProps> = ({ authenticated, sources, location }) => {
+const NewsPage: React.FC<INewsPageProps> = ({ sources, location }) => {
 	const [hasData, setHasData] = useState(false);
 
 	useEffect(() => {
@@ -44,18 +44,16 @@ const NewsPage: React.FC<INewsPageProps> = ({ authenticated, sources, location }
 	}
 
 	return (
-		<Layout authenticated header={false}>
-			<Meta title="News" location={location} />
-			<Container fullwidth fullheight isFixed={false} title="Current Page is: News" offsetTop="3rem">
+		<PrivateRoute title="News" location={location}>
+			<Container fullwidth fullheight isFixed={false} offsetTop="3rem">
 				{hasData ? renderNewsTabs() : <ContentSpinner />}
 			</Container>
-		</Layout>
+		</PrivateRoute>
 	);
 };
 
 const mapStateToProps = (state: IGlobalStoreState) => ({
 	platform: state.general.platform,
-	authenticated: state.preferences.authenticated,
 	sources: state.preferences.chosenSources,
 });
 

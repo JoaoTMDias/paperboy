@@ -12,6 +12,7 @@ export const Wrapper = styled.footer`
 	background-color: var(--color-black);
 	padding: 0;
 	position: fixed;
+	z-index: 1;
 `;
 
 export const Navigation = styled.nav`

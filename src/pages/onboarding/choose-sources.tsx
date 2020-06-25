@@ -329,7 +329,7 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
 
 					return (
 						<form id="choose-sources-form" onSubmit={handleSubmit} className="modal-dialog__container">
-							<Container fullwidth isFixed title="Current Page is: Choose News Sources." offsetTop="1rem">
+							<Container fullwidth isFixed offsetTop="1rem">
 								{Top20EditorSuggestions && renderListOfSuggestedSources(Top20EditorSuggestions, values.list)}
 								{renderContent(values.list)}
 							</Container>

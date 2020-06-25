@@ -11,6 +11,8 @@ import { css } from "styled-components";
 const DEFAULT_FONT_SIZE = 16;
 
 const breakpoints = {
+	xmall: 360,
+	small: 414,
 	medium: 640,
 	large: 1024,
 	xlarge: 1200,
@@ -24,6 +26,7 @@ const mediaQuery = (...query) => (...rules) => css`
 `;
 
 const above = {
+	small: mediaQuery`(min-width: ${breakpoints.small / DEFAULT_FONT_SIZE}rem)`,
 	medium: mediaQuery`(min-width: ${breakpoints.medium / DEFAULT_FONT_SIZE}rem)`,
 	large: mediaQuery`(min-width: ${breakpoints.large / DEFAULT_FONT_SIZE}rem)`,
 	xlarge: mediaQuery`(min-width: ${breakpoints.xlarge / DEFAULT_FONT_SIZE}rem)`,
@@ -31,6 +34,7 @@ const above = {
 };
 
 const below = {
+	small: mediaQuery`(min-width: ${breakpoints.small / DEFAULT_FONT_SIZE}rem)`,
 	medium: mediaQuery`(max-width: ${breakpoints.medium / DEFAULT_FONT_SIZE}rem)`,
 	large: mediaQuery`(max-width: ${breakpoints.large / DEFAULT_FONT_SIZE}rem)`,
 	xlarge: mediaQuery`(max-width: ${breakpoints.xlarge / DEFAULT_FONT_SIZE}rem)`,

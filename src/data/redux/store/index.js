@@ -1,21 +1,18 @@
-import { createStore, applyMiddleware } from 'redux';
-import { persistStore, persistReducer, PersistConfig } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
-import thunk from 'redux-thunk';
-import rootReducer from '../reducers/index.reducer';
+import { createStore, applyMiddleware } from "redux";
+import { persistStore, persistReducer, PersistConfig } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { composeWithDevTools } from "redux-devtools-extension/developmentOnly";
+import thunk from "redux-thunk";
+import rootReducer from "../reducers/index.reducer";
 
 const persistConfig = {
-	key: 'paperboy-persist',
+	key: "paperboy-persist-storage",
 	storage,
-	whitelist: ['preferences'],
+	whitelist: ["preferences"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-const store = createStore(
-	persistedReducer,
-	composeWithDevTools(applyMiddleware(thunk)),
-);
+const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(thunk)));
 const persistor = persistStore(store);
 
 export { store, persistor };

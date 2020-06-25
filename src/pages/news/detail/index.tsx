@@ -22,6 +22,7 @@ import { EModalAlignType } from "data/interfaces/modal";
 import Meta from "components/meta";
 import useWebShare from "helpers/custom-hooks/useWebShare";
 import { IGlobalStoreState } from "data/interfaces";
+import { PrivateRoute } from 'helpers/index.helpers';
 
 enum EModalType {
 	SHARE = "SHARE",
@@ -118,12 +119,11 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ a
 
 	if (data) {
 		return (
-			<Layout header={false} bottomNavigation={false}>
-				<Meta title="News Detail" />
+			<PrivateRoute title="News Detail" bottomNavigation={false}>
 				{showShareSheet && handleShareContent()}
 				{showTypesetPanel && <ArticleTypeset />}
 				<TopNavigationWithClose title={data.title} source="source" />
-				<Container fullwidth fullheight title="Current Page is: News Detail." offsetTop="0">
+				<Container fullwidth fullheight offsetTop="0">
 					<Article>
 						<Hero ref={hero.current} id="hero" className="above-the-fold">
 							<HeroCopy className="hero__title">
@@ -186,7 +186,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ a
 						</button>
 					</BottomOptionsBar>
 				</Container>
-			</Layout>
+			</PrivateRoute>
 		);
 	}
 

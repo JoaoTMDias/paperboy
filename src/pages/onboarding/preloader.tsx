@@ -8,6 +8,7 @@ import Meta from "components/meta/index";
 import { getAllLatestNewsFromSource, setUserAuthentication } from "data/redux/actions/index.actions";
 import { NEWS_PAGE } from "data/constants/index.constants";
 import { IGlobalStoreState, IChosenNewsSourcesItems, IBasePageProps, INewsArticleItem } from "data/interfaces/index";
+import { PrivateRoute } from 'helpers/index.helpers';
 
 interface IPreloaderPageActions {
 	getAllLatestNewsFromSource: (source: string[]) => (dispatch: Dispatch<AnyAction>) => void;
@@ -67,12 +68,11 @@ const PreloaderPage: React.FC<IPreloaderPageProps> = ({ authenticated, actions, 
 	}
 
 	return (
-		<Layout authenticated={authenticated}>
-			<Meta title="Fetching news..." location={location} />
-			<Container fullwidth fullheight isFixed title="Current Page is: Preloader screen.">
+		<PrivateRoute title="Fetching News" location={location} >
+			<Container fullwidth fullheight isFixed>
 				<ContentSpinner fullPage />
 			</Container>
-		</Layout>
+		</PrivateRoute>
 	);
 };
 

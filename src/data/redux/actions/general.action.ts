@@ -65,13 +65,11 @@ const setFeatureSupport = (features: FeatureSupport) => {
  * @param {*} platform
  * @returns
  */
-const setPlatform = (platform: any) => {
-	if (typeof platform === "string") {
-		return {
-			type: SET_PLATFORM,
-			platform,
-		};
-	}
+const setPlatform = (platform: string) => {
+	return {
+		type: SET_PLATFORM,
+		platform,
+	};
 };
 
 /**
@@ -101,7 +99,7 @@ const getUserCountryCodeByCoordinates = (latitude: number, longitude: number) =>
 					dispatch(updateStore(country));
 				}
 			})
-			.catch((error) => {});
+			.catch((error) => { });
 	};
 };
 

@@ -1,12 +1,13 @@
 import React from "react";
 import { Layout, Container } from "components/index.components";
+import { PrivateRoute } from "helpers/index.helpers";
 
 const CategoriesPage = () => (
-	<Layout header={false}>
-		<Container fullwidth fullheight isFixed={false} title="Current Page is: Latest News">
+	<PrivateRoute title="Categories">
+		<Container fullwidth fullheight isFixed={false}>
 			<p>Categories</p>
 		</Container>
-	</Layout>
+	</PrivateRoute>
 );
 
 export default CategoriesPage;

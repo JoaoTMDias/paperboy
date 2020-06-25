@@ -1,29 +1,23 @@
 // Libraries
 import * as React from "react";
 import { connect } from "react-redux";
-import { Redirect } from "@reach/router";
-import * as H from "history";
 import {
 	ArticleThumbnail,
 	Container,
-	Layout,
 	TopNavigation,
 	TopNavigationWithTitle,
 	UISection,
 } from "components/index.components";
 import { List } from "./styles";
-import { ONBOARDING_PAGE, SAVED_PAGE } from "data/constants/router.constants";
-import { IGlobalStoreState, INewsArticleItem } from "data/interfaces/index";
-import { EThumbnailType } from "../../components/thumbnails/types.d";
-import Meta from "components/meta";
+import { IGlobalStoreState, INewsArticleItem, IBasePageProps } from "data/interfaces/index";
+import { PrivateRoute } from 'helpers/index.helpers';
+import { EThumbnailType } from 'components/thumbnails/types.d';
 
 // Interface
-interface ISavedPageProps {
+interface ISavedPageProps extends IBasePageProps {
 	dispatch?: any;
-	authenticated: boolean;
 	children?: any;
 	saved: INewsArticleItem[];
-	location: H.Location;
 }
 
 /**
@@ -32,7 +26,7 @@ interface ISavedPageProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<ISavedPageProps>}
  */
-const SavedPage: React.FunctionComponent<ISavedPageProps> = ({ authenticated, saved, location }) => {
+const SavedPage: React.FunctionComponent<ISavedPageProps> = ({ saved, location }) => {
 	/**
 	 *
 	 *
@@ -59,12 +53,8 @@ const SavedPage: React.FunctionComponent<ISavedPageProps> = ({ authenticated, sa
 
 	const numberOfArticles = saved ? saved.length : 0;
 
-	if (!authenticated) {
-		return <Redirect from={SAVED_PAGE} to={ONBOARDING_PAGE} noThrow />;
-	}
 	return (
-		<Layout authenticated={authenticated} header={false}>
-			<Meta title="Saved Articles" location={location} />
+		<PrivateRoute title="Saved Articles" location={location}>
 			<TopNavigation
 				shadow="hairline"
 				style={{
@@ -73,17 +63,16 @@ const SavedPage: React.FunctionComponent<ISavedPageProps> = ({ authenticated, sa
 			>
 				<TopNavigationWithTitle title="Saved" subtitle="Read the news anytime" />
 			</TopNavigation>
-			<Container fullwidth fullheight isFixed={false} title="Current Page is: Saved" offsetTop="5.875rem">
+			<Container fullwidth fullheight isFixed={false} offsetTop="5.875rem">
 				<UISection id="saved-list" title={`Inbox (${numberOfArticles})`}>
 					{renderListOfArticles()}
 				</UISection>
 			</Container>
-		</Layout>
+		</PrivateRoute>
 	);
 };
 
 const mapState2Props = (state: IGlobalStoreState) => ({
-	authenticated: state.preferences.authenticated,
 	saved: state.preferences.saved,
 });
 

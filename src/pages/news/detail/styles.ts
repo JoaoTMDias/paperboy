@@ -217,7 +217,7 @@ export const ArticleLink = styled.a`
 	--link-source-color: var(--color-gray7);
 	--link-background-color: var(--body-background);
 	--link-border-color: var(--color-gray5);
-	--button-size: ${rem("56px")};
+	--button-size: ${rem("48px")};
 
 	width: 100%;
 	height: var(--button-size);
@@ -264,6 +264,10 @@ export const ArticleLink = styled.a`
 		--link-source-color: var(--color-gray2);
 		--link-background-color: var(--color-gray8);
 		--link-border-color: var(--color-gray8);
+	`};
+
+	${above.small`
+		--button-size: ${rem("56px")};
 	`};
 `;
 

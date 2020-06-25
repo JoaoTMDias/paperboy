@@ -6,3 +6,8 @@ export * from "./position.helper";
 export * from "./row.helper";
 export * from "./with-memo.helper";
 export * from "./elevation.helper";
+import PrivateRoute from "./private-route";
+
+export {
+	PrivateRoute
+}

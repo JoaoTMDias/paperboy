@@ -1,5 +1,5 @@
 // Libraries
-import * as React from "react";
+import React, { lazy, Suspense } from "react";
 import { AddToHomeWrapper } from "./styles";
 import { IAddToHomeScreenWithInstallProps } from "./types";
 
@@ -18,29 +18,30 @@ export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScree
 	 * @date 2019-06-07
 	 * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
 	 */
-	function handleClickToInstall(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-		event.preventDefault();
-
+	function handleClickToInstall() {
 		console.log("click to install");
 	}
 
 	return (
-		<AddToHomeWrapper
-			id={id}
-			type="button"
-			className="section-list__item__label"
-			tabIndex={0}
-			disabled={isStandalone}
-			onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleClickToInstall(event)}
-		>
-			<div className="text">
-				<h3 className="text__title">{title}</h3>
-				{subtitle && <h6 className="text__subtitle">{subtitle}</h6>}
-			</div>
-			<div className={`banner ${isStandalone ? "is-standalone" : ""}`}>
-				{isStandalone && isStandalone === true ? "Installed" : "Install"}
-			</div>
-		</AddToHomeWrapper>
+		<>
+			<pwa-install></pwa-install>
+			<AddToHomeWrapper
+				id={id}
+				type="button"
+				className="section-list__item__label"
+				tabIndex={0}
+				disabled={isStandalone}
+				onClick={handleClickToInstall}
+			>
+				<div className="text">
+					<h3 className="text__title">{title}</h3>
+					{subtitle && <h6 className="text__subtitle">{subtitle}</h6>}
+				</div>
+				<div className={`banner ${isStandalone ? "is-standalone" : ""}`}>
+					{isStandalone && isStandalone === true ? "Installed" : "Install"}
+				</div>
+			</AddToHomeWrapper>
+		</>
 	);
 };
 

@@ -17,8 +17,7 @@ export const TabItem: React.FunctionComponent<ITabItemProps> = (props) => {
 			<TabLink
 				to={to}
 				activeClassName="is-active"
-				aria-label={`Click/Tap to go to the page: ${label}`}
-				tabIndex={0}
+				aria-label={`Go to ${label} page`}
 				layout={layout}
 				label={label}
 			>

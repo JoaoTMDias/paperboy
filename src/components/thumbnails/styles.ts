@@ -6,8 +6,9 @@ import { theme } from "helpers/theme.helper";
 import { above } from "helpers/index.helpers";
 
 export const Anchor = styled(Link)`
+	--anchor-height-factor: 0.35;
 	--thumbnail-outline-color: var(--color-gray1);
-	--anchor-height: calc(var(--viewport-height) * 0.4);
+	--anchor-height: calc(var(--viewport-height) * var(--anchor-height-factor));
 
 	${theme.dark`
 		--thumbnail-outline-color: var(--color-gray9);
@@ -17,7 +18,7 @@ export const Anchor = styled(Link)`
 	background-color: var(--color-gray1);
 	display: flex;
 	flex-direction: row;
-	height: var(--anchor-height, 40vh);
+	height: var(--anchor-height, 35vh);
 	justify-content: center;
 	overflow: hidden;
 	padding: 0;
@@ -33,7 +34,12 @@ export const Anchor = styled(Link)`
 		switch (props.type) {
 			case EThumbnailType.LARGE:
 				return css`
-					min-height: ${rem("260px")};
+					min-height: ${rem("200px")};
+
+					${above.small`
+						--anchor-height-factor: 0.4;
+						min-height: ${rem("260px")};
+					`};
 				`;
 
 			default:
