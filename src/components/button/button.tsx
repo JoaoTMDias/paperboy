@@ -8,14 +8,15 @@ import { IUIButtonProps } from "./types";
  * @extends {React.FC}
  */
 export const UIButton: React.FunctionComponent<IUIButtonProps> = (props) => {
-	const { text, disabled } = props;
+	const { id, type, text, label, disabled, flavour, onClick } = props;
 	const linkText = disabled ? "Select at least 3 sources " : text;
 
-	return <Button {...props}>{linkText}</Button>;
+	return <Button id={id} type={type} aria-label={label} disabled={disabled} flavour={flavour} onClick={onClick}>{linkText}</Button>;
 };
 
 UIButton.defaultProps = {
 	flavour: "primary",
+	type: "button",
 	text: "button text",
 	label: "button aria label",
 	disabled: false,

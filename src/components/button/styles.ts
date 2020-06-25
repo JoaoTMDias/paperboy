@@ -42,7 +42,7 @@ export const Button = styled.button`
 
 		return css`
 			background-color: transparent;
-			border: 1px solid var(--color-gray8);
+			border: 1px dashed var(--color-gray8);
 			color: var(--color-gray8);
 		`;
 	}};

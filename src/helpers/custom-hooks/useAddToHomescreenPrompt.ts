@@ -47,6 +47,7 @@ export function useAddToHomescreenPrompt(): AddToHomescreenPromptReturn {
 
 	useEffect(() => {
 		const ready = (event: IBeforeInstallPromptEvent) => {
+			// Prevent the mini-infobar from appearing on mobile
 			event.preventDefault();
 			setPrompt(event);
 			setIsReadyToInstall(true);

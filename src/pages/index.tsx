@@ -39,15 +39,15 @@ const IndexPage: React.FunctionComponent<IIndexPageProps> = ({ authenticated, lo
 				</UICallToAction>
 				<Container fullheight>
 					<IconBrandingLarge visible />
-					<UISubtitle text="This is Paperboy" />
-					<UIDisplay text="Information is Power" />
-					<UILead text="See the most important news of the hour, right from your favorite sources." />
+					<UISubtitle text="Welcome!" />
+					<UIDisplay text="Paperboy" />
+					<UILead text="Hundreds of news sources and your favorite magazines and newspapers. Powered by News API and free of charge" />
 					{isready && (
 						<UIButton
 							id="add-to-homescreen"
 							flavour="secondary"
-							type="button"
-							text="Add on your homescreen"
+							label="Add Paperboy to this device's desktop or homescreen"
+							text="+ Add to homescreen"
 							onClick={promptToInstall}
 						/>
 					)}
