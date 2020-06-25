@@ -91,12 +91,6 @@ const HTML: React.FunctionComponent<IHTMLProps> = (props) => {
 				</noscript>
 				<div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
 				{postBodyComponents}
-				<script
-					type="module"
-					src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall"
-					async
-					defer
-				></script>
 			</body>
 		</html>
 	);

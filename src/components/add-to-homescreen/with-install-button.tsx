@@ -1,7 +1,8 @@
 // Libraries
-import React, { lazy, Suspense } from "react";
+import React from "react";
 import { AddToHomeWrapper } from "./styles";
 import { IAddToHomeScreenWithInstallProps } from "./types";
+import { useAddToHomescreenPrompt } from 'helpers/custom-hooks/useAddToHomescreenPrompt';
 
 /**
  * @description Component Description
@@ -11,6 +12,8 @@ import { IAddToHomeScreenWithInstallProps } from "./types";
  */
 export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScreenWithInstallProps> = (props) => {
 	const { id, title, subtitle, isStandalone } = props;
+	const [prompt, promptToInstall] = useAddToHomescreenPrompt();
+
 
 	/**
 	 * @description
@@ -20,11 +23,15 @@ export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScree
 	 */
 	function handleClickToInstall() {
 		console.log("click to install");
+
+		if (prompt) {
+			debugger;
+			promptToInstall();
+		}
 	}
 
 	return (
 		<>
-			<pwa-install></pwa-install>
 			<AddToHomeWrapper
 				id={id}
 				type="button"
