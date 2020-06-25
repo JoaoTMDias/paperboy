@@ -1,6 +1,7 @@
 // Component Props
 export interface IUIButtonProps {
 	type: "button" | "submit" | "reset";
+	flavour?: "primary" | "secondary";
 	text: string;
 	label: string;
 	onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;

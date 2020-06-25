@@ -1,9 +1,8 @@
 // Libraries
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { InstallButton } from "./styles";
 import { IAddToHomeScreenWithInstallProps } from "./types";
 import { useAddToHomescreenPrompt } from 'helpers/custom-hooks/useAddToHomescreenPrompt';
-import ContentSpinner from 'components/content-spinner';
 import { SectionListItem } from 'components/lists';
 
 /**
@@ -12,9 +11,21 @@ import { SectionListItem } from 'components/lists';
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IAddToHomeScreenWithInstallProps>}
  */
-export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScreenWithInstallProps> = (props) => {
-	const { id, title, subtitle, isStandalone } = props;
-	const [isready, prompt, promptToInstall] = useAddToHomescreenPrompt();
+export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScreenWithInstallProps> = ({ id, title, subtitle, isStandalone }) => {
+	const [isready, promptToInstall] = useAddToHomescreenPrompt();
+	const [buttonProps, setButtonProps] = useState({
+		text: "checking...",
+		classes: "banner"
+	});
+	const [description, setDescription] = useState("Checking...");
+
+	useEffect(() => {
+		setButtonProps({
+			text: isStandalone ? "Installed" : "Install Now",
+			classes: isStandalone ? "banner is-standalone" : "banner"
+		});
+		setDescription(isStandalone ? "Already installed" : "The app can be installed")
+	}, [isready]);
 
 
 	/**
@@ -24,23 +35,8 @@ export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScree
 	 * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
 	 */
 	function handleClickToInstall() {
-		if (prompt) {
-			promptToInstall();
-		}
+		promptToInstall();
 	}
-
-	function renderButton() {
-		const classes = `banner ${isStandalone ? "is-standalone" : ""}`;
-		const text = isStandalone ? "Installed" : "Install";
-
-		return (
-			<div className={classes}>
-				{text}
-			</div>
-		)
-	}
-
-	const description = isready ? subtitle : "Checking if is installed...";
 
 	return isready ? (
 		<SectionListItem id="add-to-homescreen">
@@ -55,10 +51,12 @@ export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScree
 					<h3 className="text__title">{title}</h3>
 					<p className="text__subtitle">{description}</p>
 				</div>
-				{renderButton()}
+				<div data-testid="fake-install-button" className={buttonProps.classes}>
+					{buttonProps.text}
+				</div>
 			</InstallButton>
 		</SectionListItem>
-	) : <ContentSpinner temporary />;
+	) : null;
 };
 
 export default AddToHomeScreenWithInstall;

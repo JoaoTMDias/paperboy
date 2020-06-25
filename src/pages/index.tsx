@@ -10,18 +10,22 @@ import {
 	UIDisplay,
 	UILead,
 	UISubtitle,
+	UIButton,
 } from "components/index.components";
 import { IconBrandingLarge } from "components/icons/index";
 
 import { NEWS_PAGE, ONBOARDING_CHOOSE_SOURCES_PAGE, ONBOARDING_PAGE } from "data/constants/index.constants";
 import Meta from "components/meta/index";
 import { IBasePageProps } from "data/interfaces";
+import { useAddToHomescreenPrompt } from 'helpers/custom-hooks/useAddToHomescreenPrompt';
 
 interface IIndexPageProps extends IBasePageProps {
 	authenticated: boolean;
 }
 
 const IndexPage: React.FunctionComponent<IIndexPageProps> = ({ authenticated, location }) => {
+	const [isready, promptToInstall] = useAddToHomescreenPrompt();
+
 	if (!authenticated) {
 		return (
 			<Layout authenticated={authenticated}>
@@ -38,6 +42,15 @@ const IndexPage: React.FunctionComponent<IIndexPageProps> = ({ authenticated, lo
 					<UISubtitle text="This is Paperboy" />
 					<UIDisplay text="Information is Power" />
 					<UILead text="See the most important news of the hour, right from your favorite sources." />
+					{isready && (
+						<UIButton
+							id="add-to-homescreen"
+							flavour="secondary"
+							type="button"
+							text="Add on your homescreen"
+							onClick={promptToInstall}
+						/>
+					)}
 				</Container>
 			</Layout>
 		);

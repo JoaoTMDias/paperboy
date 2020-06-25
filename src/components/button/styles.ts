@@ -4,10 +4,11 @@ import styled, { css } from "styled-components";
 import { IUIAnchorProps, IUIButtonProps } from "./types";
 
 // Styling
+// Styling
 export const Button = styled.button`
 	width: 100%;
+	max-width: 40rem;
 	height: var(--bottom-navigation-bar-height, ${rem("56px")});
-	background-color: var(--color-primary);
 	color: var(--color-white);
 	text-align: center;
 	display: flex;
@@ -32,8 +33,22 @@ export const Button = styled.button`
 		transform: scale(0.98);
 	}
 
-	${(props: IUIButtonProps) =>
-		props.disabled &&
+	${({ flavour }: IUIButtonProps) => {
+		if (flavour === "primary") {
+			return css`
+				background-color: var(--color-primary);
+			`;
+		}
+
+		return css`
+			background-color: transparent;
+			border: 1px solid var(--color-gray8);
+			color: var(--color-gray8);
+		`;
+	}};
+
+	${({ disabled }: IUIButtonProps) =>
+		disabled &&
 		css`
 			background-color: var(--color-gray3);
 			color: var(--color-gray8);

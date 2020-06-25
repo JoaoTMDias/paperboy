@@ -10,8 +10,8 @@ import {
 	UISection,
 	ListItemWithSwitch,
 	ListItemWithLink,
-	ListItemWithButton,
 	AddToHomeScreenWithInstall,
+	UIButton,
 } from "components/index.components";
 
 import { EAppThemeType } from "data/interfaces/theme";
@@ -22,7 +22,6 @@ import {
 	OPEN_SOURCE_SETTINGS_PAGE
 } from "data/constants/router.constants";
 import { IGlobalStoreState, IBasePageProps } from "data/interfaces/index";
-import { EListItemButtonType } from "components/lists/list-types";
 import { PrivateRoute } from 'helpers/index.helpers';
 
 // Interface
@@ -131,11 +130,11 @@ const SettingsPage: React.FunctionComponent<ISettingsPageProps> = ({
 					}}
 				>
 					<SectionListItem id="logout-paperboy">
-						<ListItemWithButton
+						<UIButton
 							id="reset-preferences"
-							title="Reset Preferences"
-							flavour={EListItemButtonType.PRIMARY}
 							onClick={handleClickToClearPreferences}
+							type="button"
+							text="Reset Preferences"
 						/>
 					</SectionListItem>
 				</UISection>

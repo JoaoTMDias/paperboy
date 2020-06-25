@@ -15,6 +15,7 @@ export const UIButton: React.FunctionComponent<IUIButtonProps> = (props) => {
 };
 
 UIButton.defaultProps = {
+	flavour: "primary",
 	text: "button text",
 	label: "button aria label",
 	disabled: false,

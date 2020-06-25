@@ -11,13 +11,12 @@ interface IBeforeInstallPromptEvent extends Event {
 
 type AddToHomescreenPromptReturn = [
 	boolean,
-	IBeforeInstallPromptEvent | null,
 	() => void
 ];
 
 export function useAddToHomescreenPrompt(): AddToHomescreenPromptReturn {
 	const [isReadyToInstall, setIsReadyToInstall] = useState(false);
-	const [prompt, setState] = useState<IBeforeInstallPromptEvent | null>(
+	const [prompt, setPrompt] = useState<IBeforeInstallPromptEvent | null>(
 		null
 	);
 
@@ -49,16 +48,16 @@ export function useAddToHomescreenPrompt(): AddToHomescreenPromptReturn {
 	useEffect(() => {
 		const ready = (event: IBeforeInstallPromptEvent) => {
 			event.preventDefault();
+			setPrompt(event);
 			setIsReadyToInstall(true);
-			setState(event);
 		};
 
-		window.addEventListener("beforeinstallprompt", ready);
+		window.addEventListener("beforeinstallprompt", ready as any);
 
 		return () => {
-			window.removeEventListener("beforeinstallprompt", ready);
+			window.removeEventListener("beforeinstallprompt", ready as any);
 		};
 	}, []);
 
-	return [isReadyToInstall, prompt, promptToInstall];
+	return [isReadyToInstall, promptToInstall];
 }
