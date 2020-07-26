@@ -1,5 +1,5 @@
 // Libraries
-import React, { useRef } from "react";
+import React, { useRef, useCallback } from "react";
 import { Dispatch, bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import {
@@ -63,10 +63,14 @@ const SettingsPage: React.FunctionComponent<ISettingsPageProps> = ({
 	/**
 	 *	@description Switches between Dark/Light theme
 	 */
-	function handleToggleDarkTheme() {
-		const themeToSet = theme && theme === EAppThemeType.LIGHT ? EAppThemeType.DARK : EAppThemeType.LIGHT;
-		actions.setAppTheme(themeToSet);
-	}
+	const handleToggleDarkTheme = useCallback(
+
+		(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => {
+			event.preventDefault();
+
+			const themeToSet = theme && theme === EAppThemeType.LIGHT ? EAppThemeType.DARK : EAppThemeType.LIGHT;
+			actions.setAppTheme(themeToSet)
+		}, [theme, actions]);
 
 	function handleClickToClearPreferences() {
 		actions.resetAppState(true);
