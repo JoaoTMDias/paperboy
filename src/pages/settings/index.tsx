@@ -80,7 +80,7 @@ const SettingsPage: React.FunctionComponent<ISettingsPageProps> = ({
 					marginBottom: "1.25rem",
 				}}
 			>
-				<TopNavigationWithTitle title="Settings" subtitle="Personalize the app to your tastee" />
+				<TopNavigationWithTitle title="Settings" subtitle="Personalize the app to your taste" />
 			</TopNavigation>
 			<Container fullwidth fullheight isFixed={false} offsetTop="5.875rem">
 				<UISection id="settings-general" title="General">

@@ -1,5 +1,6 @@
 import React from "react";
-import isNil from "lodash/isnil";
+import isNil from "lodash/isNil";
+import { navigate } from "gatsby";
 import { useState, useEffect, PropsWithChildren } from "react";
 import { Redirect } from "@reach/router";
 import { connect } from "react-redux";
@@ -38,7 +39,10 @@ const PrivateRoute: React.FunctionComponent<PropsWithChildren<IWithAuthenticatio
 
 	if (!loading && hasStatus) {
 		if (!authenticated) {
-			return <Redirect to={redirectTo} replace />;
+			redirectTo && navigate(redirectTo, {
+				replace: true,
+			});
+			return null;
 		}
 
 		return (
