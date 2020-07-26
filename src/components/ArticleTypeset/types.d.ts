@@ -1,9 +1,14 @@
-import { Dispatch } from "redux";
-
 // Interface
 export interface IArticleTypesetProps {
 	baseFontRatio: number;
-	dispatch?: Dispatch<any>;
+	actions: {
+		setBaseFontRatio: (ratio: number) => {
+			type: string;
+			payload: {
+				data: number;
+			};
+		}
+	}
 }
 
 export interface IArticleTypesetState {

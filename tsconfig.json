@@ -13,7 +13,7 @@
 		"allowJs": true,
 		"declaration": false,
 		"importHelpers": true,
-		"jsx": "react",
+		"jsx": "preserve",
 		"lib": ["dom", "es2015", "es2017"],
 		"module": "commonjs",
 		"noEmitHelpers": false,

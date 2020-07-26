@@ -1,4 +1,5 @@
 import React from "react";
+import isNil from "lodash/isnil";
 import { useState, useEffect, PropsWithChildren } from "react";
 import { Redirect } from "@reach/router";
 import { connect } from "react-redux";
@@ -6,7 +7,6 @@ import { IGlobalStoreState, IBasePageProps } from 'data/interfaces';
 import { ONBOARDING_PAGE } from "data/constants/router.constants";
 import ContentSpinner from 'components/content-spinner';
 import Layout from 'components/layout';
-import bottomNavigation from 'components/bottom-navigation';
 import Meta from 'components/meta';
 
 interface IWithAuthenticationProps extends IBasePageProps {
@@ -30,7 +30,7 @@ const PrivateRoute: React.FunctionComponent<PropsWithChildren<IWithAuthenticatio
 	const [hasStatus, setHasStatus] = useState(false);
 
 	useEffect(() => {
-		if (authenticated !== null && authenticated !== undefined) {
+		if (!isNil(authenticated)) {
 			setIsLoading(false);
 			setHasStatus(true);
 		}

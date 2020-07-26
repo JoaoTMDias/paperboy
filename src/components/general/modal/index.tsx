@@ -1,92 +1,89 @@
-import * as React from "react";
+import React, { FunctionComponent, useRef, useState, useCallback } from "react";
+import { useMount, useUnmount, useClickAway } from "react-use";
 import { Portal, UIDialog } from "components/index.components";
-import { IModalProps, IModalState } from "./types";
+import { IModalProps } from "./types";
 import { ModalWrapper } from "./styles";
 
-class Modal extends React.PureComponent<IModalProps, IModalState> {
-	public timer: any = null;
+const Modal: FunctionComponent<IModalProps> = ({
+	isModalOpen,
+	backgroundOpacity,
+	align,
+	delay,
+	handleClickToCloseModal,
+	children,
+}) => {
+	let { current: timer } = useRef<any>(null);
+	const ref = useRef(null);
+	const [shouldOpenModal, setShouldOpenModal] = useState(false);
 
-	static defaultProps = {
-		backgroundOpacity: 0.3,
-		align: "bottom",
-		delay: null,
-		isModalOpen: false,
-	};
-
-	constructor(props: IModalProps) {
-		super(props);
-		this.state = {
-			shouldOpenModal: false,
-		};
-	}
+	useClickAway(ref, () => {
+		setShouldOpenModal(false);
+	});
 
 	/**
 	 * @description When the component mounts, sets a 15sec timeout and then shows.
 	 *
 	 * @memberof Modal
 	 */
-	componentDidMount() {
-		const { delay } = this.props;
-
+	useMount(() => {
 		if (delay && delay > 0) {
-			this.timer = setTimeout(() => this.handleOpenModal(), delay);
+			timer = setTimeout(() => handleOpenModal(), delay);
 		} else {
-			this.handleOpenModal();
+			handleOpenModal();
 		}
-	}
+	});
 
-	componentWillUnmount() {
-		clearTimeout(this.timer);
-	}
+	useUnmount(() => {
+		clearTimeout(timer);
+	});
 
-	handleOnClickOnBackground(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-		const { handleClickToCloseModal } = this.props;
+	const handleOnClickOnBackground = useCallback(
+		(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+			event.preventDefault();
 
-		event.preventDefault();
+			if (handleClickToCloseModal) {
+				handleClickToCloseModal(event);
+			}
+		},
+		[handleClickToCloseModal]
+	);
 
-		if (handleClickToCloseModal) {
-			handleClickToCloseModal(event);
+	const handleOpenModal = useCallback(() => {
+		if (isModalOpen) {
+			setShouldOpenModal(true);
 		}
-	}
+	}, [isModalOpen]);
 
-	handleOpenModal() {
-		const { isModalOpen: status } = this.props;
-
-		if (status) {
-			this.setState({
-				shouldOpenModal: true,
-			});
-		}
-	}
-
-	public render() {
-		const { children, backgroundOpacity, align, delay } = this.props;
-
-		const { shouldOpenModal } = this.state;
-
-		if (shouldOpenModal) {
-			return (
-				<Portal>
-					<ModalWrapper
-						backgroundOpacity={backgroundOpacity}
-						align={align}
-						delay={delay}
-						onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => this.handleOnClickOnBackground(event)}
-						tabIndex={-1}
+	if (shouldOpenModal) {
+		return (
+			<Portal ref={ref}>
+				<ModalWrapper
+					role="dialog"
+					backgroundOpacity={backgroundOpacity}
+					align={align}
+					delay={delay}
+					onClick={handleOnClickOnBackground}
+					tabIndex={-1}
+				>
+					<UIDialog
+						onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+							return event.preventDefault();
+						}}
 					>
-						<UIDialog
-							onClick={(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-								return event.preventDefault();
-							}}
-						>
-							{children}
-						</UIDialog>
-					</ModalWrapper>
-				</Portal>
-			);
-		}
-		return null;
+						{children}
+					</UIDialog>
+				</ModalWrapper>
+			</Portal>
+		);
 	}
+	return null;
 }
+
+Modal.defaultProps = {
+	backgroundOpacity: 0.3,
+	align: "bottom",
+	delay: null,
+	isModalOpen: false,
+};
 
 export default Modal;
