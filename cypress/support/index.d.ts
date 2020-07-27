@@ -18,6 +18,5 @@ declare namespace Cypress {
 		getByAttr(attribute: string, value: string): Chainable<any>;
 		getAnnouncerText(message: string): Chainable<any>;
 		mockSetupPreferences(): Chainable<any>;
-		forceDarkMode(): Chainable<any>;
 	}
 }
