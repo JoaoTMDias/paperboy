@@ -17,7 +17,6 @@ import { EAppThemeType } from "data/interfaces/theme";
 // Preferences initial state
 const initialState: PreferencesReducer = {
 	type: null,
-	theme: EAppThemeType.LIGHT,
 	chosenSources: {
 		quantity: 0,
 		items: {
@@ -25,23 +24,7 @@ const initialState: PreferencesReducer = {
 			tabs: [],
 		},
 	},
-	saved: [
-		{
-			source: {
-				id: "google-news",
-				name: "Google News",
-			},
-			author: "Nicole Gaouette and Noah Gray, CNN",
-			title: "Trump announces 'hard-hitting' new sanctions against Iran",
-			description:
-				"President Donald Trump announced new sanctions against Iran Monday in part to retaliate after the downing of a US drone last week, with the punitive measures targeting Iran's most senior leader, military officials and its top diplomat, Foreign Minister Javad …",
-			url: "https://www.cnn.com/2019/06/24/politics/trump-iran-sanctions/index.html",
-			urlToImage: "https://cdn.cnn.com/cnnnext/dam/assets/190507081502-13-donald-trump-lead-image-super-tease.jpg",
-			publishedAt: "2019-06-24T16:42:00+00:00",
-			content:
-				"Washington (CNN)President Donald Trump announced new sanctions against Iran Monday in part to retaliate after the downing of a US drone last week, with the punitive measures targeting Iran's most senior leader, military officials and its top diplomat, Foreign… [+1849 chars]",
-		},
-	],
+	saved: [],
 	authenticated: false,
 	baseFontRatio: 1,
 };

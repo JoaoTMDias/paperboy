@@ -3,9 +3,17 @@ import BASE_PREFERENCES_STORAGE from "../fixtures/localstorage-paperboy-persist.
 const NEWS_URL = `${Cypress.config().baseUrl}/news`;
 
 describe("homepage", () => {
+	beforeEach(() => {
+		cy.setupUI({});
+		cy.forceDarkMode();
+	});
+
+	afterEach(() => {
+		cy.clearLocalStorage();
+	});
+
 	describe("no preferences", () => {
 		it("should render the welcome page by default", () => {
-			cy.setupUI({});
 			cy.url().should("be", Cypress.config().baseUrl);
 			cy.getByTestId("ui-subtitle-title").contains("Welcome!");
 			cy.getByTestId("ui-display-title").contains("Paperboy");

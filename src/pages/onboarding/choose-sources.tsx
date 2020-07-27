@@ -302,7 +302,7 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
 			<TopNavigation shadow="hairline">
 				<TopNavigationWithTitle title="What do you fancy reading?" subtitle="Breaking news from over 30,000 sources" />
 			</TopNavigation>
-			<Modal delay={10000}>
+			<Modal>
 				<Confirm
 					title="Use location services?"
 					description="Can I use your devices' location to find any news sources related to your country/language?"

@@ -1,19 +1,22 @@
 // Libraries
-import * as React from "react";
+import React, { FunctionComponent, useState, useRef, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
-
+import { setAppTheme } from "data/redux/actions/index.actions";
 import { EAppThemeType } from "data/interfaces/theme";
 import { IGlobalStoreState } from "data/interfaces/index";
+import { Dispatch, bindActionCreators } from 'redux';
 
 // Interface
 interface IChangeAppThemeProps {
+	actions: {
+		setAppTheme: (theme: EAppThemeType) => {
+			type: string;
+			payload: {
+				data: EAppThemeType;
+			};
+		},
+	},
 	currentTheme: EAppThemeType | undefined;
-}
-
-interface IChangeAppThemeState {
-	rootElement: HTMLElement | null;
-	hasNewTheme: boolean | null;
-	themeColor: string;
 }
 
 /**
@@ -22,16 +25,19 @@ interface IChangeAppThemeState {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IChangeAppThemeProps>}
  */
-class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAppThemeState> {
-	constructor(props: IChangeAppThemeProps) {
-		super(props);
+const ChangeAppTheme: FunctionComponent<IChangeAppThemeProps> = ({
+	actions,
+	currentTheme,
+}) => {
+	const { current: rootElement } = useRef(document.documentElement);
+	const { current: hasDarkModeInSystemPreferences } = useRef(window.matchMedia("(prefers-color-scheme: dark)").matches);
+	const [hasNewTheme, setHasNewTheme] = useState(false);
+	const [themeColor, setThemeColor] = useState("#e81b1f");
 
-		this.state = {
-			rootElement: null,
-			hasNewTheme: false,
-			themeColor: "#e81b1f",
-		};
+	function checkIfHasDarkMode(): EAppThemeType {
+		return hasDarkModeInSystemPreferences ? EAppThemeType.DARK : EAppThemeType.LIGHT;
 	}
+
 
 	/**
 	 * @description updates the rootElement with the document.documentElement.
@@ -40,38 +46,59 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
 	 * @returns {boolean}
 	 * @memberof ChangeAppTheme
 	 */
-	componentDidMount(): boolean {
-		const { currentTheme } = this.props;
-		if (document !== undefined) {
-			const rootElement = document.documentElement ? document.documentElement : null;
+	useEffect(() => {
+		if (!hasNewTheme) {
+			let theme = currentTheme || checkIfHasDarkMode();
 
-			this.setState(
-				{
-					rootElement,
-				},
-				() => {
-					if (currentTheme) {
-						const hasDarkModeInSystemPreferences = window.matchMedia("preferes-color-scheme: dark").matches
-							? window.matchMedia("preferes-color-scheme: dark").matches
-							: false;
-						const theme = hasDarkModeInSystemPreferences ? EAppThemeType.DARK : currentTheme;
-						this.handleChangeCurrentAppTheme(theme);
-					}
-				},
-			);
-
-			return true;
+			updateAppThemeOnRoot(theme);
+			actions.setAppTheme(theme);
 		}
 
-		return false;
-	}
+		updateAppThemeOnRoot(currentTheme || checkIfHasDarkMode());
+	}, [currentTheme, actions]);
 
-	componentDidUpdate(prevProps: IChangeAppThemeProps) {
-		const { currentTheme } = this.props;
-		if (prevProps.currentTheme && currentTheme && prevProps.currentTheme !== currentTheme) {
-			this.handleChangeCurrentAppTheme(currentTheme);
-		}
-	}
+	/**
+	 * @description Updates the Current Meta Theme Color
+	 * @author João Dias
+	 * @date 2019-05-09
+	 * @memberof ChangeAppTheme
+	 */
+	const changeBrowserMetaColors = useCallback(
+		(theme: EAppThemeType) => {
+			const metaThemeColor = document.querySelector("meta[name=theme-color]");
+			const metaStatusBar = document.querySelector("meta[name=apple-mobile-web-app-status-bar-style]");
+			const statusBarColor = theme === EAppThemeType.DARK ? "black-translucent" : "default";
+
+			if (metaThemeColor) {
+				metaThemeColor.setAttribute("content", themeColor);
+			}
+
+			if (metaStatusBar) {
+				metaStatusBar.setAttribute("content", statusBarColor);
+			}
+		}, []
+	);
+
+	/**
+	 * @description Updates the current theme
+	 * @author João Dias
+	 * @date 2019-04-26
+	 * @param {EAppThemeType} theme
+	 * @memberof ChangeAppTheme
+	 */
+	const changeCurrentTheme = useCallback(
+		(theme: EAppThemeType) => {
+			const themeColor = EAppThemeType.LIGHT ? "#ffffff" : "#1c1e22";
+
+			rootElement.classList.add("theme-transition");
+			rootElement.setAttribute("data-theme", theme);
+			window.setTimeout(function () {
+				rootElement.classList.remove("theme-transition");
+			}, 1000);
+
+			setThemeColor(themeColor);
+			changeBrowserMetaColors(theme)
+		}, [rootElement, setThemeColor, changeBrowserMetaColors]);
 
 	/**
 	 * @description If there is a new theme coming from the store,
@@ -82,96 +109,34 @@ class ChangeAppTheme extends React.PureComponent<IChangeAppThemeProps, IChangeAp
 	 * @returns {boolean}
 	 * @memberof ChangeAppTheme
 	 */
-	handleChangeCurrentAppTheme(theme: EAppThemeType): boolean {
-		const { rootElement } = this.state;
-		let hasNewTheme = false;
+	const updateAppThemeOnRoot = useCallback(
+		(theme: EAppThemeType) => {
+			if (theme && rootElement) {
+				setHasNewTheme(true);
+				changeCurrentTheme(theme);
+			}
+		},
+		[setHasNewTheme, changeCurrentTheme]);
 
-		if (theme && rootElement) {
-			hasNewTheme = true;
-			this.setState(
-				{
-					hasNewTheme,
-				},
-				() => {
-					this.changeCurrentTheme(theme);
-				},
-			);
-		}
-
-		return hasNewTheme;
-	}
-
-	/**
-	 * @description Updates the current theme
-	 * @author João Dias
-	 * @date 2019-04-26
-	 * @param {EAppThemeType} theme
-	 * @memberof ChangeAppTheme
-	 */
-	changeCurrentTheme(theme: EAppThemeType) {
-		const { rootElement } = this.state;
-		let themeColor = "#1c1e22";
-
-		if (rootElement) {
-			rootElement.classList.add("theme-transition");
-			rootElement.setAttribute("data-theme", theme);
-			window.setTimeout(function () {
-				rootElement.classList.remove("theme-transition");
-			}, 1000);
-		}
-
-		if (theme === EAppThemeType.LIGHT) {
-			themeColor = "#ffffff";
-		}
-
-		this.setState(
-			{
-				themeColor,
-			},
-			() => {
-				this.changeCurrentThemeColor(theme);
-			},
-		);
-	}
-
-	/**
-	 * @description Updates the Current Meta Theme Color
-	 * @author João Dias
-	 * @date 2019-05-09
-	 * @memberof ChangeAppTheme
-	 */
-	changeCurrentThemeColor(theme: EAppThemeType) {
-		const { themeColor } = this.state;
-		const metaThemeColor = document.querySelector("meta[name=theme-color]");
-		const metaStatusBar = document.querySelector("meta[name=apple-mobile-web-app-status-bar-style]");
-		const statusBarColor = theme === EAppThemeType.DARK ? "black-translucent" : "default";
-		if (metaThemeColor) {
-			metaThemeColor.setAttribute("content", themeColor);
-		}
-
-		if (metaStatusBar) {
-			metaStatusBar.setAttribute("content", statusBarColor);
-		}
-	}
-
-	render() {
-		const { currentTheme } = this.props;
-		const { themeColor } = this.state;
-
-		return <aside className="sr-only" data-theme={currentTheme} data-theme-color={themeColor} tabIndex={-1} />;
-	}
+	return <aside className="sr-only" data-theme={currentTheme} data-theme-color={themeColor} tabIndex={-1} />;
 }
 
-/**
- *
- *
- * @param {IGlobalStoreState} state
- * @returns
- */
 function mapStateToProps(state: IGlobalStoreState) {
 	return {
 		currentTheme: state.preferences.theme,
 	};
 }
 
-export default connect(mapStateToProps)(ChangeAppTheme);
+function mapDispatchToProps(dispatch: Dispatch) {
+	return {
+		actions: bindActionCreators(
+			{
+				setAppTheme,
+			},
+			dispatch,
+		),
+	};
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChangeAppTheme);

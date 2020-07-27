@@ -37,7 +37,7 @@ const Layout: React.FunctionComponent<ILayoutProps> = ({ children, authenticated
 	const renderAddToHomescren = () => {
 		if (isIOS) {
 			return (
-				<Modal delay={600000}>
+				<Modal delay={6000}>
 					<AddToHomeScreen isStandalone={isStandalone.current} />
 				</Modal>
 			);
