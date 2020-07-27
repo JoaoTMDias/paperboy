@@ -17,58 +17,58 @@ interface IAvaiableRegionalNewsSources {
 }
 
 /**
+* @description Receives the raw data from the service and returns an organized list of news sources
+* @author João Dias
+* @param {IAllAvailableNewsSource[]} data
+* @returns {(IListOfCategorizedSources[] | null)}
+*/
+export function getListOfCategorizedSources(data: IAllAvailableNewsSource[]): IListOfCategorizedSources[] | null {
+	// Gets only the items that are categorized
+	const allItemsWithCategory = data.filter((source: IAllAvailableNewsSource) => source.category !== null);
+
+	// Returns all the categories in all the items
+	const allAppearingCategories = allItemsWithCategory.map((source: IAllAvailableNewsSource) => {
+		const { category } = source;
+
+		return category;
+	});
+
+	// Returns the final list of categories
+	const reducedCategories = allAppearingCategories.reduce((previousValue: string[], currentValue: string) => {
+		if (previousValue.indexOf(currentValue) < 0) {
+			previousValue.push(currentValue);
+		}
+		return previousValue;
+	}, []);
+
+	const newData: IListOfCategorizedSources[] = [];
+	reducedCategories.forEach((category: string) => {
+		const getListOfCategorizedSources = data.filter((source: IAllAvailableNewsSource) => source.category === category);
+
+		const entry = {
+			name: category,
+			items: getListOfCategorizedSources,
+			length: getListOfCategorizedSources.length,
+		};
+
+		newData.push(entry);
+		return entry;
+	});
+
+	if (newData && newData.length > 0) {
+		return newData;
+	}
+
+	return null;
+}
+
+/**
  * @description Retrieves a list of all the available news sources
  * @date 2018-12-29
  * @param {*} source
  * @returns
  */
 const getAllAvailableNewsSources = () => {
-	/**
-	 * @description Receives the raw data from the service and returns an organized list of news sources
-	 * @author João Dias
-	 * @param {IAllAvailableNewsSource[]} data
-	 * @returns {(IListOfCategorizedSources[] | null)}
-	 */
-	function filterData(data: IAllAvailableNewsSource[]): IListOfCategorizedSources[] | null {
-		// Gets only the items that are categorized
-		const allItemsWithCategory = data.filter((source: IAllAvailableNewsSource) => source.category !== null);
-
-		// Returns all the categories in all the items
-		const allAppearingCategories = allItemsWithCategory.map((source: IAllAvailableNewsSource) => {
-			const { category } = source;
-
-			return category;
-		});
-
-		// Returns the final list of categories
-		const reducedCategories = allAppearingCategories.reduce((previousValue: string[], currentValue: string) => {
-			if (previousValue.indexOf(currentValue) < 0) {
-				previousValue.push(currentValue);
-			}
-			return previousValue;
-		}, []);
-
-		const newData: IListOfCategorizedSources[] = [];
-		reducedCategories.forEach((category: string) => {
-			const filterData = data.filter((source: IAllAvailableNewsSource) => source.category === category);
-
-			const entry = {
-				name: category,
-				items: filterData,
-				length: filterData.length,
-			};
-
-			newData.push(entry);
-			return entry;
-		});
-
-		if (newData && newData.length > 0) {
-			return newData;
-		}
-
-		return null;
-	}
-
 	function updateStore(data: IListOfCategorizedSources[]) {
 		return {
 			type: GET_ALL_AVAILABLE_NEWS_SOURCES,
@@ -78,15 +78,13 @@ const getAllAvailableNewsSources = () => {
 		};
 	}
 
-	debugger;
-
 	return (dispatch: any) => {
 		NewsService.getAllAvailableSources()
 			.then((result: AxiosResponse) => {
 				if (result && result.data) {
 					const rawSources: IAllAvailableNewsSource[] = result.data.sources;
 
-					const organizedSources = filterData(rawSources);
+					const organizedSources = getListOfCategorizedSources(rawSources);
 
 					if (organizedSources) {
 						dispatch(updateStore(organizedSources));
@@ -95,7 +93,7 @@ const getAllAvailableNewsSources = () => {
 
 				return null;
 			})
-			.catch((error) => {});
+			.catch((error) => { });
 	};
 };
 
@@ -131,7 +129,7 @@ const getAvailableNewSourcesFromLanguage = (language: string) => (dispatch: Disp
 					}
 				}
 			})
-			.catch((error) => {});
+			.catch((error) => { });
 	};
 };
 
@@ -158,7 +156,7 @@ const getAllLatestNewsFromSource = (source: string[]) => {
 					dispatch(updateStore(result.data));
 				}
 			})
-			.catch((error) => {});
+			.catch((error) => { });
 	};
 };
 

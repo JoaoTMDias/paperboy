@@ -79,6 +79,8 @@ export interface IChooseSourcesPageProps extends IBasePageProps {
 	actions: IChooseSourcesPageActionsProps;
 }
 
+const MINIMUM_SELECTED = 3;
+
 /**
  * @description The Choose Sources Page is where the user can pick his favorite news sources from a list.
  */
@@ -199,7 +201,7 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
 	 * @memberof ChooseSourcesPage
 	 */
 	function handleSubmit(list: IChosenSource[]) {
-		if (list.length >= 3) {
+		if (list.length >= MINIMUM_SELECTED) {
 			actions.SetChosenNewsSources(list);
 		}
 	}
@@ -251,7 +253,7 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
 				name="list"
 				render={(arrayHelpers) => {
 					return (
-						<article>
+						<article data-testid="all-sources-sections">
 							{data?.map((category: IListOfCategorizedSources) => {
 								const title = category.name;
 								const id = `sources-${title}`;
@@ -325,7 +327,13 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
 				validateOnChange
 			>
 				{({ values, dirty, isSubmitting, handleSubmit, submitForm }) => {
-					const isDisabled = !!(values.list && values.list.length < 3 && (!dirty || isSubmitting));
+					const hasMinimum = !!(values.list && values.list.length >= MINIMUM_SELECTED);
+					const hasTouchedForm = dirty || !isSubmitting;
+					const isEnabled = hasMinimum && hasTouchedForm;
+
+					const selectText = values.list.length > 0
+						? `Select ${MINIMUM_SELECTED - values.list.length} more items`
+						: `Select at least ${MINIMUM_SELECTED} items`;
 
 					return (
 						<form id="choose-sources-form" onSubmit={handleSubmit} className="modal-dialog__container">
@@ -336,10 +344,10 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
 							<UICallToAction>
 								<UIButton
 									type="submit"
-									text="Let's Go"
+									text={!isEnabled ? selectText : "Let's Go!"}
 									label="Click to set these as your news sources."
 									onClick={() => submitForm()}
-									disabled={isDisabled}
+									disabled={!isEnabled}
 								/>
 							</UICallToAction>
 						</form>

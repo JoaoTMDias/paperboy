@@ -44,7 +44,7 @@ export const SectionWrapper = styled.section`
 				return "2rem";
 
 			default:
-				return `${rem("48px")}`;
+				return `${rem("72px")}`;
 		}
 	}};
 
@@ -60,6 +60,7 @@ export const SectionTitle = styled.h3`
 
 	${theme.dark`
 			--section-title-color: var(--color-gray4);
+			--section-title-background-color: var(--color-gray9);
 	`};
 
 	font-family: var(--body-font-family);

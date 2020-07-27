@@ -5,6 +5,7 @@
 		"baseUrl": "../node_modules",
 		"target": "es5",
 		"lib": ["es5", "dom"],
+		"resolveJsonModule": true,
 		"types": ["cypress"]
 	},
 	"include": ["**/*.*"]

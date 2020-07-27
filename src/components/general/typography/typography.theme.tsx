@@ -44,8 +44,7 @@ const UISubtitle: React.FunctionComponent<IHeadingsProps> = (props) => {
  * @date  10/December/2018 at 23:15
  * @extends {React.FC}
  */
-const UILead: React.FunctionComponent<IHeadingsProps> = (props) => {
-	const { text } = props;
+const UILead: React.FunctionComponent<IHeadingsProps> = ({ text }) => {
 	return (
 		<Lead id="page-lead" data-testid="ui-lead-title">
 			{text}
@@ -80,7 +79,7 @@ const Heading1 = styled.h2`
 	animation-duration: 300ms;
 	animation-timing-function: var(--default-timing-function);
 	animation-fill-mode: both;
-	animation-delay: 250ms;
+	animation-delay: 125ms;
 `;
 
 const Subtitle = styled.h3`
@@ -100,7 +99,7 @@ const Subtitle = styled.h3`
 	animation-duration: 300ms;
 	animation-timing-function: var(--default-timing-function);
 	animation-fill-mode: both;
-	animation-delay: 125ms;
+	animation-delay: 96ms;
 `;
 
 const Lead = styled.p`
@@ -114,12 +113,12 @@ const Lead = styled.p`
 	font-family: var(--body-font-family);
 	margin-left: auto;
 	margin-right: auto;
-
+	opacity: 0;
 	animation-name: ${onEnter};
 	animation-duration: 300ms;
 	animation-timing-function: var(--default-timing-function);
 	animation-fill-mode: both;
-	animation-delay: 500ms;
+	animation-delay: 0ms;
 `;
 
 export { UIDisplay, UISubtitle, UILead };

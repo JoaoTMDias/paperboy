@@ -13,7 +13,7 @@ export const UISection: React.FC<IUISectionProps> = ({ id, title, children, amou
 		if (title) {
 			return (
 				<SectionTitle id={sectionTitle} grouped={grouped}>
-					{title}
+					<span className="section-title--text">{title}</span>
 					{amount && <span className="section-title--amount">{amount}</span>}
 				</SectionTitle>
 			);
@@ -26,6 +26,7 @@ export const UISection: React.FC<IUISectionProps> = ({ id, title, children, amou
 		return (
 			<SectionWrapper
 				id={id}
+				data-testid="section-wrapper"
 				aria-labelledby={`${id}-section-title`}
 				title={title}
 				layout={layout}
