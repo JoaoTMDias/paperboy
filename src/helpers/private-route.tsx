@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, PropsWithChildren } from "react";
 import isNil from "lodash/isNil";
 import { navigate } from "gatsby";
-import { useState, useEffect, PropsWithChildren } from "react";
+
 import { IBasePageProps } from "data/interfaces";
 import { ONBOARDING_PAGE } from "data/constants/router.constants";
-import ContentSpinner from "components/content-spinner";
+import { ContentSpinner } from "components/content-spinner";
 import Layout from "components/layout";
 import Meta from "components/meta";
-import PreferencesContext from "./../containers/preferences/context";
+import PreferencesContext from "../containers/preferences/context";
 
 interface IWithAuthenticationProps extends IBasePageProps {
 	header?: boolean;

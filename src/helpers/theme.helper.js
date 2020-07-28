@@ -34,7 +34,8 @@ export const theme = {
 	dark: setTheme(themes.dark),
 };
 
-export const hasDarkModeInSystemPreferences = window.matchMedia("(prefers-color-scheme: dark)").matches;
+export const hasDarkModeInSystemPreferences =
+	typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 export function checkIfHasDarkMode() {
 	return hasDarkModeInSystemPreferences ? EAppThemeType.DARK : EAppThemeType.LIGHT;

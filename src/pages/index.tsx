@@ -17,7 +17,7 @@ import { NEWS_PAGE, ONBOARDING_CHOOSE_SOURCES_PAGE, ONBOARDING_PAGE } from "data
 import Meta from "components/meta/index";
 import { IBasePageProps } from "data/interfaces";
 import { useAddToHomescreenPrompt } from "helpers/custom-hooks/useAddToHomescreenPrompt";
-import PreferencesContext from "./../containers/preferences/context";
+import PreferencesContext from "../containers/preferences/context";
 
 const IndexPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
 	const [isready, promptToInstall] = useAddToHomescreenPrompt();

@@ -1,10 +1,7 @@
 // Libraries
 import React, { useRef } from "react";
 import { StaticQuery, graphql } from "gatsby";
-import { ThemeProvider } from "styled-components";
 import { isIOS } from "react-device-detect";
-import AuditProvider from "./../../containers/audit/provider";
-import PreferencesProvider from "./../../containers/preferences/provider";
 import { Audit, BottomNavigation, ViewportHeight, AddToHomeScreen, Modal, ChangeAppTheme } from "../index.components";
 import TopNavigation from "../top-navigation/default/index";
 import { AppLayout } from "./styles";
@@ -55,7 +52,7 @@ export const theme = {
 
 // Layout Component
 const Layout: React.FunctionComponent<ILayoutProps> = ({ children, authenticated, header, bottomNavigation }) => {
-	const isStandalone = useRef(window.matchMedia("(display-mode: standalone)").matches);
+	const isStandalone = useRef(typeof window !== "undefined" && window.matchMedia("(display-mode: standalone)").matches);
 
 	/**
 	 *

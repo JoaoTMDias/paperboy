@@ -16,7 +16,7 @@ const Audit: FunctionComponent = () => {
 		setPlatform,
 		setOnlineStatus,
 	} = useContext(AuditContext);
-	const { current: WindowNavigator } = useRef(window.navigator as any);
+	const { current: WindowNavigator } = useRef(typeof window !== "undefined" ? (window.navigator as any) : null);
 	const { online } = useNetwork();
 
 	useEffect(() => {
