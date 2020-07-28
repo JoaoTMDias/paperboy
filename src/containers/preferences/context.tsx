@@ -1,31 +1,39 @@
-import React from "react";
-import { PreferencesReducer, ChosenNewsSources } from "data/interfaces/preferences";
+import { createContext } from "react";
+import { ChosenNewsSources } from "data/interfaces/preferences";
 import { EAppThemeType } from "data/interfaces/theme";
+import { INewsArticleItem } from 'data/interfaces';
 
-export interface IPreferencesContext extends PreferencesReducer {
-	setChosenNewsSources(sources: ChosenNewsSources): void;
-	setUserAuthentication(state: boolean): void;
-	setAppTheme(theme: EAppThemeType): void;
-	setBaseFontRatio(ratio: number): void;
-	resetAppState(): void;
+export interface IPreferences {
+	authenticated: boolean;
+	saved?: INewsArticleItem[];
+	baseFontRatio: number;
+	chosenSources: ChosenNewsSources | null;
+	theme?: EAppThemeType;
 }
 
-export const defaultPreferencesContext = {
-	chosenSources: {
-		quantity: 0,
-		items: {
-			latest: [],
-			tabs: [],
-		},
-	},
-	saved: [],
+export interface IPreferencesContext extends IPreferences {
+	resetAppState(): void;
+	setAppTheme(theme: EAppThemeType): void;
+	setBaseFontRatio(ratio: number): void;
+	setChosenSources(sources: ChosenNewsSources): void;
+	setUserAuthentication(state: boolean): void;
+}
+
+export const DEFAULT_PREFERENCES = {
 	authenticated: false,
+	saved: [],
 	baseFontRatio: 1,
-	setChosenNewsSources: () => { },
-	setUserAuthentication: () => { },
+	chosenSources: null,
+	theme: undefined,
+}
+
+export const DEFAULT_PREFERENCES_CONTEXT: IPreferencesContext = {
+	...DEFAULT_PREFERENCES,
+	resetAppState: () => { },
 	setAppTheme: () => { },
 	setBaseFontRatio: () => { },
-	resetAppState: () => { },
+	setChosenSources: () => { },
+	setUserAuthentication: () => { },
 };
 
 /**
@@ -34,6 +42,6 @@ export const defaultPreferencesContext = {
  * @param {IPreferencesContext}
  * @returns
  */
-const PreferencesContext = React.createContext<IPreferencesContext>(defaultPreferencesContext);
+const PreferencesContext = createContext<IPreferencesContext>(DEFAULT_PREFERENCES_CONTEXT);
 
 export default PreferencesContext;

@@ -1,5 +1,4 @@
 import { IChosenNewsSourcesItems, IBasePageProps } from "data/interfaces/index";
-import { Dispatch, AnyAction } from "redux";
 
 export interface IHeaderTabs {
 	id: string;
@@ -17,10 +16,6 @@ export interface INewsTabsState {
 	tabBarHeader: HTMLDivElement | null;
 	currentTabIndex: number;
 	hasChangedTabs: boolean;
-}
-
-interface INewsArticleTabActions {
-	getAllLatestNewsFromSource: (source: string[]) => (dispatch: Dispatch<AnyAction>) => void;
 }
 
 interface INewsArticleTabProps extends IBasePageProps {

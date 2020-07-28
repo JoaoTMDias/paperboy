@@ -1,74 +1,27 @@
-import React, { FunctionComponent, useCallback } from "react";
-import { useLocalStorage } from "react-use";
-import PreferencesContext, { defaultPreferencesContext, IPreferencesContext } from "./context";
-import { EAppThemeType } from "data/interfaces/theme";
-import { checkIfHasDarkMode } from "helpers/theme.helper";
+import React, { FunctionComponent, useMemo } from "react";
+import PreferencesContext, { DEFAULT_PREFERENCES } from "./context";
+import useChooseSources from "./../../pages/onboarding/useChooseSources";
+import { ChosenNewsSources, EAppThemeType } from 'data/interfaces';
 
 const PreferencesProvider: FunctionComponent = ({ children }) => {
-	const [authenticated, setAuthenticated, resetAuthentication] = useLocalStorage(
-		"authenticated",
-		defaultPreferencesContext.authenticated,
-	);
-	const [saved] = useLocalStorage("saved", defaultPreferencesContext.saved);
-	const [theme, setTheme, resetTheme] = useLocalStorage("theme", checkIfHasDarkMode());
-	const [chosenSources, setChosen, deleteChosen] = useLocalStorage(
-		"chosenSources",
-		defaultPreferencesContext.chosenSources,
-	);
-	const [baseFontRatio, setFontRatio, resetBaseFontRatio] = useLocalStorage(
-		"saved",
-		defaultPreferencesContext.baseFontRatio,
-	);
+	const { storage, setStorage, removeValue } = useChooseSources();
 
-	const setChosenNewsSources = useCallback(
-		(sources) => {
-			setChosen(sources);
-		},
-		[setChosen],
-	);
+	const values = useMemo(() => {
+		return {
+			authenticated: storage?.authenticated || DEFAULT_PREFERENCES.authenticated,
+			saved: storage?.saved || [],
+			baseFontRatio: storage?.baseFontRatio || DEFAULT_PREFERENCES.baseFontRatio,
+			chosenSources: storage?.chosenSources || DEFAULT_PREFERENCES.chosenSources,
+			theme: storage?.theme || DEFAULT_PREFERENCES.theme,
+			resetAppState: () => removeValue(),
+			setAppTheme: (theme: EAppThemeType) => setStorage(theme, "theme"),
+			setBaseFontRatio: (ratio: number) => setStorage(ratio, "baseFontRatio"),
+			setChosenSources: (sources: ChosenNewsSources) => setStorage(sources, "chosenSources"),
+			setUserAuthentication: (state: boolean) => setStorage(state, "authenticated"),
+		}
+	}, [storage, setStorage, removeValue]);
 
-	const setUserAuthentication = useCallback(
-		(status: boolean) => {
-			setAuthenticated(status);
-		},
-		[setAuthenticated],
-	);
-
-	const setAppTheme = useCallback(
-		(theme: EAppThemeType) => {
-			setTheme(theme);
-		},
-		[setTheme],
-	);
-
-	const setBaseFontRatio = useCallback(
-		(ratio: number) => {
-			setFontRatio(ratio);
-		},
-		[setFontRatio],
-	);
-
-	const resetAppState = useCallback(() => {
-		deleteChosen();
-		resetAuthentication();
-		resetBaseFontRatio();
-		resetTheme();
-	}, [deleteChosen, resetAuthentication, resetBaseFontRatio, resetTheme]);
-
-	const value = {
-		authenticated: authenticated || defaultPreferencesContext.authenticated,
-		baseFontRatio: baseFontRatio || defaultPreferencesContext.baseFontRatio,
-		chosenSources: chosenSources || defaultPreferencesContext.chosenSources,
-		saved: saved || defaultPreferencesContext.saved,
-		theme,
-		resetAppState,
-		setAppTheme,
-		setBaseFontRatio,
-		setChosenNewsSources,
-		setUserAuthentication,
-	};
-
-	return <PreferencesContext.Provider value={value}>{children}</PreferencesContext.Provider>;
+	return <PreferencesContext.Provider value={values}>{children}</PreferencesContext.Provider>;
 };
 
 export default PreferencesProvider;

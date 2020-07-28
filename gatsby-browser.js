@@ -1,3 +1,5 @@
+import wrapWithProvider from "./wrap-with-provider";
+
 /**
  * @description When the bundle is downloaded, imports
  * a IntersectionObserver polyfill.
@@ -36,3 +38,5 @@ export const onServiceWorkerUpdateReady = () => {
 		.then(() => window.location.reload())
 		.catch((err) => console.info(`Service Worker will keep the current version`));
 };
+
+export const wrapRootElement = wrapWithProvider;
