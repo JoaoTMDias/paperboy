@@ -100,20 +100,16 @@ const Layout: React.FunctionComponent<ILayoutProps> = ({ children, authenticated
 				}
 			`}
 			render={() => (
-				<ThemeProvider theme={theme}>
-					<AuditProvider>
-						<PreferencesProvider>
-							<Audit />
-							<ViewportHeight />
-							<ChangeAppTheme />
-							<AppLayout id="app-layout">
-								{renderAddToHomescren()}
-								{renderNavigationElements()}
-							</AppLayout>
-							<div id="portal" />
-						</PreferencesProvider>
-					</AuditProvider>
-				</ThemeProvider>
+				<>
+					<Audit />
+					<ViewportHeight />
+					<ChangeAppTheme />
+					<AppLayout id="app-layout">
+						{renderAddToHomescren()}
+						{renderNavigationElements()}
+					</AppLayout>
+					<div id="portal" />
+				</>
 			)}
 		/>
 	);
