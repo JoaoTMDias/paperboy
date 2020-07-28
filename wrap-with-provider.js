@@ -1,10 +1,9 @@
-// Libraries
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import AuditProvider from "./src/containers/audit/provider";
 import PreferencesProvider from "./src/containers/preferences/provider";
 
-export const theme = {
+const theme = {
 	colorPrimary: "var(--color-primary)",
 	colorSelect: "var(--color-select)",
 	colorWhite: "var(--color-white)",

@@ -4,8 +4,9 @@ import { Container, ContentSpinner } from "components/index.components";
 import { NEWS_PAGE } from "data/constants/index.constants";
 import PreferencesContext from "./../../containers/preferences/context";
 import { PrivateRoute } from "helpers/index.helpers";
+import { IBasePageProps } from 'data/interfaces';
 
-const PreloaderPage: FunctionComponent = () => {
+const PreloaderPage: FunctionComponent<IBasePageProps> = ({ location }) => {
 	const { authenticated, setUserAuthentication } = useContext(PreferencesContext);
 
 	useEffect(() => {

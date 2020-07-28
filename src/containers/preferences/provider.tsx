@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useMemo } from "react";
 import PreferencesContext, { DEFAULT_PREFERENCES } from "./context";
-import useChooseSources from "./../../pages/onboarding/useChooseSources";
+import useChooseSources from "components/choose-sources/useChooseSources";
 import { ChosenNewsSources, EAppThemeType } from "data/interfaces";
 
 const PreferencesProvider: FunctionComponent = ({ children }) => {

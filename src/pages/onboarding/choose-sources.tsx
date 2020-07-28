@@ -1,13 +1,13 @@
-import React, { FunctionComponent, memo, useMemo, useContext, useEffect } from "react";
+import React, { FunctionComponent, useMemo, useContext, useEffect } from "react";
 import { Redirect } from "@reach/router";
 import { navigate } from "gatsby";
 import Meta from "components/meta/index";
 import { Layout, TopNavigation, TopNavigationWithTitle } from "components/index.components";
-import { IGetAllNewsSources } from "data/interfaces/index";
+import { IGetAllNewsSources, IBasePageProps } from "data/interfaces/index";
 import { NEWS_PAGE, ONBOARDING_PRELOADER } from "data/constants/index.constants";
 import useNewsApi from "helpers/custom-hooks/useNewsAPI";
 import { filterData } from "helpers/filter-data";
-import ChooseSourcesForm from "./choose-sources-form";
+import ChooseSourcesForm from "components/choose-sources/choose-sources-form";
 import PreferencesContext from "./../../containers/preferences/context";
 
 export interface IChosenSource {
@@ -22,7 +22,9 @@ export interface ChosenSources {
 /**
  * @description The Choose Sources Page is where the user can pick his favorite news sources from a list.
  */
-const ChooseSourcesPage: FunctionComponent = () => {
+const ChooseSourcesPage: FunctionComponent<IBasePageProps> = ({
+	location
+}) => {
 	const { authenticated, chosenSources, setChosenSources } = useContext(PreferencesContext);
 	const { data, error, loading } = useNewsApi<IGetAllNewsSources>({
 		type: "sources",
@@ -51,4 +53,4 @@ const ChooseSourcesPage: FunctionComponent = () => {
 	);
 };
 
-export default memo(ChooseSourcesPage);
+export default ChooseSourcesPage;

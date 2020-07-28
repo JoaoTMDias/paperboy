@@ -11,7 +11,7 @@ interface UseNewsApiProps {
 	options?: string[];
 }
 
-export function useNewsApi<T>({ type, options = [] }: UseNewsApiProps) {
+function useNewsApi<T>({ type, options = [] }: UseNewsApiProps) {
 	const previousOptions = usePrevious(options);
 	const [data, setData] = useState<T | null>(null);
 	const [error, setError] = useState<Error | null>(null);
