@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useMemo } from "react";
 import PreferencesContext, { DEFAULT_PREFERENCES } from "./context";
 import useChooseSources from "./../../pages/onboarding/useChooseSources";
-import { ChosenNewsSources, EAppThemeType } from 'data/interfaces';
+import { ChosenNewsSources, EAppThemeType } from "data/interfaces";
 
 const PreferencesProvider: FunctionComponent = ({ children }) => {
 	const { storage, setStorage, removeValue } = useChooseSources();
@@ -18,7 +18,7 @@ const PreferencesProvider: FunctionComponent = ({ children }) => {
 			setBaseFontRatio: (ratio: number) => setStorage(ratio, "baseFontRatio"),
 			setChosenSources: (sources: ChosenNewsSources) => setStorage(sources, "chosenSources"),
 			setUserAuthentication: (state: boolean) => setStorage(state, "authenticated"),
-		}
+		};
 	}, [storage, setStorage, removeValue]);
 
 	return <PreferencesContext.Provider value={values}>{children}</PreferencesContext.Provider>;

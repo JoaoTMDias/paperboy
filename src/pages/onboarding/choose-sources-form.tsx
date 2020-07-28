@@ -12,7 +12,7 @@ import { IListOfCategorizedSources, IAllAvailableNewsSource, ChosenNewsSources }
 import Top20EditorSuggestions from "data/dummy/news-sources-suggestions";
 import ChooseSourcesValidationSchema from "./choose-sources-validation-schema";
 import { IChosenSource } from "./choose-sources";
-import { filterSources } from 'helpers/filter-sources';
+import { filterSources } from "helpers/filter-sources";
 
 interface IChooseSourcesForm {
 	error: Error | null;
@@ -23,13 +23,7 @@ interface IChooseSourcesForm {
 
 const MINIMUM_SELECTED = 3;
 
-const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({
-	error,
-	loading,
-	result,
-	handleSubmitForm
-}) => {
-
+const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({ error, loading, result, handleSubmitForm }) => {
 	/**
 	 * @description Displays a list of different categories of news sources.
 	 * While there is no data, a spinner is shown.
@@ -85,7 +79,6 @@ const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({
 			return renderListOfCategories(result, values);
 		}
 	}
-
 
 	/**
 	 * @description Render a list of suggested editorial sources
@@ -162,7 +155,6 @@ const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({
 				if (values.list.length >= MINIMUM_SELECTED) {
 					const filtered = filterSources(values.list);
 					handleSubmitForm(filtered);
-
 				}
 
 				setTimeout(() => {
@@ -184,11 +176,7 @@ const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({
 						: `Select at least ${MINIMUM_SELECTED} items`;
 
 				return (
-					<form
-						id="choose-sources-form"
-						onSubmit={handleSubmit}
-						className="modal-dialog__container"
-					>
+					<form id="choose-sources-form" onSubmit={handleSubmit} className="modal-dialog__container">
 						<Container fullwidth isFixed offsetTop="1rem">
 							{Top20EditorSuggestions && renderListOfSuggestedSources(Top20EditorSuggestions, values.list)}
 							{renderContent(values.list)}
@@ -206,7 +194,7 @@ const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({
 				);
 			}}
 		</Formik>
-	)
-}
+	);
+};
 
 export default memo(ChooseSourcesForm);

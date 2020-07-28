@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { ChosenNewsSources } from "data/interfaces/preferences";
 import { EAppThemeType } from "data/interfaces/theme";
-import { INewsArticleItem } from 'data/interfaces';
+import { INewsArticleItem } from "data/interfaces";
 
 export interface IPreferences {
 	authenticated: boolean;
@@ -25,15 +25,15 @@ export const DEFAULT_PREFERENCES = {
 	baseFontRatio: 1,
 	chosenSources: null,
 	theme: undefined,
-}
+};
 
 export const DEFAULT_PREFERENCES_CONTEXT: IPreferencesContext = {
 	...DEFAULT_PREFERENCES,
-	resetAppState: () => { },
-	setAppTheme: () => { },
-	setBaseFontRatio: () => { },
-	setChosenSources: () => { },
-	setUserAuthentication: () => { },
+	resetAppState: () => {},
+	setAppTheme: () => {},
+	setBaseFontRatio: () => {},
+	setChosenSources: () => {},
+	setUserAuthentication: () => {},
 };
 
 /**

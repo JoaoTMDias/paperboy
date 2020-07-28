@@ -2,11 +2,7 @@ import React, { FunctionComponent, memo, useMemo, useContext, useEffect } from "
 import { Redirect } from "@reach/router";
 import { navigate } from "gatsby";
 import Meta from "components/meta/index";
-import {
-	Layout,
-	TopNavigation,
-	TopNavigationWithTitle,
-} from "components/index.components";
+import { Layout, TopNavigation, TopNavigationWithTitle } from "components/index.components";
 import { IGetAllNewsSources } from "data/interfaces/index";
 import { NEWS_PAGE, ONBOARDING_PRELOADER } from "data/constants/index.constants";
 import useNewsApi from "helpers/custom-hooks/useNewsAPI";
@@ -50,12 +46,7 @@ const ChooseSourcesPage: FunctionComponent = () => {
 			<TopNavigation shadow="hairline">
 				<TopNavigationWithTitle title="What do you fancy reading?" subtitle="Breaking news from over 30,000 sources" />
 			</TopNavigation>
-			<ChooseSourcesForm
-				error={error}
-				loading={loading}
-				result={result}
-				handleSubmitForm={setChosenSources}
-			/>
+			<ChooseSourcesForm error={error} loading={loading} result={result} handleSubmitForm={setChosenSources} />
 		</Layout>
 	);
 };

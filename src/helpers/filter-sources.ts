@@ -1,4 +1,4 @@
-import { IChosenSource } from "pages/onboarding/choose-sources"
+import { IChosenSource } from "pages/onboarding/choose-sources";
 import { INewsPageHeaderItems, ChosenNewsSources } from "data/interfaces";
 
 export function filterSources(sources: IChosenSource[]): ChosenNewsSources {
