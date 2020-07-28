@@ -40,7 +40,7 @@ export const Wrapper = styled.nav`
 
 	html[data-theme="DARK"] && {
 		box-shadow: ${(props: IUICallToActionProps) =>
-		props.isTop ? "0px 4px 20px 0px rgba(0,0,0,0.5)" : "0px -4px 20px 0px rgba(0,0,0,1)"};
+			props.isTop ? "0px 4px 20px 0px rgba(0,0,0,0.5)" : "0px -4px 20px 0px rgba(0,0,0,1)"};
 	}
 
 	animation-name: ${onEnter};
@@ -62,8 +62,8 @@ export const Wrapper = styled.nav`
 			margin: 0 auto;
 		}
 		box-shadow: ${(props: IUICallToActionProps) =>
-		props.float
-			? "0px 4px 16px 4px hsla(var(--cta-shadow-color-hue), 78%, 57%, 0.24)"
-			: "0px 2px 0px 2px hsla(var(--cta-shadow-color-hue),78%,57%,0.24)"};
+			props.float
+				? "0px 4px 16px 4px hsla(var(--cta-shadow-color-hue), 78%, 57%, 0.24)"
+				: "0px 2px 0px 2px hsla(var(--cta-shadow-color-hue),78%,57%,0.24)"};
 	}
 `;

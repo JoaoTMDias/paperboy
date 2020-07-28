@@ -45,7 +45,7 @@ const Modal: FunctionComponent<IModalProps> = ({
 				handleClickToCloseModal(event);
 			}
 		},
-		[handleClickToCloseModal]
+		[handleClickToCloseModal],
 	);
 
 	const handleOpenModal = useCallback(() => {
@@ -77,7 +77,7 @@ const Modal: FunctionComponent<IModalProps> = ({
 		);
 	}
 	return null;
-}
+};
 
 Modal.defaultProps = {
 	backgroundOpacity: 0.3,

@@ -1,15 +1,11 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { FunctionComponent, useEffect, useMemo, useContext, useCallback } from "react";
 import { Redirect } from "@reach/router";
-import { connect } from "react-redux";
-import { Dispatch, bindActionCreators, AnyAction } from "redux";
 import { Formik, FieldArray, FieldArrayRenderProps, FormikHelpers } from "formik";
 import { navigate } from "gatsby";
 import Meta from "components/meta/index";
 import {
-	Confirm,
 	Container,
 	Layout,
-	Modal,
 	SourcesList,
 	UIButton,
 	UICallToAction,
@@ -18,36 +14,14 @@ import {
 	TopNavigationWithTitle,
 	UISection,
 } from "components/index.components";
-
-// Redux
-import {
-	IGlobalStoreState,
-	IListOfCategorizedSources,
-	IAllAvailableNewsSource,
-	IBasePageProps,
-	ChosenNewsSources,
-	IGetAllNewsSources,
-} from "data/interfaces/index";
-import {
-	getAvailableNewSourcesFromLanguage,
-	getUserCountryCodeByCoordinates,
-	SetChosenNewsSources,
-} from "data/redux/actions/index.actions";
-
+import { IListOfCategorizedSources, IAllAvailableNewsSource, IGetAllNewsSources } from "data/interfaces/index";
 import { NEWS_PAGE, ONBOARDING_PRELOADER } from "data/constants/index.constants";
-
-// Data
 import Top20EditorSuggestions from "data/dummy/news-sources-suggestions";
-
-// Validation Schema
 import ChooseSourcesValidationSchema from "./choose-sources-validation-schema";
 import useNewsApi from "helpers/custom-hooks/useNewsAPI";
 import { filterData } from "helpers/filter-data";
-
-interface LanguageSupport {
-	hasLocation: boolean;
-	data: any;
-}
+import { filterSources } from "helpers/filter-sources";
+import PreferencesContext from "./../../containers/preferences/context";
 
 export interface IChosenSource {
 	name: string;
@@ -58,107 +32,25 @@ export interface ChosenSources {
 	list: IChosenSource[];
 }
 
-export interface IChooseSourcesPageActionsProps {
-	getAvailableNewSourcesFromLanguage: (language: string) => (dispatch: Dispatch<AnyAction>) => void;
-	getUserCountryCodeByCoordinates: (latitude: number, longitude: number) => (dispatch: Dispatch<AnyAction>) => void;
-	SetChosenNewsSources: (
-		sources: IChosenSource[],
-	) => {
-		type: string;
-		payload: {
-			data: ChosenNewsSources;
-		};
-	};
-}
-
-export interface IChooseSourcesPageProps extends IBasePageProps {
-	authenticated: boolean;
-	geoLocation: boolean;
-	userLanguage: LanguageSupport | null;
-	chosenSources: any;
-	actions: IChooseSourcesPageActionsProps;
-}
-
 const MINIMUM_SELECTED = 3;
 
 /**
  * @description The Choose Sources Page is where the user can pick his favorite news sources from a list.
  */
-const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
-	authenticated,
-	geoLocation,
-	userLanguage,
-	chosenSources,
-	actions,
-}) => {
+const ChooseSourcesPage: FunctionComponent = () => {
+	const { authenticated, chosenSources, setChosenNewsSources } = useContext(PreferencesContext);
 	const { data, error, loading } = useNewsApi<IGetAllNewsSources>({
 		type: "sources",
 	});
+
 	const result = useMemo(() => filterData(data?.sources), [data]);
-	const [askForLocation, setAskForLocation] = useState(false);
-
-	useEffect(() => {
-		getUserSourcesByLanguage(userLanguage);
-	}, [userLanguage]);
-
-	useEffect(() => {
-		setAskForLocation(true);
-	}, [geoLocation]);
 
 	// When the user submit its sources and the prop is updated, it redirects to the preloader page
 	useEffect(() => {
-		if (Object.keys(chosenSources?.latest).length > 0) {
+		if (Object.keys(chosenSources?.items?.latest).length > 0) {
 			navigate(ONBOARDING_PRELOADER);
 		}
 	}, [chosenSources]);
-
-	/**
-	 * @description Attemps to find the user's location using the HTML5 GeoLocation API.
-	 * The important info needed are the latitude and longitude.
-	 * If they are present, then dispatches an action to try to find the user's country code.
-	 * @date 2019-01-07
-	 * @memberof ChooseSourcesPage
-	 */
-	function getUserCountry() {
-		/**
-		 * @description The getCurrentPosition request treated as a Promise.
-		 * On first attempt, the browser will ask the user for permission to
-		 * use the GPS or other location features on the device.
-		 * @date 2019-01-07
-		 */
-		const getPosition = () =>
-			new Promise((resolve, reject) => {
-				navigator.geolocation.getCurrentPosition(resolve, reject);
-			});
-
-		if (askForLocation) {
-			getPosition()
-				.then((position: any) => {
-					if (position.coords) {
-						const { latitude } = position.coords;
-						const { longitude } = position.coords;
-
-						actions.getUserCountryCodeByCoordinates(latitude, longitude);
-					}
-				})
-				.catch((err) => {
-					console.error(err.message);
-				});
-		}
-	}
-
-	/**
-	 * @description Fetches a list of available news sources from a specific country code.
-	 * @date 2019-01-08
-	 * @param {*} content
-	 * @memberof ChooseSourcesPage
-	 */
-	function getUserSourcesByLanguage(content: any) {
-		if (content.hasLocation && content.data.countryCode) {
-			const language: string = `${content.data.countryCode}`.toLowerCase();
-			actions.getAvailableNewSourcesFromLanguage(language);
-		}
-	}
 
 	/**
 	 *
@@ -194,17 +86,14 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
 		return true;
 	}
 
-	/**
-	 * @description Updates the store with the new chosen sources.
-	 * @date 2019-01-16
-	 * @param {MouseEvent} event
-	 * @memberof ChooseSourcesPage
-	 */
-	function handleSubmit(list: IChosenSource[]) {
-		if (list.length >= MINIMUM_SELECTED) {
-			actions.SetChosenNewsSources(list);
-		}
-	}
+	const handleSubmitForm = useCallback(
+		(list: IChosenSource[]) => {
+			if (list.length >= MINIMUM_SELECTED) {
+				const filtered = filterSources(list);
+				setChosenNewsSources(filtered);
+			}
+		},
+		[setChosenNewsSources]);
 
 	/**
 	 * @description Render a list of suggested editorial sources
@@ -304,20 +193,13 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
 			<TopNavigation shadow="hairline">
 				<TopNavigationWithTitle title="What do you fancy reading?" subtitle="Breaking news from over 30,000 sources" />
 			</TopNavigation>
-			<Modal>
-				<Confirm
-					title="Use location services?"
-					description="Can I use your devices' location to find any news sources related to your country/language?"
-					onCancel={() => console.log("canceled")}
-					onConfirm={() => getUserCountry()}
-				/>
-			</Modal>
 			<Formik
 				initialValues={{
 					list: [],
 				}}
 				onSubmit={(values: ChosenSources, actions: FormikHelpers<ChosenSources>) => {
-					handleSubmit(values.list);
+					handleSubmitForm(values.list);
+
 					setTimeout(() => {
 						actions.setSubmitting(false);
 					}, 1000);
@@ -331,9 +213,10 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
 					const hasTouchedForm = dirty || !isSubmitting;
 					const isEnabled = hasMinimum && hasTouchedForm;
 
-					const selectText = values.list.length > 0
-						? `Select ${MINIMUM_SELECTED - values.list.length} more items`
-						: `Select at least ${MINIMUM_SELECTED} items`;
+					const selectText =
+						values.list.length > 0
+							? `Select ${MINIMUM_SELECTED - values.list.length} more items`
+							: `Select at least ${MINIMUM_SELECTED} items`;
 
 					return (
 						<form id="choose-sources-form" onSubmit={handleSubmit} className="modal-dialog__container">
@@ -358,32 +241,4 @@ const ChooseSourcesPage: React.FunctionComponent<IChooseSourcesPageProps> = ({
 	);
 };
 
-ChooseSourcesPage.defaultProps = {
-	authenticated: false,
-	chosenSources: null,
-};
-
-function mapStateToProps(state: IGlobalStoreState) {
-	return {
-		authenticated: state.preferences.authenticated,
-		sources: state.news.sources,
-		chosenSources: state.preferences.chosenSources.items,
-		geoLocation: state.general.supports.geoLocation,
-		userLanguage: state.general.userLanguage,
-	};
-}
-
-function mapDispatchToProps(dispatch: Dispatch) {
-	return {
-		actions: bindActionCreators(
-			{
-				getAvailableNewSourcesFromLanguage,
-				getUserCountryCodeByCoordinates,
-				SetChosenNewsSources,
-			},
-			dispatch,
-		),
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChooseSourcesPage);
+export default ChooseSourcesPage;

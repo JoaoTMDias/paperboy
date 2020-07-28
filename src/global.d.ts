@@ -10,6 +10,6 @@ export interface INavigator extends Navigator {
 
 declare namespace JSX {
 	interface IntrinsicElements {
-		'pwa-install': any;
+		"pwa-install": any;
 	}
 }

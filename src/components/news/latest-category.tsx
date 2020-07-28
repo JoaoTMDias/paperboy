@@ -5,8 +5,6 @@ import { INewsArticle } from "data/interfaces/index";
 import { EThumbnailType } from "components/thumbnails/types.d.ts";
 import { INewsArticleTabProps } from "./types";
 import useNewsApi from "helpers/custom-hooks/useNewsAPI";
-import { KEY_PREFIX } from "redux-persist";
-import Meta from "components/meta";
 
 /**
  * @description Latest News Tab
@@ -38,7 +36,7 @@ export const LatestNewsCategoryTab: React.FC<INewsArticleTabProps> = ({ id, sour
 			}
 
 			return (
-				<Item className="list__item" key={key} id={KEY_PREFIX}>
+				<Item className="list__item" key={key} id={key}>
 					<ArticleThumbnail id={id} options={article} type={EThumbnailType.SMALL} />
 				</Item>
 			);

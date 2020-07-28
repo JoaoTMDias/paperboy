@@ -1,7 +1,5 @@
-import * as React from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import { IconBrandingSmall, IconSafariShare } from "components/icons/index";
-import { IGlobalStoreState } from "data/interfaces/index";
 import { Wrapper, IconStrip, Content } from "./styles";
 import { IAddToHomeScreenProps } from "./types";
 
@@ -9,8 +7,6 @@ import { IAddToHomeScreenProps } from "./types";
  * @description Dialog that invites the user to add to the homescreen
  */
 const AddToHomeScreen: React.FC<IAddToHomeScreenProps> = () => {
-	const isStandalone = useSelector((state: IGlobalStoreState) => state.general.isStandalone);
-
 	/**
 	 * @description
 	 * @author João Dias

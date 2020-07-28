@@ -9,16 +9,11 @@ interface IBeforeInstallPromptEvent extends Event {
 	prompt(): Promise<void>;
 }
 
-type AddToHomescreenPromptReturn = [
-	boolean,
-	() => void
-];
+type AddToHomescreenPromptReturn = [boolean, () => void];
 
 export function useAddToHomescreenPrompt(): AddToHomescreenPromptReturn {
 	const [isReadyToInstall, setIsReadyToInstall] = useState(false);
-	const [prompt, setPrompt] = useState<IBeforeInstallPromptEvent | null>(
-		null
-	);
+	const [prompt, setPrompt] = useState<IBeforeInstallPromptEvent | null>(null);
 
 	/**
 	 * Promps to install the app as a standalone web app
@@ -31,19 +26,11 @@ export function useAddToHomescreenPrompt(): AddToHomescreenPromptReturn {
 				return prompt.prompt();
 			}
 
-			return Promise.reject(
-				new Error(
-					'Tried installing before browser sent "beforeinstallprompt" event'
-				)
-			);
+			return Promise.reject(new Error('Tried installing before browser sent "beforeinstallprompt" event'));
 		} catch (error) {
-			return Promise.reject(
-				new Error(
-					'Tried installing before browser sent "beforeinstallprompt" event'
-				)
-			);
+			return Promise.reject(new Error('Tried installing before browser sent "beforeinstallprompt" event'));
 		}
-	};
+	}
 
 	useEffect(() => {
 		const ready = (event: IBeforeInstallPromptEvent) => {

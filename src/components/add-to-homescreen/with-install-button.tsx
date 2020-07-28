@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { InstallButton } from "./styles";
 import { IAddToHomeScreenWithInstallProps } from "./types";
-import { useAddToHomescreenPrompt } from 'helpers/custom-hooks/useAddToHomescreenPrompt';
-import { SectionListItem } from 'components/lists';
+import { useAddToHomescreenPrompt } from "helpers/custom-hooks/useAddToHomescreenPrompt";
+import { SectionListItem } from "components/lists";
 
 /**
  * @description Component Description
@@ -11,22 +11,26 @@ import { SectionListItem } from 'components/lists';
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IAddToHomeScreenWithInstallProps>}
  */
-export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScreenWithInstallProps> = ({ id, title, subtitle, isStandalone }) => {
+export const AddToHomeScreenWithInstall: React.FunctionComponent<IAddToHomeScreenWithInstallProps> = ({
+	id,
+	title,
+	subtitle,
+	isStandalone,
+}) => {
 	const [isready, promptToInstall] = useAddToHomescreenPrompt();
 	const [buttonProps, setButtonProps] = useState({
 		text: "checking...",
-		classes: "banner"
+		classes: "banner",
 	});
 	const [description, setDescription] = useState("Checking...");
 
 	useEffect(() => {
 		setButtonProps({
 			text: isStandalone ? "Installed" : "Install Now",
-			classes: isStandalone ? "banner is-standalone" : "banner"
+			classes: isStandalone ? "banner is-standalone" : "banner",
 		});
-		setDescription(isStandalone ? "Already installed" : "The app can be installed")
+		setDescription(isStandalone ? "Already installed" : "The app can be installed");
 	}, [isready]);
-
 
 	/**
 	 * @description

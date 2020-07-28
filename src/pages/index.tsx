@@ -1,7 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Redirect } from "@reach/router";
-import * as React from "react";
-import { connect } from "react-redux";
+import React, { useContext } from "react";
 import {
 	Container,
 	Layout,
@@ -17,14 +16,12 @@ import { IconBrandingLarge } from "components/icons/index";
 import { NEWS_PAGE, ONBOARDING_CHOOSE_SOURCES_PAGE, ONBOARDING_PAGE } from "data/constants/index.constants";
 import Meta from "components/meta/index";
 import { IBasePageProps } from "data/interfaces";
-import { useAddToHomescreenPrompt } from 'helpers/custom-hooks/useAddToHomescreenPrompt';
+import { useAddToHomescreenPrompt } from "helpers/custom-hooks/useAddToHomescreenPrompt";
+import PreferencesContext from "./../containers/preferences/context";
 
-interface IIndexPageProps extends IBasePageProps {
-	authenticated: boolean;
-}
-
-const IndexPage: React.FunctionComponent<IIndexPageProps> = ({ authenticated, location }) => {
+const IndexPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
 	const [isready, promptToInstall] = useAddToHomescreenPrompt();
+	const { authenticated } = useContext(PreferencesContext);
 
 	if (!authenticated) {
 		return (
@@ -59,8 +56,4 @@ const IndexPage: React.FunctionComponent<IIndexPageProps> = ({ authenticated, lo
 	return <Redirect from={ONBOARDING_PAGE} to={NEWS_PAGE} replace />;
 };
 
-const mapState2Props = (state: any) => ({
-	authenticated: state.preferences.authenticated,
-});
-
-export default connect(mapState2Props)(IndexPage);
+export default IndexPage;

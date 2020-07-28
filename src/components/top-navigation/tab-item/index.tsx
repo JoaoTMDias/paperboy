@@ -14,13 +14,7 @@ export const TabItem: React.FunctionComponent<ITabItemProps> = (props) => {
 
 	return (
 		<Wrapper to={to} label={label} layout={layout}>
-			<TabLink
-				to={to}
-				activeClassName="is-active"
-				aria-label={`Go to ${label} page`}
-				layout={layout}
-				label={label}
-			>
+			<TabLink to={to} activeClassName="is-active" aria-label={`Go to ${label} page`} layout={layout} label={label}>
 				{children && <Icon className="tab__icon">{children}</Icon>}
 				<Label className="label">{label}</Label>
 			</TabLink>

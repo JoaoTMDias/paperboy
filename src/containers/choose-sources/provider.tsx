@@ -26,7 +26,7 @@ const ChooseSourcesProvider: React.FunctionComponent = ({ children }) => {
 
 	const value: IChooseSourcesContext = {
 		list,
-		onChangeOption: (value) => onChangeOption(value),
+		onChangeOption,
 	};
 
 	return <ChooseSourcesContext.Provider value={value}>{children}</ChooseSourcesContext.Provider>;

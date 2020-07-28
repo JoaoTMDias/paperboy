@@ -33,7 +33,7 @@ const Container: React.FunctionComponent<IContainerProps> = (props) => {
 Container.defaultProps = {
 	isFixed: false,
 	fullheight: false,
-	fullwidth: false
+	fullwidth: false,
 };
 
 export default React.memo(Container);

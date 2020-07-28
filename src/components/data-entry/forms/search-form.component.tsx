@@ -40,7 +40,7 @@ const UISearchForm: FunctionComponent<IUISearchFormProps> = ({ legend, placehold
 			</Form>
 		</UISection>
 	);
-}
+};
 
 // Styling
 const Form = styled.form`

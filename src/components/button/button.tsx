@@ -7,7 +7,15 @@ import { IUIButtonProps } from "./types";
  * @description Button: Primary
  * @extends {React.FC}
  */
-export const UIButton: React.FunctionComponent<IUIButtonProps> = ({ id, type, text, label, disabled, flavour, onClick }) => {
+export const UIButton: React.FunctionComponent<IUIButtonProps> = ({
+	id,
+	type,
+	text,
+	label,
+	disabled,
+	flavour,
+	onClick,
+}) => {
 	return (
 		<Button
 			id={id}

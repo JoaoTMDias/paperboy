@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, NewsTabs, ContentSpinner } from "components/index.components";
-import { IGlobalStoreState } from "data/interfaces/index";
-import { INewsPageProps } from "./types";
-import { PrivateRoute } from 'helpers/index.helpers';
+import { IBasePageProps } from "data/interfaces/index";
+import { PrivateRoute } from "helpers/index.helpers";
+import PreferencesContext from "./../../containers/preferences/context";
+import AuditContext from "./../../containers/audit/context";
 
 /**
  * News Page Tab
@@ -11,8 +11,10 @@ import { PrivateRoute } from 'helpers/index.helpers';
  * @class NewsPage
  * @extends {React.Component<INewsPageProps, any>}
  */
-const NewsPage: React.FC<INewsPageProps> = ({ sources, location }) => {
+const NewsPage: React.FC<IBasePageProps> = ({ location }) => {
 	const [hasData, setHasData] = useState(false);
+	const { chosenSources: sources } = useContext(PreferencesContext);
+	const { platform } = useContext(AuditContext);
 
 	useEffect(() => {
 		if (sources?.quantity > 0 && sources.items.tabs.length > 0) {
@@ -52,9 +54,4 @@ const NewsPage: React.FC<INewsPageProps> = ({ sources, location }) => {
 	);
 };
 
-const mapStateToProps = (state: IGlobalStoreState) => ({
-	platform: state.general.platform,
-	sources: state.preferences.chosenSources,
-});
-
-export default connect(mapStateToProps)(NewsPage);
+export default NewsPage;

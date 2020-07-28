@@ -8,6 +8,4 @@ export * from "./with-memo.helper";
 export * from "./elevation.helper";
 import PrivateRoute from "./private-route";
 
-export {
-	PrivateRoute
-}
+export { PrivateRoute };

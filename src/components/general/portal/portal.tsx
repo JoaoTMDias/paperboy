@@ -28,6 +28,6 @@ const Portal: React.FC<PropsWithChildren<{}>> = ({ children }) => {
 	}
 
 	return null;
-}
+};
 
 export default Portal;

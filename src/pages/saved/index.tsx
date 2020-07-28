@@ -1,6 +1,5 @@
 // Libraries
-import * as React from "react";
-import { connect } from "react-redux";
+import React, { useContext } from "react";
 import {
 	ArticleThumbnail,
 	Container,
@@ -9,16 +8,10 @@ import {
 	UISection,
 } from "components/index.components";
 import { List } from "./styles";
-import { IGlobalStoreState, INewsArticleItem, IBasePageProps } from "data/interfaces/index";
-import { PrivateRoute } from 'helpers/index.helpers';
-import { EThumbnailType } from 'components/thumbnails/types.d';
-
-// Interface
-interface ISavedPageProps extends IBasePageProps {
-	dispatch?: any;
-	children?: any;
-	saved: INewsArticleItem[];
-}
+import { INewsArticleItem, IBasePageProps } from "data/interfaces/index";
+import { PrivateRoute } from "helpers/index.helpers";
+import { EThumbnailType } from "components/thumbnails/types.d";
+import PreferencesContext from "./../../containers/preferences/context";
 
 /**
  * @description Settings Page
@@ -26,7 +19,8 @@ interface ISavedPageProps extends IBasePageProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<ISavedPageProps>}
  */
-const SavedPage: React.FunctionComponent<ISavedPageProps> = ({ saved, location }) => {
+const SavedPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
+	const { saved } = useContext(PreferencesContext);
 	/**
 	 *
 	 *
@@ -72,8 +66,4 @@ const SavedPage: React.FunctionComponent<ISavedPageProps> = ({ saved, location }
 	);
 };
 
-const mapState2Props = (state: IGlobalStoreState) => ({
-	saved: state.preferences.saved,
-});
-
-export default connect(mapState2Props)(SavedPage);
+export default SavedPage;

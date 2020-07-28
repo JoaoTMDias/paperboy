@@ -2,11 +2,10 @@ import { EAppThemeType } from "./theme";
 import { INewsArticleItem } from "./news";
 
 export interface PreferencesReducer {
-	type: null;
-	theme?: EAppThemeType | undefined;
+	authenticated: boolean;
+	theme?: EAppThemeType;
 	chosenSources: ChosenNewsSources;
 	saved: INewsArticleItem[];
-	authenticated: boolean;
 	baseFontRatio: number;
 }
 

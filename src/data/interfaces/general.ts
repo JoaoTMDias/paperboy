@@ -1,11 +1,9 @@
 export interface IGeneral {
-	version: string;
 	platform: string;
 	hasAudited: boolean;
 	isOnline: boolean;
 	isStandalone: boolean;
 	supports: Supports;
-	userLanguage: UserLanguage;
 }
 
 export interface Supports {

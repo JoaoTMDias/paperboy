@@ -32,6 +32,22 @@ const manifestOptions = {
 			type: "image/png",
 		},
 	],
+	shortcuts: [
+		{
+			name: "Get Latest News",
+			short_name: "Latest News",
+			description: "View a list of the most recent news",
+			url: "/news?utm_source=homescreen",
+			icons: [{ src: "/android/android-launchericon-192-192.png", sizes: "192x192" }],
+		},
+		{
+			name: "Go to Saved News",
+			short_name: "Saved News",
+			description: "View a list your previously saved articles",
+			url: "/saved?utm_source=homescreen",
+			icons: [{ src: "/android/android-launchericon-192-192.png", sizes: "192x192" }],
+		},
+	],
 };
 
 const analyticsOptions = {

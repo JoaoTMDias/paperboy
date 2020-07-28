@@ -1,4 +1,5 @@
 import { css } from "styled-components";
+import { EAppThemeType } from "data/interfaces";
 
 /**
  * For the specified media query, returns a tag function that can be used to
@@ -28,8 +29,13 @@ function setTheme(flavour) {
 	`;
 }
 
-const theme = {
+export const theme = {
 	light: setTheme(themes.light),
 	dark: setTheme(themes.dark),
 };
-export { theme };
+
+export const hasDarkModeInSystemPreferences = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+export function checkIfHasDarkMode() {
+	return hasDarkModeInSystemPreferences ? EAppThemeType.DARK : EAppThemeType.LIGHT;
+}

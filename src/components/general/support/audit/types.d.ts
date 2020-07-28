@@ -1,4 +1,4 @@
-import { FeatureSupport } from 'data/interfaces';
+import { FeatureSupport } from "data/interfaces";
 
 export interface IAuditProps {
 	isOnline: boolean;
@@ -6,19 +6,27 @@ export interface IAuditProps {
 	hasAudited: boolean;
 	platform: string;
 	actions: {
-		setStandaloneStatus: (isStandalone: boolean) => {
+		setStandaloneStatus: (
+			isStandalone: boolean,
+		) => {
 			type: string;
 			status: boolean;
-		},
-		setOnlineStatus: (status: boolean) => {
+		};
+		setOnlineStatus: (
+			status: boolean,
+		) => {
 			type: string;
 			status: boolean;
-		},
-		setPlatform: (platform: string) => {
+		};
+		setPlatform: (
+			platform: string,
+		) => {
 			type: string;
 			platform: string;
-		},
-		setFeatureSupport: (features: FeatureSupport) => {
+		};
+		setFeatureSupport: (
+			features: FeatureSupport,
+		) => {
 			type: string;
 			payload: {
 				hasAudited: boolean;
@@ -29,8 +37,8 @@ export interface IAuditProps {
 					notifications: boolean;
 				};
 			};
-		}
-	}
+		};
+	};
 }
 
 export interface IAuditState {

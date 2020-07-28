@@ -2,6 +2,8 @@
 import React, { useRef } from "react";
 import { StaticQuery, graphql } from "gatsby";
 import { isIOS } from "react-device-detect";
+import AuditProvider from "./../../containers/audit/provider";
+import PreferencesProvider from "./../../containers/preferences/provider";
 import { Audit, BottomNavigation, ViewportHeight, AddToHomeScreen, Modal, ChangeAppTheme } from "../index.components";
 import TopNavigation from "../top-navigation/default/index";
 import { Provider } from "./theme-provider";
@@ -58,18 +60,20 @@ const Layout: React.FunctionComponent<ILayoutProps> = ({ children, authenticated
 				}
 			`}
 			render={() => (
-				<Provider>
-					<>
-						<Audit />
-						<ViewportHeight />
-						<ChangeAppTheme />
-						<AppLayout id="app-layout">
-							{renderAddToHomescren()}
-							{renderNavigationElements()}
-						</AppLayout>
-						<div id="portal" />
-					</>
-				</Provider>
+				<PreferencesProvider>
+					<Provider>
+						<AuditProvider>
+							<Audit />
+							<ViewportHeight />
+							<ChangeAppTheme />
+							<AppLayout id="app-layout">
+								{renderAddToHomescren()}
+								{renderNavigationElements()}
+							</AppLayout>
+							<div id="portal" />
+						</AuditProvider>
+					</Provider>
+				</PreferencesProvider>
 			)}
 		/>
 	);

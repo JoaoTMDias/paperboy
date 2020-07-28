@@ -1,23 +1,8 @@
 // Libraries
-import React, { FunctionComponent, useState, useRef, useEffect, useCallback } from "react";
-import { connect } from "react-redux";
-import { setAppTheme } from "data/redux/actions/index.actions";
+import React, { FunctionComponent, useState, useRef, useEffect, useCallback, useContext } from "react";
 import { EAppThemeType } from "data/interfaces/theme";
-import { IGlobalStoreState } from "data/interfaces/index";
-import { Dispatch, bindActionCreators } from 'redux';
-
-// Interface
-interface IChangeAppThemeProps {
-	actions: {
-		setAppTheme: (theme: EAppThemeType) => {
-			type: string;
-			payload: {
-				data: EAppThemeType;
-			};
-		},
-	},
-	currentTheme: EAppThemeType | undefined;
-}
+import PreferencesContext from "./../../../../containers/preferences/context";
+import { checkIfHasDarkMode } from "helpers/theme.helper";
 
 /**
  * @description Sets the current theme of the app
@@ -25,19 +10,11 @@ interface IChangeAppThemeProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IChangeAppThemeProps>}
  */
-const ChangeAppTheme: FunctionComponent<IChangeAppThemeProps> = ({
-	actions,
-	currentTheme,
-}) => {
+const ChangeAppTheme: FunctionComponent = () => {
+	const { theme: currentTheme, setAppTheme } = useContext(PreferencesContext);
 	const { current: rootElement } = useRef(document.documentElement);
-	const { current: hasDarkModeInSystemPreferences } = useRef(window.matchMedia("(prefers-color-scheme: dark)").matches);
 	const [hasNewTheme, setHasNewTheme] = useState(false);
 	const [themeColor, setThemeColor] = useState("#e81b1f");
-
-	function checkIfHasDarkMode(): EAppThemeType {
-		return hasDarkModeInSystemPreferences ? EAppThemeType.DARK : EAppThemeType.LIGHT;
-	}
-
 
 	/**
 	 * @description updates the rootElement with the document.documentElement.
@@ -51,11 +28,11 @@ const ChangeAppTheme: FunctionComponent<IChangeAppThemeProps> = ({
 			let theme = currentTheme || checkIfHasDarkMode();
 
 			updateAppThemeOnRoot(theme);
-			actions.setAppTheme(theme);
+			setAppTheme(theme);
 		}
 
 		updateAppThemeOnRoot(currentTheme || checkIfHasDarkMode());
-	}, [currentTheme, actions]);
+	}, [currentTheme, setAppTheme]);
 
 	/**
 	 * @description Updates the Current Meta Theme Color
@@ -63,21 +40,19 @@ const ChangeAppTheme: FunctionComponent<IChangeAppThemeProps> = ({
 	 * @date 2019-05-09
 	 * @memberof ChangeAppTheme
 	 */
-	const changeBrowserMetaColors = useCallback(
-		(theme: EAppThemeType) => {
-			const metaThemeColor = document.querySelector("meta[name=theme-color]");
-			const metaStatusBar = document.querySelector("meta[name=apple-mobile-web-app-status-bar-style]");
-			const statusBarColor = theme === EAppThemeType.DARK ? "black-translucent" : "default";
+	const changeBrowserMetaColors = useCallback((theme: EAppThemeType) => {
+		const metaThemeColor = document.querySelector("meta[name=theme-color]");
+		const metaStatusBar = document.querySelector("meta[name=apple-mobile-web-app-status-bar-style]");
+		const statusBarColor = theme === EAppThemeType.DARK ? "black-translucent" : "default";
 
-			if (metaThemeColor) {
-				metaThemeColor.setAttribute("content", themeColor);
-			}
+		if (metaThemeColor) {
+			metaThemeColor.setAttribute("content", themeColor);
+		}
 
-			if (metaStatusBar) {
-				metaStatusBar.setAttribute("content", statusBarColor);
-			}
-		}, []
-	);
+		if (metaStatusBar) {
+			metaStatusBar.setAttribute("content", statusBarColor);
+		}
+	}, []);
 
 	/**
 	 * @description Updates the current theme
@@ -97,8 +72,10 @@ const ChangeAppTheme: FunctionComponent<IChangeAppThemeProps> = ({
 			}, 1000);
 
 			setThemeColor(themeColor);
-			changeBrowserMetaColors(theme)
-		}, [rootElement, setThemeColor, changeBrowserMetaColors]);
+			changeBrowserMetaColors(theme);
+		},
+		[rootElement, setThemeColor, changeBrowserMetaColors],
+	);
 
 	/**
 	 * @description If there is a new theme coming from the store,
@@ -116,27 +93,10 @@ const ChangeAppTheme: FunctionComponent<IChangeAppThemeProps> = ({
 				changeCurrentTheme(theme);
 			}
 		},
-		[setHasNewTheme, changeCurrentTheme]);
+		[setHasNewTheme, changeCurrentTheme],
+	);
 
 	return <aside className="sr-only" data-theme={currentTheme} data-theme-color={themeColor} tabIndex={-1} />;
-}
+};
 
-function mapStateToProps(state: IGlobalStoreState) {
-	return {
-		currentTheme: state.preferences.theme,
-	};
-}
-
-function mapDispatchToProps(dispatch: Dispatch) {
-	return {
-		actions: bindActionCreators(
-			{
-				setAppTheme,
-			},
-			dispatch,
-		),
-	};
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChangeAppTheme);
+export default ChangeAppTheme;

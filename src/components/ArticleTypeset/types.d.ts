@@ -2,13 +2,15 @@
 export interface IArticleTypesetProps {
 	baseFontRatio: number;
 	actions: {
-		setBaseFontRatio: (ratio: number) => {
+		setBaseFontRatio: (
+			ratio: number,
+		) => {
 			type: string;
 			payload: {
 				data: number;
 			};
-		}
-	}
+		};
+	};
 }
 
 export interface IArticleTypesetState {

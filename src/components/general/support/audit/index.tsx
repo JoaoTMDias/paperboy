@@ -1,21 +1,24 @@
-import React, { useEffect, useRef } from "react";
+import React, { FunctionComponent, useContext, useEffect, useRef } from "react";
+import isNil from "lodash/isNil";
 import { useNetwork } from "react-use";
 import { isAndroid, isIOS } from "react-device-detect";
-import { connect } from "react-redux";
-import { IGlobalStoreState, FeatureSupport } from "data/interfaces/index";
-import { setFeatureSupport, setOnlineStatus, setPlatform, setStandaloneStatus } from "data/redux/actions/index.actions";
-import { IAuditProps } from "./types";
-import { Dispatch, bindActionCreators } from 'redux';
+import { FeatureSupport } from "data/interfaces/index";
+import AuditContext from "src/containers/audit/context";
 
-const Audit: React.FunctionComponent<IAuditProps> = ({
-	hasAudited,
-	isOnline,
-	isStandalone,
-	actions,
-	platform
-}) => {
+const Audit: FunctionComponent = () => {
+	const {
+		hasAudited,
+		isOnline,
+		isStandalone,
+		platform,
+		setStandaloneStatus,
+		setFeatureSupport,
+		setPlatform,
+		setOnlineStatus,
+	} = useContext(AuditContext);
 	const { current: WindowNavigator } = useRef(window.navigator as any);
 	const { online } = useNetwork();
+
 	useEffect(() => {
 		if (!hasAudited) {
 			handlePlatform();
@@ -34,12 +37,12 @@ const Audit: React.FunctionComponent<IAuditProps> = ({
 	 * @memberof Audit
 	 */
 	function handleStandaloneStatus() {
-		if (typeof window !== "undefined" && typeof document !== "undefined") {
+		if (!isNil(window) && !isNil(document)) {
 			const isInWebAppiOS = WindowNavigator.standalone === true;
 			const isInWebAppChrome = window.matchMedia("(display-mode: standalone)").matches;
 			const status = !!(isInWebAppiOS || isInWebAppChrome);
 
-			actions.setStandaloneStatus(status)
+			setStandaloneStatus(status);
 		}
 	}
 
@@ -71,7 +74,7 @@ const Audit: React.FunctionComponent<IAuditProps> = ({
 			},
 		};
 
-		actions.setFeatureSupport(features);
+		setFeatureSupport(features);
 	}
 
 	/**
@@ -90,7 +93,7 @@ const Audit: React.FunctionComponent<IAuditProps> = ({
 			platform = "android";
 		}
 
-		actions.setPlatform(platform);
+		setPlatform(platform);
 	}
 
 	/**
@@ -103,7 +106,7 @@ const Audit: React.FunctionComponent<IAuditProps> = ({
 	 */
 	function handleNetworkAudit() {
 		if (online !== undefined && online !== null) {
-			actions.setOnlineStatus(online);
+			setOnlineStatus(online);
 		}
 	}
 
@@ -119,29 +122,6 @@ const Audit: React.FunctionComponent<IAuditProps> = ({
 			hidden
 		/>
 	);
-}
-
-function mapStateToProps(state: IGlobalStoreState) {
-	return {
-		hasAudited: state.general.hasAudited,
-		isOnline: state.general.isOnline,
-		isStandalone: state.general.isStandalone,
-		platform: state.general.platform,
-	}
 };
 
-function mapDispatchToProps(dispatch: Dispatch) {
-	return {
-		actions: bindActionCreators(
-			{
-				setStandaloneStatus,
-				setOnlineStatus,
-				setPlatform,
-				setFeatureSupport,
-			},
-			dispatch,
-		),
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Audit);
+export default Audit;

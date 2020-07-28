@@ -29,10 +29,10 @@ export const InstallButton = styled.button`
 	width: 100%;
 	margin: 0;
 	${flexRow({
-	direction: "row",
-	justifyContent: "space-between",
-	alignItems: "center",
-})};
+		direction: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+	})};
 
 	padding: 0;
 	-webkit-appearance: none;

@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import isNil from "lodash/isNil";
 import { navigate } from "gatsby";
 import { useState, useEffect, PropsWithChildren } from "react";
-import { Redirect } from "@reach/router";
-import { connect } from "react-redux";
-import { IGlobalStoreState, IBasePageProps } from 'data/interfaces';
+import { IBasePageProps } from "data/interfaces";
 import { ONBOARDING_PAGE } from "data/constants/router.constants";
-import ContentSpinner from 'components/content-spinner';
-import Layout from 'components/layout';
-import Meta from 'components/meta';
+import ContentSpinner from "components/content-spinner";
+import Layout from "components/layout";
+import Meta from "components/meta";
+import PreferencesContext from "./../containers/preferences/context";
 
 interface IWithAuthenticationProps extends IBasePageProps {
 	header?: boolean;
-	authenticated?: boolean;
 	redirectTo?: string;
 	bottomNavigation?: boolean;
 	title: string;
@@ -21,14 +19,14 @@ interface IWithAuthenticationProps extends IBasePageProps {
 const PrivateRoute: React.FunctionComponent<PropsWithChildren<IWithAuthenticationProps>> = ({
 	children,
 	header,
-	authenticated,
 	bottomNavigation,
 	title,
 	location,
-	redirectTo
+	redirectTo,
 }) => {
 	const [loading, setIsLoading] = useState(true);
 	const [hasStatus, setHasStatus] = useState(false);
+	const { authenticated } = useContext(PreferencesContext);
 
 	useEffect(() => {
 		if (!isNil(authenticated)) {
@@ -39,9 +37,10 @@ const PrivateRoute: React.FunctionComponent<PropsWithChildren<IWithAuthenticatio
 
 	if (!loading && hasStatus) {
 		if (!authenticated) {
-			redirectTo && navigate(redirectTo, {
-				replace: true,
-			});
+			redirectTo &&
+				navigate(redirectTo, {
+					replace: true,
+				});
 			return null;
 		}
 
@@ -53,19 +52,13 @@ const PrivateRoute: React.FunctionComponent<PropsWithChildren<IWithAuthenticatio
 		);
 	}
 
-	return (
-		<ContentSpinner fullPage />
-	);
-}
-
-const mapStateToProps = (state: IGlobalStoreState) => ({
-	authenticated: state.preferences.authenticated,
-});
+	return <ContentSpinner fullPage />;
+};
 
 PrivateRoute.defaultProps = {
 	header: false,
 	redirectTo: ONBOARDING_PAGE,
-	bottomNavigation: true
-}
+	bottomNavigation: true,
+};
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default PrivateRoute;

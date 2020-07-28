@@ -1,14 +1,9 @@
 import { Redirect } from "@reach/router";
-import React, { useState, useRef, Suspense } from "react";
-import { connect } from "react-redux";
+import React, { useState, useRef, useContext, Suspense } from "react";
 import * as H from "history";
-
 import { Article, Hero, HeroCopy, ArticleContent, ArticleLink, BottomOptionsBar } from "./styles";
-
-// Components
 import {
 	Container,
-	Layout,
 	LazyLoadingImage,
 	TopNavigationWithClose,
 	Modal,
@@ -19,10 +14,9 @@ import { IconTypeset, IconBookmark } from "components/icons/index";
 import { NEWS_PAGE } from "data/constants/index.constants";
 import { INewsArticleItem } from "data/interfaces/news";
 import { EModalAlignType } from "data/interfaces/modal";
-import Meta from "components/meta";
 import useWebShare from "helpers/custom-hooks/useWebShare";
-import { IGlobalStoreState } from "data/interfaces";
-import { PrivateRoute } from 'helpers/index.helpers';
+import { PrivateRoute } from "helpers/index.helpers";
+import PreferencesContext from "./../../../containers/preferences/context";
 
 enum EModalType {
 	SHARE = "SHARE",
@@ -30,11 +24,11 @@ enum EModalType {
 }
 
 interface IArticleDetailPageProps {
-	authenticated: boolean;
 	location: H.Location<INewsArticleItem>;
 }
 
-const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ authenticated, location }) => {
+const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ location }) => {
+	const { authenticated } = useContext(PreferencesContext);
 	const { loading, isSupported, share } = useWebShare(
 		() => handleClickToCloseModal(EModalType.SHARE),
 		() => handleClickToCloseModal(EModalType.SHARE),
@@ -193,8 +187,4 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ a
 	return <Redirect to={NEWS_PAGE} noThrow />;
 };
 
-const mapStateToProps = (state: IGlobalStoreState) => ({
-	authenticated: state.preferences.authenticated,
-});
-
-export default connect(mapStateToProps)(ArticleDetailPage);
+export default ArticleDetailPage;

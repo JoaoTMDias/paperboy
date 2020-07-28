@@ -1,12 +1,8 @@
 // Libraries
-import React, { FunctionComponent, useRef, useEffect, useCallback } from "react";
-import { connect } from "react-redux";
-import { IGlobalStoreState } from "data/interfaces/index";
-import { setBaseFontRatio } from "data/redux/actions/index.actions";
+import React, { FunctionComponent, useRef, useEffect, useCallback, useContext } from "react";
 import { IconChangeTypeSize, EIconChangeTypeSize } from "components/icons/index";
 import * as S from "./styles";
-import { IArticleTypesetProps } from "./types";
-import { Dispatch, bindActionCreators } from 'redux';
+import PreferencesContext from "./../../containers/preferences/context";
 
 /**
  * @description Article Typographic settings
@@ -14,11 +10,9 @@ import { Dispatch, bindActionCreators } from 'redux';
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IArticleTypesetProps>}
  */
-export const ArticleTypeset: FunctionComponent<IArticleTypesetProps> = ({
-	baseFontRatio,
-	actions
-}) => {
+export const ArticleTypeset: FunctionComponent = () => {
 	const { current: htmlElement } = useRef(document.documentElement);
+	const { baseFontRatio, setBaseFontRatio } = useContext(PreferencesContext);
 
 	useEffect(() => {
 		setBaseFontRatioProperty(baseFontRatio);
@@ -35,7 +29,7 @@ export const ArticleTypeset: FunctionComponent<IArticleTypesetProps> = ({
 		(size: number | string) => {
 			htmlElement.style.setProperty("--base-font-ratio", `${size}`);
 		},
-		[htmlElement]
+		[htmlElement],
 	);
 
 	const handleOnChangeRangeValue = useCallback(
@@ -44,10 +38,10 @@ export const ArticleTypeset: FunctionComponent<IArticleTypesetProps> = ({
 
 			const { value } = event.target;
 
-			actions.setBaseFontRatio(parseFloat(value));
+			setBaseFontRatio(parseFloat(value));
 			setBaseFontRatioProperty(value);
 		},
-		[actions, setBaseFontRatioProperty]
+		[setBaseFontRatio, setBaseFontRatioProperty],
 	);
 
 	return (
@@ -74,27 +68,6 @@ export const ArticleTypeset: FunctionComponent<IArticleTypesetProps> = ({
 			</div>
 		</S.PanelWrapper>
 	);
-}
-
-ArticleTypeset.defaultProps = {
-	baseFontRatio: 1,
 };
 
-
-function mapStateToProps(state: IGlobalStoreState) {
-	return {
-		baseFontRatio: state.preferences.baseFontRatio,
-	};
-}
-
-function mapDispatchToProps(dispatch: Dispatch) {
-	return {
-		actions: bindActionCreators(
-			{
-				setBaseFontRatio,
-			},
-			dispatch,
-		),
-	};
-}
-export default connect(mapStateToProps, mapDispatchToProps)(ArticleTypeset);
+export default ArticleTypeset;

@@ -1,7 +1,5 @@
 // Libraries
-import React, { useRef, useCallback } from "react";
-import { Dispatch, bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import React, { useRef, useCallback, useContext } from "react";
 import {
 	Container,
 	TopNavigation,
@@ -15,36 +13,15 @@ import {
 } from "components/index.components";
 
 import { EAppThemeType } from "data/interfaces/theme";
-import { setAppTheme, resetAppState } from "data/redux/actions/index.actions";
 import {
 	A11Y_SETTINGS_PAGE,
 	PRIVACY_POLICY_SETTINGS_PAGE,
-	OPEN_SOURCE_SETTINGS_PAGE
+	OPEN_SOURCE_SETTINGS_PAGE,
 } from "data/constants/router.constants";
-import { IGlobalStoreState, IBasePageProps } from "data/interfaces/index";
-import { PrivateRoute } from 'helpers/index.helpers';
-
-// Interface
-interface ISettingsPageProps extends IBasePageProps {
-	actions: {
-		setAppTheme: (theme: EAppThemeType) => {
-			type: string;
-			payload: {
-				data: EAppThemeType;
-			};
-		},
-		resetAppState: (status: boolean) => {
-			type: string;
-			payload: {
-				status: boolean;
-			};
-		},
-	}
-	authenticated: boolean;
-	children?: any;
-	isStandalone: boolean;
-	theme: EAppThemeType;
-}
+import { IBasePageProps } from "data/interfaces/index";
+import { PrivateRoute } from "helpers/index.helpers";
+import PreferencesContext from "./../../containers/preferences/context";
+import AuditContext from "./../../containers/audit/context";
 
 /**
  * @description Settings Page
@@ -52,28 +29,26 @@ interface ISettingsPageProps extends IBasePageProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<ISettingsPageProps>}
  */
-const SettingsPage: React.FunctionComponent<ISettingsPageProps> = ({
-	isStandalone,
-	theme,
-	actions,
-	location
-}) => {
-	const { current: isProduction } = useRef(process.env.NODE_ENV === "production")
+const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
+	const { current: isProduction } = useRef(process.env.NODE_ENV === "production");
+	const { theme, setAppTheme, resetAppState } = useContext(PreferencesContext);
+	const { isStandalone } = useContext(AuditContext);
 
 	/**
 	 *	@description Switches between Dark/Light theme
 	 */
 	const handleToggleDarkTheme = useCallback(
-
 		(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => {
 			event.preventDefault();
 
 			const themeToSet = theme && theme === EAppThemeType.LIGHT ? EAppThemeType.DARK : EAppThemeType.LIGHT;
-			actions.setAppTheme(themeToSet)
-		}, [theme, actions]);
+			setAppTheme(themeToSet);
+		},
+		[theme, setAppTheme],
+	);
 
 	function handleClickToClearPreferences() {
-		actions.resetAppState(true);
+		resetAppState();
 	}
 
 	return (
@@ -145,29 +120,6 @@ const SettingsPage: React.FunctionComponent<ISettingsPageProps> = ({
 			</Container>
 		</PrivateRoute>
 	);
-}
-
-SettingsPage.defaultProps = {
-	isStandalone: false,
 };
 
-function mapDispatchToProps(dispatch: Dispatch) {
-	return {
-		actions: bindActionCreators(
-			{
-				setAppTheme,
-				resetAppState
-			},
-			dispatch,
-		),
-	};
-}
-
-function mapStateToProps(state: IGlobalStoreState) {
-	return {
-		theme: state.preferences.theme,
-		isStandalone: state.general.isStandalone,
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);
+export default SettingsPage;
