@@ -17,12 +17,10 @@ interface IMetaProps extends IBasePageProps {
  * @date  01/December/2018 at 16:57
  * @extends {React.FC}
  */
-export const Meta: React.FunctionComponent<IMetaProps> = (props) => {
-	const { title, description, location, noIndex } = props;
-	const mainTitle = `${config.title}`;
-	const metaTitle: string = title ? title : mainTitle;
-	const metaDescription: string = description || config.description;
-	const absoluteUrl = `${config.url}${location?.pathname}`;
+export const Meta: React.FunctionComponent<IMetaProps> = ({ title, description, location, noIndex }) => {
+	const metaTitle = title || `${config.title}`;
+	const metaDescription = description || config.description;
+	const absoluteUrl = location ? `${config.url}${location.pathname}` : `${config.url}`;
 
 	const meta = [
 		{ name: "description", content: metaDescription },

@@ -6,6 +6,7 @@ export * from "./position.helper";
 export * from "./row.helper";
 export * from "./with-memo.helper";
 export * from "./elevation.helper";
+export * from "./fluid-typography";
 import PrivateRoute from "./private-route";
 
 export { PrivateRoute };

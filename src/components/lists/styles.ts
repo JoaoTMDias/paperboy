@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { rem } from "polished";
 import { Link } from "gatsby";
 import { flexRow, elevation } from "helpers/index.helpers";
-import { IListItemWithButtonProps, EListItemButtonType } from "./list-types";
+import { IListItemWithButtonProps, EListItemButtonType, ISectionListItemProps } from "./list-types";
 
 // Styling
 export const Button = styled.button`
@@ -119,10 +119,10 @@ export const Action = styled(Link)`
 	width: 100%;
 	margin: 0;
 	${flexRow({
-		direction: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-	})};
+	direction: "row",
+	justifyContent: "space-between",
+	alignItems: "center",
+})};
 
 	&:focus {
 		outline-color: transparent;
@@ -178,10 +178,10 @@ export const Label = styled.label`
 	width: 100%;
 	margin: 0;
 	${flexRow({
-		direction: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-	})};
+	direction: "row",
+	justifyContent: "space-between",
+	alignItems: "center",
+})};
 
 	&:focus {
 		outline-color: transparent;
@@ -248,6 +248,17 @@ export const ListWrapper = styled.li`
 	background-color: var(--list-item-background-color);
 	transition: all 120ms ease;
 
+	${(props: ISectionListItemProps) => {
+		if (props.center) {
+			return css`
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+			`;
+		}
+	}};
+
 	&:only-child,
 	&:last-child {
 		border-bottom-color: transparent;
@@ -257,9 +268,23 @@ export const ListWrapper = styled.li`
 		background-color: var(--list-item-background-color-hover);
 	}
 
-	${flexRow({
-		direction: "row",
-		justifyContent: "flex-start",
-		alignItems: "center",
-	})};
+	${(props: ISectionListItemProps) => {
+		if (props.center) {
+			return css`
+				${flexRow({
+				direction: "row",
+				justifyContent: "center",
+				alignItems: "center",
+			})};
+			`;
+		}
+
+		return css`
+		${flexRow({
+			direction: "row",
+			justifyContent: "flex-start",
+			alignItems: "center",
+		})};
+	`;
+	}};
 `;

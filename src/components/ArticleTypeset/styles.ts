@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { rem } from "polished";
 import { theme } from "helpers/theme.helper";
+import fluidFontSize from 'helpers/fluid-typography';
 
 export const PanelWrapper = styled.aside`
 	--panel-wrapper-border-color: var(--color-gray1);
@@ -38,7 +39,7 @@ export const PanelWrapper = styled.aside`
 			text-align: center;
 
 			font-family: var(--body-font-family);
-			font-size: calc((((14 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
+			${fluidFontSize(14, "2vw", 16)};
 			color: var(--color-gray7);
 			letter-spacing: 0;
 			line-height: ${rem("32px")};

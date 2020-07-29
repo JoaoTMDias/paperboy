@@ -31,4 +31,5 @@ export interface IListItemWithSwitchProps {
 
 export interface ISectionListItemProps {
 	id: string;
+	center?: boolean;
 }

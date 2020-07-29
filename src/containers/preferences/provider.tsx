@@ -13,7 +13,11 @@ const PreferencesProvider: FunctionComponent = ({ children }) => {
 			baseFontRatio: storage?.baseFontRatio || DEFAULT_PREFERENCES.baseFontRatio,
 			chosenSources: storage?.chosenSources || DEFAULT_PREFERENCES.chosenSources,
 			theme: storage?.theme || DEFAULT_PREFERENCES.theme,
-			resetAppState: () => removeValue(),
+			resetAppState: async () => {
+				setStorage(false, "authenticated");
+				setStorage(null, "chosenSources");
+				await removeValue();
+			},
 			setAppTheme: (theme: EAppThemeType) => setStorage(theme, "theme"),
 			setBaseFontRatio: (ratio: number) => setStorage(ratio, "baseFontRatio"),
 			setChosenSources: (sources: ChosenNewsSources) => setStorage(sources, "chosenSources"),

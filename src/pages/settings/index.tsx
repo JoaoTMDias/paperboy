@@ -94,7 +94,7 @@ const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 						marginBottom: "4rem",
 					}}
 				>
-					<SectionListItem id="logout-paperboy">
+					<SectionListItem id="logout-paperboy" center>
 						<UIButton
 							id="reset-preferences"
 							onClick={handleClickToClearPreferences}

@@ -9,11 +9,9 @@ import { ISectionListItemProps } from "../list-types";
  * @date 2019-02-16
  * @returns {React.FunctionComponent<ISectionListItemProps>}
  */
-export const SectionListItem: React.FunctionComponent<ISectionListItemProps> = (props) => {
-	const { id, children } = props;
-
+export const SectionListItem: React.FunctionComponent<ISectionListItemProps> = ({ id, center, children }) => {
 	return (
-		<ListWrapper aria-labelledby={id} className="section-list__item">
+		<ListWrapper id={id} aria-labelledby={id} center={center} className="section-list__item">
 			{children}
 		</ListWrapper>
 	);

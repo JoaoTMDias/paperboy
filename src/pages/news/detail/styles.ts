@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { rem } from "polished";
 import { above } from "helpers/index.helpers";
 import { theme } from "helpers/theme.helper";
+import fluidFontSize from 'helpers/fluid-typography';
 
 export const OpeningAnimation = keyframes`
   from {
@@ -110,7 +111,7 @@ export const HeroCopy = styled.div`
 		width: 100%;
 		font-family: var(--body-font-family);
 		font-weight: normal;
-		font-size: calc((((22 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
+		${fluidFontSize(22, "6vw", 24)};
 		color: var(--color-white);
 		letter-spacing: 0;
 		text-align: left;
@@ -144,7 +145,7 @@ export const HeroCopy = styled.div`
 		&__source,
 		&__time {
 			color: var(--color-white);
-			font-size: calc((((11 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
+			${fluidFontSize(11, "2vw", 13)};
 		}
 
 		&__source {
@@ -170,7 +171,7 @@ export const HeroCopy = styled.div`
 		}
 
 		.title {
-			font-size: calc((((28 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
+			${fluidFontSize(28, "6vw", 32)};
 		}
 	`};
 
@@ -188,7 +189,7 @@ export const ArticleContent = styled.div`
 		color: var(--content-lead-color);
 		font-family: var(--body-font-family);
 		font-weight: 300;
-		font-size: calc((((16 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
+		${fluidFontSize(16, "3vw", 18)};
 		letter-spacing: ${rem("0.22px")};
 		line-height: ${rem("32px")};
 		margin-bottom: ${rem("24px")};
@@ -197,7 +198,7 @@ export const ArticleContent = styled.div`
 	p {
 		font-family: var(--content-font-family);
 		color: var(--content-paragraph-color);
-		font-size: calc((((16 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
+		${fluidFontSize(16, "3vw", 18)};
 		letter-spacing: ${rem("0.4px")};
 		line-height: ${rem("28px")};
 	}
@@ -236,12 +237,12 @@ export const ArticleLink = styled.a`
 
 	.article-link {
 		&__title {
-			font-size: calc((((16 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
+			${fluidFontSize(14, "3vw", 16)};
 			font-family: var(--heading-font-family);
 		}
 
 		&__source {
-			font-size: calc((((10 * var(--base-font-ratio, 1)) * 100) / var(--viewport-height-unitless)) * 1vh);
+			${fluidFontSize(10, "1.5vw", 11)};
 			text-transform: uppercase;
 			letter-spacing: 1px;
 			color: var(--link-source-color);

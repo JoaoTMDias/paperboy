@@ -3,7 +3,7 @@ import { useLocalStorage } from "react-use";
 import { DEFAULT_PREFERENCES, IPreferences } from "./../../containers/preferences/context";
 
 function useChooseSources() {
-	const [value, setValue, removeValue] = useLocalStorage<IPreferences>("preferences", DEFAULT_PREFERENCES);
+	const [value, setValue, remove] = useLocalStorage<IPreferences>("preferences", DEFAULT_PREFERENCES);
 
 	/**
 	 * Merges existing column entries with newer ones
@@ -23,6 +23,20 @@ function useChooseSources() {
 			setValue(values);
 		},
 		[setValue],
+	);
+
+	const removeValue = useCallback(
+		() => {
+			return new Promise((resolve, reject) => {
+				try {
+					remove();
+					resolve();
+				} catch (error) {
+					reject(error);
+				}
+			});
+		},
+		[remove, setValue]
 	);
 
 	return {
