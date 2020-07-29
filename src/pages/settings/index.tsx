@@ -71,21 +71,14 @@ const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 							isStandalone={isStandalone}
 						/>
 					)}
-					<SectionListItem id="about-paperboy">
-						<ListItemWithLink id="about-paperboy" title="Accessibility" to={A11Y_SETTINGS_PAGE} />
-					</SectionListItem>
-				</UISection>
-				<UISection id="settings-appearance" title="Appearance">
-					<SectionListItem id="dark-theme">
-						<ListItemWithSwitch
-							id="dark-theme"
-							title="Dark Theme"
-							subtitle="Easier on the eyes on low light"
-							defaultValue={EAppThemeType.DARK}
-							value={theme}
-							onClick={handleToggleDarkTheme}
-						/>
-					</SectionListItem>
+					<ListItemWithSwitch
+						id="dark-theme"
+						title="Dark Theme"
+						subtitle="Easier on the eyes on low light"
+						defaultValue={EAppThemeType.DARK}
+						value={theme}
+						onClick={handleToggleDarkTheme}
+					/>
 				</UISection>
 				<UISection id="settings-others" title="Others">
 					<SectionListItem id="about-paperboy">
@@ -93,13 +86,6 @@ const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 					</SectionListItem>
 					<SectionListItem id="privacy-policy-paperboy">
 						<ListItemWithLink id="privacy-policy-paperboy" title="Privacy Policy" to={PRIVACY_POLICY_SETTINGS_PAGE} />
-					</SectionListItem>
-					<SectionListItem id="open-source-libraries-paperboy">
-						<ListItemWithLink
-							id="open-source-libraries-paperboy"
-							title="Open-Source Libraries"
-							to={OPEN_SOURCE_SETTINGS_PAGE}
-						/>
 					</SectionListItem>
 				</UISection>
 				<UISection
