@@ -36,7 +36,7 @@ export const onServiceWorkerUpdateFound = () => {
 export const onServiceWorkerUpdateReady = () => {
 	confirmDialog(`Paperboy has been updated.` + `Reload to display the latest version?`)
 		.then(() => window.location.reload())
-		.catch((err) => console.info(`Service Worker will keep the current version`));
+		.catch(() => console.info(`Service Worker will keep the current version`));
 };
 
 export const wrapRootElement = wrapWithProvider;
