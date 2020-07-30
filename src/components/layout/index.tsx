@@ -17,9 +17,7 @@ const Layout: React.FunctionComponent<ILayoutProps> = ({ authenticated, bottomNa
 	const isStandalone = useRef(typeof window !== "undefined" && window.matchMedia("(display-mode: standalone)").matches);
 	const { platform } = useContext(AuditContext);
 	const isIOS = platform && platform === "ios";
-	const [Modal, open] = useModal({
-		preventScroll: true,
-	});
+	const [Modal, open] = useModal({});
 
 	useEffect(() => {
 		async function openModal() {
