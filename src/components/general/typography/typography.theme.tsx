@@ -2,7 +2,7 @@
 import { rem } from "polished";
 import * as React from "react";
 import styled, { keyframes } from "styled-components";
-import fluidFontSize from 'helpers/fluid-typography';
+import fluidFontSize from "helpers/fluid-typography";
 
 // Interface
 interface IHeadingsProps {

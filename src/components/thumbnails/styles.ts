@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import { IArticleThumbnailProps, EThumbnailType } from "./types.d";
 import { theme } from "helpers/theme.helper";
 import { above } from "helpers/index.helpers";
-import fluidFontSize from 'helpers/fluid-typography';
+import fluidFontSize from "helpers/fluid-typography";
 
 export const Anchor = styled(Link)`
 	--anchor-height-factor: 0.35;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { rem } from "polished";
 import { theme } from "helpers/theme.helper";
-import fluidFontSize from 'helpers/fluid-typography';
+import fluidFontSize from "helpers/fluid-typography";
 
 export const PanelWrapper = styled.aside`
 	--panel-wrapper-border-color: var(--color-gray1);

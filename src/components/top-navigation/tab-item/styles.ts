@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import { rem } from "polished";
 import styled, { css } from "styled-components";
 import { ITabItemProps } from "./types";
-import fluidFontSize from 'helpers/fluid-typography';
+import fluidFontSize from "helpers/fluid-typography";
 
 // Styling
 export const Wrapper = styled.li`

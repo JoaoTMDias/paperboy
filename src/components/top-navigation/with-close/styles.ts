@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import { rem } from "polished";
 import styled from "styled-components";
-import fluidFontSize from 'helpers/fluid-typography';
+import fluidFontSize from "helpers/fluid-typography";
 
 export const Container = styled.div`
 	--top-navigation-bar--detail-background: transparent;

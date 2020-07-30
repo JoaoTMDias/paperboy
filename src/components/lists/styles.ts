@@ -119,10 +119,10 @@ export const Action = styled(Link)`
 	width: 100%;
 	margin: 0;
 	${flexRow({
-	direction: "row",
-	justifyContent: "space-between",
-	alignItems: "center",
-})};
+		direction: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+	})};
 
 	&:focus {
 		outline-color: transparent;
@@ -178,10 +178,10 @@ export const Label = styled.label`
 	width: 100%;
 	margin: 0;
 	${flexRow({
-	direction: "row",
-	justifyContent: "space-between",
-	alignItems: "center",
-})};
+		direction: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+	})};
 
 	&:focus {
 		outline-color: transparent;
@@ -272,19 +272,19 @@ export const ListWrapper = styled.li`
 		if (props.center) {
 			return css`
 				${flexRow({
-				direction: "row",
-				justifyContent: "center",
-				alignItems: "center",
-			})};
+					direction: "row",
+					justifyContent: "center",
+					alignItems: "center",
+				})};
 			`;
 		}
 
 		return css`
-		${flexRow({
-			direction: "row",
-			justifyContent: "flex-start",
-			alignItems: "center",
-		})};
-	`;
+			${flexRow({
+				direction: "row",
+				justifyContent: "flex-start",
+				alignItems: "center",
+			})};
+		`;
 	}};
 `;

@@ -25,19 +25,16 @@ function useChooseSources() {
 		[setValue],
 	);
 
-	const removeValue = useCallback(
-		() => {
-			return new Promise((resolve, reject) => {
-				try {
-					remove();
-					resolve();
-				} catch (error) {
-					reject(error);
-				}
-			});
-		},
-		[remove, setValue]
-	);
+	const removeValue = useCallback(() => {
+		return new Promise((resolve, reject) => {
+			try {
+				remove();
+				resolve();
+			} catch (error) {
+				reject(error);
+			}
+		});
+	}, [remove, setValue]);
 
 	return {
 		storage: value,

@@ -22,9 +22,7 @@ export interface ChosenSources {
 /**
  * @description The Choose Sources Page is where the user can pick his favorite news sources from a list.
  */
-const ChooseSourcesPage: FunctionComponent<IBasePageProps> = ({
-	location
-}) => {
+const ChooseSourcesPage: FunctionComponent<IBasePageProps> = ({ location }) => {
 	const { authenticated, chosenSources, setChosenSources } = useContext(PreferencesContext);
 	const { data, error, loading } = useNewsApi<IGetAllNewsSources>({
 		type: "sources",

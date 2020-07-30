@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { rem } from "polished";
 import { Field } from "formik";
 import { above } from "helpers/index.helpers";
-import fluidFontSize from 'helpers/fluid-typography';
+import fluidFontSize from "helpers/fluid-typography";
 
 // Styling
 export const SourcesListWrapper = styled.ol`
