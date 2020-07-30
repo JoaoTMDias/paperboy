@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 import { rem } from "polished";
 import { above } from "helpers/index.helpers";
 import { theme } from "helpers/theme.helper";
-import fluidFontSize from 'helpers/fluid-typography';
+import fluidFontSize from "helpers/fluid-typography";
 
 export const OpeningAnimation = keyframes`
   from {
@@ -303,14 +303,6 @@ export const BottomOptionsBar = styled.nav`
 			-webkit-appearance: none;
 			background-color: transparent;
 			border: none;
-
-			&:nth-child(1) {
-				justify-content: flex-start;
-			}
-
-			&:nth-child(3) {
-				justify-content: flex-end;
-			}
 		}
 	}
 

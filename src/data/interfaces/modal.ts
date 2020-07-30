@@ -12,5 +12,5 @@ export interface IModalProps {
 	maxWidth?: number;
 	backgroundOpacity?: number;
 	align?: EModalAlignType;
-	handleClickToCloseModal?(event: React.MouseEvent<HTMLElement, MouseEvent>): void;
+	handleModalVisibility?(event: React.MouseEvent<HTMLElement, MouseEvent>): void;
 }

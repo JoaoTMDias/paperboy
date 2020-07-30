@@ -1,121 +1,96 @@
 import { Redirect } from "@reach/router";
-import React, { useState, useRef, useContext, Suspense } from "react";
+import React, { useState, useRef, useContext, useCallback } from "react";
 import * as H from "history";
 import { Article, Hero, HeroCopy, ArticleContent, ArticleLink, BottomOptionsBar } from "./styles";
 import {
 	Container,
 	LazyLoadingImage,
 	TopNavigationWithClose,
-	Modal,
 	ShareSheetPortal,
 	ArticleTypeset,
 } from "components/index.components";
-import { IconTypeset, IconBookmark } from "components/icons/index";
+import { IconTypeset, IconBookmark, IconShare } from "components/icons/index";
 import { NEWS_PAGE } from "data/constants/index.constants";
 import { INewsArticleItem } from "data/interfaces/news";
 import { EModalAlignType } from "data/interfaces/modal";
 import useWebShare from "helpers/custom-hooks/useWebShare";
 import { PrivateRoute } from "helpers/index.helpers";
 import PreferencesContext from "./../../../containers/preferences/context";
-
-enum EModalType {
-	SHARE = "SHARE",
-	PANEL = "PANEL",
-}
-
+import useModal from "components/general/modal";
+import AuditContext from "src/containers/audit/context";
 interface IArticleDetailPageProps {
 	location: H.Location<INewsArticleItem>;
 }
 
 const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ location }) => {
-	const { authenticated } = useContext(PreferencesContext);
+	const { platform } = useContext(AuditContext);
+	const [TypesetModal, openTypeset, closeTypeset, showTypesetPanel] = useModal({});
+	const [ShareModal, openShareSheet, closeShareSheet, showShareSheet] = useModal({});
 	const { loading, isSupported, share } = useWebShare(
-		() => handleClickToCloseModal(EModalType.SHARE),
-		() => handleClickToCloseModal(EModalType.SHARE),
+		() => closeShareSheet(),
+		() => closeShareSheet(),
 	);
 	const hero = useRef();
-	const [showShareSheet, setShowShareSheet] = useState(false);
-	const [showTypesetPanel, setshowTypesetPanel] = useState(false);
 	const { state: data } = location;
 
-	/**
-	 *
-	 *
-	 * @returns {JSX.Element | null}
-	 */
-	function handleShareContent() {
-		if (!isSupported) {
-			return (
-				<Modal
-					align={EModalAlignType.BOTTOM}
-					isModalOpen={showShareSheet}
-					handleClickToCloseModal={(event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-						event.preventDefault();
-						handleClickToCloseModal(EModalType.SHARE);
-					}}
-				>
-					<Suspense fallback={<div>Loading...</div>}>
-						<ShareSheetPortal articleData={data} />
-					</Suspense>
-				</Modal>
-			);
-		}
-
-		share({
-			title: data.title,
-			text: data.description,
-			url: data.url,
-		});
-	}
-
-	/**
-	 * @description
-	 * @author João Dias
-	 * @date 2019-04-30
-	 * @param {React.SyntheticEvent} event
-	 * @param {EModalType} type
-	 * @returns
-	 * @memberof GroupDetailPage
-	 */
-	function handleClickToOpenModal(type: EModalType) {
-		switch (type) {
-			case EModalType.SHARE:
-				setShowShareSheet(!showShareSheet);
-
-				return true;
-
-			case EModalType.PANEL:
-				setshowTypesetPanel(!showTypesetPanel);
-
-				return true;
+	const handleClickOpenShare = useCallback(() => {
+		switch (isSupported) {
+			case true:
+				!loading &&
+					share({
+						title: data.title,
+						text: data.description,
+						url: data.url,
+					});
+				break;
+			case false:
+				openShareSheet();
+				break;
 
 			default:
-				return false;
+				break;
 		}
+	}, []);
+
+	function renderShareSheetModal() {
+		return (
+			<ShareModal>
+				<ShareSheetPortal articleData={data} />
+			</ShareModal>
+		);
 	}
 
-	function handleClickToCloseModal(type: EModalType): boolean {
-		switch (type) {
-			case EModalType.SHARE:
-				setShowShareSheet(!showShareSheet);
-
-				return true;
-
-			case EModalType.PANEL:
-				setshowTypesetPanel(!showTypesetPanel);
-
-				return true;
-
-			default:
-				return false;
-		}
+	function renderTypesetPanel() {
+		return (
+			<TypesetModal>
+				<ArticleTypeset />
+			</TypesetModal>
+		);
 	}
+
+	const onClickTypeset = useCallback(
+		(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+			event.preventDefault();
+
+			showTypesetPanel ? closeTypeset() : openTypeset();
+		},
+		[showTypesetPanel, closeTypeset, openTypeset],
+	);
+
+	const onClickShare = useCallback(
+		(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+			event.preventDefault();
+
+			handleClickOpenShare();
+		},
+		[handleClickOpenShare],
+	);
 
 	if (data) {
 		return (
 			<PrivateRoute title="News Detail" bottomNavigation={false}>
-				{showShareSheet && handleShareContent()}
-				{showTypesetPanel && <ArticleTypeset />}
+				{showShareSheet && renderShareSheetModal()}
+				{showTypesetPanel && renderTypesetPanel()}
 				<TopNavigationWithClose title={data.title} source="source" />
 				<Container fullwidth fullheight offsetTop="0">
 					<Article>
@@ -153,10 +128,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 							type="button"
 							className="bottom-options-bar__button"
 							aria-label="Choose the font size you prefer"
-							onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-								event.preventDefault();
-								handleClickToOpenModal(EModalType.PANEL);
-							}}
+							onClick={onClickTypeset}
 						>
 							<IconTypeset isActive={showTypesetPanel} />
 						</button>
@@ -171,12 +143,9 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 							type="button"
 							className="bottom-options-bar__button"
 							aria-label="Save this icon for a later reading"
-							onClick={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-								event.preventDefault();
-								!loading && handleClickToOpenModal(EModalType.SHARE);
-							}}
+							onClick={onClickShare}
 						>
-							<IconBookmark isActive={false} />
+							<IconShare platform={platform} />
 						</button>
 					</BottomOptionsBar>
 				</Container>

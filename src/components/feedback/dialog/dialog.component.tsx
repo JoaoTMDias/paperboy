@@ -1,12 +1,7 @@
 // Libraries
 import { rem } from "polished";
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 import styled, { keyframes } from "styled-components";
-
-// Component Props
-interface IUIDialogProps {
-	onClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>): void;
-}
 
 /**
  * @description Modal Component: Dialog
@@ -14,16 +9,9 @@ interface IUIDialogProps {
  * @date  07/January/2019 at 16:07
  * @extends {React.FC}
  */
-const UIDialog: React.FunctionComponent<IUIDialogProps> = (props) => {
-	const { onClick, children } = props;
+const UIDialog: FunctionComponent = ({ children }) => {
 	return (
-		<Dialog
-			role="dialog"
-			aria-labelledby="dialog__title"
-			aria-describedby="dialog__description"
-			onClick={onClick}
-			tabIndex={0}
-		>
+		<Dialog role="dialog" aria-labelledby="dialog__title" aria-describedby="dialog__description">
 			{children}
 		</Dialog>
 	);
@@ -47,15 +35,9 @@ const Dialog = styled.div`
 	max-width: ${rem("414px")};
 	margin: 0 auto;
 	padding: ${rem("16px")} 0 0 0;
-
 	background-color: var(--body-background);
-
-	position: fixed;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 104;
-
+	position: relative;
+	z-index: 100001;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -64,16 +46,13 @@ const Dialog = styled.div`
 	border-top-right-radius: var(--global-radius);
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
-
 	opacity: 0;
 	transform: translate3d(0, 0, 0);
-
 	animation-name: ${fadeInDialog};
 	animation-duration: 500ms;
 	animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	animation-delay: 500ms;
 	animation-fill-mode: forwards;
-
 	box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.5);
 
 	.dialog__content {

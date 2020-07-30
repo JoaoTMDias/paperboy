@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { IModalProps } from "./types";
 
-export const ModalWrapper = styled.div`
+export const Wrapper = styled.div`
 	position: fixed;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	z-index: 103;
+	z-index: 1000;
 	overflow: hidden;
-	background-color: ${(props: IModalProps) => `rgba(0,0,0,${props.backgroundOpacity})`};
 
 	height: 100%;
 
@@ -32,4 +31,12 @@ export const ModalWrapper = styled.div`
 	}};
 `;
 
-export default ModalWrapper;
+export const Mask = styled.div`
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: ${(props: IModalProps) => `rgba(0,0,0,${props.backgroundOpacity})`};
+	z-index: 100000;
+`;

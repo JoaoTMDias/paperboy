@@ -90,6 +90,7 @@ const HTML: React.FunctionComponent<IHTMLProps> = (props) => {
 					<h1 className="no-javascript__title">I need you to activate Javascript in order to see my website.</h1>
 				</noscript>
 				<div id="___gatsby" dangerouslySetInnerHTML={{ __html: body }} />
+				<div id="portal" />
 				{postBodyComponents}
 			</body>
 		</html>

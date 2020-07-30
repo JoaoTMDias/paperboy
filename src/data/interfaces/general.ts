@@ -1,5 +1,5 @@
 export interface IGeneral {
-	platform: string;
+	platform: "ios" | "android" | "desktop";
 	hasAudited: boolean;
 	isOnline: boolean;
 	isStandalone: boolean;
