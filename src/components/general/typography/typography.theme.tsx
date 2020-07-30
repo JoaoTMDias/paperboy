@@ -2,6 +2,7 @@
 import { rem } from "polished";
 import * as React from "react";
 import styled, { keyframes } from "styled-components";
+import fluidFontSize from 'helpers/fluid-typography';
 
 // Interface
 interface IHeadingsProps {
@@ -67,7 +68,7 @@ const onEnter = keyframes`
 const Heading1 = styled.h2`
 	width: 100%;
 	max-width: 40rem;
-	font-size: ${rem("36px")};
+	${fluidFontSize(36, "8.75vw", 40)};
 	line-height: 1.15;
 	font-family: var(--heading-font-family);
 	color: var(--heading-1-color);
@@ -87,8 +88,8 @@ const Subtitle = styled.h3`
 	max-width: 40rem;
 	letter-spacing: -0.24px;
 	line-height: 20px;
-	font-size: ${rem("16px")};
-	line-height: 1.25;
+	${fluidFontSize(16, "2.25vw", 18)};
+«	line-height: 1.25;
 	color: var(--subtitle-color);
 	font-family: var(--heading-font-family);
 	margin-left: auto;
@@ -107,7 +108,7 @@ const Lead = styled.p`
 	max-width: 40rem;
 	letter-spacing: -0.48px;
 	line-height: 20px;
-	font-size: ${rem("20px")};
+	${fluidFontSize(20, "2.5vw", 22)};
 	line-height: var(--global-lineheight);
 	color: var(--lead-color);
 	font-family: var(--body-font-family);

@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import { rem } from "polished";
 import styled from "styled-components";
+import fluidFontSize from 'helpers/fluid-typography';
 
 export const Container = styled.div`
 	--top-navigation-bar--detail-background: transparent;
@@ -38,7 +39,7 @@ export const Container = styled.div`
 		.title {
 			color: var(--top-navigation-bar--title-color);
 			font-family: var(--heading-font-family);
-			font-size: ${rem("14px")};
+			${fluidFontSize(14, "2vw", 16)};
 			letter-spacing: 0;
 			margin-bottom: 0;
 			max-height: var(--top-navigation-bar--height);

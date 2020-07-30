@@ -4,6 +4,7 @@ import { Link } from "gatsby";
 import { IArticleThumbnailProps, EThumbnailType } from "./types.d";
 import { theme } from "helpers/theme.helper";
 import { above } from "helpers/index.helpers";
+import fluidFontSize from 'helpers/fluid-typography';
 
 export const Anchor = styled(Link)`
 	--anchor-height-factor: 0.35;
@@ -204,7 +205,7 @@ export const Copy = styled.div`
 			display: -webkit-box;
 			display: flex;
 			font-family: var(--body-font-family);
-			font-size: ${rem("18px")};
+			${fluidFontSize(18, "3vw", 20)};
 			font-weight: 300;
 			letter-spacing: 0;
 			line-height: 1.4444;
@@ -227,7 +228,7 @@ export const Copy = styled.div`
 			&__source,
 			&__time {
 				color: var(--color-white);
-				font-size: ${rem("11px")};
+				${fluidFontSize(11, "1.5vw", 13)};
 				letter-spacing: ${rem("0.25px")};
 			}
 
@@ -289,7 +290,7 @@ export const Copy = styled.div`
 				return css`
 					.thumbnail {
 						&__title {
-							font-size: ${rem("13px")};
+							${fluidFontSize(13, "1.5vw", 15)};
 							color: var(--thumbnail-title-color);
 							line-height: 1.22222222;
 							margin-bottom: calc(var(--global-margin) * 1.5);
@@ -306,7 +307,7 @@ export const Copy = styled.div`
 							&__source,
 							&__time {
 								color: var(--thumbnail-subtitle);
-								font-size: ${rem("10px")};
+								${fluidFontSize(10, "1.5vw", 12)};
 								letter-spacing: ${rem("0.25px")};
 							}
 

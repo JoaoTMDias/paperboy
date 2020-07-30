@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { rem } from "polished";
 import { Field } from "formik";
 import { above } from "helpers/index.helpers";
+import fluidFontSize from 'helpers/fluid-typography';
 
 // Styling
 export const SourcesListWrapper = styled.ol`
@@ -189,7 +190,7 @@ export const Name = styled.div`
 			width: 100%;
 			text-align: left;
 			font-family: var(--body-font-family);
-			font-size: ${rem("12px")};
+			${fluidFontSize(12, "2vw", 14)};
 			line-height: 1.333;
 			color: var(--title-color);
 			letter-spacing: 0;
@@ -326,7 +327,7 @@ export const SourceCardName = styled.div`
 			width: 100%;
 			text-align: center;
 			font-family: var(--body-font-family);
-			font-size: ${rem("12px")};
+			${fluidFontSize(12, "2vw", 14)};
 			line-height: 1.333;
 			color: var(--color-gray8);
 

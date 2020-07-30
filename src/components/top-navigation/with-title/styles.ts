@@ -1,5 +1,6 @@
 import { rem } from "polished";
 import styled from "styled-components";
+import fluidFontSize from 'helpers/fluid-typography';
 
 export const Container = styled.div`
 	--top-bar-background-color: var(--color-white);
@@ -25,16 +26,15 @@ export const Container = styled.div`
 		&-with-title {
 			&__title {
 				font-family: var(--heading-font-family);
-				font-size: ${rem("20px")};
+				${fluidFontSize(20, "2.5vw", 24)};
 				color: var(--heading-1-color);
-
 				letter-spacing: 0;
 				margin-bottom: 0;
 			}
 
 			&__subtitle {
 				font-family: var(--body-font-family);
-				font-size: ${rem("14px")};
+				${fluidFontSize(14, "2vw", 16)};
 				color: var(--color-gray7);
 
 				html[data-theme="DARK"] && {

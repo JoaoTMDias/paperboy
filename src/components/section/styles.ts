@@ -2,6 +2,7 @@ import { rem } from "polished";
 import styled, { css } from "styled-components";
 import { IUISectionProps } from "./types";
 import { theme } from "helpers/theme.helper";
+import fluidFontSize from 'helpers/fluid-typography';
 
 // Styling
 export const Wrapper = styled.div`
@@ -64,7 +65,7 @@ export const SectionTitle = styled.h3`
 	`};
 
 	font-family: var(--body-font-family);
-	font-size: ${rem("12px")};
+	${fluidFontSize(12, "2vw", 14)};
 	text-transform: capitalize;
 	color: var(--section-title-color);
 	height: 1rem;
