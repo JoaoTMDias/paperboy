@@ -1,9 +1,9 @@
 // Libraries
 import * as React from "react";
-import { CATEGORIES_PAGE, NEWS_PAGE, SAVED_PAGE, SEARCH_PAGE, SETTINGS_PAGE } from "data/constants/index.constants";
+import { NEWS_PAGE, SAVED_PAGE, SEARCH_PAGE, SETTINGS_PAGE } from "data/constants/index.constants";
 import { withMemo } from "helpers/index.helpers";
 import { TabItem } from "components/top-navigation/tab-item/index";
-import { IconCategories, IconNews, IconSaved, IconSearch, IconSettings } from "components/icons/index";
+import { IconNews, IconSaved, IconSearch, IconSettings } from "components/icons/index";
 import { Wrapper, Navigation, List } from "./styles";
 
 /**
@@ -24,9 +24,6 @@ const BottomNavigation: React.FunctionComponent = () => (
 				</TabItem>
 				<TabItem to={SEARCH_PAGE} label="Search">
 					<IconSearch />
-				</TabItem>
-				<TabItem to={CATEGORIES_PAGE} label="Categories">
-					<IconCategories />
 				</TabItem>
 				<TabItem to={SETTINGS_PAGE} label="Settings">
 					<IconSettings />
