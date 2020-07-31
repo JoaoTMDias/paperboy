@@ -13,8 +13,13 @@
 	appearance: none;
 	border: none;
 	background-color: var(--round-button-background);
-	box-shadow: 0 0 #{rem-calc(24)} #{rem-calc(4)}
-		rgba(var(--box-shadow-color), var(--box-shadow-color), var(--box-shadow-color), 0.15);
+	box-shadow: 0 0 #{rem-calc(16)} 0 rgba(var(--box-shadow-color), var(--box-shadow-color), var(--box-shadow-color), 0.15);
+	animation-name: slideInButton;
+	animation-duration: 500ms;
+	animation-delay: 750ms;
+	animation-timing-function: $ease-out-back;
+	animation-fill-mode: forwards;
+	transform: translateY(#{rem-calc(64)});
 
 	&:focus,
 	&:hover {
@@ -29,4 +34,14 @@ html[data-theme="DARK"] .round-button {
 	--round-button-background: var(--color-gray9);
 	--round-button-hover-background: var(--color-gray8);
 	--box-shadow-color: 255;
+}
+
+@keyframes slideInButton {
+	from {
+		transform: translateY(#{rem-calc(64)});
+	}
+
+	to {
+		transform: translateY(0);
+	}
 }

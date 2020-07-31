@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useMemo } from "react";
 import PreferencesContext, { DEFAULT_PREFERENCES } from "./context";
 import useChooseSources from "components/choose-sources/useChooseSources";
-import { ChosenNewsSources, EAppThemeType } from "data/interfaces";
+import { ChosenNewsSources, EAppThemeType, INewsArticleItem } from "data/interfaces";
 
 const PreferencesProvider: FunctionComponent = ({ children }) => {
 	const { storage, setStorage, removeValue } = useChooseSources();
@@ -18,6 +18,7 @@ const PreferencesProvider: FunctionComponent = ({ children }) => {
 				setStorage(null, "chosenSources");
 				await removeValue();
 			},
+			setSaved: (saved: INewsArticleItem[]) => setStorage(saved, "saved"),
 			setAppTheme: (theme: EAppThemeType) => setStorage(theme, "theme"),
 			setBaseFontRatio: (ratio: number) => setStorage(ratio, "baseFontRatio"),
 			setChosenSources: (sources: ChosenNewsSources) => setStorage(sources, "chosenSources"),

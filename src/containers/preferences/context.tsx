@@ -13,6 +13,7 @@ export interface IPreferences {
 
 export interface IPreferencesContext extends IPreferences {
 	resetAppState(): void;
+	setSaved(saved: INewsArticleItem[]): void;
 	setAppTheme(theme: EAppThemeType): void;
 	setBaseFontRatio(ratio: number): void;
 	setChosenSources(sources: ChosenNewsSources): void;
@@ -30,6 +31,7 @@ export const DEFAULT_PREFERENCES = {
 export const DEFAULT_PREFERENCES_CONTEXT: IPreferencesContext = {
 	...DEFAULT_PREFERENCES,
 	resetAppState: () => {},
+	setSaved: () => {},
 	setAppTheme: () => {},
 	setBaseFontRatio: () => {},
 	setChosenSources: () => {},

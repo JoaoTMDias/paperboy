@@ -1,5 +1,6 @@
 import { Redirect } from "@reach/router";
-import React, { useState, useRef, useContext, useCallback } from "react";
+import isEmpty from "lodash/isEmpty";
+import React, { useState, useEffect, useRef, useContext, useCallback } from "react";
 import * as H from "history";
 import { Article, Hero, HeroCopy, ArticleContent, ArticleLink, BottomOptionsBar } from "./styles";
 import {
@@ -22,8 +23,76 @@ interface IArticleDetailPageProps {
 	location: H.Location<INewsArticleItem>;
 }
 
+interface IGetArticleFromList {
+	saved: boolean;
+	index: number;
+}
+
+/**
+ * Removes an article from the list
+ *
+ * @param {INewsArticleItem[]} list
+ * @param {number} index
+ * @returns {INewsArticleItem[]}
+ */
+function removeArticleFromList(list: INewsArticleItem[], index: number): INewsArticleItem[] {
+	const result = Array.from(list);
+
+	result.splice(index, 1);
+
+	return result;
+}
+
+/**
+ * Adds an article to the saved list
+ *
+ * @param {INewsArticleItem[]} list
+ * @param {INewsArticleItem} article
+ * @returns {INewsArticleItem[]}
+ */
+function addArticleToList(list: INewsArticleItem[], article: INewsArticleItem | null): INewsArticleItem[] {
+	if (!article) {
+		return list;
+	}
+
+	const result = Array.from(list);
+
+	result.push(article);
+
+	return result;
+}
+
+/**
+ * Checks if the articles are the same
+ *
+ * @param {INewsArticleItem} savedArticle
+ * @param {INewsArticleItem} article
+ * @returns {boolean}
+ */
+function isSameArticle(savedArticle: INewsArticleItem, article: INewsArticleItem): boolean {
+	return savedArticle.url === article.url;
+}
+
+/**
+ *
+ *
+ * @param {INewsArticleItem[]} list
+ * @param {INewsArticleItem} article
+ * @returns
+ */
+function getArticleFromList(list: INewsArticleItem[], article: INewsArticleItem): IGetArticleFromList {
+	const index = list.findIndex((item) => item.url === article.url);
+
+	return {
+		saved: !!(index !== -1),
+		index,
+	};
+}
+
 const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ location }) => {
 	const { platform } = useContext(AuditContext);
+	const { saved, setSaved } = useContext(PreferencesContext);
+	const [isSaved, setIsSaved] = useState(false);
 	const [TypesetModal, openTypeset, closeTypeset, showTypesetPanel] = useModal({});
 	const [ShareModal, openShareSheet, closeShareSheet, showShareSheet] = useModal({});
 	const { loading, isSupported, share } = useWebShare(
@@ -32,6 +101,14 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 	);
 	const hero = useRef();
 	const { state: data } = location;
+
+	useEffect(() => {
+		if (saved) {
+			const result = getArticleFromList(saved, data);
+
+			setIsSaved(result.saved);
+		}
+	}, [saved, setSaved]);
 
 	const handleClickOpenShare = useCallback(() => {
 		switch (isSupported) {
@@ -51,6 +128,26 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 				break;
 		}
 	}, []);
+
+	const handleClickSaved = useCallback(() => {
+		let newList: INewsArticleItem[] = [];
+
+		if (saved && !isEmpty(saved)) {
+			const articleIndex = getArticleFromList(saved, data).index;
+			const isSame = isSameArticle(saved[articleIndex], data);
+
+			if (isSaved) {
+				newList = removeArticleFromList(saved, articleIndex);
+			} else {
+				const article = !isSame ? data : null;
+				newList = addArticleToList(saved, article);
+			}
+		} else {
+			newList = addArticleToList(newList, data);
+		}
+
+		setSaved(newList);
+	}, [isSaved, saved, data]);
 
 	function renderShareSheetModal() {
 		return (
@@ -135,14 +232,15 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 						<button
 							type="button"
 							className="bottom-options-bar__button"
-							aria-label="Save this icon for a later reading"
+							aria-label={isSaved ? "Unsave this article from the list" : "Save this icon for a later reading"}
+							onClick={handleClickSaved}
 						>
-							<IconBookmark isActive={false} />
+							<IconBookmark isActive={isSaved} />
 						</button>
 						<button
 							type="button"
 							className="bottom-options-bar__button"
-							aria-label="Save this icon for a later reading"
+							aria-label="Share this article"
 							onClick={onClickShare}
 						>
 							<IconShare platform={platform} />
