@@ -1,8 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import NewsService from "data/services/news.service";
-import { usePrevious } from "react-use";
-import { filterData } from "helpers/filter-data";
-import { IGetAllNewsSources } from "data/interfaces";
 
 type NewsApiType = "sources" | "sourcesFromLanguage" | "latest" | "everything";
 
@@ -12,12 +9,11 @@ interface UseNewsApiProps {
 }
 
 function useNewsApi<T>({ type, options = [] }: UseNewsApiProps) {
-	const previousOptions = usePrevious(options);
 	const [data, setData] = useState<T | null>(null);
 	const [error, setError] = useState<Error | null>(null);
 	const [loading, setLoading] = useState(true);
 
-	async function getNewsServiceRequest(): Promise<any> {
+	async function getNewsServiceRequest(term?: string): Promise<any> {
 		switch (type) {
 			case "sources":
 				return NewsService.getAllAvailableSources();
@@ -30,29 +26,41 @@ function useNewsApi<T>({ type, options = [] }: UseNewsApiProps) {
 
 			default:
 			case "everything":
-				return NewsService.searchForTerm(options[0]);
+				return term && NewsService.searchForTerm(term);
 		}
 	}
 
-	async function getResource() {
-		try {
-			setLoading(true);
+	const getResource = useCallback(
+		async (term?: string) => {
+			try {
+				setLoading(true);
 
-			const results = await getNewsServiceRequest();
+				const results = await getNewsServiceRequest(term);
 
-			setData(results);
-		} catch (error) {
-			setError(error);
-		} finally {
-			setLoading(false);
-		}
-	}
+				setData(results);
+			} catch (error) {
+				setError(error);
+			} finally {
+				setLoading(false);
+			}
+		},
+		[setLoading, getNewsServiceRequest, setData, setError],
+	);
+
+	const searchForTerm = useCallback(
+		(term: string) => {
+			getResource(term);
+		},
+		[getResource],
+	);
 
 	useEffect(() => {
-		getResource();
+		if (type !== "everything") {
+			getResource();
+		}
 	}, []);
 
-	return { data, error, loading };
+	return { data, error, loading, searchForTerm };
 }
 
 export default useNewsApi;
