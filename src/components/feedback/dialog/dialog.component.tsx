@@ -55,6 +55,10 @@ const Dialog = styled.div`
 	animation-fill-mode: forwards;
 	box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.5);
 
+	> div {
+		width: 100%;
+	}
+
 	.dialog__content {
 		&__title,
 		&__description,

@@ -55,7 +55,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 	function renderShareSheetModal() {
 		return (
 			<ShareModal>
-				<ShareSheetPortal articleData={data} />
+				<ShareSheetPortal articleData={data} close={closeShareSheet} />
 			</ShareModal>
 		);
 	}
@@ -63,7 +63,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 	function renderTypesetPanel() {
 		return (
 			<TypesetModal>
-				<ArticleTypeset />
+				<ArticleTypeset close={closeTypeset} />
 			</TypesetModal>
 		);
 	}

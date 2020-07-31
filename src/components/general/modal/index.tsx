@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useRef, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
-import { useClickAway, useKeyPressEvent } from "react-use";
+import { useClickAway, useKeyPressEvent, useLockBodyScroll, useToggle } from "react-use";
 import { UIDialog } from "components/index.components";
 import { IModalProps } from "./types";
 import { Wrapper, Mask } from "./styles";
@@ -44,19 +44,24 @@ const useModal = ({
 	align = "bottom",
 	backgroundOpacity = 0.3,
 }: IModalProps): [({ children }: any) => JSX.Element, () => void, () => void, boolean] => {
+	const [locked, toggleLocked] = useToggle(false);
 	const [isOpen, setOpen] = useState(false);
+
+	useLockBodyScroll(locked);
 
 	/**
 	 * Opens the modal
 	 */
 	const open = useCallback(() => {
 		setOpen(true);
+		toggleLocked();
 	}, [setOpen]);
 
 	/**
 	 * Closes the modal
 	 */
 	const close = useCallback(() => {
+		toggleLocked();
 		setOpen(false);
 	}, [setOpen]);
 

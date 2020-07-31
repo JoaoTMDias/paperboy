@@ -2,11 +2,12 @@
 import * as React from "react";
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from "react-share";
 import { INewsArticleItem } from "data/interfaces/news";
-import { IconFacebook, IconWhatsapp, IconTwitter, IconSMS } from "components/icons/index";
+import { IconFacebook, IconWhatsapp, IconTwitter, IconSMS, IconClose } from "components/icons/index";
 import { ShareSheet } from "./styles";
 
 // Interface
 interface IShareSheetPortalProps {
+	close: () => void;
 	articleData: INewsArticleItem | null;
 	handleClickOnWhatsapp?(): void;
 	handleClickOnFacebook?(): void;
@@ -19,7 +20,7 @@ interface IShareSheetPortalProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IShareSheetPortalProps>}
  */
-export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> = ({ articleData }) => {
+export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> = ({ articleData, close }) => {
 	if (articleData) {
 		const { url, title } = articleData;
 		const message = `${title} ${url}`;
@@ -61,6 +62,11 @@ export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> =
 						</button>
 					</li>
 				</ul>
+				<div className="share-sheet__footer">
+					<button id="close-button" data-testid="close-button" className="round-button" onClick={close}>
+						<IconClose />
+					</button>
+				</div>
 			</ShareSheet>
 		);
 	}

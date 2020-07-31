@@ -6,21 +6,20 @@ import { theme } from "helpers/theme.helper";
 export const ShareSheet = styled.aside`
 	--share-sheet-title: var(--color-gray6);
 	--share-sheet-name: var(--color-gray8);
+	--item-height: ${rem("48px")};
 
 	width: 100%;
 	height: auto;
 	padding-top: 0;
 	padding-right: ${rem("16px")};
-	padding-bottom: ${rem("48px")};
+	padding-bottom: 0;
 	padding-left: ${rem("16px")};
 
 	${flexRow({
-	direction: "column",
-	justifyContent: "flex-end",
-	alignItems: "center",
-})};
-
-	--item-height: ${rem("48px")};
+		direction: "column",
+		justifyContent: "flex-end",
+		alignItems: "center",
+	})};
 
 	.share-sheet {
 		&__title {
@@ -40,10 +39,24 @@ export const ShareSheet = styled.aside`
 			padding: 0;
 
 			${flexRow({
-	direction: "column",
-	justifyContent: "flex-start",
-	alignItems: "center",
-})};
+				direction: "column",
+				justifyContent: "flex-start",
+				alignItems: "center",
+			})};
+		}
+
+		&__list,
+		&__footer {
+			padding-bottom: var(--global-padding);
+		}
+
+		&__footer {
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			height: var(--item-height);
 		}
 
 		&__option {
@@ -51,10 +64,10 @@ export const ShareSheet = styled.aside`
 			height: var(--item-height);
 
 			${flexRow({
-	direction: "row",
-	justifyContent: "flex-start",
-	alignItems: "center",
-})};
+				direction: "row",
+				justifyContent: "flex-start",
+				alignItems: "center",
+			})};
 
 			button,
 			.react-share__ShareButton,
@@ -66,10 +79,10 @@ export const ShareSheet = styled.aside`
 				padding: 0;
 
 				${flexRow({
-	direction: "row",
-	justifyContent: "flex-start",
-	alignItems: "center",
-})};
+					direction: "row",
+					justifyContent: "flex-start",
+					alignItems: "center",
+				})};
 			}
 
 			&__icon {
@@ -91,10 +104,10 @@ export const ShareSheet = styled.aside`
 				color: var(--share-sheet-name);
 
 				${flexRow({
-	direction: "row",
-	justifyContent: "flex-start",
-	alignItems: "center",
-})};
+					direction: "row",
+					justifyContent: "flex-start",
+					alignItems: "center",
+				})};
 			}
 		}
 	}

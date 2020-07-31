@@ -6,11 +6,12 @@ import fluidFontSize from "helpers/fluid-typography";
 export const PanelWrapper = styled.aside`
 	--panel-wrapper-border-color: var(--color-gray1);
 	--panel-wrapper-thumb-color: var(--color-white);
+	--slider-height: ${rem("56px")};
+	--slider-bar-height: ${rem("32px")};
 
 	width: 100%;
-	height: ${rem("88px")};
 	position: fixed;
-	bottom: ${rem("48px")};
+	bottom: 0;
 	left: 0;
 	background-color: var(--body-background);
 	z-index: 3;
@@ -49,16 +50,16 @@ export const PanelWrapper = styled.aside`
 
 		&__content {
 			width: 100%;
-			height: ${rem("56px")};
+			min-height: var(--slider-height);
 
 			display: grid;
 			grid-gap: 0;
-			grid-template-columns: ${rem("56px")} 1fr ${rem("56px")};
+			grid-template-columns: var(--slider-height) 1fr var(--slider-height);
 		}
 
 		&__label {
 			width: 100%;
-			height: ${rem("56px")};
+			height: var(--slider-height);
 
 			display: flex;
 			flex-direction: row;
@@ -67,6 +68,24 @@ export const PanelWrapper = styled.aside`
 
 			margin: 0;
 			padding: 0;
+
+			&::focus-within {
+				outline-color: var(--color-primary);
+			}
+		}
+
+		&__content,
+		&__footer {
+			padding-bottom: var(--global-padding);
+		}
+
+		&__footer {
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			height: var(--slider-height);
 		}
 
 		input[type="range"],
@@ -74,7 +93,8 @@ export const PanelWrapper = styled.aside`
 			-webkit-appearance: none;
 			width: 100%;
 			margin: ${rem("13px")} 0;
-			&:focus {
+
+			&:hover &:focus {
 				outline: none;
 			}
 			&::-webkit-slider-runnable-track {

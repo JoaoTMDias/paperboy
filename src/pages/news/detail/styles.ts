@@ -274,28 +274,30 @@ export const ArticleLink = styled.a`
 
 export const BottomOptionsBar = styled.nav`
 	--bar-background-color: var(--color-gray0);
+	--bar-background-hover-color: var(--color-gray1);
 	--bar-border-top-color: var(--color-gray3);
 
 	width: 100%;
-	height: ${rem("48px")};
+	height: var(--bottom-navigation-bar-height);
 
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: var(--global-padding);
 	align-items: center;
 
 	background-color: var(--bar-background-color);
 	border-top: 1px solid var(--bar-border-top-color);
 
 	position: fixed;
-	z-index: 10;
+	z-index: 1000;
 	bottom: 0;
 	left: 0;
 
 	.bottom-options-bar {
 		&__button {
-			width: calc(100% / 3);
-			height: 100%;
+			width: 100%;
+			background-color: var(--bar-background-color);
+			height: var(--bottom-navigation-bar-height);
 			display: flex;
 			flex-direction: row;
 			justify-content: center;
@@ -303,11 +305,17 @@ export const BottomOptionsBar = styled.nav`
 			-webkit-appearance: none;
 			background-color: transparent;
 			border: none;
+
+			&:focus,
+			&:hover {
+				background-color: var(--bar-background-hover-color);
+			}
 		}
 	}
 
 	${theme.dark`
 		--bar-background-color: var(--color-black);
+		--bar-background-hover-color: var(--color-gray9);
 		--bar-border-top-color: var(--color-gray9);
 	`};
 `;

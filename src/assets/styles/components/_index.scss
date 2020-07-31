@@ -1,0 +1,32 @@
+.round-button {
+	--round-button-background: var(--color-gray0);
+	--round-button-hover-background: var(--color-gray1);
+	--box-shadow-color: 0;
+	--outline-color: var(--color-primary);
+	width: rem-calc(48);
+	height: rem-calc(48);
+	border-radius: rem-calc(48);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	appearance: none;
+	border: none;
+	background-color: var(--round-button-background);
+	box-shadow: 0 0 #{rem-calc(24)} #{rem-calc(4)}
+		rgba(var(--box-shadow-color), var(--box-shadow-color), var(--box-shadow-color), 0.15);
+
+	&:focus,
+	&:hover {
+		background-color: var(--round-button-hover-background);
+		box-shadow: 0 0 0 #{rem-calc(2)} var(--outline-color),
+			0 0 #{rem-calc(24)} #{rem-calc(4)}
+				rgba(var(--box-shadow-color), var(--box-shadow-color), var(--box-shadow-color), 0.15);
+	}
+}
+
+html[data-theme="DARK"] .round-button {
+	--round-button-background: var(--color-gray9);
+	--round-button-hover-background: var(--color-gray8);
+	--box-shadow-color: 255;
+}

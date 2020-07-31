@@ -18,7 +18,7 @@ export const IconTypeset: React.FunctionComponent<IIconTypesetProps> = (props) =
 	const { isActive } = props;
 
 	return (
-		<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className={isActive ? "is-active" : ""}>
+		<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className={isActive ? "is-active" : ""} tabIndex={-1}>
 			<path
 				fill="var(--outer-ring)"
 				fillRule="evenodd"
