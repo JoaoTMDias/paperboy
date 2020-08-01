@@ -14,14 +14,13 @@ import {
 
 import { EAppThemeType } from "data/interfaces/theme";
 import {
-	A11Y_SETTINGS_PAGE,
 	PRIVACY_POLICY_SETTINGS_PAGE,
-	OPEN_SOURCE_SETTINGS_PAGE,
+	ABOUT_SETTINGS_PAGE,
 } from "data/constants/router.constants";
 import { IBasePageProps } from "data/interfaces/index";
 import { PrivateRoute } from "helpers/index.helpers";
-import PreferencesContext from "./../../containers/preferences/context";
-import AuditContext from "./../../containers/audit/context";
+import PreferencesContext from "../../containers/preferences/context";
+import AuditContext from "../../containers/audit/context";
 
 /**
  * @description Settings Page
@@ -82,7 +81,7 @@ const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 				</UISection>
 				<UISection id="settings-others" title="Others">
 					<SectionListItem id="about-paperboy">
-						<ListItemWithLink id="about-paperboy" title="About" to={A11Y_SETTINGS_PAGE} />
+						<ListItemWithLink id="about-paperboy" title="About" to={ABOUT_SETTINGS_PAGE} />
 					</SectionListItem>
 					<SectionListItem id="privacy-policy-paperboy">
 						<ListItemWithLink id="privacy-policy-paperboy" title="Privacy Policy" to={PRIVACY_POLICY_SETTINGS_PAGE} />
