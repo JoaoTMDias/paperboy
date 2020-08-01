@@ -1,5 +1,5 @@
 // Libraries
-import * as React from "react";
+import React, { memo } from "react";
 import { FormSwitch } from "components/index.components";
 import { Label } from "../styles";
 import { IListItemWithSwitchProps } from "../list-types";
@@ -10,8 +10,14 @@ import { IListItemWithSwitchProps } from "../list-types";
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IListItemWithSwitchProps>}
  */
-export const ListItemWithSwitch: React.FunctionComponent<IListItemWithSwitchProps> = (props) => {
-	const { id, title, subtitle, onClick, defaultValue, value } = props;
+export const ListItemWithSwitch: React.FunctionComponent<IListItemWithSwitchProps> = ({
+	id,
+	title,
+	subtitle,
+	onClick,
+	defaultValue,
+	value,
+}) => {
 	return (
 		<Label htmlFor={`${id}-input`} className="section-list__item__label" onClick={onClick} tabIndex={0}>
 			<div className="text">
@@ -32,4 +38,4 @@ export const ListItemWithSwitch: React.FunctionComponent<IListItemWithSwitchProp
 	);
 };
 
-export default React.memo(ListItemWithSwitch);
+export default memo(ListItemWithSwitch);

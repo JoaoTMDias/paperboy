@@ -47,9 +47,10 @@ const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 		(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => {
 			event.preventDefault();
 
-			toggleThemeVibration();
 			const themeToSet = theme && theme === EAppThemeType.LIGHT ? EAppThemeType.DARK : EAppThemeType.LIGHT;
 			setAppTheme(themeToSet);
+
+			toggleThemeVibration();
 		},
 		[theme, setAppTheme, toggleThemeVibration],
 	);

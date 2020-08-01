@@ -1,6 +1,5 @@
 // Libraries
-import React from "react";
-import { withMemo } from "helpers/index.helpers";
+import React, { memo } from "react";
 import { Container } from "./styles";
 import { ITopNavigationWithTitleProps } from "./types";
 
@@ -19,4 +18,4 @@ const TopNavigationWithTitle: React.FunctionComponent<ITopNavigationWithTitlePro
 	);
 };
 
-export default withMemo(TopNavigationWithTitle, ["title", "subtitle"]);
+export default memo(TopNavigationWithTitle);

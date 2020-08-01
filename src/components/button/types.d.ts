@@ -2,7 +2,7 @@
 export interface IUIButtonProps extends React.HTMLProps<HTMLButtonElement> {
 	flavour?: "primary" | "secondary";
 	text: string;
-	label: string;
+	label?: string;
 }
 
 export interface IUIAnchorProps {
