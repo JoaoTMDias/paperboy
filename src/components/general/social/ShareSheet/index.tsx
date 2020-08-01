@@ -4,6 +4,7 @@ import { useVibrate, useToggle } from "react-use";
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from "react-share";
 import { INewsArticleItem } from "data/interfaces/news";
 import { IconFacebook, IconWhatsapp, IconTwitter, IconSMS, IconClose } from "components/icons/index";
+import { VIBRATION_PATTERNS } from "data/constants/index.constants";
 import { ShareSheet } from "./styles";
 
 // Interface
@@ -24,7 +25,7 @@ interface IShareSheetPortalProps {
 export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> = ({ articleData, close }) => {
 	const [vibrating, toggleVibrating] = useToggle(false);
 
-	useVibrate(vibrating, [200, 100, 200], false);
+	useVibrate(vibrating, VIBRATION_PATTERNS.CLOSE_MODAL, false);
 
 	const handleClickOnButton = useCallback(() => {
 		toggleVibrating();

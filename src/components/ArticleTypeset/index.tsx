@@ -2,6 +2,7 @@
 import React, { FunctionComponent, useRef, useEffect, useCallback, useContext } from "react";
 import { IconChangeTypeSize, EIconChangeTypeSize, IconClose } from "components/icons/index";
 import { useVibrate, useToggle } from "react-use";
+import { VIBRATION_PATTERNS } from "data/constants/index.constants";
 import * as S from "./styles";
 import PreferencesContext from "../../containers/preferences/context";
 import { IArticleTypesetProps } from "./types";
@@ -14,15 +15,15 @@ import { IArticleTypesetProps } from "./types";
  */
 export const ArticleTypeset: FunctionComponent<IArticleTypesetProps> = ({ close }) => {
 	const [vibrating, toggleVibrating] = useToggle(false);
-	const ref = useRef(null);
+	const { current: ref } = useRef<HTMLElement>(null);
 	const { current: htmlElement } = useRef(document.documentElement);
 	const { baseFontRatio, setBaseFontRatio } = useContext(PreferencesContext);
 
-	useVibrate(vibrating, [200, 100, 200], false);
+	useVibrate(vibrating, VIBRATION_PATTERNS.CLOSE_MODAL, false);
 
 	useEffect(() => {
-		if (ref && ref.current) {
-			ref.current.focus();
+		if (ref) {
+			return ref.focus();
 		}
 	}, []);
 

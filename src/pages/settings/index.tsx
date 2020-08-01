@@ -1,5 +1,6 @@
 // Libraries
 import React, { useRef, useCallback, useContext } from "react";
+import { useVibrate, useToggle } from "react-use";
 import {
 	Container,
 	TopNavigation,
@@ -11,11 +12,11 @@ import {
 	AddToHomeScreenWithInstall,
 	UIButton,
 } from "components/index.components";
-
 import { EAppThemeType } from "data/interfaces/theme";
 import { PRIVACY_POLICY_SETTINGS_PAGE, ABOUT_SETTINGS_PAGE } from "data/constants/router.constants";
 import { IBasePageProps } from "data/interfaces/index";
 import { PrivateRoute } from "helpers/index.helpers";
+import { VIBRATION_PATTERNS } from "data/constants/index.constants";
 import PreferencesContext from "../../containers/preferences/context";
 import AuditContext from "../../containers/audit/context";
 
@@ -27,8 +28,17 @@ import AuditContext from "../../containers/audit/context";
  */
 const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
 	const { current: isProduction } = useRef(process.env.NODE_ENV === "production");
+	const [vibratingResetPreferences, toggleVibratingForReset] = useToggle(false);
+	const [vibratingToggleTheme, toggleThemeVibration] = useToggle(false);
 	const { theme, setAppTheme, resetAppState } = useContext(PreferencesContext);
 	const { isStandalone } = useContext(AuditContext);
+
+	useVibrate(vibratingResetPreferences, VIBRATION_PATTERNS.RESET_PREFERENCES, false);
+	useVibrate(
+		vibratingToggleTheme,
+		theme === EAppThemeType.DARK ? VIBRATION_PATTERNS.IMPERIAL_MARCH : VIBRATION_PATTERNS.SUPER_MARIO,
+		false,
+	);
 
 	/**
 	 *	@description Switches between Dark/Light theme
@@ -37,13 +47,15 @@ const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 		(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => {
 			event.preventDefault();
 
+			toggleThemeVibration();
 			const themeToSet = theme && theme === EAppThemeType.LIGHT ? EAppThemeType.DARK : EAppThemeType.LIGHT;
 			setAppTheme(themeToSet);
 		},
-		[theme, setAppTheme],
+		[theme, setAppTheme, toggleThemeVibration],
 	);
 
 	function handleClickToClearPreferences() {
+		toggleVibratingForReset();
 		resetAppState();
 	}
 

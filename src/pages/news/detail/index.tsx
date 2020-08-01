@@ -11,7 +11,7 @@ import {
 	ArticleTypeset,
 } from "components/index.components";
 import { IconTypeset, IconBookmark, IconShare } from "components/icons/index";
-import { NEWS_PAGE } from "data/constants/index.constants";
+import { NEWS_PAGE, VIBRATION_PATTERNS } from "data/constants/index.constants";
 import { INewsArticleItem } from "data/interfaces/news";
 import useWebShare from "helpers/custom-hooks/useWebShare";
 import { PrivateRoute } from "helpers/index.helpers";
@@ -112,7 +112,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 		}
 	}, [saved, setSaved, data]);
 
-	useVibrate(vibrating, [100, 100, 100], false);
+	useVibrate(vibrating, VIBRATION_PATTERNS.OPEN_MODAL, false);
 
 	const handleClickOpenShare = useCallback(() => {
 		toggleVibrating();
