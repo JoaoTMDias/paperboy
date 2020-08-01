@@ -1,17 +1,18 @@
 import { Link } from "gatsby";
 import { rem } from "polished";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import fluidFontSize from "helpers/fluid-typography";
+import { theme } from "helpers/theme.helper";
 
 export const Container = styled.div`
 	--top-navigation-bar--detail-background: transparent;
 	--top-navigation-bar--title-color: var(--color-gray9);
-	--top-navigation-bar--height: ${rem("44px")};
+	--top-navigation-bar--height: ${rem("48px")};
 	width: 100%;
-	flex: auto;
-	display: grid;
-	grid-template-columns: var(--top-navigation-bar--height) 1fr;
+	display: flex;
 	flex-direction: row;
+	flex: auto;
+	justify-content: space-between;
 	align-items: center;
 
 	background-color: var(--top-navigation-bar--detail-background);
@@ -21,8 +22,8 @@ export const Container = styled.div`
 	z-index: 10;
 	transition: all 200ms ease-in-out;
 
-	.center {
-		width: 100%;
+	.brand-color-figure {
+		width: var(--top-navigation-bar--height);
 		height: var(--top-navigation-bar--height);
 		overflow: hidden;
 		display: flex;
@@ -31,42 +32,16 @@ export const Container = styled.div`
 		align-items: center;
 		position: relative;
 
-		.title,
-		img {
-			display: flex;
-		}
-
-		.title {
-			color: var(--top-navigation-bar--title-color);
-			font-family: var(--heading-font-family);
-			${fluidFontSize(14, "2vw", 16)};
-			letter-spacing: 0;
-			margin-bottom: 0;
-			max-height: var(--top-navigation-bar--height);
-			opacity: 0;
-			overflow: hidden;
-			position: absolute;
-			text-align: center;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-			width: calc(100vw - 112px);
-			z-index: -1;
-			display: none;
+		#brand-logo {
+			--size: calc(var(--top-navigation-bar--height) * 0.6666666);
+			width: var(--size);
+			height: var(--size);
+			border-radius: var(--size);
+			margin: 0 auto;
 		}
 	}
 
-	#brand-logo {
-		--size: calc(var(--top-navigation-bar--height) * 0.5);
-		width: var(--size);
-		height: var(--size);
-		border-radius: var(--size);
-		transform: translateX(calc(var(--size) * -1));
-		opacity: 1;
-		margin: 0 auto;
-	}
-
-	.close,
-	.share {
+	.close {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -74,10 +49,6 @@ export const Container = styled.div`
 		text-align: center;
 		background-color: transparent;
 		border-radius: 50%;
-	}
-
-	.share {
-		background-color: rgba(0, 0, 0, 0.1);
 	}
 
 	&.is-scrolling {
@@ -107,14 +78,52 @@ export const Container = styled.div`
 	}
 `;
 
+const SlideInTopBarLink = keyframes`
+	from {
+		transform: translateX(-3rem);
+	}
+
+	to {
+		transform: translateX(0);
+	}
+`;
+
 export const TopBarLink = styled(Link)`
+	--top-bar-link-background-color: transparent;
 	width: ${rem("44px")};
 	height: ${rem("44px")};
+	transform: translateX(-3rem);
+	background-color: transparent;
+	animation-name: ${SlideInTopBarLink};
+	animation-duration: 500ms;
+	animation-delay: 750ms;
+	animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	animation-fill-mode: forwards;
+
+	svg {
+		width: ${rem("32px")};
+		height: ${rem("32px")};
+		background-color: var(--top-bar-link-background-color);
+		border-radius: ${rem("24px")};
+	}
+
+	${theme.dark`
+		--top-bar-link-background-color: var(--body-background);
+	`};
+
+	&:hover,
+	&:focus {
+		outline: none;
+
+		svg {
+			box-shadow: 0 0 0 0.125rem var(--color-primary);
+		}
+	}
 `;
 
 export const TopBarButton = styled.button`
 	width: ${rem("44px")};
 	height: ${rem("44px")};
-	-webkit-appearance: none;
+	appearance: none;
 	border: none;
 `;

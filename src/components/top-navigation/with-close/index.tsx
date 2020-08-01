@@ -143,10 +143,9 @@ class TopNavigationWithClose extends React.Component<ITopNavigationWithCloseProp
 				<TopBarLink className="close" to={NEWS_PAGE} aria-label="Close this window and go back to the news page">
 					<IconClose />
 				</TopBarLink>
-				<div className="center">
+				<figure className="brand-color-figure">
 					<LazyLoadingImage id="brand-logo" width="24" height="24" src={CNN_LOGO} alt="CNN Logo" />
-					<h2 className="title">{title}</h2>
-				</div>
+				</figure>
 			</Container>
 		);
 	}

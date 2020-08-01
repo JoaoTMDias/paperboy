@@ -85,23 +85,22 @@ export const Hero = styled.div`
 		.hero__title {
 			display: none;
 		}
-
-		&:after {
-			background-image: none;
-		}
 	`};
 `;
 
 export const HeroCopy = styled.div`
 	--number-of-lines: 3;
 	--max-height-ratio: 1rem;
+	--metadata-title-color: var(--color-gray9);
+	--metadata-color: var(--color-gray8);
+
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	z-index: 1;
 	padding: 0 ${rem("32px")} ${rem("16px")} ${rem("16px")};
 
-	@media all and (max-width: 39.3975rem) {
+	@media all and (max-width: ${rem("632px")}) {
 		#article-content && {
 			display: none;
 		}
@@ -112,7 +111,7 @@ export const HeroCopy = styled.div`
 		font-family: var(--body-font-family);
 		font-weight: normal;
 		${fluidFontSize(22, "6vw", 24)};
-		color: var(--color-white);
+		color: var(--metadata-title-color);
 		letter-spacing: 0;
 		text-align: left;
 		line-height: 1.333;
@@ -144,7 +143,7 @@ export const HeroCopy = styled.div`
 
 		&__source,
 		&__time {
-			color: var(--color-white);
+			color: var(--metadata-color);
 			${fluidFontSize(11, "2vw", 13)};
 		}
 
@@ -164,10 +163,9 @@ export const HeroCopy = styled.div`
 	${above.medium`
 		padding: 0 1rem 1rem 0;
 
-		.title,
 		.metadata__source,
 		.metadata__time {
-			color: var(--color-gray9);
+			color: var(--metadata-color);
 		}
 
 		.title {
@@ -177,6 +175,11 @@ export const HeroCopy = styled.div`
 
 	${above.large`
 		padding-top: 2rem;
+	`};
+
+	${theme.dark`
+		--metadata-title-color: var(--color-white);
+		--metadata-color: var(--color-gray4);
 	`};
 `;
 
@@ -215,7 +218,7 @@ export const ArticleContent = styled.div`
 
 export const ArticleLink = styled.a`
 	--link-color: var(--color-primary);
-	--link-source-color: var(--color-gray7);
+	--link-source-color: var(--color-gray9);
 	--link-background-color: var(--body-background);
 	--link-border-color: var(--color-gray5);
 	--button-size: ${rem("48px")};

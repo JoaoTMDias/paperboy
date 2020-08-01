@@ -6,7 +6,7 @@ import { IBasePageProps } from "data/interfaces";
 import { ONBOARDING_PAGE } from "data/constants/router.constants";
 import { ContentSpinner } from "components/content-spinner";
 import Layout from "components/layout";
-import Meta from "components/meta";
+import { Meta } from "components/meta";
 import PreferencesContext from "../containers/preferences/context";
 
 interface IWithAuthenticationProps extends IBasePageProps {
@@ -36,11 +36,11 @@ const PrivateRoute: React.FunctionComponent<PropsWithChildren<IWithAuthenticatio
 	}, [authenticated]);
 
 	if (!loading && hasStatus) {
-		if (!authenticated) {
-			redirectTo &&
-				navigate(redirectTo, {
-					replace: true,
-				});
+		if (!authenticated && redirectTo) {
+			navigate(redirectTo, {
+				replace: true,
+			});
+
 			return null;
 		}
 
