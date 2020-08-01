@@ -1,5 +1,6 @@
 // Libraries
-import * as React from "react";
+import React, { useCallback } from "react";
+import { useVibrate, useToggle } from "react-use";
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from "react-share";
 import { INewsArticleItem } from "data/interfaces/news";
 import { IconFacebook, IconWhatsapp, IconTwitter, IconSMS, IconClose } from "components/icons/index";
@@ -21,6 +22,15 @@ interface IShareSheetPortalProps {
  * @returns {React.FunctionComponent<IShareSheetPortalProps>}
  */
 export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> = ({ articleData, close }) => {
+	const [vibrating, toggleVibrating] = useToggle(false);
+
+	useVibrate(vibrating, [200, 100, 200], false);
+
+	const handleClickOnButton = useCallback(() => {
+		toggleVibrating();
+		close();
+	}, [toggleVibrating, close]);
+
 	if (articleData) {
 		const { url, title } = articleData;
 		const message = `${title} ${url}`;
@@ -63,7 +73,14 @@ export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> =
 					</li>
 				</ul>
 				<div className="share-sheet__footer">
-					<button id="close-button" data-testid="close-button" className="round-button" onClick={close}>
+					<button
+						type="button"
+						id="close-button"
+						data-testid="close-button"
+						className="round-button"
+						onClick={handleClickOnButton}
+						aria-label="Close the typeset panel and go back to news detail page"
+					>
 						<IconClose />
 					</button>
 				</div>

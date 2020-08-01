@@ -48,7 +48,7 @@ const SavedPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
 	const numberOfArticles = saved ? saved.length : 0;
 
 	return (
-		<PrivateRoute title="Saved Articles" location={location}>
+		<PrivateRoute title="Saved Articles page" location={location}>
 			<TopNavigation
 				shadow="hairline"
 				style={{

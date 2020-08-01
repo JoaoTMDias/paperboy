@@ -12,7 +12,7 @@ import { PrivateRoute } from "helpers/index.helpers";
  */
 const AboutPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
 	return (
-		<PrivateRoute title="About Paperboy" location={location}>
+		<PrivateRoute title="About page" location={location}>
 			<TopNavigation
 				shadow="hairline"
 				style={{

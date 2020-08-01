@@ -1,8 +1,9 @@
 // Libraries
 import React, { FunctionComponent, useRef, useEffect, useCallback, useContext } from "react";
 import { IconChangeTypeSize, EIconChangeTypeSize, IconClose } from "components/icons/index";
+import { useVibrate, useToggle } from "react-use";
 import * as S from "./styles";
-import PreferencesContext from "./../../containers/preferences/context";
+import PreferencesContext from "../../containers/preferences/context";
 import { IArticleTypesetProps } from "./types";
 
 /**
@@ -12,19 +13,18 @@ import { IArticleTypesetProps } from "./types";
  * @returns {React.FunctionComponent<IArticleTypesetProps>}
  */
 export const ArticleTypeset: FunctionComponent<IArticleTypesetProps> = ({ close }) => {
+	const [vibrating, toggleVibrating] = useToggle(false);
 	const ref = useRef(null);
 	const { current: htmlElement } = useRef(document.documentElement);
 	const { baseFontRatio, setBaseFontRatio } = useContext(PreferencesContext);
+
+	useVibrate(vibrating, [200, 100, 200], false);
 
 	useEffect(() => {
 		if (ref && ref.current) {
 			ref.current.focus();
 		}
 	}, []);
-
-	useEffect(() => {
-		setBaseFontRatioProperty(baseFontRatio);
-	}, [baseFontRatio]);
 
 	/**
 	 * @description Updates the Root Element with a new font size value
@@ -40,6 +40,10 @@ export const ArticleTypeset: FunctionComponent<IArticleTypesetProps> = ({ close 
 		[htmlElement],
 	);
 
+	useEffect(() => {
+		setBaseFontRatioProperty(baseFontRatio);
+	}, [baseFontRatio, setBaseFontRatioProperty]);
+
 	const handleOnChangeRangeValue = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			event.preventDefault();
@@ -51,6 +55,11 @@ export const ArticleTypeset: FunctionComponent<IArticleTypesetProps> = ({ close 
 		},
 		[setBaseFontRatio, setBaseFontRatioProperty],
 	);
+
+	const handleClickOnButton = useCallback(() => {
+		toggleVibrating();
+		close();
+	}, [toggleVibrating, close]);
 
 	return (
 		<S.PanelWrapper id="article-typeset" className="article-typeset">
@@ -77,7 +86,14 @@ export const ArticleTypeset: FunctionComponent<IArticleTypesetProps> = ({ close 
 				<IconChangeTypeSize type={EIconChangeTypeSize.LARGE} />
 			</div>
 			<div className="article-typeset__footer">
-				<button id="close-button" data-testid="close-button" className="round-button" onClick={close}>
+				<button
+					type="button"
+					id="close-button"
+					data-testid="close-button"
+					className="round-button"
+					onClick={handleClickOnButton}
+					aria-label="Close the typeset panel and go back to news detail page"
+				>
 					<IconClose />
 				</button>
 			</div>

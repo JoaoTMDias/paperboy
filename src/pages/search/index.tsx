@@ -6,7 +6,7 @@ import { IBasePageProps } from "data/interfaces";
 
 const SearchPage: React.FC<IBasePageProps> = ({ location }) => {
 	return (
-		<PrivateRoute title="Saved Articles" location={location}>
+		<PrivateRoute title="Search page" location={location}>
 			<TopNavigation
 				shadow="hairline"
 				style={{

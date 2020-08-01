@@ -48,7 +48,7 @@ const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 	}
 
 	return (
-		<PrivateRoute title="Settings" location={location}>
+		<PrivateRoute title="Settings page" location={location}>
 			<TopNavigation
 				shadow="hairline"
 				style={{

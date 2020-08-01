@@ -1,8 +1,8 @@
 import { Redirect } from "@reach/router";
 import isEmpty from "lodash/isEmpty";
+import { useVibrate, useToggle } from "react-use";
 import React, { useState, useEffect, useRef, useContext, useCallback } from "react";
 import * as H from "history";
-import { Article, Hero, HeroCopy, ArticleContent, ArticleLink, BottomOptionsBar } from "./styles";
 import {
 	Container,
 	LazyLoadingImage,
@@ -13,12 +13,13 @@ import {
 import { IconTypeset, IconBookmark, IconShare } from "components/icons/index";
 import { NEWS_PAGE } from "data/constants/index.constants";
 import { INewsArticleItem } from "data/interfaces/news";
-import { EModalAlignType } from "data/interfaces/modal";
 import useWebShare from "helpers/custom-hooks/useWebShare";
 import { PrivateRoute } from "helpers/index.helpers";
-import PreferencesContext from "./../../../containers/preferences/context";
 import useModal from "components/general/modal";
 import AuditContext from "src/containers/audit/context";
+import PreferencesContext from "../../../containers/preferences/context";
+import { Article, Hero, HeroCopy, ArticleContent, ArticleLink, BottomOptionsBar } from "./styles";
+
 interface IArticleDetailPageProps {
 	location: H.Location<INewsArticleItem>;
 }
@@ -90,6 +91,7 @@ function getArticleFromList(list: INewsArticleItem[], article: INewsArticleItem)
 }
 
 const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ location }) => {
+	const [vibrating, toggleVibrating] = useToggle(false);
 	const { platform } = useContext(AuditContext);
 	const { saved, setSaved } = useContext(PreferencesContext);
 	const [isSaved, setIsSaved] = useState(false);
@@ -108,29 +110,28 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 
 			setIsSaved(result.saved);
 		}
-	}, [saved, setSaved]);
+	}, [saved, setSaved, data]);
+
+	useVibrate(vibrating, [100, 100, 100], false);
 
 	const handleClickOpenShare = useCallback(() => {
-		switch (isSupported) {
-			case true:
-				!loading &&
-					share({
-						title: data.title,
-						text: data.description,
-						url: data.url,
-					});
-				break;
-			case false:
-				openShareSheet();
-				break;
+		toggleVibrating();
 
-			default:
-				break;
+		if (isSupported && !loading) {
+			share({
+				title: data.title,
+				text: data.description,
+				url: data.url,
+			});
+		} else {
+			openShareSheet();
 		}
-	}, []);
+	}, [data, isSupported, loading, openShareSheet, share, toggleVibrating]);
 
 	const handleClickSaved = useCallback(() => {
 		let newList: INewsArticleItem[] = [];
+
+		toggleVibrating();
 
 		if (saved && !isEmpty(saved)) {
 			const articleIndex = getArticleFromList(saved, data).index;
@@ -147,7 +148,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 		}
 
 		setSaved(newList);
-	}, [isSaved, saved, data]);
+	}, [isSaved, saved, data, setSaved, toggleVibrating]);
 
 	function renderShareSheetModal() {
 		return (
@@ -169,9 +170,15 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 		(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 			event.preventDefault();
 
-			showTypesetPanel ? closeTypeset() : openTypeset();
+			if (showTypesetPanel) {
+				closeTypeset();
+			} else {
+				openTypeset();
+			}
+
+			toggleVibrating();
 		},
-		[showTypesetPanel, closeTypeset, openTypeset],
+		[showTypesetPanel, closeTypeset, openTypeset, toggleVibrating],
 	);
 
 	const onClickShare = useCallback(

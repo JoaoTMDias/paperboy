@@ -45,7 +45,7 @@ export const Input = styled.input`
 	width: 100%;
 	height: ${rem("48px")};
 	border: none;
-	background-color: transparent;
+	background-color: var(--background-color);
 	caret-color: var(--color-primary);
 	color: var(--input-color);
 	box-shadow: inset 0 -1px 0 0 var(--input-border);

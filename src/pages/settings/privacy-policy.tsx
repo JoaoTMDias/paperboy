@@ -12,7 +12,7 @@ import { PrivateRoute } from "helpers/index.helpers";
  */
 const PrivacyPolicyPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
 	return (
-		<PrivateRoute title="Privacy Policy" location={location}>
+		<PrivateRoute title="Privacy Policy page" location={location}>
 			<TopNavigation
 				shadow="hairline"
 				style={{
