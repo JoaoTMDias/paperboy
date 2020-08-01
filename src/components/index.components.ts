@@ -20,7 +20,6 @@ import TopNavigationWithTitle from "./top-navigation/with-title";
 import TabItem from "./top-navigation/tab-item";
 
 import TopNavigation from "./top-navigation/default";
-import MainNavigation from "./main-navigation";
 import ArticleThumbnail from "./thumbnails/thumbnails-large.component";
 import ThumbnailImage from "./thumbnails/thumbnails-image.component";
 import UISearchForm from "./data-entry/forms/search-form.component";
@@ -65,7 +64,6 @@ export {
 	TopNavigationWithTitle,
 	TopNavigationWithClose,
 	TopNavigation,
-	MainNavigation,
 	SourceCard,
 	SourcesList,
 	SourceListItem,

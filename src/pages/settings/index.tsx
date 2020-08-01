@@ -13,10 +13,7 @@ import {
 } from "components/index.components";
 
 import { EAppThemeType } from "data/interfaces/theme";
-import {
-	PRIVACY_POLICY_SETTINGS_PAGE,
-	ABOUT_SETTINGS_PAGE,
-} from "data/constants/router.constants";
+import { PRIVACY_POLICY_SETTINGS_PAGE, ABOUT_SETTINGS_PAGE } from "data/constants/router.constants";
 import { IBasePageProps } from "data/interfaces/index";
 import { PrivateRoute } from "helpers/index.helpers";
 import PreferencesContext from "../../containers/preferences/context";
