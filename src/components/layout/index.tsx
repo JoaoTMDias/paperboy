@@ -1,7 +1,8 @@
 // Libraries
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
-import { Audit, BottomNavigation, ViewportHeight, ChangeAppTheme } from "../index.components";
+import { Audit, BottomNavigation, ChangeAppTheme } from "components/index.components";
+import ViewportHeight from 'components/general/support/viewport-height.support';
 import TopNavigation from "../top-navigation/default/index";
 import { AppLayout } from "./styles";
 import { ILayoutProps } from "./types";

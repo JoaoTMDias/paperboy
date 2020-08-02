@@ -10,9 +10,9 @@ import {
 } from "components/index.components";
 import { IListOfCategorizedSources, IAllAvailableNewsSource, ChosenNewsSources } from "data/interfaces/index";
 import Top20EditorSuggestions from "data/dummy/news-sources-suggestions";
+import { filterSources } from "helpers/filter-sources";
 import ChooseSourcesValidationSchema from "./choose-sources-validation-schema";
 import { IChosenSource } from "./choose-sources";
-import { filterSources } from "helpers/filter-sources";
 
 interface IChooseSourcesForm {
 	error: Error | null;
