@@ -135,7 +135,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 
 		if (saved && !isEmpty(saved)) {
 			const articleIndex = getArticleFromList(saved, data).index;
-			const isSame = isSameArticle(saved[articleIndex], data);
+			const isSame = articleIndex !== -1 ? isSameArticle(saved[articleIndex], data) : false;
 
 			if (isSaved) {
 				newList = removeArticleFromList(saved, articleIndex);
