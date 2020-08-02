@@ -2,12 +2,10 @@
 import React, { useRef, useCallback, useContext } from "react";
 import { useVibrate, useToggle } from "react-use";
 import { EAppThemeType } from "data/interfaces/theme";
-import { PRIVACY_POLICY_SETTINGS_PAGE, ABOUT_SETTINGS_PAGE } from "data/constants/router.constants";
+import { PRIVACY_POLICY_SETTINGS_PAGE, ABOUT_SETTINGS_PAGE, NEWS_PAGE } from "data/constants/router.constants";
 import { IBasePageProps } from "data/interfaces/index";
 import { PrivateRoute } from "helpers/index.helpers";
 import { VIBRATION_PATTERNS } from "data/constants/index.constants";
-import PreferencesContext from "../../containers/preferences/context";
-import AuditContext from "../../containers/audit/context";
 import TopNavigation from "components/top-navigation/default";
 import TopNavigationWithTitle from "components/top-navigation/with-title/index";
 import Container from "components/container";
@@ -15,6 +13,9 @@ import UISection from "components/section";
 import AddToHomeScreenWithInstall from "components/add-to-homescreen/with-install-button";
 import { ListItemWithSwitch, SectionListItem, ListItemWithLink } from "components/lists";
 import { UIButton } from "components/button";
+import { navigate } from 'gatsby';
+import AuditContext from "../../containers/audit/context";
+import PreferencesContext from "../../containers/preferences/context";
 
 /**
  * @description Settings Page
@@ -54,6 +55,9 @@ const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 	function handleClickToClearPreferences() {
 		toggleVibratingForReset();
 		resetAppState();
+		navigate(NEWS_PAGE, {
+			replace: true,
+		});
 	}
 
 	return (
