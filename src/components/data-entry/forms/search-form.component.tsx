@@ -2,8 +2,7 @@
 import { rem } from "polished";
 import React, { FunctionComponent, memo } from "react";
 import styled from "styled-components";
-
-import { UISection } from "components/index.components";
+import { UISection } from "components/section";
 
 // Component Props
 interface IUISearchFormProps {

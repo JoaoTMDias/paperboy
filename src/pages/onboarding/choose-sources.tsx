@@ -2,13 +2,15 @@ import React, { FunctionComponent, useMemo, useContext, useEffect } from "react"
 import { Redirect } from "@reach/router";
 import { navigate } from "gatsby";
 import Meta from "components/meta/index";
-import { Layout, TopNavigation, TopNavigationWithTitle } from "components/index.components";
 import { IGetAllNewsSources, IBasePageProps } from "data/interfaces/index";
 import { NEWS_PAGE, ONBOARDING_PRELOADER } from "data/constants/index.constants";
 import useNewsApi from "helpers/custom-hooks/useNewsAPI";
 import { filterData } from "helpers/filter-data";
 import ChooseSourcesForm from "components/choose-sources/choose-sources-form";
 import PreferencesContext from "./../../containers/preferences/context";
+import Layout from "components/layout";
+import TopNavigation from "components/top-navigation/default";
+import TopNavigationWithTitle from "components/top-navigation/with-title/index";
 
 export interface IChosenSource {
 	name: string;

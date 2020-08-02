@@ -1,6 +1,6 @@
 // Libraries
 import * as React from "react";
-import { LazyLoadingImage } from "components/index.components";
+import LazyLoadingImage from "components/general/images/image.lazyload.component";
 import { ISourceListItemProps } from "./types.d";
 import { Wrapper, Input, Logo, Name, Icon } from "./styles";
 import { withMemo } from "helpers/index.helpers";

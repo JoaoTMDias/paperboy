@@ -1,8 +1,10 @@
 // Libraries
 import React from "react";
-import { Container, TopNavigation, TopNavigationWithTitle } from "components/index.components";
 import { IBasePageProps } from "data/interfaces/index";
 import { PrivateRoute } from "helpers/index.helpers";
+import TopNavigation from "components/top-navigation/default";
+import TopNavigationWithTitle from "components/top-navigation/with-title/index";
+import Container from "components/container";
 
 /**
  * @description Settings Page

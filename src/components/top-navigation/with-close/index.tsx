@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useRef, useEffect } from "react";
+import LazyLoadingImage from "components/general/images/image.lazyload.component";
 import { NEWS_PAGE } from "data/constants/index.constants";
-import { LazyLoadingImage } from "components/index.components";
 import { IconClose } from "components/icons/index";
 import { Container, TopBarLink } from "./styles";
 import CNN_LOGO from "../../../assets/images/sources/icon-cnn.svg";

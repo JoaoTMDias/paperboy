@@ -1,13 +1,9 @@
 // Libraries
 import React from "react";
-import {
-	Container,
-	TopNavigation,
-	TopNavigationWithTitle,
-	SectionListItem,
-	UISection,
-	ListItemWithLink,
-} from "components/index.components";
+import TopNavigation from "components/top-navigation/default";
+import TopNavigationWithTitle from "components/top-navigation/with-title/index";
+import Container from "components/container";
+import UISection from "components/section";
 import {
 	ONBOARDING_PAGE,
 	NEWS_PAGE,
@@ -15,10 +11,11 @@ import {
 	SEARCH_PAGE,
 	SETTINGS_PAGE,
 	PRIVACY_POLICY_SETTINGS_PAGE,
-	ABOUT_SETTINGS_PAGE
+	ABOUT_SETTINGS_PAGE,
 } from "data/constants/router.constants";
 import { IBasePageProps } from "data/interfaces/index";
 import { PrivateRoute } from "helpers/index.helpers";
+import { SectionListItem, ListItemWithLink } from "components/lists";
 
 /**
  * @description Settings Page
@@ -58,7 +55,11 @@ const NotFoundPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 						<ListItemWithLink id="about-paperboy" title="About page" to={ABOUT_SETTINGS_PAGE} />
 					</SectionListItem>
 					<SectionListItem id="privacy-policy-paperboy">
-						<ListItemWithLink id="privacy-policy-paperboy" title="Privacy Policy page" to={PRIVACY_POLICY_SETTINGS_PAGE} />
+						<ListItemWithLink
+							id="privacy-policy-paperboy"
+							title="Privacy Policy page"
+							to={PRIVACY_POLICY_SETTINGS_PAGE}
+						/>
 					</SectionListItem>
 				</UISection>
 			</Container>

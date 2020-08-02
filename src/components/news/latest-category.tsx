@@ -1,10 +1,11 @@
 import React from "react";
-import { ArticleThumbnail, ContentSpinner } from "components/index.components";
 import { Item, List } from "./styles";
 import { INewsArticle } from "data/interfaces/index";
 import { EThumbnailType } from "components/thumbnails/types.d.ts";
 import { INewsArticleTabProps } from "./types";
 import useNewsApi from "helpers/custom-hooks/useNewsAPI";
+import ArticleThumbnail from "components/thumbnails/thumbnails-large.component";
+import ContentSpinner from "components/content-spinner";
 
 /**
  * @description Latest News Tab
@@ -12,7 +13,7 @@ import useNewsApi from "helpers/custom-hooks/useNewsAPI";
  * @class LatestNewsCategoryTab
  * @extends {React.Component<INewsArticleTabProps, any>}
  */
-export const LatestNewsCategoryTab: React.FC<INewsArticleTabProps> = ({ id, sources, location }) => {
+export const LatestNewsCategoryTab: React.FC<INewsArticleTabProps> = ({ id, sources }) => {
 	const { data, error, loading } = useNewsApi<INewsArticle>({
 		type: "latest",
 		options: sources,

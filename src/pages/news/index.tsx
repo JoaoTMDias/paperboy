@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Container, NewsTabs, ContentSpinner } from "components/index.components";
+import Container from "components/container";
 import { IBasePageProps } from "data/interfaces/index";
 import { PrivateRoute } from "helpers/index.helpers";
 import PreferencesContext from "./../../containers/preferences/context";
-import AuditContext from "./../../containers/audit/context";
+import { NewsTabs } from "components/news";
+import ContentSpinner from "components/content-spinner";
 
 /**
  * News Page Tab
@@ -14,10 +15,9 @@ import AuditContext from "./../../containers/audit/context";
 const NewsPage: React.FC<IBasePageProps> = ({ location }) => {
 	const [hasData, setHasData] = useState(false);
 	const { chosenSources: sources } = useContext(PreferencesContext);
-	const { platform } = useContext(AuditContext);
 
 	useEffect(() => {
-		if (sources?.quantity > 0 && sources.items.tabs.length > 0) {
+		if (sources && sources.quantity > 0 && sources.items.tabs.length > 0) {
 			setHasData(true);
 		}
 	}, []);

@@ -1,8 +1,8 @@
 // Libraries
 import React, { memo } from "react";
-import { FormSwitch } from "components/index.components";
 import { Label } from "../styles";
 import { IListItemWithSwitchProps } from "../list-types";
+import FormSwitch from "components/data-entry/forms/switch/form-switch.component";
 
 /**
  * @description List Item with a Toggle Switch

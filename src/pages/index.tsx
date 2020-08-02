@@ -1,23 +1,17 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Redirect } from "@reach/router";
 import React, { useContext } from "react";
-import {
-	Container,
-	Layout,
-	UIAnchor,
-	UICallToAction,
-	UIDisplay,
-	UILead,
-	UISubtitle,
-	UIButton,
-} from "components/index.components";
+import Container from "components/container";
 import { IconBrandingLarge } from "components/icons/index";
-
 import { NEWS_PAGE, ONBOARDING_CHOOSE_SOURCES_PAGE, ONBOARDING_PAGE } from "data/constants/index.constants";
 import Meta from "components/meta/index";
 import { IBasePageProps } from "data/interfaces";
 import { useAddToHomescreenPrompt } from "helpers/custom-hooks/useAddToHomescreenPrompt";
 import PreferencesContext from "../containers/preferences/context";
+import Layout from "components/layout";
+import UICallToAction from "components/call-to-action";
+import { UIAnchor, UIButton } from "components/button";
+import { UISubtitle, UIDisplay, UILead } from "components/general/typography/typography.theme";
 
 const IndexPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
 	const [isready, promptToInstall] = useAddToHomescreenPrompt();

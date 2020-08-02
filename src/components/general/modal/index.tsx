@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useRef, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { useClickAway, useKeyPressEvent, useLockBodyScroll, useToggle } from "react-use";
-import { UIDialog } from "components/index.components";
+import UIDialog from "components/feedback/dialog/dialog.component";
 import { IModalProps } from "./types";
 import { Wrapper, Mask } from "./styles";
 
@@ -10,7 +10,9 @@ const Modal: FunctionComponent<IModalProps> = ({ isOpen, backgroundOpacity, alig
 	const { current: portaId } = useRef(document.getElementById("portal"));
 
 	const closeMenuFn = useCallback(() => {
-		close && close();
+		if (close) {
+			close();
+		}
 	}, [close]);
 
 	useClickAway(ref, () => {
