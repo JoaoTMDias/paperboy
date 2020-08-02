@@ -13,7 +13,7 @@ import UISection from "components/section";
 import AddToHomeScreenWithInstall from "components/add-to-homescreen/with-install-button";
 import { ListItemWithSwitch, SectionListItem, ListItemWithLink } from "components/lists";
 import { UIButton } from "components/button";
-import { navigate } from 'gatsby';
+import { navigate } from "gatsby";
 import AuditContext from "../../containers/audit/context";
 import PreferencesContext from "../../containers/preferences/context";
 

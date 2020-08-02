@@ -1,13 +1,14 @@
 // Libraries
-import React, { useCallback, FunctionComponent } from "react";
+import React, { FunctionComponent } from "react";
 import { useFormik } from "formik";
-import { Form, Input, Fieldset, SearchButton } from "./styles";
-import SearchFormValidationSchema from "./validation-schema";
 import useNewsApi from "helpers/custom-hooks/useNewsAPI";
 import UISection from "components/section";
 import { IconSearch } from "components/icons";
 import ContentSpinner from "components/content-spinner";
 import { INewsArticle } from "data/interfaces";
+import ErrorMessage from "components/errors";
+import SearchFormValidationSchema from "./validation-schema";
+import { Form, Input, Fieldset, SearchButton } from "./styles";
 
 /**
  * @description Component Description
@@ -40,7 +41,7 @@ const SearchForm: FunctionComponent = () => {
 		}
 
 		if (error) {
-			<p>{error}</p>;
+			return <ErrorMessage />;
 		}
 		return <ContentSpinner />;
 	}

@@ -1,11 +1,12 @@
 import React from "react";
-import { Item, List } from "./styles";
 import { INewsArticle } from "data/interfaces/index";
 import { EThumbnailType } from "components/thumbnails/types.d.ts";
-import { INewsArticleTabProps } from "./types";
 import useNewsApi from "helpers/custom-hooks/useNewsAPI";
 import ArticleThumbnail from "components/thumbnails/thumbnails-large.component";
 import ContentSpinner from "components/content-spinner";
+import ErrorMessage from "components/errors";
+import { INewsArticleTabProps } from "./types";
+import { Item, List } from "./styles";
 
 /**
  * @description Latest News Tab
@@ -43,7 +44,7 @@ export const LatestNewsTab: React.FC<INewsArticleTabProps> = ({ id, sources }) =
 	}
 
 	if (error) {
-		return <p>{`${error}`}</p>;
+		return <ErrorMessage />;
 	}
 
 	return renderRow();

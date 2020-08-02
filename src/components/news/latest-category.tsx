@@ -1,11 +1,12 @@
 import React from "react";
-import { Item, List } from "./styles";
 import { INewsArticle } from "data/interfaces/index";
 import { EThumbnailType } from "components/thumbnails/types.d.ts";
-import { INewsArticleTabProps } from "./types";
 import useNewsApi from "helpers/custom-hooks/useNewsAPI";
 import ArticleThumbnail from "components/thumbnails/thumbnails-large.component";
 import ContentSpinner from "components/content-spinner";
+import ErrorMessage from "components/errors";
+import { INewsArticleTabProps } from "./types";
+import { Item, List } from "./styles";
 
 /**
  * @description Latest News Tab
@@ -24,7 +25,7 @@ export const LatestNewsCategoryTab: React.FC<INewsArticleTabProps> = ({ id, sour
 	 * @memberof LatestNewsCategoryTab
 	 */
 	function renderRow() {
-		const sources = data?.articles.map((article, index) => {
+		const src = data?.articles.map((article, index) => {
 			const key = `latest-news-category__article__${id}-${index}-key`;
 			const identifier = `latest-news-category__article__${id}-${index}-id`;
 
@@ -43,7 +44,7 @@ export const LatestNewsCategoryTab: React.FC<INewsArticleTabProps> = ({ id, sour
 			);
 		});
 
-		return <List data-layout="category">{sources}</List>;
+		return <List data-layout="category">{src}</List>;
 	}
 
 	if (loading) {
@@ -51,7 +52,7 @@ export const LatestNewsCategoryTab: React.FC<INewsArticleTabProps> = ({ id, sour
 	}
 
 	if (error) {
-		return <p>{`${error}`}</p>;
+		return <ErrorMessage />;
 	}
 
 	return renderRow();

@@ -10,6 +10,7 @@ import { UIButton } from "components/button";
 import Container from "components/container/index";
 import { IChosenSource } from "pages/onboarding/choose-sources";
 import ContentSpinner from "components/content-spinner";
+import ErrorMessage from "components/errors";
 import ChooseSourcesValidationSchema from "./choose-sources-validation-schema";
 
 interface IChooseSourcesForm {
@@ -104,7 +105,7 @@ const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({ error, loadi
 			return <ContentSpinner />;
 		}
 		if (error) {
-			return <p>{`${error}`}</p>;
+			return <ErrorMessage />;
 		}
 
 		if (result) {
