@@ -1,16 +1,15 @@
 import React, { FunctionComponent, useMemo, useContext, useEffect } from "react";
-import { Redirect } from "@reach/router";
 import { navigate } from "gatsby";
-import Meta from "components/meta/index";
+import { Meta } from "components/meta/index";
 import { IGetAllNewsSources, IBasePageProps } from "data/interfaces/index";
 import { NEWS_PAGE, ONBOARDING_PRELOADER } from "data/constants/index.constants";
 import useNewsApi from "helpers/custom-hooks/useNewsAPI";
 import { filterData } from "helpers/filter-data";
 import ChooseSourcesForm from "components/choose-sources/choose-sources-form";
-import PreferencesContext from "./../../containers/preferences/context";
 import Layout from "components/layout";
 import TopNavigation from "components/top-navigation/default";
 import TopNavigationWithTitle from "components/top-navigation/with-title/index";
+import PreferencesContext from "../../containers/preferences/context";
 
 export interface IChosenSource {
 	name: string;
@@ -39,7 +38,10 @@ const ChooseSourcesPage: FunctionComponent<IBasePageProps> = ({ location }) => {
 	}, [chosenSources]);
 
 	if (authenticated) {
-		return <Redirect to={NEWS_PAGE} noThrow />;
+		navigate(NEWS_PAGE, {
+			replace: true,
+		});
+		return null;
 	}
 
 	return (

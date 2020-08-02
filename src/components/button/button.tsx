@@ -1,5 +1,5 @@
 import React from "react";
-import { withMemo } from "helpers/index.helpers";
+import { withMemo } from "helpers/with-memo.helper";
 import { Button } from "./styles";
 import { IUIButtonProps } from "./types";
 

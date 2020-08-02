@@ -1,9 +1,10 @@
 // Libraries
-import * as React from "react";
+import React, { memo } from "react";
+import { IAllAvailableNewsSource } from "data/interfaces/index";
+import { withMemo } from "helpers/index.helpers";
 import SourceCard from "./source-card.component";
 import SourceListItem from "./source-list-item.component";
 import { ISourcesListProps } from "./types";
-import { IAllAvailableNewsSource } from "data/interfaces/index";
 import { IChosenSource } from "../../../pages/onboarding/choose-sources";
 import IconBBCNews from "../../../assets/images/sources/icon-bbc-news.svg";
 import IconCNN from "../../../assets/images/sources/icon-cnn.svg";
@@ -15,7 +16,6 @@ import IconTimesOfIndia from "../../../assets/images/sources/icon-times-of-india
 import IconUSAToday from "../../../assets/images/sources/icon-usa-today.svg";
 import IconWallStreetJournal from "../../../assets/images/sources/icon-wall-street-journal.svg";
 import { SourcesListWrapper } from "./styles";
-import { withMemo } from "helpers/index.helpers";
 
 /**
  * @description Sources: List of Sources
@@ -158,4 +158,4 @@ SourcesList.defaultProps = {
 	label: "label",
 };
 
-export default withMemo(SourcesList, ["data", "layout", "selectedOptions"]);
+export default memo(SourcesList);

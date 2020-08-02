@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
+import { useMount } from "react-use";
 import Container from "components/container";
 import { IBasePageProps } from "data/interfaces/index";
 import { PrivateRoute } from "helpers/index.helpers";
-import PreferencesContext from "./../../containers/preferences/context";
-import { NewsTabs } from "components/news";
-import ContentSpinner from "components/content-spinner";
+import { NewsTabs } from "components/news/news-tabs";
+import { ContentSpinner } from "components/content-spinner";
+import PreferencesContext from "../../containers/preferences/context";
 
 /**
  * News Page Tab
@@ -16,11 +17,11 @@ const NewsPage: React.FC<IBasePageProps> = ({ location }) => {
 	const [hasData, setHasData] = useState(false);
 	const { chosenSources: sources } = useContext(PreferencesContext);
 
-	useEffect(() => {
+	useMount(() => {
 		if (sources && sources.quantity > 0 && sources.items.tabs.length > 0) {
 			setHasData(true);
 		}
-	}, []);
+	});
 
 	/**
 	 * @description

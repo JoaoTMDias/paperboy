@@ -1,66 +1,19 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Redirect } from "@reach/router";
 import React, { useContext } from "react";
-import Container from "components/container";
-import { IconBrandingLarge } from "components/icons/index";
-import { NEWS_PAGE, ONBOARDING_CHOOSE_SOURCES_PAGE, ONBOARDING_PAGE } from "data/constants/index.constants";
-import Meta from "components/meta/index";
-import { IBasePageProps } from "data/interfaces";
-import { useAddToHomescreenPrompt } from "helpers/custom-hooks/useAddToHomescreenPrompt";
-import Layout from "components/layout";
-import UICallToAction from "components/call-to-action";
-import { UIAnchor, UIButton } from "components/button";
-import { UISubtitle, UIDisplay, UILead } from "components/general/typography/typography.theme";
-import AuditContext from 'src/containers/audit/context';
+import { IBasePageProps } from "data/interfaces/index";
+import NewsPage from "components/news";
+import WelcomeScreen from "components/welcome";
 import PreferencesContext from "../containers/preferences/context";
 
-const IndexPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
-	const [isready, promptToInstall] = useAddToHomescreenPrompt();
+/**
+ * News Page Tab
+ * @date 2019-01-17
+ * @class IndexPage
+ * @extends {React.Component<IIndexPageProps, any>}
+ */
+const IndexPage: React.FC<IBasePageProps> = ({ location }) => {
 	const { authenticated } = useContext(PreferencesContext);
-	const { isOnline } = useContext(AuditContext);
 
-	if (!isOnline) {
-		return (
-			<Container fullheight>
-				<IconBrandingLarge visible />
-				<UISubtitle text="Uh-oh!" />
-				<UIDisplay text="You are offline" />
-				<UILead text="It seems that the connection was lost. Perhaps try in another time?" />
-			</Container>
-		)
-	}
-
-	if (!authenticated) {
-		return (
-			<Layout authenticated={authenticated}>
-				<Meta title="Welcome" location={location} />
-				<UICallToAction float>
-					<UIAnchor
-						to={ONBOARDING_CHOOSE_SOURCES_PAGE}
-						text="Choose your favorite sources"
-						label="Click to navigate to the next screen, where you can pick your favorite sources from a wide array of options."
-					/>
-					{isready && (
-						<UIButton
-							id="add-to-homescreen"
-							flavour="secondary"
-							label="Add Paperboy to this device's desktop or homescreen"
-							text="+ Add to homescreen"
-							onClick={promptToInstall}
-						/>
-					)}
-				</UICallToAction>
-				<Container fullheight>
-					<IconBrandingLarge visible />
-					<UISubtitle text="Welcome!" />
-					<UIDisplay text="Paperboy" />
-					<UILead text="Hundreds of news sources and your favorite magazines and newspapers. Powered by News API and free of charge" />
-				</Container>
-			</Layout>
-		);
-	}
-
-	return <Redirect from={ONBOARDING_PAGE} to={NEWS_PAGE} replace />;
+	return authenticated ? <NewsPage location={location} /> : <WelcomeScreen />;
 };
 
 export default IndexPage;

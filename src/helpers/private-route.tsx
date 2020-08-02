@@ -1,17 +1,15 @@
 import React, { useContext, useState, useEffect, PropsWithChildren } from "react";
 import isNil from "lodash/isNil";
-import { navigate } from "gatsby";
 
 import { IBasePageProps } from "data/interfaces";
-import { ONBOARDING_PAGE } from "data/constants/router.constants";
 import { ContentSpinner } from "components/content-spinner";
+import WelcomeScreen from "components/welcome/index";
 import Layout from "components/layout";
 import { Meta } from "components/meta";
 import PreferencesContext from "../containers/preferences/context";
 
 interface IWithAuthenticationProps extends IBasePageProps {
 	header?: boolean;
-	redirectTo?: string;
 	bottomNavigation?: boolean;
 	title: string;
 }
@@ -22,7 +20,6 @@ const PrivateRoute: React.FunctionComponent<PropsWithChildren<IWithAuthenticatio
 	bottomNavigation,
 	title,
 	location,
-	redirectTo,
 }) => {
 	const [loading, setIsLoading] = useState(true);
 	const [hasStatus, setHasStatus] = useState(false);
@@ -36,12 +33,8 @@ const PrivateRoute: React.FunctionComponent<PropsWithChildren<IWithAuthenticatio
 	}, [authenticated]);
 
 	if (!loading && hasStatus) {
-		if (!authenticated && redirectTo) {
-			navigate(redirectTo, {
-				replace: true,
-			});
-
-			return null;
+		if (!authenticated) {
+			return <WelcomeScreen />;
 		}
 
 		return (
@@ -57,7 +50,6 @@ const PrivateRoute: React.FunctionComponent<PropsWithChildren<IWithAuthenticatio
 
 PrivateRoute.defaultProps = {
 	header: false,
-	redirectTo: ONBOARDING_PAGE,
 	bottomNavigation: true,
 };
 

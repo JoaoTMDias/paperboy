@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import KEY_CODES from "helpers/key-codes";
-import { ListItem } from "./styles";
 import classnames from "classnames";
 import { withMemo } from "helpers/index.helpers";
 import { IBasePageProps } from "data/interfaces/page";
-import Meta from "components/meta";
+import { Meta } from "components/meta";
+import { ListItem } from "./styles";
 
 interface ITabProps extends IBasePageProps {
 	id: string;

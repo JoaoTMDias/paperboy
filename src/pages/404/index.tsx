@@ -5,7 +5,6 @@ import TopNavigationWithTitle from "components/top-navigation/with-title/index";
 import Container from "components/container";
 import UISection from "components/section";
 import {
-	ONBOARDING_PAGE,
 	NEWS_PAGE,
 	SAVED_PAGE,
 	SEARCH_PAGE,
@@ -36,9 +35,6 @@ const NotFoundPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 			</TopNavigation>
 			<Container fullwidth fullheight isFixed={false} offsetTop="5.875rem">
 				<UISection id="not-found-others" title="Here are some suggestions:">
-					<SectionListItem id="homepage">
-						<ListItemWithLink id="homepage" title="Home page" to={ONBOARDING_PAGE} />
-					</SectionListItem>
 					<SectionListItem id="news">
 						<ListItemWithLink id="news" title="News page" to={NEWS_PAGE} />
 					</SectionListItem>

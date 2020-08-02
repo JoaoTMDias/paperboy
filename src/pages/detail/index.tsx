@@ -12,11 +12,11 @@ import useWebShare from "helpers/custom-hooks/useWebShare";
 import { PrivateRoute } from "helpers/index.helpers";
 import useModal from "components/general/modal";
 import AuditContext from "src/containers/audit/context";
-import PreferencesContext from "../../../containers/preferences/context";
-import { Article, Hero, HeroCopy, ArticleContent, ArticleLink, BottomOptionsBar } from "./styles";
 import { ShareSheetPortal } from "components/general/social/ShareSheet";
-import ArticleTypeset from "components/ArticleTypeset";
+import { ArticleTypeset } from "components/ArticleTypeset";
 import TopNavigationWithClose from "components/top-navigation/with-close";
+import { Article, Hero, HeroCopy, ArticleContent, ArticleLink, BottomOptionsBar } from "./styles";
+import PreferencesContext from "../../containers/preferences/context";
 
 interface IArticleDetailPageProps {
 	location: H.Location<INewsArticleItem>;
