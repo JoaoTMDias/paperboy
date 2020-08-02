@@ -3,13 +3,14 @@ import { Formik, FieldArray, FieldArrayRenderProps } from "formik";
 import { IListOfCategorizedSources, IAllAvailableNewsSource, ChosenNewsSources } from "data/interfaces/index";
 import Top20EditorSuggestions from "data/dummy/news-sources-suggestions";
 import { filterSources } from "helpers/filter-sources";
-import ChooseSourcesValidationSchema from "./choose-sources-validation-schema";
 import UISection from "components/section";
 import SourcesList from "components/data-entry/sources/source-list.component";
 import UICallToAction from "components/call-to-action";
 import { UIButton } from "components/button";
 import Container from "components/container/index";
 import { IChosenSource } from "pages/onboarding/choose-sources";
+import ContentSpinner from "components/content-spinner";
+import ChooseSourcesValidationSchema from "./choose-sources-validation-schema";
 
 interface IChooseSourcesForm {
 	error: Error | null;
