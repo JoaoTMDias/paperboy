@@ -21,10 +21,9 @@ const isProduction: boolean = process.env.NODE_ENV === "production";
  * @date  01/December/2018 at 16:19
  * @extends {React.FunctionComponent}
  */
-const HTML: React.FunctionComponent<IHTMLProps> = (props) => {
+const HTML: React.FunctionComponent<IHTMLProps> = ({ headComponents, body, postBodyComponents }) => {
 	const helmet: HelmetData | undefined = Helmet.rewind();
 	const openGraphUrl: string = isProduction ? `${config.siteMetadata.url}/share.png` : "/share.png";
-	const { headComponents, body, postBodyComponents } = props;
 
 	return (
 		<html

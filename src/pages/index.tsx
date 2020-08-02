@@ -7,15 +7,28 @@ import { NEWS_PAGE, ONBOARDING_CHOOSE_SOURCES_PAGE, ONBOARDING_PAGE } from "data
 import Meta from "components/meta/index";
 import { IBasePageProps } from "data/interfaces";
 import { useAddToHomescreenPrompt } from "helpers/custom-hooks/useAddToHomescreenPrompt";
-import PreferencesContext from "../containers/preferences/context";
 import Layout from "components/layout";
 import UICallToAction from "components/call-to-action";
 import { UIAnchor, UIButton } from "components/button";
 import { UISubtitle, UIDisplay, UILead } from "components/general/typography/typography.theme";
+import AuditContext from 'src/containers/audit/context';
+import PreferencesContext from "../containers/preferences/context";
 
 const IndexPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
 	const [isready, promptToInstall] = useAddToHomescreenPrompt();
 	const { authenticated } = useContext(PreferencesContext);
+	const { isOnline } = useContext(AuditContext);
+
+	if (!isOnline) {
+		return (
+			<Container fullheight>
+				<IconBrandingLarge visible />
+				<UISubtitle text="Uh-oh!" />
+				<UIDisplay text="You are offline" />
+				<UILead text="It seems that the connection was lost. Perhaps try in another time?" />
+			</Container>
+		)
+	}
 
 	if (!authenticated) {
 		return (
