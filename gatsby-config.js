@@ -50,14 +50,8 @@ const manifestOptions = {
 	],
 };
 
-const analyticsOptions = {
-	trackingId: "UA-54851814-1",
-	head: true,
-	anonymize: true,
-};
-
 const offlineOptions = {
-	cacheId: "paperboy-cache",
+	cacheId: "paperboy-cache-offline",
 };
 
 const netlifyHeaders = {
