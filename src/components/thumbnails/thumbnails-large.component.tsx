@@ -1,13 +1,11 @@
 // Libraries
 import { formatDistanceToNow } from "date-fns";
 import * as React from "react";
-
 import { NEWS_DETAIL_PAGE } from "data/constants/router.constants";
-import { ThumbnailImage } from "components/index.components";
-
 import { Anchor, Article, Copy } from "./styles";
 import LazyLoadingImage from "../general/images/image.lazyload.component";
 import { EThumbnailType, IArticleThumbnailProps } from "./types.d";
+import ThumbnailImage from "./thumbnails-image.component";
 
 /**
  * @description Article Thumbnail: Large

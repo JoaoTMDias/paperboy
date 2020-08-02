@@ -1,18 +1,15 @@
 import React, { FunctionComponent, memo } from "react";
 import { Formik, FieldArray, FieldArrayRenderProps } from "formik";
-import {
-	Container,
-	SourcesList,
-	UIButton,
-	UICallToAction,
-	ContentSpinner,
-	UISection,
-} from "components/index.components";
 import { IListOfCategorizedSources, IAllAvailableNewsSource, ChosenNewsSources } from "data/interfaces/index";
 import Top20EditorSuggestions from "data/dummy/news-sources-suggestions";
 import { filterSources } from "helpers/filter-sources";
 import ChooseSourcesValidationSchema from "./choose-sources-validation-schema";
-import { IChosenSource } from "./choose-sources";
+import UISection from "components/section";
+import SourcesList from "components/data-entry/sources/source-list.component";
+import UICallToAction from "components/call-to-action";
+import { UIButton } from "components/button";
+import Container from "components/container/index";
+import { IChosenSource } from "pages/onboarding/choose-sources";
 
 interface IChooseSourcesForm {
 	error: Error | null;
@@ -24,6 +21,40 @@ interface IChooseSourcesForm {
 const MINIMUM_SELECTED = 3;
 
 const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({ error, loading, result, handleSubmitForm }) => {
+	/**
+	 *
+	 *
+	 * @param {string} target
+	 * @param {string} category
+	 * @param {IChosenSource[]} arrayValues
+	 * @param {FieldArrayRenderProps} arrayHelpers
+	 * @returns
+	 */
+	function handleClickOnItem(
+		target: string,
+		category: string,
+		arrayValues: IChosenSource[],
+		arrayHelpers: FieldArrayRenderProps,
+	) {
+		const clickedItem: IChosenSource = {
+			name: target,
+			category,
+		};
+
+		const index = arrayValues.findIndex((item) => {
+			return item.name === clickedItem.name;
+		});
+		const hasSelectedItemAlready = index >= 0;
+
+		if (hasSelectedItemAlready) {
+			arrayHelpers.remove(index);
+			return false;
+		}
+
+		arrayHelpers.push(clickedItem);
+		return true;
+	}
+
 	/**
 	 * @description Displays a list of different categories of news sources.
 	 * While there is no data, a spinner is shown.
@@ -110,40 +141,6 @@ const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({ error, loadi
 				}}
 			/>
 		);
-	}
-
-	/**
-	 *
-	 *
-	 * @param {string} target
-	 * @param {string} category
-	 * @param {IChosenSource[]} arrayValues
-	 * @param {FieldArrayRenderProps} arrayHelpers
-	 * @returns
-	 */
-	function handleClickOnItem(
-		target: string,
-		category: string,
-		arrayValues: IChosenSource[],
-		arrayHelpers: FieldArrayRenderProps,
-	) {
-		const clickedItem: IChosenSource = {
-			name: target,
-			category,
-		};
-
-		const index = arrayValues.findIndex((item) => {
-			return item.name === clickedItem.name;
-		});
-		const hasSelectedItemAlready = index >= 0;
-
-		if (hasSelectedItemAlready) {
-			arrayHelpers.remove(index);
-			return false;
-		}
-
-		arrayHelpers.push(clickedItem);
-		return true;
 	}
 
 	return (

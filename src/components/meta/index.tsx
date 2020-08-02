@@ -1,10 +1,9 @@
 // Libraries
 import * as React from "react";
 import { Helmet } from "react-helmet";
-import { config } from "../index.components";
 import { IBasePageProps } from "data/interfaces";
+import { siteMetadata as config } from "../../../gatsby-config";
 
-// Component Props
 interface IMetaProps extends IBasePageProps {
 	title: string;
 	description?: string;

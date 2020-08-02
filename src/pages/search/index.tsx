@@ -1,8 +1,10 @@
 import React from "react";
-import { Container, TopNavigation, TopNavigationWithTitle } from "components/index.components";
+import TopNavigationWithTitle from "components/top-navigation/with-title/index";
 import { PrivateRoute } from "helpers/index.helpers";
 import SearchForm from "components/search/form";
 import { IBasePageProps } from "data/interfaces";
+import TopNavigation from "components/top-navigation/default";
+import Container from "components/container";
 
 const SearchPage: React.FC<IBasePageProps> = ({ location }) => {
 	return (

@@ -1,7 +1,7 @@
 // Libraries
 import * as React from "react";
-import { LazyLoadingImage } from "components/index.components";
 import { ISourceCardProps } from "./types";
+import LazyLoadingImage from "components/general/images/image.lazyload.component";
 import { SourceCardWrapper, SourceCardInput, SourceCardIcon, SourceCardLogo, SourceCardName } from "./styles";
 import KEY_CODES from "helpers/key-codes";
 import { withMemo } from "helpers/index.helpers";

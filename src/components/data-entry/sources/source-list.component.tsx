@@ -1,8 +1,10 @@
 // Libraries
 import * as React from "react";
-import { SourceCard, SourceListItem } from "components/index.components";
-
-// Assets
+import SourceCard from "./source-card.component";
+import SourceListItem from "./source-list-item.component";
+import { ISourcesListProps } from "./types";
+import { IAllAvailableNewsSource } from "data/interfaces/index";
+import { IChosenSource } from "../../../pages/onboarding/choose-sources";
 import IconBBCNews from "../../../assets/images/sources/icon-bbc-news.svg";
 import IconCNN from "../../../assets/images/sources/icon-cnn.svg";
 import IconFoxNews from "../../../assets/images/sources/icon-fox-news.svg";
@@ -12,10 +14,6 @@ import IconNewYorkTimes from "../../../assets/images/sources/icon-new-york-times
 import IconTimesOfIndia from "../../../assets/images/sources/icon-times-of-india.svg";
 import IconUSAToday from "../../../assets/images/sources/icon-usa-today.svg";
 import IconWallStreetJournal from "../../../assets/images/sources/icon-wall-street-journal.svg";
-import { ISourcesListProps } from "./types";
-import { IAllAvailableNewsSource } from "data/interfaces/index";
-import { IChosenSource } from "../../../pages/onboarding/choose-sources";
-
 import { SourcesListWrapper } from "./styles";
 import { withMemo } from "helpers/index.helpers";
 

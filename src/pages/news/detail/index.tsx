@@ -3,13 +3,8 @@ import isEmpty from "lodash/isEmpty";
 import { useVibrate, useToggle } from "react-use";
 import React, { useState, useEffect, useRef, useContext, useCallback } from "react";
 import * as H from "history";
-import {
-	Container,
-	LazyLoadingImage,
-	TopNavigationWithClose,
-	ShareSheetPortal,
-	ArticleTypeset,
-} from "components/index.components";
+import LazyLoadingImage from "components/general/images/image.lazyload.component";
+import Container from "components/container";
 import { IconTypeset, IconBookmark, IconShare } from "components/icons/index";
 import { NEWS_PAGE, VIBRATION_PATTERNS } from "data/constants/index.constants";
 import { INewsArticleItem } from "data/interfaces/news";
@@ -19,6 +14,9 @@ import useModal from "components/general/modal";
 import AuditContext from "src/containers/audit/context";
 import PreferencesContext from "../../../containers/preferences/context";
 import { Article, Hero, HeroCopy, ArticleContent, ArticleLink, BottomOptionsBar } from "./styles";
+import { ShareSheetPortal } from "components/general/social/ShareSheet";
+import ArticleTypeset from "components/ArticleTypeset";
+import TopNavigationWithClose from "components/top-navigation/with-close";
 
 interface IArticleDetailPageProps {
 	location: H.Location<INewsArticleItem>;

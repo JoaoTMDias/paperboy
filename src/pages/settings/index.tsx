@@ -1,17 +1,6 @@
 // Libraries
 import React, { useRef, useCallback, useContext } from "react";
 import { useVibrate, useToggle } from "react-use";
-import {
-	Container,
-	TopNavigation,
-	TopNavigationWithTitle,
-	SectionListItem,
-	UISection,
-	ListItemWithSwitch,
-	ListItemWithLink,
-	AddToHomeScreenWithInstall,
-	UIButton,
-} from "components/index.components";
 import { EAppThemeType } from "data/interfaces/theme";
 import { PRIVACY_POLICY_SETTINGS_PAGE, ABOUT_SETTINGS_PAGE } from "data/constants/router.constants";
 import { IBasePageProps } from "data/interfaces/index";
@@ -19,6 +8,13 @@ import { PrivateRoute } from "helpers/index.helpers";
 import { VIBRATION_PATTERNS } from "data/constants/index.constants";
 import PreferencesContext from "../../containers/preferences/context";
 import AuditContext from "../../containers/audit/context";
+import TopNavigation from "components/top-navigation/default";
+import TopNavigationWithTitle from "components/top-navigation/with-title/index";
+import Container from "components/container";
+import UISection from "components/section";
+import AddToHomeScreenWithInstall from "components/add-to-homescreen/with-install-button";
+import { ListItemWithSwitch, SectionListItem, ListItemWithLink } from "components/lists";
+import { UIButton } from "components/button";
 
 /**
  * @description Settings Page

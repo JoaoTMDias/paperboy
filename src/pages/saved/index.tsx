@@ -1,17 +1,15 @@
 // Libraries
 import React, { useContext } from "react";
-import {
-	ArticleThumbnail,
-	Container,
-	TopNavigation,
-	TopNavigationWithTitle,
-	UISection,
-} from "components/index.components";
+import TopNavigation from "components/top-navigation/default";
+import TopNavigationWithTitle from "components/top-navigation/with-title/index";
+import Container from "components/container";
 import { List } from "./styles";
 import { INewsArticleItem, IBasePageProps } from "data/interfaces/index";
 import { PrivateRoute } from "helpers/index.helpers";
 import { EThumbnailType } from "components/thumbnails/types.d";
 import PreferencesContext from "./../../containers/preferences/context";
+import ArticleThumbnail from "components/thumbnails/thumbnails-large.component";
+import UISection from "components/section";
 
 /**
  * @description Settings Page
@@ -21,14 +19,6 @@ import PreferencesContext from "./../../containers/preferences/context";
  */
 const SavedPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
 	const { saved } = useContext(PreferencesContext);
-	/**
-	 *
-	 *
-	 * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
-	 */
-	function handleRemoveItemFromList(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-		event.preventDefault();
-	}
 
 	/**
 	 *
@@ -36,7 +26,7 @@ const SavedPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
 	 * @returns
 	 */
 	function renderListOfArticles() {
-		const list = saved.map((savedArticle: INewsArticleItem, index: number) => {
+		const list = saved?.map((savedArticle: INewsArticleItem, index: number) => {
 			const keyIndex = `thumbnail__saved--${index}`;
 
 			return <ArticleThumbnail key={keyIndex} id={keyIndex} options={savedArticle} type={EThumbnailType.SAVED} />;
