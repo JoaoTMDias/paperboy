@@ -49,9 +49,7 @@ export default {
 	 * @returns
 	 */
 	async searchForTerm(term: string): Promise<INewsArticle> {
-		const { data }: AxiosResponse<INewsArticle> = await instance.get(
-			`/everything?q=${term}&sortBy=relevancy&pageSize=25`,
-		);
+		const { data }: AxiosResponse<INewsArticle> = await instance.get(`/search/${term}`);
 		return data;
 	},
 };
