@@ -83,24 +83,33 @@ export const Select = styled.select`
 	`};
 `;
 
-export const SearchButton = styled.button`
+export const Button = styled.button`
 	--search-button-hover-color: var(--color-gray2);
 	--input-button-width: ${rem("48px")};
 	width: var(--input-button-width);
 	height: var(--input-button-width);
+	border-radius: var(--input-button-width);
 	background-color: transparent;
 	appearance: none;
 	border: none;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 
 	&:hover,
 	&:focus {
-		background-color: var(---search-button-hover-color);
+		background-color: var(--search-button-hover-color);
 	}
 
 	svg {
 		width: ${rem("20px")};
 		height: auto;
 	}
+
+	${theme.dark`
+		--search-button-hover-color: var(--color-gray7);
+	`};
 `;
 
 export const Input = styled.input`
@@ -108,7 +117,7 @@ export const Input = styled.input`
 	--input-color: var(--color-gray9);
 	--input-button-width: ${rem("48px")};
 
-	width: calc(100% - var(--input-button-width));
+	width: calc(100% - calc(var(--input-button-width) * 2));
 	height: var(--input-button-width);
 	border: none;
 	background-color: var(--background-color);

@@ -28,7 +28,8 @@ export const Anchor = styled(Link)`
 
 	&:hover,
 	&:focus {
-		transform: scale(1);
+		transform: scale(0.99);
+		box-shadow: 0 0 0 0.125rem var(--color-primary);
 	}
 
 	${(props: IArticleThumbnailProps) => {

@@ -1,33 +1,25 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // Libraries
 import React, { FunctionComponent, useRef } from "react";
+import { useToggle } from "react-use";
 import { useFormik } from "formik";
 import useNewsApi, { ISearchOptions } from "helpers/custom-hooks/useNewsAPI";
 import UISection from "components/section";
 import { IconSearch } from "components/icons";
+import IconSearchSettings from "components/icons/search-settings";
 import ContentSpinner from "components/content-spinner";
 import { INewsArticle } from "data/interfaces";
 import ErrorMessage from "components/errors";
 import ArticleThumbnail from "components/thumbnails/thumbnails-large.component";
-import { EThumbnailType } from 'components/thumbnails/types.d';
+import { EThumbnailType } from "components/thumbnails/types.d";
 import { DisplayFormikState } from "helpers/formik";
 import SearchFormValidationSchema from "./validation-schema";
-import { Form, Input, Fieldset, SearchButton, Select, SelectWrapper } from "./styles";
+import { Form, Input, Fieldset, Button, Select, SelectWrapper } from "./styles";
 import { Item, List } from "../../news/styles";
 
-const SORT_BY_OPTIONS = [
-	"relevancy",
-	"popularity",
-	"publishedAt"
-];
+const SORT_BY_OPTIONS = ["relevancy", "popularity", "publishedAt"];
 
-const PAGE_SIZE_OPTIONS = [
-	20,
-	40,
-	60,
-	80,
-	100
-];
+const PAGE_SIZE_OPTIONS = [20, 40, 60, 80, 100];
 
 const INITIAL_VALUES: ISearchOptions = {
 	term: "",
@@ -42,6 +34,7 @@ const INITIAL_VALUES: ISearchOptions = {
  * @returns {React.FunctionComponent}
  */
 const SearchForm: FunctionComponent = () => {
+	const [showFilters, setShowFilters] = useToggle(false);
 	const { current: isProduction } = useRef(process.env.NODE_ENV === "production");
 
 	const { data, error, loading, searchForTerm } = useNewsApi<INewsArticle>({
@@ -68,14 +61,14 @@ const SearchForm: FunctionComponent = () => {
 	function renderSortBySelect() {
 		const options = SORT_BY_OPTIONS.map((opt) => {
 			const label = `${opt}`;
-			return (
-				<option key={opt} value={opt} label={label} />
-			);
+			return <option key={opt} value={opt} label={label} />;
 		});
 
 		return (
 			<SelectWrapper className="select">
-				<label htmlFor="select-sort-by" className="sr-only">Sort By</label>
+				<label htmlFor="select-sort-by" className="sr-only">
+					Sort By
+				</label>
 				<Select
 					id="select-sort-by"
 					name="sortBy"
@@ -100,13 +93,17 @@ const SearchForm: FunctionComponent = () => {
 		const options = PAGE_SIZE_OPTIONS.map((opt) => {
 			const label = `${opt}`;
 			return (
-				<option key={opt} label={label}>{opt}</option>
+				<option key={opt} label={label}>
+					{opt}
+				</option>
 			);
 		});
 
 		return (
 			<SelectWrapper className="select">
-				<label htmlFor="select-page-size" className="sr-only">Results</label>
+				<label htmlFor="select-page-size" className="sr-only">
+					Results
+				</label>
 				<Select
 					id="select-page-size"
 					name="pageSize"
@@ -178,19 +175,25 @@ const SearchForm: FunctionComponent = () => {
 							type="search"
 							onChange={formik.handleChange}
 							value={formik.values.term}
-							placeholder="Search for news, articles, people..."
+							placeholder="Find articles, people..."
 							minLength={3}
 							maxLength={100}
 						/>
-						<SearchButton type="submit">
+						<Button type="submit">
 							<IconSearch />
 							<span className="sr-only">Submit search</span>
-						</SearchButton>
+						</Button>
+						<Button type="button" onClick={() => setShowFilters()}>
+							<IconSearchSettings />
+							<span className="sr-only">Submit search</span>
+						</Button>
 					</Fieldset>
-					<Fieldset role="group" type="filter">
-						{renderSortBySelect()}
-						{renderPageSizeSelect()}
-					</Fieldset>
+					{showFilters && (
+						<Fieldset role="group" type="filter">
+							{renderSortBySelect()}
+							{renderPageSizeSelect()}
+						</Fieldset>
+					)}
 				</Form>
 				{!isProduction && (
 					<DisplayFormikState
@@ -201,9 +204,12 @@ const SearchForm: FunctionComponent = () => {
 					/>
 				)}
 			</UISection>
-			<UISection id="search-results" title={`Results found (${numberOfArticles})`}>
-				{formik.touched && renderResultsContent()}
-			</UISection>
+
+			{formik.touched && !loading && (
+				<UISection id="search-results" title={`Results found (${numberOfArticles})`}>
+					{renderResultsContent()}
+				</UISection>
+			)}
 		</>
 	);
 };

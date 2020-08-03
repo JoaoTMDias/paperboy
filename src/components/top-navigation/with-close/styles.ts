@@ -110,15 +110,6 @@ export const TopBarLink = styled(Link)`
 	${theme.dark`
 		--top-bar-link-background-color: var(--body-background);
 	`};
-
-	&:hover,
-	&:focus {
-		outline: none;
-
-		svg {
-			box-shadow: 0 0 0 0.125rem var(--color-primary);
-		}
-	}
 `;
 
 export const TopBarButton = styled.button`

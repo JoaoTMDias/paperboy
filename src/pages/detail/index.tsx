@@ -89,6 +89,8 @@ function getArticleFromList(list: INewsArticleItem[], article: INewsArticleItem)
 }
 
 const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ location }) => {
+	const typesetButtonRef = useRef<HTMLButtonElement | null>(null);
+	const shareButtonRef = useRef<HTMLButtonElement | null>(null);
 	const [vibrating, toggleVibrating] = useToggle(false);
 	const { platform } = useContext(AuditContext);
 	const { saved, setSaved } = useContext(PreferencesContext);
@@ -148,18 +150,34 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 		setSaved(newList);
 	}, [isSaved, saved, data, setSaved, toggleVibrating]);
 
+	const onClickCloseShareSheet = useCallback(() => {
+		closeShareSheet();
+
+		if (shareButtonRef && shareButtonRef.current) {
+			shareButtonRef.current.focus();
+		}
+	}, [closeShareSheet, shareButtonRef]);
+
 	function renderShareSheetModal() {
 		return (
 			<ShareModal>
-				<ShareSheetPortal articleData={data} close={closeShareSheet} />
+				<ShareSheetPortal articleData={data} close={onClickCloseShareSheet} />
 			</ShareModal>
 		);
 	}
 
+	const onClickCloseTypeset = useCallback(() => {
+		closeTypeset();
+
+		if (typesetButtonRef && typesetButtonRef.current) {
+			typesetButtonRef.current.focus();
+		}
+	}, [closeTypeset, typesetButtonRef]);
+
 	function renderTypesetPanel() {
 		return (
 			<TypesetModal>
-				<ArticleTypeset close={closeTypeset} />
+				<ArticleTypeset close={onClickCloseTypeset} />
 			</TypesetModal>
 		);
 	}
@@ -227,6 +245,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 					</Article>
 					<BottomOptionsBar id="bottom-options-bar" className="bottom-options-bar">
 						<button
+							ref={typesetButtonRef}
 							type="button"
 							className="bottom-options-bar__button"
 							aria-label="Choose the font size you prefer"
@@ -243,6 +262,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 							<IconBookmark isActive={isSaved} />
 						</button>
 						<button
+							ref={shareButtonRef}
 							type="button"
 							className="bottom-options-bar__button"
 							aria-label="Share this article"

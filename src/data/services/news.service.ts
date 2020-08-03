@@ -4,7 +4,7 @@ import axios, { AxiosPromise, AxiosResponse } from "axios";
 // Constants
 import { NEWS_API_KEY } from "data/constants/news.constants";
 import { IGetAllNewsSources, INewsArticle } from "data/interfaces";
-import { ISearchOptions } from 'helpers/custom-hooks/useNewsAPI';
+import { ISearchOptions } from "helpers/custom-hooks/useNewsAPI";
 
 const instance = axios.create({
 	baseURL: "https://paperboy-proxy-server.herokuapp.com",
@@ -50,7 +50,9 @@ export default {
 	 * @returns
 	 */
 	async searchForTerm(options: ISearchOptions): Promise<INewsArticle> {
-		const params = Object.keys(options).map(key => `${key}=${options[key]}`).join('&');
+		const params = Object.keys(options)
+			.map((key) => `${key}=${options[key]}`)
+			.join("&");
 
 		const { data }: AxiosResponse<INewsArticle> = await instance.get(`/search/${params}`);
 		return data;

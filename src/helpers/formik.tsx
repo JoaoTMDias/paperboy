@@ -1,6 +1,6 @@
 import React from "react";
 import { FormikErrors, FormikTouched } from "formik";
-import { ISearchOptions } from './custom-hooks/useNewsAPI';
+import { ISearchOptions } from "./custom-hooks/useNewsAPI";
 
 interface IDisplayFormikStateProps {
 	touched: FormikTouched<ISearchOptions>;
