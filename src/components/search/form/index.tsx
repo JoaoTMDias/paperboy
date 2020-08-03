@@ -184,7 +184,7 @@ const SearchForm: FunctionComponent = () => {
 							<span className="sr-only">Submit search</span>
 						</Button>
 						<Button type="button" onClick={() => setShowFilters()}>
-							<IconSearchSettings />
+							<IconSearchSettings isActive={showFilters} />
 							<span className="sr-only">Submit search</span>
 						</Button>
 					</Fieldset>

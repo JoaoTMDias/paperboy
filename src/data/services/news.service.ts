@@ -51,7 +51,11 @@ export default {
 	 */
 	async searchForTerm(options: ISearchOptions): Promise<INewsArticle> {
 		const params = Object.keys(options)
-			.map((key) => `${key}=${options[key]}`)
+			.map((key, index) => {
+				const customKey = index === 0 ? "q" : key;
+
+				return `${customKey}=${options[key]}`
+			})
 			.join("&");
 
 		const { data }: AxiosResponse<INewsArticle> = await instance.get(`/search/${params}`);
