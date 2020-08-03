@@ -1,45 +1,64 @@
 import { useState, useEffect, useCallback } from "react";
 import NewsService from "data/services/news.service";
+import { useMount } from "react-use";
 
-type NewsApiType = "sources" | "sourcesFromLanguage" | "latest" | "everything";
+export type NewsApiType = "sources" | "sourcesFromLanguage" | "latest" | "everything";
+export type ISearchOptionsSortBy = "relevancy" | "popularity" | "publishedAt";
+export type ISearchOptionsPageSize = 20 | 40 | 60 | 80 | 100;
+
+export interface ISearchOptions {
+	term: string;
+	sortBy: ISearchOptionsSortBy;
+	pageSize: ISearchOptionsPageSize;
+}
 
 interface UseNewsApiProps {
 	type: NewsApiType;
 	options?: string[];
 }
 
-function useNewsApi<T>({ type, options = [] }: UseNewsApiProps) {
+interface IUseNewsApiReturns<T> {
+	data: T | null;
+	error: Error | null;
+	loading: boolean;
+	searchForTerm(searchOptions: ISearchOptions): void;
+}
+
+function useNewsApi<T>({ type, options = [] }: UseNewsApiProps): IUseNewsApiReturns<T> {
 	const [data, setData] = useState<T | null>(null);
 	const [error, setError] = useState<Error | null>(null);
 	const [loading, setLoading] = useState(true);
 
-	async function getNewsServiceRequest(term?: string): Promise<any> {
-		switch (type) {
-			case "sources":
-				return NewsService.getAllAvailableSources();
+	const getNewsServiceRequest = useCallback(
+		async (searchOptions?: ISearchOptions): Promise<any> => {
+			switch (type) {
+				case "sources":
+					return NewsService.getAllAvailableSources();
 
-			case "sourcesFromLanguage":
-				return NewsService.getAvailableSourcesFromLanguage(options[0]);
+				case "sourcesFromLanguage":
+					return NewsService.getAvailableSourcesFromLanguage(options[0]);
 
-			case "latest":
-				return NewsService.getAllLatestNews(options);
+				case "latest":
+					return NewsService.getAllLatestNews(options);
 
-			default:
-			case "everything":
-				return term && NewsService.searchForTerm(term);
-		}
-	}
+				default:
+				case "everything":
+					return searchOptions && NewsService.searchForTerm(searchOptions);
+			}
+		},
+		[type, options],
+	);
 
 	const getResource = useCallback(
-		async (term?: string) => {
+		async (searchOptions?: ISearchOptions) => {
 			try {
 				setLoading(true);
 
-				const results = await getNewsServiceRequest(term);
+				const results = await getNewsServiceRequest(searchOptions);
 
 				setData(results);
-			} catch (error) {
-				setError(error);
+			} catch (err) {
+				setError(err);
 			} finally {
 				setLoading(false);
 			}
@@ -48,17 +67,17 @@ function useNewsApi<T>({ type, options = [] }: UseNewsApiProps) {
 	);
 
 	const searchForTerm = useCallback(
-		(term: string) => {
-			getResource(term);
+		(searchOptions: ISearchOptions) => {
+			getResource(searchOptions);
 		},
 		[getResource],
 	);
 
-	useEffect(() => {
+	useMount(() => {
 		if (type !== "everything") {
 			getResource();
 		}
-	}, []);
+	});
 
 	return { data, error, loading, searchForTerm };
 }

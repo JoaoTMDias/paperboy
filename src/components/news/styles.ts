@@ -37,7 +37,8 @@ export const List = styled.ol`
 		}
 	}
 
-	&[data-layout="category"] {
+	&[data-layout="category"],
+	&[data-layout="search"] {
 		grid-template-columns: repeat(2, 1fr);
 
 		${above.medium`
@@ -59,6 +60,10 @@ export const List = styled.ol`
 				grid-column: span 2;
 			`};
 		}
+	}
+
+	&[data-layout="search"] {
+		min-width: 100%;
 	}
 `;
 

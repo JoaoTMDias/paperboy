@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
 import { rem } from "polished";
 import { Link } from "gatsby";
-import { IArticleThumbnailProps, EThumbnailType } from "./types.d";
 import { theme } from "helpers/theme.helper";
 import { above } from "helpers/index.helpers";
 import fluidFontSize from "helpers/fluid-typography";
+import { IArticleThumbnailProps, EThumbnailType } from "./types.d";
 
 export const Anchor = styled(Link)`
 	--anchor-height-factor: 0.35;
@@ -65,6 +65,7 @@ export const Anchor = styled(Link)`
 
 			case EThumbnailType.SMALL:
 				return css`
+					--anchor-height-factor: 0.4;
 					background-color: var(--color-white);
 					flex-direction: column;
 					justify-content: flex-start;

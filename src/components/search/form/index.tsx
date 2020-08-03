@@ -1,14 +1,39 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 // Libraries
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useRef } from "react";
 import { useFormik } from "formik";
-import useNewsApi from "helpers/custom-hooks/useNewsAPI";
+import useNewsApi, { ISearchOptions } from "helpers/custom-hooks/useNewsAPI";
 import UISection from "components/section";
 import { IconSearch } from "components/icons";
 import ContentSpinner from "components/content-spinner";
 import { INewsArticle } from "data/interfaces";
 import ErrorMessage from "components/errors";
+import ArticleThumbnail from "components/thumbnails/thumbnails-large.component";
+import { EThumbnailType } from 'components/thumbnails/types.d';
+import { DisplayFormikState } from "helpers/formik";
 import SearchFormValidationSchema from "./validation-schema";
-import { Form, Input, Fieldset, SearchButton } from "./styles";
+import { Form, Input, Fieldset, SearchButton, Select, SelectWrapper } from "./styles";
+import { Item, List } from "../../news/styles";
+
+const SORT_BY_OPTIONS = [
+	"relevancy",
+	"popularity",
+	"publishedAt"
+];
+
+const PAGE_SIZE_OPTIONS = [
+	20,
+	40,
+	60,
+	80,
+	100
+];
+
+const INITIAL_VALUES: ISearchOptions = {
+	term: "",
+	sortBy: "publishedAt",
+	pageSize: 20,
+};
 
 /**
  * @description Component Description
@@ -17,27 +42,114 @@ import { Form, Input, Fieldset, SearchButton } from "./styles";
  * @returns {React.FunctionComponent}
  */
 const SearchForm: FunctionComponent = () => {
+	const { current: isProduction } = useRef(process.env.NODE_ENV === "production");
+
 	const { data, error, loading, searchForTerm } = useNewsApi<INewsArticle>({
 		type: "everything",
 		options: [],
 	});
 	const formik = useFormik({
-		initialValues: {
-			term: "",
-		},
+		initialValues: INITIAL_VALUES,
 		validateOnBlur: true,
 		validateOnChange: true,
 		validationSchema: SearchFormValidationSchema,
 		onSubmit: (values) => {
-			searchForTerm(values.term);
+			searchForTerm(values);
 		},
 	});
 
-	const numberOfArticles = data?.totalResults || 0;
+	const numberOfArticles = data?.articles?.length || 0;
 
-	function renderListOfArticles() {
+	/**
+	 * Renders the Sort By select
+	 *
+	 * @returns {JSX.Element}
+	 */
+	function renderSortBySelect() {
+		const options = SORT_BY_OPTIONS.map((opt) => {
+			const label = `${opt}`;
+			return (
+				<option key={opt} value={opt} label={label} />
+			);
+		});
+
+		return (
+			<SelectWrapper className="select">
+				<label htmlFor="select-sort-by" className="sr-only">Sort By</label>
+				<Select
+					id="select-sort-by"
+					name="sortBy"
+					onChange={formik.handleChange}
+					defaultValue={INITIAL_VALUES.sortBy}
+					onBlur={formik.handleBlur}
+				>
+					<option value="" label="Sort by..." disabled />
+					{options}
+				</Select>
+				<div className="select__arrow" />
+			</SelectWrapper>
+		);
+	}
+
+	/**
+	 * Renders the Page Size select
+	 *
+	 * @returns {JSX.Element}
+	 */
+	function renderPageSizeSelect() {
+		const options = PAGE_SIZE_OPTIONS.map((opt) => {
+			const label = `${opt}`;
+			return (
+				<option key={opt} label={label}>{opt}</option>
+			);
+		});
+
+		return (
+			<SelectWrapper className="select">
+				<label htmlFor="select-page-size" className="sr-only">Results</label>
+				<Select
+					id="select-page-size"
+					name="pageSize"
+					defaultValue={INITIAL_VALUES.pageSize}
+					onChange={formik.handleChange}
+					onBlur={formik.handleBlur}
+				>
+					<option defaultValue="" label="Results..." disabled />
+					{options}
+				</Select>
+				<div className="select__arrow" />
+			</SelectWrapper>
+		);
+	}
+
+	/**
+	 * Renders the results
+	 *
+	 * @returns {JSX.Element}
+	 */
+	function renderResults() {
+		const src = data?.articles.map((article, index) => {
+			const key = `search-news__article__${article.url}-${index}-key`;
+			const id = `search-news__article__${article.url}-${index}-id`;
+
+			return (
+				<Item className="list__item" key={key} id={key}>
+					<ArticleThumbnail id={id} options={article} type={EThumbnailType.SMALL} />
+				</Item>
+			);
+		});
+
+		return <List data-layout="search">{src}</List>;
+	}
+
+	/**
+	 * Renders the content
+	 *
+	 * @returns {JSX.Element}
+	 */
+	function renderResultsContent() {
 		if (!loading) {
-			<p>{data}</p>;
+			return renderResults();
 		}
 
 		if (error) {
@@ -55,7 +167,7 @@ const SearchForm: FunctionComponent = () => {
 				}}
 			>
 				<Form id="search-form" data-testid="search-form" onSubmit={formik.handleSubmit}>
-					<Fieldset>
+					<Fieldset role="group" type="input">
 						<label htmlFor="term" className="sr-only">
 							Search News articles
 						</label>
@@ -75,10 +187,22 @@ const SearchForm: FunctionComponent = () => {
 							<span className="sr-only">Submit search</span>
 						</SearchButton>
 					</Fieldset>
+					<Fieldset role="group" type="filter">
+						{renderSortBySelect()}
+						{renderPageSizeSelect()}
+					</Fieldset>
 				</Form>
+				{!isProduction && (
+					<DisplayFormikState
+						values={formik.values}
+						errors={formik.errors}
+						touched={formik.touched}
+						isSubmitting={formik.isSubmitting}
+					/>
+				)}
 			</UISection>
 			<UISection id="search-results" title={`Results found (${numberOfArticles})`}>
-				{formik.touched.term && renderListOfArticles()}
+				{formik.touched && renderResultsContent()}
 			</UISection>
 		</>
 	);
