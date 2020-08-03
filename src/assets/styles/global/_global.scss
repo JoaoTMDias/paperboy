@@ -36,6 +36,7 @@
 		--content-lead-color: var(--color-gray9),
 		--content-paragraph-color: var(--color-gray9),
 		--default-timing-function: $default-timing-function,
+		--ease-out-circ: $ease-out-circ,
 		--footer-background: #0d182a,
 		--global-font-size: $global-font-size,
 		--global-lineheight: $ratio,
@@ -175,7 +176,12 @@ html {
 
 *:focus {
 	outline: none;
-	box-shadow: inset 0 0 0 0.125rem var(--color-primary);
+	box-shadow: inset 0 0 0 1px var(--color-primary), inset 0 0 0.1875rem 0.1875rem var(--color-primary);
+	animation-name: fadeOutBoxShadowOutline;
+	animation-delay: 1000ms;
+	animation-duration: 250ms;
+	animation-timing-function: var(--default-timing-function);
+	animation-fill-mode: forwards;
 }
 
 ::-moz-selection,
@@ -817,5 +823,15 @@ template {
 		@media all and (min-width: rem-calc(1400)) {
 			max-width: rem-calc(1400);
 		}
+	}
+}
+
+@keyframes fadeOutBoxShadowOutline {
+	from {
+		box-shadow: inset 0 0 0 1px var(--color-primary), inset 0 0 0 0.125rem var(--color-primary);
+	}
+
+	to {
+		box-shadow: inset 0 0 0 1px var(--color-primary), inset 0 0 0 0.125rem var(--body-background);
 	}
 }

@@ -88,6 +88,18 @@ export const Hero = styled.div`
 	`};
 `;
 
+export const fadeInText = keyframes`
+	from {
+		opacity: 0;
+		transform: translateY(3rem);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+`;
+
 export const HeroCopy = styled.div`
 	--number-of-lines: 3;
 	--max-height-ratio: 1rem;
@@ -106,8 +118,19 @@ export const HeroCopy = styled.div`
 		}
 	}
 
+	.title,
+	.metadata {
+		opacity: 0;
+		transform: translateY(3rem);
+		animation-name: ${fadeInText};
+		animation-duration: 375ms;
+		animation-timing-function: var(--ease-out-circ);
+		animation-fill-mode: forwards;
+	}
+
 	.title {
 		width: 100%;
+		animation-delay: 188ms;
 		font-family: var(--body-font-family);
 		font-weight: normal;
 		${fluidFontSize(22, "6vw", 24)};
@@ -139,7 +162,7 @@ export const HeroCopy = styled.div`
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		opacity: 0.8;
+		animation-delay: 282ms;
 
 		&__source,
 		&__time {
@@ -185,8 +208,14 @@ export const HeroCopy = styled.div`
 
 export const ArticleContent = styled.div`
 	--padding-factor: 1.5;
+	opacity: 0;
 	padding: calc(var(--global-padding) * var(--padding-factor)) var(--global-padding);
 	z-index: 2;
+	animation-name: ${fadeInText};
+	animation-duration: 375ms;
+	animation-timing-function: var(--ease-out-circ);
+	animation-fill-mode: forwards;
+	animation-delay: 469ms;
 
 	.lead {
 		color: var(--content-lead-color);
