@@ -18,6 +18,20 @@ import { Form, Input, Fieldset, Button, Select, SelectWrapper } from "./styles";
 import { Item, List } from "../../news/styles";
 
 const SORT_BY_OPTIONS = ["relevancy", "popularity", "publishedAt"];
+const SORT_BY_OPTIONS_LABEL = [
+	{
+		label: "Most relevant",
+		value: SORT_BY_OPTIONS[0],
+	},
+	{
+		label: "Most Popular",
+		value: SORT_BY_OPTIONS[1],
+	},
+	{
+		label: "Last published",
+		value: SORT_BY_OPTIONS[2],
+	},
+];
 
 const PAGE_SIZE_OPTIONS = [20, 40, 60, 80, 100];
 
@@ -59,27 +73,28 @@ const SearchForm: FunctionComponent = () => {
 	 * @returns {JSX.Element}
 	 */
 	function renderSortBySelect() {
-		const options = SORT_BY_OPTIONS.map((opt) => {
-			const label = `${opt}`;
-			return <option key={opt} value={opt} label={label} />;
+		const options = SORT_BY_OPTIONS_LABEL.map((opt) => {
+			return <option key={opt.value} value={opt.value} label={opt.label} />;
 		});
 
 		return (
 			<SelectWrapper className="select">
-				<label htmlFor="select-sort-by" className="sr-only">
+				<label htmlFor="select-sort-by" className="select__label">
 					Sort By
 				</label>
-				<Select
-					id="select-sort-by"
-					name="sortBy"
-					onChange={formik.handleChange}
-					defaultValue={INITIAL_VALUES.sortBy}
-					onBlur={formik.handleBlur}
-				>
-					<option value="" label="Sort by..." disabled />
-					{options}
-				</Select>
-				<div className="select__arrow" />
+				<div className="select__input">
+					<Select
+						id="select-sort-by"
+						name="sortBy"
+						onChange={formik.handleChange}
+						defaultValue={INITIAL_VALUES.sortBy}
+						onBlur={formik.handleBlur}
+					>
+						<option value="" label="Sort by..." disabled />
+						{options}
+					</Select>
+					<div className="select__arrow" />
+				</div>
 			</SelectWrapper>
 		);
 	}
@@ -101,20 +116,22 @@ const SearchForm: FunctionComponent = () => {
 
 		return (
 			<SelectWrapper className="select">
-				<label htmlFor="select-page-size" className="sr-only">
+				<label htmlFor="select-page-size" className="select__label">
 					Results
 				</label>
-				<Select
-					id="select-page-size"
-					name="pageSize"
-					defaultValue={INITIAL_VALUES.pageSize}
-					onChange={formik.handleChange}
-					onBlur={formik.handleBlur}
-				>
-					<option defaultValue="" label="Results..." disabled />
-					{options}
-				</Select>
-				<div className="select__arrow" />
+				<div className="select__input">
+					<Select
+						id="select-page-size"
+						name="pageSize"
+						defaultValue={INITIAL_VALUES.pageSize}
+						onChange={formik.handleChange}
+						onBlur={formik.handleBlur}
+					>
+						<option defaultValue="" label="Results..." disabled />
+						{options}
+					</Select>
+					<div className="select__arrow" />
+				</div>
 			</SelectWrapper>
 		);
 	}

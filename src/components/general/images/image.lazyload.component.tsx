@@ -1,10 +1,10 @@
 // Libraries
-import * as React from "react";
+import React, { memo } from "react";
 import { LazyImage } from "react-lazy-images";
-import { Image, Placeholder, Picture } from "./styles";
 import { IImageLazyProps, EImageType, IImageSourceString } from "data/interfaces/index";
 import NewsSourcePlaceholder from "src/assets/images/sources/news-source-placeholder.svg";
-import { withMemo } from "helpers/index.helpers";
+import { Image, Placeholder, Picture } from "./styles";
+import placeholderImage from "./placeholder.svg";
 
 const DEFAULT_BASELINE_VALUE = 16;
 
@@ -154,11 +154,13 @@ const LazyLoadingImage: React.FunctionComponent<IImageLazyProps> = ({
 					);
 				}
 
+				const srcUrl = src || placeholderImage;
+
 				return (
 					<Image
 						id={id}
 						className={className}
-						src={src}
+						src={srcUrl}
 						srcSet={srcSet}
 						sizes={sizes}
 						width={width}
@@ -209,4 +211,4 @@ LazyLoadingImage.defaultProps = {
 	debounce: 200,
 };
 
-export default withMemo(LazyLoadingImage, ["id", "className", "src", "srcSet", "placeholderColor"]);
+export default memo(LazyLoadingImage);

@@ -129,19 +129,19 @@ export const Article = styled.article`
 				return css`
 					background-color: var(--thumbnail-background);
 					display: grid;
-					grid-column-gap: ${rem("8px")};
-					grid-template-columns: ${rem("128px")} auto;
+					grid-column-gap: var(--global-margin);
+					grid-template-columns: ${`clamp(${rem("96px")},32vw, ${rem("128px")}) 1fr`};
 					height: auto;
-					padding: var(--global-padding) var(--global-padding) calc(var(--global-padding) * 0.5) var(--global-padding);
+					padding: var(--global-padding) 0 calc(var(--global-padding) * 0.5) 0;
 					transition: transform 128ms ease-out;
 
 					.thumbnail__image {
 						border-radius: ${rem("2px")};
 						height: var(--thumbnail-image-height);
+						margin-top: 0;
+						margin-right: 0;
 						margin-bottom: calc(var(--global-padding) * 0.5);
 						margin-left: 0;
-						margin-right: 0;
-						margin-top: 0;
 						width: 100%;
 					}
 				`;

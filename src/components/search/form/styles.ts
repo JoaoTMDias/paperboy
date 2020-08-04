@@ -36,10 +36,20 @@ export const SelectWrapper = styled.div`
 
 	width: 100%;
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
 	position: relative;
+
+	.select__label {
+		font-size: ${rem("10px")};
+		text-transform: uppercase;
+	}
+
+	.select__input {
+		position: relative;
+		width: 100%;
+	}
 
 	.select__arrow {
 		position: absolute;
@@ -49,7 +59,7 @@ export const SelectWrapper = styled.div`
 		height: 0;
 		pointer-events: none;
 		border-style: solid;
-		border-width: ${rem("8px")} ${rem("8px")} 0;
+		border-width: ${rem("6px")} ${rem("6px")} 0;
 		border-color: var(--select-arrow-color) transparent transparent;
 	}
 

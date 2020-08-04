@@ -54,7 +54,7 @@ export default {
 			.map((key, index) => {
 				const customKey = index === 0 ? "q" : key;
 
-				return `${customKey}=${options[key]}`
+				return `${customKey}=${options[key]}`;
 			})
 			.join("&");
 
