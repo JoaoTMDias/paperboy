@@ -1,9 +1,6 @@
 // Libraries
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components";
-
-// Component Props
-interface IIconSearchProps {}
 
 /**
  * @description Tab Icon: Search
@@ -11,9 +8,8 @@ interface IIconSearchProps {}
  * @date  09/December/2018 at 16:22
  * @extends {React.FC}
  */
-export const IconSearch: React.FunctionComponent<IIconSearchProps> = (props) => (
+export const IconSearch: FunctionComponent = () => (
 	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-labelledby="search-icon-title" tabIndex={-1}>
-		<title id="search-icon-title">Tab Icon: Search</title>
 		<path
 			className="tab__icon--default"
 			d="M18.4,16.3H17.3l-.4-.4a9.17,9.17,0,0,0,2.2-6.3A9.5,9.5,0,0,0,9.8-.1,9.65,9.65,0,0,0,.5,9.7a9.5,9.5,0,0,0,9.3,9.7,8.82,8.82,0,0,0,6-2.3l.4.4v1.2l7.2,7.4,2.1-2.2Zm-8.6,0A6.57,6.57,0,0,1,3.4,9.6,6.55,6.55,0,0,1,9.8,3a6.57,6.57,0,0,1,6.4,6.7A6.43,6.43,0,0,1,9.8,16.3Z"

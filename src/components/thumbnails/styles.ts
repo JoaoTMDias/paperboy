@@ -10,9 +10,11 @@ export const Anchor = styled(Link)`
 	--anchor-height-factor: 0.35;
 	--thumbnail-outline-color: var(--color-gray1);
 	--anchor-height: calc(var(--viewport-height) * var(--anchor-height-factor));
+	--thumbnail-background-color: var(--color-white);
 
 	${theme.dark`
 		--thumbnail-outline-color: var(--color-gray9);
+		--thumbnail-background-color: var(--color-gray9);
 	`};
 
 	align-items: center;
@@ -47,7 +49,7 @@ export const Anchor = styled(Link)`
 			default:
 			case EThumbnailType.SAVED:
 				return css`
-					background-color: var(--color-white);
+					background-color: var(--thumbnail-background-color);
 					flex-direction: column;
 					justify-content: flex-start;
 					max-height: ${rem("128px")};
