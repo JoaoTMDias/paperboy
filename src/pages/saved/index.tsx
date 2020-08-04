@@ -3,13 +3,13 @@ import React, { useContext } from "react";
 import TopNavigation from "components/top-navigation/default";
 import TopNavigationWithTitle from "components/top-navigation/with-title/index";
 import Container from "components/container";
-import { List } from "./styles";
 import { INewsArticleItem, IBasePageProps } from "data/interfaces/index";
 import { PrivateRoute } from "helpers/index.helpers";
 import { EThumbnailType } from "components/thumbnails/types.d";
-import PreferencesContext from "./../../containers/preferences/context";
 import ArticleThumbnail from "components/thumbnails/thumbnails-large.component";
 import UISection from "components/section";
+import PreferencesContext from "../../containers/preferences/context";
+import { List } from "./styles";
 
 /**
  * @description Settings Page
@@ -29,7 +29,15 @@ const SavedPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
 		const list = saved?.map((savedArticle: INewsArticleItem, index: number) => {
 			const keyIndex = `thumbnail__saved--${index}`;
 
-			return <ArticleThumbnail key={keyIndex} id={keyIndex} options={savedArticle} type={EThumbnailType.SAVED} />;
+			return (
+				<ArticleThumbnail
+					location={location}
+					key={keyIndex}
+					id={keyIndex}
+					options={savedArticle}
+					type={EThumbnailType.SAVED}
+				/>
+			);
 		});
 
 		return <List role="list">{list}</List>;

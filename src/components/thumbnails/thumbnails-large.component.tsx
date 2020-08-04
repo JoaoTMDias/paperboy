@@ -14,7 +14,7 @@ import ThumbnailImage from "./thumbnails-image.component";
  * @extends {React.FC}
  */
 const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = (props) => {
-	const { id, type, options } = props;
+	const { id, type, options, location } = props;
 	const { title, urlToImage, source, publishedAt } = options;
 	const timestamp = Date.parse(publishedAt);
 	const time = `${formatDistanceToNow(timestamp)} ago`;
@@ -26,7 +26,10 @@ const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = (props
 			to={NEWS_DETAIL_PAGE}
 			aria-labelledby={`thumbnail__title--${id}`}
 			tabIndex={0}
-			state={options}
+			state={{
+				...options,
+				prevPath: location.pathname,
+			}}
 			type={type}
 			options={options}
 		>

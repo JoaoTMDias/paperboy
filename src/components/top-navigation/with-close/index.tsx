@@ -2,6 +2,7 @@ import React, { FunctionComponent, useRef, useEffect } from "react";
 import LazyLoadingImage from "components/general/images/image.lazyload.component";
 import { NEWS_PAGE } from "data/constants/index.constants";
 import { IconClose } from "components/icons/index";
+import { Link } from "gatsby";
 import { Container, TopBarLink } from "./styles";
 import CNN_LOGO from "../../../assets/images/sources/icon-cnn.svg";
 
@@ -14,19 +15,20 @@ import { ITopNavigationWithCloseProps } from "./types";
  * @date  12/December/2018 at 16:40
  * @extends {React.FC}
  */
-const TopNavigationWithClose: FunctionComponent<ITopNavigationWithCloseProps> = ({ source }) => {
-	const closeButtonRef = useRef();
+const TopNavigationWithClose: FunctionComponent<ITopNavigationWithCloseProps> = ({ source, prevPath }) => {
+	const closeButtonRef = useRef<HTMLAnchorElement>(null);
 
-	useEffect(() => closeButtonRef?.current.focus(), []);
+	useEffect(() => {
+		if (closeButtonRef && closeButtonRef.current) {
+			closeButtonRef.current.focus();
+		}
+	}, []);
+
+	const to = prevPath || NEWS_PAGE;
 
 	return (
 		<Container>
-			<TopBarLink
-				ref={closeButtonRef}
-				className="close"
-				to={NEWS_PAGE}
-				aria-label="Close this window and go back to the news page"
-			>
+			<TopBarLink ref={closeButtonRef} className="close" to={to} aria-label="Close this window and go back">
 				<IconClose />
 			</TopBarLink>
 			<figure className="brand-color-figure">

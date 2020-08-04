@@ -1,6 +1,7 @@
 export interface ITopNavigationWithCloseProps {
 	title: string;
 	source: string;
+	prevPath?: string;
 }
 
 export interface IHeroTitle {

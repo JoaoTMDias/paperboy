@@ -14,7 +14,7 @@ import { Item, List } from "./styles";
  * @class LatestNewsTab
  * @extends {React.Component<INewsArticleTabProps, any>}
  */
-export const LatestNewsTab: React.FC<INewsArticleTabProps> = ({ id, sources }) => {
+export const LatestNewsTab: React.FC<INewsArticleTabProps> = ({ id, sources, location }) => {
 	const { data, error, loading } = useNewsApi<INewsArticle>({
 		type: "latest",
 		options: sources,
@@ -31,7 +31,7 @@ export const LatestNewsTab: React.FC<INewsArticleTabProps> = ({ id, sources }) =
 
 			return (
 				<Item key={key} id={key}>
-					<ArticleThumbnail id={identifier} options={article} type={EThumbnailType.LARGE} />
+					<ArticleThumbnail location={location} id={identifier} options={article} type={EThumbnailType.LARGE} />
 				</Item>
 			);
 		});

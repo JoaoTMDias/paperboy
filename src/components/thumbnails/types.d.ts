@@ -1,4 +1,4 @@
-import { INewsArticleItem } from "data/interfaces/index";
+import { INewsArticleItem, IBasePageProps } from "data/interfaces/index";
 
 export enum EThumbnailType {
 	LARGE = "LARGE",
@@ -6,7 +6,7 @@ export enum EThumbnailType {
 	SMALL = "SMALL",
 }
 
-export interface IArticleThumbnailProps {
+export interface IArticleThumbnailProps extends IBasePageProps {
 	id: string;
 	options: INewsArticleItem;
 	type?: EThumbnailType;

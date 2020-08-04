@@ -102,7 +102,7 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, location }) => {
 	 * @memberof TabsPages
 	 */
 	function renderTabItems() {
-		const items = tabs.map((tab) => {
+		const mappedItems = tabs.map((tab) => {
 			if (tab.id === "latest") {
 				return <LatestNewsTab key={tab.id} id={tab.id} sources={tab.sources} location={location} />;
 			}
@@ -121,7 +121,7 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, location }) => {
 				hysteresis={0.6}
 				enableMouseEvents
 			>
-				{items}
+				{mappedItems}
 			</TabsContainer>
 		);
 	}

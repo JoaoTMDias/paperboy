@@ -19,7 +19,11 @@ import { Article, Hero, HeroCopy, ArticleContent, ArticleLink, BottomOptionsBar 
 import PreferencesContext from "../../containers/preferences/context";
 
 interface IArticleDetailPageProps {
-	location: H.Location<INewsArticleItem>;
+	location: H.Location<
+		INewsArticleItem & {
+			prevPath: string | undefined;
+		}
+	>;
 }
 
 interface IGetArticleFromList {
@@ -211,7 +215,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 			<PrivateRoute title="News Detail" bottomNavigation={false}>
 				{showShareSheet && renderShareSheetModal()}
 				{showTypesetPanel && renderTypesetPanel()}
-				<TopNavigationWithClose title={data.title} source="source" />
+				<TopNavigationWithClose title={data.title} source="source" prevPath={location.state.prevPath} />
 				<Container fullwidth fullheight offsetTop="0">
 					<Article>
 						<Hero ref={hero.current} id="hero" className="above-the-fold">

@@ -8,7 +8,7 @@ import UISection from "components/section";
 import { IconSearch } from "components/icons";
 import IconSearchSettings from "components/icons/search-settings";
 import ContentSpinner from "components/content-spinner";
-import { INewsArticle } from "data/interfaces";
+import { INewsArticle, IBasePageProps } from "data/interfaces";
 import ErrorMessage from "components/errors";
 import ArticleThumbnail from "components/thumbnails/thumbnails-large.component";
 import { EThumbnailType } from "components/thumbnails/types.d";
@@ -47,7 +47,7 @@ const INITIAL_VALUES: ISearchOptions = {
  * @date 2019-02-16
  * @returns {React.FunctionComponent}
  */
-const SearchForm: FunctionComponent = () => {
+const SearchForm: FunctionComponent<IBasePageProps> = ({ location }) => {
 	const [showFilters, setShowFilters] = useToggle(false);
 	const { current: isProduction } = useRef(process.env.NODE_ENV === "production");
 
@@ -148,7 +148,7 @@ const SearchForm: FunctionComponent = () => {
 
 			return (
 				<Item className="list__item" key={key} id={key}>
-					<ArticleThumbnail id={id} options={article} type={EThumbnailType.SMALL} />
+					<ArticleThumbnail location={location} id={id} options={article} type={EThumbnailType.SMALL} />
 				</Item>
 			);
 		});

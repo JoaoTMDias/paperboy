@@ -17,10 +17,15 @@ export const onClientEntry = async () => {
  * @param {*} msg
  */
 const confirmDialog = (msg) => {
-	return new Promise(function (resolve, reject) {
-		let confirmed = window.confirm(msg);
-
-		return confirmed ? resolve(true) : reject(false);
+	return new Promise((resolve, reject) => {
+		try {
+			// eslint-disable-next-line no-alert
+			if (window.confirm(msg)) {
+				resolve(true);
+			}
+		} catch (error) {
+			reject(error);
+		}
 	});
 };
 
