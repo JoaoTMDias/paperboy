@@ -18,7 +18,13 @@ export const IconBookmark: React.FunctionComponent<IIconBookmarkProps> = (props)
 	const { isActive } = props;
 
 	return (
-		<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className={isActive ? "is-active" : ""} tabIndex={-1}>
+		<Icon
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 48 48"
+			className={isActive ? "is-active" : ""}
+			aria-hidden="true"
+			tabIndex={-1}
+		>
 			<path
 				fill="var(--color-icon-border)"
 				fillRule="evenodd"

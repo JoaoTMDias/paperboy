@@ -30,6 +30,8 @@ export const IconChangeTypeSize: React.FunctionComponent<IIconChangeTypeSizeProp
 				viewBox="0 0 48 48"
 				className={type === EIconChangeTypeSize.SMALL ? "" : "is-large"}
 				type={type}
+				aria-hidden="true"
+				tabIndex={-1}
 			>
 				<path
 					fill="var(--letters)"

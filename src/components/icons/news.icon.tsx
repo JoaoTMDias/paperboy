@@ -12,8 +12,7 @@ interface IIconNewsProps {}
  * @extends {React.FC}
  */
 export const IconNews: React.FunctionComponent<IIconNewsProps> = (props) => (
-	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-labelledby="news-icon-title" tabIndex={-1}>
-		<title id="news-icon-title">Tab Icon: News</title>
+	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-hidden="true" tabIndex={-1}>
 		<path className="tab__icon--default" d="M23,0H3A2,2,0,0,0,1,2V24a2,2,0,0,0,2,2H23a2,2,0,0,0,2-2V2a2,2,0,0,0-2-2" />
 		<path
 			className="tab__icon--negative"

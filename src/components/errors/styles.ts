@@ -10,6 +10,12 @@ export const Wrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 
+	svg {
+		width: 100%;
+		max-width: 4rem;
+		height: auto;
+	}
+
 	.error-message {
 		&__content {
 			margin: calc(var(--global-margin) * 2) 0;

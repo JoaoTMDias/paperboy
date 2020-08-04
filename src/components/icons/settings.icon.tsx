@@ -12,8 +12,13 @@ interface IIconSettingsProps {}
  * @extends {React.FC}
  */
 export const IconSettings: React.FunctionComponent<IIconSettingsProps> = (props) => (
-	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-labelledby="settings-icon-title" tabIndex={-1}>
-		<title id="settings-icon-title">Tab Icon: Settings</title>
+	<Icon
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 26 26"
+		aria-labelledby="settings-icon-title"
+		aria-hidden="true"
+		tabIndex={-1}
+	>
 		<path
 			className="tab__icon--default"
 			d="M9.19,3.9A3.86,3.86,0,0,0,5.38,0,3.86,3.86,0,0,0,1.57,3.9,3.9,3.9,0,0,0,4.11,7.56V26H6.65V7.56A3.88,3.88,0,0,0,9.19,3.9"

@@ -15,8 +15,7 @@ interface IconProps {
  ********* */
 export const IconTwitter = (props: IconProps) => {
 	return (
-		<Icon {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-			<title>ic_modal_share_twitter</title>
+		<Icon {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" tabIndex={-1}>
 			<path
 				fill="#079ff6"
 				fillRule="evenodd"

@@ -1,11 +1,11 @@
 // Libraries
 import React, { useState, useEffect, useRef } from "react";
 import { Logger, withMemo } from "helpers/index.helpers";
+import { INewsPageHeaderItems } from "data/interfaces";
 import { TabsContainer, TabsWrapper } from "./styles";
 import { INewsTabsProps } from "./types";
 import LatestNewsCategoryTab from "./latest-category";
 import LatestNewsTab from "./latest-news-tab";
-import { INewsPageHeaderItems } from "data/interfaces";
 import { TabList } from "./tabs/tablist";
 
 /**
@@ -115,7 +115,7 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, location }) => {
 				id="tabs-page--content"
 				className="tabs-page--content"
 				index={currentTab}
-				animateHeight={false}
+				animateHeight
 				onChangeIndex={handleOnSwipeToChangeIndex}
 				disableLazyLoading={false}
 				hysteresis={0.6}

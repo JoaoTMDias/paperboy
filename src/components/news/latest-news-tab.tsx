@@ -25,7 +25,7 @@ export const LatestNewsTab: React.FC<INewsArticleTabProps> = ({ id, sources }) =
 	 * @memberof LatestNewsTab
 	 */
 	function renderRow() {
-		const sources = data?.articles.map((article, index) => {
+		const src = data?.articles.map((article, index) => {
 			const key = `article-thumbnail-${article.publishedAt}-${id}-${index}-key`;
 			const identifier = `article-thumbnail-${article.publishedAt}-${id}-${index}-thumbnail`;
 
@@ -36,7 +36,7 @@ export const LatestNewsTab: React.FC<INewsArticleTabProps> = ({ id, sources }) =
 			);
 		});
 
-		return <List>{sources}</List>;
+		return <List>{src}</List>;
 	}
 
 	if (loading) {

@@ -44,8 +44,7 @@ export const IconShare: React.FunctionComponent<IIconShareProps> = (props) => {
 	};
 
 	return (
-		<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" aria-labelledby="share-icon-title" tabIndex={-1}>
-			<title id="share-icon-title">Share Icon</title>
+		<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" aria-hidden="true" tabIndex={-1}>
 			{renderIcon()}
 		</Icon>
 	);

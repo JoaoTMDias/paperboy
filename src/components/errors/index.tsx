@@ -40,4 +40,9 @@ const ErrorMessage: React.FunctionComponent<IErrorProps> = ({ title, subtitle })
 	);
 };
 
+ErrorMessage.defaultProps = {
+	title: "Ups, you are offline",
+	subtitle: "It seems that the connection was lost.",
+};
+
 export default React.memo(ErrorMessage);

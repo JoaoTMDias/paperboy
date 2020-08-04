@@ -19,14 +19,7 @@ export const IconBrandingLarge: React.FunctionComponent<IIconBrandingLargeProps>
 	const { visible } = props;
 	return (
 		<Wrapper visible={visible}>
-			<Icon
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 352 298"
-				role="img"
-				aria-labelledby="branding-large-icon-title"
-				tabIndex={-1}
-			>
-				<title id="branding-large-icon-title">Branding Icon: Large Logo</title>
+			<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 298" aria-hidden="true" tabIndex={-1}>
 				<path
 					fill="var(--color-primary, #e74c3c)"
 					fillRule="evenodd"

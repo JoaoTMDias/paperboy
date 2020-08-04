@@ -12,12 +12,7 @@ interface IIconBrandingSmallProps {}
  * @extends {React.FC}
  */
 export const IconBrandingSmall: React.FunctionComponent<IIconBrandingSmallProps> = (props) => (
-	<Icon
-		xmlns="http://www.w3.org/2000/svg"
-		viewBox="0 0 166.32 32"
-		aria-labelledby="branding-small-icon-title"
-		tabIndex={-1}
-	>
+	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 166.32 32" aria-hidden="true" tabIndex={-1}>
 		<defs>
 			<linearGradient
 				id="a"
@@ -32,7 +27,6 @@ export const IconBrandingSmall: React.FunctionComponent<IIconBrandingSmallProps>
 				<stop offset="1" stopColor="#e74c3c" />
 			</linearGradient>
 		</defs>
-		<title id="branding-small-icon-title">Dialog Icon: Branding Small</title>
 		<rect width="32" height="32" x="67.16" fill="url(#a)" rx="4" />
 		<path
 			fill="#fff"

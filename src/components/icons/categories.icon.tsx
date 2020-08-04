@@ -12,7 +12,7 @@ interface IIconCategoriesProps {}
  * @extends {React.FC}
  */
 export const IconCategories: React.FunctionComponent<IIconCategoriesProps> = (props) => (
-	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-labelledby="categories-icon-title" tabIndex={-1}>
+	<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" aria-hidden="true" tabIndex={-1}>
 		<title id="categories-icon-title">Tab Icon: Categories</title>
 		<path
 			className="tab__icon--default"

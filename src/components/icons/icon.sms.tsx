@@ -10,8 +10,7 @@ import { rem } from "polished";
  ********* */
 export const IconSMS = () => {
 	return (
-		<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-			<title>ic_modal_share_sms</title>
+		<Icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" tabIndex={-1}>
 			<path
 				fill="#3ac44d"
 				fillRule="evenodd"
