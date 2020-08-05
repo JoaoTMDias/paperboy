@@ -48,22 +48,28 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, location }) => {
 	 * @returns {boolean}
 	 * @memberof NewsTabs
 	 */
-	function handleOnSwipeToChangeIndex(index: number, indexLatest: number) {
-		Logger({
-			type: "log",
-			message: `previous tab index: ${indexLatest}`,
-		});
+	const handleOnSwipeToChangeIndex = useCallback(
+		(index: number, indexLatest: number) => {
+			Logger({
+				type: "log",
+				message: `previous tab index: ${indexLatest}`,
+			});
 
-		setCurrentTab(index);
-	}
+			setCurrentTab(index);
+		},
+		[setCurrentTab],
+	);
 
 	/**
 	 * @description On Clicking on a Tab changes the Index
 	 * @memberof NewsTabs
 	 */
-	function handleOnClickToChangeTab(value: number) {
-		setCurrentTab(value);
-	}
+	const handleOnClickToChangeTab = useCallback(
+		(value: number) => {
+			setCurrentTab(value);
+		},
+		[setCurrentTab],
+	);
 
 	/**
 	 * @description Change Tab
@@ -118,11 +124,11 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, location }) => {
 				id="tabs-page--content"
 				className="tabs-page--content"
 				index={currentTab}
-				animateHeight
 				onChangeIndex={handleOnSwipeToChangeIndex}
 				disableLazyLoading={false}
-				hysteresis={0.6}
+				hysteresis={0.75}
 				enableMouseEvents
+				animateHeight={false}
 			>
 				{mappedItems}
 			</TabsContainer>

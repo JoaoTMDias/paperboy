@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 // Libraries
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 import { Helmet, HelmetData } from "react-helmet";
 
 // Configurations
@@ -21,9 +21,9 @@ const isProduction: boolean = process.env.NODE_ENV === "production";
  * @date  01/December/2018 at 16:19
  * @extends {React.FunctionComponent}
  */
-const HTML: React.FunctionComponent<IHTMLProps> = ({ headComponents, body, postBodyComponents }) => {
+const HTML: FunctionComponent<IHTMLProps> = ({ headComponents, body, postBodyComponents }) => {
 	const helmet: HelmetData | undefined = Helmet.rewind();
-	const openGraphUrl: string = isProduction ? `${config.siteMetadata.url}/share.png` : "/share.png";
+	const openGraphUrl = isProduction ? `${config.siteMetadata.url}/share.png` : "/share.png";
 
 	return (
 		<html
@@ -50,10 +50,6 @@ const HTML: React.FunctionComponent<IHTMLProps> = ({ headComponents, body, postB
 				<meta name="mobile-web-app-capable" content="yes" />
 				<meta name="msapplication-TileColor" content="#E74D3C" />
 				<meta name="apple-mobile-web-app-status-bar-style" content="default" />
-
-				{helmet.meta.toComponent()}
-				{headComponents}
-
 				<meta property="og:site_name" content={config.siteMetadata.title} />
 				<meta property="og:type" content="website" />
 				<meta property="og:image" content={openGraphUrl} />
@@ -62,6 +58,10 @@ const HTML: React.FunctionComponent<IHTMLProps> = ({ headComponents, body, postB
 				<meta name="twitter:creator" content="@joaotmdias" />
 				<meta property="twitter:image" content={openGraphUrl} />
 				<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+				{helmet.meta.toComponent()}
+				{headComponents}
+
 				<link
 					rel="preload"
 					href="/fonts/paperboy-headings-bold.woff2"

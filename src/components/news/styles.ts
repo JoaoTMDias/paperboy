@@ -89,7 +89,9 @@ export const TabsContainer = styled(SwipeableViews)`
 
 	.react-swipeable-view-container {
 		/* override to animate height */
-		min-height: 100% !important;
+		height: calc(
+			var(--viewport-height) - calc(var(--bottom-navigation-bar-height) - var(--top-navigation-bar-height))
+		) !important;
 		overflow-y: initial;
 		background-color: var(--tabs-background);
 

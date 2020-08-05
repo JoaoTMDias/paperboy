@@ -13,7 +13,7 @@ const TopNavigationWithTitle: React.FunctionComponent<ITopNavigationWithTitlePro
 	return (
 		<Container id="top-navigation-with-title" className="shrink-when-sticky">
 			<h1 className="top-navigation-with-title__title title">{title}</h1>
-			<p className="hide-when-sticky top-navigation-with-title__subtitle">{subtitle}</p>
+			{subtitle && <p className="hide-when-sticky top-navigation-with-title__subtitle">{subtitle}</p>}
 		</Container>
 	);
 };

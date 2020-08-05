@@ -1,4 +1,4 @@
 export interface ITopNavigationWithTitleProps {
 	title: string;
-	subtitle: string;
+	subtitle?: string;
 }
