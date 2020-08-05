@@ -46,7 +46,7 @@ const SourceListItem: React.FunctionComponent<ISourceListItemProps> = ({
 
 	return (
 		<Wrapper className={`source__item ${status}`} style={style}>
-			<label htmlFor={inputId} tabIndex={0}>
+			<label data-testid={`source-list-item-label-${id}`} htmlFor={inputId} tabIndex={0}>
 				<Logo className="source__cover">
 					<LazyLoadingImage src={src} width="105" height="105" alt={`${label} logo`} />
 				</Logo>
@@ -67,6 +67,7 @@ const SourceListItem: React.FunctionComponent<ISourceListItemProps> = ({
 				id={inputId}
 				className="source__input"
 				type="checkbox"
+				data-testid={`source-list-item-input-${id}`}
 				data-category={category}
 				value={id}
 				name={`source-${id}-input`}

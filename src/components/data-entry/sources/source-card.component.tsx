@@ -33,7 +33,7 @@ const SourceCard: React.FC<ISourceCardProps> = ({ id, label, src, category, chec
 
 	return (
 		<SourceCardWrapper className={`source__item ${status}`} style={style}>
-			<label htmlFor={inputId} tabIndex={0}>
+			<label data-testid={`source-card-label-${id}`} htmlFor={inputId} tabIndex={0}>
 				<SourceCardIcon className="source__status" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<circle className="icon__circle" cx="12" cy="12" r="12" fill="var(--color-gray2)" />
 					<path
@@ -55,6 +55,7 @@ const SourceCard: React.FC<ISourceCardProps> = ({ id, label, src, category, chec
 				id={inputId}
 				className="source__input"
 				type="checkbox"
+				data-testid={`source-card-input-${id}`}
 				data-category={category}
 				value={id}
 				name="source-input"

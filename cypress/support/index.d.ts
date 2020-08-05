@@ -18,5 +18,8 @@ declare namespace Cypress {
 		getByAttr(attribute: string, value: string): Chainable<any>;
 		getAnnouncerText(message: string): Chainable<any>;
 		mockSetupPreferences(): Chainable<any>;
+		getSource(element: string, value: string): Chainable<any>;
+		getSourceCheckStatus(element: string, value: string, status: "checked" | "unchecked"): Chainable<any>;
+		toggleSource(element: string, value: string): Chainable<any>;
 	}
 }

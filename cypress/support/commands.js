@@ -38,3 +38,15 @@ Cypress.Commands.add("getByAttr", (attribute, value) => {
 Cypress.Commands.add("getAnnouncerText", (message) => {
 	cy.getByTestId("component-announcer").contains(message);
 });
+
+Cypress.Commands.add("getSource", (element, value) => {
+	cy.getByTestId(`${element}-${value}`);
+});
+
+Cypress.Commands.add("toggleSource", (element, value) => {
+	cy.getSource(element, value).click({ force: true });
+});
+
+Cypress.Commands.add("getSourceCheckStatus", (element, value, status) => {
+	cy.getSource(element, value).should("be", status);
+});
