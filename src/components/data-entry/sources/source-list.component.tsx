@@ -1,7 +1,6 @@
 // Libraries
 import React, { memo } from "react";
 import { IAllAvailableNewsSource } from "data/interfaces/index";
-import { withMemo } from "helpers/index.helpers";
 import SourceCard from "./source-card.component";
 import SourceListItem from "./source-list-item.component";
 import { ISourcesListProps } from "./types";
@@ -15,25 +14,9 @@ import { SourcesListWrapper } from "./styles";
  * @extends {React.FC}
  */
 const SourcesList: React.FC<ISourcesListProps> = ({ data, handleChange, label, layout, selectedOptions }) => {
-	/**
-	 * @description Returns the news source cover
-	 * @author João Dias
-	 * @date 2019-06-21
-	 * @param {string} id
-	 * @returns
-	 * @memberof SourcesList
-	 */
-	function getNewsSourceCover(source: IAllAvailableNewsSource): string {
-		const cover = `/logos/${source.id}.png`;
-
-		console.log("cover: ", cover);
-
-		return cover;
-	}
-
 	if (data) {
 		const item = data.map((source: IAllAvailableNewsSource) => {
-			const cover = getNewsSourceCover(source);
+			const cover = `/logos/${source.id}.png`;
 
 			const matching: IChosenSource = {
 				name: source.id,
