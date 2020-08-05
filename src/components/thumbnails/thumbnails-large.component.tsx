@@ -32,15 +32,6 @@ const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = (props
 			}}
 		>
 			<Article id={`thumbnail__article--${id}`} type={type} options={options}>
-				<Copy id={`thumbnail__copy--${id}`} className="thumbnail__copy" type={type} options={options}>
-					<h2 id={`thumbnail__title--${id}`} className="thumbnail__title">
-						{title}
-					</h2>
-					<div className="thumbnail__metadata">
-						<h3 className="thumbnail__metadata__source">{source.name}</h3>
-						<time className="thumbnail__metadata__time">{time}</time>
-					</div>
-				</Copy>
 				{type === EThumbnailType.LARGE ? (
 					<ThumbnailImage
 						src={urlToImage}
@@ -59,6 +50,15 @@ const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = (props
 						placeholderColor="var(--color-gray4)"
 					/>
 				)}
+				<Copy id={`thumbnail__copy--${id}`} className="thumbnail__copy" type={type} options={options}>
+					<h2 id={`thumbnail__title--${id}`} className="thumbnail__title">
+						{title}
+					</h2>
+					<div className="thumbnail__metadata">
+						<h3 className="thumbnail__metadata__source">{source.name}</h3>
+						<time className="thumbnail__metadata__time">{time}</time>
+					</div>
+				</Copy>
 			</Article>
 		</Anchor>
 	);
