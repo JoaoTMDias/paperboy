@@ -217,6 +217,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 				{showTypesetPanel && renderTypesetPanel()}
 				<TopNavigationWithClose title={data.title} source="source" prevPath={location.state.prevPath} />
 				<Container fullwidth fullheight offsetTop="0">
+					<h1 className="sr-only">Details</h1>
 					<Article>
 						<Hero ref={hero.current} id="hero" className="above-the-fold">
 							<HeroCopy className="hero__title">
@@ -232,7 +233,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 						</Hero>
 						<ArticleContent id="article-content">
 							<HeroCopy className="hero__title">
-								<h2 id="hero-cover-title--id" className="title">
+								<h2 id="hero-cover-title--id-copy" className="title">
 									{data.title}
 								</h2>
 								<div className="metadata">

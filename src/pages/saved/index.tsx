@@ -40,7 +40,7 @@ const SavedPage: React.FunctionComponent<IBasePageProps> = ({ location }) => {
 			);
 		});
 
-		return <List role="list">{list}</List>;
+		return list && list.length > 0 ? <List role="list">{list}</List> : <div />;
 	}
 
 	const numberOfArticles = saved ? saved.length : 0;

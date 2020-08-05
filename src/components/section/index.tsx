@@ -27,7 +27,6 @@ export const UISection: React.FC<IUISectionProps> = ({ id, title, children, amou
 			<SectionWrapper
 				id={id}
 				data-testid="section-wrapper"
-				aria-labelledby={`${id}-section-title`}
 				title={title}
 				layout={layout}
 				role={role}
@@ -42,14 +41,7 @@ export const UISection: React.FC<IUISectionProps> = ({ id, title, children, amou
 		);
 	}
 	return (
-		<SectionWrapper
-			id={id}
-			aria-labelledby={`${id}-section-title`}
-			title={title}
-			layout={layout}
-			role={role}
-			style={style}
-		>
+		<SectionWrapper id={id} title={title} layout={layout} role={role} style={style}>
 			{renderTitle()}
 			{children}
 		</SectionWrapper>

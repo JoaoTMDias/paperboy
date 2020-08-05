@@ -28,7 +28,7 @@ const UISearchForm: FunctionComponent<IUISearchFormProps> = ({ legend, placehold
 					</TextInput>
 				</fieldset>
 				<Button type="submit" title={label}>
-					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" role="image">
+					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
 						<path
 							fill="var(--color-gray1)"
 							fillRule="evenodd"

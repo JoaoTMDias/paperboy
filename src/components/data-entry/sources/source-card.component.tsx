@@ -1,10 +1,10 @@
 // Libraries
-import * as React from "react";
-import { ISourceCardProps } from "./types";
+import React, { useRef } from "react";
 import LazyLoadingImage from "components/general/images/image.lazyload.component";
-import { SourceCardWrapper, SourceCardInput, SourceCardIcon, SourceCardLogo, SourceCardName } from "./styles";
 import KEY_CODES from "helpers/key-codes";
 import { withMemo } from "helpers/index.helpers";
+import { SourceCardWrapper, SourceCardInput, SourceCardIcon, SourceCardLogo, SourceCardName } from "./styles";
+import { ISourceCardProps } from "./types";
 
 /**
  * @description Source List Item
@@ -12,6 +12,7 @@ import { withMemo } from "helpers/index.helpers";
  */
 const SourceCard: React.FC<ISourceCardProps> = ({ id, label, src, category, checked, style, handleChange }) => {
 	const status: string = checked ? "is-checked" : "";
+	const { current: inputId } = useRef(`source-card-${category}-${id}-input`);
 
 	function onKeyUp(event: React.KeyboardEvent<HTMLInputElement>) {
 		switch (event.keyCode) {
@@ -32,8 +33,8 @@ const SourceCard: React.FC<ISourceCardProps> = ({ id, label, src, category, chec
 
 	return (
 		<SourceCardWrapper className={`source__item ${status}`} style={style}>
-			<label htmlFor={`source-${id}-input`} tabIndex={0}>
-				<SourceCardIcon role="image" className="source__status" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+			<label htmlFor={inputId} tabIndex={0}>
+				<SourceCardIcon className="source__status" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<circle className="icon__circle" cx="12" cy="12" r="12" fill="var(--color-gray2)" />
 					<path
 						className="icon__check"
@@ -45,17 +46,17 @@ const SourceCard: React.FC<ISourceCardProps> = ({ id, label, src, category, chec
 					<LazyLoadingImage src={src} width="105" height="105" alt={`${label} logo`} />
 				</SourceCardLogo>
 				<SourceCardName className="source__label">
-					<h4 id={`source-label-${id}-card`} className="source__label__title">
+					<h3 id={`source-label-${id}-card`} className="source__label__title">
 						{label}
-					</h4>
+					</h3>
 				</SourceCardName>
 			</label>
 			<SourceCardInput
-				id={`source-${id}-input`}
+				id={inputId}
 				className="source__input"
 				type="checkbox"
 				data-category={category}
-				value={`${id}`}
+				value={id}
 				name="source-input"
 				checked={checked}
 				onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>) => onKeyUp(event)}

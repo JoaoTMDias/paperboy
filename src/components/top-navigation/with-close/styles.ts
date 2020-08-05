@@ -1,10 +1,9 @@
 import { Link } from "gatsby";
 import { rem } from "polished";
 import styled, { keyframes } from "styled-components";
-import fluidFontSize from "helpers/fluid-typography";
 import { theme } from "helpers/theme.helper";
 
-export const Container = styled.div`
+export const Container = styled.header`
 	--top-navigation-bar--detail-background: transparent;
 	--top-navigation-bar--title-color: var(--color-gray9);
 	--top-navigation-bar--height: ${rem("48px")};

@@ -138,7 +138,6 @@ const SourcesList: React.FC<ISourcesListProps> = ({ data, handleChange, label, l
 	if (data) {
 		return (
 			<SourcesListWrapper
-				role="group"
 				aria-label={label}
 				data-layout={layout}
 				style={{

@@ -229,6 +229,8 @@ export const HeroCopy = styled.div`
 
 export const ArticleContent = styled.div`
 	--padding-factor: 1.5;
+	--article-content-background: transparent;
+
 	opacity: 0;
 	padding: calc(var(--global-padding) * var(--padding-factor)) var(--global-padding);
 	z-index: 2;
@@ -237,6 +239,7 @@ export const ArticleContent = styled.div`
 	animation-timing-function: var(--ease-out-circ);
 	animation-fill-mode: forwards;
 	animation-delay: 469ms;
+	background-color: var(--article-content-background);
 
 	.lead {
 		color: var(--content-lead-color);
@@ -263,8 +266,10 @@ export const ArticleContent = styled.div`
 
 	${above.large`
 		--padding-factor: 3;
-
+		--article-content-background: var(--body-background);
+		border-radius: calc(var(--global-margin) * 2);
 		max-width: clamp(${rem("960px")}, 60vw, ${rem("1024px")});
+		margin-bottom: calc(var(--global-margin) * 3);
 	`};
 
 	${above.xlarge`

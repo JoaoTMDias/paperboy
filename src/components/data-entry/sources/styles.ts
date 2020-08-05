@@ -6,7 +6,7 @@ import fluidFontSize from "helpers/fluid-typography";
 import { theme } from "helpers/theme.helper";
 
 // Styling
-export const SourcesListWrapper = styled.ol`
+export const SourcesListWrapper = styled.ul`
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -167,6 +167,9 @@ export const Input = styled.input`
 `;
 
 export const Name = styled.div`
+	--text-shadow-color: rgba(255, 255, 255, 0.2);
+	--title-color: var(--color-gray9);
+
 	display: flex;
 	width: calc(100% - ${rem("72px")});
 	flex-direction: row;
@@ -180,9 +183,6 @@ export const Name = styled.div`
 
 	.source__label {
 		&__title {
-			--text-shadow-color: rgba(255, 255, 255, 0.2);
-			--title-color: var(--color-gray9);
-
 			width: 100%;
 			text-align: left;
 			font-family: var(--body-font-family);

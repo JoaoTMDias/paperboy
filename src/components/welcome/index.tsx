@@ -18,6 +18,7 @@ const WelcomeScreen: React.FunctionComponent<IBasePageProps> = ({ location }) =>
 	if (!isOnline) {
 		return (
 			<Container fullheight>
+				<h1 className="sr-only">Welcome page (offline)</h1>
 				<IconBrandingLarge visible />
 				<UISubtitle text="Uh-oh!" />
 				<UIDisplay text="You are offline" />
@@ -46,6 +47,7 @@ const WelcomeScreen: React.FunctionComponent<IBasePageProps> = ({ location }) =>
 				)}
 			</UICallToAction>
 			<Container fullheight>
+				<h1 className="sr-only">Welcome page</h1>
 				<IconBrandingLarge visible />
 				<UISubtitle text="Welcome!" />
 				<UIDisplay text="Paperboy" />

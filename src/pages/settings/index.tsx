@@ -14,6 +14,7 @@ import AddToHomeScreenWithInstall from "components/add-to-homescreen/with-instal
 import { ListItemWithSwitch, SectionListItem, ListItemWithLink } from "components/lists";
 import { UIButton } from "components/button";
 import { navigate } from "gatsby";
+import { List } from "components/lists/styles";
 import AuditContext from "../../containers/audit/context";
 import PreferencesContext from "../../containers/preferences/context";
 
@@ -85,12 +86,14 @@ const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 					/>
 				</UISection>
 				<UISection id="settings-others" title="Others">
-					<SectionListItem id="about-paperboy">
-						<ListItemWithLink id="about-paperboy" title="About" to={ABOUT_SETTINGS_PAGE} />
-					</SectionListItem>
-					<SectionListItem id="privacy-policy-paperboy">
-						<ListItemWithLink id="privacy-policy-paperboy" title="Privacy Policy" to={PRIVACY_POLICY_SETTINGS_PAGE} />
-					</SectionListItem>
+					<List>
+						<SectionListItem id="about-paperboy">
+							<ListItemWithLink id="about-paperboy" title="About" to={ABOUT_SETTINGS_PAGE} />
+						</SectionListItem>
+						<SectionListItem id="privacy-policy-paperboy">
+							<ListItemWithLink id="privacy-policy-paperboy" title="Privacy Policy" to={PRIVACY_POLICY_SETTINGS_PAGE} />
+						</SectionListItem>
+					</List>
 				</UISection>
 				<UISection
 					id="settings-exit"
@@ -98,14 +101,16 @@ const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 						marginBottom: "4rem",
 					}}
 				>
-					<SectionListItem id="logout-paperboy" center>
-						<UIButton
-							id="reset-preferences"
-							onClick={handleClickToClearPreferences}
-							type="button"
-							text="Reset Preferences"
-						/>
-					</SectionListItem>
+					<List>
+						<SectionListItem id="logout-paperboy" center>
+							<UIButton
+								id="reset-preferences"
+								onClick={handleClickToClearPreferences}
+								type="button"
+								text="Reset Preferences"
+							/>
+						</SectionListItem>
+					</List>
 				</UISection>
 			</Container>
 		</PrivateRoute>

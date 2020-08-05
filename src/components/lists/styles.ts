@@ -289,3 +289,14 @@ export const ListWrapper = styled.li`
 		--list-item-background-color-hover: var(--color-gray8);
 	`};
 `;
+
+export const List = styled.ul`
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+`;

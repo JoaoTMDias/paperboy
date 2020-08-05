@@ -83,13 +83,13 @@ const Heading1 = styled.h2`
 	animation-delay: 125ms;
 `;
 
-const Subtitle = styled.h3`
+const Subtitle = styled.p`
 	width: 100%;
 	max-width: 40rem;
 	letter-spacing: -0.24px;
 	line-height: 20px;
 	${fluidFontSize(16, "2.25vw", 18)};
-«	line-height: 1.25;
+	line-height: 1.25;
 	color: var(--subtitle-color);
 	font-family: var(--heading-font-family);
 	margin-left: auto;

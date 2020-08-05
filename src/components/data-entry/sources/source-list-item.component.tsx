@@ -1,10 +1,10 @@
 // Libraries
-import * as React from "react";
+import React, { useRef } from "react";
 import LazyLoadingImage from "components/general/images/image.lazyload.component";
-import { ISourceListItemProps } from "./types.d";
-import { Wrapper, Input, Logo, Name, Icon } from "./styles";
 import { withMemo } from "helpers/index.helpers";
 import KEY_CODES from "helpers/key-codes";
+import { ISourceListItemProps } from "./types.d";
+import { Wrapper, Input, Logo, Name, Icon } from "./styles";
 
 /**
  * @description Source List Item
@@ -21,6 +21,8 @@ const SourceListItem: React.FunctionComponent<ISourceListItemProps> = ({
 	handleChange,
 	style,
 }) => {
+	const { current: inputId } = useRef(`source-list-item-${category}-${id}-input`);
+
 	function onKeyUp(event: React.KeyboardEvent<HTMLInputElement>) {
 		event.preventDefault();
 
@@ -44,16 +46,16 @@ const SourceListItem: React.FunctionComponent<ISourceListItemProps> = ({
 
 	return (
 		<Wrapper className={`source__item ${status}`} style={style}>
-			<label htmlFor={`source-${id}-input`} tabIndex={0}>
+			<label htmlFor={inputId} tabIndex={0}>
 				<Logo className="source__cover">
 					<LazyLoadingImage src={src} width="105" height="105" alt={`${label} logo`} />
 				</Logo>
 				<Name className="source__label">
-					<h4 id={`source-label-${id}`} className="source__label__title">
+					<h3 id={`source-label-${id}`} className="source__label__title">
 						{label}
-					</h4>
+					</h3>
 				</Name>
-				<Icon role="image" className="source__status" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+				<Icon className="source__status" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 					<circle className="icon__circle" cx="12" cy="12" r="12" />
 					<path
 						className="icon__check"
@@ -62,7 +64,7 @@ const SourceListItem: React.FunctionComponent<ISourceListItemProps> = ({
 				</Icon>
 			</label>
 			<Input
-				id={`source-${id}-input`}
+				id={inputId}
 				className="source__input"
 				type="checkbox"
 				data-category={category}

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import SwipeableViews from "react-swipeable-views";
 import { above } from "helpers/index.helpers";
 
-export const List = styled.ol`
+export const List = styled.ul`
 	position: relative;
 	min-width: 100vw;
 	height: auto;
