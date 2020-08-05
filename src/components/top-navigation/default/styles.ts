@@ -1,6 +1,7 @@
 import { rem } from "polished";
 import styled, { keyframes } from "styled-components";
 import { elevation } from "helpers/index.helpers";
+import { theme } from "helpers/theme.helper";
 import { ITopNavigationProps } from "./types";
 
 // Styling
@@ -12,10 +13,6 @@ export const fadeInDownBar = keyframes`
 
 export const Wrapper = styled.header`
 	--top-bar-background-color: var(--color-white);
-
-	html[data-theme="DARK"] & {
-		--top-bar-background-color: var(--body-background);
-	}
 
 	position: ${(props: ITopNavigationProps) => {
 		if (props.isSticky) {
@@ -74,4 +71,8 @@ export const Wrapper = styled.header`
 		}
 	}};
 	z-index: 3;
+
+	${theme.dark`
+		--top-bar-background-color: var(--body-background);
+	`};
 `;

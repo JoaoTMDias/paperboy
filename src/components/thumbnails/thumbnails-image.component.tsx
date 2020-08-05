@@ -15,6 +15,7 @@ const ThumbnailImage: React.FunctionComponent<IImageLazyProps> = (props) => {
 	const { ...thumbnailProps } = props;
 	return (
 		<Image className="thumbnail-image__container">
+			<div className="thumbnail-image__gradient" />
 			<LazyLoadingImage className="thumbnail-image__cover" {...thumbnailProps} />
 		</Image>
 	);

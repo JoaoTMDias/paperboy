@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Logger, withMemo } from "helpers/index.helpers";
 import { INewsPageHeaderItems } from "data/interfaces";
 import { TabsContainer, TabsWrapper } from "./styles";
@@ -40,14 +40,6 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, location }) => {
 	]);
 	const [currentTab, setCurrentTab] = useState(0);
 
-	useEffect(() => {
-		const hasHashOnUrl = getHash();
-
-		if (hasHashOnUrl) {
-			checkIfHashExists(hasHashOnUrl);
-		}
-	}, []);
-
 	/**
 	 * @description Handles the swipe to change the index
 	 * @author João Dias
@@ -80,11 +72,22 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, location }) => {
 	 * @param {string} hash
 	 * @memberof NewsTabs
 	 */
-	function checkIfHashExists(hash: string) {
-		const current = tabs.findIndex((tab) => tab.id === hash);
+	const checkIfHashExists = useCallback(
+		(hash: string) => {
+			const current = tabs.findIndex((tab) => tab.id === hash);
 
-		setCurrentTab(current);
-	}
+			setCurrentTab(current);
+		},
+		[tabs],
+	);
+
+	useEffect(() => {
+		const hasHashOnUrl = getHash();
+
+		if (hasHashOnUrl) {
+			checkIfHashExists(hasHashOnUrl);
+		}
+	}, [checkIfHashExists]);
 
 	/**
 	 * @description Renders the Tab Header of the container

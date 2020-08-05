@@ -3,6 +3,7 @@ import { rem } from "polished";
 import { Field } from "formik";
 import { above } from "helpers/index.helpers";
 import fluidFontSize from "helpers/fluid-typography";
+import { theme } from "helpers/theme.helper";
 
 // Styling
 export const SourcesListWrapper = styled.ol`
@@ -182,11 +183,6 @@ export const Name = styled.div`
 			--text-shadow-color: rgba(255, 255, 255, 0.2);
 			--title-color: var(--color-gray9);
 
-			html[data-theme="DARK"] & {
-				--text-shadow-color: rgba(0, 0, 0, 0.2);
-				--title-color: var(--color-gray2);
-			}
-
 			width: 100%;
 			text-align: left;
 			font-family: var(--body-font-family);
@@ -200,6 +196,11 @@ export const Name = styled.div`
 			text-transform: capitalize;
 		}
 	}
+
+	${theme.dark`
+		--text-shadow-color: rgba(0, 0, 0, 0.2);
+		--title-color: var(--color-gray2);
+	`};
 `;
 
 export const SourceCardWrapper = styled.li`
@@ -310,19 +311,11 @@ export const SourceCardName = styled.div`
 	border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;
 	background-color: var(--color-white);
-
-	html[data-theme="DARK"] & {
-		background-color: var(--color-gray9);
-	}
 	height: ${rem("44px")};
 
 	.source__label {
 		&__title {
 			--text-shadow-color: rgba(255, 255, 255, 0.2);
-
-			html[data-theme="DARK"] & {
-				--text-shadow-color: rgba(0, 0, 0, 0.2);
-			}
 
 			width: 100%;
 			text-align: center;
@@ -341,4 +334,9 @@ export const SourceCardName = styled.div`
 			text-transform: capitalize;
 		}
 	}
+
+	${theme.dark`
+		--text-shadow-color: rgba(0, 0, 0, 0.2);
+		background-color: var(--color-gray9);
+	`};
 `;

@@ -48,7 +48,7 @@ export const TabList: React.FunctionComponent<ITabListProps> = ({ list, activeTa
 	function getTabsSize() {
 		const elements = Array.from(document.querySelectorAll(".tab-list__item"));
 
-		let sizes: ITabElementDimensions[] = [];
+		const sizes: ITabElementDimensions[] = [];
 
 		elements.forEach((element) => {
 			const dimensions = element.getBoundingClientRect();
@@ -75,6 +75,7 @@ export const TabList: React.FunctionComponent<ITabListProps> = ({ list, activeTa
 
 		return (
 			<Wrapper className="tab-list--wrapper">
+				<h1 className="sr-only">{list[activeTab].id}</h1>
 				<Indicator
 					style={{
 						transform: animatedProps.transform,

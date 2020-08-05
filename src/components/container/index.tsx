@@ -21,7 +21,7 @@ const Container: React.FunctionComponent<IContainerProps> = (props) => {
 	}
 
 	return (
-		<MainContent id="page-main" aria-labelledby="page-title" {...allProps}>
+		<MainContent id="page-main" {...allProps}>
 			<Wrapper {...allProps}>
 				<Trigger id="container-trigger" />
 				{children}

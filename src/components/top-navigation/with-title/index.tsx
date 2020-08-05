@@ -12,7 +12,7 @@ import { ITopNavigationWithTitleProps } from "./types";
 const TopNavigationWithTitle: React.FunctionComponent<ITopNavigationWithTitleProps> = ({ title, subtitle }) => {
 	return (
 		<Container id="top-navigation-with-title" className="shrink-when-sticky">
-			<h2 className="top-navigation-with-title__title title">{title}</h2>
+			<h1 className="top-navigation-with-title__title title">{title}</h1>
 			<p className="hide-when-sticky top-navigation-with-title__subtitle">{subtitle}</p>
 		</Container>
 	);

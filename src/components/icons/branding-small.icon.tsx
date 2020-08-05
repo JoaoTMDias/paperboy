@@ -1,6 +1,7 @@
 // Libraries
 import * as React from "react";
 import styled from "styled-components";
+import { theme } from "helpers/theme.helper";
 
 // Component Props
 interface IIconBrandingSmallProps {}
@@ -63,10 +64,10 @@ const Icon = styled.svg`
 	width: 100%;
 	height: 100%;
 
-	html[data-theme="DARK"] & {
+	${theme.dark`
 		.icon {
 			&-left,
-			&-right  {
+			&-right {
 				fill: var(--color-gray8);
 
 				&-far {
@@ -74,7 +75,7 @@ const Icon = styled.svg`
 				}
 			}
 		}
-	}
+	`};
 `;
 
 export default IconBrandingSmall;

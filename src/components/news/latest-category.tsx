@@ -39,7 +39,7 @@ export const LatestNewsCategoryTab: React.FC<INewsArticleTabProps> = ({ id, sour
 
 			return (
 				<Item className="list__item" key={key} id={key}>
-					<ArticleThumbnail location={location} id={id} options={article} type={EThumbnailType.SMALL} />
+					<ArticleThumbnail location={location} id={identifier} options={article} type={EThumbnailType.SMALL} />
 				</Item>
 			);
 		});

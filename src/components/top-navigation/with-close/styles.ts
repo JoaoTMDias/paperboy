@@ -54,12 +54,6 @@ export const Container = styled.div`
 	&.is-scrolling {
 		--top-navigation-bar--detail-background: var(--color-white);
 
-		html[data-theme="DARK"] && {
-			--top-navigation-bar--detail-background: var(--color-black);
-			--top-navigation-bar--detail-foreground: var(--color-gray4);
-			--top-navigation-bar--title-color: var(--color-gray1);
-		}
-
 		.title {
 			opacity: 1;
 			position: relative;
@@ -76,6 +70,12 @@ export const Container = styled.div`
 			left: 0;
 		}
 	}
+
+	${theme.dark`
+		--top-navigation-bar--detail-background: var(--color-black);
+		--top-navigation-bar--detail-foreground: var(--color-gray4);
+		--top-navigation-bar--title-color: var(--color-gray1);
+	`};
 `;
 
 const SlideInTopBarLink = keyframes`

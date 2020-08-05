@@ -40,17 +40,12 @@ const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 	/**
 	 *	@description Switches between Dark/Light theme
 	 */
-	const handleToggleDarkTheme = useCallback(
-		(event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => {
-			event.preventDefault();
+	const toggleDarkTheme = useCallback(() => {
+		const themeToSet = theme && theme === EAppThemeType.LIGHT ? EAppThemeType.DARK : EAppThemeType.LIGHT;
+		setAppTheme(themeToSet);
 
-			const themeToSet = theme && theme === EAppThemeType.LIGHT ? EAppThemeType.DARK : EAppThemeType.LIGHT;
-			setAppTheme(themeToSet);
-
-			toggleThemeVibration();
-		},
-		[theme, setAppTheme, toggleThemeVibration],
-	);
+		toggleThemeVibration();
+	}, [theme, setAppTheme, toggleThemeVibration]);
 
 	function handleClickToClearPreferences() {
 		toggleVibratingForReset();
@@ -86,7 +81,7 @@ const SettingsPage: React.FunctionComponent<IBasePageProps> = ({ location }) => 
 						subtitle="Easier on the eyes on low light"
 						defaultValue={EAppThemeType.DARK}
 						value={theme}
-						onClick={handleToggleDarkTheme}
+						onChange={toggleDarkTheme}
 					/>
 				</UISection>
 				<UISection id="settings-others" title="Others">

@@ -1,5 +1,6 @@
 import { rem } from "polished";
 import styled, { css, keyframes } from "styled-components";
+import { theme } from "helpers/theme.helper";
 import { IUICallToActionProps } from "./types";
 
 // Styling
@@ -37,12 +38,6 @@ export const Wrapper = styled.nav`
 	align-items: center;
 	box-shadow: ${(props: IUICallToActionProps) =>
 		props.isTop ? "0px 4px 20px 0px rgba(255,255,255,0.5)" : "0px -4px 20px 0px rgba(255,255,255,1)"};
-
-	html[data-theme="DARK"] && {
-		box-shadow: ${(props: IUICallToActionProps) =>
-			props.isTop ? "0px 4px 20px 0px rgba(0,0,0,0.5)" : "0px -4px 20px 0px rgba(0,0,0,1)"};
-	}
-
 	animation-name: ${onEnter};
 	animation-duration: 300ms;
 	animation-timing-function: var(--default-timing-function);
@@ -66,4 +61,9 @@ export const Wrapper = styled.nav`
 				? "0px 4px 16px 4px hsla(var(--cta-shadow-color-hue), 78%, 57%, 0.24)"
 				: "0px 2px 0px 2px hsla(var(--cta-shadow-color-hue),78%,57%,0.24)"};
 	}
+
+	${theme.dark`
+		box-shadow: ${(props: IUICallToActionProps) =>
+			props.isTop ? "0px 4px 20px 0px rgba(0,0,0,0.5)" : "0px -4px 20px 0px rgba(0,0,0,1)"};
+	`};
 `;

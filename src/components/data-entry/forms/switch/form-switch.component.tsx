@@ -1,14 +1,14 @@
 // Libraries
-import * as React from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 import { rem } from "polished";
+import { theme } from "helpers/theme.helper";
 
 // Interface
 interface IFormSwitchProps {
 	id: string;
 	checked: boolean;
 	value: string;
-	onChange(event: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 /**
@@ -17,10 +17,11 @@ interface IFormSwitchProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IFormSwitchProps>}
  */
-const FormSwitch: React.FunctionComponent<IFormSwitchProps> = (props) => {
-	const { id, checked, value, onChange } = props;
+const FormSwitch: FunctionComponent<IFormSwitchProps> = (props) => {
+	const { id, checked, value } = props;
 
 	const labelValue = checked ? "On" : "Off";
+
 	return (
 		<SwitchWrapper
 			className={`form-switch ${checked ? "is-checked" : ""}`}
@@ -35,7 +36,6 @@ const FormSwitch: React.FunctionComponent<IFormSwitchProps> = (props) => {
 				type="checkbox"
 				className="switch__input"
 				value={value}
-				onChange={onChange}
 				checked={checked}
 				tabIndex={-1}
 			/>
@@ -55,12 +55,7 @@ const SwitchWrapper = styled.div`
 	--lever-disabled-color: var(--color-white);
 	--lever-enabled-color: var(--color-primary);
 	--icon-size: ${rem("48px")};
-
 	--form-switch-label: var(--color-gray8);
-
-	html[data-theme="DARK"] & {
-		--form-switch-label: var(--color-gray3);
-	}
 
 	display: flex;
 	flex-direction: row;
@@ -139,6 +134,10 @@ const SwitchWrapper = styled.div`
 			}
 		}
 	}
+
+	${theme.dark`
+		--form-switch-label: var(--color-gray3);
+	`};
 `;
 
 export default FormSwitch;

@@ -98,7 +98,7 @@ const ChangeAppTheme: FunctionComponent = () => {
 		updateAppThemeOnRoot(currentTheme || checkIfHasDarkMode());
 	}, [currentTheme, setAppTheme, hasNewTheme, updateAppThemeOnRoot]);
 
-	return <aside className="sr-only" data-theme={currentTheme} data-theme-color={themeColor} tabIndex={-1} />;
+	return <div className="sr-only" data-theme={currentTheme} data-theme-color={themeColor} aria-hidden tabIndex={-1} />;
 };
 
 export default ChangeAppTheme;

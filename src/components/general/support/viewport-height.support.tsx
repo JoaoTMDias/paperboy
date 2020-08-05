@@ -65,14 +65,15 @@ const ViewportHeight: FunctionComponent = () => {
 				debounce(getDevicePlatform);
 			});
 		};
-	}, [platform]);
+	}, [platform, getDevicePlatform]);
 
 	return (
-		<aside
+		<div
 			id="device-viewport-height"
 			className="sr-only"
 			data-viewport-height-unit={`${viewportUnit}`}
 			data-viewport-height={`${viewportHeight}`}
+			aria-hidden
 			tabIndex={-1}
 		/>
 	);

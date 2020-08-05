@@ -95,11 +95,9 @@ const LazyLoadingImage: React.FunctionComponent<IImageLazyProps> = ({
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
 						preserveAspectRatio="xMaxYMax slice"
-						role="img"
 						width={width}
 						height={height}
 					>
-						<title id="placeholder-title">{imageProps.alt}</title>
 						<path className="placeholder__background" fill={placeholderColor} d="M0 0h24v24H0z" />
 					</Placeholder>
 				);
@@ -112,7 +110,6 @@ const LazyLoadingImage: React.FunctionComponent<IImageLazyProps> = ({
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
 						preserveAspectRatio="xMaxYMax slice"
-						role="img"
 						width={width}
 						height={height}
 					>

@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
-import { rem } from "polished";
+import { rgba, rem } from "polished";
+
 import { Link } from "gatsby";
 import { theme } from "helpers/theme.helper";
 import { above } from "helpers/index.helpers";
@@ -18,7 +19,7 @@ export const Anchor = styled(Link)`
 	`};
 
 	align-items: center;
-	background-color: var(--color-gray1);
+	background-color: var(--thumbnail-background-color);
 	display: flex;
 	flex-direction: row;
 	height: var(--anchor-height, 35vh);
@@ -49,7 +50,6 @@ export const Anchor = styled(Link)`
 			default:
 			case EThumbnailType.SAVED:
 				return css`
-					background-color: var(--thumbnail-background-color);
 					flex-direction: column;
 					justify-content: flex-start;
 					max-height: ${rem("128px")};
@@ -69,7 +69,6 @@ export const Anchor = styled(Link)`
 			case EThumbnailType.SMALL:
 				return css`
 					--anchor-height-factor: 0.4;
-					background-color: var(--color-white);
 					flex-direction: column;
 					justify-content: flex-start;
 					min-height: ${rem("230px")};
@@ -113,7 +112,7 @@ export const Article = styled.article`
 
 	.thumbnail-image {
 		&__gradient {
-			background-image: linear-gradient(rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.8) 65%);
+			background-image: ${`linear-gradient(${rgba("#0b0909", 0)} 0%,${rgba("#0b0909", 1)} 66%)`};
 			bottom: 0;
 			height: 100%;
 			left: 0;
@@ -145,6 +144,7 @@ export const Article = styled.article`
 						margin-bottom: calc(var(--global-padding) * 0.5);
 						margin-left: 0;
 						width: 100%;
+						z-index: 0;
 					}
 				`;
 
@@ -199,7 +199,8 @@ export const Copy = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	z-index: 1;
+	z-index: 2;
+	background-color: var(--color-black);
 
 	.thumbnail {
 		&__title {

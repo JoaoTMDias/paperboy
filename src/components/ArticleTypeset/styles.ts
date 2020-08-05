@@ -3,7 +3,7 @@ import { rem } from "polished";
 import { theme } from "helpers/theme.helper";
 import fluidFontSize from "helpers/fluid-typography";
 
-export const PanelWrapper = styled.aside`
+export const PanelWrapper = styled.div`
 	--panel-wrapper-border-color: var(--color-gray1);
 	--panel-wrapper-thumb-color: var(--color-white);
 	--slider-height: ${rem("56px")};

@@ -1,6 +1,7 @@
 import { rem } from "polished";
 import styled from "styled-components";
 import { flexRow, elevation } from "helpers/index.helpers";
+import { theme } from "helpers/theme.helper";
 
 export const Wrapper = styled.button`
 	width: 100%;
@@ -100,7 +101,7 @@ export const Content = styled.div`
 	width: 100%;
 	margin: 0 auto;
 
-	html[data-theme="DARK"] & {
+	${theme.dark`
 		.dialog {
 			&__content {
 				&__title {
@@ -122,5 +123,5 @@ export const Content = styled.div`
 		#safari-share-icon path {
 			fill: var(--color-white);
 		}
-	}
+	`};
 `;

@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { rem } from "polished";
 import { Link } from "gatsby";
 import { flexRow, elevation } from "helpers/index.helpers";
+import { theme } from "helpers/theme.helper";
 import { IListItemWithButtonProps, EListItemButtonType, ISectionListItemProps } from "./list-types";
 
 // Styling
@@ -46,11 +47,6 @@ export const Button = styled.button`
 	color: var(--button-color);
 	border: 1px sollid var(--button-border-color);
 	${elevation[1]};
-
-	html[data-theme="DARK"] & {
-		--list-item-title-color: var(--color-gray0);
-		--list-item-subtitle-color: var(--color-gray3);
-	}
 
 	width: 100%;
 	height: 100%;
@@ -104,17 +100,17 @@ export const Button = styled.button`
 			margin-top: 0.25rem;
 		}
 	}
+
+	${theme.dark`
+		--list-item-title-color: var(--color-gray0);
+		--list-item-subtitle-color: var(--color-gray3);
+	`};
 `;
 
 export const Action = styled(Link)`
 	--icon-size: ${rem("48px")};
 	--list-item-title-color: var(--color-gray9);
 	--list-item-subtitle-color: var(--color-gray8);
-
-	html[data-theme="DARK"] & {
-		--list-item-title-color: var(--color-gray0);
-		--list-item-subtitle-color: var(--color-gray3);
-	}
 
 	width: 100%;
 	margin: 0;
@@ -163,17 +159,17 @@ export const Action = styled(Link)`
 			margin-top: 0.25rem;
 		}
 	}
+
+	${theme.dark`
+		--list-item-title-color: var(--color-gray0);
+		--list-item-subtitle-color: var(--color-gray3);
+	`};
 `;
 
 export const Label = styled.label`
 	--icon-size: ${rem("48px")};
 	--list-item-title-color: var(--color-gray9);
 	--list-item-subtitle-color: var(--color-gray8);
-
-	html[data-theme="DARK"] & {
-		--list-item-title-color: var(--color-gray0);
-		--list-item-subtitle-color: var(--color-gray3);
-	}
 
 	width: 100%;
 	margin: 0;
@@ -227,6 +223,11 @@ export const Label = styled.label`
 			margin-top: 0.25rem;
 		}
 	}
+
+	${theme.dark`
+		--list-item-title-color: var(--color-gray0);
+		--list-item-subtitle-color: var(--color-gray3);
+	`};
 `;
 
 export const ListWrapper = styled.li`
@@ -234,11 +235,6 @@ export const ListWrapper = styled.li`
 	--list-item-border-bottom-color: var(--color-gray1);
 	--list-item-background-color: var(--body-background);
 	--list-item-background-color-hover: var(--color-gray1);
-
-	html[data-theme="DARK"] & {
-		--list-item-border-bottom-color: var(--color-gray9);
-		--list-item-background-color-hover: var(--color-gray8);
-	}
 
 	width: 100%;
 	height: var(--section-list-item-height, 4rem);
@@ -287,4 +283,9 @@ export const ListWrapper = styled.li`
 			})};
 		`;
 	}};
+
+	${theme.dark`
+		--list-item-border-bottom-color: var(--color-gray9);
+		--list-item-background-color-hover: var(--color-gray8);
+	`};
 `;

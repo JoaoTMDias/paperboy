@@ -1,3 +1,5 @@
+import { EAppThemeType } from "data/interfaces";
+
 export enum EListItemButtonType {
 	NORMAL = "NORMAL",
 	PRIMARY = "PRIMARY",
@@ -25,8 +27,8 @@ export interface IListItemWithSwitchProps {
 	title: string;
 	subtitle?: string | null;
 	defaultValue: string;
-	value: string;
-	onClick?(event: React.MouseEvent<HTMLLabelElement, MouseEvent>): void;
+	value?: EAppThemeType;
+	onChange?(): void;
 }
 
 export interface ISectionListItemProps {

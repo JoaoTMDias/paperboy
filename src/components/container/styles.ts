@@ -15,7 +15,7 @@ export const MainContent = styled.main`
 		`};
 `;
 
-export const Trigger = styled.aside`
+export const Trigger = styled.div`
 	width: 100%;
 	height: 1px;
 	position: absolute;

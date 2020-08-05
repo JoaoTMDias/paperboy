@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { rem } from "polished";
-import { flexRow } from "../../../../helpers/index.helpers";
 import { theme } from "helpers/theme.helper";
+import { flexRow } from "../../../../helpers/index.helpers";
 
-export const ShareSheet = styled.aside`
+export const ShareSheet = styled.div`
 	--share-sheet-title: var(--color-gray6);
 	--share-sheet-name: var(--color-gray8);
 	--item-height: ${rem("48px")};
