@@ -46,7 +46,7 @@ export const ListItemWithSwitch: React.FunctionComponent<IListItemWithSwitchProp
 		>
 			<div className="text">
 				<h3 className="text__title">{title}</h3>
-				{subtitle && <h6 className="text__subtitle">{subtitle}</h6>}
+				{subtitle && <p className="text__subtitle">{subtitle}</p>}
 			</div>
 			<div className="icon toggle">
 				<FormSwitch id={id} value={defaultValue} checked={value === defaultValue} />
