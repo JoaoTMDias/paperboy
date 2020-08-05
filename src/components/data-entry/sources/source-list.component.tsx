@@ -6,15 +6,6 @@ import SourceCard from "./source-card.component";
 import SourceListItem from "./source-list-item.component";
 import { ISourcesListProps } from "./types";
 import { IChosenSource } from "../../../pages/onboarding/choose-sources";
-import IconBBCNews from "../../../assets/images/sources/icon-bbc-news.svg";
-import IconCNN from "../../../assets/images/sources/icon-cnn.svg";
-import IconFoxNews from "../../../assets/images/sources/icon-fox-news.svg";
-import IconGoogleNews from "../../../assets/images/sources/icon-google-news.svg";
-import IconGuardian from "../../../assets/images/sources/icon-guardian.svg";
-import IconNewYorkTimes from "../../../assets/images/sources/icon-new-york-times.svg";
-import IconTimesOfIndia from "../../../assets/images/sources/icon-times-of-india.svg";
-import IconUSAToday from "../../../assets/images/sources/icon-usa-today.svg";
-import IconWallStreetJournal from "../../../assets/images/sources/icon-wall-street-journal.svg";
 import { SourcesListWrapper } from "./styles";
 
 /**
@@ -33,109 +24,56 @@ const SourcesList: React.FC<ISourcesListProps> = ({ data, handleChange, label, l
 	 * @memberof SourcesList
 	 */
 	function getNewsSourceCover(source: IAllAvailableNewsSource): string {
-		let cover;
+		const cover = `/logos/${source.id}.png`;
 
-		switch (source.id) {
-			case "bbc-news":
-				cover = IconBBCNews;
-				break;
-
-			case "cnn":
-				cover = IconCNN;
-				break;
-
-			case "fox-news":
-				cover = IconFoxNews;
-				break;
-
-			case "google-news":
-				cover = IconGoogleNews;
-				break;
-
-			case "the-times-of-india":
-				cover = IconTimesOfIndia;
-				break;
-
-			case "the-new-york-times":
-				cover = IconNewYorkTimes;
-				break;
-
-			case "the-guardian-uk":
-				cover = IconGuardian;
-				break;
-
-			case "usa-today":
-				cover = IconUSAToday;
-				break;
-
-			case "the-wall-street-journal":
-				cover = IconWallStreetJournal;
-				break;
-
-			default:
-				cover = `https://paperboy-icon-service.herokuapp.com/icon?url=${source.url}&size=70..120..200`;
-				break;
-		}
+		console.log("cover: ", cover);
 
 		return cover;
 	}
 
-	/**
-	 * @description
-	 * @author João Dias
-	 * @date 2019-06-21
-	 * @returns
-	 * @memberof SourcesList
-	 */
-	function renderData() {
-		if (data) {
-			const item = data.map((source: IAllAvailableNewsSource) => {
-				const cover = getNewsSourceCover(source);
+	if (data) {
+		const item = data.map((source: IAllAvailableNewsSource) => {
+			const cover = getNewsSourceCover(source);
 
-				const matching: IChosenSource = {
-					name: source.id,
-					category: source.category,
-				};
+			const matching: IChosenSource = {
+				name: source.id,
+				category: source.category,
+			};
 
-				const filterCheck = selectedOptions.filter((option: IChosenSource) => option.name === matching.name);
-				const isChecked = !!(filterCheck && filterCheck.length > 0);
+			const filterCheck = selectedOptions.filter((option: IChosenSource) => option.name === matching.name);
+			const isChecked = !!(filterCheck && filterCheck.length > 0);
 
-				if (layout === "horizontal") {
-					return (
-						<SourceCard
-							key={source.id}
-							id={source.id}
-							label={source.name}
-							category={source.category}
-							src={cover}
-							handleChange={(target: string) => {
-								return handleChange(target, source.category);
-							}}
-							checked={isChecked}
-						/>
-					);
-				}
-
+			if (layout === "horizontal") {
 				return (
-					<SourceListItem
+					<SourceCard
 						key={source.id}
 						id={source.id}
 						label={source.name}
 						category={source.category}
 						src={cover}
-						handleChange={(target) => {
+						handleChange={(target: string) => {
 							return handleChange(target, source.category);
 						}}
 						checked={isChecked}
 					/>
 				);
-			});
+			}
 
-			return item;
-		}
-	}
+			return (
+				<SourceListItem
+					key={source.id}
+					id={source.id}
+					label={source.name}
+					category={source.category}
+					src={cover}
+					handleChange={(target) => {
+						return handleChange(target, source.category);
+					}}
+					checked={isChecked}
+				/>
+			);
+		});
 
-	if (data) {
 		return (
 			<SourcesListWrapper
 				aria-label={label}
@@ -144,7 +82,7 @@ const SourcesList: React.FC<ISourcesListProps> = ({ data, handleChange, label, l
 					flexDirection: layout === "horizontal" ? "row" : "column",
 				}}
 			>
-				{data && renderData()}
+				{item}
 			</SourcesListWrapper>
 		);
 	}
