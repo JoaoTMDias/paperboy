@@ -170,7 +170,7 @@ export const HeroCopy = styled.div`
 		-webkit-line-clamp: var(--number-of-lines);
 		-webkit-box-orient: vertical;
 		max-height: calc(
-			(var(--number-of-lines) * var(--global-lineheight) * var(--base-font-ratio, 1) + 0.5) * var(--max-height-ratio)
+			(var(--number-of-lines) * var(--global-lineheight) * var(--base-font-ratio, 1) + 0.8) * var(--max-height-ratio)
 		);
 
 		${above.medium`
