@@ -18,6 +18,7 @@ interface IFormSwitchProps {
 	id: string;
 	checked: boolean;
 	value: string;
+	onChange: () => void;
 }
 
 /**
@@ -26,9 +27,7 @@ interface IFormSwitchProps {
  * @date 2019-02-16
  * @returns {React.FunctionComponent<IFormSwitchProps>}
  */
-const FormSwitch: FunctionComponent<IFormSwitchProps> = (props) => {
-	const { id, checked, value } = props;
-
+const FormSwitch: FunctionComponent<IFormSwitchProps> = ({ id, checked, value, onChange }) => {
 	const labelValue = checked ? "On" : "Off";
 
 	return (
@@ -47,6 +46,7 @@ const FormSwitch: FunctionComponent<IFormSwitchProps> = (props) => {
 				value={value}
 				checked={checked}
 				tabIndex={-1}
+				onClick={onChange}
 			/>
 			<span className="switch__label">{labelValue}</span>
 		</SwitchWrapper>

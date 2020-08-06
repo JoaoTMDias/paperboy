@@ -10,7 +10,7 @@
 // Libraries
 import React, { memo, useCallback } from "react";
 import FormSwitch from "components/data-entry/forms/switch/form-switch.component";
-import { KEY_CODES } from "helpers/key-codes";
+import KEY_CODES from 'helpers/key-codes';
 import { Label } from "../styles";
 import { IListItemWithSwitchProps } from "../list-types";
 
@@ -28,8 +28,9 @@ export const ListItemWithSwitch: React.FunctionComponent<IListItemWithSwitchProp
 	defaultValue,
 	value,
 }) => {
+
 	const onKeyUp = useCallback(
-		(event: React.KeyboardEvent<HTMLLabelElement>) => {
+		(event: React.KeyboardEvent<HTMLInputElement>) => {
 			switch (event.keyCode) {
 				case KEY_CODES.ENTER:
 				case KEY_CODES.SPACE:
@@ -49,7 +50,6 @@ export const ListItemWithSwitch: React.FunctionComponent<IListItemWithSwitchProp
 		<Label
 			htmlFor={`${id}-input`}
 			className="section-list__item__label"
-			onClick={onChange}
 			onKeyUp={onKeyUp}
 			tabIndex={0}
 		>
@@ -58,7 +58,7 @@ export const ListItemWithSwitch: React.FunctionComponent<IListItemWithSwitchProp
 				{subtitle && <p className="text__subtitle">{subtitle}</p>}
 			</div>
 			<div className="icon toggle">
-				<FormSwitch id={id} value={defaultValue} checked={value === defaultValue} />
+				<FormSwitch id={id} value={defaultValue} checked={value === defaultValue} onChange={onChange} />
 			</div>
 		</Label>
 	);

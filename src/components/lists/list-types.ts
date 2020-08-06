@@ -37,7 +37,7 @@ export interface IListItemWithSwitchProps {
 	subtitle?: string | null;
 	defaultValue: string;
 	value?: EAppThemeType;
-	onChange?(): void;
+	onChange: () => void;
 }
 
 export interface ISectionListItemProps {

@@ -14,7 +14,7 @@ import { above } from "helpers/index.helpers";
 export const List = styled.ul`
 	position: relative;
 	min-width: 100vw;
-	height: auto;
+	height: calc(var(--viewport-height, 100vh) - var(--bottom-navigation-bar-height, 3.5rem));
 	overflow: auto;
 	will-change: transform;
 	list-style-type: none;
@@ -98,9 +98,7 @@ export const TabsContainer = styled(SwipeableViews)`
 
 	.react-swipeable-view-container {
 		/* override to animate height */
-		height: calc(
-			var(--viewport-height) - calc(var(--bottom-navigation-bar-height) - var(--top-navigation-bar-height))
-		) !important;
+		min-height: var(--viewport-height);
 		overflow-y: initial;
 		background-color: var(--tabs-background);
 
