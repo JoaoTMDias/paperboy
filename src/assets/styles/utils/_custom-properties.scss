@@ -1,3 +1,12 @@
+/*
+ * This file is open-source. This means that it can be reproduced in whole
+ * or in part, stored in a retrieval system transmitted in any form, or by
+ * any means electronic with my prior permission as an author and owner
+ * Please refer to the terms of the license agreement in the root of the project
+ *
+ * (c) 2020 joaodias.me, No Rights Reserved.
+ */
+
 //// VARIABLES ////
 
 // global map to be filled via variables
@@ -49,7 +58,7 @@ $css-vars-debug-log: false !default;
 	@if (length($args) ==0) {
 		@error "Variable name is expected to be passed to the var() function";
 	}
-	@if (str-length(nth($args, 1)) < 2 or str-slice(nth($args, 1), 0, 2) != '--') {
+	@if (str-length(nth($args, 1)) < 2 or str-slice(nth($args, 1), 0, 2) != "--") {
 		@error "Variable name is expected to start from '--'";
 	}
 	// PROCESS
@@ -76,7 +85,7 @@ $css-vars-debug-log: false !default;
 	@if ($css-vars-use-native) {
 		// CSS variables
 		// Native CSS: don't process function in case of native
-		@return unquote('var(' + $args + ')');
+		@return unquote("var(" + $args + ")");
 	} @else {
 		// Sass: return value from the map
 		@return $varValue;

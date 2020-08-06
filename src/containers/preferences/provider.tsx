@@ -1,7 +1,16 @@
+/*
+ * This file is open-source. This means that it can be reproduced in whole
+ * or in part, stored in a retrieval system transmitted in any form, or by
+ * any means electronic with my prior permission as an author and owner
+ * Please refer to the terms of the license agreement in the root of the project
+ *
+ * (c) 2020 joaodias.me, No Rights Reserved.
+ */
+
 import React, { FunctionComponent, useMemo } from "react";
-import PreferencesContext, { DEFAULT_PREFERENCES } from "./context";
 import useChooseSources from "components/choose-sources/useChooseSources";
 import { ChosenNewsSources, EAppThemeType, INewsArticleItem } from "data/interfaces";
+import PreferencesContext, { DEFAULT_PREFERENCES } from "./context";
 
 const PreferencesProvider: FunctionComponent = ({ children }) => {
 	const { storage, setStorage, removeValue } = useChooseSources();

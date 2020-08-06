@@ -1,22 +1,26 @@
+/*
+ * This file is open-source. This means that it can be reproduced in whole
+ * or in part, stored in a retrieval system transmitted in any form, or by
+ * any means electronic with my prior permission as an author and owner
+ * Please refer to the terms of the license agreement in the root of the project
+ *
+ * (c) 2020 joaodias.me, No Rights Reserved.
+ */
+
 // UTILS
-@import './utils/index';
+@import "./utils/index";
 
 // GLOBAL
-@import './global/index';
+@import "./global/index";
 
 // COMPONENTS
-@import './components/index';
-
-// THEME
-// UI
-@import './theme/index';
+@import "./components/index";
 
 #page-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  // iphone X and upper
-  padding: env(safe-area-inset-top) env(safe-area-inset-right)
-    env(safe-area-inset-bottom) env(safe-area-inset-left);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	// iphone X and upper
+	padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }

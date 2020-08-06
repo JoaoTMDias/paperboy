@@ -1,9 +1,18 @@
+/*
+ * This file is open-source. This means that it can be reproduced in whole
+ * or in part, stored in a retrieval system transmitted in any form, or by
+ * any means electronic with my prior permission as an author and owner
+ * Please refer to the terms of the license agreement in the root of the project
+ *
+ * (c) 2020 joaodias.me, No Rights Reserved.
+ */
+
 // Libraries
 import React, { useState, useEffect } from "react";
-import { InstallButton } from "./styles";
-import { IAddToHomeScreenWithInstallProps } from "./types";
 import { useAddToHomescreenPrompt } from "helpers/custom-hooks/useAddToHomescreenPrompt";
 import { SectionListItem } from "components/lists";
+import { InstallButton } from "./styles";
+import { IAddToHomeScreenWithInstallProps } from "./types";
 
 /**
  * @description Component Description

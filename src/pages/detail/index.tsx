@@ -1,3 +1,12 @@
+/*
+ * This file is open-source. This means that it can be reproduced in whole
+ * or in part, stored in a retrieval system transmitted in any form, or by
+ * any means electronic with my prior permission as an author and owner
+ * Please refer to the terms of the license agreement in the root of the project
+ *
+ * (c) 2020 joaodias.me, No Rights Reserved.
+ */
+
 import { Redirect } from "@reach/router";
 import isEmpty from "lodash/isEmpty";
 import { useVibrate, useToggle } from "react-use";
@@ -215,7 +224,7 @@ const ArticleDetailPage: React.FunctionComponent<IArticleDetailPageProps> = ({ l
 			<PrivateRoute title="News Detail" bottomNavigation={false}>
 				{showShareSheet && renderShareSheetModal()}
 				{showTypesetPanel && renderTypesetPanel()}
-				<TopNavigationWithClose title={data.title} source="source" prevPath={location.state.prevPath} />
+				<TopNavigationWithClose title={data.title} source={data.source.id} prevPath={location.state.prevPath} />
 				<Container fullwidth fullheight offsetTop="0">
 					<h1 className="sr-only">Details</h1>
 					<Article>

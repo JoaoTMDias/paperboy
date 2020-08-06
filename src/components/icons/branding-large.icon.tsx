@@ -1,8 +1,17 @@
+/*
+ * This file is open-source. This means that it can be reproduced in whole
+ * or in part, stored in a retrieval system transmitted in any form, or by
+ * any means electronic with my prior permission as an author and owner
+ * Please refer to the terms of the license agreement in the root of the project
+ *
+ * (c) 2020 joaodias.me, No Rights Reserved.
+ */
+
 // Libraries
 import { rem } from "polished";
 import * as React from "react";
 import styled, { keyframes } from "styled-components";
-import { above } from "helpers/index.helpers";
+import { above } from "helpers/media-queries.helpers";
 
 // Component Props
 interface IIconBrandingLargeProps {

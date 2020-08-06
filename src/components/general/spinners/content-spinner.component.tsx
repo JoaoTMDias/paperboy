@@ -1,3 +1,12 @@
+/*
+ * This file is open-source. This means that it can be reproduced in whole
+ * or in part, stored in a retrieval system transmitted in any form, or by
+ * any means electronic with my prior permission as an author and owner
+ * Please refer to the terms of the license agreement in the root of the project
+ *
+ * (c) 2020 joaodias.me, No Rights Reserved.
+ */
+
 // Libraries
 import { rem } from "polished";
 import * as React from "react";
@@ -76,11 +85,11 @@ const Wrapper = styled.div`
 	height: ${(props: IUISpinnerProps) => {
 		if (props.fullPage) {
 			return "100vh";
-		} else if (props.center) {
-			return "100%";
-		} else {
-			return `${rem(`${props.size}px`)}`;
 		}
+		if (props.center) {
+			return "100%";
+		}
+		return `${rem(`${props.size}px`)}`;
 	}};
 	margin: 0 auto;
 	position: relative;

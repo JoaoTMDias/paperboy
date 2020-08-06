@@ -1,3 +1,4 @@
+
 export * from "./debounce.helper";
 export * from "./media-queries.helpers";
 export * from "./getScrollPosition.helper";
@@ -7,6 +8,6 @@ export * from "./row.helper";
 export * from "./with-memo.helper";
 export * from "./elevation.helper";
 export * from "./fluid-typography";
-import PrivateRoute from "./private-route";
 
+import PrivateRoute from "./private-route";
 export { PrivateRoute };
