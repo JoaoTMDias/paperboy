@@ -35,6 +35,7 @@ const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = (props
 	return (
 		<Anchor
 			id={`thumbnail--${id}`}
+			className="article-thumbnail"
 			to={NEWS_DETAIL_PAGE}
 			aria-labelledby={`thumbnail__title--${id}`}
 			data-testid="article-thumbnail"
@@ -55,15 +56,15 @@ const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = (props
 						placeholderColor="var(--color-gray6)"
 					/>
 				) : (
-					<LazyLoadingImage
-						className="thumbnail__image"
-						src={urlToImage}
-						width="100%"
-						height="100%"
-						alt={title}
-						placeholderColor="var(--color-gray4)"
-					/>
-				)}
+						<LazyLoadingImage
+							className="thumbnail__image"
+							src={urlToImage}
+							width="100%"
+							height="100%"
+							alt={title}
+							placeholderColor="var(--color-gray4)"
+						/>
+					)}
 				<Copy id={`thumbnail__copy--${id}`} className="thumbnail__copy" type={type} options={options}>
 					<h2 id={`thumbnail__title--${id}`} className="thumbnail__title">
 						{title}

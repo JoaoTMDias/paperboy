@@ -20,7 +20,7 @@ interface ITabProps extends IBasePageProps {
 	index: number;
 	name: string;
 	selected: boolean;
-	onSelect: (value: number) => void;
+	onSelect: (value: number, focusOnContent?: boolean) => void;
 }
 
 const Tab: React.FunctionComponent<ITabProps> = ({ id, index, name, selected, onSelect, location }) => {
@@ -33,12 +33,12 @@ const Tab: React.FunctionComponent<ITabProps> = ({ id, index, name, selected, on
 
 	function handleOnKeyUp(event: React.KeyboardEvent<HTMLButtonElement>) {
 		if (event.keyCode === KEY_CODES.ENTER || event.keyCode === KEY_CODES.SPACE) {
-			onSelect(index);
+			onSelect(index, selected);
 		}
 	}
 
 	function handleOnClick() {
-		onSelect(index);
+		onSelect(index, selected);
 	}
 
 	return (

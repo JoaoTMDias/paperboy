@@ -101,13 +101,10 @@ export const PanelWrapper = styled.div`
 
 		input[type="range"],
 		&__input {
-			-webkit-appearance: none;
+			appearance: none;
 			width: 100%;
 			margin: ${rem("13px")} 0;
 
-			&:focus {
-				outline: none;
-			}
 			&::-webkit-slider-runnable-track {
 				width: 100%;
 				height: ${rem("2px")};
@@ -128,9 +125,7 @@ export const PanelWrapper = styled.div`
 				-webkit-appearance: none;
 				margin-top: ${rem("-13px")};
 			}
-			&:focus::-webkit-slider-runnable-track {
-				background: var(--color-primary);
-			}
+
 			&::-moz-range-track {
 				width: 100%;
 				height: ${rem("2px")};
@@ -179,7 +174,14 @@ export const PanelWrapper = styled.div`
 				cursor: pointer;
 				height: 2px;
 			}
+
 			&:focus {
+				outline: none;
+
+				&::-webkit-slider-runnable-track {
+					background: var(--color-primary);
+				}
+
 				&::-ms-fill-lower {
 					background: var(--color-primary);
 				}

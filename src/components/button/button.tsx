@@ -7,7 +7,8 @@
  * (c) 2020 joaodias.me, No Rights Reserved.
  */
 
-import React from "react";
+import React, { forwardRef } from "react";
+import { ensuredForwardRef } from "react-use";
 import { withMemo } from "helpers/with-memo.helper";
 import { Button } from "./styles";
 import { IUIButtonProps } from "./types";
@@ -16,7 +17,7 @@ import { IUIButtonProps } from "./types";
  * @description Button: Primary
  * @extends {React.FC}
  */
-export const UIButton: React.FunctionComponent<IUIButtonProps> = ({
+export const UIButton = ensuredForwardRef(({
 	id,
 	type,
 	text,
@@ -24,10 +25,11 @@ export const UIButton: React.FunctionComponent<IUIButtonProps> = ({
 	disabled,
 	flavour,
 	onClick,
-}) => {
+}: IUIButtonProps, ref) => {
 	return (
 		<Button
 			id={id}
+			ref={ref}
 			data-testid="ui-button"
 			type={type}
 			aria-label={label}
@@ -39,7 +41,7 @@ export const UIButton: React.FunctionComponent<IUIButtonProps> = ({
 			{text}
 		</Button>
 	);
-};
+});
 
 UIButton.defaultProps = {
 	flavour: "primary",

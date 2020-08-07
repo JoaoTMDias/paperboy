@@ -7,7 +7,7 @@
  * (c) 2020 joaodias.me, No Rights Reserved.
  */
 
-import React, { useRef, useLayoutEffect, useState } from "react";
+import React, { useRef, useLayoutEffect, useState, useCallback } from "react";
 import { useSpring, config, animated } from "react-spring";
 import { INewsPageHeaderItems } from "data/interfaces";
 import Tab from "./tab";
@@ -16,7 +16,7 @@ import { Wrapper, List, TabIndicator } from "./styles";
 interface ITabListProps {
 	list: INewsPageHeaderItems[];
 	activeTab: number;
-	onSelect: (value: number) => void;
+	onSelect: (value: number, focusOnSelect?: boolean) => void;
 }
 
 interface ITabElementDimensions {
@@ -51,25 +51,25 @@ export const TabList: React.FunctionComponent<ITabListProps> = ({ list, activeTa
 	const Indicator = animated(TabIndicator);
 
 	useLayoutEffect(() => {
+		function getTabsSize() {
+			const elements = Array.from(document.querySelectorAll(".tab-list__item"));
+
+			const sizes: ITabElementDimensions[] = [];
+
+			elements.forEach((element) => {
+				const dimensions = element.getBoundingClientRect();
+				const value = {
+					left: dimensions.left,
+					width: dimensions.width,
+				};
+				sizes.push(value);
+			});
+
+			return sizes;
+		}
+
 		setTabElements(getTabsSize());
 	}, []);
-
-	function getTabsSize() {
-		const elements = Array.from(document.querySelectorAll(".tab-list__item"));
-
-		const sizes: ITabElementDimensions[] = [];
-
-		elements.forEach((element) => {
-			const dimensions = element.getBoundingClientRect();
-			const value = {
-				left: dimensions.left,
-				width: dimensions.width,
-			};
-			sizes.push(value);
-		});
-
-		return sizes;
-	}
 
 	function renderList() {
 		const items = list.map((item, index) => {

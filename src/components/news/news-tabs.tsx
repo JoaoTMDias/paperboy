@@ -69,15 +69,32 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, location }) => {
 		[setCurrentTab],
 	);
 
+	const setFocusOnFirstLink = useCallback(() => {
+		const activeTabContent: HTMLDivElement | null = document.querySelector("[aria-hidden='false']");
+
+		if (activeTabContent) {
+			const allThumbnails: HTMLAnchorElement[] | null = Array.from(activeTabContent.querySelectorAll("a.article-thumbnail"));
+			const firstLink = allThumbnails && allThumbnails.length > 0 ? allThumbnails[0] : null;
+
+			if (firstLink) {
+				firstLink.focus();
+			}
+		}
+	}, []);
+
 	/**
 	 * @description On Clicking on a Tab changes the Index
 	 * @memberof NewsTabs
 	 */
 	const handleOnClickToChangeTab = useCallback(
-		(value: number) => {
+		(value: number, focusOnSelect?: boolean) => {
 			setCurrentTab(value);
+
+			if (focusOnSelect) {
+				setFocusOnFirstLink();
+			}
 		},
-		[setCurrentTab],
+		[setCurrentTab, setFocusOnFirstLink],
 	);
 
 	/**

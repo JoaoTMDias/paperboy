@@ -224,7 +224,7 @@ export const Copy = styled.div`
 			letter-spacing: 0;
 			line-height: 1.4444;
 			margin-bottom: var(--global-margin);
-			max-height: calc(var(--number-of-lines) * var(--global-lineheight) * 1rem);
+			max-height: calc(var(--number-of-lines) * var(--global-lineheight) * 1.5rem);
 			overflow: hidden;
 			text-align: left;
 			text-overflow: -o-ellipsis-lastline;
@@ -290,8 +290,6 @@ export const Copy = styled.div`
 							color: var(--thumbnail-title-color);
 							line-height: 1.22222222;
 							margin-bottom: calc(var(--global-margin) * 1.5);
-
-							max-height: calc(var(--number-of-lines) * var(--global-lineheight) * 1rem);
 						}
 
 						&__metadata {
@@ -328,8 +326,6 @@ export const Copy = styled.div`
 							color: var(--thumbnail-title-color);
 							line-height: 1.22222222;
 							margin-bottom: calc(var(--global-margin) * 1.5);
-
-							max-height: calc(var(--number-of-lines) * var(--global-lineheight) * 1rem);
 						}
 
 						&__metadata {

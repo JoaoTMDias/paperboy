@@ -7,8 +7,9 @@
  * (c) 2020 joaodias.me, No Rights Reserved.
  */
 
-import React, { FunctionComponent, memo } from "react";
+import React, { FunctionComponent, memo, useRef, useCallback, useMemo } from "react";
 import { Formik, FieldArray, FieldArrayRenderProps } from "formik";
+import { useKeyPressEvent } from "react-use";
 import { IListOfCategorizedSources, IAllAvailableNewsSource, ChosenNewsSources } from "data/interfaces/index";
 import Top20EditorSuggestions from "data/dummy/news-sources-suggestions";
 import { filterSources } from "helpers/filter-sources";
@@ -32,6 +33,18 @@ interface IChooseSourcesForm {
 const MINIMUM_SELECTED = 3;
 
 const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({ error, loading, result, handleSubmitForm }) => {
+	const submitButtonRef = useRef<HTMLButtonElement>();
+
+	const setFocusOnSubmitButtonFn = useCallback(
+		() => {
+			if (submitButtonRef && submitButtonRef.current) {
+				submitButtonRef.current.focus();
+			}
+		},
+		[submitButtonRef]
+	);
+
+	useKeyPressEvent("Escape", setFocusOnSubmitButtonFn);
 	/**
 	 *
 	 *
@@ -185,6 +198,9 @@ const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({ error, loadi
 
 				return (
 					<form id="choose-sources-form" onSubmit={handleSubmit} className="modal-dialog__container">
+						{hasMinimum && (
+							<div className="sr-only" aria-live="polite" aria-atomic="true">Press Escape to set focus on the submit button</div>
+						)}
 						<Container fullwidth isFixed offsetTop="1rem">
 							{Top20EditorSuggestions && renderListOfSuggestedSources(Top20EditorSuggestions, values.list)}
 							{renderContent(values.list)}
@@ -192,6 +208,7 @@ const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({ error, loadi
 						<UICallToAction>
 							<UIButton
 								type="submit"
+								ref={submitButtonRef}
 								text={!isEnabled ? selectText : "Let's Go!"}
 								label="Click to set these as your news sources."
 								onClick={() => submitForm()}
