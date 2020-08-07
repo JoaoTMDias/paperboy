@@ -9,5 +9,5 @@
 
 import "@cypress/code-coverage/support";
 import "cypress-axe";
-
+import "@testing-library/cypress/add-commands";
 import "./commands";

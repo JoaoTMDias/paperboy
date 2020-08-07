@@ -10,7 +10,7 @@
 // Libraries
 import React, { memo, useCallback } from "react";
 import FormSwitch from "components/data-entry/forms/switch/form-switch.component";
-import KEY_CODES from 'helpers/key-codes';
+import KEY_CODES from "helpers/key-codes";
 import { Label } from "../styles";
 import { IListItemWithSwitchProps } from "../list-types";
 
@@ -28,7 +28,6 @@ export const ListItemWithSwitch: React.FunctionComponent<IListItemWithSwitchProp
 	defaultValue,
 	value,
 }) => {
-
 	const onKeyUp = useCallback(
 		(event: React.KeyboardEvent<HTMLInputElement>) => {
 			switch (event.keyCode) {
@@ -47,12 +46,7 @@ export const ListItemWithSwitch: React.FunctionComponent<IListItemWithSwitchProp
 	);
 
 	return (
-		<Label
-			htmlFor={`${id}-input`}
-			className="section-list__item__label"
-			onKeyUp={onKeyUp}
-			tabIndex={0}
-		>
+		<Label htmlFor={`${id}-input`} className="section-list__item__label" onKeyUp={onKeyUp} tabIndex={0}>
 			<div className="text">
 				<h3 className="text__title">{title}</h3>
 				{subtitle && <p className="text__subtitle">{subtitle}</p>}

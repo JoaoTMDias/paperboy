@@ -41,7 +41,7 @@ export const Container = styled.header`
 		position: relative;
 
 		#brand-logo {
-			--size: calc(var(--top-navigation-bar--height) * 0.6666666);
+			--size: calc(var(--top-navigation-bar--height) * 0.5);
 			width: var(--size);
 			height: var(--size);
 			border-radius: var(--size);
@@ -88,7 +88,7 @@ export const Container = styled.header`
 
 const SlideInTopBarLink = keyframes`
 	from {
-		transform: translateX(-3rem);
+		transform: translateX(-6rem);
 	}
 
 	to {
@@ -100,7 +100,7 @@ export const TopBarLink = styled(Link)`
 	--top-bar-link-background-color: transparent;
 	width: ${rem("44px")};
 	height: ${rem("44px")};
-	transform: translateX(-3rem);
+	transform: translateX(-6rem);
 	background-color: transparent;
 	animation-name: ${SlideInTopBarLink};
 	animation-duration: 500ms;

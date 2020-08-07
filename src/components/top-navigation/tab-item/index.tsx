@@ -21,10 +21,23 @@ import { Wrapper, TabLink, Icon, Label } from "./styles";
 export const TabItem: React.FunctionComponent<ITabItemProps> = (props) => {
 	const { to, label, layout, children } = props;
 
+	const testId = `tab-link-${label.toLowerCase()}`;
+
 	return (
-		<Wrapper to={to} label={label} layout={layout}>
-			<TabLink to={to} activeClassName="is-active" aria-label={`Go to ${label} page`} layout={layout} label={label}>
-				{children && <Icon className="tab__icon">{children}</Icon>}
+		<Wrapper to={to} data-testid="tab-item" label={label} layout={layout}>
+			<TabLink
+				to={to}
+				data-testid={testId}
+				activeClassName="is-active"
+				aria-label={`Visit ${label} page`}
+				layout={layout}
+				label={label}
+			>
+				{children && (
+					<Icon className="tab__icon" aria-hidden>
+						{children}
+					</Icon>
+				)}
 				<Label className="label">{label}</Label>
 			</TabLink>
 		</Wrapper>

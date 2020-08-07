@@ -27,12 +27,17 @@ const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = (props
 	const { title, urlToImage, source, publishedAt } = options;
 	const timestamp = Date.parse(publishedAt);
 	const time = `${formatDistanceToNow(timestamp)} ago`;
+	const logo = {
+		src: `/logos/${source.id}.png`,
+		alt: `${source.name} logo`,
+	};
 
 	return (
 		<Anchor
 			id={`thumbnail--${id}`}
 			to={NEWS_DETAIL_PAGE}
 			aria-labelledby={`thumbnail__title--${id}`}
+			data-testid="article-thumbnail"
 			type={type}
 			options={options}
 			state={{
@@ -64,7 +69,18 @@ const ArticleThumbnail: React.FunctionComponent<IArticleThumbnailProps> = (props
 						{title}
 					</h2>
 					<div className="thumbnail__metadata">
-						<h3 className="thumbnail__metadata__source">{source.name}</h3>
+						<div className="thumbnail__metadata__source">
+							<LazyLoadingImage
+								className="thumbnail__metadata__logo"
+								src={logo.src}
+								width="16"
+								height="16"
+								alt={logo.alt}
+								placeholderColor="var(--color-gray4)"
+							/>
+							<p className="thumbnail__metadata__name">{source.name}</p>
+						</div>
+
 						<time className="thumbnail__metadata__time">{time}</time>
 					</div>
 				</Copy>

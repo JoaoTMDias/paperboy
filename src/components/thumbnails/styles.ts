@@ -239,18 +239,38 @@ export const Copy = styled.div`
 			align-items: center;
 			opacity: 0.8;
 
-			&__source,
+			&__name,
 			&__time {
 				color: var(--color-white);
 				${fluidFontSize(11, "1.5vw", 13)};
 				letter-spacing: ${rem("0.25px")};
 			}
 
-			&__source {
+			&__name {
 				font-family: var(--heading-font-family);
 				letter-spacing: 0;
 				margin-bottom: 0;
 				text-transform: uppercase;
+			}
+
+			&__source {
+				width: auto;
+				text-transform: uppercase;
+				display: flex;
+				flex-direction: row;
+				justify-content: flex-start;
+				align-items: center;
+			}
+
+			&__logo {
+				--logo-size: var(--global-margin);
+				width: var(--logo-size);
+				height: var(--logo-size);
+				border-radius: var(--logo-size);
+				margin-top: 0;
+				margin-right: calc(var(--logo-size) * 0.5);
+				margin-bottom: 0;
+				margin-left: 0;
 			}
 
 			&__time {
@@ -280,14 +300,14 @@ export const Copy = styled.div`
 							align-items: flex-start;
 							opacity: 1;
 
-							&__source,
+							&__name,
 							&__time {
 								color: var(--thumbnail-subtitle);
 								font-size: ${rem("10px")};
 								letter-spacing: ${rem("0.25px")};
 							}
 
-							&__source {
+							&__name {
 								width: 100%;
 								text-transform: uppercase;
 							}
@@ -318,14 +338,14 @@ export const Copy = styled.div`
 							align-items: flex-start;
 							opacity: 1;
 
-							&__source,
+							&__name,
 							&__time {
 								color: var(--thumbnail-subtitle);
 								${fluidFontSize(10, "1.5vw", 12)};
 								letter-spacing: ${rem("0.25px")};
 							}
 
-							&__source {
+							&__name {
 								width: 100%;
 								text-transform: uppercase;
 							}

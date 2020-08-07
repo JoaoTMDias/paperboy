@@ -14,10 +14,6 @@ $golden-ratio: 1.61803398875;
 $ratio: $golden-ratio;
 $viewport-unit: 1vh;
 
-// 1. Global
-// ---------
-$top-navigation-bar-height: rem-calc(48);
-
 // 2. Breakpoints
 // --------------
 $breakpoint-medium: rem-calc(640);
@@ -97,14 +93,15 @@ $ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
 $default-timing-function: $ease-in-out-circ;
 
+// 1. Global
+// ---------
+$top-navigation-bar-height: rem-calc(48);
 // Page Tabs
 // ------------------
 $tabs-background: $color-white;
 
-$tabs-container-height: calc(
-	var(--viewport-height) - (var(--bottom-navigation-bar-height) + #{$top-navigation-bar-height})
-);
-$tabs-header-bottom: 1px solid #b2b2b2;
+$tabs-container-height: calc(var(--viewport-height) - var(--top-navigation-bar-height, #{$top-navigation-bar-height}));
+$tabs-header-bottom: 1px solid $color-gray4;
 $tabs-header-position: sticky;
 $tabs-header-position-scrolling: fixed;
 $tabs-header-indicator: $color-primary;

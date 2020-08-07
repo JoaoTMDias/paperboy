@@ -10,7 +10,7 @@
 /* eslint-disable jest/expect-expect */
 /// <reference types="cypress" />
 /// <reference types="../support/index" />
-import BASE_PREFERENCES_STORAGE from "../fixtures/localstorage-paperboy-persist.json";
+import BASE_PREFERENCES_STORAGE from "../fixtures/localstorage-paperboy-news.json";
 import CATEGORIZED_SOURCES from "../fixtures/categorized-sources.json";
 import SOURCE from "../selectors/choose-sources";
 
@@ -24,7 +24,7 @@ import SOURCE from "../selectors/choose-sources";
  */
 const categorized = CATEGORIZED_SOURCES;
 
-const NEWS_URL = Cypress.config().baseUrl;
+const ROOT_URL = Cypress.config().baseUrl;
 
 describe("onboarding", () => {
 	beforeEach(() => {
@@ -43,16 +43,16 @@ describe("onboarding", () => {
 	describe("no preferences", () => {
 		it("should render the welcome page by default", () => {
 			// Step 1 - URL should be the root
-			cy.url().should("be", Cypress.config().baseUrl);
+			cy.url().should("be", ROOT_URL);
 
 			// Step 2 - Should have the expected text
 			cy.title().should("eq", "Welcome");
 
 			// Step 3 - Should have the expected text
-			cy.getByTestId("ui-subtitle-title").contains("Welcome!");
-			cy.getByTestId("ui-display-title").contains("Paperboy");
-			cy.getByTestId("ui-lead-title").should("exist");
-			cy.getByTestId("ui-anchor")
+			cy.findByTestId("ui-subtitle-title").contains("Welcome!");
+			cy.findByTestId("ui-display-title").contains("Paperboy");
+			cy.findByTestId("ui-lead-title").should("exist");
+			cy.findByTestId("ui-anchor")
 				.contains("Choose your favorite sources")
 				.invoke("attr", "aria-disabled")
 				.should("be", false);
@@ -65,7 +65,7 @@ describe("onboarding", () => {
 			});
 
 			// Step 2 - URL should be the root
-			cy.url().should("be", NEWS_URL);
+			cy.url().should("be", ROOT_URL);
 		});
 
 		it("should render the dark mode by default", () => {
@@ -79,9 +79,9 @@ describe("onboarding", () => {
 
 	describe("choose sources", () => {
 		beforeEach(() => {
-			cy.getByTestId("ui-anchor").click();
+			cy.findByTestId("ui-anchor").click();
 			cy.wait("@getAllAvailableSources");
-			cy.getByTestId("ui-button").as("submit-button");
+			cy.findByTestId("ui-button").as("submit-button");
 		});
 
 		describe("render", () => {
@@ -150,8 +150,8 @@ describe("onboarding", () => {
 
 			it("should render the sources sections", () => {
 				// 1- Check that the amount of sources equals the data
-				cy.getByTestId("all-sources-sections")
-					.getByTestId("section-wrapper")
+				cy.findByTestId("all-sources-sections")
+					.findByTestId("section-wrapper")
 					.should("have.length", categorized.data.length);
 
 				// 2- For each category
@@ -216,6 +216,28 @@ describe("onboarding", () => {
 				// Step 5 - Toggle Fox News and verify submit button has been enabled
 				cy.toggleSource(SOURCE.CARD.LABEL, "fox-news").getSourceCheckStatus(SOURCE.CARD.INPUT, "cnn", "fox-news");
 				cy.get("@submit-button").should("have.attr", "type", "submit").and("be.enabled").and("have.text", "Let's Go!");
+			});
+
+			it.only("should save preferences and go to the news page", () => {
+				// Step 1 - Toggle BBC, CNN, Fox News, Ars Technica and BBC Sport
+				cy.toggleSource(SOURCE.CARD.LABEL, "cnn").getSourceCheckStatus(SOURCE.CARD.INPUT, "cnn", "checked");
+				cy.toggleSource(SOURCE.CARD.LABEL, "bbc-news").getSourceCheckStatus(SOURCE.CARD.INPUT, "bbc-news", "checked");
+				cy.toggleSource(SOURCE.CARD.LABEL, "fox-news").getSourceCheckStatus(SOURCE.CARD.INPUT, "fox-news", "checked");
+				cy.toggleSource(SOURCE.ITEM.LABEL, "ars-technica").getSourceCheckStatus(
+					SOURCE.ITEM.INPUT,
+					"ars-technica",
+					"checked",
+				);
+				cy.toggleSource(SOURCE.ITEM.LABEL, "bbc-sport").getSourceCheckStatus(SOURCE.ITEM.INPUT, "bbc-sport", "checked");
+				cy.get("@submit-button")
+					.click()
+					.then(() => {
+						const preferences = JSON.parse(localStorage.getItem("preferences"));
+
+						cy.url().should("be", ROOT_URL);
+
+						expect(preferences.chosenSources).not.to.be.null;
+					});
 			});
 		});
 	});

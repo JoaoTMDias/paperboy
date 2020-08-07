@@ -14,9 +14,8 @@ import { above } from "helpers/index.helpers";
 export const List = styled.ul`
 	position: relative;
 	min-width: 100vw;
-	height: calc(var(--viewport-height, 100vh) - var(--bottom-navigation-bar-height, 3.5rem));
-	overflow: auto;
-	will-change: transform;
+	height: var(--tabs-container-height);
+	overflow: scroll;
 	list-style-type: none;
 	margin: 0;
 	padding-top: 0;

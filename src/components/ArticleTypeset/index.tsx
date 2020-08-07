@@ -10,8 +10,9 @@
 // Libraries
 import React, { FunctionComponent, useRef, useEffect, useCallback, useContext } from "react";
 import { IconChangeTypeSize, EIconChangeTypeSize, IconClose } from "components/icons/index";
-import { useVibrate, useToggle } from "react-use";
+import { useVibrate, useToggle, useMount } from "react-use";
 import { VIBRATION_PATTERNS } from "data/constants/index.constants";
+import holdOn from "helpers/hold-on";
 import * as S from "./styles";
 import PreferencesContext from "../../containers/preferences/context";
 import { IArticleTypesetProps } from "./types";
@@ -24,17 +25,18 @@ import { IArticleTypesetProps } from "./types";
  */
 export const ArticleTypeset: FunctionComponent<IArticleTypesetProps> = ({ close }) => {
 	const [vibrating, toggleVibrating] = useToggle(false);
-	const { current: ref } = useRef<HTMLElement>(null);
+	const ref = useRef<HTMLHeadingElement>();
 	const { current: htmlElement } = useRef(document.documentElement);
 	const { baseFontRatio, setBaseFontRatio } = useContext(PreferencesContext);
 
 	useVibrate(vibrating, VIBRATION_PATTERNS.CLOSE_MODAL, false);
 
-	useEffect(() => {
-		if (ref) {
-			return ref.focus();
+	useMount(async () => {
+		await holdOn(500);
+		if (ref && ref.current) {
+			ref.current.focus();
 		}
-	}, []);
+	});
 
 	/**
 	 * @description Updates the Root Element with a new font size value
@@ -74,7 +76,7 @@ export const ArticleTypeset: FunctionComponent<IArticleTypesetProps> = ({ close 
 	return (
 		<S.PanelWrapper id="article-typeset" className="article-typeset">
 			<header className="article-typeset__header">
-				<h4 ref={ref} className="article-typeset__title">
+				<h4 ref={ref} className="article-typeset__title" tabIndex={-1}>
 					Change font size
 				</h4>
 			</header>

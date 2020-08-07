@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /*
  * This file is open-source. This means that it can be reproduced in whole
  * or in part, stored in a retrieval system transmitted in any form, or by
@@ -29,27 +30,23 @@ Cypress.Commands.add(
 
 		if (parameters.preferences) {
 			cy.log("4a-Setting mocked preferences in local storage");
-			window.localStorage.setItem("persist:paperboy-persist", JSON.stringify(parameters.preferences));
+			window.localStorage.setItem("preferences", JSON.stringify(parameters.preferences));
 		}
 
 		cy.log("5-Ending setup");
 	},
 );
 
-Cypress.Commands.add("getByTestId", (id) => {
-	cy.get(`[data-testid="${id}"]`);
-});
-
 Cypress.Commands.add("getByAttr", (attribute, value) => {
 	cy.get(`[${attribute}="${value}"]`);
 });
 
 Cypress.Commands.add("getAnnouncerText", (message) => {
-	cy.getByTestId("component-announcer").contains(message);
+	cy.findByTestId("component-announcer").contains(message);
 });
 
 Cypress.Commands.add("getSource", (element, value) => {
-	cy.getByTestId(`${element}-${value}`);
+	cy.findByTestId(`${element}-${value}`);
 });
 
 Cypress.Commands.add("toggleSource", (element, value) => {
@@ -58,4 +55,12 @@ Cypress.Commands.add("toggleSource", (element, value) => {
 
 Cypress.Commands.add("getSourceCheckStatus", (element, value, status) => {
 	cy.getSource(element, value).should("be", status);
+});
+
+Cypress.Commands.add("getBottomBarLink", (label) => {
+	cy.findByTestId(label);
+});
+
+Cypress.Commands.add("navigateWithBottomBar", (label) => {
+	cy.getBottomBarLink(label).click();
 });

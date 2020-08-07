@@ -32,7 +32,6 @@ const TopNavigationWithClose: FunctionComponent<ITopNavigationWithCloseProps> = 
 	}, []);
 
 	const to = prevPath || NEWS_PAGE;
-	
 
 	const src = source ? `/logos/${source}.png` : null;
 

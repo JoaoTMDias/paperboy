@@ -1,0 +1,206 @@
+{
+	"status": "ok",
+	"totalResults": 58,
+	"articles": [
+		{
+			"source": { "id": "cnn", "name": "CNN" },
+			"author": null,
+			"title": "Hear Trump's response when asked what mistakes he's made - CNN Video",
+			"description": "President Donald Trump said an interview with Geraldo Rivera that he has made no mistakes with the handling of the coronavirus pandemic. CNN's Erin Burnett discusses.",
+			"url": "http://us.cnn.com/videos/politics/2020/08/06/trump-coronavirus-mistakes-burnett-monologue-ebof-vpx.cnn",
+			"urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/200806194341-erin-burnett-monologue-08062020-super-tease.jpg",
+			"publishedAt": "2020-08-07T11:22:43.9613416Z",
+			"content": "Chat with us in Facebook Messenger. Find out what's happening in the world as it unfolds."
+		},
+		{
+			"source": { "id": "cnn", "name": "CNN" },
+			"author": "Maggie Fox, CNN",
+			"title": "Coronavirus shutdown causes new risk at CDC: Legionnaire's disease",
+			"description": "The US Centers for Disease Control and Prevention says it has closed several buildings it leases in Atlanta because Legionella bacteria have been found in their water systems -- bacteria that likely grew because of the prolonged pandemic shutdown.",
+			"url": "http://us.cnn.com/2020/08/07/health/coronavirus-legionnaires-water-cdc/index.html",
+			"urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/200626111145-cdc-super-tease.jpg",
+			"publishedAt": "2020-08-07T11:08:25Z",
+			"content": "(CNN)The US Centers for Disease Control and Prevention says it has closed several buildings it leases in Atlanta because Legionella bacteria have been found in their water systems -- bacteria that li… [+3984 chars]"
+		},
+		{
+			"source": { "id": "ars-technica", "name": "Ars Technica" },
+			"author": "Eric Berger",
+			"title": "Rocket Report: South Korea’s SpaceX dilemma, Rocket Lab finds a quick fix",
+			"description": "\"We would then plan to fly Sir Richard Branson on the third powered flight.\"",
+			"url": "https://arstechnica.com/science/2020/08/rocket-report-virgin-galactic-delays-commercial-flights-electron-beefs-up/",
+			"urlToImage": "https://cdn.arstechnica.net/wp-content/uploads/2020/08/A6F9FE77-5F63-4839-8C62-F032A84C6BC7-scaled-1-760x380.jpeg",
+			"publishedAt": "2020-08-07T11:00:44+00:00",
+			"content": "Enlarge/ An overview of Astra's picturesque launch site for Rocket 3.1.\r\n0 with 0 posters participating\r\nWelcome to Edition 3.11 of the Rocket Report! A lot of the most interesting news this week cam… [+11560 chars]"
+		},
+		{
+			"source": { "id": "fox-news", "name": "Fox News" },
+			"author": "Fox News",
+			"title": "New York City power outage reported in Manhattan",
+			"description": "Power outages were reported in at least two sections of Manhattan in New York City early Friday, according to reports.",
+			"url": "https://www.foxnews.com/us/new-york-city-power-outage-reported-in-manhattan",
+			"urlToImage": "https://static.foxnews.com/foxnews.com/content/uploads/2020/08/08_IMG_1757_lightning01_08032020-1.jpg",
+			"publishedAt": "2020-08-07T10:52:18.8108358Z",
+			"content": "Where were you when the lights went out?\r\nPower outages were reported in at least two sections of Manhattan in New York City early Friday, according to reports.\r\nElectricity appeared to be out in the… [+735 chars]"
+		},
+		{
+			"source": { "id": "ars-technica", "name": "Ars Technica" },
+			"author": "Sam Machkovech",
+			"title": "Fall Guys review: A perfect amount of cheap, stupid fun with online friends",
+			"description": "Solo grind is frustrating; bring friends for a marked improvement.",
+			"url": "https://arstechnica.com/gaming/2020/08/fall-guys-review-a-perfect-amount-of-cheap-stupid-fun-with-online-friends/",
+			"urlToImage": "https://cdn.arstechnica.net/wp-content/uploads/2020/08/Fall_Guys_Gameplay_Trailer_002_v001_Comp-3_2020-04-29_17.10.13-760x380.png",
+			"publishedAt": "2020-08-07T10:45:32+00:00",
+			"content": "Enlarge/ Try not to get whacked on your way to this race's finish line.\r\n1 with 1 posters participating\r\nHave you been looking for a good online multiplayer game that's accessible to anyone who can u… [+9118 chars]"
+		},
+		{
+			"source": { "id": "bbc-sport", "name": "BBC Sport" },
+			"author": "BBC Sport",
+			"title": "Aberdeen's game with St Johnstone off after two positive tests",
+			"description": "Aberdeen's Scottish Premiership match against St Johnstone has been postponed after two of their players tested positive for Covid-19, with a further six self-isolating.",
+			"url": "http://www.bbc.co.uk/sport/football/53694742",
+			"urlToImage": "https://ichef.bbci.co.uk/onesport/cps/624/cpsprodpb/13590/production/_97584297_breaking_news.png",
+			"publishedAt": "2020-08-07T10:32:35Z",
+			"content": "Aberdeen's Scottish Premiership match away to St Johnstone has been postponed after two of the visitors' players tested positive for Covid-19.\r\nSix other players from the Pittodrie club have been for… [+751 chars]"
+		},
+		{
+			"source": { "id": "bbc-news", "name": "BBC News" },
+			"author": "BBC News",
+			"title": "Coronavirus: Africa cases top one million",
+			"description": "South Africa accounts for more than half the cases, but the true extent of the pandemic is not known.",
+			"url": "http://www.bbc.co.uk/news/live/world-53690437",
+			"urlToImage": "https://m.files.bbci.co.uk/modules/bbc-morph-news-waf-page-meta/4.1.3/bbc_news_logo.png",
+			"publishedAt": "2020-08-07T10:22:33.4390365Z",
+			"content": "It is going to be sweltering.\r\nYou don't really need the TV weather maps turning red to realise that much of the UK is going to be roasting in temperatures above 30C. But as you slip on your favourit… [+1270 chars]"
+		},
+		{
+			"source": { "id": "google-news", "name": "Google News" },
+			"author": "Ryan Browne",
+			"title": "TikTok threatens legal action against Trump's executive order, saying it sets a 'dangerous precedent'",
+			"description": "President Donald Trump issued an executive order Thursday that would ban the Chinese social media app from doing business with U.S. firms.",
+			"url": "https://www.cnbc.com/2020/08/07/tiktok-threatens-legal-action-against-trumps-executive-order.html",
+			"urlToImage": "https://image.cnbcfm.com/api/v1/image/106652390-15967369242020-08-06t173002z_56694742_rc2h8i9wjtdf_rtrmadp_0_usa-tiktok-senate.jpeg?v=1596736954",
+			"publishedAt": "2020-08-07T10:12:00+00:00",
+			"content": "TikTok threatened legal action against an executive order issued by President Donald Trump Thursday that would ban the Chinese social media app from doing business with U.S. firms.\r\nThe app has been … [+2482 chars]"
+		},
+		{
+			"source": { "id": "google-news", "name": "Google News" },
+			"author": "NBC 4 New York",
+			"title": "Massive Power Outage Briefly Knocks Out Northern Manhattan, Delaying Trains",
+			"description": "A massive power outage was reported Friday morning in the upper part of Manhattan, knocking out not only lights but also cellphone service.",
+			"url": "https://www.cnbc.com/2020/08/07/massive-power-outage-reported-in-manhattan-delaying-train-services.html",
+			"urlToImage": "https://image.cnbcfm.com/api/v1/image/106572839-1591816965108commute.jpg?v=1591816982",
+			"publishedAt": "2020-08-07T10:03:00+00:00",
+			"content": "A massive power outage was reported Friday morning in the upper part of Manhattan, knocking out not only lights but also cellphone service.\r\nA Con Edison spokesperson tells NBC it is investigating th… [+1056 chars]"
+		},
+		{
+			"source": { "id": "bbc-news", "name": "BBC News" },
+			"author": "BBC News",
+			"title": "The Matrix is a 'trans metaphor', director says",
+			"description": "Lilly Wachowski, who came out as trans in 2016, says the \"world wasn't quite ready\" in 1999.",
+			"url": "http://www.bbc.co.uk/news/newsbeat-53692435",
+			"urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/7A20/production/_113846213_lilly.jpg",
+			"publishedAt": "2020-08-07T10:02:50Z",
+			"content": "Image copyrightGetty ImagesImage caption\r\n Lilly accepts the oustanding series GLAAD Award for Sense8 in 2016\r\nThe Matrix films are about being transgender, the trilogy's co-director says. \r\n\"That wa… [+3349 chars]"
+		},
+		{
+			"source": { "id": "cnn", "name": "CNN" },
+			"author": "Madeline Holcombe, CNN",
+			"title": "Coronavirus infections among younger populations are skyrocketing, WHO says",
+			"description": "The Covid-19 pandemic is moving into younger populations, health experts said Thursday, with cases skyrocketing among children, teens and young adults.",
+			"url": "http://us.cnn.com/2020/08/07/health/us-coronavirus-friday/index.html",
+			"urlToImage": "https://cdn.cnn.com/cnnnext/dam/assets/200807033318-us-coronavirus-friday-0801-restricted-super-tease.jpg",
+			"publishedAt": "2020-08-07T09:49:33Z",
+			"content": "(CNN)The Covid-19 pandemic is moving into younger populations, health experts said Thursday, with cases skyrocketing among children, teens and young adults.\r\nEarly in the outbreak, health experts str… [+6006 chars]"
+		},
+		{
+			"source": { "id": "bbc-sport", "name": "BBC Sport" },
+			"author": "BBC Sport",
+			"title": "Racing Point fined and docked points",
+			"description": "The Racing Point team are docked points and fined for illegally copying parts of last year's Mercedes Formula 1 car.",
+			"url": "http://www.bbc.co.uk/sport/formula1/53693249",
+			"urlToImage": "https://ichef.bbci.co.uk/live-experience/cps/624/cpsprodpb/13590/production/_97584297_breaking_news.png",
+			"publishedAt": "2020-08-07T09:37:39.9381263Z",
+			"content": "Racing Point have been docked points and fined 400,000 euros (£361,000) for illegally copying parts of last year's Mercedes car.\r\nThe ruling came following a protest by Renault against the 2020 Racin… [+2493 chars]"
+		},
+		{
+			"source": { "id": "bbc-sport", "name": "BBC Sport" },
+			"author": "BBC Sport",
+			"title": "Formula 1 70th Anniversary Grand Prix: first and second practice - radio & text",
+			"description": "Follow live text updates and BBC Radio 5 Live Sports Extra commentary from first and second practice at the 70th Anniversary Grand Prix.",
+			"url": "http://www.bbc.co.uk/sport/live/formula1/52891708",
+			"urlToImage": "https:////m.files.bbci.co.uk/modules/bbc-morph-sport-seo-meta/1.18.0/images/bbc-sport-logo.png",
+			"publishedAt": "2020-08-07T09:37:38.4072566Z",
+			"content": "Lewis Hamilton took an extraordinary victory in a dramatic finish to the British Grand Prix despite suffering a puncture on the last lap.\r\nThe Mercedes driver's left-front tyre failed halfway around … [+724 chars]"
+		},
+		{
+			"source": { "id": "bbc-sport", "name": "BBC Sport" },
+			"author": "BBC Sport",
+			"title": "Pope & Buttler attempt to steady England against Pakistan - clips, radio & text",
+			"description": "Day three of the first Test between England and Pakistan at Emirates Old Trafford - follow in-play clips, TMS commentary and text coverage.",
+			"url": "http://www.bbc.co.uk/sport/live/cricket/51416151",
+			"urlToImage": "https:////m.files.bbci.co.uk/modules/bbc-morph-sport-seo-meta/1.18.0/images/bbc-sport-logo.png",
+			"publishedAt": "2020-08-07T09:37:28.1285645Z",
+			"content": "Everyone's in a cracking mood today - the bloke in my local Co-op was very keen to chat about the cricket when I nipped in for some orange juice this morning.\r\nHe reckons Jos Buttler's going to ton u… [+62 chars]"
+		},
+		{
+			"source": { "id": "bbc-news", "name": "BBC News" },
+			"author": "BBC News",
+			"title": "Beirut explosion: Anger grows and protests break out",
+			"description": "Protesters clashed with Lebanese security forces at anti-government demonstrations on Thursday.",
+			"url": "http://www.bbc.co.uk/news/live/world-middle-east-53690582",
+			"urlToImage": "https://m.files.bbci.co.uk/modules/bbc-morph-news-waf-page-meta/4.1.3/bbc_news_logo.png",
+			"publishedAt": "2020-08-07T09:37:27.987974Z",
+			"content": "Video content\r\nVideo caption: Beirut: The bride being photographed in wedding dress as blast hitBeirut: The bride being photographed in wedding dress as blast hit\r\nBeirut is a place I feel nostalgic … [+1144 chars]"
+		},
+		{
+			"source": { "id": "fox-news", "name": "Fox News" },
+			"author": "Fox News",
+			"title": "Athletics' Ryan Christenson caught performing apparent Nazi salute, apologizes: 'What I did is unacceptable'",
+			"description": "Oakland Athletics bench coach Ryan Christenson came under fire Thursday night for raising his arm during a postgame celebration in what looked like a Nazi salute.",
+			"url": "https://www.foxnews.com/sports/athletics-ryan-christenson-apparent-nazi-salute-apologizes",
+			"urlToImage": "https://static.foxnews.com/foxnews.com/content/uploads/2020/08/Oakland-Athletics.jpg",
+			"publishedAt": "2020-08-07T09:37:20.1617965Z",
+			"content": "Oakland Athletics bench coach Ryan Christenson came under fire Thursday night for raising his arm during a postgame celebration in what looked like a Nazi salute.\r\nHe made the apparent gesture while … [+1475 chars]"
+		},
+		{
+			"source": { "id": "bbc-news", "name": "BBC News" },
+			"author": "BBC News",
+			"title": "Cheeky boar leaves nudist grunting in laptop chase",
+			"description": "Photos of a naked Berlin man chasing a wild boar to get his stolen laptop back go viral.",
+			"url": "http://www.bbc.co.uk/news/world-europe-53692475",
+			"urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/8056/production/_113845823_mediaitem113845821.jpg",
+			"publishedAt": "2020-08-07T09:33:34Z",
+			"content": "Image copyrightAFP\r\nA nudist in Berlin got too close to nature for comfort when a wild boar snatched his plastic bag - which had his laptop inside.\r\nThe naked man gave chase to the boar and her two p… [+1118 chars]"
+		},
+		{
+			"source": { "id": "fox-news", "name": "Fox News" },
+			"author": "Fox News",
+			"title": "Tucker: America was a very different country 7 months ago",
+			"description": "U.S. leaders taking cues from communist China.",
+			"url": "https://video.foxnews.com/v/6179015911001/",
+			"urlToImage": "https://cf-images.us-east-1.prod.boltdns.net/v1/static/694940094001/3485d507-90b4-4478-a98f-53338d7958a0/acf0caf3-884a-4ec3-85c2-a565dc1fe658/1280x720/match/image.jpg",
+			"publishedAt": "2020-08-07T09:22:15.2570271Z",
+			"content": null
+		},
+		{
+			"source": { "id": "fox-news", "name": "Fox News" },
+			"author": "Fox News",
+			"title": "Ingraham: Gunning for your rights",
+			"description": "New York attorney general goes after NRA.",
+			"url": "https://video.foxnews.com/v/6179036338001/",
+			"urlToImage": "https://cf-images.us-east-1.prod.boltdns.net/v1/static/694940094001/589e1ea9-6c6d-4df9-8a4e-3070176e4494/2661eb59-1ee6-45a3-8f5c-cacca4ac923d/1280x720/match/image.jpg",
+			"publishedAt": "2020-08-07T09:22:14.663425Z",
+			"content": null
+		},
+		{
+			"source": { "id": "bbc-sport", "name": "BBC Sport" },
+			"author": "BBC Sport",
+			"title": "Scottish Premiership build-up & reaction to Aberdeen positive tests",
+			"description": "All the build-up to the weekend's Scottish Premiership action, with four games on Saturday and two on Sunday.",
+			"url": "http://www.bbc.co.uk/sport/live/football/53683597",
+			"urlToImage": "https:////m.files.bbci.co.uk/modules/bbc-morph-sport-seo-meta/1.18.0/images/bbc-sport-logo.png",
+			"publishedAt": "2020-08-07T09:07:26.1167644Z",
+			"content": "After five months without a ball being kicked, Scottish football made it's long awaited return last weekend, and as we're just as excited about week two, we're here with another wedge of Friday build… [+151 chars]"
+		}
+	]
+}

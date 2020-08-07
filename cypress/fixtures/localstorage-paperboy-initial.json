@@ -1,4 +1,7 @@
 {
-	"preferences": "{\"type\":null,\"chosenSources\":{\"quantity\":0,\"items\":{\"latest\":[],\"tabs\":[]}},\"saved\":[],\"authenticated\":false,\"baseFontRatio\":1,\"theme\":\"DARK\"}",
-	"_persist": "{\"version\":-1,\"rehydrated\":true}"
+	"authenticated": false,
+	"saved": [],
+	"baseFontRatio": 1,
+	"chosenSources": null,
+	"theme": "DARK"
 }

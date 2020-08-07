@@ -8,12 +8,13 @@
  */
 
 // Libraries
-import React, { useCallback } from "react";
-import { useVibrate, useToggle } from "react-use";
+import React, { useCallback, useRef } from "react";
+import { useVibrate, useToggle, useMount } from "react-use";
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from "react-share";
 import { INewsArticleItem } from "data/interfaces/news";
 import { IconFacebook, IconWhatsapp, IconTwitter, IconSMS, IconClose } from "components/icons/index";
 import { VIBRATION_PATTERNS } from "data/constants/index.constants";
+import holdOn from "helpers/hold-on";
 import { ShareSheet } from "./styles";
 
 // Interface
@@ -33,8 +34,16 @@ interface IShareSheetPortalProps {
  */
 export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> = ({ articleData, close }) => {
 	const [vibrating, toggleVibrating] = useToggle(false);
+	const ref = useRef<HTMLHeadingElement>();
 
 	useVibrate(vibrating, VIBRATION_PATTERNS.CLOSE_MODAL, false);
+
+	useMount(async () => {
+		await holdOn(500);
+		if (ref && ref.current) {
+			ref.current.focus();
+		}
+	});
 
 	const handleClickOnButton = useCallback(() => {
 		toggleVibrating();
@@ -47,7 +56,9 @@ export const ShareSheetPortal: React.FunctionComponent<IShareSheetPortalProps> =
 		const sms = `sms:?&body=${message}`;
 		return (
 			<ShareSheet className="share-sheet" data-testid="share-sheet">
-				<h3 className="share-sheet__title">Share this article</h3>
+				<h4 ref={ref} className="share-sheet__title" tabIndex={-1}>
+					Share this article
+				</h4>
 				<ul className="share-sheet__list">
 					<li className="share-sheet__option">
 						<FacebookShareButton url={url} quote={message}>

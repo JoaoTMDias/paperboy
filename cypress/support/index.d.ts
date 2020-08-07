@@ -23,12 +23,13 @@ interface ISetupUI {
 declare namespace Cypress {
 	interface Chainable<Subject> {
 		setupUI(params: ISetupUI): Chainable<any>;
-		getByTestId(id: string): Chainable<any>;
 		getByAttr(attribute: string, value: string): Chainable<any>;
 		getAnnouncerText(message: string): Chainable<any>;
 		mockSetupPreferences(): Chainable<any>;
 		getSource(element: string, value: string): Chainable<any>;
 		getSourceCheckStatus(element: string, value: string, status: "checked" | "unchecked"): Chainable<any>;
 		toggleSource(element: string, value: string): Chainable<any>;
+		getBottomBarLink(label: string): Chainable<any>;
+		navigateWithBottomBar(label: string): Chainable<any>;
 	}
 }

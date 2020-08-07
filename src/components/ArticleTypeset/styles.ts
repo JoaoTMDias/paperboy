@@ -78,8 +78,10 @@ export const PanelWrapper = styled.div`
 			margin: 0;
 			padding: 0;
 
-			&::focus-within {
+			&:focus-within {
 				outline-color: var(--color-primary);
+				outline-width: 1px;
+				outline-style: solid;
 			}
 		}
 
@@ -103,7 +105,7 @@ export const PanelWrapper = styled.div`
 			width: 100%;
 			margin: ${rem("13px")} 0;
 
-			&:hover &:focus {
+			&:focus {
 				outline: none;
 			}
 			&::-webkit-slider-runnable-track {

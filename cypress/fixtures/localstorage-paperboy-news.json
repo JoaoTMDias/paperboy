@@ -1,0 +1,26 @@
+{
+	"authenticated": true,
+	"saved": [],
+	"baseFontRatio": 1,
+	"chosenSources": {
+		"quantity": 3,
+		"items": {
+			"latest": ["cnn", "google-news", "bbc-news", "fox-news", "ars-technica", "bbc-sport"],
+			"tabs": [
+				{
+					"id": "general",
+					"sources": ["cnn", "google-news", "bbc-news", "fox-news"]
+				},
+				{
+					"id": "technology",
+					"sources": ["ars-technica"]
+				},
+				{
+					"id": "sports",
+					"sources": ["bbc-sport"]
+				}
+			]
+		}
+	},
+	"theme": "DARK"
+}
