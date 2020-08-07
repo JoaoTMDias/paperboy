@@ -73,7 +73,9 @@ export const NewsTabs: React.FC<INewsTabsProps> = ({ id, items, location }) => {
 		const activeTabContent: HTMLDivElement | null = document.querySelector("[aria-hidden='false']");
 
 		if (activeTabContent) {
-			const allThumbnails: HTMLAnchorElement[] | null = Array.from(activeTabContent.querySelectorAll("a.article-thumbnail"));
+			const allThumbnails: HTMLAnchorElement[] | null = Array.from(
+				activeTabContent.querySelectorAll("a.article-thumbnail"),
+			);
 			const firstLink = allThumbnails && allThumbnails.length > 0 ? allThumbnails[0] : null;
 
 			if (firstLink) {

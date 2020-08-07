@@ -17,31 +17,25 @@ import { IUIButtonProps } from "./types";
  * @description Button: Primary
  * @extends {React.FC}
  */
-export const UIButton = ensuredForwardRef(({
-	id,
-	type,
-	text,
-	label,
-	disabled,
-	flavour,
-	onClick,
-}: IUIButtonProps, ref) => {
-	return (
-		<Button
-			id={id}
-			ref={ref}
-			data-testid="ui-button"
-			type={type}
-			aria-label={label}
-			aria-disabled={disabled}
-			disabled={disabled}
-			flavour={flavour}
-			onClick={onClick}
-		>
-			{text}
-		</Button>
-	);
-});
+export const UIButton = ensuredForwardRef(
+	({ id, type, text, label, disabled, flavour, onClick }: IUIButtonProps, ref) => {
+		return (
+			<Button
+				id={id}
+				ref={ref}
+				data-testid="ui-button"
+				type={type}
+				aria-label={label}
+				aria-disabled={disabled}
+				disabled={disabled}
+				flavour={flavour}
+				onClick={onClick}
+			>
+				{text}
+			</Button>
+		);
+	},
+);
 
 UIButton.defaultProps = {
 	flavour: "primary",

@@ -35,14 +35,11 @@ const MINIMUM_SELECTED = 3;
 const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({ error, loading, result, handleSubmitForm }) => {
 	const submitButtonRef = useRef<HTMLButtonElement>();
 
-	const setFocusOnSubmitButtonFn = useCallback(
-		() => {
-			if (submitButtonRef && submitButtonRef.current) {
-				submitButtonRef.current.focus();
-			}
-		},
-		[submitButtonRef]
-	);
+	const setFocusOnSubmitButtonFn = useCallback(() => {
+		if (submitButtonRef && submitButtonRef.current) {
+			submitButtonRef.current.focus();
+		}
+	}, [submitButtonRef]);
 
 	useKeyPressEvent("Escape", setFocusOnSubmitButtonFn);
 	/**
@@ -199,7 +196,9 @@ const ChooseSourcesForm: FunctionComponent<IChooseSourcesForm> = ({ error, loadi
 				return (
 					<form id="choose-sources-form" onSubmit={handleSubmit} className="modal-dialog__container">
 						{hasMinimum && (
-							<div className="sr-only" aria-live="polite" aria-atomic="true">Press Escape to set focus on the submit button</div>
+							<div className="sr-only" aria-live="polite" aria-atomic="true">
+								Press Escape to set focus on the submit button
+							</div>
 						)}
 						<Container fullwidth isFixed offsetTop="1rem">
 							{Top20EditorSuggestions && renderListOfSuggestedSources(Top20EditorSuggestions, values.list)}
