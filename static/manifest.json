@@ -30,18 +30,18 @@
 	],
 	"shortcuts": [
 		{
-			"name": "Get Latest News",
-			"short_name": "Latest News",
-			"description": "View a list of the most recent news",
-			"url": "/news?utm_source=homescreen",
-			"icons": [{ "src": "/android/android-launchericon-192-192.png", "sizes": "192x192" }]
+			"name": "Search news",
+			"short_name": "Search news",
+			"description": "Find the news you want",
+			"url": "/search?utm_source=homescreen",
+			"icons": [{ "src": "/shortcut/shortcut-search-icon.png", "sizes": "192x192" }]
 		},
 		{
-			"name": "Go to Saved News",
+			"name": "Saved articles",
 			"short_name": "Saved News",
 			"description": "View a list your previously saved articles",
 			"url": "/saved?utm_source=homescreen",
-			"icons": [{ "src": "/android/android-launchericon-192-192.png", "sizes": "192x192" }]
+			"icons": [{ "src": "/shortcut/shortcut-saved-icon.png", "sizes": "192x192" }]
 		}
 	]
 }
