@@ -7,13 +7,11 @@
  * (c) 2020 joaodias.me, No Rights Reserved.
  */
 
-import React, { useContext, Suspense, lazy } from "react";
+import React, { useContext } from "react";
 import { IBasePageProps } from "data/interfaces/index";
-import ContentSpinner from 'components/content-spinner';
+import NewsPage from "components/news";
+import WelcomeScreen from "components/welcome";
 import PreferencesContext from "../containers/preferences/context";
-
-const NewsPage = lazy(() => import("components/news"));
-const WelcomeScreen = lazy(() => import("components/welcome"));
 
 /**
  * News Page Tab
@@ -24,15 +22,7 @@ const WelcomeScreen = lazy(() => import("components/welcome"));
 const IndexPage: React.FC<IBasePageProps> = ({ location }) => {
 	const { authenticated } = useContext(PreferencesContext);
 
-	function renderContent() {
-		return authenticated ? <NewsPage location={location} /> : <WelcomeScreen />
-	}
-
-	return (
-		<Suspense fallback={<ContentSpinner fullPage center />}>
-			{renderContent()}
-		</Suspense>
-	);
+	return authenticated ? <NewsPage location={location} /> : <WelcomeScreen />;
 };
 
 export default IndexPage;
