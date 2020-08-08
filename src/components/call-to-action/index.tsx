@@ -9,6 +9,7 @@
 
 // Libraries
 import * as React from "react";
+import { useSpring, animated } from "react-spring";
 import { Wrapper } from "./styles";
 import { IUICallToActionProps } from "./types";
 
@@ -20,7 +21,21 @@ import { IUICallToActionProps } from "./types";
  */
 const UICallToAction: React.FunctionComponent<IUICallToActionProps> = (props) => {
 	const { children, ...ctaProps } = props;
-	return <Wrapper {...ctaProps}>{children}</Wrapper>;
+	const ctaAnimatedProps = useSpring({
+		from: {
+			transform: "translate3d(0, 4.5rem, 0)",
+		},
+		to: {
+			transform: "translate3d(0,0,0)",
+		},
+		delay: 128,
+	});
+	const AnimatedWrapper = animated(Wrapper);
+	return (
+		<AnimatedWrapper {...ctaProps} style={ctaAnimatedProps}>
+			{children}
+		</AnimatedWrapper>
+	);
 };
 
 UICallToAction.defaultProps = {

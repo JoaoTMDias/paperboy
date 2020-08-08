@@ -10,7 +10,7 @@
 // Libraries
 import { rem } from "polished";
 import * as React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import fluidFontSize from "helpers/fluid-typography";
 
 // Interface
@@ -62,18 +62,6 @@ const UILead: React.FunctionComponent<IHeadingsProps> = ({ text }) => {
 	);
 };
 
-const onEnter = keyframes`
-    from {
-        transform: translate3d(0, var(--bottom-navigation-bar-height), 0);
-        opacity: 0;
-    }
-
-    to {
-        transform: translate3d(0, 0, 0);
-        opacity: 1;
-    }
-`;
-
 const Heading1 = styled.h2`
 	width: 100%;
 	max-width: 40rem;
@@ -84,12 +72,6 @@ const Heading1 = styled.h2`
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: ${rem("16px")};
-
-	animation-name: ${onEnter};
-	animation-duration: 300ms;
-	animation-timing-function: var(--default-timing-function);
-	animation-fill-mode: both;
-	animation-delay: 125ms;
 `;
 
 const Subtitle = styled.p`
@@ -104,12 +86,6 @@ const Subtitle = styled.p`
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: ${rem("8px")};
-
-	animation-name: ${onEnter};
-	animation-duration: 300ms;
-	animation-timing-function: var(--default-timing-function);
-	animation-fill-mode: both;
-	animation-delay: 96ms;
 `;
 
 const Lead = styled.p`
@@ -117,18 +93,16 @@ const Lead = styled.p`
 	max-width: 40rem;
 	letter-spacing: -0.48px;
 	line-height: 20px;
-	${fluidFontSize(20, "2.5vw", 22)};
 	line-height: var(--global-lineheight);
-	color: var(--lead-color);
+	color: var(--heading-1-color);
 	font-family: var(--body-font-family);
 	margin-left: auto;
 	margin-right: auto;
-	opacity: 0;
-	animation-name: ${onEnter};
-	animation-duration: 300ms;
-	animation-timing-function: var(--default-timing-function);
-	animation-fill-mode: both;
-	animation-delay: 0ms;
+	opacity: 1;
+	transition: none;
+	transition-duration: 0.01ms;
+	animation-duration: 0ms;
+	${fluidFontSize(20, "2.5vw", 22)};
 `;
 
 export { UIDisplay, UISubtitle, UILead };

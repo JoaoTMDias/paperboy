@@ -10,13 +10,30 @@
 // Libraries
 import { rem } from "polished";
 import * as React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { above } from "helpers/media-queries.helpers";
 
 // Component Props
 interface IIconBrandingLargeProps {
 	visible: boolean;
 }
+
+const Wrapper = styled.figure`
+	width: auto;
+	max-height: ${rem("298px")};
+	height: 30vh;
+	position: relative;
+	left: 0;
+	top: 0;
+	overflow: hidden;
+	display: ${(props: IIconBrandingLargeProps) => (props.visible ? "flex" : "none")};
+	margin: 0;
+	transform: translate3d(0, -20%, 0);
+
+	${above.medium`
+		display: flex;
+	`};
+`;
 
 /**
  * @description Branding Icon: Large Logo
@@ -38,38 +55,6 @@ export const IconBrandingLarge: React.FunctionComponent<IIconBrandingLargeProps>
 		</Wrapper>
 	);
 };
-
-// Styling
-const onEnter = keyframes`
-  from {
-    transform: translate3d(0, -100%, 0);
-  }
-
-  to {
-    transform: translate3d(0, -16%, 0);
-  }
-`;
-
-const Wrapper = styled.figure`
-	width: auto;
-	max-height: ${rem("298px")};
-	height: 30vh;
-	position: relative;
-	left: 0;
-	top: 0;
-	transform: translate3d(0, -100%, 0);
-	animation-name: ${onEnter};
-	animation-duration: 750ms;
-	animation-timing-function: var(--default-timing-function, ease-out);
-	animation-fill-mode: both;
-	overflow: hidden;
-	display: ${(props: IIconBrandingLargeProps) => (props.visible ? "flex" : "none")};
-	margin: 0;
-
-	${above.medium`
-		display: flex;
-	`};
-`;
 
 const Icon = styled.svg`
 	width: auto;

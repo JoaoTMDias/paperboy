@@ -11,6 +11,7 @@ import React, { useContext } from "react";
 import Container from "components/container";
 import { IconBrandingLarge } from "components/icons/branding-large.icon";
 import { ONBOARDING_CHOOSE_SOURCES_PAGE } from "data/constants/index.constants";
+
 import { Meta } from "components/meta/index";
 import { IBasePageProps } from "data/interfaces";
 import { useAddToHomescreenPrompt } from "helpers/custom-hooks/useAddToHomescreenPrompt";

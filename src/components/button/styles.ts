@@ -35,7 +35,6 @@ export const Button = styled.button`
 	&:active {
 		background-color: ${darken(0.1, "#e74c3c")};
 		color: currentColor;
-		outline: 1px dashed var(--color-gray2);
 	}
 
 	&:active {
@@ -51,7 +50,6 @@ export const Button = styled.button`
 
 		return css`
 			background-color: transparent;
-			border: 1px dashed var(--color-gray8);
 			color: var(--color-gray8);
 		`;
 	}};
@@ -99,7 +97,6 @@ export const Anchor = styled(Link)`
 	&:active {
 		background-color: ${darken(0.1, "#e74c3c")};
 		color: currentColor;
-		outline: 1px dashed var(--color-gray2);
 	}
 
 	&:active {
