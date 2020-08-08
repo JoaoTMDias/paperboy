@@ -13,8 +13,9 @@ import { above } from "helpers/index.helpers";
 
 export const List = styled.ul`
 	position: relative;
-	min-width: 100vw;
-	height: var(--tabs-container-height);
+	min-width: 100%;
+	min-height: var(--tabs-container-height);
+	height: auto;
 	overflow: scroll;
 	list-style-type: none;
 	margin: 0;

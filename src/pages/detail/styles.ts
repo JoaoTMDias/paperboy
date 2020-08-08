@@ -351,7 +351,7 @@ export const ArticleLink = styled.a`
 
 export const BottomOptionsBar = styled.nav`
 	--bar-background-color: var(--color-gray0);
-	--bar-background-hover-color: var(--color-gray1);
+	--bar-background-hover-color: var(--color-primary);
 	--bar-border-top-color: var(--color-gray3);
 
 	width: 100%;
@@ -392,7 +392,6 @@ export const BottomOptionsBar = styled.nav`
 
 	${theme.dark`
 		--bar-background-color: var(--color-black);
-		--bar-background-hover-color: var(--color-gray9);
 		--bar-border-top-color: var(--color-gray9);
 	`};
 `;

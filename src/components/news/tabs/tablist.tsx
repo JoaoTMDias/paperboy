@@ -7,7 +7,7 @@
  * (c) 2020 joaodias.me, No Rights Reserved.
  */
 
-import React, { useRef, useLayoutEffect, useState, useCallback } from "react";
+import React, { useRef, useLayoutEffect, useState } from "react";
 import { useSpring, config, animated } from "react-spring";
 import { INewsPageHeaderItems } from "data/interfaces";
 import Tab from "./tab";

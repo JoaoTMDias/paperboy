@@ -8,6 +8,7 @@
  */
 
 import React, { useRef } from "react";
+import { useKeyPressEvent } from "react-use";
 import KEY_CODES from "helpers/key-codes";
 import classnames from "classnames";
 import { withMemo } from "helpers/index.helpers";
@@ -29,6 +30,12 @@ const Tab: React.FunctionComponent<ITabProps> = ({ id, index, name, selected, on
 	const { current: ariaControls } = useRef(`tabpanel-${id}`);
 	const classNames = classnames("tab-list__tab", {
 		"tab-list__tab--selected": selected,
+	});
+
+	useKeyPressEvent("ArrowDown", () => {
+		if (selected) {
+			onSelect(index, selected);
+		}
 	});
 
 	function handleOnKeyUp(event: React.KeyboardEvent<HTMLButtonElement>) {
