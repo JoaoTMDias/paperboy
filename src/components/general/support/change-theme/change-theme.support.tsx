@@ -13,6 +13,11 @@ import { EAppThemeType } from "data/interfaces/theme";
 import { checkIfHasDarkMode } from "helpers/theme.helper";
 import PreferencesContext from "../../../../containers/preferences/context";
 
+const THEME = {
+	light: "#ffffff",
+	dark: "#1c1e22",
+};
+
 /**
  * @description Sets the current theme of the app
  * @author João Dias
@@ -22,8 +27,9 @@ import PreferencesContext from "../../../../containers/preferences/context";
 const ChangeAppTheme: FunctionComponent = () => {
 	const { theme: currentTheme, setAppTheme } = useContext(PreferencesContext);
 	const { current: rootElement } = useRef(typeof document !== "undefined" ? document.documentElement : null);
+	const { current: headElement } = useRef(typeof document !== "undefined" ? document.head : null);
 	const [hasNewTheme, setHasNewTheme] = useState(false);
-	const [themeColor, setThemeColor] = useState("#e81b1f");
+	const [themeColor, setThemeColor] = useState(THEME.light);
 
 	/**
 	 * @description Updates the Current Meta Theme Color
@@ -31,19 +37,24 @@ const ChangeAppTheme: FunctionComponent = () => {
 	 * @date 2019-05-09
 	 * @memberof ChangeAppTheme
 	 */
-	const changeBrowserMetaColors = useCallback((theme: EAppThemeType) => {
-		const metaThemeColor = document.querySelector("meta[name=theme-color]");
-		const metaStatusBar = document.querySelector("meta[name=apple-mobile-web-app-status-bar-style]");
-		const statusBarColor = theme === EAppThemeType.DARK ? "black-translucent" : "default";
+	const changeBrowserMetaColors = useCallback(
+		(theme: EAppThemeType) => {
+			if (headElement) {
+				const metaThemeColor = headElement.querySelector("meta[name=theme-color]");
+				const metaStatusBar = headElement.querySelector("meta[name=apple-mobile-web-app-status-bar-style]");
+				const statusBarColor = theme === EAppThemeType.DARK ? "black-translucent" : "default";
 
-		if (metaThemeColor) {
-			metaThemeColor.setAttribute("content", themeColor);
-		}
+				if (metaThemeColor) {
+					metaThemeColor.setAttribute("content", themeColor);
+				}
 
-		if (metaStatusBar) {
-			metaStatusBar.setAttribute("content", statusBarColor);
-		}
-	}, []);
+				if (metaStatusBar) {
+					metaStatusBar.setAttribute("content", statusBarColor);
+				}
+			}
+		},
+		[headElement, themeColor],
+	);
 
 	/**
 	 * @description Updates the current theme
@@ -54,7 +65,7 @@ const ChangeAppTheme: FunctionComponent = () => {
 	 */
 	const changeCurrentTheme = useCallback(
 		(theme: EAppThemeType) => {
-			const color = EAppThemeType.LIGHT ? "#ffffff" : "#1c1e22";
+			const color = theme === EAppThemeType.LIGHT ? THEME.light : THEME.dark;
 
 			if (rootElement) {
 				rootElement.classList.add("theme-transition");
