@@ -11,7 +11,7 @@
 		"@babel/preset-typescript": "^7.10.4",
 		"@pwabuilder/pwainstall": "^1.6.4",
 		"@types/lodash": "^4.14.158",
-		"axios": "^0.19.2",
+		"axios": "^0.21.1",
 		"classnames": "^2.2.6",
 		"cypress-dark": "^1.7.14",
 		"date-fns": "^2.15.0",
