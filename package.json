@@ -28,7 +28,7 @@
 		"gatsby-plugin-styled-components": "^3.3.10",
 		"gatsby-plugin-typescript": "^2.4.16",
 		"history": "^5.0.0",
-		"immer": "^7.0.7",
+		"immer": "^8.0.1",
 		"intersection-observer": "^0.11.0",
 		"lodash": "^4.17.19",
 		"node-sass": "^4.14.1",
